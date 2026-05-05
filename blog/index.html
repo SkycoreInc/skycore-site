@@ -71,7 +71,7 @@
     const posts = [...window.SKYCORE_POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
     document.getElementById("blog-grid").innerHTML = posts.map(p => `
       <article class="post-card">
-        <a href="./${p.slug}.html" class="post-thumb" aria-label="${p.title}"></a>
+        <a href="./${p.slug}.html" class="post-thumb" aria-label="${p.title}">${p.image ? `<img src="${p.image}" alt="${p.title}" loading="lazy">` : ''}</a>
         <div class="post-body">
           <div class="post-meta">${new Date(p.date).toLocaleDateString("en-US",{year:"numeric",month:"short",day:"numeric"})} &middot; ${p.readTime} &middot; ${p.category}</div>
           <h3><a href="./${p.slug}.html">${p.title}</a></h3>

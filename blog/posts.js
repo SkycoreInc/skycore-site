@@ -9,7 +9,8 @@ window.SKYCORE_POSTS = [
     readTime: "5 min read",
     category: "Security Hardening",
     excerpt: "Verizon's 2024 DBIR: 68% of breaches involve the human element. Training reduces the click — infrastructure controls reduce the blast radius.",
-    tint: "from-sky to-cyan"
+    tint: "from-sky to-cyan",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80"
   },
   {
     slug: "cloud-bill-doubled",
@@ -18,7 +19,8 @@ window.SKYCORE_POSTS = [
     readTime: "5 min read",
     category: "Cloud & Infrastructure",
     excerpt: "Flexera's 2024 State of the Cloud report: organizations waste 28% of cloud spend on average. Here's where it goes and how to reclaim it.",
-    tint: "from-indigo to-purple"
+    tint: "from-indigo to-purple",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80"
   },
   {
     slug: "microsoft-365-backup-myth",
@@ -27,7 +29,8 @@ window.SKYCORE_POSTS = [
     readTime: "5 min read",
     category: "Cloud & Infrastructure",
     excerpt: "Microsoft's service agreement explicitly recommends backing up your M365 data. Most organizations discover this on the day they need a restore.",
-    tint: "from-cyan to-sky"
+    tint: "from-cyan to-sky",
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&q=80"
   },
   {
     slug: "the-50000-dollar-sentence",
@@ -36,6 +39,7 @@ window.SKYCORE_POSTS = [
     readTime: "5 min read",
     category: "IT Strategy",
     excerpt: "McKinsey research shows technical debt consumes 20–40% of technology budgets before any new work begins. Here's what that looks like in practice.",
-    tint: "from-sky to-indigo"
+    tint: "from-sky to-indigo",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80"
   }
 ];
