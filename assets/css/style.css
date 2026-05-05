@@ -81,7 +81,7 @@ p  { color: var(--text-2); }
 }
 
 /* ===== LOGO SVG ===== */
-.logo-svg { width: 44px; height: 36px; flex-shrink: 0; object-fit: contain; }
+.logo-svg { width: 54px; height: 44px; flex-shrink: 0; object-fit: contain; }
 
 /* ===== NAV ===== */
 .nav {
@@ -98,14 +98,14 @@ p  { color: var(--text-2); }
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
 .logo {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 12px;
   font-family: var(--font-head);
-  font-weight: 800; color: var(--text); font-size: 1.15rem;
+  font-weight: 800; color: var(--text); font-size: 1.3rem;
   letter-spacing: 0.06em;
 }
 .logo .sky { color: var(--cyan); }
 .logo .core { color: var(--text); }
-.logo .inc  { color: var(--text-3); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; }
+.logo .inc  { color: var(--text-2); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.1em; }
 
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a { color: var(--text-2); font-weight: 500; font-size: 0.92rem; transition: color .2s; }
