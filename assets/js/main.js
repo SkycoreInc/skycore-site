@@ -41,19 +41,51 @@ const revealObserver = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-// Contact form stub (wire to Formspree or your backend)
-const form = document.querySelector("#contact-form");
-if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const btn = form.querySelector("button[type=submit]");
-    if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
-    setTimeout(() => {
-      form.innerHTML = `<div style="padding:32px;text-align:center;">
-        <div style="font-size:2.5rem;margin-bottom:12px;">✓</div>
-        <h3 style="color:var(--cyan);font-family:var(--font-head);margin-bottom:8px;">Message received.</h3>
-        <p>We'll reply within one business day.</p>
-      </div>`;
-    }, 800);
+// TidyCal popup modal
+(function () {
+  const TIDYCAL_URL = "https://tidycal.com/";
+
+  // Inject modal markup
+  const modal = document.createElement("div");
+  modal.id = "tc-modal";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.setAttribute("aria-label", "Book a free consultation");
+  modal.innerHTML =
+    '<div id="tc-overlay"></div>' +
+    '<div id="tc-dialog">' +
+      '<button id="tc-close" aria-label="Close">&times;</button>' +
+      '<iframe id="tc-frame" src="" allow="camera; microphone; fullscreen" title="Book a consultation"></iframe>' +
+    "</div>";
+  document.body.appendChild(modal);
+
+  function openModal(path) {
+    document.getElementById("tc-frame").src = TIDYCAL_URL + path;
+    modal.classList.add("tc-open");
+    document.body.style.overflow = "hidden";
+    document.getElementById("tc-close").focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove("tc-open");
+    // Small delay so the animation plays before src is cleared
+    setTimeout(function () {
+      document.getElementById("tc-frame").src = "";
+    }, 250);
+    document.body.style.overflow = "";
+  }
+
+  document.getElementById("tc-overlay").addEventListener("click", closeModal);
+  document.getElementById("tc-close").addEventListener("click", closeModal);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("tc-open")) closeModal();
   });
-}
+
+  // Delegate all [data-tidycal-popup] clicks
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest("[data-tidycal-popup]");
+    if (!btn) return;
+    e.preventDefault();
+    openModal(btn.getAttribute("data-tidycal-popup"));
+  });
+})();
