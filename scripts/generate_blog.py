@@ -9,13 +9,13 @@ import re
 import json
 import textwrap
 import feedparser
-import google.generativeai as genai
+from google import genai
 from datetime import date
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-MODEL = genai.GenerativeModel("gemini-1.5-flash")
+CLIENT = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+GEMINI_MODEL = "gemini-2.0-flash"
 
 RSS_FEEDS = [
     "https://feeds.feedburner.com/TheHackersNews",
@@ -122,7 +122,7 @@ def generate_post(news_items: list[str]) -> dict:
         }}
     """).strip()
 
-    response = MODEL.generate_content(prompt)
+    response = CLIENT.models.generate_content(model=GEMINI_MODEL, contents=prompt)
     raw = response.text.strip()
 
     # Strip accidental markdown fences
