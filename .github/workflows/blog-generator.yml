@@ -3,7 +3,7 @@ name: Auto Blog Generator
 on:
   schedule:
     - cron: '0 10 */2 * *'   # Every 2 days at 10 AM UTC
-  workflow_dispatch:           # Also allow manual trigger from GitHub UI
+  workflow_dispatch:           # Manual trigger: Actions tab → Run workflow
 
 permissions:
   contents: write
@@ -15,16 +15,24 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Python 3.11
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install google-generativeai feedparser
+        run: pip install --upgrade google-generativeai feedparser
+
+      - name: Check API key is set
+        run: |
+          if [ -z "${{ secrets.GEMINI_API_KEY }}" ]; then
+            echo "ERROR: GEMINI_API_KEY secret is not set."
+            echo "Go to: Repo → Settings → Secrets and variables → Actions → New repository secret"
+            echo "Name: GEMINI_API_KEY  |  Value: your key from aistudio.google.com"
+            exit 1
+          fi
+          echo "API key found ✓"
 
       - name: Generate blog post
         env:
