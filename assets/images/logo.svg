@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420">
+  <defs>
+
+    <!-- ── Neon glow: cyan cloud ── -->
+    <filter id="gc" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4"  result="b2"/>
+      <feMerge>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- ── Neon glow: magenta lock + circuit ── -->
+    <filter id="gm" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="9"  result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3"  result="b2"/>
+      <feMerge>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+  </defs>
+
+  <!-- ══════════════════════════════════════════════
+       CLOUD — 3-bump outline, neon cyan
+       ══════════════════════════════════════════════ -->
+  <path d="
+    M 65 308
+    Q 54 308 50 288
+    Q 45 255 70 237
+    Q 63 196 100 186
+    Q 94 148 132 140
+    Q 126 102 168 106
+    Q 172 70 214 80
+    Q 238 128 256 140
+    Q 264 105 280 62
+    Q 296 105 304 140
+    Q 322 128 346 80
+    Q 388 66 424 100
+    Q 458 105 465 142
+    Q 500 150 506 188
+    Q 534 200 530 237
+    Q 540 264 522 288
+    Q 518 308 508 308
+    L 458 308
+    Q 438 328 404 308
+    L 184 308
+    Q 150 328 118 308
+    Z"
+    stroke="#00E5FF" stroke-width="12" fill="none"
+    stroke-linecap="round" stroke-linejoin="round"
+    filter="url(#gc)"/>
+
+  <!-- ══════════════════════════════════════════════
+       LOCK — shackle + body, neon magenta
+       ══════════════════════════════════════════════ -->
+
+  <!-- Shackle (U-arc): legs at x=228,332 → arc top at (280,118) -->
+  <path d="M 228 188 L 228 158 A 52 52 0 0 0 332 158 L 332 188"
+    stroke="#EE10F0" stroke-width="11" fill="none"
+    stroke-linecap="round" filter="url(#gm)"/>
+
+  <!-- Lock body -->
+  <rect x="200" y="184" width="160" height="80" rx="14"
+    stroke="#EE10F0" stroke-width="11" fill="none" filter="url(#gm)"/>
+
+  <!-- ══════════════════════════════════════════════
+       CIRCUIT — trunk + branches, same magenta
+       ══════════════════════════════════════════════ -->
+
+  <!-- Vertical trunk (lock bottom → below cloud) -->
+  <line x1="280" y1="264" x2="280" y2="382"
+    stroke="#EE10F0" stroke-width="8" stroke-linecap="round" filter="url(#gm)"/>
+
+  <!-- Keyhole node -->
+  <circle cx="280" cy="284" r="13" stroke="#EE10F0" stroke-width="6" fill="none" filter="url(#gm)"/>
+  <circle cx="280" cy="284" r="5"  fill="#EE10F0"/>
+
+  <!-- Left branch: trunk → horizontal left → corner → down → endpoint -->
+  <path d="M 280 342 L 206 342 Q 188 342 188 360"
+    stroke="#EE10F0" stroke-width="8" fill="none"
+    stroke-linecap="round" stroke-linejoin="round" filter="url(#gm)"/>
+
+  <!-- Right branch -->
+  <path d="M 280 342 L 354 342 Q 372 342 372 360"
+    stroke="#EE10F0" stroke-width="8" fill="none"
+    stroke-linecap="round" stroke-linejoin="round" filter="url(#gm)"/>
+
+  <!-- Left endpoint -->
+  <circle cx="188" cy="364" r="13" stroke="#EE10F0" stroke-width="6" fill="none" filter="url(#gm)"/>
+  <circle cx="188" cy="364" r="5"  fill="#EE10F0"/>
+
+  <!-- Right endpoint -->
+  <circle cx="372" cy="364" r="13" stroke="#EE10F0" stroke-width="6" fill="none" filter="url(#gm)"/>
+  <circle cx="372" cy="364" r="5"  fill="#EE10F0"/>
+
+</svg>
