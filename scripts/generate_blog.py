@@ -1,7 +1,7 @@
 """
 SkyCore Solutions — Automated Blog Generator
 Runs via GitHub Actions every 2 days.
-Requires: ANTHROPIC_API_KEY environment variable.
+Requires: GEMINI_API_KEY environment variable (free at aistudio.google.com).
 """
 
 import os
@@ -9,12 +9,13 @@ import re
 import json
 import textwrap
 import feedparser
-import anthropic
+import google.generativeai as genai
 from datetime import date
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-CLIENT = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+MODEL = genai.GenerativeModel("gemini-1.5-flash")
 
 RSS_FEEDS = [
     "https://feeds.feedburner.com/TheHackersNews",
@@ -31,6 +32,8 @@ PHOTO_MAP = {
     "phishing":       "1526374965328-7f61d4dc18c5",
     "security":       "1563986768609-322da13575f3",
     "zero trust":     "1563986768609-322da13575f3",
+    "breach":         "1526374965328-7f61d4dc18c5",
+    "compliance":     "1563986768609-322da13575f3",
     "cloud":          "1451187580459-43490279c0fa",
     "azure":          "1451187580459-43490279c0fa",
     "cost":           "1451187580459-43490279c0fa",
@@ -41,14 +44,12 @@ PHOTO_MAP = {
     "network":        "1558618666-fcd25c85cd64",
     "devops":         "1461749280684-dccba630e2f6",
     "code":           "1461749280684-dccba630e2f6",
-    "compliance":     "1563986768609-322da13575f3",
-    "breach":         "1526374965328-7f61d4dc18c5",
 }
 DEFAULT_PHOTO = "1558494949-ef010cbdcc31"
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
-def fetch_news():
+def fetch_news() -> list[str]:
     articles = []
     for url in RSS_FEEDS:
         try:
@@ -87,7 +88,7 @@ def generate_post(news_items: list[str]) -> dict:
           2. Security Hardening — NIST, CIS Controls, zero-trust, compliance
           3. Infrastructure Revamp — DevOps, CI/CD, containerization, legacy modernization
 
-        RECENT IT NEWS (use at least one real event as the article's hook):
+        RECENT IT NEWS (use at least one real event as the article hook):
         {news_block}
 
         TOP SEO KEYWORDS TO WEAVE IN NATURALLY (pick 4-6 most relevant):
@@ -99,44 +100,40 @@ def generate_post(news_items: list[str]) -> dict:
         "endpoint security", "patch management", "disaster recovery plan"
 
         Write a 750-900 word authoritative blog post that:
-        - Opens with a compelling stat or real news hook
-        - Provides specific, actionable technical advice (not generic fluff)
+        - Opens with a compelling real stat or news hook from the headlines above
+        - Provides specific, actionable technical advice (not vague generalities)
         - Ties directly to ONE of SkyCore's three services
-        - Naturally includes the chosen SEO keywords
+        - Naturally incorporates 4-6 of the SEO keywords above
         - Uses clear H2 and H3 subheadings
+        - Cites at least one real source (report, vendor, CVE, research firm)
         - Ends with an article-cta block
 
-        Return ONLY valid JSON with these exact fields (no markdown fences):
+        Return ONLY valid JSON (no markdown code fences, no extra text) with these exact fields:
         {{
           "slug": "seo-url-slug-4-6-words",
           "title": "Full compelling title with primary keyword",
-          "metaDescription": "145-155 char meta description with keyword and location if natural",
+          "metaDescription": "145-155 char meta description with keyword",
           "date": "{today}",
           "readTime": "X min read",
           "category": "Security Hardening|Cloud Migration|Infrastructure Revamp|IT Strategy",
-          "excerpt": "2-sentence blog card excerpt, under 160 chars",
-          "imageQuery": "3-word topic for photo selection (e.g. 'ransomware attack', 'azure cloud', 'server infrastructure')",
-          "htmlContent": "Full article body HTML starting with <div class=\\"post-meta\\">DATE · READTIME · CATEGORY</div> then <h1>TITLE</h1> then <div class=\\"article-hero\\"><img src=\\"HERO_IMAGE_PLACEHOLDER\\" alt=\\"\\" loading=\\"eager\\" fetchpriority=\\"high\\"></div> then the article paragraphs and headings, ending with: <div class=\\"article-cta\\"><h3 style=\\"margin-bottom:10px;\\">COMPELLING_CTA_HEADING</h3><p style=\\"margin-bottom:20px;\\">CTA_TEXT</p><a href=\\"../contact.html\\" class=\\"btn btn-primary\\">Book a free consultation</a></div>"
+          "excerpt": "2-sentence blog card excerpt under 160 chars",
+          "imageQuery": "3-word topic for photo (e.g. ransomware attack, azure cloud, server infrastructure)",
+          "htmlContent": "Full article body HTML. Start with: <div class=\\"post-meta\\">DATE · READTIME · CATEGORY</div><h1>TITLE</h1><div class=\\"article-hero\\"><img src=\\"HERO_IMAGE_PLACEHOLDER\\" alt=\\"\\" loading=\\"eager\\" fetchpriority=\\"high\\"></div> then article paragraphs/headings using <p> <h2> <h3> <ul> <li> <strong> <a>. End with: <div class=\\"article-cta\\"><h3 style=\\"margin-bottom:10px;\\">CTA_HEADING</h3><p style=\\"margin-bottom:20px;\\">CTA_TEXT</p><a href=\\"../contact.html\\" class=\\"btn btn-primary\\">Book a free consultation</a></div>"
         }}
     """).strip()
 
-    response = CLIENT.messages.create(
-        model="claude-opus-4-5",
-        max_tokens=5000,
-        messages=[{"role": "user", "content": prompt}],
-    )
+    response = MODEL.generate_content(prompt)
+    raw = response.text.strip()
 
-    raw = response.content[0].text.strip()
-    # Strip any accidental markdown fences
+    # Strip accidental markdown fences
     raw = re.sub(r"^```[a-z]*\n?", "", raw)
     raw = re.sub(r"\n?```$", "", raw)
+
     return json.loads(raw)
 
 
 def build_html(post: dict, hero_url: str) -> str:
-    # Inject the real hero image URL into the placeholder
     content = post["htmlContent"].replace("HERO_IMAGE_PLACEHOLDER", hero_url)
-
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -226,10 +223,8 @@ def main():
     print("── Fetching news feeds ──")
     news = fetch_news()
     print(f"   {len(news)} headlines collected")
-    if not news:
-        print("   No news fetched — using general knowledge")
 
-    print("── Generating post via Claude ──")
+    print("── Generating post via Gemini ──")
     post = generate_post(news)
     print(f"   Slug : {post['slug']}")
     print(f"   Title: {post['title']}")
