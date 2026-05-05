@@ -1,0 +1,251 @@
+"""
+SkyCore Solutions — Automated Blog Generator
+Runs via GitHub Actions every 2 days.
+Requires: ANTHROPIC_API_KEY environment variable.
+"""
+
+import os
+import re
+import json
+import textwrap
+import feedparser
+import anthropic
+from datetime import date
+
+# ── Config ────────────────────────────────────────────────────────────────────
+
+CLIENT = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+
+RSS_FEEDS = [
+    "https://feeds.feedburner.com/TheHackersNews",
+    "https://www.bleepingcomputer.com/feed/",
+    "https://krebsonsecurity.com/feed/",
+    "https://techcrunch.com/feed/",
+    "https://www.zdnet.com/news/rss.xml",
+    "https://azure.microsoft.com/en-us/blog/feed/",
+]
+
+# Curated Unsplash photo IDs by topic keyword
+PHOTO_MAP = {
+    "ransomware":     "1526374965328-7f61d4dc18c5",
+    "phishing":       "1526374965328-7f61d4dc18c5",
+    "security":       "1563986768609-322da13575f3",
+    "zero trust":     "1563986768609-322da13575f3",
+    "cloud":          "1451187580459-43490279c0fa",
+    "azure":          "1451187580459-43490279c0fa",
+    "cost":           "1451187580459-43490279c0fa",
+    "backup":         "1544197150-b99a580bb7a8",
+    "data":           "1544197150-b99a580bb7a8",
+    "server":         "1558494949-ef010cbdcc31",
+    "infrastructure": "1558494949-ef010cbdcc31",
+    "network":        "1558618666-fcd25c85cd64",
+    "devops":         "1461749280684-dccba630e2f6",
+    "code":           "1461749280684-dccba630e2f6",
+    "compliance":     "1563986768609-322da13575f3",
+    "breach":         "1526374965328-7f61d4dc18c5",
+}
+DEFAULT_PHOTO = "1558494949-ef010cbdcc31"
+
+# ── Helpers ───────────────────────────────────────────────────────────────────
+
+def fetch_news():
+    articles = []
+    for url in RSS_FEEDS:
+        try:
+            feed = feedparser.parse(url)
+            for entry in feed.entries[:4]:
+                title   = entry.get("title", "").strip()
+                summary = re.sub(r"<[^>]+>", "", entry.get("summary", ""))[:280].strip()
+                source  = feed.feed.get("title", url)
+                if title:
+                    articles.append(f"[{source}] {title}: {summary}")
+        except Exception as e:
+            print(f"Feed error ({url}): {e}")
+    return articles[:20]
+
+
+def pick_photo(image_query: str) -> tuple[str, str]:
+    q = image_query.lower()
+    photo_id = DEFAULT_PHOTO
+    for keyword, pid in PHOTO_MAP.items():
+        if keyword in q:
+            photo_id = pid
+            break
+    hero  = f"https://images.unsplash.com/photo-{photo_id}?w=1400&auto=format&fit=crop&q=80"
+    thumb = f"https://images.unsplash.com/photo-{photo_id}?w=800&auto=format&fit=crop&q=80"
+    return hero, thumb
+
+
+def generate_post(news_items: list[str]) -> dict:
+    news_block = "\n".join(f"• {item}" for item in news_items)
+    today = date.today().isoformat()
+
+    prompt = textwrap.dedent(f"""
+        You are the content writer for SkyCore Solutions, a Montreal-based IT consulting firm.
+        Services offered:
+          1. Cloud Migration — Azure and hybrid architectures
+          2. Security Hardening — NIST, CIS Controls, zero-trust, compliance
+          3. Infrastructure Revamp — DevOps, CI/CD, containerization, legacy modernization
+
+        RECENT IT NEWS (use at least one real event as the article's hook):
+        {news_block}
+
+        TOP SEO KEYWORDS TO WEAVE IN NATURALLY (pick 4-6 most relevant):
+        "managed IT services Montreal", "cloud migration Azure", "IT infrastructure Montreal",
+        "cybersecurity SMB", "zero trust security", "ransomware protection SMB",
+        "Microsoft 365 security", "cloud cost optimization", "IT consulting Montreal",
+        "infrastructure modernization", "DevOps implementation", "hybrid cloud strategy",
+        "IT compliance Canada", "network security audit", "business continuity IT",
+        "endpoint security", "patch management", "disaster recovery plan"
+
+        Write a 750-900 word authoritative blog post that:
+        - Opens with a compelling stat or real news hook
+        - Provides specific, actionable technical advice (not generic fluff)
+        - Ties directly to ONE of SkyCore's three services
+        - Naturally includes the chosen SEO keywords
+        - Uses clear H2 and H3 subheadings
+        - Ends with an article-cta block
+
+        Return ONLY valid JSON with these exact fields (no markdown fences):
+        {{
+          "slug": "seo-url-slug-4-6-words",
+          "title": "Full compelling title with primary keyword",
+          "metaDescription": "145-155 char meta description with keyword and location if natural",
+          "date": "{today}",
+          "readTime": "X min read",
+          "category": "Security Hardening|Cloud Migration|Infrastructure Revamp|IT Strategy",
+          "excerpt": "2-sentence blog card excerpt, under 160 chars",
+          "imageQuery": "3-word topic for photo selection (e.g. 'ransomware attack', 'azure cloud', 'server infrastructure')",
+          "htmlContent": "Full article body HTML starting with <div class=\\"post-meta\\">DATE · READTIME · CATEGORY</div> then <h1>TITLE</h1> then <div class=\\"article-hero\\"><img src=\\"HERO_IMAGE_PLACEHOLDER\\" alt=\\"\\" loading=\\"eager\\" fetchpriority=\\"high\\"></div> then the article paragraphs and headings, ending with: <div class=\\"article-cta\\"><h3 style=\\"margin-bottom:10px;\\">COMPELLING_CTA_HEADING</h3><p style=\\"margin-bottom:20px;\\">CTA_TEXT</p><a href=\\"../contact.html\\" class=\\"btn btn-primary\\">Book a free consultation</a></div>"
+        }}
+    """).strip()
+
+    response = CLIENT.messages.create(
+        model="claude-opus-4-5",
+        max_tokens=5000,
+        messages=[{"role": "user", "content": prompt}],
+    )
+
+    raw = response.content[0].text.strip()
+    # Strip any accidental markdown fences
+    raw = re.sub(r"^```[a-z]*\n?", "", raw)
+    raw = re.sub(r"\n?```$", "", raw)
+    return json.loads(raw)
+
+
+def build_html(post: dict, hero_url: str) -> str:
+    # Inject the real hero image URL into the placeholder
+    content = post["htmlContent"].replace("HERO_IMAGE_PLACEHOLDER", hero_url)
+
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{post['title']} — SkyCore Solutions</title>
+  <meta name="description" content="{post['metaDescription']}" />
+  <meta property="article:published_time" content="{post['date']}" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="./">Blog</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article">
+    {content}
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Company</h4><ul><li><a href="../about.html">About</a></li><li><a href="./">Blog</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145748877">+1 (514) 574-8877</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon–Fri: 9AM–6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>"""
+
+
+def prepend_to_posts_js(post: dict, thumb_url: str):
+    posts_path = "blog/posts.js"
+    with open(posts_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    title   = post["title"].replace("\\", "\\\\").replace('"', '\\"')
+    excerpt = post["excerpt"].replace("\\", "\\\\").replace('"', '\\"')
+
+    new_entry = (
+        f'  {{\n'
+        f'    slug: "{post["slug"]}",\n'
+        f'    title: "{title}",\n'
+        f'    date: "{post["date"]}",\n'
+        f'    readTime: "{post["readTime"]}",\n'
+        f'    category: "{post["category"]}",\n'
+        f'    excerpt: "{excerpt}",\n'
+        f'    tint: "from-sky to-cyan",\n'
+        f'    image: "{thumb_url}"\n'
+        f'  }},\n'
+    )
+
+    content = content.replace(
+        "window.SKYCORE_POSTS = [\n",
+        f"window.SKYCORE_POSTS = [\n{new_entry}"
+    )
+
+    with open(posts_path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+# ── Main ──────────────────────────────────────────────────────────────────────
+
+def main():
+    print("── Fetching news feeds ──")
+    news = fetch_news()
+    print(f"   {len(news)} headlines collected")
+    if not news:
+        print("   No news fetched — using general knowledge")
+
+    print("── Generating post via Claude ──")
+    post = generate_post(news)
+    print(f"   Slug : {post['slug']}")
+    print(f"   Title: {post['title']}")
+
+    hero_url, thumb_url = pick_photo(post.get("imageQuery", "server infrastructure"))
+    print(f"   Image: {hero_url}")
+
+    html_path = f"blog/{post['slug']}.html"
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(build_html(post, hero_url))
+    print(f"── Written: {html_path} ──")
+
+    prepend_to_posts_js(post, thumb_url)
+    print("── posts.js updated ──")
+    print("Done ✓")
+
+
+if __name__ == "__main__":
+    main()
