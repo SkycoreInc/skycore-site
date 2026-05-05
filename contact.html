@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
 </head>
 <body>
   <header class="nav">
@@ -36,6 +37,18 @@
       <span class="eyebrow">Connect With Us</span>
       <h1>Ready to transform your <span class="grad">IT infrastructure?</span></h1>
       <p class="lead" style="margin:20px auto 0;">Reach out to our team of experts today. Book a free 30-minute consultation or send us a message — we reply within one business day.</p>
+    </div>
+  </section>
+
+  <!-- TidyCal inline booking -->
+  <section class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="container" style="max-width:900px;">
+      <div style="text-align:center;margin-bottom:12px;">
+        <span class="eyebrow">Book a Free Consultation</span>
+        <h2 style="margin-top:8px;">Schedule your <span class="grad">30-minute session</span></h2>
+        <p style="color:var(--text-2);margin-top:8px;">Pick a time that works for you — no commitment required.</p>
+      </div>
+      <div class="tidycal-embed" data-path="mnkpzxm/30-minute-meeting"></div>
     </div>
   </section>
 
@@ -125,5 +138,6 @@
   </footer>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
   <script src="./assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
 </body>
 </html>
