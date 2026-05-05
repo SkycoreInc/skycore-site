@@ -55,31 +55,49 @@
   <section class="section" style="padding-top:0;">
     <div class="container">
       <div class="contact-grid">
-        <form id="contact-form" class="form" action="https://formspree.io/f/xzdorrzo" method="POST">
+        <form id="contact-form" class="form">
+          <!-- Form-level success / error banners -->
+          <div data-fs-success class="fs-success-msg" style="display:none;">
+            <div class="fs-success-icon">✓</div>
+            <strong>Message sent!</strong>
+            <p>Thanks for reaching out. We'll get back to you within one business day.</p>
+          </div>
+          <div data-fs-error class="fs-form-error" style="display:none;"></div>
+
           <div>
             <label for="name">Name</label>
-            <input id="name" name="name" type="text" required autocomplete="name" placeholder="Your full name" />
+            <input id="name" name="name" type="text" required autocomplete="name" placeholder="Your full name" data-fs-field />
+            <span data-fs-error="name" class="fs-field-error"></span>
           </div>
           <div>
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com" />
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com" data-fs-field />
+            <span data-fs-error="email" class="fs-field-error"></span>
           </div>
           <div>
             <label for="subject">Subject</label>
-            <select id="subject" name="subject">
+            <select id="subject" name="subject" data-fs-field>
               <option value="General Inquiry">General Inquiry</option>
               <option value="Cloud Migration">Cloud Migration</option>
               <option value="Security Hardening">Security Hardening</option>
               <option value="Infrastructure Revamp">Infrastructure Revamp</option>
             </select>
+            <span data-fs-error="subject" class="fs-field-error"></span>
           </div>
           <div>
             <label for="msg">Message</label>
-            <textarea id="msg" name="msg" placeholder="How can we help you?"></textarea>
+            <textarea id="msg" name="msg" placeholder="How can we help you?" data-fs-field></textarea>
+            <span data-fs-error="msg" class="fs-field-error"></span>
           </div>
-          <button type="submit" class="btn btn-primary" style="justify-content:center;width:100%;">Send Message</button>
+          <button type="submit" class="btn btn-primary" style="justify-content:center;width:100%;" data-fs-submit-btn>Send Message</button>
           <p style="color:var(--text-3);font-size:0.82rem;margin-top:4px;text-align:center;">Your information is never shared.</p>
         </form>
+
+        <script>
+          window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+          formspree('initForm', { formElement: '#contact-form', formId: 'xzdorrzo' });
+        </script>
+        <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
         <div class="contact-info">
           <h2 style="margin-bottom:28px;">Contact Information</h2>
