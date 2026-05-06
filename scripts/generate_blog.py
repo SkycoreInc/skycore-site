@@ -1,7 +1,7 @@
 """
 SkyCore Solutions — Automated Blog Generator
 Runs via GitHub Actions every 2 days.
-Requires: GEMINI_API_KEY environment variable (free at aistudio.google.com).
+Requires: GROQ_API_KEY environment variable (free at console.groq.com).
 """
 
 import os
@@ -9,13 +9,13 @@ import re
 import json
 import textwrap
 import feedparser
-from google import genai
+from groq import Groq
 from datetime import date
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-CLIENT = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-GEMINI_MODEL = "gemini-2.0-flash"
+CLIENT = Groq(api_key=os.environ["GROQ_API_KEY"])
+GROQ_MODEL = "llama-3.3-70b-versatile"
 
 RSS_FEEDS = [
     "https://feeds.feedburner.com/TheHackersNews",
@@ -122,8 +122,13 @@ def generate_post(news_items: list[str]) -> dict:
         }}
     """).strip()
 
-    response = CLIENT.models.generate_content(model=GEMINI_MODEL, contents=prompt)
-    raw = response.text.strip()
+    response = CLIENT.chat.completions.create(
+        model=GROQ_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=5000,
+        temperature=0.7,
+    )
+    raw = response.choices[0].message.content.strip()
 
     # Strip accidental markdown fences
     raw = re.sub(r"^```[a-z]*\n?", "", raw)
@@ -224,7 +229,7 @@ def main():
     news = fetch_news()
     print(f"   {len(news)} headlines collected")
 
-    print("── Generating post via Gemini ──")
+    print("── Generating post via Groq (Llama 3.3 70B) ──")
     post = generate_post(news)
     print(f"   Slug : {post['slug']}")
     print(f"   Title: {post['title']}")

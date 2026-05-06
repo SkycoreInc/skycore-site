@@ -22,21 +22,21 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install --upgrade google-genai feedparser
+        run: pip install --upgrade groq feedparser
 
       - name: Check API key is set
         run: |
-          if [ -z "${{ secrets.GEMINI_API_KEY }}" ]; then
-            echo "ERROR: GEMINI_API_KEY secret is not set."
+          if [ -z "${{ secrets.GROQ_API_KEY }}" ]; then
+            echo "ERROR: GROQ_API_KEY secret is not set."
             echo "Go to: Repo → Settings → Secrets and variables → Actions → New repository secret"
-            echo "Name: GEMINI_API_KEY  |  Value: your key from aistudio.google.com"
+            echo "Name: GROQ_API_KEY  |  Value: your free key from console.groq.com"
             exit 1
           fi
           echo "API key found ✓"
 
       - name: Generate blog post
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python scripts/generate_blog.py
 
       - name: Commit and push new post
