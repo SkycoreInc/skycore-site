@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "critical-cybersecurity-hardening-montreal-smb",
+    title: "Protecting Your Business: Critical Cybersecurity Hardening for Montreal SMBs",
+    date: "2026-05-06",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "A critical Apache HTTP/2 vulnerability underscores the constant threat businesses face. Discover how essential security hardening protects your Montreal SMB from emerging cyber threats and data breaches.",
+    tint: "from-sky to-cyan",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80"
+  },
+  {
     slug: "4-minute-phishing-test",
     title: "68% of Breaches Involve the Human Element — Here's What Infrastructure Can Actually Do About It",
     date: "2026-04-15",
