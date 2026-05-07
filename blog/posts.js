@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "security-hardening-smb-montreal",
+    title: "Fortifying Your Digital Defenses: Essential Security Hardening for SMBs in Montreal",
+    date: "2026-05-07",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Recent zero-day exploits like Ivanti's CVE-2026-6973 highlight the critical need for proactive cybersecurity. Discover how SkyCore Solutions helps Montreal SMBs harden their defenses.",
+    tint: "from-sky to-cyan",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80"
+  },
+  {
     slug: "critical-cybersecurity-hardening-montreal-smb",
     title: "Protecting Your Business: Critical Cybersecurity Hardening for Montreal SMBs",
     date: "2026-05-06",
