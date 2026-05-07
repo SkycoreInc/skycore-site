@@ -123,14 +123,28 @@ def generate_post(news_items: list[str]) -> dict:
         }}
     """).strip()
 
-    response = CLIENT.models.generate_content(model=GEMINI_MODEL, contents=prompt)
-    raw = response.text.strip()
+    for attempt in range(1, 4):
+        try:
+            response = CLIENT.models.generate_content(model=GEMINI_MODEL, contents=prompt)
+            raw = response.text.strip()
 
-    # Strip accidental markdown fences
-    raw = re.sub(r"^```[a-z]*\n?", "", raw)
-    raw = re.sub(r"\n?```$", "", raw)
+            # Strip accidental markdown fences
+            raw = re.sub(r"^```[a-z]*\n?", "", raw)
+            raw = re.sub(r"\n?```$", "", raw)
 
-    return json.loads(raw)
+            # Extract the outermost JSON object in case there's leading/trailing text
+            match = re.search(r"\{[\s\S]*\}", raw)
+            if match:
+                raw = match.group(0)
+
+            return json.loads(raw)
+
+        except (json.JSONDecodeError, ValueError) as e:
+            print(f"   Attempt {attempt} failed: {e}")
+            if attempt == 3:
+                raise RuntimeError(f"Gemini returned invalid JSON after 3 attempts. Last error: {e}\n\nRaw response:\n{raw[:500]}")
+            print("   Retrying with stricter prompt...")
+            prompt += "\n\nCRITICAL: Your previous response had a JSON parse error. Ensure ALL double quotes inside string values are escaped as \\\" and there are NO unescaped special characters in htmlContent."
 
 
 def build_html(post: dict, hero_url: str) -> str:
