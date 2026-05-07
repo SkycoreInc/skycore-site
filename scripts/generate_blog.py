@@ -28,22 +28,31 @@ RSS_FEEDS = [
 
 # Curated Unsplash photo IDs by topic keyword
 PHOTO_MAP = {
-    "ransomware":     "1526374965328-7f61d4dc18c5",
-    "phishing":       "1526374965328-7f61d4dc18c5",
-    "security":       "1563986768609-322da13575f3",
-    "zero trust":     "1563986768609-322da13575f3",
-    "breach":         "1526374965328-7f61d4dc18c5",
-    "compliance":     "1563986768609-322da13575f3",
-    "cloud":          "1451187580459-43490279c0fa",
-    "azure":          "1451187580459-43490279c0fa",
-    "cost":           "1451187580459-43490279c0fa",
-    "backup":         "1544197150-b99a580bb7a8",
-    "data":           "1544197150-b99a580bb7a8",
-    "server":         "1558494949-ef010cbdcc31",
-    "infrastructure": "1558494949-ef010cbdcc31",
-    "network":        "1558618666-fcd25c85cd64",
-    "devops":         "1461749280684-dccba630e2f6",
-    "code":           "1461749280684-dccba630e2f6",
+    "ransomware":        "1526374965328-7f61d4dc18c5",
+    "phishing":          "1526374965328-7f61d4dc18c5",
+    "malware":           "1526374965328-7f61d4dc18c5",
+    "security":          "1550751827-4bd374c3f58b",
+    "zero trust":        "1550751827-4bd374c3f58b",
+    "hardening":         "1563986768609-322da13575f3",
+    "vulnerability":     "1563986768609-322da13575f3",
+    "breach":            "1504384308090-c894fdcc538d",
+    "compliance":        "1504384308090-c894fdcc538d",
+    "endpoint":          "1550751827-4bd374c3f58b",
+    "cloud":             "1451187580459-43490279c0fa",
+    "azure":             "1451187580459-43490279c0fa",
+    "cost":              "1451187580459-43490279c0fa",
+    "migration":         "1451187580459-43490279c0fa",
+    "backup":            "1544197150-b99a580bb7a8",
+    "data":              "1544197150-b99a580bb7a8",
+    "microsoft 365":     "1544197150-b99a580bb7a8",
+    "server":            "1558494949-ef010cbdcc31",
+    "infrastructure":    "1558494949-ef010cbdcc31",
+    "technical debt":    "1558494949-ef010cbdcc31",
+    "network":           "1558618666-fcd25c85cd64",
+    "firewall":          "1558618666-fcd25c85cd64",
+    "devops":            "1461749280684-dccba630e2f6",
+    "code":              "1461749280684-dccba630e2f6",
+    "modernization":     "1461749280684-dccba630e2f6",
 }
 DEFAULT_PHOTO = "1558494949-ef010cbdcc31"
 
@@ -311,3 +320,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

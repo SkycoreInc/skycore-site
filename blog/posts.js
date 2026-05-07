@@ -10,7 +10,7 @@ window.SKYCORE_POSTS = [
     category: "Security Hardening",
     excerpt: "Recent zero-day exploits like Ivanti's CVE-2026-6973 highlight the critical need for proactive cybersecurity. Discover how SkyCore Solutions helps Montreal SMBs harden their defenses.",
     tint: "from-sky to-cyan",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=80"
   },
   {
     slug: "critical-cybersecurity-hardening-montreal-smb",
@@ -63,3 +63,4 @@ window.SKYCORE_POSTS = [
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80"
   }
 ];
+

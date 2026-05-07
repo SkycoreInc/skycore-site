@@ -88,7 +88,7 @@
           <div class="post-meta">${new Date(p.date).toLocaleDateString("en-US",{year:"numeric",month:"short",day:"numeric"})} &middot; ${p.readTime} &middot; ${p.category}</div>
           <h3><a href="./${p.slug}.html">${p.title}</a></h3>
           <p>${p.excerpt}</p>
-          <span class="post-tag">Read article &rarr;</span>
+          <a href="./${p.slug}.html" class="post-tag">Read article &rarr;</a>
         </div>
       </article>`).join("");
   </script>
