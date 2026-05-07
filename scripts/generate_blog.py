@@ -203,6 +203,40 @@ def build_html(post: dict, hero_url: str) -> str:
 </html>"""
 
 
+def prepend_to_feed_xml(post: dict, thumb_url: str):
+    from email.utils import formatdate
+    from datetime import datetime
+    feed_path = "blog/feed.xml"
+    with open(feed_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    title   = post["title"].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    excerpt = post["excerpt"].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    slug    = post["slug"]
+    url     = f"https://skycoresolutions.com/blog/{slug}.html"
+    img     = thumb_url.replace("&", "&amp;")
+    cat     = post["category"].replace("&", "&amp;")
+    dt      = datetime.strptime(post["date"], "%Y-%m-%d")
+    pub     = formatdate(dt.timestamp(), usegmt=True)
+
+    new_item = (
+        f"\n    <item>\n"
+        f"      <title>{title}</title>\n"
+        f"      <link>{url}</link>\n"
+        f"      <guid isPermaLink=\"true\">{url}</guid>\n"
+        f"      <pubDate>{pub}</pubDate>\n"
+        f"      <description>{excerpt}</description>\n"
+        f"      <category>{cat}</category>\n"
+        f"      <media:content url=\"{img}\" medium=\"image\"/>\n"
+        f"    </item>\n"
+    )
+
+    content = content.replace("\n    <item>", new_item + "\n    <item>", 1)
+
+    with open(feed_path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+
 def prepend_to_posts_js(post: dict, thumb_url: str):
     posts_path = "blog/posts.js"
     with open(posts_path, "r", encoding="utf-8") as f:
@@ -255,6 +289,9 @@ def main():
 
     prepend_to_posts_js(post, thumb_url)
     print("── posts.js updated ──")
+
+    prepend_to_feed_xml(post, thumb_url)
+    print("── feed.xml updated ──")
     print("Done ✓")
 
 

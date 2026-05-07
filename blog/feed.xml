@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>SkyCore Solutions — IT Infrastructure Blog</title>
+    <link>https://skycoresolutions.com/blog/</link>
+    <description>Practical reads on cloud, security, and infrastructure — backed by real data, not vendor marketing. New post every other day.</description>
+    <language>en-us</language>
+    <atom:link href="https://skycoresolutions.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://skycoresolutions.com/assets/images/logo.png</url>
+      <title>SkyCore Solutions</title>
+      <link>https://skycoresolutions.com/blog/</link>
+    </image>
+
+    <item>
+      <title>Protecting Your Business: Critical Cybersecurity Hardening for Montreal SMBs</title>
+      <link>https://skycoresolutions.com/blog/critical-cybersecurity-hardening-montreal-smb.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/critical-cybersecurity-hardening-montreal-smb.html</guid>
+      <pubDate>Wed, 06 May 2026 10:00:00 +0000</pubDate>
+      <description>A critical Apache HTTP/2 vulnerability underscores the constant threat businesses face. Discover how essential security hardening protects your Montreal SMB from emerging cyber threats and data breaches.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&amp;auto=format&amp;fit=crop&amp;q=80" medium="image"/>
+    </item>
+
+    <item>
+      <title>68% of Breaches Involve the Human Element — Here's What Infrastructure Can Actually Do About It</title>
+      <link>https://skycoresolutions.com/blog/4-minute-phishing-test.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/4-minute-phishing-test.html</guid>
+      <pubDate>Wed, 15 Apr 2026 10:00:00 +0000</pubDate>
+      <description>Verizon's 2024 DBIR: 68% of breaches involve the human element. Training reduces the click — infrastructure controls reduce the blast radius.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&amp;auto=format&amp;fit=crop&amp;q=80" medium="image"/>
+    </item>
+
+    <item>
+      <title>Why Cloud Bills Keep Growing — And the Patterns Behind the Waste</title>
+      <link>https://skycoresolutions.com/blog/cloud-bill-doubled.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/cloud-bill-doubled.html</guid>
+      <pubDate>Mon, 13 Apr 2026 10:00:00 +0000</pubDate>
+      <description>Flexera's 2024 State of the Cloud report: organizations waste 28% of cloud spend on average. Here's where it goes and how to reclaim it.</description>
+      <category>Cloud &amp; Infrastructure</category>
+      <media:content url="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&amp;auto=format&amp;fit=crop&amp;q=80" medium="image"/>
+    </item>
+
+    <item>
+      <title>Your Microsoft 365 Isn't Being Backed Up — And Microsoft's Own Terms Confirm It</title>
+      <link>https://skycoresolutions.com/blog/microsoft-365-backup-myth.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/microsoft-365-backup-myth.html</guid>
+      <pubDate>Sat, 11 Apr 2026 10:00:00 +0000</pubDate>
+      <description>Microsoft's service agreement explicitly recommends backing up your M365 data. Most organizations discover this on the day they need a restore.</description>
+      <category>Cloud &amp; Infrastructure</category>
+      <media:content url="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&amp;auto=format&amp;fit=crop&amp;q=80" medium="image"/>
+    </item>
+
+    <item>
+      <title>The Hidden Cost of Deferred IT: Why 'We'll Deal With It Later' Becomes Your Most Expensive Decision</title>
+      <link>https://skycoresolutions.com/blog/the-50000-dollar-sentence.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/the-50000-dollar-sentence.html</guid>
+      <pubDate>Thu, 09 Apr 2026 10:00:00 +0000</pubDate>
+      <description>McKinsey research shows technical debt consumes 20–40% of technology budgets before any new work begins. Here's what that looks like in practice.</description>
+      <category>IT Strategy</category>
+      <media:content url="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&amp;auto=format&amp;fit=crop&amp;q=80" medium="image"/>
+    </item>
+
+  </channel>
+</rss>
