@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cpanel-vulnerabilities-security-hardening",
+    title: "Immediate Action Required: Hardening Your Cybersecurity Against Critical cPanel Vulnerabilities",
+    date: "2026-05-09",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "New vulnerabilities in cPanel and WHM pose serious threats, from privilege escalation to code execution. Discover how to protect your infrastructure and enhance your cybersecurity posture.",
+    tint: "from-sky to-cyan",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=80"
+  },
+  {
     slug: "security-hardening-smb-montreal",
     title: "Fortifying Your Digital Defenses: Essential Security Hardening for SMBs in Montreal",
     date: "2026-05-07",
