@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "zero-trust-ai-cybersecurity-montreal",
+    title: "Beyond the AI Zero-Day: Fortifying Your Defenses with Zero Trust Security in Montreal",
+    date: "2026-05-11",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "The advent of AI-developed zero-days marks a new era in cyber threats. Discover how embracing a zero trust security model is essential for businesses, particularly SMBs in Montreal, to build resilient defenses.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5473960/pexels-photo-5473960.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "security-hardening-smb-montreal",
     title: "Strengthening Your Defenses: Essential Security Hardening for SMBs in Montreal",
     date: "2026-05-11",
