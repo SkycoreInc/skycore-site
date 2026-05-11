@@ -103,7 +103,7 @@ p  { color: var(--text-2); }
   font-weight: 800; color: var(--text); font-size: 1.3rem;
   letter-spacing: 0.06em;
 }
-.footer .logo-svg { width: 80px; height: 65px; }
+.footer .logo-svg { width: 80px; height: 65px; mix-blend-mode: screen; }
 .logo .sky { color: var(--cyan); }
 .logo .core { color: var(--text); }
 .logo .inc  { color: var(--text-2); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.1em; }
