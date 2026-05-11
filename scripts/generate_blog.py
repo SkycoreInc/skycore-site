@@ -74,13 +74,39 @@ def fetch_news() -> list[str]:
     return articles[:20]
 
 
+def get_used_photo_ids() -> set:
+    """Read posts.js and return the set of Unsplash photo IDs already in use."""
+    try:
+        with open("blog/posts.js", "r", encoding="utf-8") as f:
+            content = f.read()
+        return set(re.findall(r'photo-([a-f0-9-]+)\?w=800', content))
+    except Exception:
+        return set()
+
+
 def pick_photo(image_query: str) -> tuple[str, str]:
-    q = image_query.lower()
-    photo_id = DEFAULT_PHOTO
+    used = get_used_photo_ids()
+    q    = image_query.lower()
+
+    # Build candidate list: keyword matches first, then every other mapped ID
+    candidates = []
     for keyword, pid in PHOTO_MAP.items():
-        if keyword in q:
-            photo_id = pid
-            break
+        if keyword in q and pid not in candidates:
+            candidates.append(pid)
+    for pid in PHOTO_MAP.values():
+        if pid not in candidates:
+            candidates.append(pid)
+    if DEFAULT_PHOTO not in candidates:
+        candidates.append(DEFAULT_PHOTO)
+
+    # Pick the first candidate not already used in posts.js
+    photo_id = next((pid for pid in candidates if pid not in used), candidates[0])
+
+    if photo_id in used:
+        print(f"   ⚠ All photos used — reusing {photo_id} (add more to PHOTO_MAP)")
+    else:
+        print(f"   ✓ Unique photo selected: {photo_id}")
+
     hero  = f"https://images.unsplash.com/photo-{photo_id}?w=1400&auto=format&fit=crop&q=80"
     thumb = f"https://images.unsplash.com/photo-{photo_id}?w=800&auto=format&fit=crop&q=80"
     return hero, thumb
