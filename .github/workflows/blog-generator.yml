@@ -24,21 +24,25 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install --upgrade google-genai feedparser
+        run: pip install --upgrade google-genai feedparser requests
 
-      - name: Check API key is set
+      - name: Check API keys are set
         run: |
           if [ -z "${{ secrets.GEMINI_API_KEY }}" ]; then
             echo "ERROR: GEMINI_API_KEY secret is not set."
-            echo "Go to: Repo → Settings → Secrets and variables → Actions → New repository secret"
-            echo "Name: GEMINI_API_KEY  |  Value: your key from aistudio.google.com"
             exit 1
           fi
-          echo "API key found ✓"
+          echo "GEMINI_API_KEY found ✓"
+          if [ -z "${{ secrets.PEXELS_API_KEY }}" ]; then
+            echo "WARNING: PEXELS_API_KEY not set — images will use Unsplash fallback"
+          else
+            echo "PEXELS_API_KEY found ✓"
+          fi
 
       - name: Generate blog post
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: python scripts/generate_blog.py
 
       - name: Commit and push new post

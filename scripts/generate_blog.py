@@ -1,21 +1,24 @@
 """
 SkyCore Solutions — Automated Blog Generator
 Runs via GitHub Actions every 2 days.
-Requires: GEMINI_API_KEY environment variable (free at aistudio.google.com).
+Requires: GEMINI_API_KEY  (free at aistudio.google.com)
+          PEXELS_API_KEY  (free at pexels.com/api)
 """
 
 import os
 import re
 import json
 import textwrap
+import requests
 import feedparser
 from google import genai
 from datetime import date
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-CLIENT = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-GEMINI_MODEL = "gemini-2.5-flash"   # free-tier model
+CLIENT         = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+GEMINI_MODEL   = "gemini-2.5-flash"
+PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 RSS_FEEDS = [
     "https://feeds.feedburner.com/TheHackersNews",
@@ -26,35 +29,18 @@ RSS_FEEDS = [
     "https://azure.microsoft.com/en-us/blog/feed/",
 ]
 
-# Curated Unsplash photo IDs by topic keyword
-PHOTO_MAP = {
-    "ransomware":        "1526374965328-7f61d4dc18c5",
-    "phishing":          "1526374965328-7f61d4dc18c5",
-    "malware":           "1526374965328-7f61d4dc18c5",
-    "security":          "1550751827-4bd374c3f58b",
-    "zero trust":        "1550751827-4bd374c3f58b",
-    "hardening":         "1563986768609-322da13575f3",
-    "vulnerability":     "1563986768609-322da13575f3",
-    "breach":            "1504384308090-c894fdcc538d",
-    "compliance":        "1504384308090-c894fdcc538d",
-    "endpoint":          "1550751827-4bd374c3f58b",
-    "cloud":             "1451187580459-43490279c0fa",
-    "azure":             "1451187580459-43490279c0fa",
-    "cost":              "1451187580459-43490279c0fa",
-    "migration":         "1451187580459-43490279c0fa",
-    "backup":            "1544197150-b99a580bb7a8",
-    "data":              "1544197150-b99a580bb7a8",
-    "microsoft 365":     "1544197150-b99a580bb7a8",
-    "server":            "1558494949-ef010cbdcc31",
-    "infrastructure":    "1558494949-ef010cbdcc31",
-    "technical debt":    "1558494949-ef010cbdcc31",
-    "network":           "1558618666-fcd25c85cd64",
-    "firewall":          "1558618666-fcd25c85cd64",
-    "devops":            "1461749280684-dccba630e2f6",
-    "code":              "1461749280684-dccba630e2f6",
-    "modernization":     "1461749280684-dccba630e2f6",
-}
-DEFAULT_PHOTO = "1558494949-ef010cbdcc31"
+# Fallback Unsplash photos used only if Pexels is unavailable
+FALLBACK_PHOTOS = [
+    "1558494949-ef010cbdcc31",
+    "1526374965328-7f61d4dc18c5",
+    "1550751827-4bd374c3f58b",
+    "1563986768609-322da13575f3",
+    "1451187580459-43490279c0fa",
+    "1544197150-b99a580bb7a8",
+    "1504384308090-c894fdcc538d",
+    "1558618666-fcd25c85cd64",
+    "1461749280684-dccba630e2f6",
+]
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -74,42 +60,72 @@ def fetch_news() -> list[str]:
     return articles[:20]
 
 
-def get_used_photo_ids() -> set:
-    """Read posts.js and return the set of Unsplash photo IDs already in use."""
+def get_used_image_urls() -> set:
+    """Return all image URLs already stored in posts.js."""
     try:
         with open("blog/posts.js", "r", encoding="utf-8") as f:
             content = f.read()
-        return set(re.findall(r'photo-([a-f0-9-]+)\?w=800', content))
+        return set(re.findall(r'image:\s*"([^"]+)"', content))
     except Exception:
         return set()
 
 
-def pick_photo(image_query: str) -> tuple[str, str]:
-    used = get_used_photo_ids()
-    q    = image_query.lower()
+def pick_photo_pexels(image_query: str, used_urls: set) -> tuple[str, str] | tuple[None, None]:
+    """Search Pexels for a landscape photo matching the query that hasn't been used before."""
+    if not PEXELS_API_KEY:
+        print("   ⚠ PEXELS_API_KEY not set — falling back to Unsplash")
+        return None, None
 
-    # Build candidate list: keyword matches first, then every other mapped ID
-    candidates = []
-    for keyword, pid in PHOTO_MAP.items():
-        if keyword in q and pid not in candidates:
-            candidates.append(pid)
-    for pid in PHOTO_MAP.values():
-        if pid not in candidates:
-            candidates.append(pid)
-    if DEFAULT_PHOTO not in candidates:
-        candidates.append(DEFAULT_PHOTO)
+    # Try the specific query, then broaden if needed
+    queries = [image_query, image_query.split()[0], "technology business"]
+    for query in queries:
+        try:
+            resp = requests.get(
+                "https://api.pexels.com/v1/search",
+                headers={"Authorization": PEXELS_API_KEY},
+                params={"query": query, "per_page": 20, "orientation": "landscape"},
+                timeout=10,
+            )
+            resp.raise_for_status()
+            photos = resp.json().get("photos", [])
 
-    # Pick the first candidate not already used in posts.js
-    photo_id = next((pid for pid in candidates if pid not in used), candidates[0])
+            for photo in photos:
+                hero  = photo["src"]["original"] + "?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600"
+                thumb = photo["src"]["original"] + "?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+                if thumb not in used_urls and hero not in used_urls:
+                    print(f"   ✓ Pexels photo #{photo['id']} — '{photo.get('alt', query)}'")
+                    return hero, thumb
 
-    if photo_id in used:
-        print(f"   ⚠ All photos used — reusing {photo_id} (add more to PHOTO_MAP)")
-    else:
-        print(f"   ✓ Unique photo selected: {photo_id}")
+        except Exception as e:
+            print(f"   Pexels error ({query}): {e}")
 
-    hero  = f"https://images.unsplash.com/photo-{photo_id}?w=1400&auto=format&fit=crop&q=80"
-    thumb = f"https://images.unsplash.com/photo-{photo_id}?w=800&auto=format&fit=crop&q=80"
+    print("   ⚠ No unused Pexels photo found — falling back to Unsplash")
+    return None, None
+
+
+def pick_photo_fallback(used_urls: set) -> tuple[str, str]:
+    """Use Unsplash fallback pool, avoiding already-used IDs."""
+    used_ids = set(re.findall(r'photo-([a-f0-9-]+)\?w=', " ".join(used_urls)))
+    for pid in FALLBACK_PHOTOS:
+        if pid not in used_ids:
+            hero  = f"https://images.unsplash.com/photo-{pid}?w=1400&auto=format&fit=crop&q=80"
+            thumb = f"https://images.unsplash.com/photo-{pid}?w=800&auto=format&fit=crop&q=80"
+            print(f"   ✓ Unsplash fallback: {pid}")
+            return hero, thumb
+    # Absolute last resort — reuse first fallback
+    pid = FALLBACK_PHOTOS[0]
+    print(f"   ⚠ All fallbacks exhausted, reusing {pid}")
+    hero  = f"https://images.unsplash.com/photo-{pid}?w=1400&auto=format&fit=crop&q=80"
+    thumb = f"https://images.unsplash.com/photo-{pid}?w=800&auto=format&fit=crop&q=80"
     return hero, thumb
+
+
+def pick_photo(image_query: str) -> tuple[str, str]:
+    used_urls = get_used_image_urls()
+    hero, thumb = pick_photo_pexels(image_query, used_urls)
+    if hero:
+        return hero, thumb
+    return pick_photo_fallback(used_urls)
 
 
 def generate_post(news_items: list[str]) -> dict:
