@@ -10,7 +10,7 @@ window.SKYCORE_POSTS = [
     category: "Security Hardening",
     excerpt: "New vulnerabilities in cPanel and WHM pose serious threats, from privilege escalation to code execution. Discover how to protect your infrastructure and enhance your cybersecurity posture.",
     tint: "from-sky to-cyan",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80"
   },
   {
     slug: "security-hardening-smb-montreal",
@@ -73,4 +73,5 @@ window.SKYCORE_POSTS = [
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80"
   }
 ];
+
 
