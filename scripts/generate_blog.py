@@ -279,7 +279,7 @@ def prepend_to_feed_xml(post: dict, thumb_url: str):
     excerpt = post["excerpt"].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
     slug    = post["slug"]
     url     = f"https://skycoresolutions.com/blog/{slug}.html"
-    img     = thumb_url.replace("&", "&amp;")
+    img     = thumb_url.replace("&amp;", "&").replace("&", "&amp;")  # normalize then escape
     cat     = post["category"].replace("&", "&amp;")
     dt      = datetime.strptime(post["date"], "%Y-%m-%d")
     pub     = formatdate(dt.timestamp(), usegmt=True)
