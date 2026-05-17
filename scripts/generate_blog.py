@@ -8,10 +8,12 @@ Requires: GEMINI_API_KEY  (free at aistudio.google.com)
 import os
 import re
 import json
+import time
 import textwrap
 import requests
 import feedparser
 from google import genai
+from google.genai import errors as genai_errors
 from datetime import date
 
 # ── Config ────────────────────────────────────────────────────────────────────
@@ -174,7 +176,8 @@ def generate_post(news_items: list[str]) -> dict:
         }}
     """).strip()
 
-    for attempt in range(1, 4):
+    raw = ""
+    for attempt in range(1, 6):
         try:
             response = CLIENT.models.generate_content(model=GEMINI_MODEL, contents=prompt)
             raw = response.text.strip()
@@ -190,10 +193,18 @@ def generate_post(news_items: list[str]) -> dict:
 
             return json.loads(raw)
 
+        except (genai_errors.ServerError, genai_errors.APIError) as e:
+            wait = 30 * attempt  # 30s, 60s, 90s, 120s
+            print(f"   Gemini API error (attempt {attempt}/5): {e}")
+            if attempt == 5:
+                raise RuntimeError(f"Gemini API unavailable after 5 attempts: {e}")
+            print(f"   Waiting {wait}s before retry...")
+            time.sleep(wait)
+
         except (json.JSONDecodeError, ValueError) as e:
-            print(f"   Attempt {attempt} failed: {e}")
-            if attempt == 3:
-                raise RuntimeError(f"Gemini returned invalid JSON after 3 attempts. Last error: {e}\n\nRaw response:\n{raw[:500]}")
+            print(f"   JSON parse error (attempt {attempt}/5): {e}")
+            if attempt == 5:
+                raise RuntimeError(f"Gemini returned invalid JSON after 5 attempts. Last error: {e}\n\nRaw response:\n{raw[:500]}")
             print("   Retrying with stricter prompt...")
             prompt += "\n\nCRITICAL: Your previous response had a JSON parse error. Ensure ALL double quotes inside string values are escaped as \\\" and there are NO unescaped special characters in htmlContent."
 
