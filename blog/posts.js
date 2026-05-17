@@ -3,6 +3,26 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "effective-security-hardening-montreal",
+    title: "Beyond the Patch: Why Effective Security Hardening is Critical for Montreal SMBs",
+    date: "2026-05-13",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Mandiant's M-Trends report highlights a critical flaw: many security fixes are never confirmed. Discover how SkyCore Solutions helps Montreal SMBs achieve lasting cybersecurity through proactive hardening and validation.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380618/pexels-photo-5380618.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "zero-trust-ai-cybersecurity-montreal",
+    title: "Beyond the AI Zero-Day: Fortifying Your Defenses with Zero Trust Security in Montreal",
+    date: "2026-05-11",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "The advent of AI-developed zero-days marks a new era in cyber threats. Discover how embracing a zero trust security model is essential for businesses, particularly SMBs in Montreal, to build resilient defenses.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5473960/pexels-photo-5473960.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "security-hardening-smb-montreal",
     title: "Strengthening Your Defenses: Essential Security Hardening for SMBs in Montreal",
     date: "2026-05-11",
