@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "grafana-breach-cybersecurity-hardening-montreal",
+    title: "Grafana Breach & Beyond: Essential Cybersecurity Hardening for Montreal Businesses",
+    date: "2026-05-17",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Even tech giants like Grafana face breaches. This incident highlights the urgent need for robust cybersecurity hardening for Montreal SMBs. SkyCore Solutions provides proactive defense strategies.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/3949101/pexels-photo-3949101.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "effective-security-hardening-montreal",
     title: "Beyond the Patch: Why Effective Security Hardening is Critical for Montreal SMBs",
     date: "2026-05-13",
