@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "wordpress-plugin-exploit-cybersecurity-smb",
+    title: "Beyond the Breach: Safeguarding Your Business After the WordPress Funnel Builder Exploit",
+    date: "2026-05-17",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "A critical vulnerability in the WordPress Funnel Builder plugin highlights the urgent need for robust cybersecurity. Learn how SkyCore Solutions helps SMBs protect against advanced threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/4176249/pexels-photo-4176249.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "grafana-breach-cybersecurity-hardening-montreal",
     title: "Grafana Breach & Beyond: Essential Cybersecurity Hardening for Montreal Businesses",
     date: "2026-05-17",
