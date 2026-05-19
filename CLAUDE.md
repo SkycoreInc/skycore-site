@@ -16,7 +16,7 @@
 - **Hosting:** Netlify (auto-deploys from GitHub on every push)
 - **Repo:** https://github.com/SkycoreInc/skycore-site (branch: `main`)
 - **Local path:** `C:\Users\ahmad\OneDrive\Documents\SkyCore Inc\Claude\site`
-- **Git push auth:** PAT embedded in URL — `https://PAT_REDACTED@github.com/SkycoreInc/skycore-site.git main`
+- **Git push auth:** PAT stored in `~/.claude/CLAUDE.md` (global memory) — use `https://<PAT>@github.com/SkycoreInc/skycore-site.git main`
 
 ## Site Structure
 ```
