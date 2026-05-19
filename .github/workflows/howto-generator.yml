@@ -1,0 +1,58 @@
+name: Auto How-To Generator
+
+on:
+  schedule:
+    - cron: '0 11 */3 * *'   # Every 3 days at 11 AM UTC (offset from blog)
+  workflow_dispatch:           # Manual trigger: Actions tab → Run workflow
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install --upgrade google-genai requests
+
+      - name: Check API keys are set
+        run: |
+          if [ -z "${{ secrets.GEMINI_API_KEY }}" ]; then
+            echo "ERROR: GEMINI_API_KEY secret is not set."
+            exit 1
+          fi
+          echo "GEMINI_API_KEY found ✓"
+          if [ -z "${{ secrets.PEXELS_API_KEY }}" ]; then
+            echo "WARNING: PEXELS_API_KEY not set — images will use Unsplash fallback"
+          else
+            echo "PEXELS_API_KEY found ✓"
+          fi
+
+      - name: Generate how-to article
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: python scripts/generate_howto.py
+
+      - name: Commit and push new article
+        run: |
+          git config user.name "SkyCore HowTo Bot"
+          git config user.email "info@skycoresolutions.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "Auto: new how-to guide $(date +%Y-%m-%d)"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && break
+            echo "Push attempt $i failed — retrying in 10s..."
+            sleep 10
+          done

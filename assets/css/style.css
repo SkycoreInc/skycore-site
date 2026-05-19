@@ -602,6 +602,147 @@ p  { color: var(--text-2); }
   .consult-meta { grid-template-columns: 1fr 1fr; }
 }
 
+/* ===== HOW-TO HUB ===== */
+.howto-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.howto-filter {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-family: var(--font);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.howto-filter:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+.howto-filter.active {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #000;
+  font-weight: 600;
+}
+
+/* Badges overlaid on card thumbnails */
+.howto-thumb-badges {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+.howto-difficulty-badge,
+.howto-time-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+}
+.howto-difficulty-badge {
+  color: #000;
+}
+.howto-time-badge {
+  background: rgba(0,0,0,0.72);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* Individual how-to article page */
+.howto-prereqs {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cyan);
+  border-radius: var(--radius-sm);
+  padding: 18px 22px;
+  margin: 28px 0;
+}
+.howto-prereqs h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+.howto-prereqs ul {
+  padding-left: 18px;
+  color: var(--text-2);
+  font-size: 0.92rem;
+}
+.howto-prereqs ul li { margin-bottom: 4px; }
+
+.howto-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.howto-consultant-cta {
+  background: linear-gradient(135deg, rgba(0,229,255,0.08) 0%, rgba(224,64,251,0.08) 100%);
+  border: 1px solid rgba(0,229,255,0.2);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  margin: 48px 0 24px;
+  text-align: center;
+}
+.howto-consultant-cta h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+.howto-consultant-cta p {
+  color: var(--text-2);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* Code / pre blocks in how-to articles */
+pre, code {
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+}
+code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.85em;
+  color: var(--cyan);
+}
+pre {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px 22px;
+  overflow-x: auto;
+  margin: 20px 0;
+  line-height: 1.6;
+}
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
+  color: var(--text);
+}
+
 /* ===== TIDYCAL POPUP MODAL ===== */
 #tc-modal {
   display: none; position: fixed; inset: 0; z-index: 10000;
