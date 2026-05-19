@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "zero-trust-microsoft-365-security-montreal",
+    title: "Beyond MFA: Why Zero Trust Security is Essential for Microsoft 365 Protection",
+    date: "2026-05-19",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "Even MFA can be bypassed by sophisticated phishing. Discover how implementing a zero trust security model is now paramount for protecting your Microsoft 365 environment and overall cybersecurity. Strengthen your defenses against evolving threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/39624/padlock-lock-chain-key-39624.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "wordpress-plugin-exploit-cybersecurity-smb",
     title: "Beyond the Breach: Safeguarding Your Business After the WordPress Funnel Builder Exploit",
     date: "2026-05-17",
