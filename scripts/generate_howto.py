@@ -367,6 +367,12 @@ def main():
 
     prepend_to_posts_js(article, thumb_url)
     print("── how-to/posts.js updated ──")
+
+    import sys
+    sys.path.insert(0, os.path.dirname(__file__))
+    from update_sitemap import regenerate as regen_sitemap
+    regen_sitemap()
+
     print("Done ✓")
 
 
