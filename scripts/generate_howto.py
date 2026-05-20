@@ -72,124 +72,206 @@ KEYWORD_QUEUE = [
 DOC_SOURCES = {
     "disaster recovery plan for small business": [
         "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview",
-        "https://www.cisa.gov/sites/default/files/publications/Cyber_Essentials_Toolkit_4_508c.pdf",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-overview",
+        "https://www.ready.gov/business-continuity-planning",
+        "https://www.cisa.gov/resources-tools/resources/ransomware-guide",
+        "https://csrc.nist.gov/publications/detail/sp/800-34/rev-1/final",
     ],
     "IT disaster recovery guide": [
         "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview",
         "https://learn.microsoft.com/en-us/azure/backup/backup-overview",
+        "https://www.ready.gov/business-continuity-planning",
+        "https://csrc.nist.gov/publications/detail/sp/800-34/rev-1/final",
+        "https://www.cisa.gov/resources-tools/resources/ransomware-guide",
     ],
     "zero trust network access implementation": [
         "https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview",
-        "https://www.nist.gov/publications/zero-trust-architecture",
+        "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview",
+        "https://csrc.nist.gov/publications/detail/sp/800-207/final",
+        "https://www.cisa.gov/zero-trust-maturity-model",
+        "https://www.cloudflare.com/learning/security/glossary/what-is-zero-trust/",
     ],
     "ransomware protection for small business": [
         "https://learn.microsoft.com/en-us/security/ransomware/human-operated-ransomware",
-        "https://www.cisa.gov/stopransomware/ransomware-guide",
+        "https://www.cisa.gov/resources-tools/resources/ransomware-guide",
+        "https://www.cisa.gov/stopransomware",
+        "https://www.cyber.gc.ca/en/guidance/ransomware-playbook-itsm00099",
+        "https://www.ncsc.gov.uk/guidance/mitigating-malware-and-ransomware-attacks",
     ],
     "GitHub Actions CI CD pipeline setup": [
         "https://docs.github.com/en/actions/writing-workflows/quickstart",
         "https://docs.github.com/en/actions/about-github-actions/understanding-github-actions",
+        "https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions",
+        "https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines",
+        "https://www.redhat.com/en/topics/devops/what-is-ci-cd",
     ],
     "how to set up MFA for your organization": [
         "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks",
         "https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-getstarted",
+        "https://learn.microsoft.com/en-us/microsoft-365/admin/security-and-compliance/set-up-multi-factor-authentication",
+        "https://www.cisa.gov/mfa",
+        "https://pages.nist.gov/800-63-3/sp800-63b.html",
     ],
     "how to implement zero trust security": [
         "https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview",
         "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview",
+        "https://csrc.nist.gov/publications/detail/sp/800-207/final",
+        "https://www.cisa.gov/zero-trust-maturity-model",
+        "https://www.cloudflare.com/learning/security/glossary/what-is-zero-trust/",
     ],
     "PIPEDA compliance IT checklist": [
-        "https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda-compliance-help/pipeda-compliance-and-training-tools/ol_pipeda/",
+        "https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/",
+        "https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda-compliance-help/",
+        "https://learn.microsoft.com/en-us/compliance/regulatory/offering-pipeda",
+        "https://www.cippic.ca/en/PIPEDA",
     ],
     "IT infrastructure modernization guide": [
         "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/overview",
         "https://learn.microsoft.com/en-us/azure/architecture/framework/",
+        "https://www.redhat.com/en/topics/cloud-native-apps/what-is-infrastructure-modernization",
+        "https://aws.amazon.com/solutions/cloud-migration/",
+        "https://cloud.google.com/solutions/migration-to-gcp-getting-started",
     ],
     "DMARC configuration step by step": [
         "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dmarc-configure",
         "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-spf-configure",
         "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dkim-configure",
+        "https://dmarc.org/overview/",
+        "https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/",
     ],
     "Office 365 MFA setup guide": [
         "https://learn.microsoft.com/en-us/microsoft-365/admin/security-and-compliance/set-up-multi-factor-authentication",
         "https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-getstarted",
+        "https://learn.microsoft.com/en-us/entra/identity/conditional-access/howto-conditional-access-policy-all-users-mfa",
+        "https://www.cisa.gov/mfa",
+        "https://pages.nist.gov/800-63-3/sp800-63b.html",
     ],
     "Windows Server hardening checklist": [
         "https://learn.microsoft.com/en-us/windows-server/security/security-and-assurance",
+        "https://learn.microsoft.com/en-us/windows-server/security/windows-defender/windows-defender-overview-windows-server",
         "https://www.cisecurity.org/benchmark/microsoft_windows_server",
+        "https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/2959325/nsa-releases-guidance-on-hardening-microsoft-windows/",
+        "https://www.cyber.gc.ca/en/guidance/network-security-configuration-windows-based-systems-itsb-89",
     ],
     "Azure MFA configuration guide": [
         "https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-getstarted",
         "https://learn.microsoft.com/en-us/entra/identity/conditional-access/howto-conditional-access-policy-all-users-mfa",
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks",
+        "https://www.cisa.gov/mfa",
+        "https://pages.nist.gov/800-63-3/sp800-63b.html",
     ],
     "endpoint protection for small business": [
         "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint",
         "https://learn.microsoft.com/en-us/microsoft-365-business-premium/m365bp-set-up-unmanaged-devices",
+        "https://www.cisa.gov/resources-tools/resources/endpoint-security-guide",
+        "https://www.cyber.gc.ca/en/guidance/endpoint-security-guide",
+        "https://www.ncsc.gov.uk/guidance/end-user-device-security",
     ],
     "cloud migration guide for SMB": [
         "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/azure-migration-guide/",
         "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/",
+        "https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview",
+        "https://aws.amazon.com/solutions/cloud-migration/",
+        "https://cloud.google.com/solutions/migration-to-gcp-getting-started",
     ],
     "Exchange to Office 365 migration guide": [
         "https://learn.microsoft.com/en-us/exchange/mailbox-migration/mailbox-migration",
         "https://learn.microsoft.com/en-us/exchange/mailbox-migration/cutover-migration-to-office-365",
+        "https://learn.microsoft.com/en-us/microsoft-365/admin/misc/set-up-dns-records-vsb",
+        "https://learn.microsoft.com/en-us/exchange/mailbox-migration/migrate-mailboxes-across-tenants",
     ],
     "server hardening checklist": [
         "https://learn.microsoft.com/en-us/windows-server/security/security-and-assurance",
         "https://learn.microsoft.com/en-us/azure/security/fundamentals/network-best-practices",
+        "https://www.cisecurity.org/benchmark/microsoft_windows_server",
+        "https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/2959325/nsa-releases-guidance-on-hardening-microsoft-windows/",
+        "https://www.cyber.gc.ca/en/guidance/network-security-configuration-windows-based-systems-itsb-89",
     ],
     "Docker containerization tutorial": [
         "https://docs.docker.com/get-started/introduction/build-and-push-first-image/",
         "https://docs.docker.com/compose/gettingstarted/",
+        "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/",
+        "https://kubernetes.io/docs/concepts/overview/",
+        "https://www.redhat.com/en/topics/containers/what-is-docker",
     ],
     "Active Directory tiering best practices": [
         "https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-access-model",
         "https://learn.microsoft.com/en-us/defender-for-identity/security-assessment-unsecure-account-attributes",
+        "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/best-practices-for-securing-active-directory",
+        "https://www.cisa.gov/resources-tools/resources/active-directory-security",
+        "https://www.cisecurity.org/benchmark/microsoft_windows_server",
     ],
     "how to configure DMARC DKIM SPF": [
         "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dmarc-configure",
         "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dkim-configure",
         "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-spf-configure",
+        "https://dmarc.org/overview/",
+        "https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/",
     ],
     "on premise to Azure migration guide": [
         "https://learn.microsoft.com/en-us/azure/site-recovery/migrate-tutorial-on-premises-azure",
         "https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview",
+        "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/",
+        "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-migrate-windows-virtual-machine",
     ],
     "Office 365 migration step by step": [
         "https://learn.microsoft.com/en-us/exchange/mailbox-migration/mailbox-migration",
+        "https://learn.microsoft.com/en-us/exchange/mailbox-migration/cutover-migration-to-office-365",
         "https://learn.microsoft.com/en-us/microsoft-365/admin/misc/set-up-dns-records-vsb",
+        "https://learn.microsoft.com/en-us/microsoft-365/enterprise/migrate-data-to-office-365",
     ],
     "Azure AD Connect setup guide": [
         "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect",
         "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-install-express",
+        "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/reference-connect-version-history",
+        "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-sync-whatis",
     ],
     "CI CD pipeline setup for small teams": [
         "https://docs.github.com/en/actions/writing-workflows/quickstart",
         "https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines",
+        "https://docs.gitlab.com/ee/ci/introduction/",
+        "https://www.redhat.com/en/topics/devops/what-is-ci-cd",
+        "https://martinfowler.com/articles/continuousIntegration.html",
     ],
     "DevOps implementation for small business": [
         "https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines",
         "https://docs.github.com/en/actions/about-github-actions/understanding-github-actions",
+        "https://www.redhat.com/en/topics/devops/what-is-devops",
+        "https://martinfowler.com/bliki/DevOpsCulture.html",
+        "https://cloud.google.com/devops",
     ],
     "SQL Server to Azure migration guide": [
         "https://learn.microsoft.com/en-us/data-migration/",
         "https://learn.microsoft.com/en-us/azure/dms/dms-overview",
+        "https://learn.microsoft.com/en-us/azure/azure-sql/migration-guides/database/sql-server-to-sql-database-overview",
+        "https://learn.microsoft.com/en-us/sql/sql-server/migrate/guides/sql-server-to-sql-managed-instance-guide",
     ],
     "Azure backup setup guide": [
         "https://learn.microsoft.com/en-us/azure/backup/backup-overview",
         "https://learn.microsoft.com/en-us/azure/backup/quick-backup-vm-portal",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction",
+        "https://learn.microsoft.com/en-us/azure/backup/guidance-best-practices",
+        "https://www.cisa.gov/resources-tools/resources/ransomware-guide",
     ],
     "physical server to Azure VM migration": [
         "https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview",
         "https://learn.microsoft.com/en-us/azure/site-recovery/migrate-tutorial-on-premises-azure",
+        "https://learn.microsoft.com/en-us/azure/migrate/tutorial-assess-physical",
+        "https://learn.microsoft.com/en-us/azure/migrate/tutorial-migrate-physical-virtual-machines",
     ],
     "how to harden Windows Server 2022": [
         "https://learn.microsoft.com/en-us/windows-server/security/security-and-assurance",
-        "https://learn.microsoft.com/en-us/windows-server/security/windows-authentication/windows-authentication-overview",
+        "https://learn.microsoft.com/en-us/windows-server/security/windows-defender/windows-defender-overview-windows-server",
+        "https://www.cisecurity.org/benchmark/microsoft_windows_server",
+        "https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/2959325/nsa-releases-guidance-on-hardening-microsoft-windows/",
+        "https://www.cyber.gc.ca/en/guidance/network-security-configuration-windows-based-systems-itsb-89",
     ],
     "Azure conditional access setup guide": [
         "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview",
         "https://learn.microsoft.com/en-us/entra/identity/conditional-access/howto-conditional-access-policy-all-users-mfa",
+        "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-policy-common",
+        "https://www.cisa.gov/mfa",
+        "https://pages.nist.gov/800-63-3/sp800-63b.html",
     ],
 }
 
@@ -239,24 +321,28 @@ def fetch_doc(url: str, max_chars: int = 6000) -> str:
         return ""
 
 
-def gather_reference_docs(keyword: str) -> str:
-    """Fetch all doc sources for the keyword and return combined context string."""
+def gather_reference_docs(keyword: str) -> tuple[str, list[str]]:
+    """Fetch all doc sources for the keyword.
+    Returns (combined_text, list_of_successfully_fetched_urls).
+    """
     urls = DOC_SOURCES.get(keyword, [])
     if not urls:
         print("   No doc sources defined for this keyword — using Gemini training only")
-        return ""
+        return "", []
 
-    sections = []
+    sections      = []
+    fetched_urls  = []
     for url in urls:
         print(f"   Fetching: {url}")
         content = fetch_doc(url)
         if content:
             sections.append(f"SOURCE: {url}\n{content}")
+            fetched_urls.append(url)
         time.sleep(1)  # polite crawling
 
     combined = "\n\n---\n\n".join(sections)
-    print(f"   Fetched {len(sections)}/{len(urls)} docs, {len(combined):,} chars of reference material")
-    return combined
+    print(f"   Fetched {len(fetched_urls)}/{len(urls)} docs, {len(combined):,} chars of reference material")
+    return combined, fetched_urls
 
 
 # ── Keyword / image helpers ───────────────────────────────────────────────────
@@ -325,19 +411,26 @@ def pick_photo(image_query: str, category: str) -> tuple[str, str]:
 
 # ── Article generation ────────────────────────────────────────────────────────
 
-def generate_article(kw_item: dict, ref_docs: str) -> dict:
+def generate_article(kw_item: dict, ref_docs: str, source_urls: list[str]) -> dict:
     keyword  = kw_item["keyword"]
     category = kw_item["category"]
     today    = date.today().isoformat()
 
     doc_section = ""
     if ref_docs:
+        source_list = "\n".join(f"  - {u}" for u in source_urls)
         doc_section = f"""
-REFERENCE DOCUMENTATION (fetched today from official sources — use this for accuracy):
-Use the exact command syntax, parameter names, flag names, and feature locations from
-these docs. Do NOT use your training data if it conflicts with what's here.
+REFERENCE DOCUMENTATION (fetched today from these authoritative sources):
+{source_list}
+
+Instructions for using this material:
+- Synthesize across ALL sources — do not favour one vendor or one perspective
+- Use exact command syntax, flag names, and parameter values from the docs
+- Where sources differ, note it (e.g. "Microsoft recommends X; NIST SP 800-34 recommends Y")
+- Do NOT copy-paste — extract the facts and write in SkyCore's voice
+- Prefer commands over GUI steps wherever docs provide them
 ---
-{ref_docs[:12000]}
+{ref_docs[:14000]}
 ---
 """
 
@@ -418,13 +511,38 @@ these docs. Do NOT use your training data if it conflicts with what's here.
 
 # ── HTML builder ──────────────────────────────────────────────────────────────
 
-def build_html(article: dict, hero_url: str) -> str:
+def build_sources_html(source_urls: list[str]) -> str:
+    """Build a small references section for the bottom of the article."""
+    if not source_urls:
+        return ""
+    items = []
+    for url in source_urls:
+        # Derive a readable label from the URL domain + path
+        domain = re.sub(r"^www\.", "", url.split("/")[2])
+        path   = "/".join(url.split("/")[3:6]).strip("/")
+        label  = f"{domain}" + (f" — {path}" if path else "")
+        items.append(f'    <li><a href="{url}" target="_blank" rel="noopener noreferrer">{label}</a></li>')
+    rows = "\n".join(items)
+    return f"""
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+{rows}
+  </ul>
+</div>"""
+
+
+def build_html(article: dict, hero_url: str, source_urls: list[str] | None = None) -> str:
     image_alt = article.get("imageAlt", article.get("imageQuery", "IT infrastructure guide"))
     content = (
         article["htmlContent"]
         .replace("HERO_IMAGE_PLACEHOLDER", hero_url)
         .replace("HERO_ALT_PLACEHOLDER", image_alt)
     )
+    # Append sources section before closing article tag
+    sources_html = build_sources_html(source_urls or [])
+    if sources_html:
+        content = content + sources_html
     thumb_url     = hero_url.replace("w=1400", "w=1200").replace("h=600", "h=630")
     canonical_url = f"https://skycoresolutions.com/how-to/{article['slug']}.html"
 
@@ -560,10 +678,10 @@ def main():
     print(f"   Category: {kw_item['category']}")
 
     print("-- Fetching reference documentation --")
-    ref_docs = gather_reference_docs(kw_item["keyword"])
+    ref_docs, source_urls = gather_reference_docs(kw_item["keyword"])
 
     print("-- Generating article via Gemini 2.5 Flash --")
-    article = generate_article(kw_item, ref_docs)
+    article = generate_article(kw_item, ref_docs, source_urls)
     print(f"   Slug:       {article['slug']}")
     print(f"   Title:      {article['title']}")
     print(f"   Difficulty: {article.get('difficulty')} | Time: {article.get('timeEstimate')}")
@@ -574,7 +692,7 @@ def main():
 
     html_path = f"how-to/{article['slug']}.html"
     with open(html_path, "w", encoding="utf-8") as f:
-        f.write(build_html(article, hero_url))
+        f.write(build_html(article, hero_url, source_urls))
     print(f"-- Written: {html_path} --")
 
     prepend_to_posts_js(article, thumb_url)
