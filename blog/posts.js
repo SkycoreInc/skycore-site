@@ -73,16 +73,6 @@ window.SKYCORE_POSTS = [
     image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80"
   },
   {
-    slug: "security-hardening-smb-montreal",
-    title: "Fortifying Your Digital Defenses: Essential Security Hardening for SMBs in Montreal",
-    date: "2026-05-07",
-    readTime: "7 min read",
-    category: "Security Hardening",
-    excerpt: "Recent zero-day exploits like Ivanti's CVE-2026-6973 highlight the critical need for proactive cybersecurity. Discover how SkyCore Solutions helps Montreal SMBs harden their defenses.",
-    tint: "from-sky to-cyan",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=80"
-  },
-  {
     slug: "critical-cybersecurity-hardening-montreal-smb",
     title: "Protecting Your Business: Critical Cybersecurity Hardening for Montreal SMBs",
     date: "2026-05-06",
