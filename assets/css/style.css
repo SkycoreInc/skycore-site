@@ -743,6 +743,37 @@ pre code {
   color: var(--text);
 }
 
+/* How-To callout boxes */
+.howto-callout {
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin: 24px 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.howto-callout--warning {
+  background: rgba(229, 57, 53, 0.08);
+  border-left: 3px solid #e53935;
+  color: var(--text-2);
+}
+.howto-callout--tip {
+  background: rgba(0, 200, 83, 0.08);
+  border-left: 3px solid #00c853;
+  color: var(--text-2);
+}
+.howto-callout--info {
+  background: rgba(0, 229, 255, 0.08);
+  border-left: 3px solid var(--cyan);
+  color: var(--text-2);
+}
+.gui-note {
+  color: var(--text-3);
+  font-size: 0.88rem;
+  margin-top: 8px;
+  padding-left: 12px;
+  border-left: 2px solid var(--border);
+}
+
 /* ===== TIDYCAL POPUP MODAL ===== */
 #tc-modal {
   display: none; position: fixed; inset: 0; z-index: 10000;

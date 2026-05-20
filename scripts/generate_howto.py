@@ -1,7 +1,11 @@
 """
 SkyCore Solutions — How-To Article Generator
 Generates one SEO-optimized, schema-marked how-to article per run.
-Picks the next unwritten keyword from the priority list (highest volume first).
+
+Improvements v2:
+  - Fetches current official documentation before writing (accuracy, no stale UI refs)
+  - CLI-first: PowerShell / Azure CLI / bash lead every step; GUI is secondary
+  - Picks next unwritten keyword from the priority queue (highest volume first)
 
 Requires env vars:
   GEMINI_API_KEY   — free at aistudio.google.com
@@ -14,9 +18,9 @@ Run:
 import os
 import re
 import json
+import time
 import textwrap
 import requests
-import feedparser
 from google import genai
 from datetime import date
 
@@ -26,8 +30,8 @@ CLIENT         = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 GEMINI_MODEL   = "gemini-2.5-flash"
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
 
-# Priority keyword list — ordered by opportunity score (volume / competition)
-# Generator picks the first one not yet in how-to/posts.js
+# ── Keyword queue (ordered by opportunity score: volume / competition) ─────────
+
 KEYWORD_QUEUE = [
     {"keyword": "disaster recovery plan for small business",  "category": "IT Strategy",          "volume": 2900},
     {"keyword": "IT disaster recovery guide",                 "category": "IT Strategy",          "volume": 1900},
@@ -38,7 +42,7 @@ KEYWORD_QUEUE = [
     {"keyword": "how to implement zero trust security",       "category": "Security Hardening",   "volume": 210},
     {"keyword": "PIPEDA compliance IT checklist",             "category": "Security Hardening",   "volume": 170},
     {"keyword": "IT infrastructure modernization guide",      "category": "Infrastructure Revamp","volume": 170},
-    {"keyword": "DMARC configuration step by step",          "category": "Security Hardening",   "volume": 140},
+    {"keyword": "DMARC configuration step by step",           "category": "Security Hardening",   "volume": 140},
     {"keyword": "Office 365 MFA setup guide",                 "category": "Security Hardening",   "volume": 140},
     {"keyword": "Windows Server hardening checklist",         "category": "Security Hardening",   "volume": 110},
     {"keyword": "Azure MFA configuration guide",              "category": "Cloud Migration",      "volume": 90},
@@ -61,18 +65,203 @@ KEYWORD_QUEUE = [
     {"keyword": "Azure conditional access setup guide",       "category": "Security Hardening",   "volume": 10},
 ]
 
-# Fallback Unsplash photos by category
-FALLBACK_PHOTOS = {
-    "Security Hardening":   "1550751827-4bd374c3f58b",
-    "Cloud Migration":      "1451187580459-43490279c0fa",
-    "Infrastructure Revamp":"1461749280684-dccba630e2f6",
-    "IT Strategy":          "1558494949-ef010cbdcc31",
+# ── Official doc sources per keyword ──────────────────────────────────────────
+# Each entry lists 1-3 authoritative URLs to fetch for current accuracy.
+# Prefer Microsoft Learn, NIST, CISA, GitHub Docs — stable, well-structured.
+
+DOC_SOURCES = {
+    "disaster recovery plan for small business": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview",
+        "https://www.cisa.gov/sites/default/files/publications/Cyber_Essentials_Toolkit_4_508c.pdf",
+    ],
+    "IT disaster recovery guide": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview",
+        "https://learn.microsoft.com/en-us/azure/backup/backup-overview",
+    ],
+    "zero trust network access implementation": [
+        "https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview",
+        "https://www.nist.gov/publications/zero-trust-architecture",
+    ],
+    "ransomware protection for small business": [
+        "https://learn.microsoft.com/en-us/security/ransomware/human-operated-ransomware",
+        "https://www.cisa.gov/stopransomware/ransomware-guide",
+    ],
+    "GitHub Actions CI CD pipeline setup": [
+        "https://docs.github.com/en/actions/writing-workflows/quickstart",
+        "https://docs.github.com/en/actions/about-github-actions/understanding-github-actions",
+    ],
+    "how to set up MFA for your organization": [
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks",
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-getstarted",
+    ],
+    "how to implement zero trust security": [
+        "https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview",
+        "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview",
+    ],
+    "PIPEDA compliance IT checklist": [
+        "https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda-compliance-help/pipeda-compliance-and-training-tools/ol_pipeda/",
+    ],
+    "IT infrastructure modernization guide": [
+        "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/overview",
+        "https://learn.microsoft.com/en-us/azure/architecture/framework/",
+    ],
+    "DMARC configuration step by step": [
+        "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dmarc-configure",
+        "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-spf-configure",
+        "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dkim-configure",
+    ],
+    "Office 365 MFA setup guide": [
+        "https://learn.microsoft.com/en-us/microsoft-365/admin/security-and-compliance/set-up-multi-factor-authentication",
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-getstarted",
+    ],
+    "Windows Server hardening checklist": [
+        "https://learn.microsoft.com/en-us/windows-server/security/security-and-assurance",
+        "https://www.cisecurity.org/benchmark/microsoft_windows_server",
+    ],
+    "Azure MFA configuration guide": [
+        "https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-getstarted",
+        "https://learn.microsoft.com/en-us/entra/identity/conditional-access/howto-conditional-access-policy-all-users-mfa",
+    ],
+    "endpoint protection for small business": [
+        "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint",
+        "https://learn.microsoft.com/en-us/microsoft-365-business-premium/m365bp-set-up-unmanaged-devices",
+    ],
+    "cloud migration guide for SMB": [
+        "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/azure-migration-guide/",
+        "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/",
+    ],
+    "Exchange to Office 365 migration guide": [
+        "https://learn.microsoft.com/en-us/exchange/mailbox-migration/mailbox-migration",
+        "https://learn.microsoft.com/en-us/exchange/mailbox-migration/cutover-migration-to-office-365",
+    ],
+    "server hardening checklist": [
+        "https://learn.microsoft.com/en-us/windows-server/security/security-and-assurance",
+        "https://learn.microsoft.com/en-us/azure/security/fundamentals/network-best-practices",
+    ],
+    "Docker containerization tutorial": [
+        "https://docs.docker.com/get-started/introduction/build-and-push-first-image/",
+        "https://docs.docker.com/compose/gettingstarted/",
+    ],
+    "Active Directory tiering best practices": [
+        "https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-access-model",
+        "https://learn.microsoft.com/en-us/defender-for-identity/security-assessment-unsecure-account-attributes",
+    ],
+    "how to configure DMARC DKIM SPF": [
+        "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dmarc-configure",
+        "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dkim-configure",
+        "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-spf-configure",
+    ],
+    "on premise to Azure migration guide": [
+        "https://learn.microsoft.com/en-us/azure/site-recovery/migrate-tutorial-on-premises-azure",
+        "https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview",
+    ],
+    "Office 365 migration step by step": [
+        "https://learn.microsoft.com/en-us/exchange/mailbox-migration/mailbox-migration",
+        "https://learn.microsoft.com/en-us/microsoft-365/admin/misc/set-up-dns-records-vsb",
+    ],
+    "Azure AD Connect setup guide": [
+        "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect",
+        "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-install-express",
+    ],
+    "CI CD pipeline setup for small teams": [
+        "https://docs.github.com/en/actions/writing-workflows/quickstart",
+        "https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines",
+    ],
+    "DevOps implementation for small business": [
+        "https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines",
+        "https://docs.github.com/en/actions/about-github-actions/understanding-github-actions",
+    ],
+    "SQL Server to Azure migration guide": [
+        "https://learn.microsoft.com/en-us/data-migration/",
+        "https://learn.microsoft.com/en-us/azure/dms/dms-overview",
+    ],
+    "Azure backup setup guide": [
+        "https://learn.microsoft.com/en-us/azure/backup/backup-overview",
+        "https://learn.microsoft.com/en-us/azure/backup/quick-backup-vm-portal",
+    ],
+    "physical server to Azure VM migration": [
+        "https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview",
+        "https://learn.microsoft.com/en-us/azure/site-recovery/migrate-tutorial-on-premises-azure",
+    ],
+    "how to harden Windows Server 2022": [
+        "https://learn.microsoft.com/en-us/windows-server/security/security-and-assurance",
+        "https://learn.microsoft.com/en-us/windows-server/security/windows-authentication/windows-authentication-overview",
+    ],
+    "Azure conditional access setup guide": [
+        "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview",
+        "https://learn.microsoft.com/en-us/entra/identity/conditional-access/howto-conditional-access-policy-all-users-mfa",
+    ],
 }
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# ── Fallback Unsplash photos by category ──────────────────────────────────────
+
+FALLBACK_PHOTOS = {
+    "Security Hardening":    "1550751827-4bd374c3f58b",
+    "Cloud Migration":       "1451187580459-43490279c0fa",
+    "Infrastructure Revamp": "1461749280684-dccba630e2f6",
+    "IT Strategy":           "1558494949-ef010cbdcc31",
+}
+
+# ── Doc fetching ──────────────────────────────────────────────────────────────
+
+def strip_html(html: str) -> str:
+    """Remove HTML tags, collapse whitespace, return plain text."""
+    text = re.sub(r"<style[^>]*>.*?</style>", " ", html, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r"<script[^>]*>.*?</script>", " ", text, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"&nbsp;", " ", text)
+    text = re.sub(r"&amp;", "&", text)
+    text = re.sub(r"&lt;", "<", text)
+    text = re.sub(r"&gt;", ">", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def fetch_doc(url: str, max_chars: int = 6000) -> str:
+    """Fetch a documentation URL and return cleaned plain text, truncated."""
+    headers = {
+        "User-Agent": "Mozilla/5.0 (compatible; SkyCore-Bot/1.0; research)",
+        "Accept": "text/html,application/xhtml+xml",
+    }
+    try:
+        resp = requests.get(url, headers=headers, timeout=15)
+        resp.raise_for_status()
+        text = strip_html(resp.text)
+        # Trim to max_chars at a sentence boundary
+        if len(text) > max_chars:
+            text = text[:max_chars]
+            cut = text.rfind(". ")
+            if cut > max_chars * 0.7:
+                text = text[:cut + 1]
+        return text
+    except Exception as e:
+        print(f"   [doc fetch failed] {url}: {e}")
+        return ""
+
+
+def gather_reference_docs(keyword: str) -> str:
+    """Fetch all doc sources for the keyword and return combined context string."""
+    urls = DOC_SOURCES.get(keyword, [])
+    if not urls:
+        print("   No doc sources defined for this keyword — using Gemini training only")
+        return ""
+
+    sections = []
+    for url in urls:
+        print(f"   Fetching: {url}")
+        content = fetch_doc(url)
+        if content:
+            sections.append(f"SOURCE: {url}\n{content}")
+        time.sleep(1)  # polite crawling
+
+    combined = "\n\n---\n\n".join(sections)
+    print(f"   Fetched {len(sections)}/{len(urls)} docs, {len(combined):,} chars of reference material")
+    return combined
+
+
+# ── Keyword / image helpers ───────────────────────────────────────────────────
 
 def get_written_keywords() -> set:
-    """Return set of keywords already written (from how-to/posts.js slugs + titles)."""
     try:
         with open("how-to/posts.js", "r", encoding="utf-8") as f:
             content = f.read()
@@ -82,7 +271,6 @@ def get_written_keywords() -> set:
 
 
 def get_used_image_urls() -> set:
-    """Return all image URLs already in how-to/posts.js."""
     try:
         with open("how-to/posts.js", "r", encoding="utf-8") as f:
             content = f.read()
@@ -92,7 +280,6 @@ def get_used_image_urls() -> set:
 
 
 def pick_next_keyword() -> dict | None:
-    """Return the highest-priority keyword not yet written."""
     written = get_written_keywords()
     for item in KEYWORD_QUEUE:
         if item["keyword"] not in written:
@@ -117,7 +304,7 @@ def pick_photo_pexels(query: str, used_urls: set) -> tuple[str, str] | tuple[Non
                 hero  = photo["src"]["original"] + "?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600"
                 thumb = photo["src"]["original"] + "?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
                 if thumb not in used_urls:
-                    print(f"   ✓ Pexels photo #{photo['id']}")
+                    print(f"   Pexels photo #{photo['id']} selected")
                     return hero, thumb
         except Exception as e:
             print(f"   Pexels error: {e}")
@@ -129,50 +316,71 @@ def pick_photo(image_query: str, category: str) -> tuple[str, str]:
     hero, thumb = pick_photo_pexels(image_query, used)
     if hero:
         return hero, thumb
-    # Fallback to Unsplash
     pid   = FALLBACK_PHOTOS.get(category, "1558494949-ef010cbdcc31")
     hero  = f"https://images.unsplash.com/photo-{pid}?w=1400&auto=format&fit=crop&q=80"
     thumb = f"https://images.unsplash.com/photo-{pid}?w=800&auto=format&fit=crop&q=80"
-    print(f"   ✓ Unsplash fallback: {pid}")
+    print(f"   Unsplash fallback: {pid}")
     return hero, thumb
 
 
-def generate_article(kw_item: dict) -> dict:
+# ── Article generation ────────────────────────────────────────────────────────
+
+def generate_article(kw_item: dict, ref_docs: str) -> dict:
     keyword  = kw_item["keyword"]
     category = kw_item["category"]
     today    = date.today().isoformat()
 
-    prompt = textwrap.dedent(f"""
-        You are a senior IT consultant writing for SkyCore Solutions, a global IT consulting firm.
-        Services: Cloud Migration (Azure), Security Hardening (NIST/CIS/Zero Trust), Infrastructure Revamp (DevOps/CI-CD).
+    doc_section = ""
+    if ref_docs:
+        doc_section = f"""
+REFERENCE DOCUMENTATION (fetched today from official sources — use this for accuracy):
+Use the exact command syntax, parameter names, flag names, and feature locations from
+these docs. Do NOT use your training data if it conflicts with what's here.
+---
+{ref_docs[:12000]}
+---
+"""
 
-        Write a comprehensive, authoritative how-to guide targeting this keyword:
+    prompt = textwrap.dedent(f"""
+        You are a senior IT consultant at SkyCore Solutions, a global IT consulting firm
+        specializing in Cloud Migration (Azure), Security Hardening, and Infrastructure Revamp.
+
+        Write a comprehensive, authoritative how-to guide for this keyword:
         PRIMARY KEYWORD: "{keyword}"
         CATEGORY: {category}
+        DATE: {today}
+        {doc_section}
 
-        REQUIREMENTS:
-        - 1,500–2,500 words
-        - Genuinely useful — real commands, real configurations, real pitfalls
-        - Written for IT managers and sysadmins at small/medium businesses globally
-        - 5–8 numbered steps (each step is a concrete action, not vague advice)
-        - Include actual CLI commands, PowerShell, or config snippets where relevant (in <pre><code> blocks)
-        - Cite at least one real standard, tool, or vendor (Microsoft docs, NIST, CIS, etc.)
-        - End with a "When to bring in a consultant" section (soft CTA — honest, not salesy)
-        - Tone: expert peer helping a colleague, not a vendor pitch
+        CONTENT PHILOSOPHY:
+        - CLI-FIRST: Every step leads with the PowerShell, Azure CLI, or bash command.
+          GUI instructions are secondary, mentioned only as "or in the portal: ..." after
+          the command. Readers are IT admins who prefer copy-paste over clicking.
+        - ACCURATE: Use exact command syntax from the reference docs above (if provided).
+          Include real flags and parameters, not just the bare minimum.
+        - DIRECT: No fluff. No "in today's digital landscape." Get to the commands fast.
+        - HONEST: Include real-world gotchas, common errors, and what to watch out for.
+          If something is complex or risky in production, say so.
+        - OPINIONATED: Tell readers what you actually recommend, not just what's possible.
+        - LENGTH: 1,800-2,500 words of real substance.
 
-        STRUCTURE the HTML with:
-        - <div class="post-meta">DATE · READTIME · CATEGORY</div>
-        - <h1>TITLE</h1>
-        - <div class="article-hero"><img src="HERO_IMAGE_PLACEHOLDER" alt="HERO_ALT_PLACEHOLDER" loading="eager" fetchpriority="high"></div>
-        - <div class="howto-intro"><p>intro paragraph with keyword</p></div>
-        - <div class="howto-prereqs"><h2>Prerequisites</h2><ul>...</ul></div>
-        - Steps as <h2>Step N: [Action verb + what]</h2> followed by <p> and <pre><code> blocks
-        - <div class="howto-consultant-cta"><h2>When to bring in a consultant</h2><p>...</p><a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+        STRUCTURE (use these exact HTML elements):
+        1. <div class="post-meta">{today} · READTIME · {category}</div>
+        2. <h1>TITLE</h1>
+        3. <div class="article-hero"><img src="HERO_IMAGE_PLACEHOLDER" alt="HERO_ALT_PLACEHOLDER" loading="eager" fetchpriority="high"></div>
+        4. <div class="howto-intro"><p>Hook paragraph — state the problem, why this matters, what the reader will have working by the end. Include the primary keyword naturally.</p></div>
+        5. <div class="howto-prereqs"><h4>Prerequisites</h4><ul>...</ul></div>
+        6. Steps: use <h2>Step N: [Strong action verb + what exactly happens]</h2>
+           - Each step: 1 paragraph context, then the command(s) in <pre><code class="language-powershell"> or <code class="language-bash"> or <code class="language-azurecli">
+           - After commands: explain what each flag does (1 line each)
+           - If there's a GUI alternative: <p class="gui-note"><strong>Portal alternative:</strong> ...</p>
+           - End of step: expected output or how to confirm it worked
+        7. <div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> ...</div> — add 2-3 of these throughout
+        8. <div class="howto-consultant-cta"><h3>When to bring in a consultant</h3><p>Be honest about when DIY becomes risky. This is a soft CTA, not a sales pitch.</p><a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
 
         Return ONLY valid JSON (no markdown fences) with these exact fields:
         {{
           "slug": "seo-url-slug-4-6-words",
-          "title": "Full compelling title (include primary keyword naturally)",
+          "title": "Full compelling title including primary keyword",
           "metaDescription": "145-155 char meta description with keyword",
           "date": "{today}",
           "readTime": "X min read",
@@ -187,7 +395,7 @@ def generate_article(kw_item: dict) -> dict:
           "steps": [
             {{"name": "Step name", "text": "One sentence describing what this step accomplishes"}}
           ],
-          "htmlContent": "Full article HTML as described above. Replace HERO_IMAGE_PLACEHOLDER and HERO_ALT_PLACEHOLDER."
+          "htmlContent": "Full article HTML as described above."
         }}
     """).strip()
 
@@ -202,14 +410,16 @@ def generate_article(kw_item: dict) -> dict:
                 raw = match.group(0)
             return json.loads(raw)
         except (json.JSONDecodeError, ValueError) as e:
-            print(f"   Attempt {attempt} failed: {e}")
+            print(f"   Attempt {attempt} JSON parse failed: {e}")
             if attempt == 3:
                 raise RuntimeError(f"Gemini returned invalid JSON after 3 attempts: {e}")
-            prompt += "\n\nCRITICAL: JSON parse error. Escape ALL double quotes inside strings as \\\" — especially in htmlContent."
+            prompt += "\n\nCRITICAL: JSON parse error. Escape ALL double quotes inside strings with \\\" — especially inside htmlContent."
 
+
+# ── HTML builder ──────────────────────────────────────────────────────────────
 
 def build_html(article: dict, hero_url: str) -> str:
-    image_alt = article.get("imageAlt", article.get("imageQuery", "IT infrastructure"))
+    image_alt = article.get("imageAlt", article.get("imageQuery", "IT infrastructure guide"))
     content = (
         article["htmlContent"]
         .replace("HERO_IMAGE_PLACEHOLDER", hero_url)
@@ -218,7 +428,6 @@ def build_html(article: dict, hero_url: str) -> str:
     thumb_url     = hero_url.replace("w=1400", "w=1200").replace("h=600", "h=630")
     canonical_url = f"https://skycoresolutions.com/how-to/{article['slug']}.html"
 
-    # Build HowTo schema JSON-LD
     steps_schema = json.dumps([
         {"@type": "HowToStep", "name": s["name"], "text": s["text"]}
         for s in article.get("steps", [])
@@ -249,7 +458,6 @@ def build_html(article: dict, hero_url: str) -> str:
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
-  <!-- SEO: Open Graph + Canonical -->
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SkyCore Solutions" />
   <meta property="og:title" content="{article['title']} — SkyCore Solutions" />
@@ -262,7 +470,6 @@ def build_html(article: dict, hero_url: str) -> str:
   <meta name="twitter:image" content="{thumb_url}" />
   <link rel="canonical" href="{canonical_url}" />
   <meta property="article:published_time" content="{article['date']}" />
-  <!-- HowTo Schema — enables Google rich snippets with numbered steps -->
   <script type="application/ld+json">
   {howto_schema}
   </script>
@@ -294,7 +501,7 @@ def build_html(article: dict, hero_url: str) -> str:
         <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
         <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
         <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
-        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon–Fri: 9AM–6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
       </div>
       <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
     </div>
@@ -305,6 +512,8 @@ def build_html(article: dict, hero_url: str) -> str:
 </body>
 </html>"""
 
+
+# ── posts.js writer ───────────────────────────────────────────────────────────
 
 def prepend_to_posts_js(article: dict, thumb_url: str):
     posts_path = "how-to/posts.js"
@@ -344,14 +553,17 @@ def prepend_to_posts_js(article: dict, thumb_url: str):
 def main():
     kw_item = pick_next_keyword()
     if not kw_item:
-        print("✓ All keywords in the queue have been written. Add more to KEYWORD_QUEUE.")
+        print("All keywords written. Add more to KEYWORD_QUEUE.")
         return
 
-    print(f"── Next keyword: \"{kw_item['keyword']}\" (volume: {kw_item['volume']:,}/mo) ──")
+    print(f"-- Next keyword: \"{kw_item['keyword']}\" ({kw_item['volume']:,}/mo) --")
     print(f"   Category: {kw_item['category']}")
 
-    print("── Generating article via Gemini 2.5 Flash ──")
-    article = generate_article(kw_item)
+    print("-- Fetching reference documentation --")
+    ref_docs = gather_reference_docs(kw_item["keyword"])
+
+    print("-- Generating article via Gemini 2.5 Flash --")
+    article = generate_article(kw_item, ref_docs)
     print(f"   Slug:       {article['slug']}")
     print(f"   Title:      {article['title']}")
     print(f"   Difficulty: {article.get('difficulty')} | Time: {article.get('timeEstimate')}")
@@ -363,17 +575,17 @@ def main():
     html_path = f"how-to/{article['slug']}.html"
     with open(html_path, "w", encoding="utf-8") as f:
         f.write(build_html(article, hero_url))
-    print(f"── Written: {html_path} ──")
+    print(f"-- Written: {html_path} --")
 
     prepend_to_posts_js(article, thumb_url)
-    print("── how-to/posts.js updated ──")
+    print("-- how-to/posts.js updated --")
 
     import sys
     sys.path.insert(0, os.path.dirname(__file__))
     from update_sitemap import regenerate as regen_sitemap
     regen_sitemap()
 
-    print("Done ✓")
+    print("Done")
 
 
 if __name__ == "__main__":
