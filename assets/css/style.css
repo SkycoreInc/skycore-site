@@ -132,13 +132,17 @@ p  { color: var(--text-2); }
 .btn:hover { transform: translateY(-2px); }
 
 .btn-primary {
-  background: var(--cyan); color: #000;
+  background: var(--cyan);
+  color: #000 !important;
   border-color: var(--cyan);
-  box-shadow: 0 0 18px var(--cyan-glow-strong);
+  box-shadow: 0 0 14px var(--cyan-glow);
+  font-weight: 800;
 }
 .btn-primary:hover {
-  color: #000;
-  box-shadow: 0 0 32px var(--cyan-glow-strong), 0 0 60px var(--cyan-glow);
+  background: #fff;
+  color: #000 !important;
+  border-color: #fff;
+  box-shadow: 0 0 24px var(--cyan-glow-strong);
 }
 
 .btn-secondary {
