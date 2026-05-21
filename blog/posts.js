@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "strengthen-defenses-advanced-threats",
+    title: "Beyond the Showboat Threat: Essential Security Hardening for Montreal Businesses",
+    date: "2026-05-21",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Recent Linux malware like 'Showboat' highlights the escalating sophistication of cyber threats. Discover how proactive security hardening and a zero-trust approach are vital for protecting your business's critical assets.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5952651/pexels-photo-5952651.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "zero-trust-microsoft-365-security-montreal",
     title: "Beyond MFA: Why Zero Trust Security is Essential for Microsoft 365 Protection",
     date: "2026-05-19",
