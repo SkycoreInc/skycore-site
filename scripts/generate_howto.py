@@ -74,7 +74,7 @@ DOC_SOURCES = {
         "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview",
         "https://learn.microsoft.com/en-us/azure/backup/backup-overview",
         "https://www.ready.gov/business-continuity-planning",
-        "https://www.cisa.gov/resources-tools/resources/ransomware-guide",
+        "https://www.cisa.gov/stopransomware/ransomware-guide",
         "https://csrc.nist.gov/publications/detail/sp/800-34/rev-1/final",
     ],
     "IT disaster recovery guide": [
@@ -82,7 +82,7 @@ DOC_SOURCES = {
         "https://learn.microsoft.com/en-us/azure/backup/backup-overview",
         "https://www.ready.gov/business-continuity-planning",
         "https://csrc.nist.gov/publications/detail/sp/800-34/rev-1/final",
-        "https://www.cisa.gov/resources-tools/resources/ransomware-guide",
+        "https://www.cisa.gov/stopransomware/ransomware-guide",
     ],
     "zero trust network access implementation": [
         "https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview",
@@ -93,7 +93,7 @@ DOC_SOURCES = {
     ],
     "ransomware protection for small business": [
         "https://learn.microsoft.com/en-us/security/ransomware/human-operated-ransomware",
-        "https://www.cisa.gov/resources-tools/resources/ransomware-guide",
+        "https://www.cisa.gov/stopransomware/ransomware-guide",
         "https://www.cisa.gov/stopransomware",
         "https://www.cyber.gc.ca/en/guidance/ransomware-playbook-itsm00099",
         "https://www.ncsc.gov.uk/guidance/mitigating-malware-and-ransomware-attacks",
@@ -251,7 +251,7 @@ DOC_SOURCES = {
         "https://learn.microsoft.com/en-us/azure/backup/quick-backup-vm-portal",
         "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction",
         "https://learn.microsoft.com/en-us/azure/backup/guidance-best-practices",
-        "https://www.cisa.gov/resources-tools/resources/ransomware-guide",
+        "https://www.cisa.gov/stopransomware/ransomware-guide",
     ],
     "physical server to Azure VM migration": [
         "https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview",
@@ -492,9 +492,10 @@ Instructions for using this material:
         }}
     """).strip()
 
-    for attempt in range(1, 4):
+    current_prompt = prompt
+    for attempt in range(1, 6):
         try:
-            response = CLIENT.models.generate_content(model=GEMINI_MODEL, contents=prompt)
+            response = CLIENT.models.generate_content(model=GEMINI_MODEL, contents=current_prompt)
             raw = response.text.strip()
             raw = re.sub(r"^```[a-z]*\n?", "", raw)
             raw = re.sub(r"\n?```$", "", raw)
@@ -504,9 +505,25 @@ Instructions for using this material:
             return json.loads(raw)
         except (json.JSONDecodeError, ValueError) as e:
             print(f"   Attempt {attempt} JSON parse failed: {e}")
-            if attempt == 3:
-                raise RuntimeError(f"Gemini returned invalid JSON after 3 attempts: {e}")
-            prompt += "\n\nCRITICAL: JSON parse error. Escape ALL double quotes inside strings with \\\" — especially inside htmlContent."
+            if attempt == 5:
+                raise RuntimeError(f"Gemini returned invalid JSON after 5 attempts: {e}")
+            current_prompt += "\n\nCRITICAL: JSON parse error. Escape ALL double quotes inside strings with \\\" — especially inside htmlContent."
+        except Exception as e:
+            # 503 / 429 / transient API errors — exponential backoff
+            status = getattr(e, 'status_code', None) or getattr(e, 'code', None)
+            err_str = str(e)
+            is_retryable = (
+                "503" in err_str or "UNAVAILABLE" in err_str or
+                "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or
+                "500" in err_str
+            )
+            if is_retryable and attempt < 5:
+                wait = 15 * (2 ** (attempt - 1))  # 15s, 30s, 60s, 120s
+                print(f"   Gemini API error (attempt {attempt}/5): {err_str[:120]}")
+                print(f"   Retrying in {wait}s...")
+                time.sleep(wait)
+            else:
+                raise
 
 
 # ── HTML builder ──────────────────────────────────────────────────────────────
