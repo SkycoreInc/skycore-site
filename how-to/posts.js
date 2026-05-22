@@ -15,18 +15,6 @@ window.SKYCORE_HOWTO = [
     image: "https://images.pexels.com/photos/39624/padlock-lock-chain-key-39624.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
-    slug: "comprehensive-it-disaster-recovery-guide",
-    title: "A Comprehensive IT Disaster Recovery Guide for Resilient Operations",
-    date: "2026-05-22",
-    readTime: "18 min read",
-    category: "IT Strategy",
-    difficulty: "Advanced",
-    timeEstimate: "3-5 hours (initial setup) + ongoing",
-    keyword: "IT disaster recovery guide",
-    excerpt: "This guide outlines a comprehensive IT disaster recovery strategy, leveraging Azure's robust services and industry best practices. By following these steps, organizations can establish a resilient operational framework.",
-    image: "https://images.pexels.com/photos/4170423/pexels-photo-4170423.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
     slug: "disaster-recovery-plan-small-business-azure",
     title: "Building a Robust Disaster Recovery Plan for Small Business with Azure",
     date: "2026-05-20",
