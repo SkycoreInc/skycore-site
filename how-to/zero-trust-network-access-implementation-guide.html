@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mastering Zero Trust Network Access Implementation: A SkyCore Solutions Guide — SkyCore Solutions</title>
+  <meta name="description" content="Implement robust Zero Trust Network Access (ZTNA) with this expert guide from SkyCore Solutions. Learn to verify explicitly, enforce least privilege, and assume breach for secure access." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Mastering Zero Trust Network Access Implementation: A SkyCore Solutions Guide — SkyCore Solutions" />
+  <meta property="og:description" content="Implement robust Zero Trust Network Access (ZTNA) with this expert guide from SkyCore Solutions. Learn to verify explicitly, enforce least privilege, and assume breach for secure access." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/zero-trust-network-access-implementation-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/39624/padlock-lock-chain-key-39624.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mastering Zero Trust Network Access Implementation: A SkyCore Solutions Guide — SkyCore Solutions" />
+  <meta name="twitter:description" content="Implement robust Zero Trust Network Access (ZTNA) with this expert guide from SkyCore Solutions. Learn to verify explicitly, enforce least privilege, and assume breach for secure access." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/39624/padlock-lock-chain-key-39624.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/zero-trust-network-access-implementation-guide.html" />
+  <meta property="article:published_time" content="2026-05-22" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Mastering Zero Trust Network Access Implementation: A SkyCore Solutions Guide",
+  "description": "Implement robust Zero Trust Network Access (ZTNA) with this expert guide from SkyCore Solutions. Learn to verify explicitly, enforce least privilege, and assume breach for secure access.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Azure subscription with Contributor or Owner roles for resource deployment., Microsoft Entra ID P1 or P2 licenses for all users targeted by Zero Trust policies., Global Administrator or Conditional Access Administrator role in Microsoft Entra ID., Basic understanding of networking concepts, identity management, and cloud applications., Existing Microsoft Entra ID tenant with synchronized users/groups., Intune (Microsoft Endpoint Manager) configured for device enrollment and compliance policies (highly recommended for comprehensive device trust)."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Step 1: Fortify Identity with Multifactor Authentication & Risk Policies",
+        "text": "Establish a strong identity foundation by requiring MFA and leveraging identity protection to detect and remediate risks, a cornerstone of verifying explicitly in ZTNA."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 2: Establish Device Health and Compliance Posture",
+        "text": "Integrate device state into access decisions, ensuring only healthy and compliant devices can access resources, minimizing potential attack vectors."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 3: Define Application Access and Segmentation",
+        "text": "Identify and classify critical applications, then prepare them for Zero Trust access enforcement, moving away from network-based perimeter trust."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 4: Implement Granular Conditional Access Policies",
+        "text": "Configure Microsoft Entra Conditional Access as your Zero Trust policy engine to dynamically enforce access decisions based on all available signals."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 5: Roll Out and Iterate with Continuous Monitoring",
+        "text": "Deploy ZTNA policies cautiously, leveraging report-only mode, and establish robust monitoring and logging to continuously refine and improve your Zero Trust posture."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-05-22 &middot; 12 min read &middot; Security Hardening</div>
+<h1>Mastering Zero Trust Network Access Implementation: A SkyCore Solutions Guide</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/39624/padlock-lock-chain-key-39624.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="A digital padlock graphic overlaying a network diagram, symbolizing zero trust network access implementation and enhanced security." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In an era where traditional perimeter-based security is obsolete and the mobile workforce is the norm, safeguarding organizational assets demands a paradigm shift. Zero Trust Network Access (ZTNA) is a critical component of a comprehensive Zero Trust strategy, moving beyond the flawed "trust but verify" model to a stringent "never trust, always verify" approach. This guide from SkyCore Solutions will walk you through the essential steps for a robust <strong>zero trust network access implementation</strong>, enabling you to secure access to applications and data regardless of user location or device. By the end, you'll have the foundational policies and configurations in place to enforce granular, identity-driven access controls across your enterprise.</p></div>
+<div class="howto-prereqs">
+    <h4>Prerequisites</h4>
+    <ul>
+        <li>Azure subscription with Contributor or Owner roles for resource deployment.</li>
+        <li>Microsoft Entra ID P1 or P2 licenses for all users targeted by Zero Trust policies.</li>
+        <li>Global Administrator or Conditional Access Administrator role in Microsoft Entra ID.</li>
+        <li>Basic understanding of networking concepts, identity management, and cloud applications.</li>
+        <li>Existing Microsoft Entra ID tenant with synchronized users/groups.</li>
+        <li>Intune (Microsoft Endpoint Manager) configured for device enrollment and compliance policies (highly recommended for comprehensive device trust).</li>
+    </ul>
+</div>
+
+<h2>Step 1: Fortify Identity with Multifactor Authentication &amp; Risk Policies</h2>
+<p>The foundation of any robust Zero Trust Network Access implementation is a strong identity posture. As Microsoft outlines, the principle "Verify explicitly" means always authenticating and authorizing based on all available data points. This begins with mandating Multifactor Authentication (MFA) for all users, especially those with administrative roles, and leveraging identity protection solutions to detect and respond to real-time risks. Microsoft Entra ID Protection, requiring Entra ID P2 licenses, integrates seamlessly with Conditional Access to provide these signals.</p>
+<pre><code class="language-azurecli"># Mandate MFA for all administrative roles and high-risk sign-ins
+# Create a group for administrators (if not already existing)
+az ad group create --display-name "ZT-Admins" --mail-nickname "ztadmins"
+# Add relevant admin users to this group
+# az ad group member add --group "ZT-Admins" --member-id &lt;user-object-id&gt;
+
+# Create Conditional Access policy to require MFA for all admin roles
+az ad conditional-access policy create --name "ZT_Policy_MFA_Admins" \
+    --conditions '{
+        "users": {
+            "include-groups": ["&lt;ZT-Admins-group-id&gt;"],
+            "include-roles": ["62e90394-69f5-4771-828e-97224bfd87a3", "729827e3-9c14-49f7-bb1b-9608f11fd816", "b1be1c3e-b6a6-4a47-a89a-035ae988463e"]
+        },
+        "applications": {
+            "include-applications": ["All"]
+        },
+        "clientApplications": {
+            "include-client-applications": ["All"]
+        },
+        "locations": {
+            "include-locations": ["All"]
+        },
+        "signInRiskLevels": {
+            "include-risk-levels": ["high"]
+        }
+    }' \
+    --grant-controls '{
+        "operator": "OR",
+        "built-in-controls": ["mfa"]
+    }' \
+    --state "enabled"
+</code></pre>
+<ul>
+    <li><code>--name "ZT_Policy_MFA_Admins"</code>: A descriptive name for your Conditional Access policy.</li>
+    <li><code>--conditions</code>: Defines the scope of the policy. Here, it targets specific Microsoft Entra roles (Global Administrator, Security Administrator, Conditional Access Administrator) and includes high sign-in risk levels (requiring Entra ID Protection P2).</li>
+    <li><code>--grant-controls</code>: Specifies what must happen for access to be granted. <code>"mfa"</code> mandates multifactor authentication.</li>
+    <li><code>--state "enabled"</code>: Activates the policy. Initially, consider <code>"report-only"</code> to monitor impact without enforcing.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to Microsoft Entra admin center &gt; Protection &gt; Conditional Access &gt; Policies. Click "New policy", configure conditions under "Users" (select admin roles or the created group), "Cloud apps or actions" (select All cloud apps), "Conditions" (Sign-in risk: High), and under "Grant", select "Require multifactor authentication".</p>
+<p>Confirm the policy is active by attempting to sign in with an administrative account from an untrusted device/location. You should be prompted for MFA.</p>
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Implementing blanket MFA without proper communication or exclusion groups can lock out legitimate users, especially during initial rollout or for service accounts. Always use a dedicated "break glass" emergency access account excluded from all Conditional Access policies. Prioritize "report-only" mode before full enforcement.</div>
+
+<h2>Step 2: Establish Device Health and Compliance Posture</h2>
+<p>Expanding on explicit verification, ZTNA requires assessing the security posture of the device attempting access. This means ensuring devices are registered with your identity provider (Microsoft Entra ID) and comply with organizational security standards defined in your Mobile Device Management (MDM) solution, such as Microsoft Intune. Only devices marked as "compliant" should be granted access to sensitive resources, significantly reducing the attack surface by preventing compromised or non-managed devices from gaining entry.</p>
+<pre><code class="language-azurecli"># Assuming devices are enrolled and compliant in Microsoft Intune
+# Create a Conditional Access policy to require compliant devices for critical applications
+az ad conditional-access policy create --name "ZT_Policy_CompliantDevice_CriticalApps" \
+    --conditions '{
+        "users": {
+            "include-users": ["All"]
+        },
+        "applications": {
+            "include-applications": ["&lt;App-Object-ID-1&gt;", "&lt;App-Object-ID-2&gt;"]
+        },
+        "clientApplications": {
+            "include-client-applications": ["All"]
+        }
+    }' \
+    --grant-controls '{
+        "operator": "AND",
+        "built-in-controls": ["compliantDevice"]
+    }' \
+    --state "enabled"
+</code></pre>
+<ul>
+    <li><code>--name "ZT_Policy_CompliantDevice_CriticalApps"</code>: Policy name.</li>
+    <li><code>--conditions</code>: Targets all users accessing specific critical applications (replace placeholders with actual application object IDs).</li>
+    <li><code>--grant-controls</code>: <code>"compliantDevice"</code> requires the device to be marked as compliant by Intune. The <code>"AND"</code> operator ensures this condition must be met.</li>
+    <li><code>--state "enabled"</code>: Activates the policy (consider <code>"report-only"</code> first).</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In Microsoft Entra admin center &gt; Protection &gt; Conditional Access &gt; Policies, create a new policy. Under "Cloud apps or actions", select your critical applications. Under "Grant", choose "Require device to be marked as compliant". Ensure your Intune compliance policies are properly configured and deployed to devices.</p>
+<p>Test by attempting to access a targeted application from both a compliant (Intune-enrolled and healthy) device and a non-compliant device. Access should only be granted to the former.</p>
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Device compliance policies must be robust and realistic. Overly strict policies can hinder productivity, while overly lax ones defeat the purpose of ZTNA. Ensure comprehensive coverage for all device types used by your workforce. Remember that device registration alone is not compliance; Intune policies must actively assess and report on device health.</div>
+
+<h2>Step 3: Define Application Access and Segmentation</h2>
+<p>A core tenet of Zero Trust is to "assume breach" and minimize the blast radius. This translates into moving away from trusting entire network segments and instead focusing on securing access to individual applications and data. For on-premises applications, Microsoft Entra Application Proxy serves as a ZTNA component, enabling users to access internal web apps securely without a VPN. Cloud-native applications inherently leverage identity-based access controls. This step involves identifying your applications, classifying their sensitivity, and preparing them for ZTNA enforcement.</p>
+<pre><code class="language-azurecli"># Register an application for Microsoft Entra Application Proxy (for on-prem apps)
+# This example creates a new application registration, then configures App Proxy for it.
+# You need a Microsoft Entra Application Proxy Connector group installed and running on your network.
+
+# First, create a new application registration
+az ad app create --display-name "ZT_OnPrem_WebApp" --homepage "https://myapp.internal.contoso.com/" --identifier-uris "https://myapp.internal.contoso.com/"
+
+# Note the appId from the output. Then, get the service principal object ID for this app.
+# az ad sp show --id &lt;appId_from_above&gt; --query "objectId" -o tsv
+
+# Now, configure Application Proxy for this app using its Service Principal Object ID
+# (This step is primarily GUI-driven for Application Proxy specifics like internal/external URLs,
+# but the foundation is the app registration and connector group association.)
+
+# To list App Proxy Connector Groups (conceptual CLI, more common in GUI):
+# Get-MsolApplicationProxyConnectorGroup -ConnectorGroupId &lt;connector-group-id&gt; # PowerShell
+# The setup of Application Proxy itself is largely portal-driven for internal/external URLs.
+</code></pre>
+<ul>
+    <li><code>az ad app create</code>: Registers a new application in Microsoft Entra ID. This is the first step for any application that will leverage Entra ID for authentication, including those published via Application Proxy.</li>
+    <li><code>--display-name</code>: User-friendly name for the application.</li>
+    <li><code>--homepage</code>: The URL that users are redirected to when launching the application.</li>
+    <li><code>--identifier-uris</code>: Unique URI(s) that identify your web application for SAML/OAuth.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> For Microsoft Entra Application Proxy, go to Microsoft Entra admin center &gt; Identity &gt; Applications &gt; Enterprise applications. Click "New application", then "On-premises application". You will then configure the internal and external URLs and assign users/groups. For existing cloud applications, ensure they are registered in Enterprise applications and user assignments are configured.</p>
+<p>Confirm application registration by finding it in Enterprise applications. Ensure your Application Proxy connector is active and running if publishing an on-premises app.</p>
+
+<h2>Step 4: Implement Granular Conditional Access Policies</h2>
+<p>Microsoft Entra Conditional Access is the central policy engine for enforcing Zero Trust principles across your digital estate. It takes signals from various sources&mdash;user identity, device state, location, application sensitivity, and real-time risk detections&mdash;to make "if-then" access decisions. This step involves crafting highly granular policies to achieve least privilege access, ensuring that specific conditions must be met for access to be granted to particular resources. Policies should be deployed in a phased manner, leveraging "report-only" mode initially.</p>
+<pre><code class="language-azurecli"># Example: Require MFA AND a compliant device for access to sensitive finance applications from outside trusted locations.
+
+# First, define a trusted IP range (if not already done)
+# You need to get your organization's public IPs.
+# This part is done in the GUI or via Graph API. Assume named location "Trusted_Office_IPs" exists.
+
+# Create a Conditional Access policy for sensitive finance apps
+az ad conditional-access policy create --name "ZT_Policy_FinanceApp_SecureAccess" \
+    --conditions '{
+        "users": {
+            "include-users": ["All"]
+        },
+        "applications": {
+            "include-applications": ["&lt;Finance-App-Object-ID-1&gt;", "&lt;Finance-App-Object-ID-2&gt;"]
+        },
+        "locations": {
+            "exclude-locations": ["Trusted_Office_IPs"]
+        }
+    }' \
+    --grant-controls '{
+        "operator": "AND",
+        "built-in-controls": ["mfa", "compliantDevice"]
+    }' \
+    --session-controls '{
+        "applicationEnforcedRestrictions": {
+            "isEnabled": true
+        }
+    }' \
+    --state "enabled"
+</code></pre>
+<ul>
+    <li><code>--name "ZT_Policy_FinanceApp_SecureAccess"</code>: A clear name for the policy.</li>
+    <li><code>--conditions</code>: Targets all users accessing specified finance applications. Importantly, it <code>exclude-locations</code> for your trusted office IPs, meaning this policy <em>only applies</em> when users are <em>outside</em> those trusted locations.</li>
+    <li><code>--grant-controls</code>: Requires both <code>"mfa"</code> and a <code>"compliantDevice"</code>. The <code>"AND"</code> operator ensures both conditions must be met.</li>
+    <li><code>--session-controls</code>: <code>"applicationEnforcedRestrictions"</code> leverages Microsoft Defender for Cloud Apps for real-time monitoring and control of sessions, a key Zero Trust capability.</li>
+    <li><code>--state "enabled"</code>: Activates the policy. <strong>Strongly recommend starting with <code>"report-only"</code>.</strong></li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to Microsoft Entra admin center &gt; Protection &gt; Conditional Access &gt; Policies. Create a new policy. Define your users and target finance cloud apps. Under "Conditions", configure "Locations" to exclude your named trusted locations. Under "Grant", select "Require multifactor authentication" AND "Require device to be marked as compliant". Under "Session", select "Use app enforced restrictions".</p>
+<p>Validate by signing in to a targeted finance application from an untrusted location with a compliant device and non-compliant device, and test with/without MFA. Observe the Conditional Access sign-in logs.</p>
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Overly complex or conflicting Conditional Access policies can lead to unintended access blocks or security gaps. Always design policies with a clear objective, test thoroughly in "report-only" mode, and regularly review their effectiveness and interactions. Avoid legacy authentication protocols as they bypass Conditional Access policies; block them where possible.</div>
+
+<h2>Step 5: Roll Out and Iterate with Continuous Monitoring</h2>
+<p>Zero Trust is an ongoing journey, not a destination. Once initial policies are implemented, the focus shifts to continuous monitoring, evaluation, and refinement. Microsoft’s "Assume breach" principle mandates minimizing blast radius, verifying end-to-end encryption, and using analytics for visibility, threat detection, and defense improvement. CISA's Zero Trust Maturity Model emphasizes moving from an "Advanced" to "Optimal" stage through automation and deep analytics. Establish robust logging, integrate with a SIEM (like Microsoft Sentinel), and regularly review access patterns and policy effectiveness.</p>
+<pre><code class="language-azurecli"># Create a Log Analytics Workspace for centralized logging
+az monitor log-analytics workspace create --resource-group "ZT_Monitoring_RG" --workspace-name "SkyCore_ZT_Workspace" --location "eastus"
+
+# Enable diagnostic settings for Microsoft Entra ID logs (Sign-in logs, Audit logs, Non-interactive sign-in logs)
+# To obtain the Microsoft Entra ID resource ID required for the --resource parameter, 
+# you typically use PowerShell (e.g., Get-AzResource -ResourceType "Microsoft.AzureActiveDirectory/B2CTenants") 
+# or navigate to the "Diagnostic settings" blade within the Microsoft Entra admin center.
+
+# Example of enabling diagnostic settings for a *conceptual* resource ID for Entra ID, 
+# illustrating the command structure. 
+# Replace &lt;entra-id-resource-id&gt; with your actual Microsoft Entra ID tenant's resource ID.
+az monitor diagnostic-settings create \
+    --name "SendEntraIDLogsToLA" \
+    --resource "&lt;entra-id-resource-id&gt;" \
+    --workspace "SkyCore_ZT_Workspace" \
+    --logs '[{"categoryGroup": "allLogs", "enabled": true}]' \
+    --metrics '[{"category": "AllMetrics", "enabled": true}]'
+</code></pre>
+<ul>
+    <li><code>az monitor log-analytics workspace create</code>: Establishes a centralized repository for collecting logs and metrics, crucial for security monitoring and threat hunting.</li>
+    <li><code>--resource-group "ZT_Monitoring_RG"</code>: Specifies the Azure resource group for the workspace.</li>
+    <li><code>--workspace-name "SkyCore_ZT_Workspace"</code>: A unique name for your Log Analytics Workspace.</li>
+    <li><code>az monitor diagnostic-settings create</code>: Configures a resource to send its logs and metrics to a specified destination, such as a Log Analytics Workspace.</li>
+    <li><code>--resource "&lt;entra-id-resource-id&gt;"</code>: The full Azure Resource ID of your Microsoft Entra ID tenant. This is crucial and must be accurately retrieved (often via Azure Portal or PowerShell).</li>
+    <li><code>--workspace "SkyCore_ZT_Workspace"</code>: The target Log Analytics Workspace.</li>
+    <li><code>--logs '[{"categoryGroup": "allLogs", "enabled": true}]'</code>: Directs all available log categories from the resource to the workspace. For Entra ID, specific categories like <code>"SignInLogs"</code>, <code>"AuditLogs"</code>, etc., offer more granularity.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> For Log Analytics Workspace: Azure Portal &gt; Log Analytics workspaces &gt; Create. For Microsoft Entra ID diagnostic settings: Microsoft Entra admin center &gt; Identity &gt; Monitoring &amp; health &gt; Diagnostic settings. Click "Add diagnostic setting", select all log categories, and send to your Log Analytics workspace.</p>
+<p>Regularly review the Conditional Access insights and workbooks in the Microsoft Entra admin center. Integrate these logs into your SIEM for correlation with other security events and proactive threat hunting.</p>
+
+<div class="howto-consultant-cta">
+    <h3>When to bring in a consultant</h3>
+    <p>Implementing a comprehensive Zero Trust Network Access strategy, especially for large, complex, or highly regulated organizations, extends far beyond configuring a few policies. It requires a deep understanding of your existing infrastructure, application dependencies, user workflows, and compliance requirements. DIY approaches can inadvertently create security gaps, disrupt business operations, or fail to meet regulatory mandates if not executed meticulously. If your organization lacks the in-house expertise, bandwidth, or specific regulatory guidance, SkyCore Solutions can provide tailored assessments, architectural design, phased implementation plans, and ongoing optimization to ensure your Zero Trust journey is secure, efficient, and aligned with your business objectives.</p>
+    <a href="../contact.html" class="btn btn-primary">Book a free consultation</a>
+</div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/security/zero-trust</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/entra/identity</a></li>
+    <li><a href="https://csrc.nist.gov/publications/detail/sp/800-207/final" target="_blank" rel="noopener noreferrer">csrc.nist.gov — publications/detail/sp</a></li>
+    <li><a href="https://www.cisa.gov/zero-trust-maturity-model" target="_blank" rel="noopener noreferrer">cisa.gov — zero-trust-maturity-model</a></li>
+    <li><a href="https://www.cloudflare.com/learning/security/glossary/what-is-zero-trust/" target="_blank" rel="noopener noreferrer">cloudflare.com — learning/security/glossary</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

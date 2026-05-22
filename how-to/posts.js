@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "zero-trust-network-access-implementation-guide",
+    title: "Mastering Zero Trust Network Access Implementation: A SkyCore Solutions Guide",
+    date: "2026-05-22",
+    readTime: "12 min read",
+    category: "Security Hardening",
+    difficulty: "Advanced",
+    timeEstimate: "4-8 hours (initial setup), ongoing",
+    keyword: "zero trust network access implementation",
+    excerpt: "This comprehensive guide from SkyCore Solutions details the steps for implementing Zero Trust Network Access, focusing on identity, device, and application security. Elevate your organization's security posture by adopting a 'never trust, always verify' approach.",
+    image: "https://images.pexels.com/photos/39624/padlock-lock-chain-key-39624.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "comprehensive-it-disaster-recovery-guide",
     title: "A Comprehensive IT Disaster Recovery Guide for Resilient Operations",
     date: "2026-05-22",
