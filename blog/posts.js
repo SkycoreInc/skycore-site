@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cisa-leak-security-hardening-montreal",
+    title: "CISA's AWS GovCloud Leak: A Wake-Up Call for Cybersecurity SMB in Montreal",
+    date: "2026-05-27",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Even top agencies aren't immune to security breaches. Discover how SkyCore Solutions helps Montreal businesses implement robust cybersecurity strategies to prevent critical data exposure and protect against evolving threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/30901558/pexels-photo-30901558.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "proactive-cybersecurity-hardening-montreal-smb",
     title: "Bolster Your Defenses: Proactive Cybersecurity Hardening for Montreal SMBs",
     date: "2026-05-23",
