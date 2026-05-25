@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "it-disaster-recovery-guide-azure",
+    title: "The SkyCore IT Disaster Recovery Guide: Building Resilient Azure Architectures",
+    date: "2026-05-25",
+    readTime: "18 min read",
+    category: "IT Strategy",
+    difficulty: "Advanced",
+    timeEstimate: "2-3 hours (initial setup & planning)",
+    keyword: "IT disaster recovery guide",
+    excerpt: "Disruptions are inevitable. This guide provides a strategic IT disaster recovery framework, leveraging Azure's robust BCDR services and industry best practices to safeguard your operations.",
+    image: "https://images.pexels.com/photos/17489163/pexels-photo-17489163.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "zero-trust-network-access-implementation-guide",
     title: "Mastering Zero Trust Network Access Implementation: A SkyCore Solutions Guide",
     date: "2026-05-22",
