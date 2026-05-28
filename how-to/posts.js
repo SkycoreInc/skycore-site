@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "ransomware-protection-small-business-skycore",
+    title: "Comprehensive Ransomware Protection for Small Business: A SkyCore Guide",
+    date: "2026-05-28",
+    readTime: "15 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours (initial setup), ongoing",
+    keyword: "ransomware protection for small business",
+    excerpt: "Ransomware remains a top threat for small businesses. This guide provides actionable steps to implement robust ransomware protection, ensuring business continuity.",
+    image: "https://images.pexels.com/photos/5475752/pexels-photo-5475752.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "it-disaster-recovery-guide-azure",
     title: "The SkyCore IT Disaster Recovery Guide: Building Resilient Azure Architectures",
     date: "2026-05-25",
