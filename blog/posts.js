@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cisa-data-leak-zero-trust-montreal",
+    title: "CISA Data Leak: A Wake-Up Call for Zero Trust Security in Montreal Businesses",
+    date: "2026-05-29",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A recent CISA contractor data leak highlights the critical importance of internal security. Discover how zero trust principles are essential for Montreal businesses looking to fortify their digital defenses.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/4682189/pexels-photo-4682189.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "zero-trust-security-cisa-data-leak",
     title: "Beyond the Breach: Why Zero Trust Security is Non-Negotiable for IT Compliance Canada",
     date: "2024-05-27",
