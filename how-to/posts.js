@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "microsoft-365-tenant-to-tenant-migration-smb-guide",
+    title: "Seamless Microsoft 365 Tenant to Tenant Migration for SMBs: An Implementation Guide",
+    date: "2026-05-30",
+    readTime: "20 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "3-5 business days for planning and preparation; migration window highly variable.",
+    keyword: "Microsoft 365 tenant to tenant migration",
+    excerpt: "Planning a Microsoft 365 tenant to tenant migration? This guide helps SMBs navigate the complexities of moving users, mailboxes, and data between Microsoft 365 tenants.",
+    image: "https://images.pexels.com/photos/33233646/pexels-photo-33233646.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-entra-privileged-identity-management-guide",
     title: "Mastering Microsoft Entra Privileged Identity Management: A SkyCore Implementation Guide for SMBs",
     date: "2026-05-30",

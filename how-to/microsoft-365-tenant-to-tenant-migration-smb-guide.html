@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seamless Microsoft 365 Tenant to Tenant Migration for SMBs: An Implementation Guide — SkyCore Solutions</title>
+  <meta name="description" content="A comprehensive guide for SMBs on Microsoft 365 tenant to tenant migration. Learn to plan, prepare, and execute a successful transition using PowerShell and admin centers." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Seamless Microsoft 365 Tenant to Tenant Migration for SMBs: An Implementation Guide — SkyCore Solutions" />
+  <meta property="og:description" content="A comprehensive guide for SMBs on Microsoft 365 tenant to tenant migration. Learn to plan, prepare, and execute a successful transition using PowerShell and admin centers." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/microsoft-365-tenant-to-tenant-migration-smb-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/33233646/pexels-photo-33233646.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Seamless Microsoft 365 Tenant to Tenant Migration for SMBs: An Implementation Guide — SkyCore Solutions" />
+  <meta name="twitter:description" content="A comprehensive guide for SMBs on Microsoft 365 tenant to tenant migration. Learn to plan, prepare, and execute a successful transition using PowerShell and admin centers." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/33233646/pexels-photo-33233646.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/microsoft-365-tenant-to-tenant-migration-smb-guide.html" />
+  <meta property="article:published_time" content="2026-05-30" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Seamless Microsoft 365 Tenant to Tenant Migration for SMBs: An Implementation Guide",
+  "description": "A comprehensive guide for SMBs on Microsoft 365 tenant to tenant migration. Learn to plan, prepare, and execute a successful transition using PowerShell and admin centers.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Global Administrator role in both source and target Microsoft 365 tenants., Sufficient Microsoft 365 licenses in the target tenant to cover all migrated users and services (e.g., Microsoft 365 Business Standard, Business Premium)., Azure Active Directory PowerShell module (MSOnline) installed and connected., Exchange Online PowerShell module (ExchangeOnlineManagement) installed and connected., SharePoint PnP PowerShell module (PnP.PowerShell) installed and connected (for SharePoint modernization)., Custom domain DNS access for the source tenant's primary email domain., Estimated cost: Primarily licenses for the target tenant. Any third-party migration tools may incur additional subscription or per-user costs."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Strategic Planning & Target Tenant Preparation",
+        "text": "Define the scope of your migration, acquire necessary licenses, and set up administrative accounts in both source and target tenants to facilitate the migration process."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Domain Verification for Migration",
+        "text": "Prepare your source tenant's custom domain for transfer by adding and initiating verification in the target Microsoft 365 tenant, without fully moving it yet."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "User, Group, and Resource Pre-Provisioning",
+        "text": "Create placeholder user accounts, security groups, distribution lists, and resource mailboxes in your target tenant before any data migration begins."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Preparing for Mailbox Data Transfer",
+        "text": "Configure the necessary environment settings and permissions to enable efficient mailbox data transfer, whether using Microsoft's native preview or a third-party migration tool."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Initiating Mailbox Data Transfer",
+        "text": "Execute the actual migration of mailbox data from the source tenant to the pre-provisioned mailboxes in the target tenant, followed by the critical domain cutover."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Post-Migration Client Configuration & Refinements",
+        "text": "Update user principal names, configure Outlook and other client profiles, and address client-side caching to ensure a smooth post-migration user experience."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "SharePoint Content Modernization (Optional)",
+        "text": "Transform classic SharePoint pages to modern experiences in your target tenant, enhancing usability and leveraging the latest SharePoint Online features."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-05-30 · 20 min read · Cloud Migration</div>
+<h1>Seamless Microsoft 365 Tenant to Tenant Migration for SMBs: An Implementation Guide</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/33233646/pexels-photo-33233646.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Abstract illustration of data migration between two cloud environments, representing Microsoft 365 tenant to tenant migration." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For Small and Medium-sized Businesses (SMBs) undergoing mergers, acquisitions, divestitures, or simply restructuring their Microsoft 365 footprint, a <strong>Microsoft 365 tenant to tenant migration</strong> is a critical, complex undertaking. Moving your users, mailboxes, SharePoint data, and other services efficiently and securely requires meticulous planning and precise execution. This guide, from your SkyCore Solutions experts, outlines a comprehensive, Microsoft-first approach, leveraging PowerShell and the Microsoft 365 admin center to minimize downtime and ensure a smooth transition. By the end of this guide, you will have a clear roadmap to migrate your existing Microsoft 365 tenant's essential services to a new, fully functional tenant.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li><strong>Global Administrator</strong> role in both the source (old) and target (new) Microsoft 365 tenants. These elevated permissions are essential for managing domains, users, and service settings.</li><li><strong>Sufficient Microsoft 365 Licenses:</strong> The target tenant must have enough licenses to accommodate all users, shared mailboxes, and resources being migrated. For SMBs, Microsoft 365 Business Standard or Business Premium are common choices, offering a good balance of features and cost. Plan to purchase these licenses well in advance.</li><li><strong>Azure Active Directory PowerShell Module (MSOnline):</strong> Used for user, group, and domain management. Install with <code>Install-Module -Name MSOnline</code>.</li><li><strong>Exchange Online PowerShell Module (ExchangeOnlineManagement):</strong> Essential for mailbox and email-related configurations. Install with <code>Install-Module -Name ExchangeOnlineManagement</code>.</li><li><strong>SharePoint PnP PowerShell Module (PnP.PowerShell):</strong> Required if you plan to modernize classic SharePoint pages post-migration. Install with <code>Install-Module -Name PnP.PowerShell</code>.</li><li><strong>Custom Domain DNS Access:</strong> You must have administrative access to your DNS provider for the custom email domain (e.g., <code>source.com</code>) you intend to move.</li><li><strong>Estimated Cost:</strong> The primary costs will be Microsoft 365 licenses for your target tenant. If you opt for a third-party migration tool (recommended for larger data volumes or complex scenarios), factor in its licensing costs.</li></ul></div>
+
+<h2>Step 1: Strategic Planning & Target Tenant Preparation</h2>
+<p>Before any technical work begins, comprehensive planning is paramount. This initial phase involves defining the migration scope, establishing key timelines, acquiring necessary licensing, and preparing the foundational administrative structure in your target tenant. This proactive preparation ensures that the new environment is ready to receive migrated data and users.</p>
+
+<pre><code class="language-powershell"># Connect to the Target Microsoft 365 tenant (Azure AD PowerShell)
+Connect-MsolService
+
+# Connect to the Target Exchange Online tenant (Exchange Online PowerShell)
+Connect-ExchangeOnline -UserPrincipalName admin@target.onmicrosoft.com -ShowProgress $true
+</code></pre>
+<ul>
+<li><code>Connect-MsolService</code>: Establishes a connection to the Azure Active Directory service for user and domain management in the target tenant.</li>
+<li><code>Connect-ExchangeOnline</code>: Connects to Exchange Online, allowing you to manage mailboxes, groups, and other email-related settings. The <code>-UserPrincipalName</code> specifies the administrator account for connection, and <code>-ShowProgress $true</code> provides connection status updates.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Log into the Microsoft 365 admin center (admin.microsoft.com) for your target tenant, then navigate to <strong>Billing &gt; Your products</strong> to verify license availability. Access the Exchange admin center (admin.exchange.microsoft.com) and Azure Active Directory admin center (aad.portal.azure.com) to familiarize yourself with the target environment.</p>
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Create dedicated administrator accounts in both source and target tenants specifically for the migration process. These accounts should have Global Administrator roles and be excluded from any multi-factor authentication (MFA) policies during the migration window to prevent automation failures, but immediately re-secured or disabled post-migration.</div>
+<p><strong>Run this to verify:</strong> Confirm successful connections by running simple commands.</p>
+<pre><code class="language-powershell">(Get-MsolAccountSku).ActiveUnits # Verify active licenses
+Get-OrganizationConfig | Select-Object Name # Verify Exchange Online connection
+</code></pre>
+
+<h2>Step 2: Domain Verification for Migration</h2>
+<p>A crucial step in a <strong>Microsoft 365 tenant to tenant migration</strong> is preparing your custom domain (e.g., <code>source.com</code>) for transfer. This involves adding the domain to your target tenant and beginning the verification process. Importantly, the verification will initially fail because the domain is still active in the source tenant, but this pre-verification ensures a faster cutover later.</p>
+
+<pre><code class="language-powershell"># Connect to the Target Microsoft 365 tenant (Azure AD PowerShell)
+Connect-MsolService
+
+# Add the custom domain to the target tenant
+New-MsolDomain -Name "source.com"
+
+# Retrieve the DNS TXT record for domain verification
+Get-MsolDomainVerificationDns -DomainName "source.com" -Mode DnsTxtRecord
+</code></pre>
+<ul>
+<li><code>New-MsolDomain -Name "source.com"</code>: Initiates the process of adding your custom domain to the target tenant. This command tells Azure AD that you intend to use this domain.</li>
+<li><code>Get-MsolDomainVerificationDns -DomainName "source.com" -Mode DnsTxtRecord</code>: Retrieves the specific TXT record value you need to create in your public DNS. This record proves domain ownership to Microsoft. Keep this value handy.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Microsoft 365 admin center for the target tenant, navigate to <strong>Settings &gt; Domains &gt; Add domain</strong>. Enter <code>source.com</code> and follow the wizard to generate the TXT record for verification. You'll need to publish this TXT record with your domain registrar/DNS host. Do NOT remove the domain from the source tenant yet!</p>
+<p><strong>Run this to verify:</strong> After publishing the TXT record (this can take 5-15 minutes to propagate globally), check the verification status. It will likely show as 'Unverified' initially, which is expected.</p>
+<pre><code class="language-powershell">Get-MsolDomain -DomainName "source.com"
+</code></pre>
+
+<h2>Step 3: User, Group, and Resource Pre-Provisioning</h2>
+<p>To ensure a seamless transition, user accounts, security groups, distribution lists, and resource mailboxes (rooms, equipment) must be created in the target tenant before mailbox data is moved. For SMBs with 10-200 users, bulk creation via PowerShell or CSV import is often the most efficient method, as full Active Directory Domain Services (AD DS) consolidation might be overkill if not already in place. The initial User Principal Name (UPN) for these objects will use the <code>.onmicrosoft.com</code> domain, which will be updated post-domain transfer.</p>
+
+<pre><code class="language-powershell"># Connect to the Target Microsoft 365 tenant (Azure AD PowerShell)
+Connect-MsolService
+
+# Example: Create a new user from a CSV (replace with your actual CSV path and fields)
+# Assuming users.csv has columns: DisplayName, FirstName, LastName, UPN (e.g., user@target.onmicrosoft.com), Password
+# (Note: For security, manage passwords carefully. Consider setting 'UsageLocation' for license assignment.)
+
+Import-Csv -Path "C:\Temp\users.csv" | ForEach-Object {
+    $upn = $_.UPN
+    $firstName = $_.FirstName
+    $lastName = $_.LastName
+    $displayName = $_.DisplayName
+    $password = $_.Password
+
+    Write-Host "Creating user: $displayName"
+    New-MsolUser -DisplayName $displayName -FirstName $firstName -LastName $lastName -UserPrincipalName $upn `
+                 -Password $password -UsageLocation "CA" -ForceChangePassword $true
+}
+
+# Example: Create a new security group
+New-MsolGroup -DisplayName "Sales Team" -Description "Sales Department Security Group" -GroupType Security
+
+# Example: Create a new distribution group (requires Exchange Online connection)
+# Connect to Exchange Online if not already connected
+Connect-ExchangeOnline -UserPrincipalName admin@target.onmicrosoft.com -ShowProgress $true
+New-DistributionGroup -Name "All Company" -DisplayName "All Company" -Alias "allcompany" -PrimarySmtpAddress "allcompany@target.onmicrosoft.com"
+</code></pre>
+<ul>
+<li><code>Import-Csv</code> and <code>ForEach-Object</code>: This pattern allows you to automate user creation from a structured CSV file, which is highly recommended for more than a handful of users.</li>
+<li><code>New-MsolUser</code>: Creates a new user object in Azure AD. Key parameters include <code>-DisplayName</code>, <code>-UserPrincipalName</code> (initially using <code>.onmicrosoft.com</code>), and <code>-Password</code>. <code>-UsageLocation</code> is critical for assigning licenses later, and <code>-ForceChangePassword $true</code> ensures users set a strong password on first login.</li>
+<li><code>New-MsolGroup</code>: Creates security groups.</li>
+<li><code>New-DistributionGroup</code>: Creates distribution lists directly in Exchange Online.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Microsoft 365 admin center, navigate to <strong>Users &gt; Active users &gt; Add multiple users</strong> to import users from a CSV file. For groups, go to <strong>Teams &amp; groups &gt; Active teams &amp; groups &gt; Add a group</strong>.</p>
+<p><strong>Run this to verify:</strong> Check if users and groups have been provisioned in the target tenant.</p>
+<pre><code class="language-powershell">
+Get-MsolUser -All | Select-Object DisplayName, UserPrincipalName
+Get-MsolGroup -All | Select-Object DisplayName, GroupType
+</code></pre>
+
+<h2>Step 4: Preparing for Mailbox Data Transfer</h2>
+<p>This is where the actual migration of mailbox data is enabled. Microsoft currently offers a <a href="https://aka.ms/CrossTenantMailboxMigration" target="_blank">Public Preview of native Cross-tenant mailbox migration</a>. For SMBs, evaluating the readiness and stability of a public preview for production is critical. Alternatively, Microsoft often recommends specialized third-party migration tools for complex scenarios or larger data volumes (typically >500 users or large SharePoint data). The preparation steps detailed below are generally applicable, regardless of the migration tool chosen, as they establish the necessary administrative access and relationships between tenants.</p>
+
+<pre><code class="language-powershell"># Connect to the Source Microsoft 365 tenant (Exchange Online PowerShell)
+Connect-ExchangeOnline -UserPrincipalName admin@source.com -ShowProgress $true
+
+# Connect to the Target Microsoft 365 tenant (Exchange Online PowerShell)
+Connect-ExchangeOnline -UserPrincipalName admin@target.onmicrosoft.com -ShowProgress $true
+
+# Create a MailUser in the target tenant for each mailbox to be migrated (if not done in Step 3 already for user accounts)
+# This is a conceptual step. If using native migration, specific cmdlets will be part of the preview process.
+# If using a third-party tool, this step might involve creating target endpoints and giving permissions.
+# As the source documentation points to a Public Preview URL for native tools and mentions third-party tools,
+# specific cross-tenant migration cmdlets are not detailed in the provided materials.
+# Always consult the latest Microsoft Learn documentation for the native cross-tenant migration preview.
+</code></pre>
+<ul>
+<li>This step primarily involves ensuring both source and target Exchange Online environments are accessible by the migration administrators.</li>
+<li>Specific commands for configuring the *native* cross-tenant migration are part of the Public Preview feature and should be consulted directly from the official Microsoft Learn documentation linked in the source (<code>https://aka.ms/CrossTenantMailboxMigration</code>).</li>
+<li>For *third-party migration tools*, you would typically configure source and target connectors or endpoints, granting the necessary impersonation or application permissions as required by the tool. This often involves creating a migration administrative user with specific management roles in both tenants.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> For native preview configuration, follow instructions provided at the <a href="https://aka.ms/CrossTenantMailboxMigration" target="_blank">Public Preview documentation</a>. For third-party tools, their respective administrative portals will guide you through setting up source and target connections and permissions.</p>
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Forgetting to assign the correct licensing to target users before attempting mailbox migration will lead to failures. Also, ensure the migration administrator account has the necessary impersonation rights or ApplicationImpersonation role in Exchange Online on both tenants, if required by your chosen migration method.</div>
+<p><strong>Run this to verify:</strong> Confirm the administrative accounts have the required roles in both tenants.</p>
+<pre><code class="language-powershell"># Connect to Source Exchange Online and check roles for the migration admin
+Get-ManagementRoleAssignment -Role "ApplicationImpersonation" -GetEffectiveUsers -ErrorAction SilentlyContinue | Where-Object {$_.EffectiveUserName -eq "migrationadmin@source.com"}
+
+# Repeat for Target Exchange Online
+Get-ManagementRoleAssignment -Role "ApplicationImpersonation" -GetEffectiveUsers -ErrorAction SilentlyContinue | Where-Object {$_.EffectiveUserName -eq "migrationadmin@target.onmicrosoft.com"}
+</code></pre>
+
+<h2>Step 5: Initiating Mailbox Data Transfer</h2>
+<p>Once the preparatory steps are complete, and the chosen migration method (native preview or third-party tool) is configured, the actual mailbox data transfer can begin. This often involves batching users, scheduling migration windows, and continuously monitoring progress. After data syncs, the critical domain cutover takes place, moving your custom domain from the source tenant to the target, and updating user UPNs and primary email addresses.</p>
+
+<pre><code class="language-powershell"># Connect to the Source Microsoft 365 tenant (Azure AD PowerShell)
+Connect-MsolService
+
+# Remove the custom domain from the source tenant (THIS IS THE DOMAIN CUTOVER - PERFORM ONLY DURING PLANNED DOWNTIME)
+# This action will temporarily disrupt mail flow to source mailboxes.
+Remove-MsolDomain -DomainName "source.com" -Force
+
+# Connect to the Target Microsoft 365 tenant (Azure AD PowerShell)
+Connect-MsolService
+
+# Complete domain verification in the target tenant
+Confirm-MsolDomain -DomainName "source.com"
+
+# Update User Principal Names (UPNs) and Primary SMTP addresses for migrated users in the target tenant
+# Assuming you have a CSV with 'OldUPN' (user@target.onmicrosoft.com) and 'NewUPN' (user@source.com)
+Import-Csv -Path "C:\Temp\user_upn_map.csv" | ForEach-Object {
+    $oldUPN = $_.OldUPN
+    $newUPN = $_.NewUPN
+    $primarySMTP = $_.PrimarySMTPAddress # e.g., user@source.com
+
+    Write-Host "Updating UPN for $oldUPN to $newUPN"
+    Set-MsolUserPrincipalName -UserPrincipalName $oldUPN -NewUserPrincipalName $newUPN
+
+    Write-Host "Updating Primary SMTP for $newUPN to $primarySMTP"
+    Set-Mailbox -Identity $newUPN -PrimarySmtpAddress $primarySMTP
+}
+</code></pre>
+<ul>
+<li><code>Remove-MsolDomain -DomainName "source.com" -Force</code>: This command is the critical step for releasing your custom domain from the source tenant. <strong>Execute this only after all mailboxes are synced and during a pre-planned downtime window.</strong> This action will cause a temporary interruption of services reliant on this domain.</li>
+<li><code>Confirm-MsolDomain -DomainName "source.com"</code>: Finalizes the domain verification in the target tenant once it's released from the source.</li>
+<li><code>Set-MsolUserPrincipalName</code>: Changes the UPN of users in the target tenant from their initial <code>.onmicrosoft.com</code> UPN to the new custom domain UPN (e.g., <code>user@source.com</code>).</li>
+<li><code>Set-Mailbox -PrimarySmtpAddress</code>: Assigns the correct primary email address to the migrated mailboxes in the target tenant.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Microsoft 365 admin center for the source tenant, navigate to <strong>Settings &gt; Domains</strong>, select <code>source.com</code>, and choose 'Remove domain'. In the target tenant, after the domain is removed from source, go to <strong>Settings &gt; Domains</strong>, select <code>source.com</code>, and click 'Complete setup'. For user UPNs and primary email addresses, you can edit them individually via <strong>Users &gt; Active users</strong>, but PowerShell is recommended for bulk changes.</p>
+<p><strong>Run this to verify:</strong> Confirm the domain is active in the target tenant and user UPNs/SMTP addresses are updated.</p>
+<pre><code class="language-powershell">
+Get-MsolDomain -DomainName "source.com" # Should show status as 'Verified'
+Get-MsolUser -UserPrincipalName user@source.com | Select-Object UserPrincipalName, ProxyAddresses # Check UPN and email addresses
+</code></pre>
+
+<h2>Step 6: Post-Migration Client Configuration & Refinements</h2>
+<p>After the migration and domain cutover, users will need to reconfigure their Outlook clients and address other service-specific changes. This step focuses on communicating these changes and guiding users through the necessary client updates to ensure they can access their migrated data in the new tenant.</p>
+
+<pre><code class="language-powershell"># Connect to the Target Microsoft 365 tenant (Exchange Online PowerShell)
+Connect-ExchangeOnline -UserPrincipalName admin@target.onmicrosoft.com -ShowProgress $true
+
+# (Optional) Verify mailbox sizes to confirm data integrity post-migration
+Get-Mailbox -ResultSize Unlimited | Get-MailboxStatistics | Select-Object DisplayName, TotalItemSize
+
+# (No direct PowerShell for client-side configuration, but useful for tenant-wide settings)
+# For example, ensure AutoDiscover DNS records are correctly pointing to the new tenant's M365 services.
+</code></pre>
+<ul>
+<li>The majority of this step involves user communication and client-side actions.</li>
+<li>Outlook clients (2010 and above) typically require users to remove their existing Outlook profile and create a new one. AutoDiscover will then configure the client for the new tenant.</li>
+<li>Users should be instructed on how to clear their Auto-Complete List (nickname cache) in Outlook, as old entries may point to the previous tenant.</li>
+<li>Skype for Business (if still in use) will require users to re-add contacts as a new profile is created.</li>
+<li>Educate users on accessing Outlook on the web (formerly OWA) with their new credentials.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> No direct portal steps for client configuration. Focus on creating clear, concise end-user communication guides and FAQs.</p>
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Create a comprehensive communication plan. Notify users well in advance, provide step-by-step instructions for Outlook profile recreation, and offer dedicated support channels during the migration week. Consider short video tutorials for common client issues.</div>
+<p><strong>Run this to verify:</strong> User feedback and successful access to their mailboxes and other services in the target tenant.</p>
+
+<h2>Step 7: SharePoint Content Modernization (Optional)</h2>
+<p>If your source tenant had classic SharePoint sites, especially those with wiki, web part, blog, or publishing pages, consider modernizing them in your new target tenant. Modern SharePoint pages offer enhanced user experiences, better performance, and tighter integration with other Microsoft 365 services. The SharePoint PnP Modernization framework, accessed via PowerShell, is the recommended approach for bulk page transformation.</p>
+
+<pre><code class="language-powershell"># Install PnP PowerShell module (if not already installed)
+Install-Module -Name PnP.PowerShell
+
+# Connect to the SharePoint Online Admin Center of your Target tenant
+Connect-PnPOnline -Url "https://target-admin.sharepoint.com" -Interactive
+
+# Identify a classic site collection in your target tenant (e.g., after content migration)
+$siteUrl = "https://target.sharepoint.com/sites/YourClassicSite"
+
+# Connect to the specific classic site collection
+Connect-PnPOnline -Url $siteUrl -Interactive
+
+# Transform a single classic page to a modern page
+# Example: Convert a wiki page named 'HomePage.aspx' in 'SitePages' library
+ConvertTo-PnPClientSidePage -Identity "SitePages/HomePage.aspx" -Overwrite
+
+# To transform multiple pages across a site, iterate through them (example conceptual)
+# Get-PnPListItem -List "Site Pages" -Query "<View><Query><Where><Eq><FieldRef Name='_PageType'/><Value Type='PageType'>WikiPage</Value></Eq></Where></Query></View>" |
+# ForEach-Object {
+#     Write-Host "Transforming: $($_.FieldValues.FileRef)"
+#     ConvertTo-PnPClientSidePage -Identity $($_.FieldValues.FileRef) -Overwrite
+# }
+</code></pre>
+<ul>
+<li><code>Install-Module -Name PnP.PowerShell</code>: Ensures you have the necessary module.</li>
+<li><code>Connect-PnPOnline</code>: Establishes a connection to your SharePoint Online environment. You'll typically connect to the admin center first, then to specific site collections for transformation.</li>
+<li><code>ConvertTo-PnPClientSidePage</code>: This is the core cmdlet for transforming classic pages. <code>-Identity</code> specifies the page to transform, and <code>-Overwrite</code> replaces the classic page with its modern equivalent. For larger transformations, script iteration over multiple pages or lists is required.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> While page transformation itself is largely a PowerShell-driven process for bulk operations, you can manually create modern pages in SharePoint Online by navigating to a site, clicking 'New &gt; Page', and rebuilding content. However, this is not feasible for large-scale modernization.</p>
+<p><strong>Run this to verify:</strong> Navigate to the transformed page in your browser. It should now render with the modern SharePoint user interface.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide provides a solid foundation for SMBs, certain scenarios significantly increase migration complexity, making professional assistance invaluable. If your organization has intricate Hybrid Active Directory configurations, complex Group Policy Objects (GPOs), multi-forest environments, or requires zero-downtime migrations for critical services, SkyCore Solutions can provide expert guidance. We also specialize in migrating large volumes of SharePoint data, integrating third-party applications, or navigating highly regulated compliance requirements during a Microsoft 365 tenant to tenant migration. Our team ensures a secure, efficient, and thoroughly tested transition, freeing your internal IT resources to focus on business continuity.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/exchange/mailbox-migration/migrate-mailboxes-across-tenants" target="_blank" rel="noopener noreferrer">learn.microsoft.com — migrate mailboxes across tenants</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/sharepoint/dev/transform/modernize-userinterface-site-pages" target="_blank" rel="noopener noreferrer">learn.microsoft.com — modernize userinterface site pages</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
