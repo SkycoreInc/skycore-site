@@ -658,7 +658,7 @@ p  { color: var(--text-2); }
   color: #000;
   white-space: nowrap;
   flex-shrink: 0;
-  align-self: flex-start;
+  align-self: flex-end;
 }
 .howto-time-badge {
   background: rgba(0,0,0,0.72);
