@@ -2,25 +2,65 @@
   {
     "keyword": "disaster recovery plan for small business",
     "category": "IT Strategy",
-    "volume": 10,
+    "volume": 140,
     "competition": "N/A",
-    "score": 5.5,
+    "score": 70.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "endpoint protection for small business",
+    "category": "Security Hardening",
+    "volume": 90,
+    "competition": "N/A",
+    "score": 45.5,
     "refreshed": "2026-05-30"
   },
   {
     "keyword": "ransomware protection for small business",
     "category": "Security Hardening",
-    "volume": 10,
+    "volume": 70,
     "competition": "N/A",
-    "score": 5.5,
+    "score": 35.5,
     "refreshed": "2026-05-30"
   },
   {
     "keyword": "how to implement zero trust security",
     "category": "Security Hardening",
-    "volume": 10,
+    "volume": 70,
     "competition": "N/A",
-    "score": 5.5,
+    "score": 35.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "server hardening checklist",
+    "category": "Security Hardening",
+    "volume": 70,
+    "competition": "N/A",
+    "score": 35.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Docker containerization tutorial",
+    "category": "Infrastructure Revamp",
+    "volume": 70,
+    "competition": "N/A",
+    "score": 35.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Windows Server hardening checklist",
+    "category": "Security Hardening",
+    "volume": 40,
+    "competition": "N/A",
+    "score": 20.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Office 365 migration step by step",
+    "category": "Cloud Migration",
+    "volume": 40,
+    "competition": "N/A",
+    "score": 20.5,
     "refreshed": "2026-05-30"
   },
   {
@@ -32,31 +72,7 @@
     "refreshed": "2026-05-30"
   },
   {
-    "keyword": "Windows Server hardening checklist",
-    "category": "Security Hardening",
-    "volume": 10,
-    "competition": "N/A",
-    "score": 5.5,
-    "refreshed": "2026-05-30"
-  },
-  {
-    "keyword": "endpoint protection for small business",
-    "category": "Security Hardening",
-    "volume": 10,
-    "competition": "N/A",
-    "score": 5.5,
-    "refreshed": "2026-05-30"
-  },
-  {
-    "keyword": "server hardening checklist",
-    "category": "Security Hardening",
-    "volume": 10,
-    "competition": "N/A",
-    "score": 5.5,
-    "refreshed": "2026-05-30"
-  },
-  {
-    "keyword": "Office 365 migration step by step",
+    "keyword": "Exchange to Office 365 migration guide",
     "category": "Cloud Migration",
     "volume": 10,
     "competition": "N/A",
@@ -66,14 +82,6 @@
   {
     "keyword": "Azure AD Connect setup guide",
     "category": "Cloud Migration",
-    "volume": 10,
-    "competition": "N/A",
-    "score": 5.5,
-    "refreshed": "2026-05-30"
-  },
-  {
-    "keyword": "Docker containerization tutorial",
-    "category": "Infrastructure Revamp",
     "volume": 10,
     "competition": "N/A",
     "score": 5.5,
@@ -185,14 +193,6 @@
   },
   {
     "keyword": "cloud migration guide for SMB",
-    "category": "Cloud Migration",
-    "volume": 0,
-    "competition": "N/A",
-    "score": 0.5,
-    "refreshed": "2026-05-30"
-  },
-  {
-    "keyword": "Exchange to Office 365 migration guide",
     "category": "Cloud Migration",
     "volume": 0,
     "competition": "N/A",
