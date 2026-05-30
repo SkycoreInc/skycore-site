@@ -647,6 +647,7 @@ p  { color: var(--text-2); }
 .howto-difficulty-badge,
 .howto-time-badge {
   display: inline-block;
+  align-self: flex-start;
   padding: 3px 10px;
   border-radius: 999px;
   font-size: 0.72rem;
