@@ -113,7 +113,7 @@ def fetch_volumes(keywords: list[str]) -> dict[str, dict]:
     payload = json.dumps([{
         "keywords":      keywords,
         "language_name": "English",
-        "location_name": "Canada",
+        "location_name": "United States",
     }]).encode()
     req = urllib.request.Request(
         "https://api.dataforseo.com/v3/keywords_data/google_ads/search_volume/live",
@@ -197,7 +197,7 @@ def main():
     print("\nTop 5 Gen-2 MS opportunities:")
     for r in queue2[:5]:
         print(f"  [{r['category']}] {r['keyword']} — vol {r['volume']:,} | {r['competition']} | score {r['score']}")
-    print(f"\nDone. Next refresh: ~30 days ({TODAY})")
+    print(f"\nDone. Volumes are global (US market baseline). Next refresh: ~30 days ({TODAY})")
 
 
 if __name__ == "__main__":
