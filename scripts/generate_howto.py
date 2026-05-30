@@ -585,6 +585,17 @@ def build_sources_html(source_urls: list[str]) -> str:
 
 
 def build_html(article: dict, hero_url: str, source_urls: list[str] | None = None) -> str:
+    # Guarantee all fields used in the f-string exist — Gemini sometimes omits them
+    article = {
+        "date":            date.today().isoformat(),
+        "readTime":        "10 min read",
+        "metaDescription": "",
+        "imageAlt":        "IT infrastructure guide",
+        "imageQuery":      "IT technology",
+        "prerequisites":   [],
+        "steps":           [],
+        **article,  # real values override defaults
+    }
     image_alt = article.get("imageAlt", article.get("imageQuery", "IT infrastructure guide"))
     content = (
         article["htmlContent"]

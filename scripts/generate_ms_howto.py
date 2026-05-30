@@ -560,6 +560,17 @@ def build_sources_html(source_urls: list[str]) -> str:
 # ── HTML builder ──────────────────────────────────────────────────────────────
 
 def build_html(article: dict, hero_url: str, source_urls: list[str] | None = None) -> str:
+    # Guarantee all fields used in the f-string exist — Gemini sometimes omits them
+    article = {
+        "date":            date.today().isoformat(),
+        "readTime":        "10 min read",
+        "metaDescription": "",
+        "imageAlt":        "Microsoft Azure guide",
+        "imageQuery":      "Microsoft Azure",
+        "prerequisites":   [],
+        "steps":           [],
+        **article,  # real values override defaults
+    }
     image_alt = article.get("imageAlt", article.get("imageQuery", "Microsoft Azure guide"))
     content = (
         article["htmlContent"]
