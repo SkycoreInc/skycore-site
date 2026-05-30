@@ -707,6 +707,7 @@ def main():
 
     print("-- Generating article via Gemini 2.5 Flash --")
     article = generate_article(topic, ref_docs, source_urls)
+    article['date'] = date.today().isoformat()  # always set authoritatively
     print(f"   Slug:       {article['slug']}")
     print(f"   Title:      {article['title']}")
     print(f"   Difficulty: {article.get('difficulty')} | Time: {article.get('timeEstimate')}")
