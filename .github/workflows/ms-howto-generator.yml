@@ -1,0 +1,74 @@
+name: Auto MS How-To Generator
+
+on:
+  schedule:
+    - cron: '0 12 */4 * *'  # Every 4 days at 12 PM UTC (offset from blog @ 10AM, gen1 @ 11AM)
+  workflow_dispatch:          # Manual trigger: Actions tab → Run workflow
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install --upgrade google-genai requests
+
+      - name: Check API keys
+        run: |
+          if [ -z "${{ secrets.GEMINI_API_KEY }}" ]; then
+            echo "ERROR: GEMINI_API_KEY secret is not set."
+            exit 1
+          fi
+          echo "GEMINI_API_KEY found OK"
+          if [ -z "${{ secrets.PEXELS_API_KEY }}" ]; then
+            echo "WARNING: PEXELS_API_KEY not set — images will use Unsplash fallback"
+          else
+            echo "PEXELS_API_KEY found OK"
+          fi
+
+      - name: Generate MS how-to article
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: python scripts/generate_ms_howto.py
+
+      - name: Commit and push new article
+        run: |
+          git config user.name "SkyCore MS HowTo Bot"
+          git config user.email "info@skycoresolutions.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "Auto: new MS how-to guide $(date +%Y-%m-%d)"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && break
+            echo "Push attempt $i failed — retrying in 10s..."
+            sleep 10
+          done
+
+      - name: Purge Cloudflare cache
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          HTTP=$(curl -s -o /tmp/cf_resp.json -w "%{http_code}" \
+            -X POST "https://api.cloudflare.com/client/v4/zones/b880e08e9e0e2e8059ba5774d828011c/purge_cache" \
+            -H "Authorization: Bearer $CF_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}')
+          cat /tmp/cf_resp.json
+          if [ "$HTTP" != "200" ]; then
+            echo "ERROR: Cloudflare purge returned HTTP $HTTP"
+            exit 1
+          fi
+          echo "Cache purged successfully"

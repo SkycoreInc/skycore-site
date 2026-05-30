@@ -347,6 +347,20 @@ def gather_reference_docs(keyword: str) -> tuple[str, list[str]]:
 
 # ── Keyword / image helpers ───────────────────────────────────────────────────
 
+def load_keyword_queue() -> list:
+    """Load from DataForSEO-refreshed JSON if available, else use hardcoded fallback."""
+    json_path = os.path.join(os.path.dirname(__file__), "keyword_queue.json")
+    if os.path.exists(json_path):
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                queue = json.load(f)
+            print(f"   Loaded {len(queue)} keywords from keyword_queue.json (refreshed {queue[0].get('refreshed','?')})")
+            return queue
+        except Exception as e:
+            print(f"   keyword_queue.json load failed ({e}), using hardcoded fallback")
+    return KEYWORD_QUEUE
+
+
 def get_written_keywords() -> set:
     try:
         with open("how-to/posts.js", "r", encoding="utf-8") as f:
@@ -354,6 +368,17 @@ def get_written_keywords() -> set:
         return set(re.findall(r'keyword:\s*"([^"]+)"', content))
     except Exception:
         return set()
+
+
+def get_last_category() -> str | None:
+    """Return the category of the most recently published how-to article."""
+    try:
+        with open("how-to/posts.js", "r", encoding="utf-8") as f:
+            content = f.read()
+        match = re.search(r'category:\s*"([^"]+)"', content)
+        return match.group(1) if match else None
+    except Exception:
+        return None
 
 
 def get_used_image_urls() -> set:
@@ -365,12 +390,22 @@ def get_used_image_urls() -> set:
         return set()
 
 
-def pick_next_keyword() -> dict | None:
-    written = get_written_keywords()
-    for item in KEYWORD_QUEUE:
-        if item["keyword"] not in written:
-            return item
-    return None
+def pick_next_keyword(queue: list) -> dict | None:
+    written   = get_written_keywords()
+    last_cat  = get_last_category()
+    available = [item for item in queue if item["keyword"] not in written]
+
+    if not available:
+        return None
+
+    if last_cat:
+        different = [item for item in available if item["category"] != last_cat]
+        if different:
+            print(f"   Last category was '{last_cat}' — picking from a different category")
+            return different[0]
+        print(f"   All remaining keywords are '{last_cat}' — using next highest-volume anyway")
+
+    return available[0]
 
 
 def pick_photo_pexels(query: str, used_urls: set) -> tuple[str, str] | tuple[None, None]:
@@ -686,9 +721,10 @@ def prepend_to_posts_js(article: dict, thumb_url: str):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    kw_item = pick_next_keyword()
+    queue   = load_keyword_queue()
+    kw_item = pick_next_keyword(queue)
     if not kw_item:
-        print("All keywords written. Add more to KEYWORD_QUEUE.")
+        print("All keywords written. Keyword queue will refresh next month via keyword-refresh.yml.")
         return
 
     print(f"-- Next keyword: \"{kw_item['keyword']}\" ({kw_item['volume']:,}/mo) --")
