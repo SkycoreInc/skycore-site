@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "microsoft-entra-privileged-identity-management-guide",
+    title: "Mastering Microsoft Entra Privileged Identity Management: A SkyCore Implementation Guide for SMBs",
+    date: "2026-05-30",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours (initial setup), ongoing management",
+    keyword: "Microsoft Entra Privileged Identity Management",
+    excerpt: "This comprehensive guide from SkyCore Solutions walks SMBs through implementing Microsoft Entra Privileged Identity Management (PIM) to secure critical access. Learn how to enable Just-In-Time administration and strengthen your cloud security posture.",
+    image: "https://images.pexels.com/photos/2882630/pexels-photo-2882630.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ransomware-protection-small-business-skycore",
     title: "Comprehensive Ransomware Protection for Small Business: A SkyCore Guide",
     date: "2026-05-28",
