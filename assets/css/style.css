@@ -640,6 +640,7 @@ p  { color: var(--text-2); }
   bottom: 10px;
   left: 10px;
   display: flex;
+  align-items: flex-start;
   gap: 6px;
   z-index: 2;
 }
