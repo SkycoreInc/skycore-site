@@ -595,6 +595,7 @@ def build_html(article: dict, hero_url: str, source_urls: list[str] | None = Non
     sources_html = build_sources_html(source_urls or [])
     if sources_html:
         content = content + sources_html
+    pub_date      = article.get("date") or date.today().isoformat()
     thumb_url     = hero_url.replace("w=1400", "w=1200").replace("h=600", "h=630")
     canonical_url = f"https://skycoresolutions.com/how-to/{article['slug']}.html"
 
@@ -639,7 +640,7 @@ def build_html(article: dict, hero_url: str, source_urls: list[str] | None = Non
   <meta name="twitter:description" content="{article['metaDescription']}" />
   <meta name="twitter:image" content="{thumb_url}" />
   <link rel="canonical" href="{canonical_url}" />
-  <meta property="article:published_time" content="{article['date']}" />
+  <meta property="article:published_time" content="{pub_date}" />
   <script type="application/ld+json">
   {howto_schema}
   </script>
