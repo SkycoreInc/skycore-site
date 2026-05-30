@@ -124,10 +124,14 @@ def fetch_volumes(keywords: list[str]) -> dict[str, dict]:
         },
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        data = json.loads(resp.read())
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = json.loads(resp.read())
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8", errors="replace")
+        raise RuntimeError(f"DataForSEO HTTP {e.code}: {e.reason}\nResponse body: {body}\n\nCheck that DATAFORSEO_LOGIN is your account email and DATAFORSEO_PASSWORD is the API password from app.dataforseo.com → API Access.")
     if data.get("status_code") != 20000:
-        raise RuntimeError(f"DataForSEO error: {data.get('status_message')}")
+        raise RuntimeError(f"DataForSEO API error {data.get('status_code')}: {data.get('status_message')}")
     result = data["tasks"][0].get("result") or []
     return {r["keyword"]: r for r in result}
 
