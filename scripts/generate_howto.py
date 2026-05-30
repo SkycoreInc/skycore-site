@@ -528,8 +528,14 @@ Instructions for using this material:
     """).strip()
 
     current_prompt = prompt
-    for attempt in range(1, 6):
+    api_attempts   = 0
+    json_attempts  = 0
+    MAX_API        = 6
+    MAX_JSON       = 3
+
+    while True:
         try:
+            api_attempts += 1
             response = CLIENT.models.generate_content(model=GEMINI_MODEL, contents=current_prompt)
             raw = response.text.strip()
             raw = re.sub(r"^```[a-z]*\n?", "", raw)
@@ -539,22 +545,21 @@ Instructions for using this material:
                 raw = match.group(0)
             return json.loads(raw)
         except (json.JSONDecodeError, ValueError) as e:
-            print(f"   Attempt {attempt} JSON parse failed: {e}")
-            if attempt == 5:
-                raise RuntimeError(f"Gemini returned invalid JSON after 5 attempts: {e}")
+            json_attempts += 1
+            print(f"   JSON parse failed (attempt {json_attempts}/{MAX_JSON}): {e}")
+            if json_attempts >= MAX_JSON:
+                raise RuntimeError(f"Gemini returned invalid JSON after {MAX_JSON} parse attempts: {e}")
             current_prompt += "\n\nCRITICAL: JSON parse error. Escape ALL double quotes inside strings with \\\" — especially inside htmlContent."
         except Exception as e:
-            # 503 / 429 / transient API errors — exponential backoff
-            status = getattr(e, 'status_code', None) or getattr(e, 'code', None)
             err_str = str(e)
             is_retryable = (
                 "503" in err_str or "UNAVAILABLE" in err_str or
                 "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or
                 "500" in err_str
             )
-            if is_retryable and attempt < 5:
-                wait = 15 * (2 ** (attempt - 1))  # 15s, 30s, 60s, 120s
-                print(f"   Gemini API error (attempt {attempt}/5): {err_str[:120]}")
+            if is_retryable and api_attempts < MAX_API:
+                wait = min(15 * (2 ** (api_attempts - 1)), 120)
+                print(f"   Gemini API error (attempt {api_attempts}/{MAX_API}): {err_str[:120]}")
                 print(f"   Retrying in {wait}s...")
                 time.sleep(wait)
             else:
