@@ -1,0 +1,306 @@
+[
+  {
+    "keyword": "disaster recovery plan for small business",
+    "category": "IT Strategy",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "ransomware protection for small business",
+    "category": "Security Hardening",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "how to implement zero trust security",
+    "category": "Security Hardening",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Office 365 MFA setup guide",
+    "category": "Security Hardening",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Windows Server hardening checklist",
+    "category": "Security Hardening",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "endpoint protection for small business",
+    "category": "Security Hardening",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "server hardening checklist",
+    "category": "Security Hardening",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Office 365 migration step by step",
+    "category": "Cloud Migration",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure AD Connect setup guide",
+    "category": "Cloud Migration",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Docker containerization tutorial",
+    "category": "Infrastructure Revamp",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "IT disaster recovery guide",
+    "category": "IT Strategy",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "business continuity plan SMB",
+    "category": "IT Strategy",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "IT infrastructure assessment guide",
+    "category": "IT Strategy",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "zero trust network access implementation",
+    "category": "Security Hardening",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "how to set up MFA for your organization",
+    "category": "Security Hardening",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "PIPEDA compliance IT checklist",
+    "category": "Security Hardening",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "DMARC configuration step by step",
+    "category": "Security Hardening",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Active Directory tiering best practices",
+    "category": "Security Hardening",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "how to configure DMARC DKIM SPF",
+    "category": "Security Hardening",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure conditional access setup guide",
+    "category": "Security Hardening",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "how to harden Windows Server 2022",
+    "category": "Security Hardening",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "cybersecurity audit checklist SMB",
+    "category": "Security Hardening",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "phishing simulation setup guide",
+    "category": "Security Hardening",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "cloud migration guide for SMB",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Exchange to Office 365 migration guide",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure MFA configuration guide",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "on premise to Azure migration guide",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "SQL Server to Azure migration guide",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure backup setup guide",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "physical server to Azure VM migration",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "hybrid cloud setup small business",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "GitHub Actions CI CD pipeline setup",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "CI CD pipeline setup for small teams",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "DevOps implementation for small business",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "IT infrastructure modernization guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Kubernetes setup guide small business",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "VMware to Hyper-V migration guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "network segmentation guide SMB",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  }
+]

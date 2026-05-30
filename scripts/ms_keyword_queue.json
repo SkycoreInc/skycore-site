@@ -1,0 +1,226 @@
+[
+  {
+    "keyword": "Azure Virtual Desktop setup guide",
+    "category": "Cloud Migration",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Microsoft 365 tenant to tenant migration",
+    "category": "Cloud Migration",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "migrate SharePoint to SharePoint Online",
+    "category": "Cloud Migration",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Microsoft Entra Privileged Identity Management",
+    "category": "Infrastructure Revamp",
+    "volume": 10,
+    "competition": "N/A",
+    "score": 5.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "migrate file server to Azure Files guide",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "VMware migration to Azure guide",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure cost management optimization SMB",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Microsoft Entra ID setup guide SMB",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Hyper-V migration to Azure guide",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Microsoft Teams Phone setup small business",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure SQL Managed Instance migration guide",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Microsoft 365 Business Premium setup guide",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure Migrate assessment guide SMB",
+    "category": "Cloud Migration",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure Functions serverless deployment guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure Kubernetes Service setup guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure DevOps CI CD pipeline setup guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Microsoft Intune MDM setup SMB",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure Monitor Log Analytics setup guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Microsoft Sentinel SIEM setup SMB",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure Arc hybrid cloud management guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure Container Apps deployment guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Microsoft Defender for Business setup guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure API Management setup guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure Virtual Network setup guide SMB",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Microsoft Purview compliance setup guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure Logic Apps workflow automation guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure Firewall setup and configuration guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  },
+  {
+    "keyword": "Azure DevTest Labs setup guide",
+    "category": "Infrastructure Revamp",
+    "volume": 0,
+    "competition": "N/A",
+    "score": 0.5,
+    "refreshed": "2026-05-30"
+  }
+]
