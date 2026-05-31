@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "secure-small-business-endpoint-protection",
+    title: "Comprehensive Guide: Endpoint Protection for Small Business with Microsoft Defender",
+    date: "2026-05-31",
+    readTime: "18 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "3-5 hours",
+    keyword: "endpoint protection for small business",
+    excerpt: "Securing your small business's endpoints is critical against modern cyber threats. This guide outlines how to deploy and manage robust endpoint protection using Microsoft Defender for Business effectively.",
+    image: "https://images.pexels.com/photos/5935794/pexels-photo-5935794.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-365-tenant-to-tenant-migration-smb-guide",
     title: "Seamless Microsoft 365 Tenant to Tenant Migration for SMBs: An Implementation Guide",
     date: "2026-05-30",
