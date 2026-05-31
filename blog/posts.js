@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "zero-trust-security-hardening-montreal",
+    title: "Fortify Your Defenses: Advanced Zero-Trust Security Hardening for Montreal SMBs",
+    date: "2026-05-31",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Recent exploits highlight the urgent need for robust cybersecurity. Discover how SkyCore Solutions helps Montreal SMBs implement zero-trust security and proactive network hardening.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5483248/pexels-photo-5483248.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "cisa-data-leak-zero-trust-montreal",
     title: "CISA Data Leak: A Wake-Up Call for Zero Trust Security in Montreal Businesses",
     date: "2026-05-29",
