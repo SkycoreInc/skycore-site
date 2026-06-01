@@ -5,7 +5,7 @@
     "volume": 140,
     "competition": "N/A",
     "score": 70.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "endpoint protection for small business",
@@ -13,7 +13,7 @@
     "volume": 90,
     "competition": "N/A",
     "score": 45.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "ransomware protection for small business",
@@ -21,7 +21,7 @@
     "volume": 70,
     "competition": "N/A",
     "score": 35.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "how to implement zero trust security",
@@ -29,7 +29,7 @@
     "volume": 70,
     "competition": "N/A",
     "score": 35.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "server hardening checklist",
@@ -37,7 +37,7 @@
     "volume": 70,
     "competition": "N/A",
     "score": 35.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Docker containerization tutorial",
@@ -45,7 +45,7 @@
     "volume": 70,
     "competition": "N/A",
     "score": 35.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Windows Server hardening checklist",
@@ -53,7 +53,7 @@
     "volume": 40,
     "competition": "N/A",
     "score": 20.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Office 365 migration step by step",
@@ -61,7 +61,7 @@
     "volume": 40,
     "competition": "N/A",
     "score": 20.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Office 365 MFA setup guide",
@@ -69,7 +69,7 @@
     "volume": 10,
     "competition": "N/A",
     "score": 5.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Exchange to Office 365 migration guide",
@@ -77,7 +77,7 @@
     "volume": 10,
     "competition": "N/A",
     "score": 5.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure AD Connect setup guide",
@@ -85,7 +85,7 @@
     "volume": 10,
     "competition": "N/A",
     "score": 5.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "IT disaster recovery guide",
@@ -93,7 +93,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "business continuity plan SMB",
@@ -101,7 +101,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "IT infrastructure assessment guide",
@@ -109,7 +109,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "zero trust network access implementation",
@@ -117,7 +117,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "how to set up MFA for your organization",
@@ -125,7 +125,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "PIPEDA compliance IT checklist",
@@ -133,7 +133,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "DMARC configuration step by step",
@@ -141,7 +141,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Active Directory tiering best practices",
@@ -149,7 +149,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "how to configure DMARC DKIM SPF",
@@ -157,7 +157,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure conditional access setup guide",
@@ -165,7 +165,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "how to harden Windows Server 2022",
@@ -173,7 +173,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "cybersecurity audit checklist SMB",
@@ -181,7 +181,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "phishing simulation setup guide",
@@ -189,7 +189,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "cloud migration guide for SMB",
@@ -197,7 +197,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure MFA configuration guide",
@@ -205,7 +205,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "on premise to Azure migration guide",
@@ -213,7 +213,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "SQL Server to Azure migration guide",
@@ -221,7 +221,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure backup setup guide",
@@ -229,7 +229,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "physical server to Azure VM migration",
@@ -237,7 +237,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "hybrid cloud setup small business",
@@ -245,7 +245,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "GitHub Actions CI CD pipeline setup",
@@ -253,7 +253,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "CI CD pipeline setup for small teams",
@@ -261,7 +261,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "DevOps implementation for small business",
@@ -269,7 +269,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "IT infrastructure modernization guide",
@@ -277,7 +277,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Kubernetes setup guide small business",
@@ -285,7 +285,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "VMware to Hyper-V migration guide",
@@ -293,7 +293,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "network segmentation guide SMB",
@@ -301,6 +301,6 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   }
 ]

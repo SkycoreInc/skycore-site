@@ -5,7 +5,7 @@
     "volume": 110,
     "competition": "N/A",
     "score": 55.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Microsoft 365 tenant to tenant migration",
@@ -13,7 +13,7 @@
     "volume": 70,
     "competition": "N/A",
     "score": 35.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "migrate SharePoint to SharePoint Online",
@@ -21,7 +21,7 @@
     "volume": 40,
     "competition": "N/A",
     "score": 20.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure Virtual Desktop setup guide",
@@ -29,7 +29,7 @@
     "volume": 10,
     "competition": "N/A",
     "score": 5.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "migrate file server to Azure Files guide",
@@ -37,7 +37,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "VMware migration to Azure guide",
@@ -45,7 +45,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure cost management optimization SMB",
@@ -53,7 +53,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Microsoft Entra ID setup guide SMB",
@@ -61,7 +61,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Hyper-V migration to Azure guide",
@@ -69,7 +69,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Microsoft Teams Phone setup small business",
@@ -77,7 +77,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure SQL Managed Instance migration guide",
@@ -85,7 +85,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Microsoft 365 Business Premium setup guide",
@@ -93,7 +93,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure Migrate assessment guide SMB",
@@ -101,7 +101,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure Functions serverless deployment guide",
@@ -109,7 +109,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure Kubernetes Service setup guide",
@@ -117,7 +117,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure DevOps CI CD pipeline setup guide",
@@ -125,7 +125,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Microsoft Intune MDM setup SMB",
@@ -133,7 +133,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure Monitor Log Analytics setup guide",
@@ -141,7 +141,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Microsoft Sentinel SIEM setup SMB",
@@ -149,7 +149,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure Arc hybrid cloud management guide",
@@ -157,7 +157,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure Container Apps deployment guide",
@@ -165,7 +165,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Microsoft Defender for Business setup guide",
@@ -173,7 +173,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure API Management setup guide",
@@ -181,7 +181,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure Virtual Network setup guide SMB",
@@ -189,7 +189,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Microsoft Purview compliance setup guide",
@@ -197,7 +197,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure Logic Apps workflow automation guide",
@@ -205,7 +205,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure Firewall setup and configuration guide",
@@ -213,7 +213,7 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   },
   {
     "keyword": "Azure DevTest Labs setup guide",
@@ -221,6 +221,6 @@
     "volume": 0,
     "competition": "N/A",
     "score": 0.5,
-    "refreshed": "2026-05-30"
+    "refreshed": "2026-06-01"
   }
 ]
