@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "docker-containerization-essential-guide",
+    title: "Mastering Docker Containerization: A SkyCore Solutions How-To Guide",
+    date: "2026-06-01",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Docker containerization tutorial",
+    excerpt: "This guide provides a comprehensive Docker containerization tutorial, demonstrating how to build, run, and orchestrate applications using Docker and Docker Compose. Leverage containerization for streamlined development and deployment workflows.",
+    image: "https://images.pexels.com/photos/37730212/pexels-photo-37730212.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "secure-small-business-endpoint-protection",
     title: "Comprehensive Guide: Endpoint Protection for Small Business with Microsoft Defender",
     date: "2026-05-31",
