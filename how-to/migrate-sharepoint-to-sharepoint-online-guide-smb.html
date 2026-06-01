@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seamlessly Migrate SharePoint to SharePoint Online: An SMB Guide with SPMT — SkyCore Solutions</title>
+  <meta name="description" content="Discover how SkyCore Solutions guides SMBs to migrate SharePoint to SharePoint Online, leveraging Microsoft's SPMT for a secure and efficient cloud transition. Optimize collaboration today." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Seamlessly Migrate SharePoint to SharePoint Online: An SMB Guide with SPMT — SkyCore Solutions" />
+  <meta property="og:description" content="Discover how SkyCore Solutions guides SMBs to migrate SharePoint to SharePoint Online, leveraging Microsoft's SPMT for a secure and efficient cloud transition. Optimize collaboration today." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/migrate-sharepoint-to-sharepoint-online-guide-smb.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/6481663/pexels-photo-6481663.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Seamlessly Migrate SharePoint to SharePoint Online: An SMB Guide with SPMT — SkyCore Solutions" />
+  <meta name="twitter:description" content="Discover how SkyCore Solutions guides SMBs to migrate SharePoint to SharePoint Online, leveraging Microsoft's SPMT for a secure and efficient cloud transition. Optimize collaboration today." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/6481663/pexels-photo-6481663.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/migrate-sharepoint-to-sharepoint-online-guide-smb.html" />
+  <meta property="article:published_time" content="2026-06-01" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Seamlessly Migrate SharePoint to SharePoint Online: An SMB Guide with SPMT",
+  "description": "Discover how SkyCore Solutions guides SMBs to migrate SharePoint to SharePoint Online, leveraging Microsoft's SPMT for a secure and efficient cloud transition. Optimize collaboration today.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Microsoft 365 subscription with SharePoint Online (e.g., Business Premium), Admin permissions for on-premises SharePoint and Microsoft 365 (SharePoint Admin, Migration Admin), Power Automate Admin and Environment Maker roles for workflow migration, SharePoint Migration Tool (SPMT) installed, SharePoint Migration Assessment Tool (SMAT) installed, PowerShell 7.x (or Windows PowerShell 5.1), Stable internet connection"}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Initial Assessment with SharePoint Migration Assessment Tool (SMAT)",
+        "text": "Scan your on-premises SharePoint environment to identify potential migration issues and plan remediation."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Install and Prepare the SharePoint Migration Tool (SPMT)",
+        "text": "Download and install Microsoft's free SPMT client application on a machine with network access to both source and destination."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Your SharePoint Online Environment and User Mappings",
+        "text": "Ensure target sites/libraries exist in SharePoint Online and create a CSV file to map on-premises users to Microsoft 365 identities."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure and Scan SharePoint Workflows for Migration (if applicable)",
+        "text": "Use SPMT to scan classic SharePoint workflows, identify candidates for migration to Power Automate, and review reports."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Define Migration Tasks Using SPMT (or JSON/CSV)",
+        "text": "Specify the content to migrate by either manually adding tasks in SPMT or creating a structured CSV file with source and destination paths."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Execute the Data Migration with SPMT",
+        "text": "Initiate the content transfer using SPMT, leveraging its interface for monitoring progress and reviewing detailed migration reports."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Migrate and Activate Workflows (If Applicable)",
+        "text": "Review and activate migrated workflow definitions in the Power Automate portal, ensuring connections are configured correctly."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Post-Migration Validation, Modernization, and User Adoption",
+        "text": "Perform comprehensive data integrity checks, verify permissions, consider modernizing classic pages, and onboard users to SharePoint Online."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-06-01 · 18 min read · Cloud Migration</div>
+<h1>Seamlessly Migrate SharePoint to SharePoint Online: An SMB Guide with SPMT</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/6481663/pexels-photo-6481663.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Illustration of data migrating from an on-premises server to the cloud, representing SharePoint migration to SharePoint Online." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For many Small to Medium-sized Businesses (SMBs) in Montreal and beyond, an on-premises SharePoint Server has been a reliable workhorse for collaboration. However, the modern demands of remote work, enhanced security, and seamless integration with other Microsoft 365 services increasingly highlight the need for a transition. Migrating SharePoint to SharePoint Online unlocks unparalleled benefits: reduced infrastructure overhead, always-on security updates, advanced collaboration features, and integration with Teams, OneDrive, and Power Platform. This comprehensive guide from SkyCore Solutions will walk you through the authoritative process to <strong>migrate SharePoint to SharePoint Online</strong> using Microsoft's free and robust SharePoint Migration Tool (SPMT), ensuring a smooth, secure, and efficient cloud migration for your organization.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul>
+    <li><strong>Microsoft 365 Licensing:</strong> An active Microsoft 365 subscription (e.g., Microsoft 365 Business Basic, Standard, Premium, or Enterprise SKUs) that includes SharePoint Online. Microsoft 365 Business Premium is highly recommended for SMBs due to its comprehensive security features.</li>
+    <li><strong>Administrative Permissions:</strong>
+        <ul>
+            <li><strong>Source (On-premises SharePoint):</strong> SharePoint Server account credentials with Read access to all content you plan to migrate.</li>
+            <li><strong>Destination (SharePoint Online):</strong> A Microsoft 365 account with Global Administrator, SharePoint Administrator, or the new dedicated Migration Administrator role.</li>
+            <li><strong>Workflow Migration (if applicable):</strong> If migrating SharePoint Server workflows to Power Automate, the account must also be a Power Automate admin with the Environment Maker role.</li>
+        </ul>
+    </li>
+    <li><strong>Tools:</strong>
+        <ul>
+            <li>SharePoint Migration Tool (SPMT) installed on a suitable client machine.</li>
+            <li>SharePoint Migration Assessment Tool (SMAT) for initial analysis.</li>
+            <li>PowerShell 7.x (or Windows PowerShell 5.1) for scripting (optional, but recommended for advanced scenarios).</li>
+            <li>Stable internet connection with sufficient bandwidth.</li>
+        </ul>
+    </li>
+    <li><strong>Estimated Cost:</strong> The SPMT and SMAT are free tools from Microsoft. The primary costs will be your Microsoft 365 subscription and any potential third-party consulting fees for complex migrations.</li>
+</ul></div>
+
+<h2>Step 1: Initial Assessment with SharePoint Migration Assessment Tool (SMAT)</h2>
+<p>Before embarking on any migration, a thorough assessment of your existing SharePoint Server environment is critical. The SharePoint Migration Assessment Tool (SMAT) is a command-line utility designed to scan your on-premises SharePoint Server farm (2013 and later) for potential issues that could hinder a successful migration to SharePoint Online. This proactive step helps identify unsupported features, customization complexities, and potential data integrity concerns, allowing you to plan remediation efforts effectively.</p>
+<p>While the specific command-line execution details for SMAT are obtained upon download, the process involves running the tool against your SharePoint farm. Download SMAT from the official Microsoft Learn site, extract the files, and execute the main executable from your command prompt.</p>
+<pre><code class="language-powershell"># Example (conceptual) - specific execution details are provided upon SMAT download
+# Navigate to the extracted SMAT directory
+# cd C:\SMAT
+# Run the SMAT executable (replace with actual executable name if different)
+# .\SMAT.exe
+# Follow on-screen prompts or consult SMAT documentation for parameters.
+</code></pre>
+<ul>
+    <li><strong>SMAT.exe:</strong> The executable for the SharePoint Migration Assessment Tool.</li>
+    <li><strong>Output Reports:</strong> SMAT generates detailed reports in a local directory, typically listing potential issues, unsupported features, and guidance for resolution.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> SMAT is primarily a command-line tool designed for thorough, automated farm analysis. There is no direct portal alternative for this level of deep on-premises assessment.</p>
+<p>Run this to verify: Review the generated SMAT reports. These reports are crucial for understanding the scope of your migration and identifying any necessary pre-migration cleanup or remediation tasks.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Ignoring SMAT reports. Many SMBs rush directly into migration, only to encounter unexpected issues mid-way. Thoroughly reviewing and acting on SMAT findings significantly reduces migration downtime and post-migration headaches.</div>
+
+<h2>Step 2: Install and Prepare the SharePoint Migration Tool (SPMT)</h2>
+<p>The SharePoint Migration Tool (SPMT) is your primary utility for moving content from your on-premises SharePoint Server directly to SharePoint Online, OneDrive, and even Microsoft Teams. It's a free, easy-to-use client application from Microsoft. SPMT supports migration from SharePoint Server 2010, 2013, 2016, and 2019, as well as SharePoint Foundation 2010 and 2013. Ensure the machine running SPMT has network access to both your on-premises SharePoint Server and your Microsoft 365 tenant.</p>
+<p>To get started, download the SPMT installer from the official Microsoft Learn page. Run the installer and follow the on-screen prompts to complete the installation. While SPMT offers PowerShell support for scripting and automation, the provided documentation focuses on the GUI experience. For SMBs, the intuitive graphical interface often provides the most straightforward path.</p>
+<pre><code class="language-powershell"># SPMT installation is typically a GUI-driven process from a downloaded executable.
+# Download the SPMT from: https://learn.microsoft.com/en-us/sharepointmigration/introducing-the-sharepoint-migration-tool
+# Execute the installer: .\SPMTSetup.exe # (Example name, actual name may vary)
+</code></pre>
+<ul>
+    <li><strong>SPMTSetup.exe:</strong> The executable file for installing the SharePoint Migration Tool.</li>
+    <li><strong>System Requirements:</strong> Ensure the machine meets the minimum requirements for SPMT (e.g., .NET Framework, sufficient disk space).</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> SPMT is a client-side application; there is no direct portal installation. Once installed, SPMT connects to your SharePoint Online environment through the Microsoft 365 admin center for task management if using Migration Manager.</p>
+<p>Run this to verify: Launch the SharePoint Migration Tool application. You should see the welcome screen prompting you to sign in to Microsoft 365.</p>
+
+<h2>Step 3: Prepare Your SharePoint Online Environment and User Mappings</h2>
+<p>Before migrating data, ensure your target SharePoint Online environment is ready. This includes creating necessary site collections, sites, and libraries, as well as confirming user accounts exist in Microsoft 365. Critically, you'll need to map your on-premises SharePoint users to their corresponding Microsoft 365 user accounts. This ensures correct ownership, permissions, and metadata are preserved during migration. SPMT allows you to provide a user-mapping file, typically in CSV format, to automate this process.</p>
+<p>For SMBs, manually creating a user mapping CSV file is often the most practical approach for preserving user permissions and metadata. This file should contain a list of your source users and their corresponding target Microsoft 365 email addresses.</p>
+<pre><code class="language-powershell"># Example of a user mapping CSV file (UserMapping.csv)
+# SourceUser,TargetUser
+# domain\jdoe,john.doe@skycoresolutions.onmicrosoft.com
+# domain\asmith,alice.smith@skycoresolutions.onmicrosoft.com
+# domain\marketing_team_group,marketingteam@skycoresolutions.onmicrosoft.com # Mapped to a Microsoft 365 Group
+</code></pre>
+<ul>
+    <li><strong>SourceUser:</strong> The user principal name or domain\username from your on-premises SharePoint.</li>
+    <li><strong>TargetUser:</strong> The corresponding user principal name (UPN) or email address in Microsoft 365.</li>
+    <li><strong>CSV Format:</strong> A simple, comma-separated values file is recommended for SMBs for ease of creation and editing.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> While you can manually create sites and manage users in the Microsoft 365 admin center or SharePoint admin center, creating a user mapping file is best handled outside the portal for bulk efficiency, typically using a text editor or spreadsheet software.</p>
+<p>Run this to verify: Review your `UserMapping.csv` file for accuracy. Ensure all active on-premises users and groups are mapped to existing Microsoft 365 identities. Test a few accounts to confirm they resolve correctly in your M365 tenant.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Start small. Begin by migrating a non-critical site or a small set of documents as a pilot. This helps you understand the process, identify potential issues, and refine your migration strategy before tackling your most important content.</div>
+
+<h2>Step 4: Configure and Scan SharePoint Workflows for Migration (if applicable)</h2>
+<p>SharePoint Server workflows require special attention. Microsoft recommends migrating classic SharePoint Server workflows to Power Automate flows. The SPMT can assist in migrating SharePoint Server 2010 out-of-the-box (OOTB) workflows (like Approval, Collect Feedback, Three-state) and SharePoint Designer 2010/2013 workflows to Power Automate. SPMT migrates workflow definitions and associations, but not historical data.</p>
+<p>Before migrating, SPMT allows for a workflow scan to generate a report, providing an inventory of your workflows and aiding in planning. To initiate a workflow scan, you'll use the SPMT graphical interface.</p>
+<pre><code class="language-powershell"># While SPMT has PowerShell support, the direct command for workflow scanning isn't provided in the source documentation.
+# For SMBs, use the guided GUI workflow within SPMT for scanning.
+# Steps are:
+# 1. Launch SPMT and sign in.
+# 2. Select "SharePoint Server" as your source.
+# 3. Enter your SharePoint Server URL.
+# 4. On the "Choose your settings" page, select "Only perform scanning" for workflows.
+# 5. Follow the prompts to configure the workflow scan.
+</code></pre>
+<ul>
+    <li><strong>Only perform scanning:</strong> A critical option within SPMT to generate reports without initiating a migration.</li>
+    <li><strong>Workflow Prerequisites:</strong> Ensure the migration account has Power Automate admin and Environment Maker roles in Microsoft 365, plus Read access to source workflows.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> The workflow scan is a feature integrated directly into the SPMT client application. Post-migration, Power Automate flows can be managed and activated within the Power Automate portal (flow.microsoft.com).</p>
+<p>Run this to verify: Review the generated workflow scan reports. These will detail which workflows are eligible for migration and any potential issues or recommendations for conversion to Power Automate.</p>
+
+<h2>Step 5: Define Migration Tasks Using SPMT (or JSON/CSV)</h2>
+<p>With your environment assessed and SPMT installed, the next step is to define the specific content you wish to migrate. SPMT allows you to create migration tasks directly within its user interface, or by providing structured input files like CSV or JSON. For SMBs with a moderate number of sites or libraries, a well-structured CSV file can streamline the process, especially when planning to migrate in phases.</p>
+<p>A migration task definition file (e.g., a CSV) specifies the source path on your on-premises SharePoint Server and the corresponding destination path in SharePoint Online. This approach allows you to batch migrate multiple sites, document libraries, or lists efficiently.</p>
+<pre><code class="language-powershell"># Example of a migration task CSV file (MigrationTasks.csv)
+# SourcePath,TargetPath,MigrationType
+# http://sharepoint.skycore.local/sites/hr,https://skycoresolutions.sharepoint.com/sites/HR,Site
+# http://sharepoint.skycore.local/sites/projects/doclib1,https://skycoresolutions.sharepoint.com/sites/Projects/Shared Documents,DocumentLibrary
+# http://sharepoint.skycore.local/lists/contacts,https://skycoresolutions.sharepoint.com/sites/Sales/Lists/Contacts,List
+</code></pre>
+<ul>
+    <li><strong>SourcePath:</strong> The full URL to the site, library, or list on your on-premises SharePoint Server.</li>
+    <li><strong>TargetPath:</strong> The full URL to the target site, library, or list in SharePoint Online.</li>
+    <li><strong>MigrationType:</strong> Specifies whether you're migrating a 'Site', 'DocumentLibrary', or 'List'.</li>
+    <li><strong>CSV/JSON:</strong> SPMT supports both formats for defining migration tasks. CSV is often simpler for SMBs.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> While SPMT itself doesn't live in the portal, within the SPMT application, you can manually add individual tasks by clicking "Add a new migration" and specifying source and destination paths through its wizard-driven interface.</p>
+<p>Run this to verify: Open your `MigrationTasks.csv` or review your manually added migration tasks within the SPMT GUI. Ensure all paths are accurate and that the migration type is correctly specified for each entry.</p>
+
+<h2>Step 6: Execute the Data Migration with SPMT</h2>
+<p>With your migration tasks defined, it's time to initiate the data transfer. SPMT will connect to your source SharePoint Server, retrieve the specified content, and upload it to your SharePoint Online tenant. The speed of your migration can vary based on factors such as internet bandwidth, data volume, file size distribution, and the performance of both your source and destination environments. Microsoft's SharePoint and OneDrive migration speed article provides insights into optimizing performance.</p>
+<p>While SPMT offers PowerShell support for running migration tasks, specific cmdlets are not detailed within the provided public documentation. For most SMBs, executing the migration directly through the SPMT graphical interface offers the clearest progress monitoring and control.</p>
+<pre><code class="language-powershell"># SPMT execution, particularly for SMBs, is typically initiated through the GUI.
+# Steps are:
+# 1. In SPMT, after defining your migration tasks (either via CSV import or manually).
+# 2. Review the tasks and settings (e.g., user mapping file, preservation of permissions).
+# 3. Click "Migrate" or "Start migration" to begin the process.
+# Monitoring is provided directly within the SPMT interface.
+</code></pre>
+<ul>
+    <li><strong>Start Migration:</strong> The action within SPMT to commence the data transfer.</li>
+    <li><strong>Migration Settings:</strong> Options to preserve file versions, metadata, permissions, and specific filters for what content to include or exclude.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> The Microsoft 365 Migration Manager, accessible from the SharePoint admin center, can act as a central hub for managing migrations, especially for file shares, Google Drive, and other sources. While it integrates SPMT functionality for SharePoint Server, direct execution and detailed monitoring for SPMT is done within the client application.</p>
+<p>Run this to verify: Monitor the progress within the SPMT application. Upon completion, review the migration reports generated by SPMT. These reports provide a detailed breakdown of migrated items, skipped items, and any errors encountered.</p>
+
+<h2>Step 7: Migrate and Activate Workflows (If Applicable)</h2>
+<p>If you identified and migrated workflows in Step 4, their definitions and associations have been copied to your SharePoint Online environment. However, these workflows are not active by default in Power Automate. The final step for workflow migration is to sign in to Power Automate and activate them. This often involves reviewing the migrated flows, ensuring connections are correctly configured, and then turning them on.</p>
+<pre><code class="language-powershell"># Workflow activation happens in the Power Automate portal, not directly via PowerShell/CLI from the SPMT process.
+# Steps are:
+# 1. Sign in to Power Automate (flow.microsoft.com) with an account that has Power Automate admin and Environment Maker roles.
+# 2. Navigate to "My flows" or the relevant solution containing your migrated workflows.
+# 3. Review each migrated workflow definition.
+# 4. Ensure all connections (e.g., to SharePoint, Outlook) are properly authenticated.
+# 5. Turn on each flow to activate it.
+</code></pre>
+<ul>
+    <li><strong>Power Automate Portal:</strong> The web interface (flow.microsoft.com) for managing all your Power Automate flows.</li>
+    <li><strong>Connections:</strong> Verify and re-authenticate any necessary connections within your flows.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> This entire step is performed within the Power Automate portal, which is a key component of the Microsoft 365 ecosystem. There is no alternative command-line interface for activating flows post-migration.</p>
+<p>Run this to verify: Thoroughly test your migrated and activated workflows. Ensure they trigger correctly, perform their intended actions, and complete without errors in your SharePoint Online environment.</p>
+
+<h2>Step 8: Post-Migration Validation, Modernization, and User Adoption</h2>
+<p>A successful migration doesn't end when the data transfer completes. Comprehensive post-migration validation is crucial to ensure data integrity, correct permissions, and full functionality in SharePoint Online. Additionally, consider leveraging SharePoint Online's modern capabilities and planning for user adoption to maximize your investment.</p>
+<ul>
+    <li><strong>Data Integrity:</strong> Spot-check critical documents and lists to ensure all content, versions, and metadata have migrated correctly.</li>
+    <li><strong>Permissions:</strong> Verify that user and group permissions are applied as intended in SharePoint Online.</li>
+    <li><strong>Classic Page Transformation:</strong> If you migrated classic SharePoint Server pages, consider transforming them into modern SharePoint Online pages to take advantage of new features and improved user experience. Tools and guidance are available on Microsoft Learn for this.</li>
+    <li><strong>Known Folder Move & OneDrive Sync:</strong> Encourage users to utilize the OneDrive sync app, especially for "Known Folders" (Desktop, Documents, Pictures), to keep local files synchronized with OneDrive/SharePoint Online.</li>
+    <li><strong>User Training:</strong> Provide training to your team on the new SharePoint Online interface, features, and best practices for collaboration. Highlight the benefits of the cloud environment.</li>
+    <li><strong>Decommission On-Premises:</strong> Once fully validated and users are transitioned, plan the decommissioning of your old SharePoint Server.</li>
+</ul>
+<pre><code class="language-powershell"># No direct CLI commands for this conceptual step, but PowerShell can be used for:
+# - Verifying SPO site permissions: Get-SPOSiteGroup, Get-SPOUser
+# - Checking list item counts (for validation): Get-PnPListItem
+# - Initiating page transformation scripts (advanced): PnP PowerShell cmdlets
+</code></pre>
+<ul>
+    <li><strong>PnP PowerShell:</strong> The SharePoint PnP PowerShell module provides cmdlets for managing SharePoint Online, including page transformation and content validation.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Most validation and modernization efforts can be managed through the SharePoint admin center, site settings, and directly on the SharePoint Online sites. User training is typically a hands-on or webinar-based activity.</p>
+<p>Run this to verify: Conduct user acceptance testing (UAT). Gather feedback from key users and address any issues promptly. A successful UAT indicates readiness for full production use.</p>
+
+<div class="howto-callout howto-callout--consultant"><h3>When to bring in a consultant</h3>
+    <p>While the SharePoint Migration Tool simplifies much of the migration process, certain scenarios benefit significantly from expert assistance. SkyCore Solutions specializes in complex cloud migrations for SMBs. Consider engaging a consultant if your environment includes:</p>
+    <ul>
+        <li>Extensive custom SharePoint solutions or third-party integrations.</li>
+        <li>Large volumes of data (terabytes) or a very high number of items/files.</li>
+        <li>Hybrid environments with complex Active Directory synchronization requirements.</li>
+        <li>Advanced security or compliance mandates that require meticulous configuration.</li>
+        <li>A need for minimal downtime during business-critical migrations.</li>
+        <li>Desire for a complete "Infrastructure Revamp" alongside your migration, integrating SharePoint Online seamlessly into a broader Microsoft 365 strategy.</li>
+    </ul>
+    <a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/sharepointmigration/migrate-to-sharepoint-online" target="_blank" rel="noopener noreferrer">learn.microsoft.com — migrate to sharepoint online</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/sharepointmigration/spmt-workflow-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — spmt workflow overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/sharepointmigration/introducing-the-sharepoint-migration-tool" target="_blank" rel="noopener noreferrer">learn.microsoft.com — introducing the sharepoint migration tool</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/sharepointmigration/sharepoint-online-and-onedrive-migration-speed" target="_blank" rel="noopener noreferrer">learn.microsoft.com — sharepoint online and onedrive migration speed</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

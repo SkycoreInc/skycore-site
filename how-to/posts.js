@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "migrate-sharepoint-to-sharepoint-online-guide-smb",
+    title: "Seamlessly Migrate SharePoint to SharePoint Online: An SMB Guide with SPMT",
+    date: "2026-06-01",
+    readTime: "18 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 weeks (planning, pilot, full execution)",
+    keyword: "migrate SharePoint to SharePoint Online",
+    excerpt: "Unlock modern collaboration by migrating your on-premises SharePoint to SharePoint Online. This guide details using the SharePoint Migration Tool (SPMT) for SMBs.",
+    image: "https://images.pexels.com/photos/6481663/pexels-photo-6481663.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "docker-containerization-essential-guide",
     title: "Mastering Docker Containerization: A SkyCore Solutions How-To Guide",
     date: "2026-06-01",
