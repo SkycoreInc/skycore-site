@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "miasma-attack-cybersecurity-hardening-montreal",
+    title: "Navigating the Miasma: Why Proactive Cybersecurity Hardening is Critical for Montreal SMBs",
+    date: "2026-06-01",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "The Miasma supply chain attack underscores critical vulnerabilities for businesses. Discover how robust cybersecurity hardening and zero trust principles can protect your Montreal SMB from evolving threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/30547576/pexels-photo-30547576.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "zero-trust-security-hardening-montreal",
     title: "Fortify Your Defenses: Advanced Zero-Trust Security Hardening for Montreal SMBs",
     date: "2026-05-31",
