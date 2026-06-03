@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "microsoft-365-security-hardening-montreal",
+    title: "Microsoft 365 Security Hardening: Protecting Your Business in Montreal",
+    date: "2026-06-03",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "A critical debug flag left active in Microsoft 365 Android apps exposed account tokens to theft. SkyCore Solutions offers robust security hardening to protect Montreal businesses from such vulnerabilities.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/36740854/pexels-photo-36740854.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "miasma-attack-cybersecurity-hardening-montreal",
     title: "Navigating the Miasma: Why Proactive Cybersecurity Hardening is Critical for Montreal SMBs",
     date: "2026-06-01",
