@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "implement-zero-trust-security",
+    title: "How to Implement Zero Trust Security: A SkyCore Solutions Guide",
+    date: "2026-06-04",
+    readTime: "18 min read",
+    category: "Security Hardening",
+    difficulty: "Advanced",
+    timeEstimate: "3-5 hours (initial setup), ongoing",
+    keyword: "how to implement zero trust security",
+    excerpt: "Implementing Zero Trust security is no longer optional; it's a strategic imperative for modern enterprises. This guide provides actionable steps, leveraging Azure services and NIST/CISA best practices, to transition your organization to a 'never trust, always verify' model.",
+    image: "https://images.pexels.com/photos/35908540/pexels-photo-35908540.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "migrate-sharepoint-to-sharepoint-online-guide-smb",
     title: "Seamlessly Migrate SharePoint to SharePoint Online: An SMB Guide with SPMT",
     date: "2026-06-01",
