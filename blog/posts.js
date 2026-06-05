@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ransomware-protection-smb-montreal",
+    title: "Beyond the Firewall: Advanced Ransomware Protection for SMBs in Montreal",
+    date: "2026-06-05",
+    readTime: "5 min read",
+    category: "Security Hardening",
+    excerpt: "Ransomware attacks are evolving, with new threats like fake IT workers targeting businesses. Discover actionable strategies for comprehensive ransomware protection for SMBs, including zero trust security and proactive employee training.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5475752/pexels-photo-5475752.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-365-security-hardening-montreal",
     title: "Microsoft 365 Security Hardening: Protecting Your Business in Montreal",
     date: "2026-06-03",
