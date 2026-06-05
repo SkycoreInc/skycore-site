@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mastering Azure Virtual Desktop: A Comprehensive Setup Guide for SMBs — SkyCore Solutions</title>
+  <meta name="description" content="Unlock secure, scalable remote work with our Azure Virtual Desktop setup guide. SkyCore Solutions helps SMBs deploy AVD for Windows 11 multi-session, cost savings, and enhanced security." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Mastering Azure Virtual Desktop: A Comprehensive Setup Guide for SMBs — SkyCore Solutions" />
+  <meta property="og:description" content="Unlock secure, scalable remote work with our Azure Virtual Desktop setup guide. SkyCore Solutions helps SMBs deploy AVD for Windows 11 multi-session, cost savings, and enhanced security." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-virtual-desktop-setup-guide-smb.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mastering Azure Virtual Desktop: A Comprehensive Setup Guide for SMBs — SkyCore Solutions" />
+  <meta name="twitter:description" content="Unlock secure, scalable remote work with our Azure Virtual Desktop setup guide. SkyCore Solutions helps SMBs deploy AVD for Windows 11 multi-session, cost savings, and enhanced security." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-virtual-desktop-setup-guide-smb.html" />
+  <meta property="article:published_time" content="2026-06-05" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Mastering Azure Virtual Desktop: A Comprehensive Setup Guide for SMBs",
+  "description": "Unlock secure, scalable remote work with our Azure Virtual Desktop setup guide. SkyCore Solutions helps SMBs deploy AVD for Windows 11 multi-session, cost savings, and enhanced security.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Azure subscription with Contributor or Owner role for initial setup, Microsoft 365 Business Premium, Microsoft 365 E3/E5, or Windows E3/E5 licenses for each user, Azure Active Directory (now Microsoft Entra ID) for identity management, Azure CLI (latest version) or Azure PowerShell (Az module) installed, Basic understanding of networking concepts (VNets, subnets, NSGs), Familiarity with Azure Portal navigation, Estimated cost: Starting from $200-$500 USD/month for a small team (VMs, storage, network, excluding user licenses)"}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Azure Subscription and Resource Group",
+        "text": "This foundational step ensures your Azure environment is ready by registering the necessary resource provider and creating a logical container for your AVD resources."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Set Up Azure Virtual Network (VNet)",
+        "text": "Establishing a virtual network is crucial for providing secure and isolated connectivity for your Azure Virtual Desktop session hosts."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create an Azure Virtual Desktop Host Pool",
+        "text": "The host pool is the central component of your AVD deployment, defining how session hosts are managed and how users connect."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create and Link an Azure Virtual Desktop Workspace",
+        "text": "A workspace serves as a logical grouping for your host pools and application groups, making it easier for users to find their assigned resources."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Assign Users to Application Groups",
+        "text": "Granting specific users or groups access to your published desktops or applications is critical for controlling who can utilize your AVD environment."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Diagnostics and Monitoring",
+        "text": "Setting up diagnostics ensures you have visibility into the health and performance of your Azure Virtual Desktop environment, crucial for troubleshooting and optimization."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implement Core Security Best Practices",
+        "text": "Hardening your Azure Virtual Desktop environment with essential security measures protects your virtual desktops and user data from potential threats."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Test User Connectivity and Experience",
+        "text": "Verifying that users can successfully connect and interact with their virtual desktops is the final step to confirm your AVD deployment is operational."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-06-05 &middot; 14 min read &middot; Cloud Migration</div>
+<h1>Mastering Azure Virtual Desktop: A Comprehensive Setup Guide for SMBs</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Abstract illustration of cloud computing with connected devices, symbolizing an Azure Virtual Desktop setup." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In today's dynamic business landscape, enabling secure, flexible remote work is no longer a luxury but a necessity for Small and Medium-sized Businesses (SMBs). Traditional on-premises desktop infrastructure often struggles with scalability, security, and cost-efficiency. This is where <a href="https://learn.microsoft.com/en-us/azure/virtual-desktop/overview" target="_blank">Azure Virtual Desktop (AVD)</a> shines. As your trusted Montreal-based IT consultants at SkyCore Solutions, we've crafted this comprehensive <strong>Azure Virtual Desktop setup guide</strong> to empower your SMB to deploy a robust, secure, and scalable virtual desktop infrastructure on Azure.</p>
+<p>By the end of this guide, you will have a fully functional Azure Virtual Desktop environment, enabling your team to access their Windows 11 multi-session desktops and applications from anywhere, on any device, significantly reducing IT overhead and enhancing productivity.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul>
+<li><strong>Azure Subscription:</strong> An active Azure subscription. The account used for initial deployment requires at least the <code>Contributor</code> or <code>Owner</code> role on the subscription or target resource group.</li>
+<li><strong>Licensing:</strong> Each user requires an eligible Microsoft 365 or Windows license. For Windows 11/10 Enterprise multi-session, this includes: <code>Microsoft 365 Business Premium</code>, <code>Microsoft 365 E3/E5</code>, <code>Microsoft 365 A3/A5</code>, <code>Windows E3/E5</code>, or <code>Windows A3/A5</code>. For Windows Server, a Client Access License (CAL) may be required.</li>
+<li><strong>Identity Provider:</strong> Azure Active Directory (now <a href="https://www.microsoft.com/en-us/security/business/microsoft-entra" target="_blank">Microsoft Entra ID</a>). Session hosts must be domain-joined to an Active Directory Domain Services (AD DS) or Microsoft Entra ID. For SMBs, hybrid join to an existing on-premises AD DS synchronized with Microsoft Entra ID is common, or pure Microsoft Entra join for cloud-native deployments.</li>
+<li><strong>Tools:</strong>
+<ul>
+<li>Azure CLI (latest version, installed locally or via Azure Cloud Shell)</li>
+<li>Azure PowerShell (Az module, installed locally or via Azure Cloud Shell)</li>
+</ul></li>
+<li><strong>Networking:</strong> Basic understanding of Azure Virtual Networks (VNets), subnets, and Network Security Groups (NSGs).</li>
+<li><strong>Estimated Cost:</strong> While AVD optimizes costs with multi-session, anticipate infrastructure costs (VMs, storage, networking) starting from approximately $200-$500 USD/month for a small team, excluding user licenses. Costs scale with usage and VM size.</li>
+</ul></div>
+
+<h2>Step 1: Prepare Azure Subscription and Resource Group</h2>
+<p>Before deploying any resources, ensure your Azure subscription is ready for Azure Virtual Desktop and create a dedicated resource group to logically organize your AVD components. This makes management and cost tracking much easier.</p>
+
+<pre><code class="language-azurecli">az provider register --namespace Microsoft.DesktopVirtualization
+az group create --name "avd-rg-skycore-prod" --location "canadacentral"</code></pre>
+<ul>
+<li><code>az provider register --namespace Microsoft.DesktopVirtualization</code>: Registers the necessary Azure resource provider for Azure Virtual Desktop in your subscription. This is a one-time operation.</li>
+<li><code>az group create --name "avd-rg-skycore-prod" --location "canadacentral"</code>: Creates a new resource group named <code>avd-rg-skycore-prod</code> in the <code>Canada Central</code> region. We recommend this region for our Montreal-based clients for proximity and latency benefits.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ul>
+<li>Sign in to the Azure portal.</li>
+<li>Search for "Subscriptions", select your subscription.</li>
+<li>Under "Settings", click "Resource providers". Search for <code>Microsoft.DesktopVirtualization</code> and click "Register" if its status is "NotRegistered".</li>
+<li>Search for "Resource groups", then click "+ Create". Fill in "Subscription", "Resource group name" (e.g., <code>avd-rg-skycore-prod</code>), and "Region" (e.g., <code>Canada Central</code>), then review and create.</li>
+</ul>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az provider show --namespace Microsoft.DesktopVirtualization --query registrationState
+az group show --name "avd-rg-skycore-prod" --query name</code></pre>
+
+<h2>Step 2: Set Up Azure Virtual Network (VNet)</h2>
+<p>Your Azure Virtual Desktop session hosts require a virtual network to communicate with each other, your users, and any on-premises resources (if applicable). This VNet will host your session host VMs and typically connects to your identity provider.</p>
+
+<pre><code class="language-azurecli">az network vnet create \
+  --name "avd-vnet-skycore" \
+  --resource-group "avd-rg-skycore-prod" \
+  --location "canadacentral" \
+  --address-prefixes "10.0.0.0/16"
+
+az network vnet subnet create \
+  --name "avd-subnet" \
+  --vnet-name "avd-vnet-skycore" \
+  --resource-group "avd-rg-skycore-prod" \
+  --address-prefixes "10.0.1.0/24"</code></pre>
+<ul>
+<li><code>az network vnet create</code>: Creates a new virtual network named <code>avd-vnet-skycore</code> with an address space of <code>10.0.0.0/16</code>.</li>
+<li><code>az network vnet subnet create</code>: Creates a subnet named <code>avd-subnet</code> within the VNet, dedicated for your AVD session hosts, with an address prefix of <code>10.0.1.0/24</code>.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ul>
+<li>Search for "Virtual networks", click "+ Create".</li>
+<li>Select your "Subscription" and "Resource group". Give it a "Name" (e.g., <code>avd-vnet-skycore</code>) and "Region" (e.g., <code>Canada Central</code>). Configure "IP Address" space (e.g., <code>10.0.0.0/16</code>).</li>
+<li>On the "Subnets" tab, click "+ Add subnet". Name it (e.g., <code>avd-subnet</code>) and define the "Subnet address range" (e.g., <code>10.0.1.0/24</code>). Review and create.</li>
+</ul>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az network vnet show --name "avd-vnet-skycore" --resource-group "avd-rg-skycore-prod" --query subnets[].name</code></pre>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip: Optimized OS Image</strong><br>For maximum efficiency and the best user experience, always choose an Azure Gallery image optimized for Azure Virtual Desktop. For SMBs, <code>Windows 11 Enterprise multi-session + Microsoft 365 Apps</code> (or a similar optimized Windows 10 image) is highly recommended. This allows multiple users to share a single VM while still getting a full desktop experience, significantly reducing VM count and costs.</div>
+
+<h2>Step 3: Create an Azure Virtual Desktop Host Pool</h2>
+<p>The host pool defines the collection of Azure virtual machines (session hosts) that provide desktops and applications to your users. For SMBs, we highly recommend a <code>Pooled</code> host pool with <code>Breadth-first</code> load balancing for optimal resource utilization and cost savings. We'll utilize the streamlined "Session host configuration" (currently in preview) for simplified VM lifecycle management directly within the host pool.</p>
+
+<pre><code class="language-azurecli">az desktopvirtualization hostpool create \
+  --name "avd-hostpool-prod" \
+  --resource-group "avd-rg-skycore-prod" \
+  --location "canadacentral" \
+  --host-pool-type "Pooled" \
+  --load-balancer-type "BreadthFirst" \
+  --preferred-app-group-type "Desktop" \
+  --managed-identity "SystemAssigned" \
+  --initial-session-hosts 2 \
+  --vm-size "Standard_D2s_v5" \
+  --os-disk-type "StandardSSD_LRS" \
+  --image-publisher "MicrosoftWindowsDesktop" \
+  --image-offer "Windows-11" \
+  --image-sku "win11-22h2-avd" \
+  --vnet-name "avd-vnet-skycore" \
+  --subnet-name "avd-subnet" \
+  --domain-join-user-principal-name "AVDJOURNAL@skycore.onmicrosoft.com" \
+  --domain-join-password "YourSecurePassword!"</code></pre>
+<ul>
+<li><code>--name "avd-hostpool-prod"</code>: A descriptive name for your host pool.</li>
+<li><code>--host-pool-type "Pooled"</code>: Recommended for SMBs for cost efficiency, allowing multiple users per VM.</li>
+<li><code>--load-balancer-type "BreadthFirst"</code>: Distributes new user sessions evenly across available session hosts, ensuring better performance distribution.</li>
+<li><code>--preferred-app-group-type "Desktop"</code>: Indicates that this host pool will primarily deliver full desktop experiences.</li>
+<li><code>--managed-identity "SystemAssigned"</code>: Assigns a system-managed identity to the host pool. This identity (along with appropriate RBAC roles automatically assigned during host pool creation, assuming your Azure account has permission to do so) allows AVD to manage the lifecycle of your session hosts securely, replacing the need for an Azure Desktop Service principal.</li>
+<li><code>--initial-session-hosts 2</code>: Specifies to initially deploy two session host VMs. You can scale this later.</li>
+<li><code>--vm-size "Standard_D2s_v5"</code>: A good balance of CPU (2 vCPUs) and RAM (8 GB) for general SMB workloads, offering cost-effectiveness.</li>
+<li><code>--os-disk-type "StandardSSD_LRS"</code>: Standard SSDs provide a good balance of performance and cost for most SMB use cases.</li>
+<li><code>--image-publisher "MicrosoftWindowsDesktop" --image-offer "Windows-11" --image-sku "win11-22h2-avd"</code>: Specifies a Windows 11 Enterprise multi-session image (version 22H2) from the Azure Gallery, optimized for AVD.</li>
+<li><code>--vnet-name "avd-vnet-skycore" --subnet-name "avd-subnet"</code>: Connects the session hosts to the previously created virtual network and subnet.</li>
+<li><code>--domain-join-user-principal-name "AVDJOURNAL@skycore.onmicrosoft.com" --domain-join-password "YourSecurePassword!"</code>: Credentials for a Microsoft Entra ID user with permissions to join devices to your domain. For hybrid AD, this would be an on-premises AD user. Replace with your actual UPN and a secure password.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ul>
+<li>Search for "Azure Virtual Desktop", then click "Host pools" under "Manage".</li>
+<li>Click "+ Create".</li>
+<li>On the "Basics" tab, select your "Subscription", "Resource group" (<code>avd-rg-skycore-prod</code>), "Host pool name" (<code>avd-hostpool-prod</code>), "Region" (<code>Canada Central</code>). Choose "Pooled" for "Host pool type" and "Breadth-first" for "Load balancing algorithm". For "Maximum session limit" (per VM), use 2 or 3 for D2s_v5.</li>
+<li>On the "Virtual Machines" tab, enable "Session host configuration (preview)". Set "Add Azure virtual machines" to "Yes". For "Instance details", specify "Number of VMs" (e.g., <code>2</code>), "VM size" (<code>Standard_D2s_v5</code>). Select "Image type" as "Gallery" and choose "Windows 11 Enterprise multi-session + Microsoft 365 Apps" (or your preferred image). Select your VNet and Subnet. Provide "Domain join options" and credentials. Assign a "System assigned managed identity".</li>
+<li>Review and create.</li>
+</ul>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az desktopvirtualization hostpool show --name "avd-hostpool-prod" --resource-group "avd-rg-skycore-prod" --query "{name:name, hostPoolType:hostPoolType, loadBalancerType:loadBalancerType}"
+az vm list --resource-group "avd-rg-skycore-prod" --query "[].name"</code></pre>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: Licensing Confusion</strong><br>Azure Virtual Desktop licensing can be complex. Ensure every user accessing AVD has a qualifying Microsoft 365 or Windows Enterprise license. Failing to do so can lead to compliance issues and unexpected costs. Consult with a licensing specialist if unsure.</div>
+
+<h2>Step 4: Create and Link an Azure Virtual Desktop Workspace</h2>
+<p>A workspace logically groups your host pools and application groups. Users subscribe to a workspace to see all their assigned desktops and applications. Your host pool needs to be registered with a workspace.</p>
+
+<pre><code class="language-azurecli">az desktopvirtualization workspace create \
+  --name "avd-workspace-skycore" \
+  --resource-group "avd-rg-skycore-prod" \
+  --location "canadacentral"
+
+az desktopvirtualization workspace update \
+  --name "avd-workspace-skycore" \
+  --resource-group "avd-rg-skycore-prod" \
+  --host-pool "avd-hostpool-prod"</code></pre>
+<ul>
+<li><code>az desktopvirtualization workspace create</code>: Creates the workspace itself.</li>
+<li><code>az desktopvirtualization workspace update --host-pool</code>: Associates your newly created host pool with this workspace.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ul>
+<li>In the Azure Virtual Desktop blade, click "Workspaces" under "Manage".</li>
+<li>Click "+ Create". Select your "Subscription", "Resource group", give it a "Name" (e.g., <code>avd-workspace-skycore</code>), and "Region" (<code>Canada Central</code>).</li>
+<li>On the "Application groups" tab, select your <code>avd-hostpool-prod-DAG</code> (the default desktop application group automatically created with your host pool). Review and create.</li>
+</ul>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az desktopvirtualization workspace show --name "avd-workspace-skycore" --resource-group "avd-rg-skycore-prod" --query name</code></pre>
+
+<h2>Step 5: Assign Users to Application Groups</h2>
+<p>To grant users access to the virtual desktops or applications, you need to assign them to an application group. When you created the host pool, a default desktop application group (<code>-DAG</code> suffix) was automatically created. We'll assign an Azure AD group to this default desktop application group.</p>
+
+<pre><code class="language-azurecli"># First, get the object ID of your Azure AD group (e.g., 'AVD Users Group')
+az ad group show --group "AVD Users Group" --query id --output tsv
+
+# Replace <AZURE_AD_GROUP_ID> with the ID obtained above
+az role assignment create \
+  --assignee-object-id "<AZURE_AD_GROUP_ID>" \
+  --role "Desktop Virtualization User" \
+  --resource-group "avd-rg-skycore-prod" \
+  --scope "/subscriptions/<YOUR_SUBSCRIPTION_ID>/resourceGroups/avd-rg-skycore-prod/providers/Microsoft.DesktopVirtualization/applicationGroups/avd-hostpool-prod-DAG"</code></pre>
+<ul>
+<li><code>az ad group show</code>: Retrieves the object ID of your target Microsoft Entra ID security group (e.g., <code>AVD Users Group</code>). Ensure this group contains all users who should access AVD.</li>
+<li><code>az role assignment create</code>: Assigns the <code>Desktop Virtualization User</code> role to the specified Azure AD group for your default desktop application group (<code>avd-hostpool-prod-DAG</code>). This grants members of the group permission to access the published desktop.</li>
+<li>Remember to replace <code>&lt;AZURE_AD_GROUP_ID&gt;</code> and <code>&lt;YOUR_SUBSCRIPTION_ID&gt;</code> with your actual values.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ul>
+<li>In the Azure Virtual Desktop blade, navigate to "Application groups" under "Manage".</li>
+<li>Select your default desktop application group (e.g., <code>avd-hostpool-prod-DAG</code>).</li>
+<li>Under "Manage", click "Assignments".</li>
+<li>Click "+ Add" and search for your Azure AD user or group. Select it and click "Select".</li>
+</ul>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az desktopvirtualization applicationgroup show --name "avd-hostpool-prod-DAG" --resource-group "avd-rg-skycore-prod" --query name
+
+# (No direct CLI command to list user assignments easily, portal is best for verification here)</code></pre>
+
+<h2>Step 6: Configure Diagnostics and Monitoring</h2>
+<p>Enabling diagnostics for your AVD components is crucial for troubleshooting user connection issues, session host performance, and general service health. We'll send logs to a Log Analytics Workspace.</p>
+
+<pre><code class="language-azurecli"># Create a Log Analytics Workspace if you don't have one
+az monitor log-analytics workspace create \
+  --resource-group "avd-rg-skycore-prod" \
+  --workspace-name "avd-loganalytics-skycore" \
+  --location "canadacentral"
+
+# Get the Log Analytics Workspace ID
+LOG_ANALYTICS_WORKSPACE_ID=$(az monitor log-analytics workspace show \
+  --resource-group "avd-rg-skycore-prod" \
+  --workspace-name "avd-loganalytics-skycore" \
+  --query id --output tsv)
+
+# Configure diagnostic settings for the Host Pool
+az monitor diagnostic-settings create \
+  --name "avd-hostpool-diag" \
+  --resource-group "avd-rg-skycore-prod" \
+  --resource "/subscriptions/<YOUR_SUBSCRIPTION_ID>/resourceGroups/avd-rg-skycore-prod/providers/Microsoft.DesktopVirtualization/hostPools/avd-hostpool-prod" \
+  --workspace "$LOG_ANALYTICS_WORKSPACE_ID" \
+  --logs '[{"categoryGroup": "allLogs", "enabled": true}]' \
+  --metrics '[{"category": "AllMetrics", "enabled": true}]'
+
+# Configure diagnostic settings for the Workspace
+az monitor diagnostic-settings create \
+  --name "avd-workspace-diag" \
+  --resource-group "avd-rg-skycore-prod" \
+  --resource "/subscriptions/<YOUR_SUBSCRIPTION_ID>/resourceGroups/avd-rg-skycore-prod/providers/Microsoft.DesktopVirtualization/workspaces/avd-workspace-skycore" \
+  --workspace "$LOG_ANALYTICS_WORKSPACE_ID" \
+  --logs '[{"categoryGroup": "allLogs", "enabled": true}]' \
+  --metrics '[{"category": "AllMetrics", "enabled": true}]'</code></pre>
+<ul>
+<li><code>az monitor log-analytics workspace create</code>: Sets up a Log Analytics Workspace to collect logs and metrics.</li>
+<li><code>LOG_ANALYTICS_WORKSPACE_ID=$(...)</code>: Captures the ID of your workspace for subsequent commands.</li>
+<li><code>az monitor diagnostic-settings create</code>: Configures diagnostic settings for both the host pool and workspace, sending all logs and metrics to the Log Analytics Workspace.</li>
+<li>Remember to replace <code>&lt;YOUR_SUBSCRIPTION_ID&gt;</code> with your actual subscription ID.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ul>
+<li>Search for "Log Analytics Workspaces" and create one if needed.</li>
+<li>Navigate to your "Host pool" (<code>avd-hostpool-prod</code>). Under "Monitoring", click "Diagnostic settings", then "+ Add diagnostic setting". Select "Send to Log Analytics workspace", choose your workspace, and select all log categories and metrics.</li>
+<li>Repeat for your "Workspace" (<code>avd-workspace-skycore</code>).</li>
+</ul>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az monitor diagnostic-settings list --resource-group "avd-rg-skycore-prod" --query "[?contains(name, 'avd')].name"</code></pre>
+
+<h2>Step 7: Implement Core Security Best Practices</h2>
+<p>Security is paramount for any cloud deployment. Azure Virtual Desktop leverages Azure's robust security features. Implementing these best practices will significantly harden your environment.</p>
+
+<pre><code class="language-azurecli"># Create Network Security Group (NSG) for session hosts
+az network nsg create \
+  --name "avd-nsg-sessionhosts" \
+  --resource-group "avd-rg-skycore-prod" \
+  --location "canadacentral"
+
+# Associate NSG with the subnet (replace <VNET_ID> with your VNet's resource ID)
+# To get VNET_ID: az network vnet show --name "avd-vnet-skycore" --resource-group "avd-rg-skycore-prod" --query id --output tsv
+az network vnet subnet update \
+  --name "avd-subnet" \
+  --vnet-name "avd-vnet-skycore" \
+  --resource-group "avd-rg-skycore-prod" \
+  --network-security-group "avd-nsg-sessionhosts"
+
+# Add an NSG rule to allow outbound internet access (for updates/browsing)
+az network nsg rule create \
+  --name "AllowOutboundInternet" \
+  --nsg-name "avd-nsg-sessionhosts" \
+  --resource-group "avd-rg-skycore-prod" \
+  --priority 100 \
+  --source-address-prefixes "VirtualNetwork" \
+  --destination-address-prefixes "Internet" \
+  --destination-port-ranges "*" \
+  --direction "Outbound" \
+  --access "Allow" \
+  --protocol "*" \
+  --description "Allow outbound internet access for session hosts"
+
+# AVD uses reverse connect, so no inbound ports are needed for client connections.
+# However, if you need RDP for admin access from specific IPs, add a rule:
+az network nsg rule create \
+  --name "AllowRDPFromAdminIP" \
+  --nsg-name "avd-nsg-sessionhosts" \
+  --resource-group "avd-rg-skycore-prod" \
+  --priority 200 \
+  --source-address-prefixes "YOUR_ADMIN_PUBLIC_IP_RANGE" \
+  --destination-address-prefixes "*" \
+  --destination-port-ranges "3389" \
+  --direction "Inbound" \
+  --access "Allow" \
+  --protocol "Tcp" \
+  --description "Allow RDP for administrators from specific IPs"</code></pre>
+<ul>
+<li><strong>Network Security Groups (NSGs):</strong> By default, AVD uses reverse connect, meaning no inbound ports need to be opened for client connectivity. However, you should still control network traffic. We create an NSG and associate it with the subnet where your session hosts reside.</li>
+<li><strong>Outbound Internet Access:</strong> Session hosts typically need outbound internet access for Windows Updates, software installations, and user browsing.</li>
+<li><strong>Admin Access (Optional but Recommended):</strong> For administrative tasks (e.g., direct RDP to a session host), create a highly restrictive inbound RDP rule, allowing access ONLY from your known administrative IP addresses. <strong>Replace <code>YOUR_ADMIN_PUBLIC_IP_RANGE</code> with your actual public IP address or range.</strong></li>
+<li><strong>Microsoft Entra ID / MFA / Conditional Access:</strong> Ensure Multi-Factor Authentication (MFA) is enforced for all AVD users via Microsoft Entra ID. Implement Conditional Access policies to further secure access, for instance, requiring compliant devices or trusted locations. (These are configured in the Microsoft Entra admin center, not via CLI).</li>
+<li><strong>Least Privilege:</strong> Follow the principle of least privilege. AVD administrators should be assigned granular <a href="https://learn.microsoft.com/en-us/azure/virtual-desktop/security-guide" target="_blank">RBAC roles</a> (e.g., "Desktop Virtualization Contributor" on specific resource groups) rather than subscription-level owners.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ul>
+<li>Search for "Network security groups" and create one.</li>
+<li>Navigate to your VNet (<code>avd-vnet-skycore</code>), then "Subnets", and click on <code>avd-subnet</code>. Assign the newly created NSG.</li>
+<li>Within the NSG, add inbound and outbound security rules as described above.</li>
+<li>For MFA and Conditional Access, navigate to the <a href="https://entra.microsoft.com" target="_blank">Microsoft Entra admin center</a>.</li>
+</ul>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az network nsg rule list --nsg-name "avd-nsg-sessionhosts" --resource-group "avd-rg-skycore-prod" --query "[].name"</code></pre>
+
+<h2>Step 8: Test User Connectivity and Experience</h2>
+<p>With your Azure Virtual Desktop environment deployed and users assigned, the final step is to verify that users can successfully connect to their virtual desktops and applications. This confirms your setup is complete and functional.</p>
+
+<p>Instruct your users to:</p>
+<ol>
+<li><strong>Download the Remote Desktop Client:</strong> The recommended client is the <a href="https://learn.microsoft.com/en-us/windows-365/enterprise/clients/windows365-client-app?context=/azure/virtual-desktop/context/context" target="_blank">Windows App (formerly Remote Desktop Client)</a> for Windows, macOS, iOS, or Android. For Linux, use a compatible RDP client.</li>
+<li><strong>Subscribe to the Workspace:</strong>
+<ul>
+<li>Open the Windows App.</li>
+<li>Click "Add" and choose "Workspace".</li>
+<li>Enter the subscription URL: <code>https://rdweb.wvd.microsoft.com/api/arm/feeddiscovery</code></li>
+<li>Sign in with their Azure AD credentials (the user must be part of the group assigned in Step 5).</li>
+</ul></li>
+<li><strong>Launch Desktop/Application:</strong> Once subscribed, the published desktop (e.g., "SessionDesktop") will appear. Users can click on it to launch their virtual desktop.</li>
+<li><strong>Web Client Alternative:</strong> Users can also access AVD via a web browser by navigating to <a href="https://client.wvd.microsoft.com/" target="_blank">https://client.wvd.microsoft.com/</a>, signing in with their Azure AD credentials, and launching their resources.</li>
+</ol>
+
+<p><strong>Run this to verify:</strong> (User-side verification)</p>
+<ul>
+<li>Attempt to connect from a client device using the provided instructions.</li>
+<li>Verify that the desktop loads correctly and applications are accessible.</li>
+</ul>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this <strong>Azure Virtual Desktop setup guide</strong> covers the essential steps for a functional deployment, complex scenarios often benefit from expert guidance. Consider engaging SkyCore Solutions if you face:</p>
+<ul>
+<li><strong>Hybrid Identity Challenges:</strong> Integrating AVD with intricate on-premises Active Directory environments and legacy applications.</li>
+<li><strong>Advanced Networking:</strong> Designing secure network topologies with Azure Firewall, VPNs, or ExpressRoute for specific compliance needs.</li>
+<li><strong>Optimized Performance:</strong> Fine-tuning VM sizing, FSLogix profile management (beyond basic setup), or custom image creation for demanding workloads.</li>
+<li><strong>Comprehensive Security Hardening:</strong> Implementing advanced security controls, compliance frameworks, or integrating with existing SIEM solutions.</li>
+<li><strong>Automated Scaling and Cost Management:</strong> Setting up sophisticated auto-scaling plans to dynamically adjust session host capacity based on demand and control costs.</li>
+<li><strong>Application Packaging and Delivery:</strong> Deploying complex line-of-business applications or migrating existing RDS environments.</li>
+</ul>
+<p>Our team of senior Azure architects specializes in tailoring cloud solutions for SMBs, ensuring your Azure Virtual Desktop deployment is not just functional, but perfectly aligned with your business goals and security posture.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/virtual-desktop/overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/virtual-desktop/deploy-azure-virtual-desktop" target="_blank" rel="noopener noreferrer">learn.microsoft.com — deploy azure virtual desktop</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/virtual-desktop/prerequisites" target="_blank" rel="noopener noreferrer">learn.microsoft.com — prerequisites</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/virtual-desktop/security-guide" target="_blank" rel="noopener noreferrer">learn.microsoft.com — security guide</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

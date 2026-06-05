@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-virtual-desktop-setup-guide-smb",
+    title: "Mastering Azure Virtual Desktop: A Comprehensive Setup Guide for SMBs",
+    date: "2026-06-05",
+    readTime: "14 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Azure Virtual Desktop setup guide",
+    excerpt: "This comprehensive Azure Virtual Desktop setup guide by SkyCore Solutions empowers SMBs to deploy a robust, secure, and scalable virtual desktop infrastructure. Enhance productivity and reduce IT overhead with AVD.",
+    image: "https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "implement-zero-trust-security",
     title: "How to Implement Zero Trust Security: A SkyCore Solutions Guide",
     date: "2026-06-04",
