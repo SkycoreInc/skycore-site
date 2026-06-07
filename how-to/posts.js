@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "server-hardening-checklist-azure-windows",
+    title: "The Definitive Server Hardening Checklist for Azure and Windows Environments",
+    date: "2026-06-07",
+    readTime: "12 min read",
+    category: "Security Hardening",
+    difficulty: "Advanced",
+    timeEstimate: "3-5 hours",
+    keyword: "server hardening checklist",
+    excerpt: "Implement SkyCore's expert server hardening checklist to fortify your Windows Server and Azure virtual machines against modern threats. This guide provides actionable, CLI-first steps for enhanced security.",
+    image: "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-virtual-desktop-setup-guide-smb",
     title: "Mastering Azure Virtual Desktop: A Comprehensive Setup Guide for SMBs",
     date: "2026-06-05",
