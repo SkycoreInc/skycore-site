@@ -13,9 +13,9 @@
 ## Website
 - **URL:** https://skycoresolutions.com
 - **Stack:** Pure static HTML/CSS/JS — no build step
-- **Hosting:** Netlify (auto-deploys from GitHub on every push)
+- **Hosting:** Cloudflare Pages (auto-deploys from GitHub on every push)
 - **Repo:** https://github.com/SkycoreInc/skycore-site (branch: `main`)
-- **Local path:** `C:\Users\ahmad\OneDrive\Documents\SkyCore Inc\Claude\site`
+- **Local path:** `C:\Users\ahmad\Documents\SkyCore Inc\Claude\site`
 - **Git push auth:** PAT stored in `~/.claude/CLAUDE.md` (global memory) — use `https://<PAT>@github.com/SkycoreInc/skycore-site.git main`
 
 ## Site Structure
