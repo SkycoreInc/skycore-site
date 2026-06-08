@@ -27,7 +27,11 @@ from datetime import date
 # ── Config ────────────────────────────────────────────────────────────────────
 
 CLIENT         = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-GEMINI_MODEL   = "gemini-2.5-flash"
+GEMINI_MODELS  = [
+    "gemini-2.5-flash",       # primary
+    "gemini-2.5-flash-lite",  # fallback 1 — lighter, less demand
+    "gemini-1.5-flash",       # fallback 2 — stable older model
+]
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 # ── Keyword queue (ordered by opportunity score: volume / competition) ─────────
@@ -530,13 +534,16 @@ Instructions for using this material:
     current_prompt = prompt
     api_attempts   = 0
     json_attempts  = 0
+    model_idx      = 0
     MAX_API        = 6
     MAX_JSON       = 3
 
     while True:
+        model = GEMINI_MODELS[model_idx]
         try:
             api_attempts += 1
-            response = CLIENT.models.generate_content(model=GEMINI_MODEL, contents=current_prompt)
+            print(f"   Using model: {model}")
+            response = CLIENT.models.generate_content(model=model, contents=current_prompt)
             raw = response.text.strip()
             raw = re.sub(r"^```[a-z]*\n?", "", raw)
             raw = re.sub(r"\n?```$", "", raw)
@@ -558,10 +565,16 @@ Instructions for using this material:
                 "500" in err_str
             )
             if is_retryable and api_attempts < MAX_API:
-                wait = min(15 * (2 ** (api_attempts - 1)), 120)
-                print(f"   Gemini API error (attempt {api_attempts}/{MAX_API}): {err_str[:120]}")
-                print(f"   Retrying in {wait}s...")
-                time.sleep(wait)
+                # Try next fallback model before waiting
+                if model_idx < len(GEMINI_MODELS) - 1:
+                    model_idx += 1
+                    print(f"   Gemini API error (attempt {api_attempts}/{MAX_API}): {err_str[:120]}")
+                    print(f"   Switching to fallback model: {GEMINI_MODELS[model_idx]}")
+                else:
+                    wait = min(15 * (2 ** (api_attempts - 1)), 120)
+                    print(f"   Gemini API error (attempt {api_attempts}/{MAX_API}): {err_str[:120]}")
+                    print(f"   All models tried — retrying in {wait}s...")
+                    time.sleep(wait)
             else:
                 raise
 

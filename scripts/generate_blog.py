@@ -19,7 +19,11 @@ from datetime import date
 # ── Config ────────────────────────────────────────────────────────────────────
 
 CLIENT         = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-GEMINI_MODEL   = "gemini-2.5-flash"
+GEMINI_MODELS  = [
+    "gemini-2.5-flash",       # primary
+    "gemini-2.5-flash-lite",  # fallback 1 — lighter, less demand
+    "gemini-1.5-flash",       # fallback 2 — stable older model
+]
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 RSS_FEEDS = [
@@ -177,9 +181,14 @@ def generate_post(news_items: list[str]) -> dict:
     """).strip()
 
     raw = ""
+    current_prompt = prompt
+    model_idx = 0
+
     for attempt in range(1, 6):
+        model = GEMINI_MODELS[model_idx]
         try:
-            response = CLIENT.models.generate_content(model=GEMINI_MODEL, contents=prompt)
+            print(f"   Using model: {model}")
+            response = CLIENT.models.generate_content(model=model, contents=current_prompt)
             raw = response.text.strip()
 
             # Strip accidental markdown fences
@@ -194,19 +203,24 @@ def generate_post(news_items: list[str]) -> dict:
             return json.loads(raw)
 
         except (genai_errors.ServerError, genai_errors.APIError) as e:
-            wait = 30 * attempt  # 30s, 60s, 90s, 120s
             print(f"   Gemini API error (attempt {attempt}/5): {e}")
             if attempt == 5:
-                raise RuntimeError(f"Gemini API unavailable after 5 attempts: {e}")
-            print(f"   Waiting {wait}s before retry...")
-            time.sleep(wait)
+                raise RuntimeError(f"Gemini API unavailable after 5 attempts across all models: {e}")
+            # Advance to the next fallback model if available, then wait
+            if model_idx < len(GEMINI_MODELS) - 1:
+                model_idx += 1
+                print(f"   Switching to fallback model: {GEMINI_MODELS[model_idx]}")
+            else:
+                wait = 30 * attempt  # 30s, 60s, 90s …
+                print(f"   All models tried — waiting {wait}s before retry...")
+                time.sleep(wait)
 
         except (json.JSONDecodeError, ValueError) as e:
             print(f"   JSON parse error (attempt {attempt}/5): {e}")
             if attempt == 5:
                 raise RuntimeError(f"Gemini returned invalid JSON after 5 attempts. Last error: {e}\n\nRaw response:\n{raw[:500]}")
             print("   Retrying with stricter prompt...")
-            prompt += "\n\nCRITICAL: Your previous response had a JSON parse error. Ensure ALL double quotes inside string values are escaped as \\\" and there are NO unescaped special characters in htmlContent."
+            current_prompt = prompt + "\n\nCRITICAL: Your previous response had a JSON parse error. Ensure ALL double quotes inside string values are escaped as \\\" and there are NO unescaped special characters in htmlContent."
 
 
 def build_html(post: dict, hero_url: str) -> str:
@@ -350,7 +364,7 @@ def main():
     news = fetch_news()
     print(f"   {len(news)} headlines collected")
 
-    print("── Generating post via Gemini 2.5 Flash ──")
+    print(f"── Generating post via Gemini (primary: {GEMINI_MODELS[0]}) ──")
     post = generate_post(news)
     print(f"   Slug : {post['slug']}")
     print(f"   Title: {post['title']}")
