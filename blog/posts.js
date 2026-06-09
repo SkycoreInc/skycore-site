@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "chrome-zero-day-smb-cybersecurity",
+    title: "Beyond Patches: Fortifying Your Cybersecurity for SMBs Against Zero-Day Threats",
+    date: "2026-06-09",
+    readTime: "5 min read",
+    category: "Security Hardening",
+    excerpt: "Google's recent Chrome zero-day highlights the constant threat landscape. Discover how SMBs can move beyond reactive patching with SkyCore's proactive cybersecurity strategies.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/9786320/pexels-photo-9786320.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ransomware-protection-smb-montreal",
     title: "Beyond the Firewall: Advanced Ransomware Protection for SMBs in Montreal",
     date: "2026-06-05",
