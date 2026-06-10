@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "office-365-migration-step-by-step",
+    title: "Office 365 Migration Step by Step: A Comprehensive Guide for IT Professionals",
+    date: "2026-06-10",
+    readTime: "25 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "4-6 hours",
+    keyword: "Office 365 migration step by step",
+    excerpt: "Ready for an Office 365 migration step by step? This guide ensures a smooth transition for your organization's email and collaboration services.",
+    image: "https://images.pexels.com/photos/28751189/pexels-photo-28751189.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "server-hardening-checklist-azure-windows",
     title: "The Definitive Server Hardening Checklist for Azure and Windows Environments",
     date: "2026-06-07",
