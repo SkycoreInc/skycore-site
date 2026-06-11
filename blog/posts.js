@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ai-threats-vs-msp-security",
+    title: "AI-Driven Threats Exposing MSP Security Gaps: Fortify Your Defenses",
+    date: "2026-06-11",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "AI-driven attacks are highlighting the limitations of fragmented MSP security. Learn how to adapt and strengthen your defenses against evolving threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/6266500/pexels-photo-6266500.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "chrome-zero-day-smb-cybersecurity",
     title: "Beyond Patches: Fortifying Your Cybersecurity for SMBs Against Zero-Day Threats",
     date: "2026-06-09",
