@@ -13,6 +13,16 @@
     </image>
 
     <item>
+      <title>Don't Be the Next Target: Essential Cybersecurity for SMBs in Montreal</title>
+      <link>https://skycoresolutions.com/blog/cybersecurity-smb-linux-backdoor-montreal.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/cybersecurity-smb-linux-backdoor-montreal.html</guid>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
+      <description>The recent Arch Linux AUR hijack exposed over 400 packages to credential-stealing malware, highlighting the critical need for robust cybersecurity. SkyCore Solutions helps Montreal SMBs implement advanced security measures.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/30901560/pexels-photo-30901560.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>AI-Driven Threats Exposing MSP Security Gaps: Fortify Your Defenses</title>
       <link>https://skycoresolutions.com/blog/ai-threats-vs-msp-security.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/ai-threats-vs-msp-security.html</guid>

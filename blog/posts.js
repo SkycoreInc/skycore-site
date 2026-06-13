@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cybersecurity-smb-linux-backdoor-montreal",
+    title: "Don't Be the Next Target: Essential Cybersecurity for SMBs in Montreal",
+    date: "2026-06-13",
+    readTime: "5 min read",
+    category: "Security Hardening",
+    excerpt: "The recent Arch Linux AUR hijack exposed over 400 packages to credential-stealing malware, highlighting the critical need for robust cybersecurity. SkyCore Solutions helps Montreal SMBs implement advanced security measures.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/30901560/pexels-photo-30901560.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ai-threats-vs-msp-security",
     title: "AI-Driven Threats Exposing MSP Security Gaps: Fortify Your Defenses",
     date: "2026-06-11",
