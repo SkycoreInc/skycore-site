@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkyCore Solutions Guide: How to Migrate Your File Server to Azure Files with Azure File Sync — SkyCore Solutions</title>
+  <meta name="description" content="A comprehensive guide for SMBs to migrate file server to Azure Files using Azure File Sync. Centralize file shares in the cloud, maintain on-premises performance, and harden security for your data." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="SkyCore Solutions Guide: How to Migrate Your File Server to Azure Files with Azure File Sync — SkyCore Solutions" />
+  <meta property="og:description" content="A comprehensive guide for SMBs to migrate file server to Azure Files using Azure File Sync. Centralize file shares in the cloud, maintain on-premises performance, and harden security for your data." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/migrate-file-server-azure-files-smb-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/19825057/pexels-photo-19825057.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SkyCore Solutions Guide: How to Migrate Your File Server to Azure Files with Azure File Sync — SkyCore Solutions" />
+  <meta name="twitter:description" content="A comprehensive guide for SMBs to migrate file server to Azure Files using Azure File Sync. Centralize file shares in the cloud, maintain on-premises performance, and harden security for your data." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/19825057/pexels-photo-19825057.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/migrate-file-server-azure-files-smb-guide.html" />
+  <meta property="article:published_time" content="2026-06-13" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "SkyCore Solutions Guide: How to Migrate Your File Server to Azure Files with Azure File Sync",
+  "description": "A comprehensive guide for SMBs to migrate file server to Azure Files using Azure File Sync. Centralize file shares in the cloud, maintain on-premises performance, and harden security for your data.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Azure subscription with 'Owner' or 'Contributor' role assigned., Azure CLI installed and configured (version 2.38.0 or later recommended)., Azure PowerShell module ('Az') installed (version 8.0.0 or later recommended)., A stable internet connection for the on-premises file server., An on-premises Windows Server (2012 R2 or newer) to host the Azure File Sync agent. This server should have sufficient CPU, RAM, and disk space for the local cache., Your on-premises file server should be domain-joined for seamless Active Directory Domain Services (AD DS) integration and identity-based access., Estimated Cost: Expect costs for Azure Storage (based on capacity, transactions, and redundancy), and potentially egress fees for data transfer out of Azure. A basic 1TB Standard GRS file share might start around $50-100 CAD/month, scaling with usage. Azure File Sync service itself has a low monthly fee per registered server, separate from storage costs."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Plan Your Azure Files and File Sync Deployment",
+        "text": "Before touching any commands, strategize your storage account type, redundancy, and authentication method to meet your SMB's needs."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create an Azure Storage Account",
+        "text": "Provision a robust Azure Storage Account, which will host your fully managed Azure file shares in the cloud."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create an Azure File Share",
+        "text": "Establish the specific cloud file share where your file server data will reside, configuring its capacity."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Identity-Based Authentication for Azure Files",
+        "text": "Integrate your Azure file share with your on-premises Active Directory Domain Services (AD DS) to maintain existing user permissions and access controls."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy Azure File Sync Service and Agent",
+        "text": "Set up the Azure File Sync service in your Azure subscription and install the agent on your on-premises Windows Server to establish the hybrid connection."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Register Windows Server and Create Sync Group",
+        "text": "Connect your on-premises server to the Azure File Sync service and define the synchronization relationship between your local data and the Azure file share."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Cloud and Server Endpoints",
+        "text": "Establish the cloud and local paths for synchronization, enabling intelligent caching and data tiering to optimize performance and storage."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Data Migration and Cutover",
+        "text": "Initiate the data synchronization process and prepare for a seamless transition of user access to the new hybrid file share infrastructure."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-06-13 · 25 min read · Cloud Migration</div>
+<h1>SkyCore Solutions Guide: How to Migrate Your File Server to Azure Files with Azure File Sync</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/19825057/pexels-photo-19825057.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Illustration of an on-premises file server connecting to Azure cloud storage and file shares, symbolizing a migration from a file server to Azure Files." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro">
+<p>For small to medium-sized businesses (SMBs) in Montreal and beyond, managing on-premises file servers often involves a constant battle against hardware failures, limited scalability, and complex disaster recovery. At SkyCore Solutions, we specialize in helping organizations modernize their IT infrastructure. This comprehensive implementation guide will walk you through how to <b>migrate file server to Azure Files</b>, leveraging the powerful capabilities of Azure File Sync.</p>
+<p>By the end of this guide, you will have a robust, hybrid file share solution: your existing on-premises file server will act as a high-performance cache for a fully managed, highly available Azure File Share in the cloud. This approach centralizes your data, simplifies backups, enhances security, and provides multi-site access flexibility, all while maintaining familiar user experiences and seamless Active Directory integration.</p>
+</div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>An active Azure subscription with 'Owner' or 'Contributor' role assigned.</li><li>Azure CLI installed and configured (version 2.38.0 or later recommended).</li><li>Azure PowerShell module (<code class="language-powershell">Az</code>) installed (version 8.0.0 or later recommended).</li><li>A stable internet connection for the on-premises file server.</li><li>An on-premises Windows Server (2012 R2 or newer) to host the Azure File Sync agent. This server should have sufficient CPU, RAM, and disk space for the local cache.</li><li>Your on-premises file server should be domain-joined for seamless Active Directory Domain Services (AD DS) integration and identity-based access.</li><li>Estimated Cost: Expect costs for Azure Storage (based on capacity, transactions, and redundancy), and potentially egress fees for data transfer out of Azure. A basic 1TB Standard GRS file share might start around $50-100 CAD/month, scaling with usage. Azure File Sync service itself has a low monthly fee per registered server, separate from storage costs.</li></ul></div>
+
+<h2>Step 1: Plan Your Azure Files and File Sync Deployment</h2>
+<p>Effective planning is the cornerstone of any successful cloud migration. Before provisioning resources, you need to make critical decisions about your storage account type, redundancy, and authentication method to ensure the solution aligns with your SMB's performance, cost, and security requirements.</p>
+<p>For most SMBs, we recommend <strong>Standard (HDD-based) storage with Geo-redundant storage (GRS)</strong>. This provides a cost-effective balance of performance and superior data durability, replicating your data to a secondary Azure region hundreds of miles away. For mission-critical applications requiring the absolute lowest latency or highest IOPS, Premium (SSD-based) could be considered, but comes at a higher cost.</p>
+<p>Regarding protocol, <strong>SMB 3.1.1</strong> is the standard for Windows file servers and ensures compatibility with your existing infrastructure. Identity-based authentication, leveraging your on-premises Active Directory Domain Services (AD DS), is crucial for maintaining existing NTFS permissions and a seamless user experience. This avoids managing separate credentials for cloud shares.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Assess your current file server's capacity, peak IOPS, and average daily throughput. This data will inform your Azure storage SKU and help you estimate initial costs accurately. Don't forget to factor in network bandwidth for the initial sync.</div>
+
+<h2>Step 2: Create an Azure Storage Account</h2>
+<p>The Azure Storage Account acts as the umbrella for all your Azure storage services, including file shares. For file server migrations, a General-purpose v2 storage account is essential as it supports all current Azure Storage features, including Azure Files and Azure File Sync. We'll configure it with strong security and redundancy.</p>
+
+<pre><code class="language-azurecli">az storage account create \\
+  --resource-group "SkyCore-FileServer-RG" \\
+  --name "skycorefilesyncstorage" \\
+  --location "eastus" \\
+  --sku "Standard_GRS" \\
+  --kind "StorageV2" \\
+  --allow-blob-public-access false \\
+  --min-tls-version "TLS1_2" \\
+  --routing-preference "Microsoft.Routing" \\
+  --default-to-oauth-authentication false
+</code></pre>
+<ul>
+<li><code class="language-azurecli">--resource-group "SkyCore-FileServer-RG"</code>: Specifies the resource group where your storage account will reside. Create one if it doesn't exist (<code class="language-azurecli">az group create -n SkyCore-FileServer-RG -l eastus</code>).</li>
+<li><code class="language-azurecli">--name "skycorefilesyncstorage"</code>: A globally unique name for your storage account.</li>
+<li><code class="language-azurecli">--location "eastus"</code>: The Azure region for your storage account. Choose one closest to your on-premises servers for optimal performance.</li>
+<li><code class="language-azurecli">--sku "Standard_GRS"</code>: Configures standard storage (HDD-based) with Geo-Redundant Storage, offering robust data durability for most SMBs.</li>
+<li><code class="language-azurecli">--kind "StorageV2"</code>: Specifies a General-purpose v2 storage account, required for Azure File Sync.</li>
+<li><code class="language-azurecli">--allow-blob-public-access false</code>: Enhances security by preventing anonymous public access to blobs within this account.</li>
+<li><code class="language-azurecli">--min-tls-version "TLS1_2"</code>: Enforces a minimum TLS 1.2 for all connections, a security best practice.</li>
+<li><code class="language-azurecli">--routing-preference "Microsoft.Routing"</code>: Routes traffic over the Microsoft global network for optimal performance.</li>
+<li><code class="language-azurecli">--default-to-oauth-authentication false</code>: Ensures existing SMB protocols work without requiring OAuth, maintaining compatibility.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the Azure Portal &gt; Search for "Storage accounts" &gt; Click "+ Create" &gt; Select your Subscription and Resource group &gt; Provide a Storage account name, choose a Region &gt; For Performance, select "Standard" &gt; For Redundancy, select "Geo-redundant storage (GRS)" &gt; Under "Advanced" tab, ensure "Allow blob public access" is disabled and "Minimum TLS version" is set to "TLS 1.2" &gt; Review and Create.</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az storage account show --name "skycorefilesyncstorage" --resource-group "SkyCore-FileServer-RG" --query "{name:name, location:location, sku:sku.name, kind:kind}" -o table
+</code></pre>
+
+<h2>Step 3: Create an Azure File Share</h2>
+<p>Now that your storage account is ready, we'll create the actual file share where your data will reside. For SMBs, we generally recommend using provisioned shares for consistent performance, especially when migrating an active file server. You specify a maximum quota, and Azure provisions the necessary IOPS and throughput.</p>
+
+<pre><code class="language-powershell">$resourceGroup = "SkyCore-FileServer-RG"
+$storageAccountName = "skycorefilesyncstorage"
+$fileShareName = "SkyCoreSMBFiles"
+$quotaGB = 2000 # Example: 2TB quota
+
+New-AzRmStorageShare -ResourceGroupName $resourceGroup -StorageAccountName $storageAccountName -Name $fileShareName -QuotaGiB $quotaGB -EnabledProtocol SMB -AccessTier Hot
+</code></pre>
+<ul>
+<li><code class="language-powershell">-ResourceGroupName</code>, <code class="language-powershell">-StorageAccountName</code>, <code class="language-powershell">-Name</code>: Your resource group, storage account name, and desired name for the file share.</li>
+<li><code class="language-powershell">-QuotaGiB $quotaGB</code>: Sets the maximum size of the file share in GiB. Start with enough capacity for your current data, but remember you can increase this later.</li>
+<li><code class="language-powershell">-EnabledProtocol SMB</code>: Explicitly enables the Server Message Block (SMB) protocol, essential for Windows clients.</li>
+<li><code class="language-powershell">-AccessTier Hot</code>: Sets the access tier to 'Hot' for frequently accessed data, balancing performance and cost. 'Cool' or 'Transaction Optimized' are options for less frequently accessed data.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to your Storage Account in Azure Portal &gt; Under "Data storage," click "File shares" &gt; Click "+ File share" &gt; Enter a name (e.g., <code class="language-azurecli">SkyCoreSMBFiles</code>), specify the provisioned capacity (e.g., 2000 GiB) &gt; Select "Hot" access tier &gt; Click "Create".</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell">Get-AzRmStorageShare -ResourceGroupName $resourceGroup -StorageAccountName $storageAccountName -Name $fileShareName | Select-Object Name, QuotaGiB, EnabledProtocol, AccessTier
+</code></pre>
+
+<h2>Step 4: Configure Identity-Based Authentication for Azure Files</h2>
+<p>For a seamless transition and to maintain existing NTFS permissions, integrating your Azure file share with your on-premises Active Directory Domain Services (AD DS) is paramount for SMBs. This allows users to access the cloud file share using their existing AD credentials.</p>
+<p>This process typically involves three main steps: enabling AD DS authentication on the storage account, assigning share-level permissions to AD identities, and configuring NTFS permissions on the files and directories within the share. While the full AD DS integration involves a few more steps covered in detail in Microsoft's dedicated guide, we'll start with enabling AD DS authentication on the storage account.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Skipping AD DS integration means users will have to authenticate with storage account keys or AAD-DS. For SMBs with existing on-premises AD, this causes major disruption. Ensure your on-premises AD DS is healthy and reachable from your Azure subscription (e.g., via VPN or ExpressRoute).</div>
+
+<pre><code class="language-azurecli"># First, ensure your Storage Account has an identity assigned for AD DS integration
+az storage account identity assign --resource-group "SkyCore-FileServer-RG" --name "skycorefilesyncstorage"
+
+# Next, enable AD DS authentication on the storage account
+# Note: This command points to the domain join for the storage account
+# You will need your domain name and a domain controller IP/FQDN
+az storage account sam-properties create \\
+  --resource-group "SkyCore-FileServer-RG" \\
+  --account-name "skycorefilesyncstorage" \\
+  --azure-storage-sid $(az storage account show -g "SkyCore-FileServer-RG" -n "skycorefilesyncstorage" --query "identity.principalId" -o tsv) \\
+  --domain-name "yourdomain.local" \\
+  --domain-guid "&lt;your-domain-guid&gt;" \\
+  --domain-controller-ips "10.0.0.4,10.0.0.5" \\
+  --netbios-domain-name "YOURDOMAIN"
+</code></pre>
+<ul>
+<li><code class="language-azurecli">az storage account identity assign</code>: Assigns a system-assigned managed identity to the storage account, necessary for AD DS integration.</li>
+<li><code class="language-azurecli">az storage account sam-properties create</code>: Configures the storage account to join your on-premises AD DS.</li>
+<li><code class="language-azurecli">--azure-storage-sid</code>: The SID of the storage account's managed identity. The Azure CLI command <code class="language-azurecli">$(az storage account show -g "SkyCore-FileServer-RG" -n "skycorefilesyncstorage" --query "identity.principalId" -o tsv)</code> dynamically fetches this.</li>
+<li><code class="language-azurecli">--domain-name "yourdomain.local"</code>: Your fully qualified domain name.</li>
+<li><code class="language-azurecli">--domain-guid "&lt;your-domain-guid&gt;"</code>: The GUID of your AD DS domain. You can retrieve this with <code class="language-powershell">(Get-ADDomain).ObjectGuid</code> on a domain controller.</li>
+<li><code class="language-azurecli">--domain-controller-ips "10.0.0.4,10.0.0.5"</code>: IP addresses of your domain controllers.</li>
+<li><code class="language-azurecli">--netbios-domain-name "YOURDOMAIN"</code>: Your NetBIOS domain name.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to your Storage Account &gt; Under "Data management," select "File shares" &gt; Click on your file share (e.g., <code class="language-azurecli">SkyCoreSMBFiles</code>) &gt; Click "Change directory, file, or share permissions" &gt; Follow the steps to enable Azure Active Directory Domain Services (AD DS) authentication and assign share-level permissions. For comprehensive steps, refer to the official Microsoft Learn documentation on AD DS integration for Azure Files.</p>
+
+<p><strong>Run this to verify:</strong> (After domain join, may take a few minutes to propagate)</p>
+<pre><code class="language-powershell">Get-AzStorageAccount -ResourceGroupName "SkyCore-FileServer-RG" -Name "skycorefilesyncstorage" | Select-Object -ExpandProperty AzureFilesIdentityBasedAuth | Format-List
+</code></pre>
+
+<h2>Step 5: Deploy Azure File Sync Service and Agent</h2>
+<p>Azure File Sync is the key component for a successful hybrid file server migration for SMBs. It allows you to centralize your data in Azure Files while keeping a local cache on your on-premises Windows Server, providing fast local access and simplifying disaster recovery. This is a critical step to <b>migrate file server to Azure Files guide</b> effectively.</p>
+
+<pre><code class="language-powershell">$resourceGroup = "SkyCore-FileServer-RG"
+$syncServiceRegion = "eastus" # Must be in the same region as the storage account
+$storageSyncServiceName = "SkyCoreFileSyncService"
+
+# Create a Storage Sync Service
+New-AzStorageSyncService -ResourceGroupName $resourceGroup -Name $storageSyncServiceName -Location $syncServiceRegion
+
+# Download the Azure File Sync agent (run this on your on-premises server)
+# Download URL changes with version, always get the latest from Microsoft Learn
+# Example for a hypothetical latest version (check official docs for current link)
+# Start-BitsTransfer -Source "https://aka.ms/afs/agent" -Destination "C:\temp\StorageSyncAgent.msi"
+# Start-Process -FilePath "msiexec.exe" -ArgumentList "/i C:\temp\StorageSyncAgent.msi /quiet /norestart" -Wait
+</code></pre>
+<ul>
+<li><code class="language-powershell">New-AzStorageSyncService</code>: Creates the top-level Azure File Sync service. This is where your sync groups and registered servers will reside.</li>
+<li>Agent Download: The agent must be installed on your on-premises Windows Server. The provided <code class="language-powershell">Start-BitsTransfer</code> and <code class="language-powershell">Start-Process</code> commands are examples; always verify the latest download URL from Microsoft Learn.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to Azure Portal &gt; Search for "Azure File Sync" &gt; Click "+ Create" &gt; Select your Subscription, Resource group &gt; Provide a Storage Sync service name (e.g., <code class="language-azurecli">SkyCoreFileSyncService</code>) &gt; Select the same region as your storage account &gt; Click "Review + Create". Once created, open the service &gt; Under "Registered servers," click "Download sync agent" and install it on your on-premises Windows Server.</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell">Get-AzStorageSyncService -ResourceGroupName $resourceGroup -Name $storageSyncServiceName | Select-Object Name, Location, ProvisioningState
+</code></pre>
+
+<h2>Step 6: Register Windows Server and Create Sync Group</h2>
+<p>With the Azure File Sync agent installed, you now need to register your on-premises Windows Server with your Storage Sync Service. Following this, you'll create a Sync Group, which defines the synchronization topology – essentially, what data syncs where.</p>
+
+<pre><code class="language-powershell"># On the on-premises Windows Server, after agent installation:
+# You'll be prompted to sign in to Azure. Ensure the user has Contributor role on the Storage Sync Service.
+# Register the server (replace placeholders)
+$resourceGroup = "SkyCore-FileServer-RG"
+$storageSyncServiceName = "SkyCoreFileSyncService"
+
+Connect-AzAccount
+Register-AzStorageSyncServer -ResourceGroupName $resourceGroup -StorageSyncServiceName $storageSyncServiceName
+
+# On your management workstation or Azure Cloud Shell (or continue on server after registration):
+$syncGroupName = "SkyCoreFilesSyncGroup"
+$cloudShareName = "SkyCoreSMBFiles"
+$storageAccountName = "skycorefilesyncstorage"
+
+# Create a Sync Group
+New-AzStorageSyncGroup -ResourceGroupName $resourceGroup -StorageSyncServiceName $storageSyncServiceName -Name $syncGroupName
+</code></pre>
+<ul>
+<li><code class="language-powershell">Register-AzStorageSyncServer</code>: This command connects your local Windows Server to the Azure File Sync service. You will be prompted to authenticate to Azure interactively.</li>
+<li><code class="language-powershell">New-AzStorageSyncGroup</code>: Creates a logical grouping for your files. A sync group consists of one cloud endpoint (your Azure file share) and one or more server endpoints (folders on your registered Windows Servers).</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> On your registered Storage Sync Service &gt; Under "Registered servers," ensure your server appears &gt; Under "Sync groups," click "+ Sync group" &gt; Enter a Sync group name (e.g., <code class="language-azurecli">SkyCoreFilesSyncGroup</code>) &gt; Select your Storage account and Azure File share &gt; Click "Create".</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell">Get-AzStorageSyncGroup -ResourceGroupName $resourceGroup -StorageSyncServiceName $storageSyncServiceName -Name $syncGroupName | Select-Object Name, ServerEndpoints, CloudEndpoint
+</code></pre>
+
+<h2>Step 7: Configure Cloud and Server Endpoints</h2>
+<p>The final step in configuring Azure File Sync is to define the endpoints. The Cloud Endpoint points to your Azure file share, and the Server Endpoint points to the specific folder on your on-premises Windows Server that you want to synchronize. Here, we'll also enable Cloud Tiering, a key feature for SMBs to optimize local storage.</p>
+
+<pre><code class="language-powershell">$resourceGroup = "SkyCore-FileServer-RG"
+$storageAccountName = "skycorefilesyncstorage"
+$fileShareName = "SkyCoreSMBFiles"
+$storageSyncServiceName = "SkyCoreFileSyncService"
+$syncGroupName = "SkyCoreFilesSyncGroup"
+$serverName = (Get-AzStorageSyncServer -ResourceGroupName $resourceGroup -StorageSyncServiceName $storageSyncServiceName).Name # Get actual registered server name
+$serverLocalPath = "D:\\SharedFiles" # The local folder on your Windows Server to sync
+
+# Add Cloud Endpoint
+New-AzStorageSyncCloudEndpoint -ResourceGroupName $resourceGroup -StorageSyncServiceName $storageSyncServiceName -SyncGroupName $syncGroupName -Name $cloudShareName -StorageAccountResourceId (Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccountName).Id -AzureFileShareName $fileShareName
+
+# Add Server Endpoint with Cloud Tiering enabled
+# Local disk free space percentage threshold: 20% means 20% of disk space will be kept free
+New-AzStorageSyncServerEndpoint -ResourceGroupName $resourceGroup -StorageSyncServiceName $storageSyncServiceName -SyncGroupName $syncGroupName -Name $serverName -ServerId (Get-AzStorageSyncServer -ResourceGroupName $resourceGroup -StorageSyncServiceName $storageSyncServiceName).ServerId -ServerLocalPath $serverLocalPath -CloudTiering `
+  -VolumeFreeSpacePercent 20 -TierFilesOlderThanDays 30
+</code></pre>
+<ul>
+<li><code class="language-powershell">New-AzStorageSyncCloudEndpoint</code>: Connects your Azure file share to the sync group.</li>
+<li><code class="language-powershell">New-AzStorageSyncServerEndpoint</code>: Connects your local server path to the sync group.</li>
+<li><code class="language-powershell">-ServerLocalPath "D:\\SharedFiles"</code>: This is the local folder on your Windows Server that contains the data you want to synchronize. Ensure this path exists and has adequate permissions.</li>
+<li><code class="language-powershell">-CloudTiering</code>: Enables intelligent tiering.</li>
+<li><code class="language-powershell">-VolumeFreeSpacePercent 20</code>: Instructs Azure File Sync to ensure that at least 20% of the volume's free space is maintained by tiering less frequently accessed files to Azure.</li>
+<li><code class="language-powershell">-TierFilesOlderThanDays 30</code>: Files not accessed for 30 days or more will be eligible for tiering to the cloud, leaving only a reparse point (metadata) locally.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to your Storage Sync Service &gt; Click on your Sync group (e.g., <code class="language-azurecli">SkyCoreFilesSyncGroup</code>) &gt; Click "+ Add server endpoint" &gt; Select your Registered server, specify the Path to the local folder, and configure Cloud Tiering (e.g., "Enable cloud tiering," set volume free space policy to 20%, and date policy to 30 days) &gt; Click "Create".</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell">Get-AzStorageSyncServerEndpoint -ResourceGroupName $resourceGroup -StorageSyncServiceName $storageSyncServiceName -SyncGroupName $syncGroupName -Name $serverName | Select-Object Path, CloudTiering, VolumeFreeSpacePercent, TierFilesOlderThanDays
+</code></pre>
+
+<h2>Step 8: Data Migration and Cutover</h2>
+<p>Once the server endpoint is added, Azure File Sync will immediately begin the initial synchronization, uploading data from your specified local folder to the Azure file share. This process can take significant time depending on your data volume and available bandwidth. During this initial sync, users can continue to access files on the on-premises server.</p>
+<p>For large initial migrations, especially if you have an existing DFS-R (Distributed File System Replication) setup, it's often more efficient to pre-seed the Azure file share using a tool like Robocopy. However, for most SMBs, simply letting Azure File Sync handle the initial upload is sufficient and simpler.</p>
+
+<pre><code class="language-powershell"># Monitor sync status (run this periodically on the server or in Azure Cloud Shell)
+Get-AzStorageSyncServerEndpoint -ResourceGroupName $resourceGroup -StorageSyncServiceName $storageSyncServiceName -SyncGroupName $syncGroupName -Name $serverName | Select-Object Health, SyncActivity, TotalItemCount, UploadedItemCount, DownloadedItemCount
+</code></pre>
+
+<p>Once the initial synchronization is complete and you've verified data integrity:</p>
+<ol>
+  <li><strong>Verify Permissions:</strong> Ensure all AD users and groups have appropriate access to the synced files and folders.</li>
+  <li><strong>Update DNS/DFS Namespaces:</strong> If you use a DFS Namespace, update the folder target to point to the new server endpoint's share, or directly map drive letters to the new server path. If not using DFS-N, simply update user drive mappings to point to the local Azure File Sync cached folder (e.g., <code class="language-powershell">\\YourFileServer\SharedFiles</code>).</li>
+  <li><strong>Decommission Old Server (Optional):</strong> After a suitable monitoring period, you can decommission the original file server, retaining the new Azure File Sync enabled server as your primary file access point.</li>
+</ol>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Start with a small, non-critical share to test the entire process, including user access and application compatibility, before migrating your primary production data. Educate users about cloud tiering and file recall behavior if applicable.</div>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide provides a clear path, certain scenarios can benefit significantly from expert assistance. If your SMB has complex Active Directory structures, requires intricate Group Policy configurations, needs a zero-downtime migration strategy, or integrates with specialized line-of-business applications, SkyCore Solutions is here to help. We can ensure optimal performance tuning, advanced security hardening, and a smooth transition with minimal disruption to your business operations. Navigating licensing, advanced networking (e.g., ExpressRoute), or implementing robust backup and disaster recovery plans often benefits from a seasoned perspective.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction" target="_blank" rel="noopener noreferrer">learn.microsoft.com — storage files introduction</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-introduction" target="_blank" rel="noopener noreferrer">learn.microsoft.com — file sync introduction</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-deployment-guide" target="_blank" rel="noopener noreferrer">learn.microsoft.com — file sync deployment guide</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-create-file-share" target="_blank" rel="noopener noreferrer">learn.microsoft.com — storage how to create file share</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

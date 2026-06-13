@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "migrate-file-server-azure-files-smb-guide",
+    title: "SkyCore Solutions Guide: How to Migrate Your File Server to Azure Files with Azure File Sync",
+    date: "2026-06-13",
+    readTime: "25 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours (initial setup), plus data synchronization time",
+    keyword: "migrate file server to Azure Files guide",
+    excerpt: "This authoritative guide helps SMBs migrate file server to Azure Files, leveraging Azure File Sync for a hybrid approach that enhances security and performance while maintaining local access.",
+    image: "https://images.pexels.com/photos/19825057/pexels-photo-19825057.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "windows-server-hardening-checklist",
     title: "The Definitive Windows Server Hardening Checklist for 2026",
     date: "2026-06-13",
