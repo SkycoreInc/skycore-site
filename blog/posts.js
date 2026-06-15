@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "microsoft-365-copilot-security-hardening",
+    title: "Bolstering Microsoft 365 Security: From Copilot Vulnerabilities to Zero Trust",
+    date: "2026-06-15",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Recent vulnerabilities like SearchLeak in Microsoft 365 Copilot highlight the evolving landscape of cyber threats. Learn how to protect your enterprise data with proactive security hardening.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/10142683/pexels-photo-10142683.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "cybersecurity-smb-linux-backdoor-montreal",
     title: "Don't Be the Next Target: Essential Cybersecurity for SMBs in Montreal",
     date: "2026-06-13",

@@ -13,6 +13,16 @@
     </image>
 
     <item>
+      <title>Bolstering Microsoft 365 Security: From Copilot Vulnerabilities to Zero Trust</title>
+      <link>https://skycoresolutions.com/blog/microsoft-365-copilot-security-hardening.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/microsoft-365-copilot-security-hardening.html</guid>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Recent vulnerabilities like SearchLeak in Microsoft 365 Copilot highlight the evolving landscape of cyber threats. Learn how to protect your enterprise data with proactive security hardening.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/10142683/pexels-photo-10142683.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>Don't Be the Next Target: Essential Cybersecurity for SMBs in Montreal</title>
       <link>https://skycoresolutions.com/blog/cybersecurity-smb-linux-backdoor-montreal.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/cybersecurity-smb-linux-backdoor-montreal.html</guid>
