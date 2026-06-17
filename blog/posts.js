@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "security-hardening-montreal-smb",
+    title: "Beyond Patch Tuesday: Essential Security Hardening for Montreal SMBs",
+    date: "2026-06-17",
+    readTime: "5 min read",
+    category: "Security Hardening",
+    excerpt: "June 2026 brought a record number of software fixes, highlighting the relentless pace of cyber threats. Discover how proactive security hardening can protect your Montreal SMB.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380682/pexels-photo-5380682.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-365-copilot-security-hardening",
     title: "Bolstering Microsoft 365 Security: From Copilot Vulnerabilities to Zero Trust",
     date: "2026-06-15",
