@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-functions-serverless-deployment-guide-smb",
+    title: "Azure Functions Serverless Deployment Guide for SMBs | SkyCore Solutions",
+    date: "2026-06-17",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Azure Functions serverless deployment guide",
+    excerpt: "SkyCore Solutions presents a comprehensive Azure Functions serverless deployment guide tailored for small and medium businesses. Learn to deploy cost-effective, event-driven applications on Azure.",
+    image: "https://images.pexels.com/photos/16764815/pexels-photo-16764815.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "migrate-file-server-azure-files-smb-guide",
     title: "SkyCore Solutions Guide: How to Migrate Your File Server to Azure Files with Azure File Sync",
     date: "2026-06-13",
