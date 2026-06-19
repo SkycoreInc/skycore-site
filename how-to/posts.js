@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "office-365-mfa-setup-guide",
+    title: "Comprehensive Office 365 MFA Setup Guide for Enhanced Security",
+    date: "2026-06-19",
+    readTime: "15 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 hours",
+    keyword: "Office 365 MFA setup guide",
+    excerpt: "Secure your Microsoft 365 accounts with this comprehensive Office 365 MFA setup guide. Implement robust multi-factor authentication to protect against unauthorized access.",
+    image: "https://images.pexels.com/photos/39584/censorship-limitations-freedom-of-expression-restricted-39584.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-functions-serverless-deployment-guide-smb",
     title: "Azure Functions Serverless Deployment Guide for SMBs | SkyCore Solutions",
     date: "2026-06-17",
