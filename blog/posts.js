@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ai-agents-zero-trust-identity-cybersecurity",
+    title: "Securing the AI Frontier: Why Every AI Agent Needs Zero Trust Identity",
+    date: "2026-06-19",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "AI agents are emerging as critical digital identities, presenting new cybersecurity challenges for enterprises. Learn how to apply zero trust security principles to protect your organization from shadow AI threats and ensure robust IT compliance in Canada.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5474034/pexels-photo-5474034.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "security-hardening-montreal-smb",
     title: "Beyond Patch Tuesday: Essential Security Hardening for Montreal SMBs",
     date: "2026-06-17",
