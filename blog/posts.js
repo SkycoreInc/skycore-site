@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ransomware-protection-smbs-montreal",
+    title: "Fortifying Your Defenses: Essential Ransomware Protection for SMBs in Montreal",
+    date: "2026-06-21",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Ransomware threats are evolving, with new variants like Prinz Eugen targeting businesses. Discover SkyCore's multi-layered approach to comprehensive ransomware protection for SMBs.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38117126/pexels-photo-38117126.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ai-agents-zero-trust-identity-cybersecurity",
     title: "Securing the AI Frontier: Why Every AI Agent Needs Zero Trust Identity",
     date: "2026-06-19",
