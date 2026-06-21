@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "vmware-migration-azure-guide-smbs",
+    title: "Your Comprehensive VMware Migration to Azure Guide: A SkyCore Solutions Blueprint for SMBs",
+    date: "2026-06-21",
+    readTime: "25 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "3-5 hours (excluding data transfer time)",
+    keyword: "VMware migration to Azure guide",
+    excerpt: "Migrating your on-premises VMware virtual machines to Azure can unlock significant cost savings and agility for your SMB. This VMware migration to Azure guide provides a step-by-step blueprint for a successful agentless transition.",
+    image: "https://images.pexels.com/photos/6536941/pexels-photo-6536941.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "office-365-mfa-setup-guide",
     title: "Comprehensive Office 365 MFA Setup Guide for Enhanced Security",
     date: "2026-06-19",
