@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Building a Resilient Business Continuity Plan for SMBs with Azure: A CLI-First Guide — SkyCore Solutions</title>
+  <meta name="description" content="Implement a robust business continuity plan for your SMB using Azure CLI and PowerShell. This guide covers backup, DR, and recovery strategies to ensure resilience against disruptions." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Building a Resilient Business Continuity Plan for SMBs with Azure: A CLI-First Guide — SkyCore Solutions" />
+  <meta property="og:description" content="Implement a robust business continuity plan for your SMB using Azure CLI and PowerShell. This guide covers backup, DR, and recovery strategies to ensure resilience against disruptions." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/business-continuity-plan-smb-azure-cli.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/6310044/pexels-photo-6310044.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Building a Resilient Business Continuity Plan for SMBs with Azure: A CLI-First Guide — SkyCore Solutions" />
+  <meta name="twitter:description" content="Implement a robust business continuity plan for your SMB using Azure CLI and PowerShell. This guide covers backup, DR, and recovery strategies to ensure resilience against disruptions." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/6310044/pexels-photo-6310044.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/business-continuity-plan-smb-azure-cli.html" />
+  <meta property="article:published_time" content="2026-06-22" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Building a Resilient Business Continuity Plan for SMBs with Azure: A CLI-First Guide",
+  "description": "Implement a robust business continuity plan for your SMB using Azure CLI and PowerShell. This guide covers backup, DR, and recovery strategies to ensure resilience against disruptions.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Active Azure subscription with owner/contributor permissions, Azure CLI (version 2.x or later) installed and configured on your workstation, PowerShell (version 5.1 or later) with Az module installed, Inventory of critical on-premises servers, applications, and data, Defined Recovery Time Objective (RTO) and Recovery Point Objective (RPO) for key systems, Reliable internet connectivity for Azure integration"}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Establish Core Azure Infrastructure for BCP",
+        "text": "Set up the foundational Azure resources like resource groups and storage accounts to house all business continuity components."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implement On-premises Data Backup with Azure Recovery Services (MARS Agent)",
+        "text": "Configure secure, automated backups for your on-premises file servers and critical system states directly to Azure."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Disaster Recovery for On-premises VMs with Azure Site Recovery",
+        "text": "Enable replication of entire on-premises virtual machines to Azure, allowing for rapid failover in case of a site-wide disaster."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Enhance Azure-Native Application Resilience and Backups",
+        "text": "Harden the resilience of your existing Azure-hosted applications and databases with native backup, geo-replication, and failover capabilities."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Develop and Test Recovery Procedures and Network Connectivity",
+        "text": "Create and rigorously test your disaster recovery plans, including network configuration, to ensure a smooth and verifiable recovery process."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implement Monitoring, Documentation, and Continuous Improvement",
+        "text": "Establish proactive monitoring, maintain comprehensive documentation, and set up a schedule for regular review and testing of your business continuity plan."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-06-22 · 14 min read · IT Strategy</div>
+<h1>Building a Resilient Business Continuity Plan for SMBs with Azure: A CLI-First Guide</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/6310044/pexels-photo-6310044.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="IT professionals managing data recovery and business continuity plan for SMBs in a cloud environment with graphs and servers." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For small to medium-sized businesses (SMBs), an unexpected outage, data loss, or natural disaster can be catastrophic, potentially leading to significant financial losses or even closure. Proactive resilience is not a luxury; it's a necessity. This comprehensive guide will walk you through building a robust <strong>business continuity plan SMB</strong> organizations can rely on, leveraging Microsoft Azure services and prioritizing a CLI-first approach. By the end, you'll have the foundational knowledge and commands to implement critical backup, disaster recovery, and recovery testing strategies, ensuring your business can quickly recover from disruptions.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>Active Azure subscription with owner/contributor permissions</li><li>Azure CLI (version 2.x or later) installed and configured on your workstation</li><li>PowerShell (version 5.1 or later) with Az module installed</li><li>Inventory of critical on-premises servers, applications, and data</li><li>Defined Recovery Time Objective (RTO) and Recovery Point Objective (RPO) for key systems</li><li>Reliable internet connectivity for Azure integration</li></ul></div>
+
+<h2>Step 1: Establish Core Azure Infrastructure for BCP</h2>
+<p>Before deploying any specific backup or disaster recovery solutions, you need to set up the fundamental Azure resources that will house your business continuity components. This includes creating a dedicated resource group to logically organize all BCP-related services and a general-purpose storage account for various backup needs or as a staging area.</p>
+<pre><code class="language-azurecli">az group create --name SkyCoreBCP-RG --location eastus
+az storage account create --name skycorebcpstorage --resource-group SkyCoreBCP-RG --location eastus --sku Standard_LRS --kind StorageV2</code></pre>
+<ul>
+<li><code>az group create</code>: Creates a new Azure resource group.</li>
+<li><code>--name SkyCoreBCP-RG</code>: Specifies the name for your resource group. Choose a naming convention that suits your organization.</li>
+<li><code>--location eastus</code>: Defines the Azure region where the resource group metadata will reside.</li>
+<li><code>az storage account create</code>: Creates a new Azure storage account.</li>
+<li><code>--name skycorebcpstorage</code>: A globally unique name for your storage account.</li>
+<li><code>--sku Standard_LRS</code>: Sets the storage redundancy. <code>Standard_LRS</code> (Locally Redundant Storage) is cost-effective for staging, but for production backups, consider <code>Standard_GRS</code> (Geo-Redundant Storage) or <code>Standard_ZRS</code> (Zone-Redundant Storage) for higher resilience.</li>
+<li><code>--kind StorageV2</code>: Specifies a general-purpose v2 storage account, which supports blobs, files, queues, and tables.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to &quot;Resource groups&quot; > &quot;Create&quot; to create the group. Then, go to &quot;Storage accounts&quot; > &quot;Create&quot; to configure the storage account, selecting the appropriate options for redundancy and type.</p>
+<p><strong>Confirmation:</strong> Verify the resources were created by listing them:</p>
+<pre><code class="language-azurecli">az group show --name SkyCoreBCP-RG
+az storage account show --name skycorebcpstorage --resource-group SkyCoreBCP-RG --query '{name:name, location:location, sku:sku.name}'</code></pre>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: RTO/RPO vs. Cost Mismatch</strong><p>Many SMBs underestimate the importance of accurately defining their Recovery Time Objective (RTO) and Recovery Point Objective (RPO) early on. Choosing a low-cost, less-redundant storage SKU (like LRS) might save money initially, but if your RTO demands near-instant recovery and your RPO requires minimal data loss, it will fail. Always align your technical choices with your business's true recovery needs, even if it means a higher monthly spend. A non-functional BCP is a wasted investment.</p></div>
+
+<h2>Step 2: Implement On-premises Data Backup with Azure Recovery Services (MARS Agent)</h2>
+<p>For file servers, applications, and system state on your physical or virtual machines running on-premises, Azure Backup offers a robust solution via the Microsoft Azure Recovery Services (MARS) agent. This agent allows direct backup of files, folders, and system state to an Azure Recovery Services vault, providing a straightforward and cost-effective way to protect critical data without requiring full VM replication.</p>
+<p>First, create the Recovery Services vault in Azure. This vault will store your backups and manage your backup policies.</p>
+<pre><code class="language-azurecli">az backup vault create --name SkyCoreRSVault --resource-group SkyCoreBCP-RG --location eastus --sku Standard</code></pre>
+<ul>
+<li><code>az backup vault create</code>: Creates an Azure Recovery Services vault.</li>
+<li><code>--name SkyCoreRSVault</code>: The unique name for your Recovery Services vault.</li>
+<li><code>--resource-group SkyCoreBCP-RG</code>: The resource group created in Step 1.</li>
+<li><code>--location eastus</code>: The Azure region for the vault. Choose a region close to your on-premises infrastructure for better performance or a different region for geo-redundancy.</li>
+<li><code>--sku Standard</code>: Sets the vault SKU. For most SMBs, Standard is sufficient. Premium offers advanced features like soft delete and geo-redundancy built-in for backup items.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to &quot;Recovery Services vaults&quot; > &quot;Create&quot;, fill in the details, and select &quot;Review + create&quot;.</p>
+<p><strong>Confirmation:</strong> Verify the vault creation:</p>
+<pre><code class="language-azurecli">az backup vault show --name SkyCoreRSVault --resource-group SkyCoreBCP-RG --query '{name:name, location:location, sku:sku.name}'</code></pre>
+<p>Next, you'll configure a backup policy within this vault. This example creates a simple daily backup policy for MARS agent backups.</p>
+<pre><code class="language-powershell"># Connect to Azure if not already connected
+Connect-AzAccount
+
+# Set context to your subscription (if multiple)
+# Set-AzContext -SubscriptionId &quot;&lt;YourSubscriptionId&gt;&quot;
+
+$vault = Get-AzRecoveryServicesVault -Name &quot;SkyCoreRSVault&quot; -ResourceGroupName &quot;SkyCoreBCP-RG&quot;
+
+# Create a new backup policy for MARS agent. This example is for daily backup.
+# More complex schedules can be configured, e.g., weekly, monthly.
+New-AzRecoveryServicesBackupProtectionPolicy -Name &quot;SkyCoreMARSDailyPolicy&quot; -WorkloadType AzureFiles -BackupManagementType AzureStorage -RecoveryServicesVault $vault -SchedulePolicyType Daily -RetentionPolicyType Daily -RetentionDuration 30
+
+# For specific MARS agent policies, PowerShell is generally preferred for full control.
+# The workload type 'AzureFiles' is often used as a proxy for MARS agent scenarios
+# when defining policy, though the agent itself handles file/folder specifics.
+</code></pre>
+<ul>
+<li><code>Connect-AzAccount</code>: Logs you into Azure PowerShell.</li>
+<li><code>Get-AzRecoveryServicesVault</code>: Retrieves the created vault.</li>
+<li><code>New-AzRecoveryServicesBackupProtectionPolicy</code>: Creates a new backup policy.</li>
+<li><code>-Name &quot;SkyCoreMARSDailyPolicy&quot;</code>: Name for the backup policy.</li>
+<li><code>-WorkloadType AzureFiles</code>: For MARS agent, this is a common workload type.</li>
+<li><code>-BackupManagementType AzureStorage</code>: Indicates the backup is managed in Azure Storage.</li>
+<li><code>-RecoveryServicesVault $vault</code>: Specifies the vault where the policy will reside.</li>
+<li><code>-SchedulePolicyType Daily</code>: Sets the backup schedule to daily. Other options include Weekly.</li>
+<li><code>-RetentionPolicyType Daily</code>: Sets the retention policy type.</li>
+<li><code>-RetentionDuration 30</code>: Retains daily backups for 30 days.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Recovery Services vault, go to &quot;Backup policies&quot; > &quot;+Backup policy&quot;, choose &quot;Azure File Share&quot; (or &quot;Azure virtual machine&quot; if you intend to protect IaaS VMs later, but for MARS, the workflow differs slightly), and configure the schedule and retention.</p>
+<p><strong>On-premises MARS Agent Setup (Manual/Scripted):</strong></p>
+<ol>
+    <li><strong>Download the MARS Agent:</strong> From the Recovery Services vault in the Azure portal, go to &quot;Backup&quot; under &quot;Getting started&quot;, select &quot;On-premises&quot;, choose &quot;Files and folders&quot; and &quot;System State&quot;, then follow the links to download the agent installer and vault credentials file.</li>
+    <li><strong>Install the Agent:</strong> Run the installer on each on-premises server you want to back up.</li>
+    <li><strong>Register with Vault:</strong> During installation, use the downloaded vault credentials file to register the agent with your Azure Recovery Services vault.</li>
+    <li><strong>Configure Backup Schedule:</strong> Use the MARS agent console (Microsoft Azure Backup) on the local server to select files/folders/system state, define the backup schedule, and link it to the policy you created (or create a simple one via the agent UI).</li>
+</ol>
+<p><strong>Confirmation:</strong> Once the agent is configured and the first backup runs, you can check the &quot;Backup jobs&quot; in your Recovery Services vault in the Azure portal to see the status.</p>
+
+<h2>Step 3: Configure Disaster Recovery for On-premises VMs with Azure Site Recovery</h2>
+<p>For mission-critical on-premises virtual machines (VMs), a simple file backup isn't enough. You need the ability to failover entire VMs to Azure with minimal downtime. Azure Site Recovery (ASR) provides this capability, continuously replicating your on-premises Hyper-V, VMware, or physical servers to Azure, ready for a disaster recovery event.</p>
+<p>ASR is a complex service involving on-premises components (Configuration Server, Process Server for VMware/Physical, or direct integration with Hyper-V hosts). While the CLI can manage replication and recovery plans once configured, the initial setup involving on-premises components is often done via the Azure portal wizard for simplicity and to ensure correct component deployment.</p>
+<p>First, create an Azure Site Recovery vault. This is distinct from the Azure Backup Recovery Services vault.</p>
+<pre><code class="language-azurecli">az site-recovery vault create --name SkyCoreASRVault --resource-group SkyCoreBCP-RG --location eastus</code></pre>
+<ul>
+<li><code>az site-recovery vault create</code>: Creates an Azure Site Recovery vault.</li>
+<li><code>--name SkyCoreASRVault</code>: The unique name for your Site Recovery vault.</li>
+<li><code>--resource-group SkyCoreBCP-RG</code>: The resource group created in Step 1.</li>
+<li><code>--location eastus</code>: The Azure region for the vault. Consider a different region than your primary site for true disaster recovery.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to &quot;Recovery Services vaults&quot; (it's the same resource type as the backup vault, but distinct in purpose for ASR) > &quot;+Create&quot;, and name it appropriately for Site Recovery.</p>
+<p><strong>Confirmation:</strong> Verify the ASR vault creation:</p>
+<pre><code class="language-azurecli">az site-recovery vault show --name SkyCoreASRVault --resource-group SkyCoreBCP-RG --query '{name:name, location:location}'</code></pre>
+<p><strong>On-premises ASR Setup (Hybrid Configuration - Portal Driven Initial Setup):</strong></p>
+<ol>
+    <li><strong>Choose Replication Goal:</strong> In the Azure portal, navigate to your <code>SkyCoreASRVault</code>. Under &quot;Getting Started&quot;, select &quot;Site Recovery&quot;. Define your replication goal (e.g., &quot;From on-premises&quot; to &quot;To Azure&quot;, select your virtualization type like &quot;VMware/Physical&quot; or &quot;Hyper-V&quot;).</li>
+    <li><strong>Prepare Infrastructure:</strong> Follow the wizard to download and install the Azure Site Recovery Configuration Server (for VMware/Physical) or register your Hyper-V hosts. This involves deploying appliances on your on-premises infrastructure.</li>
+    <li><strong>Enable Replication:</strong> Once the infrastructure is prepared, you'll discover your on-premises VMs through the portal and enable replication, setting target resources (storage account, network) in Azure.</li>
+</ol>
+<p>While the initial setup is portal-heavy due to on-premises component deployment, you can manage replication and orchestrate recovery plans with CLI once configured.</p>
+<pre><code class="language-azurecli"># Example: List replicated items (after on-premises setup)
+az site-recovery replicated-item list --resource-group SkyCoreBCP-RG --vault-name SkyCoreASRVault
+
+# Example: Create a simple recovery plan (after VMs are replicating)
+az site-recovery recovery-plan create --resource-group SkyCoreBCP-RG --vault-name SkyCoreASRVault --name &quot;SkyCorePrimaryRP&quot; --fabric-name &quot;&lt;YourFabricName&gt;&quot; --primary-zone &quot;eastus&quot; --recovery-zone &quot;westus&quot; --vm-ids &quot;/subscriptions/&lt;SubscriptionId&gt;/resourceGroups/&lt;ResourceGroupName&gt;/providers/Microsoft.Compute/virtualMachines/&lt;VMName&gt;&quot; --direction PrimaryToRecovery</code></pre>
+<ul>
+<li><code>az site-recovery replicated-item list</code>: Lists all virtual machines currently being replicated.</li>
+<li><code>az site-recovery recovery-plan create</code>: Creates an orchestrated recovery plan, defining the order and groups of VMs for failover.</li>
+<li><code>--name SkyCorePrimaryRP</code>: Name of your recovery plan.</li>
+<li><code>--fabric-name &quot;&lt;YourFabricName&gt;&quot;</code>: The name of your on-premises ASR fabric (e.g., &quot;SkyCoreHyperVFabric&quot; or &quot;SkyCoreVMwareFabric&quot;).</li>
+<li><code>--primary-zone eastus</code>: Source region.</li>
+<li><code>--recovery-zone westus</code>: Target DR region (must be different from source for true DR).</li>
+<li><code>--vm-ids &quot;/subscriptions/...&lt;VMName&gt;&quot;</code>: The resource ID of a replicated VM. You'll need to specify all VMs in the plan.</li>
+<li><code>--direction PrimaryToRecovery</code>: Specifies the failover direction.</li>
+</ul>
+<p><strong>Confirmation:</strong> After setup, regularly check the &quot;Replicated items&quot; and &quot;Recovery plans&quot; sections in the Azure portal for the Site Recovery vault to ensure all VMs are replicating healthily and your recovery plans are defined.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: Ignoring the On-Premises Complexity of ASR</strong><p>Azure Site Recovery offers powerful DR capabilities, but its initial setup for on-premises infrastructure is inherently hybrid and not entirely CLI-first. Many IT admins try to force a full CLI deployment and get stuck. Be prepared to leverage the Azure portal's guided wizards for deploying the Configuration Server, Process Server, or registering Hyper-V hosts. Once the on-premises agents are communicating with Azure, CLI operations become much more viable for managing replication and orchestrating failovers. Don't be afraid to use the right tool for the job, even if it means a momentary departure from pure CLI.</p></div>
+
+<h2>Step 4: Enhance Azure-Native Application Resilience and Backups</h2>
+<p>If your SMB already hosts applications or databases directly within Azure, ensuring their resilience is a critical part of your business continuity plan. Azure offers native services for backup, geo-replication, and failover groups for services like Azure App Service and Azure SQL Database.</p>
+<p>Let's look at setting up backups for an Azure App Service and geo-replication for an Azure SQL Database.</p>
+
+<h4>Azure App Service Backup Configuration</h4>
+<p>For your web applications hosted in Azure App Service, you can configure automatic backups to a storage account.</p>
+<pre><code class="language-azurecli"># First, get the connection string for your previously created storage account (or create a new one)
+$storageAccountKey = az storage account keys list --resource-group SkyCoreBCP-RG --account-name skycorebcpstorage --query '[0].value' --output tsv
+$storageAccountConnectionString = &quot;DefaultEndpointsProtocol=https;AccountName=skycorebcpstorage;AccountKey=$storageAccountKey;EndpointSuffix=core.windows.net&quot;
+
+# Configure App Service Backup
+az webapp config backup update --resource-group SkyCoreBCP-RG --webapp-name &lt;YourAppServiceName&gt; --frequency-interval Daily --retention-period-in-days 30 --storage-account-url $storageAccountConnectionString --db-name &quot;&lt;OptionalDatabaseName&gt;&quot; --db-connection-string &quot;&lt;OptionalDatabaseConnectionString&gt;&quot; --db-type SQLAzure</code></pre>
+<ul>
+<li><code>az storage account keys list</code>: Retrieves the access keys for your storage account.</li>
+<li><code>az webapp config backup update</code>: Configures the backup settings for an Azure App Service.</li>
+<li><code>--webapp-name &lt;YourAppServiceName&gt;</code>: The name of your Azure App Service.</li>
+<li><code>--frequency-interval Daily</code>: Sets daily backups. Other options: Hour.</li>
+<li><code>--retention-period-in-days 30</code>: Retains backups for 30 days.</li>
+<li><code>--storage-account-url $storageAccountConnectionString</code>: The connection string to the Azure Storage account where backups will be stored.</li>
+<li><code>--db-name</code>, <code>--db-connection-string</code>, <code>--db-type</code>: Optional parameters for backing up connected databases if the App Service has database connections configured.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to your App Service > &quot;Backups&quot; under &quot;Development Tools&quot; > &quot;Configure and Schedule backups&quot;.</p>
+<p><strong>Confirmation:</strong> List existing backups for your App Service:</p>
+<pre><code class="language-azurecli">az webapp backup list --resource-group SkyCoreBCP-RG --webapp-name &lt;YourAppServiceName&gt;</code></pre>
+
+<h4>Azure SQL Database Geo-Replication and Long-Term Retention</h4>
+<p>For critical Azure SQL Databases, geo-replication provides an active secondary replica in a different region, enabling rapid failover. Additionally, configure long-term retention (LTR) for regulatory compliance or extended recovery needs.</p>
+<pre><code class="language-azurecli"># Example: Create a geo-secondary replica for an Azure SQL Database
+az sql db replica create --resource-group SkyCoreBCP-RG --server &lt;YourSQLServerName&gt; --name &lt;YourPrimaryDBName&gt; --partner-resource-group &lt;PartnerResourceGroup&gt; --partner-server &lt;PartnerSQLServerName&gt; --partner-database &lt;PartnerSecondaryDBName&gt; --partner-location westus --no-wait
+
+# Example: Set Long-Term Retention (LTR) policy for weekly backups for 10 years
+az sql db ltr-backup set-policy --resource-group SkyCoreBCP-RG --server &lt;YourSQLServerName&gt; --name &lt;YourPrimaryDBName&gt; --weekly-retention-days 520 --week-of-year 1 --m-week-of-year 1 --yearly-retention 10</code></pre>
+<ul>
+<li><code>az sql db replica create</code>: Creates a geo-secondary replica for an Azure SQL Database.</li>
+<li><code>--server &lt;YourSQLServerName&gt;</code>: The name of the Azure SQL logical server hosting the primary database.</li>
+<li><code>--name &lt;YourPrimaryDBName&gt;</code>: The name of the primary database.</li>
+<li><code>--partner-resource-group</code>: Resource group for the secondary database.</li>
+<li><code>--partner-server</code>: New or existing logical SQL server in the target region.</li>
+<li><code>--partner-database</code>: Name for the secondary database.</li>
+<li><code>--partner-location westus</code>: The Azure region for the secondary replica. <em>Crucially, this should be a different region from your primary database for geo-redundancy.</em></li>
+<li><code>--no-wait</code>: Allows the command to return immediately without waiting for the replica creation to complete.</li>
+<li><code>az sql db ltr-backup set-policy</code>: Configures long-term retention for an Azure SQL Database.</li>
+<li><code>--weekly-retention-days 520</code>: Retains weekly backups for 520 weeks (approx. 10 years).</li>
+<li><code>--week-of-year 1</code>: Specifies the first week of the year for a yearly backup.</li>
+<li><code>--m-week-of-year 1</code>: Specifies the first week of the month for a monthly backup (if configured).</li>
+<li><code>--yearly-retention 10</code>: Retains yearly backups for 10 years.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> For geo-replication, navigate to your SQL Database > &quot;Geo-replication&quot; under &quot;Data management&quot;. For LTR, go to your SQL Server > &quot;Backups&quot; > &quot;Retention policies&quot; for the specific database.</p>
+<p><strong>Confirmation:</strong> Check the database's geo-replication status and LTR policy:</p>
+<pre><code class="language-azurecli">az sql db show --resource-group SkyCoreBCP-RG --server &lt;YourSQLServerName&gt; --name &lt;YourPrimaryDBName&gt; --expand-geo-backup
+az sql db ltr-backup show-policy --resource-group SkyCoreBCP-RG --server &lt;YourSQLServerName&gt; --name &lt;YourPrimaryDBName&gt;</code></pre>
+
+<h2>Step 5: Develop and Test Recovery Procedures and Network Connectivity</h2>
+<p>A business continuity plan is only as good as its tested recovery procedures. This step focuses on defining how you will recover and ensuring the necessary network infrastructure is in place to access your recovered resources. For an SMB, this often means ensuring VPN connectivity to Azure and proper DNS resolution post-failover.</p>
+
+<h4>Configure VPN Gateway for DR Connectivity</h4>
+<p>If your on-premises network relies on a Site-to-Site VPN to Azure, you'll need to ensure your DR network in Azure also has appropriate connectivity, or that you can establish a new VPN post-failover to access recovered resources.</p>
+<pre><code class="language-azurecli"># Create a new Virtual Network for your DR environment (if not already existing)
+az network vnet create --name SkyCoreDR-VNet --resource-group SkyCoreBCP-RG --location westus --address-prefix 10.100.0.0/16
+
+# Create a gateway subnet within your DR VNet
+az network vnet subnet create --name GatewaySubnet --resource-group SkyCoreBCP-RG --vnet-name SkyCoreDR-VNet --address-prefix 10.100.255.0/27
+
+# Create a public IP address for the VPN Gateway
+az network public-ip create --name SkyCoreDRVpnGwIP --resource-group SkyCoreBCP-RG --location westus --allocation-method Static --sku Standard
+
+# Create the VPN Gateway (takes ~30-45 minutes)
+az network vnet-gateway create --name SkyCoreDRVpnGw --resource-group SkyCoreBCP-RG --location westus --public-ip-address SkyCoreDRVpnGwIP --vnet SkyCoreDR-VNet --gateway-type Vpn --sku VpnGw1 --vpn-type RouteBased --no-wait</code></pre>
+<ul>
+<li><code>az network vnet create</code>: Creates a virtual network.</li>
+<li><code>--name SkyCoreDR-VNet</code>: Name for your DR virtual network.</li>
+<li><code>--location westus</code>: Crucially, a different region from your primary environment.</li>
+<li><code>az network vnet subnet create</code>: Creates a subnet within the VNet.</li>
+<li><code>GatewaySubnet</code>: This is a reserved name for the VPN Gateway subnet.</li>
+<li><code>az network public-ip create</code>: Creates a public IP for the VPN Gateway.</li>
+<li><code>az network vnet-gateway create</code>: Creates the Azure VPN Gateway.</li>
+<li><code>--sku VpnGw1</code>: A basic SKU for SMBs. Adjust based on performance needs.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to &quot;Virtual networks&quot;, then &quot;VPN gateways&quot; to configure these resources.</p>
+<p><strong>Confirmation:</strong> Once the VPN Gateway is deployed, you can create a local network gateway representing your on-premises firewall/router and then create a connection between them.</p>
+
+<h4>Test Failover with Azure Site Recovery</h4>
+<p>The most critical aspect of your BCP is testing. For ASR-protected VMs, perform regular test failovers without impacting production.</p>
+<pre><code class="language-azurecli"># Example: Start a test failover for a recovery plan
+az site-recovery recovery-plan test-failover start --resource-group SkyCoreBCP-RG --vault-name SkyCoreASRVault --name SkyCorePrimaryRP --replication-provider Azure --failover-direction PrimaryToRecovery --recovery-point-type Latest --az-recovery-vnet-name SkyCoreDR-VNet</code></pre>
+<ul>
+<li><code>az site-recovery recovery-plan test-failover start</code>: Initiates a test failover for an ASR recovery plan.</li>
+<li><code>--name SkyCorePrimaryRP</code>: The name of your recovery plan.</li>
+<li><code>--recovery-point-type Latest</code>: Uses the latest available recovery point.</li>
+<li><code>--az-recovery-vnet-name SkyCoreDR-VNet</code>: Specifies the isolated virtual network in Azure where the test VMs will be created. This prevents impact on your production network.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In your Site Recovery vault, navigate to &quot;Recovery plans&quot;, select your plan, and click &quot;Test Failover&quot;.</p>
+<p><strong>Confirmation:</strong> After a test failover, you'll see temporary VMs running in your designated test network. Connect to them, verify application functionality, and then clean up the test resources using `az site-recovery recovery-plan test-failover cleanup`.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: Untested BCPs are Useless BCPs</strong><p>A common and dangerous mistake for any business continuity plan, especially for SMBs with limited IT resources, is failing to regularly test it. A BCP sitting on a shelf, even if technically sound, is worthless if it hasn't been validated end-to-end. Processes change, personnel leave, and configurations drift. Schedule and execute at least annual, if not quarterly, full recovery tests. Document every step, every error, and every successful recovery. An untested plan is a false sense of security.</p></div>
+
+<h2>Step 6: Implement Monitoring, Documentation, and Continuous Improvement</h2>
+<p>A BCP is not a one-time project; it's an ongoing process. Establishing robust monitoring, maintaining comprehensive documentation, and committing to continuous improvement are vital for the long-term success of your business continuity plan.</p>
+
+<h4>Centralized Monitoring with Azure Monitor and Log Analytics</h4>
+<p>Use Azure Monitor and Log Analytics to centralize logs and metrics from your BCP components, allowing you to proactively detect issues with backups, replication, or DR infrastructure.</p>
+<pre><code class="language-azurecli"># Create a Log Analytics Workspace
+az monitor log-analytics workspace create --resource-group SkyCoreBCP-RG --name SkyCoreBCPLAW --location eastus
+
+# Configure alerts for backup failures (example for Recovery Services Vault)
+az monitor activity-log alert create --resource-group SkyCoreBCP-RG --name &quot;BackupFailureAlert&quot; --scope &quot;/subscriptions/&lt;SubscriptionId&gt;/resourceGroups/SkyCoreBCP-RG/providers/Microsoft.RecoveryServices/vaults/SkyCoreRSVault&quot; --condition &quot;category = 'Administrative' and operationName = 'Microsoft.RecoveryServices/vaults/backupFabrics/backupProtectionContainers/protectedItems/write' and level = 'Error'&quot; --action-group &quot;/subscriptions/&lt;SubscriptionId&gt;/resourceGroups/SkyCoreBCP-RG/providers/Microsoft.Insights/actionGroups/SkyCoreAdminsAG&quot;
+
+# Note: You'll need to create an Action Group first to define who gets notified (email, SMS, etc.)
+az monitor action-group create --resource-group SkyCoreBCP-RG --name SkyCoreAdminsAG --short-name SkyCoreAdmins --receiver-name &quot;emailreceiver&quot; --receiver-type Email --email-address &quot;itadmins@skycore.com&quot;</code></pre>
+<ul>
+<li><code>az monitor log-analytics workspace create</code>: Creates a Log Analytics workspace.</li>
+<li><code>az monitor activity-log alert create</code>: Creates an alert rule based on Azure Activity Log events.</li>
+<li><code>--scope</code>: The resource ID of the Recovery Services vault to monitor.</li>
+<li><code>--condition</code>: Filters for specific events, e.g., backup protection item write operations with an 'Error' level.</li>
+<li><code>--action-group</code>: Specifies an action group to be triggered when the alert fires.</li>
+<li><code>az monitor action-group create</code>: Creates an action group for notifications.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to &quot;Log Analytics workspaces&quot; to create, and &quot;Alerts&quot; under &quot;Monitor&quot; to configure alert rules and action groups.</p>
+<p><strong>Confirmation:</strong> Generate a test alert or check the Activity Log to ensure your alert rules are active and correctly configured.</p>
+
+<h4>Documentation and Continuous Improvement</h4>
+<p>This phase is less about CLI commands and more about process and governance. Your BCP documentation should include:</p>
+<ol>
+    <li><strong>Business Impact Analysis (BIA) Summary:</strong> Critical systems, RTOs, RPOs.</li>
+    <li><strong>Recovery Procedures:</strong> Step-by-step guides for failover and failback, including pre-requisites, network configurations, and application-specific steps.</li>
+    <li><strong>Contact Lists:</strong> Internal teams, external vendors, emergency services.</li>
+    <li><strong>Test Reports:</strong> Dates, outcomes, lessons learned, and updates made.</li>
+    <li><strong>Roles and Responsibilities:</strong> Who does what during a disaster.</li>
+</ol>
+<p>Schedule quarterly reviews of your BCP. Technology evolves, business needs change, and personnel shifts. A regular review cycle ensures your BCP remains relevant, effective, and actionable. Integrate lessons learned from testing and real-world incidents back into your plan.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3><p>Implementing a truly effective business continuity plan, especially one spanning on-premises and cloud environments, can become complex quickly. While this guide provides a solid foundation, nuances like highly customized applications, strict compliance requirements, large-scale migrations, or complex network topologies often require specialized expertise. If you're struggling with accurately defining RTO/RPO for intricate systems, orchestrating multi-tier application recovery, or require a comprehensive security review of your DR solution, a seasoned IT consulting firm like SkyCore Solutions can provide invaluable guidance. We ensure your plan is not just technically sound but also optimally aligned with your business objectives and regulatory needs.</p><a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

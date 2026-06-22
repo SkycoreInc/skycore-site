@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "business-continuity-plan-smb-azure-cli",
+    title: "Building a Resilient Business Continuity Plan for SMBs with Azure: A CLI-First Guide",
+    date: "2026-06-22",
+    readTime: "14 min read",
+    category: "IT Strategy",
+    difficulty: "Intermediate",
+    timeEstimate: "10-15 hours (initial setup), ongoing",
+    keyword: "business continuity plan SMB",
+    excerpt: "Ensure your small to medium-sized business weathers any IT storm with a proactive business continuity plan. This guide provides actionable, CLI-first steps for resilience using Microsoft Azure.",
+    image: "https://images.pexels.com/photos/6310044/pexels-photo-6310044.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "vmware-migration-azure-guide-smbs",
     title: "Your Comprehensive VMware Migration to Azure Guide: A SkyCore Solutions Blueprint for SMBs",
     date: "2026-06-21",
