@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "whatsapp-malware-smb-cybersecurity-hardening",
+    title: "Beyond WhatsApp Scams: Essential Cybersecurity Hardening for Montreal SMBs",
+    date: "2026-06-23",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "Recent WhatsApp VBScript campaigns highlight critical SMB cybersecurity vulnerabilities. Discover SkyCore's multi-layered security hardening, from zero trust to robust endpoint protection.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/30885763/pexels-photo-30885763.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ransomware-protection-smbs-montreal",
     title: "Fortifying Your Defenses: Essential Ransomware Protection for SMBs in Montreal",
     date: "2026-06-21",
