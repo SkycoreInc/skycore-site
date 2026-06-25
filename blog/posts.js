@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "zero-day-security-hardening-montreal",
+    title: "Cisco Zero-Day Exploits: Why Proactive Security Hardening is Non-Negotiable for Montreal Businesses",
+    date: "2026-06-25",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Recent zero-day exploits like the Cisco SD-WAN flaw highlight the urgent need for robust cybersecurity. Discover how proactive security hardening, zero trust, and expert guidance can protect your SMB.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "whatsapp-malware-smb-cybersecurity-hardening",
     title: "Beyond WhatsApp Scams: Essential Cybersecurity Hardening for Montreal SMBs",
     date: "2026-06-23",
