@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mastering Azure Cost Management Optimization for SMBs: A SkyCore Solutions Guide — SkyCore Solutions</title>
+  <meta name="description" content="Optimize your Azure spending with this comprehensive guide for SMBs. Learn to analyze, budget, and apply cost-saving recommendations with Azure cost management optimization techniques from SkyCore Solutions." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Mastering Azure Cost Management Optimization for SMBs: A SkyCore Solutions Guide — SkyCore Solutions" />
+  <meta property="og:description" content="Optimize your Azure spending with this comprehensive guide for SMBs. Learn to analyze, budget, and apply cost-saving recommendations with Azure cost management optimization techniques from SkyCore Solutions." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-cost-management-optimization-smb.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/35230315/pexels-photo-35230315.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mastering Azure Cost Management Optimization for SMBs: A SkyCore Solutions Guide — SkyCore Solutions" />
+  <meta name="twitter:description" content="Optimize your Azure spending with this comprehensive guide for SMBs. Learn to analyze, budget, and apply cost-saving recommendations with Azure cost management optimization techniques from SkyCore Solutions." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/35230315/pexels-photo-35230315.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-cost-management-optimization-smb.html" />
+  <meta property="article:published_time" content="2026-06-25" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Mastering Azure Cost Management Optimization for SMBs: A SkyCore Solutions Guide",
+  "description": "Optimize your Azure spending with this comprehensive guide for SMBs. Learn to analyze, budget, and apply cost-saving recommendations with Azure cost management optimization techniques from SkyCore Solutions.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Azure Subscription with 'Contributor' or 'Owner' role for full access to Cost Management and billing scopes., Azure CLI (version 2.x or later) installed and configured on your local machine, or Azure Cloud Shell access., Azure PowerShell (Az module) installed and configured (optional, but recommended for PowerShell users)., Basic understanding of Azure resource groups, subscriptions, and billing concepts., An existing Azure environment with active resources incurring costs for analysis."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Laying the Foundation: Understanding Azure Cost Management",
+        "text": "Understand the core components of Azure Cost Management and how they empower SMBs to gain financial control over their cloud infrastructure."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Gaining Visibility: Analyzing Your Azure Costs",
+        "text": "Dive into your current Azure spending patterns using Cost Analysis to identify key cost drivers and areas for improvement."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Setting Guardrails: Implementing Budgets and Alerts",
+        "text": "Establish proactive spending limits and receive automated notifications to prevent budget overruns and maintain financial accountability."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Proactive Optimization: Leveraging Azure Advisor Cost Recommendations",
+        "text": "Utilize Azure Advisor's intelligent recommendations to identify actionable cost-saving opportunities across your Azure environment."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Automated Insights: Exporting Cost Data for Advanced Analysis",
+        "text": "Set up recurring exports of your cost and usage data for deeper analysis, custom reporting, and integration with external tools."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-06-25 · 18 min read · Cloud Migration</div>
+<h1>Mastering Azure Cost Management Optimization for SMBs: A SkyCore Solutions Guide</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/35230315/pexels-photo-35230315.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Azure Cost Management dashboard showing graphs and cost breakdowns, essential for Azure cost management optimization SMB." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In today's fast-paced digital landscape, controlling cloud costs is no longer just an enterprise concern – it's a critical imperative for Small and Medium-sized Businesses (SMBs). Unmanaged Azure expenses can quickly erode budgets, hindering growth and innovation. At SkyCore Solutions, we understand these challenges. This comprehensive guide will equip SMBs with the knowledge and tools for effective <strong>Azure cost management optimization SMB</strong>, enabling you to gain full visibility, control spending, and identify significant savings within your Azure environment. By the end of this guide, you will have established robust cost analysis practices, implemented proactive budget alerts, and set up automated processes to keep your Azure expenditures in check, ensuring your cloud investment delivers maximum value.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>An active Azure Subscription with 'Contributor' or 'Owner' role for full access to Cost Management and billing scopes.</li><li>Azure CLI (version 2.x or later) installed and configured on your local machine, or Azure Cloud Shell access.</li><li>Azure PowerShell (Az module) installed and configured (optional, but recommended for PowerShell users).</li><li>Basic understanding of Azure resource groups, subscriptions, and billing concepts.</li><li>An existing Azure environment with active resources incurring costs for analysis.</li></ul></div>
+
+<h2>Step 1: Laying the Foundation: Understanding Azure Cost Management</h2>
+<p>Before optimizing, it's crucial to understand the tools at your disposal. Azure Cost Management (ACM) is not just a billing report; it's a powerful suite of FinOps tools designed to analyze, manage, and optimize your cloud costs. For SMBs, this means moving beyond reactive invoice reviews to proactive financial governance. ACM works by ingesting usage data from all your Azure services, applying your specific pricing and discounts, and then making this rich dataset available for analysis, budgeting, and recommendations. Understanding this flow is the first step towards effective Azure cost management optimization SMB.</p>
+
+<p>While the core billing process finalizes charges and applies credits at the end of your billing period, Cost Management operates continuously, providing near real-time insights (data typically available within 8-24 hours). This distinction is vital: Billing focuses on your financial relationship with Microsoft and invoice generation, whereas Cost Management focuses on helping you understand and control the <em>usage</em> that generates those costs. It enables anomaly detection, cost allocation, and integrates with Azure Advisor for cost savings insights.</p>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the Azure portal and search for "Cost Management + Billing." From there, select "Cost Management" to explore the overview dashboard, which provides a high-level summary of your current spending, forecasted costs, and key recommendations. This portal view offers an intuitive starting point for understanding the various features available.</p>
+
+<h2>Step 2: Gaining Visibility: Analyzing Your Azure Costs</h2>
+<p>The first rule of cost optimization is knowing where your money goes. Azure Cost Analysis provides a dynamic, interactive way to visualize and break down your cloud spend. For SMBs, understanding the primary cost drivers — which services, resources, or even projects are consuming the most budget — is paramount. While the Azure CLI and PowerShell can retrieve raw usage data, the interactive graphical analysis within the Azure portal is the most effective way for SMBs to visually explore and understand their costs, as it allows for quick filtering, grouping, and trend identification. We'll start with retrieving basic usage data via CLI/PS, then focus on the powerful visualization capabilities of the portal.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Implement a robust tagging strategy from day one. Tags are metadata labels (e.g., Project: 'WebsiteRedesign', Department: 'Marketing') that allow you to categorize resources and accurately allocate costs to specific teams, projects, or environments. This granular visibility is crucial for effective cost management.</div>
+
+<pre><code class="language-azurecli"># Retrieve basic usage details for your subscription
+az consumption usage list --subscription &lt;YourSubscriptionID&gt; --query "[].{Date:usageStart, ResourceGroup:properties.resourceGroup, Resource:properties.instanceId, Service:properties.resourceType, Cost:properties.cost, Currency:properties.currency}" -o table
+</code></pre>
+<ul>
+<li><code>--subscription &lt;YourSubscriptionID&gt;</code>: Specifies the target Azure subscription. Replace <code>&lt;YourSubscriptionID&gt;</code> with your actual subscription ID.</li>
+<li><code>--query "[].{...}"</code>: Uses JMESPath to format the output, selecting relevant fields like usage date, resource group, resource instance, service type, cost, and currency for readability.</li>
+<li><code>-o table</code>: Presents the output in a table format, making it easier to read in the console.</li>
+</ul>
+
+<pre><code class="language-powershell"># Retrieve basic usage details for your subscription using Azure PowerShell
+Get-AzConsumptionUsageDetail -SubscriptionId &lt;YourSubscriptionID&gt; -Expand "meterdetails" | Select-Object UsageStart, ResourceGroup, InstanceName, ResourceType, PretaxCost, Currency | Format-Table
+</code></pre>
+<ul>
+<li><code>-SubscriptionId &lt;YourSubscriptionID&gt;</code>: Specifies the target Azure subscription.</li>
+<li><code>-Expand "meterdetails"</code>: Includes detailed information about the meter used.</li>
+<li><code>Select-Object UsageStart, ResourceGroup, InstanceName, ResourceType, PretaxCost, Currency</code>: Selects specific properties for display.</li>
+<li><code>Format-Table</code>: Formats the output as a table.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative (Recommended for interactive analysis):</strong></p>
+<ol>
+    <li>In the Azure portal, search for and select "Cost Management + Billing."</li>
+    <li>Under "Cost Management," select "Cost Analysis."</li>
+    <li>From the default "Accumulated cost" view, you can:</li>
+    <ul>
+        <li><strong>View Forecast Costs:</strong> The top chart displays your actual costs (solid color) and forecasted costs (shaded color). This helps you anticipate future spend based on historical trends.</li>
+        <li><strong>Group by Service:</strong> Select "Group by" &gt; "Service name" to see which Azure services (e.g., Virtual Machines, Storage, Networking) are consuming the most. This is crucial for identifying high-cost services for your Azure cost management optimization SMB efforts.</li>
+        <li><strong>Breakdown by Resource:</strong> Change the view to "Cost by resource" to pinpoint individual resources (e.g., a specific VM, a particular Storage Account) that are the biggest cost contributors. This view is available for subscription and resource group scopes.</li>
+        <li><strong>Filter by Dimension:</strong> Use the "Add filter" option to filter by various dimensions like "Resource group," "Location," or custom tags you've applied. This provides granular insights, for instance, showing costs for a specific project tag.</li>
+        <li><strong>Review Invoiced Charges:</strong> Select the "Invoice details" view to align your cost analysis with your actual Azure invoice.</li>
+    </ul>
+</ol>
+<p><strong>Confirmation:</strong> After running the CLI/PowerShell commands, review the output to see your raw usage data. For deeper analysis, explore the Cost Analysis blade in the Azure portal, ensuring you can group and filter costs effectively to identify your top spending areas.</p>
+
+<h2>Step 3: Setting Guardrails: Implementing Budgets and Alerts</h2>
+<p>Analyzing costs retrospectively is good, but proactively managing them is better. Azure Budgets allow SMBs to define spending targets for subscriptions, resource groups, or even specific resources, and then trigger alerts when predefined thresholds are met. These alerts can notify key stakeholders, enabling timely intervention before costs spiral out of control. Budgets are evaluated every 24 hours, and notifications are typically sent within an hour of a threshold being exceeded. This is a cornerstone of effective Azure cost management optimization SMB.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Budgets in Azure Cost Management only send notifications; they do NOT stop resource consumption or automatically shut down services. Think of them as a warning system, not an enforcement mechanism. You need to combine them with Azure Policy or Azure Functions for automated actions.</div>
+
+<pre><code class="language-azurecli"># Create a monthly budget for a subscription
+az consumption budget create \
+    --amount 1000 \
+    --name "MonthlySubscriptionBudget" \
+    --category "Cost" \
+    --time-grain "Monthly" \
+    --start-date "2026-07-01" \
+    --end-date "2027-06-30" \
+    --notification-emails "admin@skycoresolutions.com" "finance@smbclient.com" \
+    --subscription &lt;YourSubscriptionID&gt;
+</code></pre>
+<ul>
+<li><code>--amount 1000</code>: Sets the budget amount to $1000 USD for the specified period. Adjust this to your anticipated monthly spend.</li>
+<li><code>--name "MonthlySubscriptionBudget"</code>: A descriptive name for your budget.</li>
+<li><code>--category "Cost"</code>: Specifies that this budget tracks actual costs.</li>
+<li><code>--time-grain "Monthly"</code>: Defines the budget's recurrence interval. Options are <code>Monthly</code>, <code>Quarterly</code>, <code>Annually</code>. <code>Monthly</code> is recommended for most SMBs.</li>
+<li><code>--start-date "2026-07-01"</code>: The date when the budget period begins.</li>
+<li><code>--end-date "2027-06-30"</code>: The date when the budget period ends. Budgets reset automatically at the end of each period for the same amount until this end date.</li>
+<li><code>--notification-emails "admin@skycoresolutions.com" "finance@smbclient.com"</code>: A space-separated list of email addresses to receive budget alerts.</li>
+<li><code>--subscription &lt;YourSubscriptionID&gt;</code>: The scope of the budget. For subscription-level budgets, use the subscription ID. You can also specify a resource group using <code>--resource-group &lt;YourResourceGroupName&gt;</code>.</li>
+</ul>
+
+<pre><code class="language-powershell"># Create a monthly budget for a subscription using Azure PowerShell
+$SubscriptionID = "&lt;YourSubscriptionID&gt;"
+$Emails = @("admin@skycoresolutions.com", "finance@smbclient.com")
+
+New-AzConsumptionBudget -Amount 1000 `
+    -BudgetName "MonthlySubscriptionBudgetPS" `
+    -Category "Cost" `
+    -TimeGrain "Monthly" `
+    -StartDate "2026-07-01" `
+    -EndDate "2027-06-30" `
+    -ContactEmail $Emails `
+    -Scope "/subscriptions/$SubscriptionID"
+</code></pre>
+<ul>
+<li><code>-Amount 1000</code>: Sets the budget amount.</li>
+<li><code>-BudgetName "MonthlySubscriptionBudgetPS"</code>: A unique name for the budget.</li>
+<li><code>-Category "Cost"</code>: Tracks actual costs.</li>
+<li><code>-TimeGrain "Monthly"</code>: Sets the recurrence.</li>
+<li><code>-StartDate</code>, <code>-EndDate</code>: Defines the budget's validity period.</li>
+<li><code>-ContactEmail $Emails</code>: Specifies the list of email recipients for alerts.</li>
+<li><code>-Scope "/subscriptions/$SubscriptionID"</code>: Defines the budget scope. For a resource group, it would be <code>"/subscriptions/$SubscriptionID/resourceGroups/&lt;ResourceGroupName&gt;"</code>.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ol>
+    <li>In the Azure portal, navigate to "Cost Management + Billing" &gt; "Cost Management" &gt; "Budgets."</li>
+    <li>Click "Add."</li>
+    <li>Select your Scope (e.g., Subscription or Resource Group).</li>
+    <li>Provide a "Budget name," specify the "Reset period" (Monthly, Quarterly, Annually), and set the "Creation date" and "Expiration date."</li>
+    <li>Enter your desired "Budget amount."</li>
+    <li>In the "Alert conditions" section, add alert thresholds (e.g., 80% of budget, 100% of budget for actual or forecasted cost).</li>
+    <li>Configure "Alert recipients" with the email addresses that should receive notifications.</li>
+    <li>Click "Create."</li>
+</ol>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az consumption budget show --name "MonthlySubscriptionBudget" --subscription &lt;YourSubscriptionID&gt; -o json
+</code></pre>
+<pre><code class="language-powershell">Get-AzConsumptionBudget -BudgetName "MonthlySubscriptionBudgetPS" -Scope "/subscriptions/&lt;YourSubscriptionID&gt;"
+</code></pre>
+
+<h2>Step 4: Proactive Optimization: Leveraging Azure Advisor Cost Recommendations</h2>
+<p>Azure Advisor is your personalized cloud consultant, providing actionable recommendations to optimize your Azure deployments across five pillars: High Availability, Security, Performance, Operational Excellence, and Cost. For SMBs focused on Azure cost management optimization SMB, Advisor's cost recommendations are invaluable. These insights help you identify idle resources, right-size virtual machines, utilize reserved instances, or remove unattached disks, often leading to significant savings with minimal effort.</p>
+
+<pre><code class="language-azurecli"># List Azure Advisor cost recommendations
+az advisor recommendation list --category Cost --query "[].{Resource:resourceGroup, Impact:impact, Description:shortDescription, Category:category, Solution:action, Id:id}" -o table
+</code></pre>
+<ul>
+<li><code>--category Cost</code>: Filters recommendations specifically for cost optimization.</li>
+<li><code>--query "[].{...}"</code>: Formats the output to display key information like the associated resource group, impact level (High, Medium, Low), a brief description, category, recommended action, and recommendation ID.</li>
+<li><code>-o table</code>: Presents the output in a clean table format.</li>
+</ul>
+
+<pre><code class="language-powershell"># List Azure Advisor cost recommendations using Azure PowerShell
+Get-AzAdvisorRecommendation -Category Cost | Select-Object ResourceGroup, Impact, ShortDescription, Category, Action, Id | Format-Table
+</code></pre>
+<ul>
+<li><code>-Category Cost</code>: Filters for cost-related recommendations.</li>
+<li><code>Select-Object ResourceGroup, Impact, ShortDescription, Category, Action, Id</code>: Selects key properties for displaying recommendation details.</li>
+<li><code>Format-Table</code>: Displays the results in a table.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ol>
+    <li>In the Azure portal, search for and select "Advisor."</li>
+    <li>In the left-hand menu, select "Cost."</li>
+    <li>Review the recommendations provided. Advisor prioritizes recommendations by potential savings impact and ease of implementation. Focus on "High Impact" items first.</li>
+    <li>Click on a recommendation to view details and follow the suggested steps for remediation. Common recommendations include resizing underutilized VMs, deleting unattached disks, or purchasing Azure Reservations for stable workloads.</li>
+</ol>
+
+<p><strong>Confirmation:</strong> Review the CLI/PowerShell output or the Azure Advisor blade in the portal. You should see a list of potential cost savings opportunities. Prioritize those with high impact and low effort to start realizing immediate benefits for your Azure cost management optimization SMB strategy.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For predictable, long-running workloads (like domain controllers, line-of-business applications, or persistent databases), consider Azure Reservations. Buying a 1-year or 3-year reservation for Virtual Machines or SQL Databases can yield significant discounts (up to 72% compared to pay-as-you-go rates) and is a powerful tool for substantial Azure cost management optimization.</div>
+
+<h2>Step 5: Automated Insights: Exporting Cost Data for Advanced Analysis</h2>
+<p>While the Azure portal's Cost Analysis is excellent for interactive exploration, sometimes SMBs need to integrate cost data into external reporting tools, custom dashboards, or perform deeper, programmatic analysis. Azure Cost Management provides a robust export feature that can automatically publish your cost and usage details to an Azure Storage account on a recurring schedule. This enables advanced financial analysis, audit trails, and integration with your existing finance systems, moving your Azure cost management optimization SMB efforts to the next level.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Licensing Note:</strong> Cost Management doesn't include credits, taxes, and some purchases (like support charges in non-Microsoft Customer Agreement accounts). Also, classic Cloud Solution Provider (CSP) and sponsorship subscriptions are generally not supported until they transition to a Microsoft Customer Agreement (MCA). Ensure your billing account is an MCA for full Cost Management capabilities.</div>
+
+<pre><code class="language-azurecli"># Create a daily cost export to Azure Blob Storage
+# First, ensure you have a Storage Account and a Container ready
+# Example: az storage account create -n &lt;YourStorageAccountName&gt; -g &lt;YourResourceGroupName&gt; -l eastus --sku Standard_LRS
+# Example: az storage container create -n "costexports" --account-name &lt;YourStorageAccountName&gt;
+
+# Get Storage Account ID
+$StorageAccountID = $(az storage account show -n &lt;YourStorageAccountName&gt; -g &lt;YourResourceGroupName&gt; --query id -o tsv)
+
+az costmanagement export create \
+    --name "DailyCostExport" \
+    --scope "/subscriptions/&lt;YourSubscriptionID&gt;" \
+    --storage-account-id $StorageAccountID \
+    --storage-container "costexports" \
+    --storage-directory "daily-reports" \
+    --recurrence "Daily" \
+    --time-frame "BillingMonthToDate"
+</code></pre>
+<ul>
+<li><code>--name "DailyCostExport"</code>: A unique name for your export job.</li>
+<li><code>--scope "/subscriptions/&lt;YourSubscriptionID&gt;"</code>: The scope of the cost data to export. You can also specify a resource group or management group.</li>
+<li><code>--storage-account-id $StorageAccountID</code>: The full resource ID of the Azure Storage account where the export files will be saved. Ensure this storage account is in the same region as your Cost Management scope or a nearby region.</li>
+<li><code>--storage-container "costexports"</code>: The name of the container within the storage account. Make sure it exists.</li>
+<li><code>--storage-directory "daily-reports"</code>: An optional directory path within the container to organize your exports.</li>
+<li><code>--recurrence "Daily"</code>: How often the export runs. Options include <code>Daily</code>, <code>Weekly</code>, <code>Monthly</code>. <code>Daily</code> provides the most granular data for regular analysis.</li>
+<li><code>--time-frame "BillingMonthToDate"</code>: Defines the data range for each export. Options are <code>BillingMonthToDate</code>, <code>TheLastBillingMonth</code>, <code>TheLast30Days</code>, <code>TheLast60Days</code>, <code>TheLast90Days</code>, <code>Custom</code>. <code>BillingMonthToDate</code> is useful for seeing accumulated costs in the current billing period.</li>
+</ul>
+
+<pre><code class="language-powershell"># Create a daily cost export to Azure Blob Storage using Azure PowerShell
+# First, ensure you have a Storage Account and a Container ready
+# Example: New-AzStorageAccount -ResourceGroupName &lt;YourResourceGroupName&gt; -Name &lt;YourStorageAccountName&gt; -Location eastus -Sku Standard_LRS
+# Example: New-AzStorageContainer -ResourceGroupName &lt;YourResourceGroupName&gt; -AccountName &lt;YourStorageAccountName&gt; -Name "costexports"
+
+$SubscriptionID = "&lt;YourSubscriptionID&gt;"
+$StorageAccountName = "&lt;YourStorageAccountName&gt;"
+$ResourceGroupName = "&lt;YourResourceGroupName&gt;"
+$StorageAccountID = (Get-AzStorageAccount -ResourceGroupName $ResourceGroupName -Name $StorageAccountName).Id
+
+New-AzCostManagementExport -Name "DailyCostExportPS" `
+    -Scope "/subscriptions/$SubscriptionID" `
+    -StorageAccountId $StorageAccountID `
+    -StorageContainer "costexports" `
+    -StorageDirectory "daily-reports" `
+    -Recurrence "Daily" `
+    -Timeframe "BillingMonthToDate"
+</code></pre>
+<ul>
+<li><code>-Name "DailyCostExportPS"</code>: Name of the export.</li>
+<li><code>-Scope "/subscriptions/$SubscriptionID"</code>: Defines the scope for the export.</li>
+<li><code>-StorageAccountId $StorageAccountID</code>: The resource ID of the target storage account.</li>
+<li><code>-StorageContainer "costexports"</code>: The name of the blob container.</li>
+<li><code>-StorageDirectory "daily-reports"</code>: The folder path within the container.</li>
+<li><code>-Recurrence "Daily"</code>: The frequency of the export.</li>
+<li><code>-Timeframe "BillingMonthToDate"</code>: The period of data included in each export.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ol>
+    <li>In the Azure portal, navigate to "Cost Management + Billing" &gt; "Cost Management" &gt; "Exports."</li>
+    <li>Click "Add."</li>
+    <li>Provide a "Name" for the export and select the desired "Export type" (e.g., Daily export of cost data).</li>
+    <li>Choose the "Recurrence" (Daily, Weekly, Monthly) and "Start date."</li>
+    <li>Select the "Storage account" and "Blob container" where you want the data to be saved. You can also specify a "Directory path."</li>
+    <li>Click "Create."</li>
+</ol>
+
+<p><strong>Run this to verify:</strong> After the first scheduled export run (which might take a day depending on recurrence), check your storage account:</p>
+<pre><code class="language-azurecli">az storage blob list --container-name "costexports" --account-name &lt;YourStorageAccountName&gt; --prefix "daily-reports" -o table
+</code></pre>
+<pre><code class="language-powershell">Get-AzStorageBlob -Container "costexports" -Context (Get-AzStorageAccount -ResourceGroupName &lt;YourResourceGroupName&gt; -Name &lt;YourStorageAccountName&gt;).Context | Where-Object { $_.Name -like "daily-reports/*" } | Format-Table Name, Length
+</code></pre>
+<p>You should see CSV or JSON files representing your cost data within the specified container and directory.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3><p>While this guide provides a solid foundation for Azure cost management optimization for SMBs, certain scenarios benefit greatly from expert intervention. If your organization has complex hybrid cloud environments, stringent regulatory compliance requirements, needs advanced FinOps integration with existing ERP systems, or is undertaking a large-scale cloud migration, a specialized consultant like SkyCore Solutions can accelerate your progress and ensure optimal, compliant, and secure cost controls. We can help with custom tagging strategies, advanced cost allocation, chargeback models, and implementing sophisticated automation to enforce budget policies. Don't hesitate to seek professional guidance when the complexity of your cloud environment outpaces your internal resources.</p><a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/cost-management-billing-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — cost management billing overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-analysis-common-uses" target="_blank" rel="noopener noreferrer">learn.microsoft.com — cost analysis common uses</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets" target="_blank" rel="noopener noreferrer">learn.microsoft.com — tutorial acm create budgets</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations" target="_blank" rel="noopener noreferrer">learn.microsoft.com — advisor cost recommendations</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
