@@ -3,6 +3,96 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "zero-day-security-hardening-montreal",
+    title: "Cisco Zero-Day Exploits: Why Proactive Security Hardening is Non-Negotiable for Montreal Businesses",
+    date: "2026-06-25",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Recent zero-day exploits like the Cisco SD-WAN flaw highlight the urgent need for robust cybersecurity. Discover how proactive security hardening, zero trust, and expert guidance can protect your SMB.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "whatsapp-malware-smb-cybersecurity-hardening",
+    title: "Beyond WhatsApp Scams: Essential Cybersecurity Hardening for Montreal SMBs",
+    date: "2026-06-23",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "Recent WhatsApp VBScript campaigns highlight critical SMB cybersecurity vulnerabilities. Discover SkyCore's multi-layered security hardening, from zero trust to robust endpoint protection.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/30885763/pexels-photo-30885763.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "ransomware-protection-smbs-montreal",
+    title: "Fortifying Your Defenses: Essential Ransomware Protection for SMBs in Montreal",
+    date: "2026-06-21",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Ransomware threats are evolving, with new variants like Prinz Eugen targeting businesses. Discover SkyCore's multi-layered approach to comprehensive ransomware protection for SMBs.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38117126/pexels-photo-38117126.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "ai-agents-zero-trust-identity-cybersecurity",
+    title: "Securing the AI Frontier: Why Every AI Agent Needs Zero Trust Identity",
+    date: "2026-06-19",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "AI agents are emerging as critical digital identities, presenting new cybersecurity challenges for enterprises. Learn how to apply zero trust security principles to protect your organization from shadow AI threats and ensure robust IT compliance in Canada.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5474034/pexels-photo-5474034.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "security-hardening-montreal-smb",
+    title: "Beyond Patch Tuesday: Essential Security Hardening for Montreal SMBs",
+    date: "2026-06-17",
+    readTime: "5 min read",
+    category: "Security Hardening",
+    excerpt: "June 2026 brought a record number of software fixes, highlighting the relentless pace of cyber threats. Discover how proactive security hardening can protect your Montreal SMB.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380682/pexels-photo-5380682.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "microsoft-365-copilot-security-hardening",
+    title: "Bolstering Microsoft 365 Security: From Copilot Vulnerabilities to Zero Trust",
+    date: "2026-06-15",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Recent vulnerabilities like SearchLeak in Microsoft 365 Copilot highlight the evolving landscape of cyber threats. Learn how to protect your enterprise data with proactive security hardening.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/10142683/pexels-photo-10142683.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "cybersecurity-smb-linux-backdoor-montreal",
+    title: "Don't Be the Next Target: Essential Cybersecurity for SMBs in Montreal",
+    date: "2026-06-13",
+    readTime: "5 min read",
+    category: "Security Hardening",
+    excerpt: "The recent Arch Linux AUR hijack exposed over 400 packages to credential-stealing malware, highlighting the critical need for robust cybersecurity. SkyCore Solutions helps Montreal SMBs implement advanced security measures.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/30901560/pexels-photo-30901560.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "ai-threats-vs-msp-security",
+    title: "AI-Driven Threats Exposing MSP Security Gaps: Fortify Your Defenses",
+    date: "2026-06-11",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "AI-driven attacks are highlighting the limitations of fragmented MSP security. Learn how to adapt and strengthen your defenses against evolving threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/6266500/pexels-photo-6266500.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "chrome-zero-day-smb-cybersecurity",
+    title: "Beyond Patches: Fortifying Your Cybersecurity for SMBs Against Zero-Day Threats",
+    date: "2026-06-09",
+    readTime: "5 min read",
+    category: "Security Hardening",
+    excerpt: "Google's recent Chrome zero-day highlights the constant threat landscape. Discover how SMBs can move beyond reactive patching with SkyCore's proactive cybersecurity strategies.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/9786320/pexels-photo-9786320.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ransomware-protection-smb-montreal",
     title: "Beyond the Firewall: Advanced Ransomware Protection for SMBs in Montreal",
     date: "2026-06-05",

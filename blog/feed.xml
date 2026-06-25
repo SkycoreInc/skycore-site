@@ -13,6 +13,96 @@
     </image>
 
     <item>
+      <title>Cisco Zero-Day Exploits: Why Proactive Security Hardening is Non-Negotiable for Montreal Businesses</title>
+      <link>https://skycoresolutions.com/blog/zero-day-security-hardening-montreal.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/zero-day-security-hardening-montreal.html</guid>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Recent zero-day exploits like the Cisco SD-WAN flaw highlight the urgent need for robust cybersecurity. Discover how proactive security hardening, zero trust, and expert guidance can protect your SMB.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>Beyond WhatsApp Scams: Essential Cybersecurity Hardening for Montreal SMBs</title>
+      <link>https://skycoresolutions.com/blog/whatsapp-malware-smb-cybersecurity-hardening.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/whatsapp-malware-smb-cybersecurity-hardening.html</guid>
+      <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Recent WhatsApp VBScript campaigns highlight critical SMB cybersecurity vulnerabilities. Discover SkyCore's multi-layered security hardening, from zero trust to robust endpoint protection.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/30885763/pexels-photo-30885763.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>Fortifying Your Defenses: Essential Ransomware Protection for SMBs in Montreal</title>
+      <link>https://skycoresolutions.com/blog/ransomware-protection-smbs-montreal.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/ransomware-protection-smbs-montreal.html</guid>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Ransomware threats are evolving, with new variants like Prinz Eugen targeting businesses. Discover SkyCore's multi-layered approach to comprehensive ransomware protection for SMBs.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/38117126/pexels-photo-38117126.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>Securing the AI Frontier: Why Every AI Agent Needs Zero Trust Identity</title>
+      <link>https://skycoresolutions.com/blog/ai-agents-zero-trust-identity-cybersecurity.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/ai-agents-zero-trust-identity-cybersecurity.html</guid>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+      <description>AI agents are emerging as critical digital identities, presenting new cybersecurity challenges for enterprises. Learn how to apply zero trust security principles to protect your organization from shadow AI threats and ensure robust IT compliance in Canada.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/5474034/pexels-photo-5474034.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>Beyond Patch Tuesday: Essential Security Hardening for Montreal SMBs</title>
+      <link>https://skycoresolutions.com/blog/security-hardening-montreal-smb.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/security-hardening-montreal-smb.html</guid>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 GMT</pubDate>
+      <description>June 2026 brought a record number of software fixes, highlighting the relentless pace of cyber threats. Discover how proactive security hardening can protect your Montreal SMB.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/5380682/pexels-photo-5380682.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>Bolstering Microsoft 365 Security: From Copilot Vulnerabilities to Zero Trust</title>
+      <link>https://skycoresolutions.com/blog/microsoft-365-copilot-security-hardening.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/microsoft-365-copilot-security-hardening.html</guid>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Recent vulnerabilities like SearchLeak in Microsoft 365 Copilot highlight the evolving landscape of cyber threats. Learn how to protect your enterprise data with proactive security hardening.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/10142683/pexels-photo-10142683.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>Don't Be the Next Target: Essential Cybersecurity for SMBs in Montreal</title>
+      <link>https://skycoresolutions.com/blog/cybersecurity-smb-linux-backdoor-montreal.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/cybersecurity-smb-linux-backdoor-montreal.html</guid>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
+      <description>The recent Arch Linux AUR hijack exposed over 400 packages to credential-stealing malware, highlighting the critical need for robust cybersecurity. SkyCore Solutions helps Montreal SMBs implement advanced security measures.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/30901560/pexels-photo-30901560.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>AI-Driven Threats Exposing MSP Security Gaps: Fortify Your Defenses</title>
+      <link>https://skycoresolutions.com/blog/ai-threats-vs-msp-security.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/ai-threats-vs-msp-security.html</guid>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate>
+      <description>AI-driven attacks are highlighting the limitations of fragmented MSP security. Learn how to adapt and strengthen your defenses against evolving threats.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/6266500/pexels-photo-6266500.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>Beyond Patches: Fortifying Your Cybersecurity for SMBs Against Zero-Day Threats</title>
+      <link>https://skycoresolutions.com/blog/chrome-zero-day-smb-cybersecurity.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/chrome-zero-day-smb-cybersecurity.html</guid>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Google's recent Chrome zero-day highlights the constant threat landscape. Discover how SMBs can move beyond reactive patching with SkyCore's proactive cybersecurity strategies.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/9786320/pexels-photo-9786320.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>Beyond the Firewall: Advanced Ransomware Protection for SMBs in Montreal</title>
       <link>https://skycoresolutions.com/blog/ransomware-protection-smb-montreal.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/ransomware-protection-smb-montreal.html</guid>

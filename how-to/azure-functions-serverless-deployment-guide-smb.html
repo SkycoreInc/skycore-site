@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Azure Functions Serverless Deployment Guide for SMBs | SkyCore Solutions — SkyCore Solutions</title>
+  <meta name="description" content="Streamline operations and reduce costs with Azure Functions. This serverless deployment guide from SkyCore Solutions helps SMBs implement event-driven applications on Azure." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Azure Functions Serverless Deployment Guide for SMBs | SkyCore Solutions — SkyCore Solutions" />
+  <meta property="og:description" content="Streamline operations and reduce costs with Azure Functions. This serverless deployment guide from SkyCore Solutions helps SMBs implement event-driven applications on Azure." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-functions-serverless-deployment-guide-smb.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/16764815/pexels-photo-16764815.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Azure Functions Serverless Deployment Guide for SMBs | SkyCore Solutions — SkyCore Solutions" />
+  <meta name="twitter:description" content="Streamline operations and reduce costs with Azure Functions. This serverless deployment guide from SkyCore Solutions helps SMBs implement event-driven applications on Azure." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/16764815/pexels-photo-16764815.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-functions-serverless-deployment-guide-smb.html" />
+  <meta property="article:published_time" content="2026-06-17" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Azure Functions Serverless Deployment Guide for SMBs | SkyCore Solutions",
+  "description": "Streamline operations and reduce costs with Azure Functions. This serverless deployment guide from SkyCore Solutions helps SMBs implement event-driven applications on Azure.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Azure Subscription (Contributor/Owner role), Azure CLI (latest version), Azure Functions Core Tools (v4), Visual Studio Code (recommended), Estimated Cost: Pay-as-you-go (very low for moderate usage)"}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Understanding Azure Functions and Choosing the Right Hosting Plan for SMBs",
+        "text": "Understand Azure Functions' benefits and why the Flex Consumption plan is optimal for SMBs."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Install Azure CLI and Azure Functions Core Tools",
+        "text": "Set up your local environment with essential tools for Azure interaction and local function development."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Authenticate to Azure",
+        "text": "Log in to your Azure subscription from your local development environment."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create a Resource Group and Azure Storage Account",
+        "text": "Provision the necessary Azure resources to host your function app."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Develop Your First Function Locally",
+        "text": "Create and test a basic HTTP-triggered function on your local machine."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create the Azure Function App Resource in Azure",
+        "text": "Provision the serverless Function App service in Azure that will host your code."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy Your Function Code to Azure",
+        "text": "Publish your locally developed function code to the Azure Function App using Zip Deployment."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Verify and Test Your Deployed Function",
+        "text": "Confirm that your function is running correctly in Azure and test its functionality."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implementing Best Practices and Monitoring",
+        "text": "Learn about crucial best practices for error handling, security, and monitoring with Application Insights."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-06-17 · 15 min read · Infrastructure Revamp</div>
+<h1>Azure Functions Serverless Deployment Guide for SMBs | SkyCore Solutions</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/16764815/pexels-photo-16764815.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Abstract representation of serverless computing with Azure Functions in a cloud environment, illustrating efficient serverless deployment for SMBs." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For small and medium businesses (SMBs) seeking to innovate, automate, and optimize their IT infrastructure without the overhead of managing servers, Azure Functions offers a compelling serverless solution. This comprehensive <strong>Azure Functions serverless deployment guide</strong> from SkyCore Solutions will walk you through setting up, developing, and deploying event-driven applications on Microsoft Azure. By the end of this guide, you will have a fully functional serverless application running in the cloud, ready to process events, execute scheduled tasks, or power your web APIs, significantly reducing operational costs and improving scalability.</p></div>
+
+<div class="howto-prereqs">
+    <h4>Prerequisites</h4>
+    <ul>
+        <li><strong>Azure Subscription:</strong> An active Azure subscription with Contributor or Owner role at the subscription or resource group level. A Pay-As-You-Go subscription is sufficient for most SMBs.</li>
+        <li><strong>Azure CLI:</strong> Latest version installed and configured on your local machine.</li>
+        <li><strong>Azure Functions Core Tools:</strong> Installed locally for development and testing.</li>
+        <li><strong>Development Environment:</strong> Visual Studio Code with the Azure Functions extension is highly recommended for an optimal development experience.</li>
+        <li><strong>Estimated Cost:</strong> Azure Functions on the Flex Consumption plan (recommended for SMBs) operates on a pay-per-execution and resource consumption model. Costs are typically very low for applications with moderate usage, making it highly economical. You pay for execution time and memory usage, with a generous free grant each month.</li>
+    </ul>
+</div>
+
+<h2>Step 1: Understanding Azure Functions and Choosing the Right Hosting Plan for SMBs</h2>
+<p>Azure Functions is a serverless compute service that enables you to run small pieces of code, called "functions," without explicitly provisioning or managing infrastructure. These functions are event-driven, meaning they execute in response to various triggers such as HTTP requests, database changes, timer schedules, or messages from queues. For SMBs, this translates to faster development cycles, reduced operational burden, and significant cost savings.</p>
+<p>SkyCore Solutions highly recommends the <strong>Flex Consumption plan</strong> for new Azure Functions deployments by SMBs. This plan offers unparalleled benefits:</p>
+<ul>
+    <li><strong>Pay-as-you-go billing:</strong> Only pay when your functions are running, minimizing costs during idle periods.</li>
+    <li><strong>Automatic scaling:</strong> Functions automatically scale out to meet demand and scale in during low traffic, ensuring optimal performance without manual intervention.</li>
+    <li><strong>Virtual network integration:</strong> Provides enhanced security and connectivity to other Azure resources within your private network.</li>
+    <li><strong>Fast event-driven scaling:</strong> Optimized for rapid response to various event triggers.</li>
+</ul>
+<p>While other plans like Premium or Dedicated exist, the Flex Consumption plan offers the best balance of cost-efficiency, scalability, and ease of management for the typical SMB workload.</p>
+
+<h2>Step 2: Install Azure CLI and Azure Functions Core Tools</h2>
+<p>To interact with Azure and develop functions locally, you'll need the Azure Command-Line Interface (CLI) and Azure Functions Core Tools. These tools are fundamental for a streamlined <strong>Azure Functions serverless deployment guide</strong>.</p>
+
+<h3>Azure CLI Installation</h3>
+<p>Ensure you have the latest version of Azure CLI installed. If not, follow the official Microsoft documentation for your operating system. Once installed, add the Azure Functions extension:</p>
+<pre><code class="language-azurecli">az extension add --name functions</code></pre>
+<ul>
+    <li><code>--name functions</code>: Specifies the Azure CLI extension for Azure Functions commands. This ensures you have access to specialized commands for managing Function Apps.</li>
+</ul>
+
+<h3>Azure Functions Core Tools Installation</h3>
+<p>The Core Tools allow you to run and debug Azure Functions locally on your development machine. This step is crucial for local development before deployment.</p>
+<h4>PowerShell (for Windows)</h4>
+<pre><code class="language-powershell">npm install -g azure-functions-core-tools@4 --unsafe-perm true</code></pre>
+<ul>
+    <li><code>npm install -g</code>: Installs the package globally.</li>
+    <li><code>azure-functions-core-tools@4</code>: Specifies version 4 of the Core Tools, which is the current recommended version.</li>
+    <li><code>--unsafe-perm true</code>: Required on some systems to prevent permission errors during installation.</li>
+</ul>
+<h4>Bash (for Linux/macOS)</h4>
+<pre><code class="language-azurecli">npm install -g azure-functions-core-tools@4 --unsafe-perm true</code></pre>
+<p class="gui-note"><strong>Portal alternative:</strong> There is no direct portal alternative for installing local development tools. These tools are essential for local development prior to deployment.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">func --version</code></pre>
+<p>This command should output the installed version of Azure Functions Core Tools.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Always use the latest stable versions of Azure CLI and Core Tools. This ensures compatibility with the latest Azure features and security updates. For a smoother local development workflow, consider installing Visual Studio Code along with the Azure Functions extension.</div>
+
+<h2>Step 3: Authenticate to Azure</h2>
+<p>Before you can create resources or deploy functions, your local environment needs to authenticate with your Azure subscription.</p>
+<pre><code class="language-azurecli">az login</code></pre>
+<ul>
+    <li>This command will open a web browser to the Azure login page. Follow the prompts to sign in with your Azure credentials.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Logging into the Azure portal directly handles authentication for portal-based operations, but this command is necessary for CLI interactions.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az account show</code></pre>
+<p>This command displays details of your currently active Azure subscription. Ensure it's the correct subscription where you intend to deploy your function app.</p>
+
+<h2>Step 4: Create a Resource Group and Azure Storage Account</h2>
+<p>A resource group is a logical container for your Azure resources. An Azure Storage account is required by Function Apps to manage triggers and log function executions.</p>
+
+<h3>Create Resource Group</h3>
+<p>SkyCore Solutions recommends creating a dedicated resource group for your function app and related resources for easier management and cost tracking.</p>
+<pre><code class="language-azurecli">az group create --name SkyCoreFunctionsRG --location eastus</code></pre>
+<ul>
+    <li><code>--name SkyCoreFunctionsRG</code>: A unique name for your resource group.</li>
+    <li><code>--location eastus</code>: The Azure region where your resource group will be created. Choose a region geographically close to your users or other Azure resources.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to "Resource groups" > "Create", then fill in the subscription, resource group name, and region.</p>
+
+<h3>Create Storage Account</h3>
+<pre><code class="language-azurecli">STORAGE_ACCOUNT_NAME="skycorefnstoragesmb01" # Replace with a globally unique name (e.g., using a suffix of random characters or your company initials) 
+az storage account create --name $STORAGE_ACCOUNT_NAME --location eastus --resource-group SkyCoreFunctionsRG --sku Standard_LRS</code></pre>
+<ul>
+    <li><code>STORAGE_ACCOUNT_NAME</code>: A globally unique name for your storage account. Example: <code>skycorefnstoragesmb01</code>. It must be unique across all of Azure.</li>
+    <li><code>--location eastus</code>: Must be in the same region as your function app.</li>
+    <li><code>--resource-group SkyCoreFunctionsRG</code>: Assigns the storage account to your newly created resource group.</li>
+    <li><code>--sku Standard_LRS</code>: Specifies the storage redundancy. <code>Standard_LRS</code> (Locally Redundant Storage) is cost-effective and suitable for most SMB scenarios.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to "Storage accounts" > "Create", then fill in the details, ensuring it's in the same resource group and region.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az storage account show --name $STORAGE_ACCOUNT_NAME --resource-group SkyCoreFunctionsRG --query "primaryEndpoints.blob" -o tsv</code></pre>
+<p>This command should return the primary blob endpoint URL for your storage account, confirming its creation.</p>
+
+<h2>Step 5: Develop Your First Function Locally</h2>
+<p>Now, let's create a simple HTTP-triggered function project locally. This step is crucial for understanding the local development workflow before tackling the <strong>Azure Functions serverless deployment guide</strong>.</p>
+<pre><code class="language-azurecli"># Create a new function app project directory
+mkdir SkyCoreHttpFunction
+cd SkyCoreHttpFunction
+
+# Initialize the project for Python runtime (adjust worker-runtime for your language, e.g., node, dotnet)
+func init . --worker-runtime python
+
+# Create a new HTTP trigger function
+func new --template "HttpTrigger" --name MyHttpFunction --language python
+
+# Start the function app locally
+func start</code></pre>
+<ul>
+    <li><code>mkdir SkyCoreHttpFunction</code> / <code>cd SkyCoreHttpFunction</code>: Creates and navigates into a new directory for your function project.</li>
+    <li><code>func init . --worker-runtime python</code>: Initializes a new function app project in the current directory, specifying Python as the worker runtime. SkyCore recommends Python or Node.js for SMBs due to their versatility and large community support.</li>
+    <li><code>func new --template "HttpTrigger" --name MyHttpFunction --language python</code>: Creates a new function named "MyHttpFunction" based on the "HttpTrigger" template for Python. This generates boilerplate code for a basic web API endpoint.</li>
+    <li><code>func start</code>: Starts the Azure Functions runtime locally, making your functions accessible via HTTP (usually on <code class="language-text">http://localhost:7071</code>).</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> While you can create basic functions directly in the Azure portal for quick tests (if code is not deployed externally), local development provides a much richer debugging and testing experience. In-portal editing is disabled once code is deployed from outside the portal.</p>
+<p><strong>Run this to verify:</strong>
+After <code>func start</code>, open a web browser or use curl to access your function:</p>
+<pre><code class="language-azurecli">curl http://localhost:7071/api/MyHttpFunction?name=SkyCore</code></pre>
+<p>You should see a response like "Hello, SkyCore. This HTTP triggered function executed successfully."</p>
+
+<h2>Step 6: Create the Azure Function App Resource in Azure</h2>
+<p>With your local function ready, the next step is to provision the Function App resource in Azure. This resource will host your code.</p>
+<pre><code class="language-azurecli">FUNCTION_APP_NAME="skycorehttpappsmb01" # Replace with a globally unique name (e.g., skycorehttpapp[random_suffix])
+az functionapp create \
+  --resource-group SkyCoreFunctionsRG \
+  --consumption-plan-location eastus \
+  --name $FUNCTION_APP_NAME \
+  --storage-account $STORAGE_ACCOUNT_NAME \
+  --runtime python \
+  --runtime-version 3.10 \
+  --os-type Linux</code></pre>
+<ul>
+    <li><code>FUNCTION_APP_NAME</code>: A globally unique name for your function app. Example: <code>skycorehttpappsmb01</code>.</li>
+    <li><code>--resource-group SkyCoreFunctionsRG</code>: The resource group created earlier.</li>
+    <li><code>--consumption-plan-location eastus</code>: Specifies the location for the underlying App Service plan. For new apps, this implicitly provisions the recommended Flex Consumption plan infrastructure, offering pay-as-you-go billing and automatic scaling.</li>
+    <li><code>--name $FUNCTION_APP_NAME</code>: The name of your Azure Function App.</li>
+    <li><code>--storage-account $STORAGE_ACCOUNT_NAME</code>: The storage account created earlier.</li>
+    <li><code>--runtime python</code>: The programming language runtime for your function app (e.g., <code class="language-text">python</code>, <code class="language-text">node</code>, <code class="language-text">dotnet</code>, <code class="language-text">java</code>, <code class="language-text">powershell</code>).</li>
+    <li><code>--runtime-version 3.10</code>: The specific version of the runtime. Ensure this matches your local development environment.</li>
+    <li><code>--os-type Linux</code>: For Python and Node.js functions, SkyCore recommends Linux for better performance and cost-efficiency.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to "Function Apps" > "Create", select your subscription, resource group, function app name, publish method (Code), runtime stack, version, region, and operating system. Under "Hosting", select "Storage account" and choose the one created earlier, then review and create.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az functionapp show --name $FUNCTION_APP_NAME --resource-group SkyCoreFunctionsRG --query "state" -o tsv</code></pre>
+<p>This command should return "Running", indicating your function app resource has been successfully provisioned.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Ensure the <code>--runtime</code> and <code>--runtime-version</code> specified during Function App creation match your local development environment. Mismatches can lead to deployment failures or unexpected behavior. For Python, using a specific version like 3.10 or 3.9 is crucial for stability.</div>
+
+<h2>Step 7: Deploy Your Function Code to Azure</h2>
+<p>The recommended deployment method for Azure Functions, especially for SMBs during initial setup and iterative development, is <strong>Zip Deployment</strong> via the Azure CLI. This method is simple, reliable, and automates trigger synchronization.</p>
+<pre><code class="language-azurecli"># From within your function app project directory (SkyCoreHttpFunction)
+
+# Create a zip archive of your function code
+zip -r functionapp.zip ./*
+
+# Deploy the zip archive to your Function App
+az functionapp deployment zip deploy \
+  --resource-group SkyCoreFunctionsRG \
+  --name $FUNCTION_APP_NAME \
+  --src functionapp.zip</code></pre>
+<ul>
+    <li><code>zip -r functionapp.zip ./*</code>: Compresses all files in your current directory (your function app project) into a <code class="language-text">functionapp.zip</code> file. Ensure this command is run from the root of your function project directory.</li>
+    <li><code>az functionapp deployment zip deploy</code>: This command initiates the zip deployment.</li>
+    <li><code>--src functionapp.zip</code>: Specifies the path to your zipped function code package.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> While not recommended for production, you can navigate to your Function App > "Deployment Center" to set up continuous deployment from source control (e.g., GitHub, Azure DevOps) which is a more robust option for production environments. For manual deployment of a zip file, you would typically use advanced tools or API calls, but the CLI offers the most straightforward "manual" deployment for SMBs.</p>
+
+<h2>Step 8: Verify and Test Your Deployed Function</h2>
+<p>After deployment, it's essential to verify that your function is running correctly and accessible.</p>
+
+<h3>Get the Function URL</h3>
+<pre><code class="language-azurecli">az functionapp function show \
+  --resource-group SkyCoreFunctionsRG \
+  --function-app-name $FUNCTION_APP_NAME \
+  --name MyHttpFunction \
+  --query "invokeUrlTemplate" -o tsv</code></pre>
+<ul>
+    <li>This command retrieves the invocation URL template for your specific HTTP-triggered function.</li>
+</ul>
+
+<h3>Test the Function</h3>
+<p>Copy the URL obtained from the previous command. Replace <code class="language-text">{name}</code> with a query parameter (e.g., <code class="language-text">?name=World</code>) to test your function.</p>
+<pre><code class="language-azurecli"># Replace YOUR_FUNCTION_URL with the actual URL retrieved
+curl "YOUR_FUNCTION_URL&name=World"</code></pre>
+<p>You should receive a similar "Hello, World. This HTTP triggered function executed successfully." response from your Azure-hosted function.</p>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Azure portal, navigate to your Function App > "Functions" > "MyHttpFunction" > "Code + Test". You can use the "Test/Run" tab to manually send an HTTP request and view the response.</p>
+
+<h2>Step 9: Implementing Best Practices and Monitoring</h2>
+<p>A successful <strong>Azure Functions serverless deployment guide</strong> isn't complete without touching on best practices and monitoring. For SMBs, integrating these early can prevent issues down the line.</p>
+<ul>
+    <li><strong>Error Handling:</strong> Implement robust error handling and logging within your function code. Use <code class="language-text">try-except</code> blocks (Python) or <code class="language-text">try-catch</code> (C#, Node.js) to gracefully manage exceptions.</li>
+    <li><strong>Idempotency:</strong> Design your functions to be idempotent, meaning executing them multiple times with the same input yields the same result. This is crucial for event-driven systems where messages might be reprocessed.</li>
+    <li><strong>Security:</strong>
+        <ul>
+            <li>For HTTP triggers, use API keys to secure access (default for new functions).</li>
+            <li>For production, consider integrating with Azure Active Directory and using Managed Identities for authenticating to other Azure services instead of connection strings directly in code.</li>
+            <li>Use Virtual Network integration (available with Flex Consumption) to restrict network access to your Function App.</li>
+        </ul>
+    </li>
+    <li><strong>Monitoring with Application Insights:</strong> Azure Functions automatically integrates with Azure Monitor and Application Insights. This provides comprehensive telemetry, including performance metrics, errors, and traces.</li>
+</ul>
+
+<h3>Accessing Application Insights (Portal)</h3>
+<p class="gui-note"><strong>Portal steps:</strong>
+Navigate to your Function App in the Azure portal. In the left-hand menu, under "Monitoring", select "Application Insights". Here you can review performance, failures, live metrics, and logs to diagnose any issues with your deployed functions.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For production workloads, consider setting up continuous deployment from source control (e.g., GitHub Actions, Azure DevOps Pipelines). This automates the deployment process, ensures consistent code delivery, and allows for integrated testing, which is a significant step up from manual CLI deployments for critical business functions.</div>
+
+<div class="howto-consultant-cta">
+    <h3>When to bring in a consultant</h3>
+    <p>While this guide provides a solid foundation for Azure Functions serverless deployment, certain scenarios can benefit significantly from expert assistance. If your SMB requires complex integrations with existing on-premises systems, advanced security hardening beyond API keys (e.g., VNet integration, Azure Front Door), highly intricate serverless workflows using Durable Functions, or a full CI/CD pipeline implementation with automated testing, SkyCore Solutions can provide tailored guidance. We specialize in optimizing cloud architectures for SMBs, ensuring scalability, security, and cost-efficiency aligned with your unique business needs.</p>
+    <a href="../contact.html" class="btn btn-primary">Book a free consultation</a>
+</div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — functions overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started" target="_blank" rel="noopener noreferrer">learn.microsoft.com — functions get started</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-deployment-technologies" target="_blank" rel="noopener noreferrer">learn.microsoft.com — functions deployment technologies</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-best-practices" target="_blank" rel="noopener noreferrer">learn.microsoft.com — functions best practices</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale" target="_blank" rel="noopener noreferrer">learn.microsoft.com — functions scale</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

@@ -3,6 +3,90 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "business-continuity-plan-smb-azure-cli",
+    title: "Building a Resilient Business Continuity Plan for SMBs with Azure: A CLI-First Guide",
+    date: "2026-06-22",
+    readTime: "14 min read",
+    category: "IT Strategy",
+    difficulty: "Intermediate",
+    timeEstimate: "10-15 hours (initial setup), ongoing",
+    keyword: "business continuity plan SMB",
+    excerpt: "Ensure your small to medium-sized business weathers any IT storm with a proactive business continuity plan. This guide provides actionable, CLI-first steps for resilience using Microsoft Azure.",
+    image: "https://images.pexels.com/photos/6310044/pexels-photo-6310044.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "vmware-migration-azure-guide-smbs",
+    title: "Your Comprehensive VMware Migration to Azure Guide: A SkyCore Solutions Blueprint for SMBs",
+    date: "2026-06-21",
+    readTime: "25 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "3-5 hours (excluding data transfer time)",
+    keyword: "VMware migration to Azure guide",
+    excerpt: "Migrating your on-premises VMware virtual machines to Azure can unlock significant cost savings and agility for your SMB. This VMware migration to Azure guide provides a step-by-step blueprint for a successful agentless transition.",
+    image: "https://images.pexels.com/photos/6536941/pexels-photo-6536941.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "office-365-mfa-setup-guide",
+    title: "Comprehensive Office 365 MFA Setup Guide for Enhanced Security",
+    date: "2026-06-19",
+    readTime: "15 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 hours",
+    keyword: "Office 365 MFA setup guide",
+    excerpt: "Secure your Microsoft 365 accounts with this comprehensive Office 365 MFA setup guide. Implement robust multi-factor authentication to protect against unauthorized access.",
+    image: "https://images.pexels.com/photos/39584/censorship-limitations-freedom-of-expression-restricted-39584.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "azure-functions-serverless-deployment-guide-smb",
+    title: "Azure Functions Serverless Deployment Guide for SMBs | SkyCore Solutions",
+    date: "2026-06-17",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Azure Functions serverless deployment guide",
+    excerpt: "SkyCore Solutions presents a comprehensive Azure Functions serverless deployment guide tailored for small and medium businesses. Learn to deploy cost-effective, event-driven applications on Azure.",
+    image: "https://images.pexels.com/photos/16764815/pexels-photo-16764815.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "migrate-file-server-azure-files-smb-guide",
+    title: "SkyCore Solutions Guide: How to Migrate Your File Server to Azure Files with Azure File Sync",
+    date: "2026-06-13",
+    readTime: "25 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours (initial setup), plus data synchronization time",
+    keyword: "migrate file server to Azure Files guide",
+    excerpt: "This authoritative guide helps SMBs migrate file server to Azure Files, leveraging Azure File Sync for a hybrid approach that enhances security and performance while maintaining local access.",
+    image: "https://images.pexels.com/photos/19825057/pexels-photo-19825057.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "windows-server-hardening-checklist",
+    title: "The Definitive Windows Server Hardening Checklist for 2026",
+    date: "2026-06-13",
+    readTime: "18 min read",
+    category: "Security Hardening",
+    difficulty: "Advanced",
+    timeEstimate: "3-5 hours (initial implementation)",
+    keyword: "Windows Server hardening checklist",
+    excerpt: "This guide provides a comprehensive Windows Server hardening checklist, offering actionable, CLI-first steps to secure your critical infrastructure against evolving threats. Master foundational security, privileged access, and advanced threat protection.",
+    image: "https://images.pexels.com/photos/37730211/pexels-photo-37730211.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "office-365-migration-step-by-step",
+    title: "Office 365 Migration Step by Step: A Comprehensive Guide for IT Professionals",
+    date: "2026-06-10",
+    readTime: "25 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "4-6 hours",
+    keyword: "Office 365 migration step by step",
+    excerpt: "Ready for an Office 365 migration step by step? This guide ensures a smooth transition for your organization's email and collaboration services.",
+    image: "https://images.pexels.com/photos/28751189/pexels-photo-28751189.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "server-hardening-checklist-azure-windows",
     title: "The Definitive Server Hardening Checklist for Azure and Windows Environments",
     date: "2026-06-07",
