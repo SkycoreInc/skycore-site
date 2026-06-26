@@ -3,6 +3,30 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-kubernetes-service-setup-guide-smb",
+    title: "Comprehensive Azure Kubernetes Service Setup Guide for SMBs",
+    date: "2026-06-25",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 hours",
+    keyword: "Azure Kubernetes Service setup guide",
+    excerpt: "This comprehensive Azure Kubernetes Service setup guide equips SMBs with the knowledge to deploy and manage containerized applications efficiently, minimizing operational overhead. Learn to harness AKS Automatic for a production-ready cluster.",
+    image: "https://images.pexels.com/photos/20758374/pexels-photo-20758374.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "azure-cost-management-optimization-smb",
+    title: "Mastering Azure Cost Management Optimization for SMBs: A SkyCore Solutions Guide",
+    date: "2026-06-25",
+    readTime: "18 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Azure cost management optimization SMB",
+    excerpt: "SkyCore Solutions presents a deep-dive into Azure cost management optimization for SMBs. Learn practical steps to analyze, control, and reduce your Azure cloud spend effectively.",
+    image: "https://images.pexels.com/photos/35230315/pexels-photo-35230315.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "business-continuity-plan-smb-azure-cli",
     title: "Building a Resilient Business Continuity Plan for SMBs with Azure: A CLI-First Guide",
     date: "2026-06-22",
