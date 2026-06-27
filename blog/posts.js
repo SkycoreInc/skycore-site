@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "signal-threat-cybersecurity-hardening-smb-montreal",
+    title: "Signal Warning Echoes: Why Cybersecurity Hardening is Crucial for Montreal SMBs",
+    date: "2026-06-27",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A recent FBI warning about Signal backup recovery key theft underscores growing credential compromise risks for businesses. SkyCore Solutions helps Montreal SMBs implement robust cybersecurity.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/9504092/pexels-photo-9504092.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "zero-day-security-hardening-montreal",
     title: "Cisco Zero-Day Exploits: Why Proactive Security Hardening is Non-Negotiable for Montreal Businesses",
     date: "2026-06-25",
