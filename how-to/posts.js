@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "exchange-office365-migration-guide",
+    title: "Comprehensive Exchange to Office 365 Migration Guide for IT Professionals",
+    date: "2026-06-28",
+    readTime: "11 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "1-3 days (depending on scale)",
+    keyword: "Exchange to Office 365 migration guide",
+    excerpt: "This comprehensive Exchange to Office 365 migration guide covers the critical steps and best practices for moving your on-premises mailboxes to the cloud.",
+    image: "https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-kubernetes-service-setup-guide-smb",
     title: "Comprehensive Azure Kubernetes Service Setup Guide for SMBs",
     date: "2026-06-25",
