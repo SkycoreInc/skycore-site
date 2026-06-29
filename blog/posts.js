@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "patch-tuesday-security-hardening-montreal",
+    title: "Beyond Patch Tuesday: Essential Cybersecurity Hardening for Montreal SMBs",
+    date: "2026-06-29",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Microsoft's record-breaking June 2026 Patch Tuesday highlights the relentless threat landscape. For Montreal SMBs, robust cybersecurity hardening is non-negotiable.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/4489171/pexels-photo-4489171.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "signal-threat-cybersecurity-hardening-smb-montreal",
     title: "Signal Warning Echoes: Why Cybersecurity Hardening is Crucial for Montreal SMBs",
     date: "2026-06-27",
