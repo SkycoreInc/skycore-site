@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-devops-ci-cd-pipeline-setup-guide",
+    title: "Mastering Your Workflow: The Azure DevOps CI CD Pipeline Setup Guide for SMBs",
+    date: "2026-06-29",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "1.5 - 2 hours",
+    keyword: "Azure DevOps CI CD pipeline setup guide",
+    excerpt: "Streamline your software development life cycle. This Azure DevOps CI CD pipeline setup guide empowers SMBs to automate code delivery, ensuring faster, more reliable releases.",
+    image: "https://images.pexels.com/photos/18784617/pexels-photo-18784617.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "exchange-office365-migration-guide",
     title: "Comprehensive Exchange to Office 365 Migration Guide for IT Professionals",
     date: "2026-06-28",
