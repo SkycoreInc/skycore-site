@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "microsoft-intune-mdm-setup-smb-guide",
+    title: "Comprehensive Guide: Microsoft Intune MDM Setup for SMBs in 2026",
+    date: "2026-07-01",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Microsoft Intune MDM setup SMB",
+    excerpt: "This comprehensive guide walks SMBs through the complete Microsoft Intune MDM setup, from initial tenant configuration to device enrollment and policy deployment. Empower your workforce with secure, managed devices using Intune.",
+    image: "https://images.pexels.com/photos/11634833/pexels-photo-11634833.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-ad-connect-setup-guide-skycore",
     title: "Mastering Hybrid Identity: Your SkyCore Azure AD Connect Setup Guide (Microsoft Entra Connect V2)",
     date: "2026-07-01",

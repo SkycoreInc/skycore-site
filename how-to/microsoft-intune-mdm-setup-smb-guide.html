@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comprehensive Guide: Microsoft Intune MDM Setup for SMBs in 2026 — SkyCore Solutions</title>
+  <meta name="description" content="SkyCore Solutions' guide to Microsoft Intune MDM setup for SMBs. Secure devices, manage apps, and enforce compliance with this step-by-step implementation plan." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Comprehensive Guide: Microsoft Intune MDM Setup for SMBs in 2026 — SkyCore Solutions" />
+  <meta property="og:description" content="SkyCore Solutions' guide to Microsoft Intune MDM setup for SMBs. Secure devices, manage apps, and enforce compliance with this step-by-step implementation plan." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/microsoft-intune-mdm-setup-smb-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/11634833/pexels-photo-11634833.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Comprehensive Guide: Microsoft Intune MDM Setup for SMBs in 2026 — SkyCore Solutions" />
+  <meta name="twitter:description" content="SkyCore Solutions' guide to Microsoft Intune MDM setup for SMBs. Secure devices, manage apps, and enforce compliance with this step-by-step implementation plan." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/11634833/pexels-photo-11634833.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/microsoft-intune-mdm-setup-smb-guide.html" />
+  <meta property="article:published_time" content="2026-07-01" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Comprehensive Guide: Microsoft Intune MDM Setup for SMBs in 2026",
+  "description": "SkyCore Solutions' guide to Microsoft Intune MDM setup for SMBs. Secure devices, manage apps, and enforce compliance with this step-by-step implementation plan.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Microsoft 365 Business Premium, Microsoft 365 E3/E5, or a standalone Microsoft Intune license for each user., Global Administrator or Intune Administrator role in Microsoft Entra ID., Azure CLI (version 2.x) and Az PowerShell module installed., A custom domain name (optional but recommended) registered for your organization."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Understand Intune Fundamentals and Licensing",
+        "text": "Familiarize yourself with Intune's core capabilities, management modes (MDM vs. MAM), and essential licensing requirements for SMBs."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Initial Intune Tenant Setup and Custom Domain Configuration",
+        "text": "Sign in to the Intune admin center and configure your organization's custom domain name for a professional and seamless user experience."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Add Users and Create Groups in Microsoft Entra ID",
+        "text": "Onboard your users into Microsoft Entra ID and organize them into security groups, which are fundamental for assigning Intune policies and applications."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Device Enrollment and Set Restrictions",
+        "text": "Configure how devices will enroll into Intune and establish enrollment restrictions to control which devices and platforms are allowed."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Device Compliance Policies",
+        "text": "Define the security and configuration standards that devices must meet to be considered compliant, integrating with Microsoft Entra Conditional Access."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy Device Configuration Profiles",
+        "text": "Apply essential settings like Wi-Fi, VPN, email profiles, and security baselines to your enrolled devices."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Enroll End-User Devices",
+        "text": "Guide end-users through the device enrollment process to bring their corporate or personal devices under Intune management."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-07-01 · 18 min read · Infrastructure Revamp</div>
+<h1>Comprehensive Guide: Microsoft Intune MDM Setup for SMBs in 2026</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/11634833/pexels-photo-11634833.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Abstract representation of cloud management, devices, and security, symbolizing Microsoft Intune MDM setup for SMBs" loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In today's dynamic business environment, Small and Medium-sized Businesses (SMBs) face increasing pressure to secure their digital assets and manage a diverse fleet of devices, often used by a mobile workforce. The challenge of maintaining security, compliance, and productivity across corporate-owned and personal devices (BYOD) can be daunting without a robust solution. This is where a proper <strong>Microsoft Intune MDM setup for SMB</strong> becomes not just beneficial, but essential. Microsoft Intune, a cloud-based endpoint management service, empowers organizations to secure and manage devices and applications from a single, centralized platform.</p>
+<p>By the end of this comprehensive guide, you, as an SMB IT administrator or owner, will have a foundational Intune environment configured, users and groups defined, initial compliance and configuration policies established, and devices ready for enrollment. This will significantly enhance your organization's security posture and streamline device management, providing a clear path to a more secure and efficient infrastructure.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4>
+<ul>
+<li><strong>Licensing:</strong> A minimum of Microsoft 365 Business Premium, Microsoft 365 E3/E5, or a standalone Microsoft Intune license (per user or per device, depending on your subscription type) is required for each user who will have devices managed by Intune. For SMBs, Microsoft 365 Business Premium offers the best value, bundling Intune with Azure AD P1, Office apps, Exchange, and other critical security features.</li>
+<li><strong>Administrative Roles:</strong> You will need a Global Administrator or Intune Administrator role in Microsoft Entra ID (formerly Azure Active Directory) to perform the initial setup and configuration tasks.</li>
+<li><strong>Tools:</strong>
+<ul>
+<li>Azure CLI (version 2.x or later) installed and configured on your workstation.</li>
+<li>Az PowerShell module (version 6.x or later) installed and configured on your workstation.</li>
+<li>A modern web browser (Microsoft Edge recommended) to access the Microsoft Intune admin center.</li>
+</ul>
+</li>
+<li><strong>Domain Name:</strong> A custom domain name (e.g., yourcompany.com) is highly recommended for professional branding and user experience. If you are already using Microsoft 365, your domain is likely already configured.</li>
+<li><strong>Estimated Cost:</strong> The primary cost will be the Microsoft 365 or Intune licenses. Initial setup time is typically 2-3 hours for the core configuration, with ongoing time for policy refinement and device enrollment.</li>
+</ul>
+</div>
+<h2>Step 1: Understand Intune Fundamentals and Licensing</h2>
+<p>Before diving into configuration, it's crucial to grasp what Intune offers and how it aligns with your SMB's needs. Intune is a cloud-based service focused on endpoint management, securing and managing your organization's devices and apps. It's built around three pillars: user identities (Microsoft Entra ID), devices, and applications.</p>
+<p>Intune supports two primary management modes: Mobile Device Management (MDM) and Mobile Application Management (MAM). For SMBs looking to manage corporate-owned devices comprehensively, **MDM is the recommended primary mode**. MDM allows you to enroll entire devices, configure settings, enforce security policies, deploy and protect apps, and even wipe devices if lost or stolen. MAM, while useful for BYOD scenarios, manages only the work apps and data within them, leaving personal content untouched. For corporate devices, you can combine MDM with MAM policies for especially sensitive data within apps.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For most SMBs, Microsoft 365 Business Premium is the ideal licensing choice. It includes Intune (MDM/MAM), Microsoft Entra ID P1, Office applications, Exchange Online, SharePoint, and advanced security features like Conditional Access and Defender for Business. This provides a comprehensive, cost-effective solution for endpoint management and security.</div>
+
+<h3>Key Intune Capabilities for SMBs:</h3>
+<ul>
+<li><strong>Device Enrollment:</strong> Bring Windows, Android, iOS/iPadOS, and macOS devices under management.</li>
+<li><strong>Configuration:</strong> Apply settings consistently across devices (Wi-Fi profiles, VPN, email accounts, device features).</li>
+<li><strong>Security:</strong> Enforce PIN/password policies, encryption (BitLocker), Defender antivirus settings, and update management.</li>
+<li><strong>App Deployment & Protection:</strong> Distribute required apps and protect corporate data within apps (e.g., preventing copy/paste to personal apps).</li>
+<li><strong>Conditional Access Integration:</strong> Combine device compliance with user and app signals from Microsoft Entra ID to grant or block access to corporate resources based on real-time security posture.</li>
+</ul>
+
+<h2>Step 2: Initial Intune Tenant Setup and Custom Domain Configuration</h2>
+<p>Your first practical step is to ensure your Intune tenant is active and to configure your custom domain name. If you've already signed up for Microsoft 365 Business Premium, your Intune tenant is likely already provisioned, and you'll sign in with your existing administrator account.</p>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the <a href="https://intune.microsoft.com/" target="_blank">Microsoft Intune admin center</a>. If it's your first time, you might be guided through an initial setup wizard. Ensure you are signed in with a Global Administrator account.</p>
+
+<h3>Configure Your Custom Domain Name:</h3>
+<p>While an <code>.onmicrosoft.com</code> domain is provided, configuring your custom domain (e.g., <code>skycoresolutions.com</code>) is crucial for a professional appearance and user familiarity. If you're already using Microsoft 365, your domain is probably already verified.</p>
+
+<p>To connect your custom domain, you'll typically add DNS records. This process is often done through the Microsoft 365 admin center or the Microsoft Entra admin center.</p>
+
+<pre><code class="language-powershell"># Connect to Microsoft Entra ID PowerShell
+Connect-MsolService
+
+# Get existing domains
+Get-MsolDomain
+
+# If your domain is not listed, add it (replace 'yourdomain.com')
+New-MsolDomain -Name "yourdomain.com"
+
+# Verify the domain by adding DNS records with your DNS provider (e.g., TXT record)
+# Microsoft will provide specific TXT record details after 'New-MsolDomain'
+# Once DNS is propagated, verify the domain
+Confirm-MsolDomain -DomainName "yourdomain.com"</code></pre>
+<ul>
+<li><code>Connect-MsolService</code>: Establishes a connection to Microsoft Online Services, allowing you to manage Entra ID resources.</li>
+<li><code>Get-MsolDomain</code>: Lists all domains associated with your tenant.</li>
+<li><code>New-MsolDomain -Name "yourdomain.com"</code>: Initiates the process to add your custom domain. You'll be prompted to create a TXT or MX record with your DNS host to prove ownership.</li>
+<li><code>Confirm-MsolDomain -DomainName "yourdomain.com"</code>: After you've added the required DNS record and it has propagated, run this command to verify ownership and activate the domain.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Go to the <a href="https://admin.microsoft.com/" target="_blank">Microsoft 365 admin center</a> &gt; <strong>Settings</strong> &gt; <strong>Domains</strong> &gt; <strong>Add domain</strong>. Follow the wizard to enter your domain name and add the required TXT or MX record at your DNS host. The portal provides the exact record details you need.</p>
+
+<h3>Verify Intune Admin Center Access:</h3>
+<p>After configuring your domain, ensure you can access the Intune admin center smoothly.</p>
+<p class="gui-note"><strong>Portal confirmation:</strong> Navigate to <a href="https://intune.microsoft.com/" target="_blank">https://intune.microsoft.com/</a>. You should see the dashboard without any errors, confirming your access to the service.</p>
+
+<h2>Step 3: Add Users and Create Groups in Microsoft Entra ID</h2>
+<p>Intune relies on Microsoft Entra ID for user identities and group-based policy assignment. Users need accounts to sign in to managed devices, and groups are essential for efficiently assigning licenses, apps, and configuration policies at scale.</p>
+
+<h3>Add Users to Microsoft Entra ID:</h3>
+<p>You can add users individually or in bulk. For SMBs, individual addition or a small bulk import is common.</p>
+
+<pre><code class="language-powershell"># Connect to Microsoft Entra ID PowerShell
+Connect-MsolService
+
+# Add a new user (replace details)
+New-MsolUser -UserPrincipalName "jdoe@yourdomain.com" -DisplayName "John Doe" -FirstName "John" -LastName "Doe" -Password "YourStrongPassword!" -UsageLocation "US" -ForceChangePassword $true
+
+# Assign an Intune license (e.g., Microsoft 365 Business Premium SKU: SKYCORE_BUSINESS_PREMIUM)
+# To find your SKU, use: Get-MsolAccountSku
+$user = Get-MsolUser -UserPrincipalName "jdoe@yourdomain.com"
+$licenseSku = (Get-MsolAccountSku | Where-Object {$_.SkuPartNumber -eq "SMB_BUSINESS_PREMIUM"}).AccountSkuId # Adjust SkuPartNumber based on your subscription
+Set-MsolUserLicense -UserPrincipalName "jdoe@yourdomain.com" -AddLicenses $licenseSku</code></pre>
+<ul>
+<li><code>New-MsolUser</code>: Creates a new user in Microsoft Entra ID. Ensure <code>-UsageLocation</code> is set as it's required for license assignment.</li>
+<li><code>Set-MsolUserLicense</code>: Assigns a license to the newly created user. You must replace <code>SMB_BUSINESS_PREMIUM</code> with the actual SkuPartNumber for your Intune-inclusive license (e.g., `Microsoft365_Business_Premium`). Use `Get-MsolAccountSku` to find the correct SKU.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Go to the <a href="https://admin.microsoft.com/" target="_blank">Microsoft 365 admin center</a> &gt; <strong>Users</strong> &gt; <strong>Active users</strong> &gt; <strong>Add a user</strong>. Fill in the details, assign roles, and select the appropriate product license.</p>
+
+<h3>Create Security Groups:</h3>
+<p>Create groups for different departments (e.g., Sales, Marketing, IT) or device types (e.g., Windows Laptops, iOS Devices). These groups will be used to target policies and apps.</p>
+
+<pre><code class="language-powershell"># Connect to Microsoft Entra ID PowerShell
+Connect-MsolService
+
+# Create a new security group for IT Staff
+New-MsolGroup -DisplayName "Intune_IT_Staff" -Description "IT Staff for Intune Policy Assignment" -GroupType Security
+
+# Add users to the group
+Add-MsolGroupMember -GroupObjectId (Get-MsolGroup -DisplayName "Intune_IT_Staff").ObjectId -GroupMemberObjectId (Get-MsolUser -UserPrincipalName "jdoe@yourdomain.com").ObjectId
+
+# Repeat for other groups like 'Intune_All_Employees' or 'Intune_Windows_Devices'</code></pre>
+<ul>
+<li><code>New-MsolGroup</code>: Creates a new security group. We recommend prefixing group names (e.g., <code>Intune_</code>) for clarity.</li>
+<li><code>Add-MsolGroupMember</code>: Adds a user to the specified group using their Object IDs.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Go to the <a href="https://admin.microsoft.com/" target="_blank">Microsoft 365 admin center</a> &gt; <strong>Teams &amp; groups</strong> &gt; <strong>Active teams &amp; groups</strong> &gt; <strong>Add a group</strong>. Choose 'Security' as the group type.</p>
+
+<h2>Step 4: Prepare Device Enrollment and Set Restrictions</h2>
+<p>Device enrollment is the process by which devices are registered with Microsoft Entra ID and subsequently managed by Intune. For SMBs, user-driven enrollment is the most common starting point for both corporate and personal devices.</p>
+
+<h3>Configure Enrollment Restrictions:</h3>
+<p>Enrollment restrictions allow you to define which device platforms (Windows, iOS, Android, macOS) can enroll and to set limits based on device ownership (corporate or personal) and OS versions.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> By default, all device platforms can enroll in Intune. It's a best practice for SMBs to create device platform restrictions early to prevent unsupported or unauthorized devices from enrolling. For instance, if you only support Windows and iOS, restrict Android and macOS for corporate devices initially.</div>
+
+<p class="gui-note"><strong>Portal Steps:</strong></p>
+<ol>
+<li>Navigate to the <a href="https://intune.microsoft.com/" target="_blank">Microsoft Intune admin center</a>.</li>
+<li>Go to <strong>Devices</strong> &gt; <strong>Enroll devices</strong> &gt; <strong>Enrollment restrictions</strong>.</li>
+<li>You'll see default restrictions for Device Type and Device Limit. Click on a restriction (e.g., <strong>All Users</strong> for Device Type).</li>
+<li>Click <strong>Properties</strong> &gt; <strong>Edit</strong> next to 'Platform settings'.</li>
+<li>For each platform you want to restrict, set 'Platform' to <strong>Block</strong> or configure minimum/maximum OS versions. For example, to block Android and macOS enrollment for corporate devices, set their respective platforms to <strong>Block</strong>. Ensure Windows (MDM) and iOS/iPadOS are allowed.</li>
+<li>For 'Personally owned devices', you might choose to <strong>Block</strong> for corporate-owned device policies or set it to <strong>Allow</strong> if supporting BYOD with MAM policies. For full MDM on corporate devices, often you block personally owned to enforce corporate device acquisition policies.</li>
+<li>Click <strong>Review + save</strong>.</li>
+</ol>
+
+<h3>Enable Windows Automatic Enrollment (for Hybrid/Cloud-joined Windows devices):</h3>
+<p>For Windows devices, you can configure automatic MDM enrollment. When a user joins a device to Microsoft Entra ID (either during OOBE or by joining an existing device), it automatically enrolls in Intune.</p>
+
+<p class="gui-note"><strong>Portal Steps:</strong></p>
+<ol>
+<li>Navigate to the <a href="https://intune.microsoft.com/" target="_blank">Microsoft Intune admin center</a>.</li>
+<li>Go to <strong>Devices</strong> &gt; <strong>Enroll devices</strong> &gt; <strong>Windows enrollment</strong> &gt; <strong>Automatic Enrollment</strong>.</li>
+<li>Under 'MDM user scope', set to <strong>All</strong> (recommended for SMBs for simplicity) or <strong>Some</strong> (if you want to target specific security groups).</li>
+<li>Under 'MAM user scope', set to <strong>None</strong> (if focusing purely on MDM for corp devices) or <strong>All/Some</strong> for BYOD scenarios.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For corporate-owned Windows devices, consider Windows Autopilot once your basic Intune setup is complete. Autopilot streamlines the out-of-box experience by pre-configuring devices and automatically enrolling them into Intune with minimal user interaction.</div>
+
+<h2>Step 5: Configure Device Compliance Policies</h2>
+<p>Device compliance policies define the rules and settings that devices must adhere to in order to be considered compliant by your organization. This is a critical component of a Zero Trust strategy, especially when combined with Conditional Access.</p>
+
+<p class="gui-note"><strong>Portal Steps:</strong></p>
+<ol>
+<li>Navigate to the <a href="https://intune.microsoft.com/" target="_blank">Microsoft Intune admin center</a>.</li>
+<li>Go to <strong>Endpoint security</strong> &gt; <strong>Device compliance</strong> &gt; <strong>Policies</strong> &gt; <strong>Create Policy</strong>.</li>
+<li>Select the 'Platform' (e.g., <strong>Windows 10 and later</strong>) and click <strong>Create</strong>.</li>
+<li>On the <strong>Basics</strong> tab, provide a <strong>Name</strong> (e.g., <code>Windows_Corp_Compliance_Policy</code>) and <strong>Description</strong>, then click <strong>Next</strong>.</li>
+<li>On the <strong>Compliance settings</strong> tab, configure the following (SMB recommendations):</li>
+    <ul>
+        <li><strong>Device Health:</strong>
+            <ul>
+                <li>Require BitLocker: <strong>Require</strong></li>
+                <li>Require Secure Boot: <strong>Require</strong></li>
+                <li>Require Code Integrity: <strong>Require</strong></li>
+            </ul>
+        </li>
+        <li><strong>Device Properties:</strong>
+            <ul>
+                <li>Minimum OS version: Set a reasonable minimum (e.g., <code>10.0.19045.0</code> for Windows 10/11 22H2)</li>
+            </ul>
+        </li>
+        <li><strong>System Security:</strong>
+            <ul>
+                <li>Require a password to unlock mobile devices: <strong>Require</strong></li>
+                <li>Minimum password length: <strong>6</strong></li>
+                <li>Password type: <strong>Alphanumeric</strong></li>
+                <li>Require a password expiration: <strong>Not configured</strong> (often handled by Windows Hello for Business or other policies)</li>
+                <li>Encryption of data storage on device: <strong>Require</strong></li>
+            </ul>
+        </li>
+    </ul>
+<li>Click <strong>Next</strong>.</li>
+<li>On the <strong>Actions for noncompliance</strong> tab, define actions like marking the device noncompliant immediately (recommended for initial setup) and potentially sending email to the user. Click <strong>Next</strong>.</li>
+<li>On the <strong>Assignments</strong> tab, assign the policy to your relevant security group (e.g., <code>Intune_All_Employees</code> or <code>Intune_IT_Staff</code> for testing). Click <strong>Next</strong>.</li>
+<li>On the <strong>Review + create</strong> tab, review your settings and click <strong>Create</strong>.</li>
+</ol>
+
+<h3>Confirmation of Policy Assignment:</h3>
+<p>After creating and assigning the policy, you can verify its status.</p>
+<p class="gui-note"><strong>Portal verification:</strong> In the Intune admin center, go to <strong>Endpoint security</strong> &gt; <strong>Device compliance</strong> &gt; <strong>Policies</strong>. Select your policy and check the 'Assignments' tab to confirm the correct groups are targeted. After devices enroll, you can monitor their compliance status under <strong>Devices</strong> &gt; <strong>All devices</strong> or directly in the policy's overview.</p>
+
+<h2>Step 6: Deploy Device Configuration Profiles</h2>
+<p>Device configuration profiles allow you to manage settings and features on your devices. This includes things like Wi-Fi network settings, email profiles, VPN connections, and security baselines. For SMBs, a few core profiles are usually essential.</p>
+
+<h3>Example: Configure Windows Update Rings:</h3>
+<p>Ensuring devices receive timely updates is crucial for security. Update rings allow you to control how and when updates are deployed.</p>
+
+<p class="gui-note"><strong>Portal Steps:</strong></p>
+<ol>
+<li>Navigate to the <a href="https://intune.microsoft.com/" target="_blank">Microsoft Intune admin center</a>.</li>
+<li>Go to <strong>Devices</strong> &gt; <strong>Windows</strong> &gt; <strong>Update rings</strong> &gt; <strong>Create profile</strong>.</li>
+<li>On the <strong>Basics</strong> tab, provide a <strong>Name</strong> (e.g., <code>Windows_Corp_UpdateRing_Standard</code>) and <strong>Description</strong>, then click <strong>Next</strong>.</li>
+<li>On the <strong>Update ring settings</strong> tab, configure the following (SMB recommendations):</li>
+    <ul>
+        <li>Servicing channel: <strong>Semi-Annual Channel</strong></li>
+        <li>Microsoft product updates: <strong>Allow</strong></li>
+        <li>Windows drivers: <strong>Allow</strong></li>
+        <li>Quality update deferral period (days): <strong>7</strong> (to allow for initial stability checks)</li>
+        <li>Feature update deferral period (days): <strong>90</strong> (to allow for broader adoption and bug fixes)</li>
+        <li>Automatic update behavior: <strong>Auto install at maintenance time</strong></li>
+        <li>Restart checks: <strong>Allow</strong></li>
+        <li>Users to pause Windows updates: <strong>Not configured</strong> (or Block for stricter control)</li>
+        <li>Users to scan for Windows updates: <strong>Allow</strong></li>
+    </ul>
+<li>Click <strong>Next</strong>.</li>
+<li>On the <strong>Assignments</strong> tab, assign to your target group (e.g., <code>Intune_All_Employees</code>). Click <strong>Next</strong>.</li>
+<li>On the <strong>Review + create</strong> tab, review your settings and click <strong>Create</strong>.</li>
+</ol>
+
+<h3>Example: Deploy an Email Profile (Exchange ActiveSync):</h3>
+<p>Automatically configure email for your users on their enrolled devices.</p>
+
+<p class="gui-note"><strong>Portal Steps:</strong></p>
+<ol>
+<li>Navigate to the <a href="https://intune.microsoft.com/" target="_blank">Microsoft Intune admin center</a>.</li>
+<li>Go to <strong>Devices</strong> &gt; <strong>Configuration profiles</strong> &gt; <strong>Create profile</strong>.</li>
+<li>Select <strong>Platform</strong> (e.g., <strong>Windows 10 and later</strong>), <strong>Profile type</strong> (<strong>Templates</strong>), and then choose <strong>Email</strong>. Click <strong>Create</strong>.</li>
+<li>On the <strong>Basics</strong> tab, provide a <strong>Name</strong> (e.g., <code>Corp_Windows_Email_Profile</code>) and <strong>Description</strong>, then click <strong>Next</strong>.</li>
+<li>On the <strong>Configuration settings</strong> tab:</li>
+    <ul>
+        <li>Account name: <code>Corporate Email</code></li>
+        <li>User name from Entra ID: <code>User Principal Name</code></li>
+        <li>Email address from Entra ID: <code>Primary SMTP address</code></li>
+        <li>Exchange ActiveSync host name: <code>outlook.office365.com</code> (for Exchange Online)</li>
+        <li>Use SSL: <strong>Yes</strong></li>
+        <li>Authentication: <strong>Username and Password</strong> (or Certificate for advanced scenarios)</li>
+    </ul>
+<li>Click <strong>Next</strong>.</li>
+<li>On the <strong>Assignments</strong> tab, assign to your target group (e.g., <code>Intune_All_Employees</code>). Click <strong>Next</strong>.</li>
+<li>On the <strong>Review + create</strong> tab, review your settings and click <strong>Create</strong>.</li>
+</ol>
+
+<p class="gui-note"><strong>Portal verification:</strong> In the Intune admin center, go to <strong>Devices</strong> &gt; <strong>Configuration profiles</strong>. Select your created profile and check the 'Assignments' to confirm groups. After devices enroll, you can check device status under the profile's overview.</p>
+
+<h2>Step 7: Enroll End-User Devices</h2>
+<p>With the foundational policies in place, the final step is to get your end-users to enroll their devices. For SMBs, user-driven enrollment via the Company Portal app is the most common method.</p>
+
+<h3>Windows User-Driven Enrollment:</h3>
+<p>Users can enroll their personal or corporate Windows devices through their work or school account settings.</p>
+
+<p class="gui-note"><strong>End-User Steps for Windows:</strong></p>
+<ol>
+<li>On their Windows 10/11 device, go to <strong>Settings</strong> &gt; <strong>Accounts</strong> &gt; <strong>Access work or school</strong>.</li>
+<li>Click <strong>Connect</strong>.</li>
+<li>Enter their Microsoft Entra ID work email address and follow the prompts. If auto-enrollment is configured (Step 4), the device will be automatically enrolled into Intune after joining Entra ID.</li>
+<li>Alternatively, they can download the <strong>Company Portal</strong> app from the Microsoft Store, sign in, and follow the on-screen instructions.</li>
+</ol>
+
+<h3>iOS/iPadOS User-Driven Enrollment:</h3>
+<p>Users download the Company Portal app from the App Store.</p>
+
+<p class="gui-note"><strong>End-User Steps for iOS/iPadOS:</strong></p>
+<ol>
+<li>Download the <strong>Microsoft Intune Company Portal</strong> app from the App Store.</li>
+<li>Open the Company Portal app and sign in with their Microsoft Entra ID work credentials.</li>
+<li>Follow the prompts to enroll the device. This typically involves allowing a management profile to be installed, which grants Intune control over the device.</li>
+</ol>
+
+<h3>Android User-Driven Enrollment:</h3>
+<p>Android enrollment typically involves the Company Portal app and designating the device as a 'work profile' (for BYOD) or 'fully managed' (for corporate devices).</p>
+
+<p class="gui-note"><strong>End-User Steps for Android (Work Profile Recommended for BYOD):</strong></p>
+<ol>
+<li>Download the <strong>Microsoft Intune Company Portal</strong> app from the Google Play Store.</li>
+<li>Open the Company Portal app and sign in with their Microsoft Entra ID work credentials.</li>
+<li>Follow the prompts. For BYOD, choose to set up a 'work profile'. For corporate devices, consider setting up as 'fully managed' if your organization prefers greater control.</li>
+</ol>
+
+<h3>Monitor Enrollment and Compliance:</h3>
+<p>As devices enroll, monitor their status in the Intune admin center to ensure they are compliant and receiving policies.</p>
+<p class="gui-note"><strong>Portal verification:</strong> In the Intune admin center, go to <strong>Devices</strong> &gt; <strong>All devices</strong>. Here you will see a list of all enrolled devices, their compliance status, and details about their configuration.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide provides a solid foundation for a <strong>Microsoft Intune MDM setup for SMB</strong>, certain scenarios can benefit significantly from expert guidance. If your organization has complex hybrid Active Directory environments, requires advanced Conditional Access policies, needs bespoke application deployment strategies, or is embarking on a large-scale production migration with zero downtime requirements, SkyCore Solutions can provide tailored assistance. Our senior architects specialize in ensuring a seamless, secure, and optimized Intune deployment that aligns perfectly with your business goals and compliance needs, freeing up your internal IT resources.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/mem/intune/fundamentals/what-is-intune" target="_blank" rel="noopener noreferrer">learn.microsoft.com — what is intune</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/mem/intune/fundamentals/setup-steps" target="_blank" rel="noopener noreferrer">learn.microsoft.com — setup steps</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment" target="_blank" rel="noopener noreferrer">learn.microsoft.com — device enrollment</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/mem/intune/protect/device-compliance-get-started" target="_blank" rel="noopener noreferrer">learn.microsoft.com — device compliance get started</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/mem/intune/configuration/device-profiles" target="_blank" rel="noopener noreferrer">learn.microsoft.com — device profiles</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
