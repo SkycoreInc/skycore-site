@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mastering Hybrid Identity: Your SkyCore Azure AD Connect Setup Guide (Microsoft Entra Connect V2) — SkyCore Solutions</title>
+  <meta name="description" content="Deploy Azure AD Connect V2 (now Microsoft Entra Connect) with SkyCore Solutions' expert guide. Synchronize on-premises AD identities to Azure AD, enhance security, and enable seamless cloud access. Learn step-by-step installation with best practices for 2026." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Mastering Hybrid Identity: Your SkyCore Azure AD Connect Setup Guide (Microsoft Entra Connect V2) — SkyCore Solutions" />
+  <meta property="og:description" content="Deploy Azure AD Connect V2 (now Microsoft Entra Connect) with SkyCore Solutions' expert guide. Synchronize on-premises AD identities to Azure AD, enhance security, and enable seamless cloud access. Learn step-by-step installation with best practices for 2026." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-ad-connect-setup-guide-skycore.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mastering Hybrid Identity: Your SkyCore Azure AD Connect Setup Guide (Microsoft Entra Connect V2) — SkyCore Solutions" />
+  <meta name="twitter:description" content="Deploy Azure AD Connect V2 (now Microsoft Entra Connect) with SkyCore Solutions' expert guide. Synchronize on-premises AD identities to Azure AD, enhance security, and enable seamless cloud access. Learn step-by-step installation with best practices for 2026." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-ad-connect-setup-guide-skycore.html" />
+  <meta property="article:published_time" content="2026-07-01" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Mastering Hybrid Identity: Your SkyCore Azure AD Connect Setup Guide (Microsoft Entra Connect V2)",
+  "description": "Deploy Azure AD Connect V2 (now Microsoft Entra Connect) with SkyCore Solutions' expert guide. Synchronize on-premises AD identities to Azure AD, enhance security, and enable seamless cloud access. Learn step-by-step installation with best practices for 2026.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "A dedicated Windows Server 2016 or newer (Windows Server 2019 or 2022 recommended) is required. This server should NOT be a Domain Controller, nor should it host other critical applications like Exchange or SQL Server. It must be domain-joined., TLS 1.2 enabled and enforced on the server., .NET Framework 4.7.2 or newer installed., An Enterprise Administrator account for your on-premises Active Directory., A Microsoft Entra Global Administrator account or Hybrid Identity Administrator account with an unexpired password and MFA disabled for initial setup (MFA can be re-enabled post-setup for the admin user, but the sync account usually remains excluded)., Verified custom domains within your Microsoft Entra ID tenant., Outbound network connectivity from the Entra Connect server to Microsoft Entra ID and Microsoft 365 service endpoints (ports 443, 80)., No existing Azure AD Connect V1 installations. If you are still on V1, you MUST upgrade immediately."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Your Microsoft Entra Connect Server",
+        "text": "Ensure your dedicated server meets all hardware, software, and network prerequisites for a stable and secure installation."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Download Microsoft Entra Connect V2 Installer",
+        "text": "Obtain the latest version of the Microsoft Entra Connect installation file exclusively from the Microsoft Entra admin center."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Initiate Express Installation",
+        "text": "Run the downloaded installer and accept the licensing terms to begin the streamlined setup process."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Connect to Microsoft Entra ID",
+        "text": "Authenticate the installer to your Microsoft Entra tenant using a highly privileged administrator account."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Connect to On-Premises Active Directory DS",
+        "text": "Provide credentials for an Enterprise Administrator account to establish connectivity with your local Active Directory forest."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Verify Configured Domains",
+        "text": "Confirm that all necessary on-premises domains are verified in Microsoft Entra ID to ensure proper object synchronization."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Finalize Configuration and Install",
+        "text": "Review your settings, choose optional features like Exchange Hybrid, and proceed with the installation of Microsoft Entra Connect."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Post-Installation Validation and Monitoring",
+        "text": "Verify the successful installation and initial synchronization, then configure Microsoft Entra Connect Health for ongoing monitoring."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-07-01 &middot; 20 min read &middot; Cloud Migration</div>
+<h1>Mastering Hybrid Identity: Your SkyCore Azure AD Connect Setup Guide (Microsoft Entra Connect V2)</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="A modern server room with illuminated racks and network cables, symbolizing the integration of on-premises and cloud identities through Azure AD Connect (Microsoft Entra Connect)." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In today's complex IT environments, bridging your on-premises Active Directory with cloud services like Microsoft 365 and Azure is no longer optional&mdash;it's essential. This comprehensive <strong>Azure AD Connect setup guide</strong>, brought to you by SkyCore Solutions, will walk you through deploying Microsoft Entra Connect V2 (formerly Azure AD Connect V2) using express settings. By the end of this guide, you'll have a robust hybrid identity solution in place, ensuring seamless user authentication and synchronization between your on-premises infrastructure and Microsoft Entra ID.</p>
+<p>As senior IT consultants, we've seen firsthand how critical a well-implemented hybrid identity solution is for security, productivity, and compliance. While the name has evolved from "Azure AD Connect" to "Microsoft Entra Connect," the core mission remains: creating a unified identity for your users across your entire digital estate. This guide focuses on the most common deployment scenario, leveraging express settings for a swift and effective setup, while also highlighting critical considerations like the mandatory upgrade to V2.5.79.0+ by September 30, 2026, and the emerging future of Microsoft Entra Cloud Sync.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4>
+<ul>
+<li><strong>Dedicated Windows Server:</strong> A clean Windows Server 2016 or newer (Windows Server 2019 or 2022 recommended) is required. This server should NOT be a Domain Controller, nor should it host other critical applications like Exchange, SharePoint, or SQL Server. It must be domain-joined.</li>
+<li><strong>TLS 1.2 Enforcement:</strong> The server must have TLS 1.2 enabled and enforced for secure communications with Microsoft Entra ID. You can verify and enable this using PowerShell.</li>
+<li><strong>.NET Framework 4.7.2:</strong> Ensure .NET Framework version 4.7.2 or higher is installed.</li>
+<li><strong>On-Premises Enterprise Administrator Account:</strong> Credentials for an Enterprise Administrator account in your on-premises Active Directory Domain Services (AD DS). This account is used to create the necessary service account within AD.</li>
+<li><strong>Microsoft Entra Global Administrator / Hybrid Identity Administrator Account:</strong> Credentials for a Microsoft Entra Global Administrator account or, preferably, a Hybrid Identity Administrator account. For initial setup, MFA should be temporarily disabled on this account to avoid installation issues.</li>
+<li><strong>Verified Custom Domains:</strong> All custom domains you intend to synchronize must be verified within your Microsoft Entra ID tenant before installation.</li>
+<li><strong>Network Connectivity:</strong> The Microsoft Entra Connect server requires outbound connectivity to Microsoft Entra ID and Microsoft 365 service endpoints over ports 443 (HTTPS) and 80.</li>
+<li><strong>No Azure AD Connect V1:</strong> Ensure no existing Azure AD Connect V1 installations are present in your environment. V1 has been retired since August 31, 2022, is no longer supported, and installations may cease to function unexpectedly. You MUST upgrade to Microsoft Entra Connect V2 immediately if still on V1.</li>
+</ul></div>
+
+<h2>Step 1: Prepare Your Microsoft Entra Connect Server</h2>
+<p>Before you even download the installer, it is paramount to prepare your dedicated server. This involves ensuring the operating system is up-to-date, meeting the .NET Framework requirement, and critically, enforcing TLS 1.2 for secure communication. SkyCore Solutions strongly recommends using a clean, dedicated server for Microsoft Entra Connect to minimize potential conflicts and enhance security.</p>
+
+<p>First, verify and enforce TLS 1.2. Although newer OS versions often have it enabled, explicit configuration ensures compliance and security hardening. You can check and set this via PowerShell:</p>
+<pre><code class="language-powershell"># Check TLS 1.2 status (Optional: May need to install the PSSecurity module if not present)
+[Net.ServicePointManager]::SecurityProtocol
+
+# Enforce TLS 1.2 for .NET applications (Required for Entra Connect)
+Set-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value 1 -Type DWord
+Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value 1 -Type DWord
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server' -Name 'Enabled' -Value 1 -Type DWord
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server' -Name 'DisabledByDefault' -Value 0 -Type DWord
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client' -Name 'Enabled' -Value 1 -Type DWord
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client' -Name 'DisabledByDefault' -Value 0 -Type DWord
+</code></pre>
+<ul>
+<li><code>Set-ItemProperty ... -Name 'SchUseStrongCrypto' -Value 1</code>: Configures .NET Framework to use strong cryptography, which includes TLS 1.2.</li>
+<li><code>Set-ItemProperty ... -Name 'Enabled' -Value 1</code>: Enables the TLS 1.2 protocol for both server and client roles.</li>
+<li><code>Set-ItemProperty ... -Name 'DisabledByDefault' -Value 0</code>: Ensures TLS 1.2 is not disabled by default.</li>
+</ul>
+<p>After executing these commands, a server reboot is recommended to ensure the changes take full effect system-wide. Additionally, verify that .NET Framework 4.7.2 or newer is installed. This is typically included with recent Windows Server updates, but can be manually installed if needed.</p>
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: TLS 1.2 not enforced.</strong> Without TLS 1.2 explicitly enabled and enforced, Microsoft Entra Connect V2 will fail to establish secure communication with Microsoft Entra ID, leading to installation errors or synchronization failures. This is a non-negotiable security requirement.</div>
+
+<h2>Step 2: Download Microsoft Entra Connect V2 Installer</h2>
+<p>The latest version of the Microsoft Entra Connect Sync installation file (MSI) is exclusively available from the Microsoft Entra admin center. It's crucial to download the most recent version to ensure compatibility, access to the latest features, and to avoid issues with retired versions.</p>
+
+<p>Navigate to the Microsoft Entra admin center and download the installer. There is no direct PowerShell command to download this specific MSI from a public URL as it's typically accessed via the portal.</p>
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ol>
+<li>Go to <a href="https://entra.microsoft.com" target="_blank">entra.microsoft.com</a>.</li>
+<li>In the left-hand navigation, expand <strong>Hybrid management</strong>, then select <strong>Microsoft Entra Connect</strong>.</li>
+<li>On the Microsoft Entra Connect overview page, locate and click the option to <strong>Download Microsoft Entra Connect</strong>.</li>
+<li>Save the <code>AzureADConnect.msi</code> file to a readily accessible location on your dedicated Entra Connect server.</li>
+</ol>
+<p><strong>Important Note:</strong> As of May 2025, Microsoft announced a mandatory upgrade requirement. All synchronization services in Microsoft Entra Connect Sync will stop working on September 30, 2026, if you are not on at least version 2.5.79.0. SkyCore Solutions strongly advises upgrading to the latest available version well before this deadline to prevent service disruption. Refer to the Microsoft Entra Connect version history for the latest updates.</p>
+
+<h2>Step 3: Initiate Express Installation</h2>
+<p>With the installer downloaded and your server prepared, you can begin the express installation. This method is suitable for single-forest topologies and when you plan to use Password Hash Synchronization for authentication, which is the default and most common choice.</p>
+
+<p>Log in to your dedicated Microsoft Entra Connect server using an account that has Local Administrator permissions. Then, execute the MSI package:</p>
+<pre><code class="language-powershell"># Navigate to the directory where you saved the installer
+cd "C:\Path\To\Installer"
+
+# Execute the installer. The express setup is primarily GUI-driven.
+Start-Process -FilePath ".\AzureADConnect.msi" -Wait
+</code></pre>
+<ul>
+<li><code>cd "C:\Path\To\Installer"</code>: Changes the current directory to where the MSI is located. Adjust the path as needed.</li>
+<li><code>Start-Process -FilePath ".\AzureADConnect.msi" -Wait</code>: Launches the installer executable. The <code>-Wait</code> parameter ensures the PowerShell session waits for the installer to complete before proceeding, although the subsequent steps are GUI-based.</li>
+</ul>
+<p>Follow the on-screen prompts:</p>
+<p class="gui-note"><strong>GUI Steps for Installation Wizard:</strong></p>
+<ol>
+<li>On the <strong>Welcome</strong> page, select the checkbox to agree to the licensing terms, then click <strong>Continue</strong>.</li>
+<li>On the <strong>Express settings</strong> page, click <strong>Use express settings</strong>. This will configure Password Hash Synchronization and enable automatic upgrades.</li>
+</ol>
+<p>The wizard will then proceed to connect to your Microsoft Entra ID tenant.</p>
+
+<h2>Step 4: Connect to Microsoft Entra ID</h2>
+<p>This step establishes the connection between your Microsoft Entra Connect server and your Microsoft Entra ID tenant. You will need to provide the credentials for a Microsoft Entra administrator account.</p>
+
+<p>Within the installation wizard:</p>
+<p class="gui-note"><strong>GUI Steps for Connecting to Microsoft Entra ID:</strong></p>
+<ol>
+<li>On the <strong>Connect to Microsoft Entra ID</strong> page, enter the username and password of your Microsoft Entra Hybrid Identity Administrator account.</li>
+<li>Click <strong>Next</strong>.</li>
+</ol>
+<p>The wizard will validate these credentials and establish a secure connection to your Microsoft Entra tenant. Ensure the account used has the necessary permissions (Global Administrator or Hybrid Identity Administrator) and that MFA is temporarily disabled for this account during installation.</p>
+
+<h2>Step 5: Connect to On-Premises Active Directory DS</h2>
+<p>Next, you'll provide the credentials for an on-premises Enterprise Administrator account. This account is used by Microsoft Entra Connect to read directory information and perform operations within your Active Directory Domain Services (AD DS).</p>
+
+<p>Within the installation wizard:</p>
+<p class="gui-note"><strong>GUI Steps for Connecting to AD DS:</strong></p>
+<ol>
+<li>On the <strong>Connect to AD DS</strong> page, enter the username and password for an Enterprise Administrator account. You can use either NetBIOS (e.g., <code>FABRIKAM\administrator</code>) or FQDN format (e.g., <code>fabrikam.com\administrator</code>).</li>
+<li>Click <strong>Next</strong>.</li>
+</ol>
+<p>Microsoft Entra Connect will then create a new service account (MSOL_xxxxxxx) in your on-premises AD, grant it the necessary replication permissions, and store its credentials securely. This service account is what Microsoft Entra Connect uses for its day-to-day synchronization activities.</p>
+
+<h2>Step 6: Verify Configured Domains</h2>
+<p>If you haven't already verified your custom domains in Microsoft Entra ID, the wizard will prompt you to do so. This step is critical because Microsoft Entra Connect can only synchronize users from domains that are recognized and verified in your Microsoft Entra tenant.</p>
+
+<p>Within the installation wizard:</p>
+<p class="gui-note"><strong>GUI Steps for Domain Verification:</strong></p>
+<ol>
+<li>If the <strong>Microsoft Entra ID sign-in configuration</strong> page appears, review each domain marked "Not Added" or "Not Verified."</li>
+<li>You must go to the Microsoft Entra admin center (or your domain registrar) to verify these domains.</li>
+<li>Once verified, return to the wizard and click the <strong>Refresh</strong> icon. Ensure all domains you intend to use are marked as "Added" and "Verified."</li>
+<li>Click <strong>Next</strong>.</li>
+</ol>
+<p>Proper domain verification ensures that users synchronizing from your on-premises AD will have UPNs (User Principal Names) that correspond to a valid, verified domain in Microsoft Entra ID, allowing for seamless sign-in experiences.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: Unverified domains.</strong> If your custom domains are not properly verified in Microsoft Entra ID, users with UPNs in those domains will fail to synchronize or will synchronize with an incorrect <code>.onmicrosoft.com</code> UPN, leading to sign-in issues and user confusion. Always verify your domains *before* running Entra Connect.</div>
+
+<h2>Step 7: Finalize Configuration and Install</h2>
+<p>This is the final step before installation. Here, you'll confirm your choices and initiate the deployment of Microsoft Entra Connect. You also have an option to enable Exchange Hybrid deployment if you plan to manage mailboxes both on-premises and in the cloud simultaneously.</p>
+
+<p>Within the installation wizard:</p>
+<p class="gui-note"><strong>GUI Steps for Final Configuration:</strong></p>
+<ol>
+<li>On the <strong>Ready to configure</strong> page, you have a few options:
+    <ul>
+        <li><strong>Start the synchronization process as soon as configuration completes:</strong> This checkbox is selected by default. If you want to perform additional configurations (e.g., filtering specific OUs or attributes) before initial synchronization, clear this checkbox. If cleared, you'll need to manually enable the scheduler later.</li>
+        <li><strong>Enable Exchange Hybrid deployment:</strong> Select this if you have Exchange in your on-premises AD and plan to manage mailboxes both on-premises and in Microsoft 365. This ensures the correct synchronization of Exchange attributes.</li>
+    </ul>
+</li>
+<li>Click <strong>Install</strong>.</li>
+</ol>
+<p>The wizard will now configure and install Microsoft Entra Connect, including the synchronization service, the administration tools, and the necessary agents for Microsoft Entra Connect Health. This process can take several minutes.</p>
+<pre><code class="language-powershell"># After clicking Install in the GUI, the actual installation process runs.
+# If you chose to disable the scheduler:
+# To manually enable the scheduler after installation (e.g., after custom configurations):
+Set-ADSyncScheduler -SyncCycleEnabled $true
+</code></pre>
+<ul>
+<li><code>Set-ADSyncScheduler -SyncCycleEnabled $true</code>: Enables the synchronization scheduler, allowing Microsoft Entra Connect to perform regular delta and full synchronizations.</li>
+</ul>
+<p>Upon successful completion, a confirmation screen will appear. Click <strong>Exit</strong> to close the wizard. SkyCore Solutions recommends immediately signing out and then back into the server before attempting to use the Synchronization Service Manager or Synchronization Rule Editor to ensure all environment variables are correctly loaded.</p>
+
+<h2>Step 8: Post-Installation Validation and Monitoring</h2>
+<p>After installation, it's crucial to validate that Microsoft Entra Connect is functioning as expected. This involves checking the initial synchronization and setting up ongoing monitoring.</p>
+
+<p>To verify synchronization:</p>
+<p class="gui-note"><strong>Portal and PowerShell Validation:</strong></p>
+<ol>
+<li><strong>Check synchronization status in Microsoft Entra admin center:</strong>
+    <ul>
+        <li>Go to <a href="https://entra.microsoft.com" target="_blank">entra.microsoft.com</a>.</li>
+        <li>Navigate to <strong>Hybrid management</strong> &gt; <strong>Microsoft Entra Connect</strong>.</li>
+        <li>Review the <strong>Synchronization Status</strong>. You should see successful sync cycles.</li>
+        <li>Check <strong>Synchronization Service Manager</strong> on the Entra Connect server to review connector operations (<code>C:\Program Files\Microsoft Entra Connect\Synchronization Service\UIShell\miisclient.exe</code>).</li>
+    </ul>
+</li>
+<li><strong>Verify synchronized objects:</strong>
+    <ul>
+        <li>In the Microsoft Entra admin center, go to <strong>Identity</strong> &gt; <strong>Users</strong> &gt; <strong>All users</strong>. Look for users synchronized from your on-premises AD. The <strong>Source</strong> column should show "Windows Server AD."</li>
+        <li>Alternatively, use PowerShell to query a synchronized user:
+<pre><code class="language-powershell">Get-MsolUser -UserPrincipalName "user@yourdomain.com" | Format-List DisplayName,UserPrincipalName,ImmutableId,DirSyncEnabled
+</code></pre>
+        </li>
+        <li><code>Get-MsolUser</code>: Retrieves a user object from Microsoft Entra ID.</li>
+        <li><code>-UserPrincipalName</code>: Specifies the UPN of the user to retrieve.</li>
+        <li><code>Format-List DisplayName,UserPrincipalName,ImmutableId,DirSyncEnabled</code>: Displays specific properties, including <code>ImmutableId</code> (the source anchor from on-premises AD) and <code>DirSyncEnabled</code> (indicating synchronization status).</li>
+    </ul>
+</li>
+</ol>
+<p>Finally, enable and configure Microsoft Entra Connect Health for robust monitoring of your hybrid identity infrastructure. This service provides alerts, performance monitoring, and usage analytics directly in the Microsoft Entra admin center, ensuring the reliability of your connection.</p>
+<p class="gui-note"><strong>Portal alternative for Entra Connect Health:</strong></p>
+<ol>
+<li>After successful installation, the Health Agent is automatically installed.</li>
+<li>Go to <a href="https://entra.microsoft.com" target="_blank">entra.microsoft.com</a>.</li>
+<li>Navigate to <strong>Hybrid management</strong> &gt; <strong>Microsoft Entra Connect</strong> &gt; <strong>Microsoft Entra Connect Health</strong>.</li>
+<li>You should see your new Microsoft Entra Connect server reporting its status.</li>
+</ol>
+<p>Regularly review the Entra Connect Health dashboard for any synchronization errors, performance issues, or critical alerts to proactively address potential problems.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: Ignoring Entra Connect Health.</strong> Microsoft Entra Connect Health is not just a fancy dashboard; it's a critical tool for maintaining the health and reliability of your hybrid identity. Failing to monitor it can lead to undetected synchronization errors, authentication outages, or security vulnerabilities. Ensure monitoring is configured and regularly reviewed, especially for critical versions like V2.5.79.0+ which require Entra Connect Health for Sync.</div>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3><p>While this guide provides a clear path for express installation, hybrid identity can quickly become complex, especially in multi-forest environments, when integrating with AD FS, or when custom synchronization rules are required. DIY solutions might introduce security gaps, lead to data inconsistencies, or fail to meet specific business requirements. If you're dealing with advanced filtering, attribute flow customization, complex authentication scenarios, or considering a migration to Microsoft Entra Cloud Sync, SkyCore Solutions has the deep expertise to design and implement a tailored, secure, and scalable hybrid identity solution. Don't risk critical infrastructure by cutting corners; ensure your foundation is solid.</p><a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/entra/identity</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-install-express" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/entra/identity</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/reference-connect-version-history" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/entra/identity</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-sync-whatis" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/entra/identity</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

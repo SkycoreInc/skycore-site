@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-ad-connect-setup-guide-skycore",
+    title: "Mastering Hybrid Identity: Your SkyCore Azure AD Connect Setup Guide (Microsoft Entra Connect V2)",
+    date: "2026-07-01",
+    readTime: "20 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 hours",
+    keyword: "Azure AD Connect setup guide",
+    excerpt: "This comprehensive guide by SkyCore Solutions walks you through setting up Azure AD Connect (now Microsoft Entra Connect V2) for hybrid identity. Seamlessly synchronize your on-premises Active Directory with Microsoft Entra ID to empower your users.",
+    image: "https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-devops-ci-cd-pipeline-setup-guide",
     title: "Mastering Your Workflow: The Azure DevOps CI CD Pipeline Setup Guide for SMBs",
     date: "2026-06-29",
