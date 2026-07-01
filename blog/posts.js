@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "azure-cli-zero-trust-security-montreal",
+    title: "Azure CLI Attacks Underscore Urgent Need for Zero Trust Security in Montreal",
+    date: "2026-07-01",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "Recent reports of massive Azure CLI password spray attacks demonstrate that cloud environments are constant targets. Discover how adopting a zero-trust security model can fortify your business against sophisticated cyber threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/9783812/pexels-photo-9783812.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "patch-tuesday-security-hardening-montreal",
     title: "Beyond Patch Tuesday: Essential Cybersecurity Hardening for Montreal SMBs",
     date: "2026-06-29",
