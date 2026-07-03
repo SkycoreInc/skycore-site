@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "advanced-microsoft-365-security",
+    title: "Protect Your Business: Advanced Microsoft 365 Security Hardening in Montreal",
+    date: "2026-07-03",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Cyber threats like ConsentFix and ClickFix are bypassing traditional MFA to hijack Microsoft 365 accounts in seconds. Discover SkyCore Solutions' advanced security hardening strategies.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/1181207/pexels-photo-1181207.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-cli-zero-trust-security-montreal",
     title: "Azure CLI Attacks Underscore Urgent Need for Zero Trust Security in Montreal",
     date: "2026-07-01",
