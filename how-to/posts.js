@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "it-infrastructure-assessment-guide-skycore",
+    title: "The Definitive IT Infrastructure Assessment Guide for Modern Enterprises",
+    date: "2026-07-04",
+    readTime: "11 min read",
+    category: "IT Strategy",
+    difficulty: "Intermediate",
+    timeEstimate: "Initial Data Collection: 8-16 hours (depending on scope)",
+    keyword: "IT infrastructure assessment guide",
+    excerpt: "Unlock your infrastructure's true potential. This guide provides a CLI-first approach to comprehensively assess your IT environment for performance, security, and cloud readiness.",
+    image: "https://images.pexels.com/photos/4682189/pexels-photo-4682189.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-intune-mdm-setup-smb-guide",
     title: "Comprehensive Guide: Microsoft Intune MDM Setup for SMBs in 2026",
     date: "2026-07-01",

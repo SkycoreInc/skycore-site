@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Definitive IT Infrastructure Assessment Guide for Modern Enterprises — SkyCore Solutions</title>
+  <meta name="description" content="SkyCore Solutions' authoritative IT infrastructure assessment guide helps identify performance bottlenecks, security gaps, and cloud migration opportunities. Master CLI-first discovery." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="The Definitive IT Infrastructure Assessment Guide for Modern Enterprises — SkyCore Solutions" />
+  <meta property="og:description" content="SkyCore Solutions' authoritative IT infrastructure assessment guide helps identify performance bottlenecks, security gaps, and cloud migration opportunities. Master CLI-first discovery." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/it-infrastructure-assessment-guide-skycore.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/4682189/pexels-photo-4682189.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Definitive IT Infrastructure Assessment Guide for Modern Enterprises — SkyCore Solutions" />
+  <meta name="twitter:description" content="SkyCore Solutions' authoritative IT infrastructure assessment guide helps identify performance bottlenecks, security gaps, and cloud migration opportunities. Master CLI-first discovery." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/4682189/pexels-photo-4682189.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/it-infrastructure-assessment-guide-skycore.html" />
+  <meta property="article:published_time" content="2026-07-04" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "The Definitive IT Infrastructure Assessment Guide for Modern Enterprises",
+  "description": "SkyCore Solutions' authoritative IT infrastructure assessment guide helps identify performance bottlenecks, security gaps, and cloud migration opportunities. Master CLI-first discovery.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Administrator-level access to all target servers (Windows and Linux)., An active Azure subscription with 'Reader' and 'Security Reader' roles (at minimum) for assessment., Azure CLI and Azure PowerShell modules installed and authenticated on your workstation., PowerShell 7.x or later on Windows machines for best scripting practices., Network connectivity to all on-premises infrastructure components., Basic understanding of networking, operating systems, and cloud concepts."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Define Scope, Objectives, and Tools",
+        "text": "Clearly delineate the boundaries and goals of your assessment, and gather the necessary tools."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Inventory Hardware & Software Assets",
+        "text": "Discover and catalog all computing resources, operating systems, and key applications."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Assess Performance & Resource Utilization",
+        "text": "Collect and analyze performance metrics to identify bottlenecks and optimization opportunities."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Evaluate Network Configuration & Connectivity",
+        "text": "Examine network topology, bandwidth, and security controls across your infrastructure."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Assess Security Posture",
+        "text": "Identify vulnerabilities, misconfigurations, and compliance gaps within your systems."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Review Data Management & Disaster Recovery",
+        "text": "Examine backup strategies, data integrity, and disaster recovery readiness."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Evaluate Cloud Readiness & Optimization (Azure Focus)",
+        "text": "Pinpoint existing cloud inefficiencies and identify suitable candidates for Azure migration."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Synthesize Findings and Develop Recommendations",
+        "text": "Consolidate all collected data into actionable insights and strategic recommendations."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-07-04 &middot; 11 min read &middot; IT Strategy</div>
+<h1>The Definitive IT Infrastructure Assessment Guide for Modern Enterprises</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/4682189/pexels-photo-4682189.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Servers and network cables in a modern data center for an IT infrastructure assessment guide." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In an era defined by rapid technological shifts, an aging or inefficient IT infrastructure can become a significant liability, manifesting as performance bottlenecks, security vulnerabilities, prohibitive operational costs, and stalled innovation. To navigate these challenges effectively and chart a clear path forward, a comprehensive <strong>IT infrastructure assessment guide</strong> is not just recommended—it's imperative. This guide provides a CLI-first framework for senior IT administrators and architects to systematically evaluate their environment, uncover critical insights, and prepare for strategic initiatives like cloud migration, security hardening, or a full infrastructure revamp. By the end, you'll possess the practical commands and strategic thinking required to conduct a thorough assessment, driving impactful change within your organization.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>Administrator-level access to all target servers (Windows and Linux).</li><li>An active Azure subscription with 'Reader' and 'Security Reader' roles (at minimum) for assessment.</li><li>Azure CLI and Azure PowerShell modules installed and authenticated on your workstation.</li><li>PowerShell 7.x or later on Windows machines for best scripting practices.</li><li>Network connectivity to all on-premises infrastructure components.</li><li>Basic understanding of networking, operating systems, and cloud concepts.</li></ul></div>
+
+<h2>Step 1: Define Scope, Objectives, and Tools</h2>
+<p>Before executing any commands, clearly define what your assessment aims to achieve. Are you focusing on cloud migration readiness, identifying security gaps, or optimizing performance? Without clear objectives, you risk collecting irrelevant data or missing critical insights. Establish the boundaries of your assessment (e.g., all production servers, specific applications, network segments). This step also involves gathering necessary access credentials and ensuring your workstation is configured with the required CLI tools.</p>
+<pre><code class="language-powershell"># Example: Authenticate Azure CLI
+az login
+
+# Example: Authenticate Azure PowerShell
+Connect-AzAccount
+</code></pre>
+<ul>
+<li><code>az login</code>: Initiates an interactive browser login for Azure CLI.</li>
+<li><code>Connect-AzAccount</code>: Initiates an interactive browser login for Azure PowerShell.</li>
+</ul>
+<p><strong>Opinionated:</strong> Always start with a small, representative scope if this is your first large-scale assessment. Learn, refine your process, then expand. A spreadsheet or CMDB is essential here to track assets and progress, along with a secure password management solution for credentials.</p>
+<p class="gui-note"><strong>Portal alternative:</strong> While core authentication is CLI-driven, you'll manage permissions and review subscription details in the Azure portal under "Subscriptions" and "Access control (IAM)".</p>
+<p><strong>Expected confirmation:</strong> Successful authentication to Azure and clear documentation of your assessment scope and objectives.</p>
+
+<h2>Step 2: Inventory Hardware & Software Assets</h2>
+<p>The foundation of any infrastructure assessment is a comprehensive understanding of what you own and operate. This step involves discovering all computing resources, their specifications, operating systems, and key installed software. This baseline inventory is crucial for subsequent analysis, including performance, security, and cloud migration suitability.</p>
+
+<p><strong>On-premises Windows Servers:</strong></p>
+<pre><code class="language-powershell"># Get basic system information
+Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object Name, Manufacturer, Model, NumberOfProcessors, TotalPhysicalMemory, Domain, Roles | Format-Table -AutoSize
+
+# List installed software (Note: not all software registers in this location)
+Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, InstallDate, Publisher | Where-Object {$_.DisplayName -ne $null} | Sort-Object DisplayName | Format-Table -AutoSize
+</code></pre>
+<ul>
+<li><code>Get-CimInstance -ClassName Win32_ComputerSystem</code>: Retrieves detailed information about the local computer system.</li>
+<li><code>Select-Object Name, ...</code>: Filters the properties to display specific hardware and OS details.</li>
+<li><code>Format-Table -AutoSize</code>: Formats the output as a table, automatically adjusting column widths.</li>
+<li><code>Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*</code>: Lists installed software by querying the registry's uninstall key.</li>
+<li><code>Where-Object {$_.DisplayName -ne $null}</code>: Filters out entries without a display name (often partial or system components).</li>
+</ul>
+
+<p><strong>On-premises Linux Servers:</strong></p>
+<pre><code class="language-bash"># Get basic system information
+lscpu && free -h && df -h --total && uname -a
+
+# To list installed packages (example for Debian/Ubuntu based systems):
+dpkg -l | grep -v '^ii' | awk '{print $2, $3}' | sort # lists installed package name and version
+
+# For RedHat/CentOS based systems:
+rpm -qa --qf '%{NAME} %{VERSION}\n' | sort # lists installed package name and version
+</code></pre>
+<ul>
+<li><code>lscpu</code>: Displays CPU architecture information.</li>
+<li><code>free -h</code>: Shows human-readable memory usage.</li>
+<li><code>df -h --total</code>: Reports disk space usage for all filesystems, including a total.</li>
+<li><code>uname -a</code>: Prints system information (kernel name, version, architecture).</li>
+<li><code>dpkg -l | grep -v '^ii'</code>: Lists installed Debian/Ubuntu packages and filters out uninstalled ones.</li>
+<li><code>rpm -qa --qf '%{NAME} %{VERSION}\n'</code>: Lists all installed Red Hat/CentOS packages with name and version.</li>
+</ul>
+
+<p><strong>Azure Virtual Machines:</strong></p>
+<pre><code class="language-azurecli">az vm list --query "[].{Name:name, OS:storageProfile.osDisk.osType, Size:hardwareProfile.vmSize, ResourceGroup:resourceGroup, Location:location, PowerState:powerState, Tags:tags}" -o table
+</code></pre>
+<ul>
+<li><code>az vm list</code>: Retrieves a list of all virtual machines in your subscription.</li>
+<li><code>--query "[].{...}"</code>: Uses JMESPath to project custom output fields, including important tags for categorization.</li>
+<li><code>-o table</code>: Formats the output as a readable table.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> For Windows, Server Manager or `msinfo32`. For Azure, navigate to "Virtual machines" in the Azure portal for an overview.</p>
+<p><strong>Expected confirmation:</strong> A populated asset inventory (e.g., spreadsheet, CMDB entry) detailing hardware specs, OS versions, and key software for all in-scope systems.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Outdated or incomplete CMDBs. Relying solely on existing documentation can lead to significant discrepancies. Always validate through direct system queries. Be prepared for 'shadow IT' or forgotten systems that are still online. This discovery phase is where many surprises emerge, especially in older, less-managed environments. Ensure robust tooling for credential management to handle the volume of systems.</div>
+
+<h2>Step 3: Assess Performance & Resource Utilization</h2>
+<p>Understanding how your infrastructure performs under typical and peak loads is critical for identifying bottlenecks, assessing scalability, and pinpointing opportunities for optimization or rightsizing. This step involves collecting CPU, memory, disk I/O, and network utilization metrics over a period to establish baselines and detect anomalies. Remember that short-term snapshots (like the CLI commands below) are good for quick checks, but long-term monitoring is needed for comprehensive analysis.</p>
+
+<p><strong>On-premises Windows Servers:</strong></p>
+<pre><code class="language-powershell"># Collect key performance counters over a short period (e.g., 1 minute)
+$counters = @(
+    '\Processor(_Total)\% Processor Time',
+    '\Memory\Available MBytes',
+    '\LogicalDisk(C:)\% Free Space',
+    '\LogicalDisk(C:)\Avg. Disk Queue Length',
+    '\Network Interface(*)\Bytes Total/sec'
+)
+Get-Counter -Counter $counters -SampleInterval 5 -MaxSamples 12 | Select-Object -ExpandProperty CounterSamples | Format-Table -AutoSize
+</code></pre>
+<ul>
+<li><code>Get-Counter -Counter $counters</code>: Collects data for specified performance counters.</li>
+<li><code>-SampleInterval 5</code>: Collects data every 5 seconds.</li>
+<li><code>-MaxSamples 12</code>: Collects 12 samples, for a total of 60 seconds of data.</li>
+<li><code>Select-Object -ExpandProperty CounterSamples</code>: Expands the `CounterSamples` property for easier viewing.</li>
+</ul>
+
+<p><strong>On-premises Linux Servers:</strong></p>
+<pre><code class="language-bash">
+top -b -n 1 | head -n 5 # Quick snapshot of CPU and memory
+iostat -xh 1 5 # Detailed disk I/O stats (requires sysstat package) sampled over 5 seconds
+free -h -s 5 -c 3 # Memory usage every 5 seconds, 3 times
+</code></pre>
+<ul>
+<li><code>top -b -n 1</code>: Runs `top` in batch mode (non-interactive) and exits after one iteration.</li>
+<li><code>head -n 5</code>: Displays only the first 5 lines of `top`'s output, showing summary CPU and memory.</li>
+<li><code>iostat -xh 1 5</code>: Provides extended disk statistics (`-x`), human-readable (`-h`), sampled every 1 second for 5 samples.</li>
+<li><code>free -h -s 5 -c 3</code>: Displays memory usage in human-readable format, sampled every 5 seconds for 3 times.</li>
+</ul>
+
+<p><strong>Azure Virtual Machines:</strong></p>
+<pre><code class="language-azurecli"># Get VM resource ID for monitoring
+$vm_id = az vm show -g &lt;YOUR_RESOURCE_GROUP&gt; -n &lt;YOUR_VM_NAME&gt; --query id -o tsv
+
+# Get CPU and Network In/Out metrics for the last 24 hours, aggregated hourly
+az monitor metrics list --resource $vm_id --metric "Percentage CPU" "Network Read Total" "Network Write Total" "Disk Write Bytes/sec" "Disk Read Bytes/sec" --start-time "$(Get-Date -UFormat '%Y-%m-%dT%H:00:00Z' -Date (Get-Date).AddHours(-24))" --end-time "$(Get-Date -UFormat '%Y-%m-%dT%H:00:00Z')" --interval PT1H -o table
+</code></pre>
+<ul>
+<li><code>az vm show -g ... -n ... --query id -o tsv</code>: Retrieves the full resource ID of a specific VM.</li>
+<li><code>az monitor metrics list --resource $vm_id</code>: Queries Azure Monitor for metrics related to the specified resource.</li>
+<li><code>--metric "Percentage CPU" ...</code>: Specifies the metrics to retrieve (CPU, network, disk I/O).</li>
+<li><code>--start-time "..." --end-time "..."</code>: Defines the time range for metric collection. PowerShell's `Get-Date` is used for dynamic timestamps.</li>
+<li><code>--interval PT1H</code>: Sets the aggregation granularity to 1 hour (PT1H = Period Time 1 Hour).</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Windows Performance Monitor (perfmon.exe), Azure Monitor via the Azure portal dashboard, or directly on a VM's "Monitoring" blade.</p>
+<p><strong>Expected confirmation:</strong> Raw performance data collected over a specified period, enabling identification of average utilization, peak loads, and potential resource constraints. This data forms the basis for rightsizing recommendations.</p>
+
+<h2>Step 4: Evaluate Network Configuration & Connectivity</h2>
+<p>A stable and secure network is the backbone of any IT infrastructure. This step focuses on understanding the network topology, evaluating bandwidth and latency, identifying open ports, and assessing firewall rules. Poor network performance or misconfigurations can significantly impact application responsiveness and create severe security risks. Focus on critical application flows.</p>
+
+<p><strong>On-premises Windows Systems:</strong></p>
+<pre><code class="language-powershell"># Get network adapter details
+Get-NetAdapter | Select-Object Name, LinkSpeed, Status, MacAddress, PromiscuousMode | Format-Table -AutoSize
+
+# Get IP configuration and DNS servers
+Get-NetIPConfiguration | Select-Object InterfaceAlias, IPv4Address, IPv6Address, DNSServer | Format-Table -AutoSize
+
+# Test connectivity to a target service (e.g., RDP port)
+Test-NetConnection -ComputerName &lt;TARGET_IP_OR_HOSTNAME&gt; -Port 3389 -InformationLevel Detailed
+</code></pre>
+<ul>
+<li><code>Get-NetAdapter</code>: Retrieves basic information about network adapters.</li>
+<li><code>Get-NetIPConfiguration</code>: Provides IP address, DNS server, and other network configuration details.</li>
+<li><code>Test-NetConnection -ComputerName ... -Port ...</code>: Tests network connectivity to a specific host and port, useful for verifying firewall rules and service availability.</li>
+</ul>
+
+<p><strong>On-premises Linux Systems:</strong></p>
+<pre><code class="language-bash">
+ip a && netstat -tuln # Show network interfaces and listening TCP/UDP ports
+
+# Test connectivity (e.g., to a DNS server or web server)
+ping -c 4 &lt;TARGET_IP_OR_HOSTNAME&gt;
+traceroute &lt;TARGET_IP_OR_HOSTNAME&gt;
+nslookup &lt;HOSTNAME_TO_RESOLVE&gt;
+</code></pre>
+<ul>
+<li><code>ip a</code>: Displays network interface addresses.</li>
+<li><code>netstat -tuln</code>: Shows TCP and UDP listening sockets numerically.</li>
+<li><code>ping -c 4</code>: Sends 4 ICMP echo requests to test basic connectivity.</li>
+<li><code>traceroute</code>: Traces the route packets take to a network host.</li>
+<li><code>nslookup</code>: Queries internet domain name servers.</li>
+</ul>
+
+<p><strong>Azure Network Components:</strong></p>
+<pre><code class="language-azurecli"># List Network Interfaces and their IPs
+az network nic list --query "[].{Name:name, PrivateIP:ipConfigurations[0].privateIpAddress, PublicIP:ipConfigurations[0].publicIpAddress.ipAddress, RG:resourceGroup, DNS:ipConfigurations[0].dnsSettings.dnsServers, VNet:ipConfigurations[0].subnet.id}" -o table
+
+# Show effective security rules for a VM's NIC
+az network nsg list-effective-security-groups --resource-group &lt;VM_RESOURCE_GROUP&gt; --vm &lt;VM_NAME&gt; --query "[0].networkInterfaces[0].effectiveSecurityRules" -o json
+
+# Test IP Flow (simulate traffic through NSGs)
+az network diagnostic check-ip-flow --resource-group &lt;VM_RESOURCE_GROUP&gt; --vm-name &lt;VM_NAME&gt; --direction Outbound --protocol TCP --local-port 8080 --destination-port 80 --destination-ip &lt;TARGET_IP&gt; --query '{Access:access, RuleName:ruleName}' -o table
+</code></pre>
+<ul>
+<li><code>az network nic list</code>: Lists all network interfaces and their associated IP configurations.</li>
+<li><code>az network nsg list-effective-security-groups</code>: Shows the combined effective security rules (NSGs, ASGs) applied to a VM's network interface, crucial for understanding allowed traffic.</li>
+<li><code>az network diagnostic check-ip-flow</code>: Simulates a 5-tuple flow (source IP, destination IP, source port, destination port, protocol) to determine if it's allowed or denied by NSGs.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Windows Network and Sharing Center, Azure Portal for Virtual Networks, Network Security Groups, and Network Interfaces. Use Azure Network Watcher for more advanced diagnostic tools like IP flow verify.</p>
+<p><strong>Expected confirmation:</strong> A clear picture of IP addressing, DNS configurations, link speeds, open ports, and effective firewall rules for critical systems. This helps map out potential network chokepoints and security gaps.</p>
+
+<h2>Step 5: Assess Security Posture</h2>
+<p>Security is paramount. This step focuses on identifying potential vulnerabilities, misconfigurations, and compliance deviations. It's about understanding who has access, what services are exposed, and if systems are being regularly patched and monitored. While a full penetration test is outside this guide's scope, initial CLI-based checks can reveal common weaknesses that often lead to more significant issues.</p>
+
+<p><strong>On-premises Windows Systems:</strong></p>
+<pre><code class="language-powershell"># List all services that start automatically but are not running (potential misconfigurations or disabled security agents)
+Get-WmiObject -Class Win32_Service | Where-Object {$_.StartMode -eq "Auto" -and $_.State -ne "Running"} | Select-Object Name, DisplayName, StartMode, State | Format-Table -AutoSize
+
+# Check for open TCP/UDP ports and associated processes (requires admin rights)
+netstat -ano | Select-Object -Unique LocalAddress, LocalPort, State, OwningProcess | Where-Object {$_.LocalPort -ne $null} | Sort-Object LocalPort | Format-Table -AutoSize
+
+# Basic user and group enumeration
+Get-LocalUser | Select-Object Name, Enabled, PasswordRequired, Description | Format-Table -AutoSize
+Get-LocalGroup | Select-Object Name, Description | Format-Table -AutoSize
+</code></pre>
+<ul>
+<li><code>Get-WmiObject -Class Win32_Service</code>: Retrieves information about Windows services.</li>
+<li><code>netstat -ano</code>: Displays active connections, listening ports, and the process ID (PID) associated with each.</li>
+<li><code>Get-LocalUser</code> / `Get-LocalGroup`: Enumerates local user accounts and groups, vital for assessing local privilege management.</li>
+</ul>
+
+<p><strong>On-premises Linux Systems:</strong></p>
+<pre><code class="language-bash">
+ss -tuln # More efficient than netstat for showing listening sockets
+cat /etc/passwd | cut -f1 -d: | sort # List all system users
+find / -type f -perm /002 -print 2>/dev/null # Find world-writable files (potential security risk)
+
+# Check sudoers file for broad permissions (CAUTION: this might require specific permissions and careful handling)
+cat /etc/sudoers # Review manually for broad ALL=(ALL) ALL permissions
+</code></pre>
+<ul>
+<li><code>ss -tuln</code>: Lists TCP and UDP listening sockets.</li>
+<li><code>cat /etc/passwd | cut -f1 -d:</code>: Extracts usernames from the password file.</li>
+<li><code>find / -type f -perm /002</code>: Searches for regular files that are world-writable.</li>
+<li><code>cat /etc/sudoers</code>: Displays the sudoers file, which defines what users can run commands as root.</li>
+</ul>
+
+<p><strong>Azure Security Posture (via Defender for Cloud):</strong></p>
+<pre><code class="language-azurecli"># List unhealthy or unconfigured security assessments/recommendations
+az security assessment list --query "[?status.code=='Unhealthy' || status.code=='NotApplicable'].{DisplayName:displayName, Status:status.code, Resource:resourceDetails.id, Description:description, Severity:status.severity}" -o table
+
+# Check if Defender for Cloud agents are auto-provisioned across subscriptions
+az security auto-provisioning-setting list -o table
+
+# List all JIT VM Access Policies for VMs (Just-in-Time VM Access)
+az security jit-policy list --query "[].{Name:name, Location:location, VirtualMachines:virtualMachines[].id}" -o table
+</code></pre>
+<ul>
+<li><code>az security assessment list</code>: Retrieves a list of security assessments (recommendations) from Azure Security Center (now Defender for Cloud).</li>
+<li><code>--query "[?status.code=='Unhealthy' ...}"</code>: Filters for assessments with 'Unhealthy' or 'NotApplicable' status, indicating issues or unconfigured settings.</li>
+<li><code>az security auto-provisioning-setting list</code>: Verifies if auto-provisioning of security agents (e.g., Log Analytics agent) is enabled, which is crucial for comprehensive monitoring.</li>
+<li><code>az security jit-policy list</code>: Lists Just-in-Time VM access policies, which are critical for securing management ports on Azure VMs.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Windows Security Center, Azure Defender for Cloud dashboard in the Azure portal for security recommendations and secure score.</p>
+<p><strong>Expected confirmation:</strong> A prioritized list of security findings, including vulnerable services, open ports, excessive user privileges, and non-compliant Azure resources. This forms the basis for security hardening efforts.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Overlooking permission hygiene. When performing assessments, especially on production systems, ensure the accounts used have the absolute minimum necessary privileges (Principle of Least Privilege). Excessive permissions during an assessment introduce new vectors for compromise, and you're essentially performing the assessment with 'keys to the kingdom.' Review and revoke access post-assessment, and use dedicated assessment accounts.</div>
+
+<h2>Step 6: Review Data Management & Disaster Recovery</h2>
+<p>Data is the lifeblood of any organization. This step evaluates your current backup strategies, disaster recovery (DR) plans, and data integrity measures. An effective DR strategy ensures business continuity in the face of outages, while robust data management prevents loss and corruption. Assess RTO (Recovery Time Objective) and RPO (Recovery Point Objective) against business requirements for each critical workload.</p>
+
+<p><strong>On-premises Windows Servers:</strong></p>
+<pre><code class="language-powershell"># List logical disks and their free space (indicates potential backup drive space issues or storage constraints)
+Get-WmiObject -Class Win32_Volume | Select-Object Caption, FileSystem, Capacity, FreeSpace, Label | Format-Table -AutoSize
+
+# Check for Windows Server Backup history (if used and installed)
+Get-WmiObject -Namespace "root\Windows\Backup" -Class WBSummary | Select-Object LastBackupTime, BackupStatus, NumberOfBackups
+</code></pre>
+<ul>
+<li><code>Get-WmiObject -Class Win32_Volume</code>: Gathers details about logical disk volumes.</li>
+<li><code>Get-WmiObject -Namespace "root\Windows\Backup" -Class WBSummary</code>: Retrieves summary information from Windows Server Backup, if configured.</li>
+</ul>
+
+<p><strong>On-premises Linux Systems:</strong></p>
+<pre><code class="language-bash">
+mount # Show mounted filesystems
+lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINT # List block devices and their mount points
+crontab -l | grep -i 'backup' # Check cron jobs for backup scripts
+# For specific backup solutions, consult their CLI tools (e.g., 'duplicity --list-current-backups')
+</code></pre>
+<ul>
+<li><code>mount</code>: Lists currently mounted filesystems.</li>
+<li><code>lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINT</code>: Provides a tree-like list of block devices and their attributes.</li>
+<li><code>crontab -l | grep -i 'backup'</code>: Searches the current user's cron jobs for entries containing 'backup'.</li>
+</ul>
+
+<p><strong>Azure Backup and Recovery:</strong></p>
+<pre><code class="language-azurecli"># List all Recovery Services vaults in a subscription
+az backup vault list --query "[].{Name:name, Location:location, ResourceGroup:resourceGroup}" -o table
+
+# List all backup jobs for a specific vault and resource group
+az backup job list --resource-group &lt;VAULT_RESOURCE_GROUP&gt; --vault-name &lt;VAULT_NAME&gt; --query "[].{Name:properties.entityFriendlyName, Operation:properties.operationName, Status:properties.status, Start:properties.startTime, End:properties.endTime}" -o table
+
+# List protected items within a vault (VMs, databases, etc.)
+az backup item list --resource-group &lt;VAULT_RESOURCE_GROUP&gt; --vault-name &lt;VAULT_NAME&gt; --query "[].{Name:name, ProtectionStatus:properties.protectionStatus, ItemType:properties.workloadType, Policy:properties.policyName}" -o table
+</code></pre>
+<ul>
+<li><code>az backup vault list</code>: Enumerates all Azure Recovery Services vaults.</li>
+<li><code>az backup job list</code>: Provides a history of backup and restore jobs within a specified vault.</li>
+<li><code>az backup item list</code>: Lists all items configured for protection (e.g., Azure VMs, SQL databases) within a specific vault.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Windows Disk Management, Azure Backup Center in the Azure portal, or within individual VM blades for backup status and configurations.</p>
+<p><strong>Expected confirmation:</strong> Documentation of current backup schedules, retention policies, storage locations, and a preliminary assessment of DR readiness based on collected data, identifying gaps against business RTO/RPO objectives.</p>
+
+<h2>Step 7: Evaluate Cloud Readiness & Optimization (Azure Focus)</h2>
+<p>As SkyCore Solutions specializes in Cloud Migration (Azure), this step is crucial. It involves identifying applications and workloads suitable for migration, assessing existing cloud resources for optimization, and recognizing opportunities to leverage Azure services. The goal is to move beyond a simple lift-and-shift mentality and embrace cloud-native best practices for long-term benefits.</p>
+
+<p><strong>On-premises systems for Azure Migration Suitability:</strong></p>
+<p>While direct CLI commands can't fully assess migration suitability without a dedicated tool like Azure Migrate, you can identify basic characteristics that influence strategy:</p>
+<pre><code class="language-powershell"># For Windows: Identify non-domain joined servers or specific service dependencies
+Get-WmiObject -Class Win32_ComputerSystem | Select-Object Name, DomainRole, PartOfDomain | Format-Table -AutoSize
+Get-Service | Where-Object {$_.DisplayName -match "SQL Server|SAP|Oracle"} | Select-Object DisplayName, Status, StartType | Format-Table -AutoSize
+
+# For Linux: Check for specific kernel versions or hardware dependencies that might pose migration challenges
+uname -r
+</code></pre>
+<ul>
+<li><code>DomainRole</code>: Indicates if a server is a domain controller, member server, etc., impacting migration strategy (e.g., AD DS migration, AAD Connect).</li>
+<li><code>Get-Service ... -match "SQL Server|SAP|Oracle"</code>: Helps identify common business-critical application services, which often require careful migration planning or re-platforming to PaaS.</li>
+<li><code>uname -r</code>: Reports the kernel release, which can highlight very old OS versions potentially unsupported in the cloud.</li>
+</ul>
+
+<p><strong>Existing Azure Infrastructure Optimization:</strong></p>
+<pre><code class="language-azurecli"># Identify stopped/deallocated VMs that might be incurring storage costs unnecessarily
+az vm list --query "[?powerState=='Deallocated' || powerState=='Stopped'].{Name:name, ResourceGroup:resourceGroup, Location:location, PowerState:powerState, Size:hardwareProfile.vmSize}" -o table
+
+# Get Azure Advisor cost recommendations
+az advisor recommendation list --query "[?category=='Cost'].{Impact:impact, ShortDescription:shortDescription, Resource:resourceId, Category:category, Severity:resourceMetadata.resourceRecommendation.category}" -o table
+
+# Get Azure Advisor performance recommendations
+az advisor recommendation list --query "[?category=='Performance'].{Impact:impact, ShortDescription:shortDescription, Resource:resourceId, Category:category, Severity:resourceMetadata.resourceRecommendation.category}" -o table
+
+# List all app services to identify potential scaling issues or unused plans
+az webapp list --query "[].{Name:name, ResourceGroup:resourceGroup, Location:location, AppServicePlan:appServicePlanId}" -o table
+</code></pre>
+<ul>
+<li><code>az vm list --query "[?powerState=='Deallocated' || powerState=='Stopped']"</code>: Finds VMs that are deallocated or stopped. While deallocated VMs don't incur compute costs, their associated storage often does.</li>
+<li><code>az advisor recommendation list</code>: Retrieves recommendations from Azure Advisor, which suggests optimizations for cost, performance, reliability, operational excellence, and security.</li>
+<li><code>--query "[?category=='Cost']"</code>: Filters recommendations to show only cost-related suggestions, like rightsizing VMs or deleting unused resources.</li>
+<li><code>az webapp list</code>: Lists all Azure App Services, useful for reviewing web application deployments and their underlying service plans.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Azure Migrate for on-premises assessment, Azure Advisor dashboard for cloud optimization recommendations, and reviewing individual resource blades in the Azure portal for configuration and metrics.</p>
+<p><strong>Expected confirmation:</strong> A preliminary list of on-premises workloads suitable for Azure migration, alongside identified opportunities for cost and performance optimization within your existing Azure environment. This enables the formation of a cloud adoption strategy.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Assuming a simple lift-and-shift is always the best cloud strategy. While quick, it often fails to leverage the full benefits of cloud-native services (PaaS, Serverless) and can lead to higher than necessary costs and increased management overhead. Always factor in refactoring opportunities for critical applications, even if it adds initial complexity, for long-term ROI.</div>
+
+<h2>Step 8: Synthesize Findings and Develop Recommendations</h2>
+<p>This final phase is where the raw data transforms into actionable intelligence. No CLI command can perform this step; it requires human expertise, critical thinking, and a deep understanding of business objectives. Review all collected data from the previous steps, looking for patterns, interdependencies, and significant deviations from best practices or desired states. This is the stage where the 'consultant' truly adds value.</p>
+<p>Create a comprehensive report that:</p>
+<ul>
+    <li>Summarizes the current state of the infrastructure (strengths, weaknesses, technical debt).</li>
+    <li>Highlights key findings across performance, security, network, data management, and cloud readiness, often presented as a SWOT analysis.</li>
+    <li>Provides clear, prioritized recommendations with estimated effort, cost, and potential benefits (e.g., ROI for cloud migration, risk reduction for security hardening).</li>
+    <li>Aligns recommendations with the initial assessment objectives (e.g., reduce OpEx by 20%, improve security posture to X score, enable cloud adoption for Y applications).</li>
+    <li>Includes a roadmap for implementation, distinguishing between quick wins and long-term strategic initiatives.</li>
+</ul>
+<p><strong>Opinionated:</strong> Prioritize recommendations based on their business impact and risk reduction, not just technical complexity or ease of implementation. A critical security vulnerability or a system risking major downtime should always take precedence over minor performance tweaks. Transparency about risks, costs, and benefits is key for executive buy-in.</p>
+<p><strong>Expected confirmation:</strong> A structured assessment report with a prioritized list of actionable recommendations for infrastructure improvement, cloud migration, and security hardening, ready for executive review and strategic planning.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3><p>While this guide provides a robust framework for an in-house IT infrastructure assessment, the sheer complexity of modern, hybrid environments, coupled with the need for specialized expertise in areas like advanced security hardening, complex Azure migrations, or large-scale infrastructure overhauls, can quickly overwhelm internal teams. If you lack the bandwidth, specific skill sets, or an unbiased external perspective to interpret findings and build a strategic roadmap that aligns with your business goals, it’s often more efficient and effective to engage a specialized consulting firm. SkyCore Solutions excels in these complex scenarios, translating assessment data into clear, executable strategies to optimize your IT landscape.</p><a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
