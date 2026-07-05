@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ai-ransomware-protection-montreal",
+    title: "AI Ransomware Attacks: Essential Security Hardening for Montreal SMBs",
+    date: "2026-07-05",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "AI-powered ransomware like JadePuffer is here, demanding a new level of defense. Learn critical security hardening strategies for SMBs to protect against these advanced threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380589/pexels-photo-5380589.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "advanced-microsoft-365-security",
     title: "Protect Your Business: Advanced Microsoft 365 Security Hardening in Montreal",
     date: "2026-07-03",
