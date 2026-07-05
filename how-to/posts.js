@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "microsoft-entra-id-setup-guide-smb-skycore",
+    title: "Mastering Cloud Identity: Your Comprehensive Microsoft Entra ID Setup Guide for SMBs",
+    date: "2026-07-05",
+    readTime: "12 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Microsoft Entra ID setup guide SMB",
+    excerpt: "This comprehensive Microsoft Entra ID setup guide SMBs will empower your organization with robust cloud identity and access management. Learn to secure your digital assets.",
+    image: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "it-infrastructure-assessment-guide-skycore",
     title: "The Definitive IT Infrastructure Assessment Guide for Modern Enterprises",
     date: "2026-07-04",
