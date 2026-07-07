@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "network-security-audit-firmware-backdoor",
+    title: "Beyond Tenda: Why Every SMB Needs a Proactive Network Security Audit in Montreal",
+    date: "2026-07-07",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "A hidden admin backdoor in Tenda router firmware is a stark reminder: your network's foundation might be compromised. Learn why proactive network security audits are non-negotiable for SMBs.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ai-ransomware-protection-montreal",
     title: "AI Ransomware Attacks: Essential Security Hardening for Montreal SMBs",
     date: "2026-07-05",
