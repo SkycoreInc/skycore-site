@@ -254,6 +254,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://skycoresolutions.com/how-to/mfa-setup-organization-skycore.html</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skycoresolutions.com/how-to/microsoft-entra-id-setup-guide-smb-skycore.html</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>

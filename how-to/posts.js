@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "mfa-setup-organization-skycore",
+    title: "How to Set Up MFA for Your Organization: A SkyCore Solutions Guide",
+    date: "2026-07-07",
+    readTime: "15 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-4 hours (initial setup + pilot)",
+    keyword: "how to set up MFA for your organization",
+    excerpt: "Implementing Multi-Factor Authentication (MFA) is critical for modern cybersecurity. This comprehensive guide details the technical steps and strategic considerations for deploying MFA across your organization effectively.",
+    image: "https://images.pexels.com/photos/10330120/pexels-photo-10330120.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-entra-id-setup-guide-smb-skycore",
     title: "Mastering Cloud Identity: Your Comprehensive Microsoft Entra ID Setup Guide for SMBs",
     date: "2026-07-05",
