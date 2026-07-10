@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "smb-azure-cloud-migration-guide",
+    title: "Your Essential Cloud Migration Guide for SMB: Azure Strategy by SkyCore Solutions",
+    date: "2026-07-10",
+    readTime: "22 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "4-6 weeks (project duration)",
+    keyword: "cloud migration guide for SMB",
+    excerpt: "This guide simplifies cloud migration for Small and Medium Businesses (SMBs) using Azure. We cover assessment, planning, execution, and optimization with actionable, CLI-first steps.",
+    image: "https://images.pexels.com/photos/36591860/pexels-photo-36591860.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "mfa-setup-organization-skycore",
     title: "How to Set Up MFA for Your Organization: A SkyCore Solutions Guide",
     date: "2026-07-07",
