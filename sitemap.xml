@@ -3,33 +3,69 @@
 
   <url>
     <loc>https://skycoresolutions.com/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://skycoresolutions.com/services.html</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://skycoresolutions.com/about.html</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://skycoresolutions.com/contact.html</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://skycoresolutions.com/blog/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/blog/network-security-audit-firmware-backdoor.html</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/blog/ai-ransomware-protection-montreal.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/blog/advanced-microsoft-365-security.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/blog/azure-cli-zero-trust-security-montreal.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/blog/patch-tuesday-security-hardening-montreal.html</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/blog/signal-threat-cybersecurity-hardening-smb-montreal.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skycoresolutions.com/blog/zero-day-security-hardening-montreal.html</loc>
@@ -213,9 +249,57 @@
   </url>
   <url>
     <loc>https://skycoresolutions.com/how-to/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/how-to/smb-azure-cloud-migration-guide.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/how-to/mfa-setup-organization-skycore.html</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/how-to/microsoft-entra-id-setup-guide-smb-skycore.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/how-to/it-infrastructure-assessment-guide-skycore.html</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/how-to/microsoft-intune-mdm-setup-smb-guide.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/how-to/azure-ad-connect-setup-guide-skycore.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/how-to/azure-devops-ci-cd-pipeline-setup-guide.html</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skycoresolutions.com/how-to/exchange-office365-migration-guide.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://skycoresolutions.com/how-to/azure-kubernetes-service-setup-guide-smb.html</loc>

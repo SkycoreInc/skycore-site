@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mastering Cloud Identity: Your Comprehensive Microsoft Entra ID Setup Guide for SMBs — SkyCore Solutions</title>
+  <meta name="description" content="SkyCore Solutions' expert Microsoft Entra ID setup guide for SMBs. Secure your cloud identity, implement MFA, and streamline user management." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Mastering Cloud Identity: Your Comprehensive Microsoft Entra ID Setup Guide for SMBs — SkyCore Solutions" />
+  <meta property="og:description" content="SkyCore Solutions' expert Microsoft Entra ID setup guide for SMBs. Secure your cloud identity, implement MFA, and streamline user management." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/microsoft-entra-id-setup-guide-smb-skycore.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mastering Cloud Identity: Your Comprehensive Microsoft Entra ID Setup Guide for SMBs — SkyCore Solutions" />
+  <meta name="twitter:description" content="SkyCore Solutions' expert Microsoft Entra ID setup guide for SMBs. Secure your cloud identity, implement MFA, and streamline user management." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/microsoft-entra-id-setup-guide-smb-skycore.html" />
+  <meta property="article:published_time" content="2026-07-05" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Mastering Cloud Identity: Your Comprehensive Microsoft Entra ID Setup Guide for SMBs",
+  "description": "SkyCore Solutions' expert Microsoft Entra ID setup guide for SMBs. Secure your cloud identity, implement MFA, and streamline user management.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Microsoft 365 Business Premium, Entra ID P1, or P2 subscription., Global Administrator role in your Microsoft Entra ID tenant., Azure CLI (latest version) installed and configured., Azure Az PowerShell module (latest version) installed, or Microsoft Graph PowerShell SDK., Your organization's custom domain name registered and ready for DNS verification (if not using .onmicrosoft.com)., Existing on-premises Active Directory Domain Services (optional, for hybrid scenarios)., Estimated Cost: Initial setup is covered by existing Microsoft 365 subscriptions. Entra ID P1/P2 (included in M365 Business Premium) is required for advanced features like group-based licensing and Conditional Access."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Initializing Your Microsoft Entra ID Tenant and Custom Domains",
+        "text": "This step ensures your Entra ID tenant is correctly configured with your organization's custom domain, providing a professional and consistent identity experience."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Establishing User and Group Management for Efficiency",
+        "text": "This involves creating and organizing users and groups within Entra ID to streamline access control, licensing, and delegated administration."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Choosing Your Identity Synchronization Strategy: Cloud-Only vs. Hybrid",
+        "text": "This critical decision determines how your on-premises Active Directory users and groups are managed and synchronized with Microsoft Entra ID, if at all."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implementing Core Security with Microsoft Entra ID for SMBs",
+        "text": "This step focuses on activating essential security features like Multi-Factor Authentication (MFA) and Conditional Access to protect against common identity-based attacks."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Delegating Administrative Roles for Least Privilege",
+        "text": "This step involves assigning specific administrative roles to users, adhering to the principle of least privilege to enhance security and operational efficiency."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-07-05 · 12 min read · Cloud Migration</div>
+<h1>Mastering Cloud Identity: Your Comprehensive Microsoft Entra ID Setup Guide for SMBs</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Microsoft Entra ID dashboard showing identity and access management for SMBs with security metrics and user activity." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For Small and Medium-sized Businesses (SMBs) in Montreal and beyond, navigating the complexities of modern IT infrastructure can be daunting. Legacy on-premises identity systems are often a bottleneck, hindering cloud adoption, increasing security risks, and complicating user access. Microsoft Entra ID (formerly Azure Active Directory) offers a robust, cloud-based identity and access management (IAM) solution designed to address these challenges head-on, aligning perfectly with a Zero Trust security strategy.</p><p>This comprehensive <strong>Microsoft Entra ID setup guide SMB</strong>s will empower your organization to establish a secure, efficient, and scalable identity foundation. By the end of this guide, you will have a functional Microsoft Entra ID tenant, properly configured with your custom domain, users and groups managed effectively, a chosen synchronization strategy (if applicable), and critical security measures like Multi-Factor Authentication (MFA) and Conditional Access in place. Let SkyCore Solutions show you how to securely embrace cloud identity.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>An active Microsoft 365 Business Premium, Entra ID P1, or P2 subscription. Microsoft 365 Business Premium is highly recommended for SMBs as it bundles Entra ID P1 capabilities.</li><li>Global Administrator role in your Microsoft Entra ID tenant.</li><li>Azure CLI (latest version) installed and configured.</li><li>Azure Az PowerShell module (latest version) installed, or Microsoft Graph PowerShell SDK.</li><li>Your organization's custom domain name registered and ready for DNS verification (if not using .onmicrosoft.com).</li><li>Existing on-premises Active Directory Domain Services (optional, for hybrid scenarios).</li><li>Estimated Cost: Initial setup is covered by existing Microsoft 365 subscriptions. Entra ID P1/P2 (included in M365 Business Premium) is required for advanced features like group-based licensing and Conditional Access.</li></ul></div>
+
+<h2>Step 1: Initializing Your Microsoft Entra ID Tenant and Custom Domains</h2>
+<p>Every Microsoft 365, Azure, or Dynamics CRM Online subscription automatically includes a Microsoft Entra ID tenant, starting with an initial domain like <code>yourcompany.onmicrosoft.com</code>. While functional, associating your organization's custom domain (e.g., <code>yourcompany.com</code>) is crucial for professional branding and seamless user experience. This step involves adding and verifying your custom domain within Microsoft Entra ID.</p>
+
+<p>First, ensure you have the Microsoft Graph PowerShell SDK installed and connected. This is the modern and recommended approach for interacting with Microsoft Entra ID via PowerShell.</p>
+<pre><code class="language-powershell">Install-Module Microsoft.Graph -Scope CurrentUser
+Connect-MgGraph -Scopes "Domain.ReadWrite.All", "User.ReadWrite.All", "Group.ReadWrite.All", "Policy.ReadWrite.ConditionalAccess", "RoleManagement.ReadWrite.Directory", "Application.ReadWrite.All", "Directory.ReadWrite.All"
+</code></pre>
+<ul>
+<li><code>Install-Module Microsoft.Graph</code>: Installs the Microsoft Graph PowerShell SDK for current user.</li>
+<li><code>Connect-MgGraph -Scopes "..."</code>: Establishes a connection to Microsoft Graph with necessary permissions. The listed scopes cover most administrative tasks for this guide.</li>
+</ul>
+
+<p>Next, add your custom domain to Microsoft Entra ID. This creates the domain object, but it won't be active until you verify ownership via DNS.</p>
+<pre><code class="language-powershell">$domainName = "yourcompany.com"
+New-MgDomain -Id $domainName
+</code></pre>
+<ul>
+<li><code>$domainName</code>: Replace <code>yourcompany.com</code> with your actual domain name.</li>
+<li><code>New-MgDomain -Id $domainName</code>: Registers your custom domain with Microsoft Entra ID.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the <a href="https://entra.microsoft.com/" target="_blank">Microsoft Entra admin center</a> > <strong>Identity</strong> > <strong>Settings</strong> > <strong>Custom domain names</strong> > <strong>+ Add custom domain</strong>. Enter your domain name and click <strong>Add domain</strong>.</p>
+
+<p>After adding the domain, Microsoft Entra ID will provide specific DNS records (typically a TXT or MX record) that you need to add to your domain registrar's DNS settings. This process proves you own the domain.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Incorrectly configuring DNS records is a frequent issue. Double-check the TXT/MX record values provided by Microsoft Entra ID and ensure they are published correctly at your domain registrar. DNS changes can take up to 72 hours to propagate, though often faster.</div>
+
+<p>Once you've updated your DNS records, verify the domain ownership using PowerShell:</p>
+<pre><code class="language-powershell">$domainName = "yourcompany.com"
+Confirm-MgDomain -DomainId $domainName -TenantId (Get-MgContext).TenantId
+</code></pre>
+<ul>
+<li><code>Confirm-MgDomain</code>: Instructs Microsoft Entra ID to check for the DNS verification record.</li>
+<li><code>(Get-MgContext).TenantId</code>: Automatically retrieves your current tenant ID.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> After adding the domain, the portal will display the DNS records needed. Once you've updated your registrar, click the <strong>Verify</strong> button next to your domain name in the <strong>Custom domain names</strong> section.</p>
+
+<p><strong>Run this to verify:</strong> Confirm your domain is verified and set as the primary (if desired).</p>
+<pre><code class="language-powershell">Get-MgDomain | Select-Object Id, IsAdminManaged, IsDefault, IsInitial, IsRoot, Status, Verified -ExpandProperty SupportedServiceConfiguration
+</code></pre>
+<ul>
+<li>This command lists all domains in your tenant and their status. Look for <code>Verified: True</code> for your custom domain. You can then set it as primary in the portal if you wish.</li>
+</ul>
+
+<h2>Step 2: Establishing User and Group Management for Efficiency</h2>
+<p>Efficient user and group management is foundational for secure and streamlined operations in Microsoft Entra ID. Instead of managing permissions and licenses individually, SMBs should leverage groups for assigning access to applications and resources, as well as for licensing. This simplifies administration as your organization grows.</p>
+
+<p>First, let's create a new user. While users are often provisioned via sync or other methods, knowing manual creation is essential.</p>
+<pre><code class="language-powershell">$upn = "john.doe@yourcompany.com"
+$displayName = "John Doe"
+$password = ConvertTo-SecureString "YourStrongP@ssw0rd!123" -AsPlainText -Force
+
+New-MgUser -DisplayName $displayName -UserPrincipalName $upn `
+    -PasswordProfile @{Password = $password; ForceChangePasswordNextSignIn = $true} `
+    -AccountEnabled:$true -UsageLocation "CA" 
+</code></pre>
+<ul>
+<li><code>$upn</code>, <code>$displayName</code>, <code>$password</code>: Define user attributes. Ensure the password meets complexity requirements and users are forced to change it on first login.</li>
+<li><code>-UsageLocation "CA"</code>: Required for assigning licenses. Use the appropriate <a href="https://learn.microsoft.com/en-us/microsoft-365/admin/setup/add-users?view=o365-worldwide#select-a-location-for-users-in-the-admin-center" target="_blank">two-letter country code</a> for your users.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> In the <a href="https://entra.microsoft.com/" target="_blank">Microsoft Entra admin center</a> > <strong>Identity</strong> > <strong>Users</strong> > <strong>All users</strong> > <strong>+ New user</strong> > <strong>Create new user</strong>. Fill in the details, ensuring to set a strong initial password and force password change on first login.</p>
+
+<p>Next, create a security group. Security groups are ideal for managing access to Microsoft 365 services, Azure resources, and enterprise applications.</p>
+<pre><code class="language-powershell">$groupName = "Sales Department"
+$mailNickname = "sales"
+
+New-MgGroup -DisplayName $groupName -MailNickname $mailNickname `
+    -SecurityEnabled -MailEnabled:$false -Description "Sales team group for resource access"
+</code></pre>
+<ul>
+<li><code>-SecurityEnabled</code>: Defines this as a security group.</li>
+<li><code>-MailEnabled:$false</code>: While mail-enabled security groups exist, for pure access control, disabling mail is often preferred unless you intend to use it as a distribution list.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> In the <a href="https://entra.microsoft.com/" target="_blank">Microsoft Entra admin center</a> > <strong>Identity</strong> > <strong>Groups</strong> > <strong>All groups</strong> > <strong>+ New group</strong>. Select <strong>Security</strong> as the Group type, provide a name, and description.</p>
+
+<p>Now, add your newly created user to the group.</p>
+<pre><code class="language-powershell">$user = Get-MgUser -UserPrincipalName "john.doe@yourcompany.com"
+$group = Get-MgGroup -DisplayName "Sales Department"
+
+Add-MgGroupMember -GroupId $group.Id -DirectoryObjectId $user.Id
+</code></pre>
+<ul>
+<li><code>Add-MgGroupMember</code>: Adds a user to the specified group.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> In the <a href="https://entra.microsoft.com/" target="_blank">Microsoft Entra admin center</a> > <strong>Identity</strong> > <strong>Groups</strong> > <strong>All groups</strong>. Select your group, then <strong>Members</strong> > <strong>+ Add members</strong>. Search for and select the user.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For SMBs with Microsoft 365 Business Premium (which includes Entra ID P1), leverage group-based licensing. This automatically assigns licenses to users when they join a group and reclaims them when they leave, drastically reducing administrative overhead. This feature is configured in the portal by assigning licenses to your Entra ID security groups.</div>
+
+<p><strong>Run this to verify:</strong> List group members.</p>
+<pre><code class="language-powershell">Get-MgGroupMember -GroupId (Get-MgGroup -DisplayName "Sales Department").Id
+</code></pre>
+
+<h2>Step 3: Choosing Your Identity Synchronization Strategy (Cloud-Only vs. Hybrid)</h2>
+<p>For SMBs, deciding how user identities are managed is crucial. Microsoft Entra ID supports both cloud-only environments and hybrid setups that synchronize with an existing on-premises Active Directory Domain Services (AD DS). For most SMBs, we recommend Microsoft Entra Cloud Sync for its simplicity and cloud-native architecture over the legacy Microsoft Entra Connect.</p>
+
+<h3>Cloud-Only Identity</h3>
+<p>If your SMB has no existing on-premises Active Directory or wishes to fully migrate all identity management to the cloud, a cloud-only approach is ideal. All users are created directly in Microsoft Entra ID (as demonstrated in Step 2), and there's no synchronization component.</p>
+
+<h3>Hybrid Identity with Microsoft Entra Cloud Sync (Recommended for SMBs)</h3>
+<p>If your SMB has an existing on-premises AD DS, especially with legacy applications that depend on it, a hybrid identity model allows you to synchronize user accounts, passwords, and groups from your local AD to Microsoft Entra ID. This provides a consistent identity across cloud and on-premises resources.</p>
+
+<p>Microsoft Entra Cloud Sync is the recommended solution for SMBs. It's a lightweight, cloud-managed agent that offers simplified synchronization for multiple disconnected AD forests, supports provisioning from AD to Entra ID, and handles password hash synchronization. It's designed to be the future of synchronization for Microsoft, replacing the older Entra Connect.</p>
+
+<p>While the initial installation of the Cloud Sync agent is a wizard-driven process on an on-premises server (typically a domain controller or member server), subsequent configuration can be viewed and managed through PowerShell or the portal.</p>
+
+<p>To prepare for Cloud Sync, ensure your on-premises AD meets the <a href="https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/tutorial-single-forest#prerequisites" target="_blank">prerequisites</a> (e.g., proper domain and forest functional levels).</p>
+
+<p>After installing the Cloud Sync agent on your on-premises server, you will configure it via the Microsoft Entra admin center. There are no direct CLI/PowerShell commands to *install* the agent, but you can manage synchronization scope and attributes.</p>
+
+<p class="gui-note"><strong>Portal Configuration for Cloud Sync:</strong> In the <a href="https://entra.microsoft.com/" target="_blank">Microsoft Entra admin center</a> > <strong>Identity</strong> > <strong>Hybrid management</strong> > <strong>Microsoft Entra Connect</strong> > <strong>Cloud sync</strong>. Here, you'll configure your new configuration, select your on-premises Active Directory domain, and define the scope of users and groups to synchronize.</p>
+
+<p>Once configured, you can review the provisioning agents:</p>
+<pre><code class="language-powershell">Get-MgBetaSynchronizationJob | Format-List
+</code></pre>
+<ul>
+<li><code>Get-MgBetaSynchronizationJob</code>: Lists the synchronization jobs configured, allowing you to see their status. Note: This requires the `Microsoft.Graph.Beta` module.</li>
+</ul>
+
+<p><strong>Run this to verify:</strong> Monitor the sync status and event logs on your on-premises server where the Cloud Sync agent is installed. In the portal, check the <strong>Provisioning logs</strong> under your Cloud Sync configuration.</p>
+
+<h2>Step 4: Implementing Core Security with Microsoft Entra ID for SMBs</h2>
+<p>Security is paramount, and Microsoft Entra ID provides powerful tools to protect your SMB's identities. We will focus on Multi-Factor Authentication (MFA) and Conditional Access, which are cornerstones of a Zero Trust strategy. For SMBs, enabling Microsoft's Security Defaults is an excellent starting point, providing a baseline of strong security without requiring Entra ID P1/P2 licenses.</p>
+
+<h3>Option A: Enable Security Defaults (Recommended Baseline)</h3>
+<p>Security Defaults enforce strong security measures for all users, including MFA registration and enforcement. This is available to all Microsoft Entra ID tenants at no additional cost and provides robust protection immediately.</p>
+
+<p>There are no direct CLI/PowerShell commands to toggle Security Defaults; it is a portal-only setting.</p>
+
+<p class="gui-note"><strong>Portal Activation for Security Defaults:</strong> In the <a href="https://entra.microsoft.com/" target="_blank">Microsoft Entra admin center</a> > <strong>Identity</strong> > <strong>Overview</strong> > <strong>Properties</strong>. Scroll down to <strong>Manage Security defaults</strong> and set <strong>Enable Security defaults</strong> to <strong>Yes</strong>. Confirm your choice.</p>
+
+<h3>Option B: Implement Conditional Access Policies (Requires Entra ID P1/P2)</h3>
+<p>For more granular control, especially if you have Microsoft 365 Business Premium, Conditional Access policies are essential. They allow you to define specific conditions under which users must authenticate with MFA, block access, or require compliant devices. This provides immense flexibility to protect sensitive data and applications.</p>
+
+<p>While Conditional Access policies can be created via Microsoft Graph API, for SMBs, the visual policy builder in the Azure portal is generally the most straightforward and recommended approach for initial setup.</p>
+
+<p>A common policy for SMBs is to require MFA for all users accessing cloud apps from outside a trusted network location.</p>
+
+<pre><code class="language-powershell"># Example: To list existing Conditional Access policies (creation is complex via CLI/PS for SMBs)
+Get-MgIdentityConditionalAccessPolicy | Select-Object Id, DisplayName, State
+</code></pre>
+<ul>
+<li><code>Get-MgIdentityConditionalAccessPolicy</code>: Retrieves a list of all Conditional Access policies in your tenant.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal Creation for Conditional Access:</strong> In the <a href="https://entra.microsoft.com/" target="_blank">Microsoft Entra admin center</a> > <strong>Protection</strong> > <strong>Conditional Access</strong> > <strong>Policies</strong> > <strong>+ New policy</strong>. Configure the following:</p>
+<ul>
+<li><strong>Name:</strong> "Require MFA for External Access"</li>
+<li><strong>Users:</strong> Select "All users" (or specific groups for phased rollout).</li>
+<li><strong>Cloud apps or actions:</strong> Select "All cloud apps" (or specific apps like Office 365).</li>
+<li><strong>Conditions:</strong> Define locations (Exclude your office IP range if desired).</li>
+<li><strong>Grant:</strong> Select "Require multi-factor authentication".</li>
+<li><strong>Enable policy:</strong> Set to <strong>On</strong> after testing.</li>
+</ul>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Always test Conditional Access policies with a small group of non-critical users or a test account before rolling out to your entire organization. Use the "Report-only" mode first to understand its impact without enforcing it.</div>
+
+<p><strong>Run this to verify:</strong> Test access from a non-trusted network or device and ensure MFA is prompted or access is blocked as per your policy. Review the Conditional Access sign-in logs in the portal to see policy evaluations.</p>
+
+<h2>Step 5: Delegating Administrative Roles for Least Privilege</h2>
+<p>The principle of least privilege dictates that users should only have the minimum permissions necessary to perform their job functions. This is especially true for administrative roles in Microsoft Entra ID. Instead of assigning the powerful Global Administrator role unnecessarily, delegate specific roles to personnel who manage particular aspects of your Entra ID environment.</p>
+
+<p>Microsoft Entra ID offers a wide array of built-in administrative roles. For SMBs, common roles include:</p>
+<ul>
+<li><strong>User Administrator:</strong> Can manage all aspects of users and groups (except creating other admins).</li>
+<li><strong>Application Administrator:</strong> Can manage enterprise applications and application registrations.</li>
+<li><strong>Cloud Application Administrator:</strong> Similar to Application Administrator but cannot manage application proxy settings.</li>
+</ul>
+
+<p>Let's assign the User Administrator role to a specific user using PowerShell:</p>
+<pre><code class="language-powershell">$user = Get-MgUser -UserPrincipalName "jane.smith@yourcompany.com"
+$role = Get-MgDirectoryRole | Where-Object {$_.DisplayName -eq "User Administrator"}
+
+New-MgDirectoryRoleMember -DirectoryRoleId $role.Id -ReferenceId $user.Id
+</code></pre>
+<ul>
+<li><code>Get-MgUser</code>: Retrieves the user object to whom you want to assign the role.</li>
+<li><code>Get-MgDirectoryRole</code>: Lists available directory roles.</li>
+<li><code>New-MgDirectoryRoleMember</code>: Assigns the specified user to the given directory role.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> In the <a href="https://entra.microsoft.com/" target="_blank">Microsoft Entra admin center</a> > <strong>Identity</strong> > <strong>Roles & admins</strong> > <strong>Roles & admins</strong>. Search for the desired role (e.g., "User Administrator"), click on it, then <strong>+ Add assignments</strong>. Search for and select the user, then click <strong>Add</strong>.</p>
+
+<p><strong>Run this to verify:</strong> List the members of an administrative role.</p>
+<pre><code class="language-powershell">Get-MgDirectoryRoleMember -DirectoryRoleId (Get-MgDirectoryRole | Where-Object {$_.DisplayName -eq "User Administrator"}).Id
+</code></pre>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Over-assigning the Global Administrator role. This role provides unrestricted access. Only a very small number of trusted individuals should hold this role, and consider using Privileged Identity Management (PIM) for just-in-time access if you have Entra ID P2.</div>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide provides a solid foundation for your Microsoft Entra ID setup as an SMB, complex scenarios often benefit from expert guidance. Consider bringing in a SkyCore Solutions consultant if you:</p>
+<ul>
+<li>Have intricate hybrid identity requirements, including multiple Active Directory forests or complex trust relationships.</li>
+<li>Need advanced Conditional Access policies for specific regulatory compliance (e.g., ISO 27001, HIPAA).</li>
+<li>Are planning a full migration of applications and services from on-premises to Azure, requiring seamless identity transition.</li>
+<li>Require specialized security hardening, such as Privileged Identity Management (PIM) or advanced identity protection features.</li>
+<li>Need assistance with integrating third-party SaaS applications for single sign-on (SSO) or provisioning.</li>
+</ul>
+<p>Our team at SkyCore Solutions specializes in cloud migration, security hardening, and infrastructure revamp for SMBs, ensuring your Entra ID implementation is robust, secure, and future-proof.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+
+<p>By following this <strong>Microsoft Entra ID setup guide SMB</strong>s can establish a robust, secure, and manageable cloud identity foundation. This empowers your employees with seamless access to critical applications and resources, while providing your IT team with the tools to enforce a strong Zero Trust security posture. Embracing Microsoft Entra ID is a fundamental step towards modernizing your IT infrastructure and securing your digital future.</p>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/entra/fundamentals/whatis" target="_blank" rel="noopener noreferrer">learn.microsoft.com — whatis</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/users/directory-overview-user-model" target="_blank" rel="noopener noreferrer">learn.microsoft.com — directory overview user model</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect" target="_blank" rel="noopener noreferrer">learn.microsoft.com — whatis azure ad connect</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks" target="_blank" rel="noopener noreferrer">learn.microsoft.com — concept mfa howitworks</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — overview</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

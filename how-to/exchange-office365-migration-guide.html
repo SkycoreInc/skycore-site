@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comprehensive Exchange to Office 365 Migration Guide for IT Professionals — SkyCore Solutions</title>
+  <meta name="description" content="SkyCore Solutions' authoritative guide on Exchange to Office 365 migration. Learn cutover, staged, and hybrid methods, focusing on a step-by-step cutover process." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Comprehensive Exchange to Office 365 Migration Guide for IT Professionals — SkyCore Solutions" />
+  <meta property="og:description" content="SkyCore Solutions' authoritative guide on Exchange to Office 365 migration. Learn cutover, staged, and hybrid methods, focusing on a step-by-step cutover process." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/exchange-office365-migration-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Comprehensive Exchange to Office 365 Migration Guide for IT Professionals — SkyCore Solutions" />
+  <meta name="twitter:description" content="SkyCore Solutions' authoritative guide on Exchange to Office 365 migration. Learn cutover, staged, and hybrid methods, focusing on a step-by-step cutover process." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/exchange-office365-migration-guide.html" />
+  <meta property="article:published_time" content="2026-06-28" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Comprehensive Exchange to Office 365 Migration Guide for IT Professionals",
+  "description": "SkyCore Solutions' authoritative guide on Exchange to Office 365 migration. Learn cutover, staged, and hybrid methods, focusing on a step-by-step cutover process.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Active Microsoft 365 or Office 365 tenant with administrative privileges., On-premises Exchange Server 2003, 2007, 2010, or 2013 (for cutover migration)., Fewer than 2,000 mailboxes for cutover migration (ideally 150 or fewer for practical purposes)., Custom domain verified and added to your Microsoft 365 tenant., Administrator access to your DNS hosting provider to modify MX and Autodiscover records., A publicly trusted SSL certificate configured for Outlook Anywhere and Autodiscover services on your on-premises Exchange Server., Outlook Anywhere enabled on your on-premises Exchange Server., Directory synchronization (Azure AD Connect) must be disabled if currently running."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Choose Your Migration Path",
+        "text": "Understand the different migration strategies to select the best fit for your organization's scale and existing Exchange environment."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Your On-Premises Exchange Environment",
+        "text": "Configure Outlook Anywhere, ensure certificate validity, and disable directory synchronization to enable seamless connection from Office 365."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create a Migration Endpoint in Exchange Online",
+        "text": "Establish a secure connection between your Office 365 tenant and your on-premises Exchange Server to facilitate data transfer."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Initiate the Migration Batch",
+        "text": "Create and start the migration batch to begin moving mailbox data from your on-premises server to Office 365."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Update DNS Records (MX and Autodiscover)",
+        "text": "Reconfigure your domain's MX and Autodiscover records to direct mail flow and client connections to Office 365."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Assign Licenses and Complete the Migration",
+        "text": "Grant Office 365 licenses to migrated users and finalize the migration batch, activating their cloud mailboxes."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Post-Migration Cleanup and Decommissioning",
+        "text": "Perform necessary cleanup tasks in Exchange Online and plan for the eventual decommissioning of your on-premises Exchange infrastructure."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-06-28 · 11 min read · Cloud Migration</div>
+<h1>Comprehensive Exchange to Office 365 Migration Guide for IT Professionals</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="A network diagram showing mailboxes migrating from an on-premises Exchange server to the Office 365 cloud environment." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>Migrating from an on-premises Exchange environment to Microsoft 365 (formerly Office 365) is a critical step for organizations looking to leverage the scalability, security, and advanced features of cloud email. This Exchange to Office 365 migration guide provides a comprehensive, CLI-first approach, detailing the planning, execution, and post-migration steps necessary for a successful transition. By following these instructions, IT administrators will be equipped to efficiently move their mailboxes to Exchange Online, ensuring minimal disruption and maximum benefit from their cloud investment.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul>
+<li>Active Microsoft 365 or Office 365 tenant with global administrator privileges.</li>
+<li>On-premises Exchange Server 2003, 2007, 2010, or 2013 for cutover migration (2013+ for hybrid).</li>
+<li>Fewer than 2,000 mailboxes for cutover migration; for practical performance, we recommend 150 users or less for cutover.</li>
+<li>Your custom domain verified and added to your Microsoft 365 tenant.</li>
+<li>Administrator access to your domain's DNS hosting provider to modify MX and Autodiscover records.</li>
+<li>A publicly trusted SSL certificate configured for Outlook Anywhere and Autodiscover services on your on-premises Exchange Server. The certificate must include the Outlook Anywhere hostname and the Autodiscover service hostname.</li>
+<li>Outlook Anywhere must be enabled and properly configured on your on-premises Exchange Server.</li>
+<li>If currently enabled, directory synchronization (e.g., Azure AD Connect) must be temporarily disabled before performing a cutover migration.</li>
+</ul></div>
+
+<h2>Step 1: Choose Your Migration Path</h2>
+<p>Before initiating any migration, selecting the appropriate strategy is paramount. Microsoft offers several paths for an Exchange to Office 365 migration, each suited for different organizational sizes and existing infrastructure complexities. Understanding these options will help you choose the most effective and least disruptive method.</p>
+<ul>
+<li><strong>Cutover Migration:</strong> This method moves all mailboxes from your on-premises Exchange server to Office 365 simultaneously. It's ideal for organizations running Exchange Server 2003, 2007, 2010, or 2013 with fewer than 2,000 mailboxes. However, for practical reasons, Microsoft recommends it for 150 users or fewer due to the time involved in user creation and migration. This guide will focus on the cutover method as it is a common choice for small to medium-sized businesses and provides a clear end-to-end process.</li>
+<li><strong>Staged Migration:</strong> Designed for organizations with Exchange Server 2003 or 2007 and more than 2,000 mailboxes. Mailboxes are migrated in batches over time. This method is more complex and suitable when a full cutover is not feasible due to scale or legacy systems.</li>
+<li><strong>Hybrid Migration:</strong> This approach allows for maintaining both on-premises and online mailboxes, gradually moving users to Office 365. It's recommended for Exchange 2010 and later, especially for organizations with more than 150-2,000 mailboxes, or those requiring coexistence for an extended period. This method offers the most flexibility but is also the most complex.</li>
+<li><strong>IMAP Migration:</strong> For migrating email from any IMAP-enabled system (e.g., Gmail, older Exchange versions without Outlook Anywhere). It only migrates email items; contacts, calendars, and tasks must be migrated manually by users. Mailboxes must be pre-created in Office 365.</li>
+<li><strong>PST Import Service:</strong> Useful for organizations with many large PST files, allowing bulk upload via network or physical drive shipment.</li>
+</ul>
+<p><strong>SkyCore Solutions Recommendation:</strong> For organizations with eligible Exchange versions and fewer than 150 mailboxes, a <strong>cutover migration</strong> provides the quickest and most straightforward path to the cloud. While supported for up to 2000 mailboxes, the logistical overhead for creating and migrating that many users makes it less practical in real-world scenarios compared to hybrid migrations for larger environments.</p>
+
+<h2>Step 2: Prepare Your On-Premises Exchange Environment</h2>
+<p>Before connecting Office 365 to your on-premises Exchange, specific configurations are required to ensure a smooth data transfer. This includes enabling Outlook Anywhere, verifying your SSL certificate, and ensuring any existing directory synchronization is temporarily paused.</p>
+
+<h3>Disable Directory Synchronization (if active)</h3>
+<p>If you're using Azure AD Connect (or a similar directory synchronization tool), you must disable it before starting a cutover migration. This prevents potential conflicts when Office 365 creates new user accounts during the migration process. You will re-enable it post-migration if hybrid identity is desired.</p>
+<pre><code class="language-powershell">Connect-MsolService
+Set-MsolDirSyncEnabled -EnableDirSync $false
+</code></pre>
+<ul>
+<li><code>Connect-MsolService</code>: Establishes a connection to the Microsoft Online Services PowerShell module, prompting for your global administrator credentials.</li>
+<li><code>Set-MsolDirSyncEnabled</code>: Modifies the directory synchronization status for your tenant.</li>
+<li><code>-EnableDirSync $false</code>: Specifies that directory synchronization should be disabled.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> There isn't a direct GUI option for this specific task; it's primarily a PowerShell operation. You would typically manage Azure AD Connect sync settings within the Azure portal or the AAD Connect server itself, but disabling the *tenant-wide* feature is best done via PowerShell.</p>
+<p><strong>Expected Output:</strong> The command will complete without specific output if successful. To verify, run <code>Get-MsolDirSyncFeatures</code> and confirm <code>DirSyncStatus</code> is <code>Disabled</code>.</p>
+
+<h3>Configure Outlook Anywhere and SSL Certificate</h3>
+<p>The Exchange migration service relies on Outlook Anywhere (RPC over HTTP) to connect to your on-premises Exchange server. This must be correctly configured and secured with a publicly trusted SSL certificate that includes both your Outlook Anywhere and Autodiscover hostnames.</p>
+<p>For Exchange 2010, 2007, or 2003, you may need to manually enable Outlook Anywhere. Exchange 2013 typically has it enabled by default. Ensure your external URL for Outlook Anywhere is correctly set.</p>
+<pre><code class="language-powershell"># For Exchange 2010
+Set-OutlookAnywhere -Identity "<ServerName>\Rpc (Default Web Site)" -ExternalHostName "owa.yourdomain.com" -ExternalClientsRequireSsl $true -SSLOffloading $false
+
+# To verify Outlook Anywhere settings:
+Get-OutlookAnywhere -Identity "<ServerName>\Rpc (Default Web Site)" | Format-List ExternalHostName, SSLOffloading
+</code></pre>
+<ul>
+<li><code>Set-OutlookAnywhere</code>: Modifies the Outlook Anywhere configuration.</li>
+<li><code>-Identity</code>: Specifies the server and Outlook Anywhere virtual directory. Replace <code>&lt;ServerName&gt;</code> with your CAS server name.</li>
+<li><code>-ExternalHostName</code>: Sets the external URL that Outlook clients will use (e.g., <code>owa.yourdomain.com</code>).</li>
+<li><code>-ExternalClientsRequireSsl $true</code>: Enforces SSL for external client connections.</li>
+<li><code>-SSLOffloading $false</code>: Specifies that SSL decryption is not being offloaded to a proxy or load balancer.</li>
+<li><code>Get-OutlookAnywhere</code>: Retrieves the current Outlook Anywhere configuration.</li>
+</ul>
+<p>Ensure your SSL certificate is from a trusted Certificate Authority (CA) and includes the necessary Subject Alternative Names (SANs) for both your Outlook Anywhere endpoint (e.g., <code>owa.yourdomain.com</code>) and Autodiscover (<code>autodiscover.yourdomain.com</code>).</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Inadequate or expired SSL certificates are a frequent cause of migration failures. Ensure your certificate is valid, issued by a trusted CA, and covers all required hostnames (Outlook Anywhere, Autodiscover). Self-signed certificates will not work. Verify certificate binding in IIS and Exchange.</div>
+
+<h2>Step 3: Create a Migration Endpoint in Exchange Online</h2>
+<p>A migration endpoint defines the connection settings and credentials that Office 365 will use to communicate with your on-premises Exchange server. This is a crucial step for the migration service to pull mailbox data.</p>
+<pre><code class="language-powershell"># Connect to Exchange Online PowerShell
+Connect-ExchangeOnline -UserPrincipalName admin@yourtenant.onmicrosoft.com
+
+# Create the new migration endpoint
+New-MigrationEndpoint -Name "SkyCoreCutoverEndpoint" -Type OutlookAnywhere -RemoteServer "owa.yourdomain.com" -RpcProxyServer "owa.yourdomain.com" -Credentials (Get-Credential) -ServiceDiscovery FQDN
+</code></pre>
+<ul>
+<li><code>Connect-ExchangeOnline</code>: Connects to your Exchange Online PowerShell session.</li>
+<li><code>New-MigrationEndpoint</code>: Creates a new migration endpoint object.</li>
+<li><code>-Name "SkyCoreCutoverEndpoint"</code>: Assigns a descriptive name to your migration endpoint.</li>
+<li><code>-Type OutlookAnywhere</code>: Specifies that the endpoint will connect via Outlook Anywhere.</li>
+<li><code>-RemoteServer "owa.yourdomain.com"</code>: The FQDN of your on-premises Exchange server's Outlook Anywhere endpoint.</li>
+<li><code>-RpcProxyServer "owa.yourdomain.com"</code>: The FQDN of your RPC proxy server, typically the same as <code>RemoteServer</code>.</li>
+<li><code>-Credentials (Get-Credential)</code>: Prompts you to enter the credentials of an on-premises Exchange administrator account with sufficient permissions to access all mailboxes (e.g., ApplicationImpersonation role or receive-as permissions on all mailboxes).</li>
+<li><code>-ServiceDiscovery FQDN</code>: Specifies that the service discovery for the remote server is an FQDN.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Microsoft 365 admin center, navigate to <strong>Exchange admin center (EAC)</strong> > <strong>Migration</strong> > <strong>Migration endpoints</strong>. Click the <strong>+ New</strong> icon, select <strong>Outlook Anywhere</strong>, and follow the wizard to enter the required details and credentials.</p>
+<p><strong>Expected Output:</strong> The command will return details of the newly created migration endpoint, including its status (which should be Healthy). You can verify with <code>Get-MigrationEndpoint "SkyCoreCutoverEndpoint"</code>.</p>
+
+<h2>Step 4: Initiate the Migration Batch</h2>
+<p>With the migration endpoint established, you can now create and start the migration batch. A cutover migration batch moves all mailboxes simultaneously. The system will automatically create corresponding user mailboxes in Office 365 and begin transferring data.</p>
+<pre><code class="language-powershell"># Create and start the migration batch
+New-MigrationBatch -Name "SkyCoreCutoverBatch" -SourceEndpoint "SkyCoreCutoverEndpoint" -TargetDeliveryDomain "yourtenant.onmicrosoft.com" -AutoStart -CompleteAfter $null -Confirm:$false
+</code></pre>
+<ul>
+<li><code>New-MigrationBatch</code>: Creates a new migration batch.</li>
+<li><code>-Name "SkyCoreCutoverBatch"</code>: A unique name for your migration batch.</li>
+<li><code>-SourceEndpoint "SkyCoreCutoverEndpoint"</code>: References the migration endpoint created in the previous step.</li>
+<li><code>-TargetDeliveryDomain "yourtenant.onmicrosoft.com"</code>: The primary email domain for new mailboxes in Office 365. This will typically be your initial <code>.onmicrosoft.com</code> domain.</li>
+<li><code>-AutoStart</code>: Automatically starts the migration batch once created.</li>
+<li><code>-CompleteAfter $null</code>: Ensures the batch will synchronize mailbox data continuously until you manually complete it. This is crucial for a cutover to allow for a final sync after the MX record change.</li>
+<li><code>-Confirm:$false</code>: Suppresses the confirmation prompt.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In the EAC, navigate to <strong>Migration</strong> > <strong>Migration batches</strong>. Click the <strong>+ New migration batch</strong> icon, select <strong>Migration to Exchange Online</strong>, choose <strong>Cutover migration</strong>, and follow the wizard, selecting your previously created migration endpoint.</p>
+<p><strong>Expected Output:</strong> The command will return details of the new migration batch. To monitor its progress, use <code>Get-MigrationBatch -Identity "SkyCoreCutoverBatch" | Format-List Status, *Count, Error</code>. The initial status will likely be <code>Syncing</code> or <code>Synced</code> as it begins to process mailboxes.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> User Mailbox Creation Errors. If your on-premises environment has accounts that don't map cleanly to Office 365 user principal names (UPNs) or if there are conflicts, mailbox creation can fail. Ensure UPNs match your primary SMTP address for seamless identity. Verify each user's migration status carefully.</div>
+
+<h2>Step 5: Update DNS Records (MX and Autodiscover)</h2>
+<p>Once mailboxes have synchronized and you're ready for the cutover, the most critical step is updating your DNS records. This redirects incoming email and client connections to Office 365.</p>
+
+<h3>Modify MX Record</h3>
+<p>The MX (Mail Exchanger) record tells other mail servers where to send email for your domain. Changing this record will redirect new incoming email to your Office 365 tenant.</p>
+<p>This is performed at your domain registrar or DNS hosting provider. There is no PowerShell command for modifying external DNS records directly. You will need to log into your provider's portal.</p>
+<p><strong>Action:</strong> Change your primary MX record (typically priority 0 or 10) to point to your Office 365 endpoint, which usually follows the format <code>&lt;yourtenant&gt;.mail.protection.outlook.com</code>. For example, if your tenant is <code>skycoresolutions.onmicrosoft.com</code>, your MX record would be <code>skycoresolutions-com.mail.protection.outlook.com</code> (the domain name is typically hyphenated). Remove or deprioritize any old MX records pointing to your on-premises server.</p>
+
+<h3>Modify Autodiscover CNAME Record</h3>
+<p>The Autodiscover record helps Outlook and other email clients automatically find the correct server settings for a user's mailbox. Update this to point to Office 365.</p>
+<p><strong>Action:</strong> Create or modify a CNAME record for <code>autodiscover.yourdomain.com</code> to point to <code>autodiscover.outlook.com</code>.</p>
+
+<h3>Verify DNS Records in Office 365</h3>
+<p>After making changes at your registrar, you can verify your domain's health in Office 365.</p>
+<pre><code class="language-powershell"># Connect to Microsoft Online Services PowerShell
+Connect-MsolService
+
+# Get domain information
+Get-MsolDomain -DomainName "yourdomain.com"
+</code></pre>
+<ul>
+<li><code>Get-MsolDomain</code>: Retrieves information about a domain registered with Microsoft 365.</li>
+<li><code>-DomainName "yourdomain.com"</code>: Specifies the custom domain you're verifying.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Microsoft 365 admin center, navigate to <strong>Settings</strong> > <strong>Domains</strong>, select your domain, and check its status. The DNS records section will indicate if the MX and Autodiscover records are correctly configured.</p>
+<p><strong>Expected Output:</strong> The <code>Get-MsolDomain</code> command will show attributes of your domain. To truly verify mail flow, external tools like <code>nslookup -type=mx yourdomain.com</code> should return your Office 365 MX record. It's critical to wait for DNS propagation, which can take several hours (up to 72 hours, though usually faster).</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> DNS propagation delays. After changing MX records, it can take time for these changes to propagate across the internet. During this period, some mail might still be delivered to your on-premises server, while other mail goes to Office 365. Plan your cutover during off-peak hours and inform users of potential temporary mail routing inconsistencies.</div>
+
+<h2>Step 6: Assign Licenses and Complete the Migration</h2>
+<p>Once DNS records have propagated and new mail is flowing to Office 365, you need to assign licenses to your migrated users and finalize the migration batch.</p>
+
+<h3>Assign Office 365 Licenses</h3>
+<p>Each user whose mailbox has been migrated needs an appropriate Office 365 license (e.g., Exchange Online Plan 1, Plan 2, or a Microsoft 365 Business/Enterprise license that includes Exchange Online) to access their new cloud mailbox.</p>
+<pre><code class="language-powershell"># Get all users who had mailboxes migrated by the batch (assuming their UPNs match)
+$migratedUsers = Get-MigrationUser -BatchId "SkyCoreCutoverBatch" | Where-Object { $_.Status -eq "Synced" -or $_.Status -eq "Completed" }
+
+# Get the SKU for your desired license (e.g., M365 Business Standard)
+# Replace 'yourtenant' with your actual tenant ID or domain prefix
+# Use Get-MsolAccountSku to find available SKUs
+$LicenseSku = (Get-MsolAccountSku | Where-Object {$_.SkuPartNumber -eq "SMB_BUSINESS_PREMIUM"}).SkuPartNumber
+
+# Assign licenses to migrated users
+foreach ($user in $migratedUsers) {
+    Write-Host "Assigning license to $($user.EmailAddress)"
+    Set-MsolUserLicense -UserPrincipalName $user.EmailAddress -AddLicenses "yourtenant:$LicenseSku"
+}
+</code></pre>
+<ul>
+<li><code>Get-MigrationUser</code>: Retrieves specific users within a migration batch.</li>
+<li><code>Where-Object { $_.Status -eq "Synced" -or $_.Status -eq "Completed" }</code>: Filters for users whose mailboxes are ready.</li>
+<li><code>Get-MsolAccountSku</code>: Lists all available license SKUs for your tenant. Use this to identify the correct <code>SkuPartNumber</code>.</li>
+<li><code>Set-MsolUserLicense</code>: Assigns or removes licenses for users.</li>
+<li><code>-UserPrincipalName</code>: Specifies the UPN of the user to license.</li>
+<li><code>-AddLicenses "yourtenant:$LicenseSku"</code>: The specific license to assign. Replace <code>yourtenant</code> and <code>$LicenseSku</code> with your actual values.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Microsoft 365 admin center, go to <strong>Users</strong> > <strong>Active users</strong>. Select the migrated users, click <strong>Manage product licenses</strong>, and assign the appropriate license.</p>
+
+<h3>Complete the Migration Batch</h3>
+<p>After licenses are assigned and you are confident mail flow is stable, complete the migration batch. This finalizes the migration, marking the mailboxes as fully moved and preventing any further synchronization from on-premises.</p>
+<pre><code class="language-powershell">Complete-MigrationBatch -Identity "SkyCoreCutoverBatch"
+</code></pre>
+<ul>
+<li><code>Complete-MigrationBatch</code>: Finalizes a migration batch.</li>
+<li><code>-Identity "SkyCoreCutoverBatch"</code>: Specifies the batch to complete.</li>
+</ul>
+<p><strong>Expected Output:</strong> The batch status will change to <code>Completed</code>. Verify with <code>Get-MigrationBatch -Identity "SkyCoreCutoverBatch" | Format-List Status</code>.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Outlook client re-profiling. After MX record changes and migration completion, Outlook clients might still try to connect to the old on-premises server. Users may need to create new Outlook profiles (pointing to Office 365) or clear their credential cache for a smooth transition. Automate this with Group Policy where possible.</div>
+
+<h2>Step 7: Post-Migration Cleanup and Decommissioning</h2>
+<p>Once your Exchange to Office 365 migration is complete and stable, you can perform cleanup tasks and plan for potentially decommissioning your on-premises Exchange servers.</p>
+
+<h3>Remove the Migration Batch and Endpoint</h3>
+<p>It's good practice to remove the migration batch and endpoint after a successful cutover to clean up the Exchange Online configuration.</p>
+<pre><code class="language-powershell">Remove-MigrationBatch -Identity "SkyCoreCutoverBatch"
+Remove-MigrationEndpoint -Identity "SkyCoreCutoverEndpoint"
+</code></pre>
+<ul>
+<li><code>Remove-MigrationBatch</code>: Deletes the specified migration batch.</li>
+<li><code>Remove-MigrationEndpoint</code>: Deletes the specified migration endpoint.</li>
+</ul>
+<p><strong>Expected Output:</strong> Both commands will complete without specific output if successful. Verify by attempting to run <code>Get-MigrationBatch</code> or <code>Get-MigrationEndpoint</code> with the same identities; they should no longer be found.</p>
+
+<h3>Decommission On-Premises Exchange (Optional)</h3>
+<p>With all mailboxes in Office 365 and mail flow fully redirected, your on-premises Exchange server is no longer needed for email services. You may consider decommissioning it, but this is a complex task that should be approached with caution and thorough planning. Ensure all other services that might rely on Exchange (e.g., applications using SMTP relay, legacy public folders) are migrated or reconfigured first. Proper decommissioning involves cleaning up Active Directory objects, uninstalls, and server shutdowns, which fall outside the scope of this migration guide but are critical considerations.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3><p>While this guide provides a detailed roadmap for an Exchange to Office 365 migration, real-world scenarios often present unique challenges. Organizations with complex Active Directory structures, stringent compliance requirements, hybrid application dependencies, or a high volume of mailboxes (even within cutover limits) can find DIY migrations risky. Factors like intricate public folder migrations, coexistence needs during extended transitions, or the desire for zero downtime often benefit from expert intervention. If you're unsure about any step, encountering unexpected errors, or simply want to ensure a secure, efficient, and fully optimized migration, SkyCore Solutions offers specialized cloud migration services. Our team can assess your specific environment, mitigate risks, and execute a seamless transition to Office 365.</p><a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/exchange/mailbox-migration/mailbox-migration" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/exchange/mailbox-migration</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/exchange/mailbox-migration/cutover-migration-to-office-365" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/exchange/mailbox-migration</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/microsoft-365/admin/misc/set-up-dns-records-vsb" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/microsoft-365/admin</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/exchange/mailbox-migration/migrate-mailboxes-across-tenants" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/exchange/mailbox-migration</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

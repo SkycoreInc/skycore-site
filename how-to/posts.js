@@ -3,6 +3,102 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "smb-azure-cloud-migration-guide",
+    title: "Your Essential Cloud Migration Guide for SMB: Azure Strategy by SkyCore Solutions",
+    date: "2026-07-10",
+    readTime: "22 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "4-6 weeks (project duration)",
+    keyword: "cloud migration guide for SMB",
+    excerpt: "This guide simplifies cloud migration for Small and Medium Businesses (SMBs) using Azure. We cover assessment, planning, execution, and optimization with actionable, CLI-first steps.",
+    image: "https://images.pexels.com/photos/36591860/pexels-photo-36591860.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "mfa-setup-organization-skycore",
+    title: "How to Set Up MFA for Your Organization: A SkyCore Solutions Guide",
+    date: "2026-07-07",
+    readTime: "15 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-4 hours (initial setup + pilot)",
+    keyword: "how to set up MFA for your organization",
+    excerpt: "Implementing Multi-Factor Authentication (MFA) is critical for modern cybersecurity. This comprehensive guide details the technical steps and strategic considerations for deploying MFA across your organization effectively.",
+    image: "https://images.pexels.com/photos/10330120/pexels-photo-10330120.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "microsoft-entra-id-setup-guide-smb-skycore",
+    title: "Mastering Cloud Identity: Your Comprehensive Microsoft Entra ID Setup Guide for SMBs",
+    date: "2026-07-05",
+    readTime: "12 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Microsoft Entra ID setup guide SMB",
+    excerpt: "This comprehensive Microsoft Entra ID setup guide SMBs will empower your organization with robust cloud identity and access management. Learn to secure your digital assets.",
+    image: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "it-infrastructure-assessment-guide-skycore",
+    title: "The Definitive IT Infrastructure Assessment Guide for Modern Enterprises",
+    date: "2026-07-04",
+    readTime: "11 min read",
+    category: "IT Strategy",
+    difficulty: "Intermediate",
+    timeEstimate: "Initial Data Collection: 8-16 hours (depending on scope)",
+    keyword: "IT infrastructure assessment guide",
+    excerpt: "Unlock your infrastructure's true potential. This guide provides a CLI-first approach to comprehensively assess your IT environment for performance, security, and cloud readiness.",
+    image: "https://images.pexels.com/photos/4682189/pexels-photo-4682189.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "microsoft-intune-mdm-setup-smb-guide",
+    title: "Comprehensive Guide: Microsoft Intune MDM Setup for SMBs in 2026",
+    date: "2026-07-01",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Microsoft Intune MDM setup SMB",
+    excerpt: "This comprehensive guide walks SMBs through the complete Microsoft Intune MDM setup, from initial tenant configuration to device enrollment and policy deployment. Empower your workforce with secure, managed devices using Intune.",
+    image: "https://images.pexels.com/photos/11634833/pexels-photo-11634833.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "azure-ad-connect-setup-guide-skycore",
+    title: "Mastering Hybrid Identity: Your SkyCore Azure AD Connect Setup Guide (Microsoft Entra Connect V2)",
+    date: "2026-07-01",
+    readTime: "20 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 hours",
+    keyword: "Azure AD Connect setup guide",
+    excerpt: "This comprehensive guide by SkyCore Solutions walks you through setting up Azure AD Connect (now Microsoft Entra Connect V2) for hybrid identity. Seamlessly synchronize your on-premises Active Directory with Microsoft Entra ID to empower your users.",
+    image: "https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "azure-devops-ci-cd-pipeline-setup-guide",
+    title: "Mastering Your Workflow: The Azure DevOps CI CD Pipeline Setup Guide for SMBs",
+    date: "2026-06-29",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "1.5 - 2 hours",
+    keyword: "Azure DevOps CI CD pipeline setup guide",
+    excerpt: "Streamline your software development life cycle. This Azure DevOps CI CD pipeline setup guide empowers SMBs to automate code delivery, ensuring faster, more reliable releases.",
+    image: "https://images.pexels.com/photos/18784617/pexels-photo-18784617.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "exchange-office365-migration-guide",
+    title: "Comprehensive Exchange to Office 365 Migration Guide for IT Professionals",
+    date: "2026-06-28",
+    readTime: "11 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "1-3 days (depending on scale)",
+    keyword: "Exchange to Office 365 migration guide",
+    excerpt: "This comprehensive Exchange to Office 365 migration guide covers the critical steps and best practices for moving your on-premises mailboxes to the cloud.",
+    image: "https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-kubernetes-service-setup-guide-smb",
     title: "Comprehensive Azure Kubernetes Service Setup Guide for SMBs",
     date: "2026-06-25",

@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mastering Your Workflow: The Azure DevOps CI CD Pipeline Setup Guide for SMBs — SkyCore Solutions</title>
+  <meta name="description" content="Elevate your SMB's software delivery with our Azure DevOps CI CD pipeline setup guide. Learn to automate builds, tests, and deployments for efficiency and quality." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Mastering Your Workflow: The Azure DevOps CI CD Pipeline Setup Guide for SMBs — SkyCore Solutions" />
+  <meta property="og:description" content="Elevate your SMB's software delivery with our Azure DevOps CI CD pipeline setup guide. Learn to automate builds, tests, and deployments for efficiency and quality." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-devops-ci-cd-pipeline-setup-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/18784617/pexels-photo-18784617.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mastering Your Workflow: The Azure DevOps CI CD Pipeline Setup Guide for SMBs — SkyCore Solutions" />
+  <meta name="twitter:description" content="Elevate your SMB's software delivery with our Azure DevOps CI CD pipeline setup guide. Learn to automate builds, tests, and deployments for efficiency and quality." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/18784617/pexels-photo-18784617.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-devops-ci-cd-pipeline-setup-guide.html" />
+  <meta property="article:published_time" content="2026-06-29" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Mastering Your Workflow: The Azure DevOps CI CD Pipeline Setup Guide for SMBs",
+  "description": "Elevate your SMB's software delivery with our Azure DevOps CI CD pipeline setup guide. Learn to automate builds, tests, and deployments for efficiency and quality.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Azure subscription for billing (required for free parallel jobs), An Azure DevOps organization (create one for free), An Azure DevOps Project with 'Project Administrator' permissions, Source code stored in a Git repository (e.g., GitHub or Azure Repos), Azure CLI installed and configured (version 2.x or later), Azure DevOps CLI extension installed (`az extension add --name azure-devops`), A GitHub account (if using GitHub for source control) with a Personal Access Token (PAT) for service connection, or administrative access to install Azure Pipelines app."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Your Azure DevOps Environment",
+        "text": "Set up your Azure DevOps organization and project, configuring the necessary CLI defaults."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Connect Your Source Code Repository (GitHub)",
+        "text": "Establish a secure connection between Azure DevOps and your Git repository, using a GitHub Service Connection."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Define Your CI/CD Pipeline with YAML",
+        "text": "Create the core of your automation: the azure-pipelines.yml file, defining the build, test, and artifact publishing stages."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Trigger and Monitor Your First Pipeline Run",
+        "text": "Execute your newly defined pipeline and observe its progress, ensuring your CI process is functional."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Review Pipeline Artifacts and Deployment Considerations",
+        "text": "Inspect the output of your build and prepare for continuous delivery to deployment targets."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-06-29 · 15 min read · Infrastructure Revamp</div>
+<h1>Mastering Your Workflow: The Azure DevOps CI CD Pipeline Setup Guide for SMBs</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/18784617/pexels-photo-18784617.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="A visual representation of an Azure DevOps CI CD pipeline flow, showing code, build, test, and deploy stages with Azure services." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For Small to Medium-sized Businesses (SMBs) in Montreal and beyond, efficient software delivery is paramount. Manual build, test, and deployment processes are not only time-consuming but also prone to human error, stifling innovation and delaying market entry. This is where a robust Continuous Integration (CI) and Continuous Delivery (CD) pipeline becomes a game-changer. This comprehensive <strong>Azure DevOps CI CD pipeline setup guide</strong> from SkyCore Solutions will walk you through establishing an automated, reliable, and scalable pipeline. By the end of this guide, you’ll have a working CI pipeline that automatically builds, tests, and prepares your application for deployment with every code change, setting the stage for true continuous delivery.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>An active Azure subscription for billing (required for free parallel jobs, see note below on costs).</li><li>An Azure DevOps organization. If you don't have one, you can <a href="https://azure.microsoft.com/en-ca/products/devops/get-started/" target="_blank">create one for free</a>.</li><li>An Azure DevOps Project with 'Project Administrator' permissions.</li><li>Source code stored in a Git repository (e.g., GitHub or Azure Repos). For this guide, we'll use GitHub.</li><li>Azure CLI installed and configured (version 2.x or later).</li><li>Azure DevOps CLI extension installed (`az extension add --name azure-devops`).</li><li>A GitHub account (if using GitHub for source control) with a Personal Access Token (PAT) for service connection, or administrative access to install the Azure Pipelines app.</li></ul>
+<p><strong>Estimated Cost:</strong> Azure DevOps offers a generous <a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines#azure-pipelines-pricing" target="_blank">free tier</a> for private projects, including one parallel job that can run for up to 60 minutes, totaling up to 1,800 minutes per month. This is typically sufficient for many SMBs. However, to access this free grant, your Azure DevOps organization must have billing set up by linking a valid Azure subscription. You will only incur costs if you exceed the free tier limits or opt for self-hosted agents on Azure VMs.</p></div>
+
+<h2>Step 1: Prepare Your Azure DevOps Environment</h2>
+<p>Before creating your CI/CD pipeline, ensure your Azure DevOps organization and project are correctly set up and your CLI environment is ready. This foundational step ensures all subsequent commands execute smoothly within the right context.</p>
+<pre><code class="language-azurecli"># 1. Log in to Azure DevOps (interactive browser login)
+az devops login
+
+# 2. If you don't have an organization, create one (replace 'skycore-montreal' with your desired organization name)
+az devops organization create --name skycore-montreal --location eastus
+
+# 3. If you don't have a project within your organization, create one (replace 'SkyCoreWebApp' with your project name)
+az devops project create --name SkyCoreWebApp --organization https://dev.azure.com/skycore-montreal/
+
+# 4. Set default organization and project for subsequent CLI commands
+az devops configure --defaults organization=https://dev.azure.com/skycore-montreal/ project=SkyCoreWebApp</code></pre>
+<ul>
+<li><code>az devops login</code>: Initiates an interactive login process, opening your browser for authentication to Azure DevOps.</li>
+<li><code>az devops organization create --name --location</code>: Creates a new Azure DevOps organization. Choose a region close to your primary users for optimal performance (e.g., <code>eastus</code> for North America).</li>
+<li><code>az devops project create --name --organization</code>: Creates a new project within your specified organization. This project will house your repositories, pipelines, and other DevOps artifacts.</li>
+<li><code>az devops configure --defaults organization=... project=...</code>: This crucial command saves your preferred organization and project, so you don't have to specify them with every subsequent <code>az devops</code> command.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to <a href="https://dev.azure.com/" target="_blank">dev.azure.com</a>, sign in, and follow the prompts to create an organization and a new project. Once created, you can access your project settings via the gear icon in the bottom left.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az devops project list --output table</code></pre>
+<p>Confirm that your newly created project (e.g., 'SkyCoreWebApp') is listed within your organization.</p>
+
+<h2>Step 2: Connect Your Source Code Repository (GitHub)</h2>
+<p>To enable Azure Pipelines to access and react to changes in your source code, you need to establish a secure connection to your Git repository. For SMBs, GitHub is a popular choice, offering robust version control and integration. We'll set up a GitHub service connection in Azure DevOps.</p>
+<pre><code class="language-azurecli"># 1. Create a GitHub Personal Access Token (PAT)
+#    (Go to GitHub &gt; Settings &gt; Developer settings &gt; Personal access tokens &gt; Tokens (classic) &gt; Generate new token)
+#    Ensure the PAT has 'repo' scope access.
+
+# 2. Create the Azure DevOps Service Endpoint for GitHub
+az devops service-endpoint github create \
+    --name "GitHub-SkyCore" \
+    --organization "https://dev.azure.com/skycore-montreal/" \
+    --project "SkyCoreWebApp" \
+    --pat "YOUR_GITHUB_PAT_HERE"</code></pre>
+<ul>
+<li><code>--name "GitHub-SkyCore"</code>: A descriptive name for your service connection.</li>
+<li><code>--organization</code> and <code>--project</code>: Ensure these match your environment from Step 1.</li>
+<li><code>--pat "YOUR_GITHUB_PAT_HERE"</code>: This is your GitHub Personal Access Token. Replace the placeholder with the actual PAT you generated in GitHub. It's recommended to store this PAT securely (e.g., in Azure Key Vault) and reference it programmatically for production setups, but for initial setup, direct use is shown.</li>
+</ul>
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Ensure your GitHub PAT has the correct scopes. For CI/CD pipelines to read your code and potentially update status, the 'repo' scope is generally required. Insufficient permissions will lead to pipeline failures when trying to access the repository. Always create PATs with the principle of least privilege.</div>
+<p class="gui-note"><strong>Portal alternative:</strong> In your Azure DevOps project, navigate to <strong>Project settings</strong> (bottom left) &gt; <strong>Service connections</strong> &gt; <strong>New service connection</strong> &gt; Select <strong>GitHub</strong>. Choose 'Personal Access Token' for authentication, enter your PAT, and verify the connection.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az devops service-endpoint list --output table</code></pre>
+<p>Confirm that your 'GitHub-SkyCore' service endpoint is listed.</p>
+
+<h2>Step 3: Define Your CI/CD Pipeline with YAML</h2>
+<p>Azure Pipelines uses YAML files to define your CI/CD workflow. This approach, known as Infrastructure as Code, allows you to version control your pipeline definitions alongside your application code. For SMBs, YAML pipelines offer clarity, reusability, and maintainability. We'll create a basic CI pipeline for a .NET Core application, which is a common stack for many SMBs.</p>
+<p>First, ensure you have an existing .NET Core application in a GitHub repository. For demonstration, you can fork Microsoft's sample: <a href="https://github.com/MicrosoftDocs/pipelines-dotnet-core" target="_blank">https://github.com/MicrosoftDocs/pipelines-dotnet-core</a>. Let's assume your fork is at `https://github.com/your-github-user/pipelines-dotnet-core`.</p>
+<pre><code class="language-azurecli"># 1. Create the Azure Pipeline using the CLI
+az pipelines create \
+    --name "SkyCoreWebApp-CI" \
+    --repository "your-github-user/pipelines-dotnet-core" \
+    --branch "main" \
+    --yaml-path "azure-pipelines.yml" \
+    --repository-type "GitHub" \
+    --service-connection "GitHub-SkyCore" \
+    --folder "/"</code></pre>
+<ul>
+<li><code>--name "SkyCoreWebApp-CI"</code>: The name of your pipeline in Azure DevOps.</li>
+<li><code>--repository "your-github-user/pipelines-dotnet-core"</code>: The GitHub repository in the format <code>owner/repo</code>. Replace <code>your-github-user</code> with your GitHub username.</li>
+<li><code>--branch "main"</code>: The default branch for your repository where the YAML file will reside and changes will trigger the pipeline.</li>
+<li><code>--yaml-path "azure-pipelines.yml"</code>: Specifies the name and path of the YAML file within your repository that defines the pipeline. The CLI will automatically commit a basic YAML file if one doesn't exist.</li>
+<li><code>--repository-type "GitHub"</code>: Explicitly states the type of source repository.</li>
+<li><code>--service-connection "GitHub-SkyCore"</code>: References the service connection created in Step 2.</li>
+<li><code>--folder "/"</code>: Specifies the folder path in Azure Pipelines where this pipeline will be stored.</li>
+</ul>
+
+<p>The CLI command above will attempt to create the `azure-pipelines.yml` file in the root of your repository and commit it. It will also suggest a template based on your repository's content. For a .NET Core project, it typically generates something similar to this:</p>
+<pre><code class="language-yaml"># azure-pipelines.yml
+# To get started with CI/CD, see https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'Restore .NET Dependencies'
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build .NET Project'
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run .NET Tests'
+  inputs:
+    command: 'test'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish .NET Artifact'
+  inputs:
+    command: 'publish'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Build Artifacts'
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'drop'</code></pre>
+<ul>
+<li><code>trigger: - main</code>: This specifies that the pipeline will automatically run whenever changes are pushed to the <code>main</code> branch.</li>
+<li><code>pool: vmImage: 'ubuntu-latest'</code>: This tells Azure Pipelines to use a Microsoft-hosted agent running Ubuntu. For SMBs, Microsoft-hosted agents are the recommended option as they require no infrastructure management, are pre-configured with common tools, and scale automatically.</li>
+<li><code>variables: buildConfiguration: 'Release'</code>: Defines a reusable variable.</li>
+<li><code>tasks:</code>: These are the actual operations. The <code>DotNetCoreCLI@2</code> task is a versatile task for .NET Core operations (restore, build, test, publish). <code>PublishBuildArtifacts@1</code> makes the compiled application (or other output) available for subsequent stages (like deployment).</li>
+</ul>
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For production pipelines, consider adding security scanning tasks (e.g., WhiteSource Bolt, SonarCloud) or code quality checks directly within your CI process. This helps catch vulnerabilities and maintain code standards early, aligning with security hardening best practices for SMBs.</div>
+<p class="gui-note"><strong>Portal alternative:</strong> In your Azure DevOps project, go to <strong>Pipelines</strong> &gt; <strong>New pipeline</strong>. Follow the wizard, selecting <strong>GitHub</strong>, your repository, and then choosing the suggested template (e.g., ASP.NET Core) which will generate a similar YAML file. Review and click 'Save and run'.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az pipelines show --name "SkyCoreWebApp-CI" --query "name"</code></pre>
+<p>This command should return the name of your pipeline, confirming its creation. You can also check your GitHub repository for the `azure-pipelines.yml` file.</p>
+
+<h2>Step 4: Trigger and Monitor Your First Pipeline Run</h2>
+<p>With your pipeline defined, it's time to put it to the test. A new pipeline created via the CLI (or 'Save and run' in the portal) often triggers an initial run automatically. You can also manually trigger a run or make a small code change to your <code>main</code> branch to see the <code>trigger</code> in action.</p>
+<pre><code class="language-azurecli"># 1. Queue a new run for your pipeline (if not already triggered)
+az pipelines run queue --name "SkyCoreWebApp-CI" --branch "main"
+
+# 2. List recent runs for your pipeline
+az pipelines runs list --name "SkyCoreWebApp-CI" --query "[].{id:id, status:status, result:result, sourceBranch:sourceBranch, triggeredBy:triggeredBy.displayName}" --output table
+
+# 3. View details of a specific run (replace &lt;RUN_ID&gt; with an ID from the list command)
+az pipelines runs show --id &lt;RUN_ID&gt; --name "SkyCoreWebApp-CI"</code></pre>
+<ul>
+<li><code>az pipelines run queue</code>: Manually starts a new pipeline run for the specified pipeline and branch. This is useful for testing or re-running failed builds.</li>
+<li><code>az pipelines runs list</code>: Provides a summary of recent pipeline runs, including their status (e.g., 'running', 'completed'), result (e.g., 'succeeded', 'failed'), and who triggered them.</li>
+<li><code>az pipelines runs show --id</code>: Fetches detailed information about a specific pipeline run, including all jobs and steps.</li>
+</ul>
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> If your pipeline fails, meticulously review the logs in the Azure DevOps portal. The logs provide detailed output for each step, which is crucial for identifying compilation errors, failing tests, or misconfigurations. Start troubleshooting from the first failed task.</div>
+<p class="gui-note"><strong>Portal alternative:</strong> In your Azure DevOps project, navigate to <strong>Pipelines</strong> &gt; Select your pipeline ('SkyCoreWebApp-CI'). You'll see a list of runs. Click on a specific run to view its stages, jobs, and detailed logs. You can also click 'Run pipeline' to manually trigger a new run.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az pipelines runs list --name "SkyCoreWebApp-CI" --top 1 --query "[0].status"</code></pre>
+<p>This should show the status of your latest pipeline run. Ideally, it should be 'completed' with a 'succeeded' result.</p>
+
+<h2>Step 5: Review Pipeline Artifacts and Deployment Considerations</h2>
+<p>A successful CI pipeline not only builds and tests your code but also produces artifacts – the deployable outputs of your build. These artifacts are the foundation for your Continuous Delivery (CD) process. In our example YAML, the <code>PublishBuildArtifacts@1</code> task created a 'drop' artifact containing your published .NET Core application.</p>
+<pre><code class="language-azurecli"># 1. List artifacts from a specific pipeline run (replace &lt;RUN_ID&gt;)
+az pipelines runs artifact list --run-id &lt;RUN_ID&gt; --output table
+
+# 2. Download an artifact (replace &lt;RUN_ID&gt; and &lt;ARTIFACT_NAME&gt;)
+az pipelines runs artifact download --run-id &lt;RUN_ID&gt; --artifact-name "drop" --path ".\artifacts"</code></pre>
+<ul>
+<li><code>az pipelines runs artifact list</code>: Displays a list of all artifacts published by a specific pipeline run.</li>
+<li><code>az pipelines runs artifact download</code>: Downloads a specific artifact from a run to your local machine. This is useful for manual verification or transferring artifacts to other systems.</li>
+</ul>
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> To extend this into a full CD pipeline, you would add a 'stage' for deployment in your `azure-pipelines.yml`. This stage would consume the 'drop' artifact and deploy it to a target environment (e.g., Azure App Service, Virtual Machine, Kubernetes). Azure DevOps Environments can help manage deployment targets and approvals for various stages (Dev, Test, Production).</div>
+<p class="gui-note"><strong>Portal alternative:</strong> After a pipeline run completes successfully, navigate to the pipeline run details in the Azure DevOps portal. Click on the 'Summary' tab, and you'll see an 'Artifacts' section. Click on 'drop' to browse the contents or download the artifact directly.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell"># Verify downloaded artifact contents (PowerShell example)
+# Make sure you've downloaded the artifact using the CLI command above first
+Get-ChildItem -Path ".\artifacts\drop" -Recurse</code></pre>
+<p>This command will list the files within your downloaded artifact, confirming that your application was successfully packaged.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this <strong>Azure DevOps CI CD pipeline setup guide</strong> provides a solid foundation, real-world implementations can quickly introduce complexity. SkyCore Solutions specializes in extending these capabilities. Consider professional assistance if your SMB faces challenges such as integrating with complex legacy systems, setting up advanced security hardening in your pipelines (e.g., secrets management with Azure Key Vault), migrating existing on-premises CI/CD tools, or implementing sophisticated multi-stage deployment strategies with environment approvals. Our experts can ensure a smooth transition and optimize your pipelines for peak performance and security.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines" target="_blank" rel="noopener noreferrer">learn.microsoft.com — what is azure pipelines</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/create-first-pipeline" target="_blank" rel="noopener noreferrer">learn.microsoft.com — create first pipeline</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/pipeline" target="_blank" rel="noopener noreferrer">learn.microsoft.com — pipeline</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/dotnet-core" target="_blank" rel="noopener noreferrer">learn.microsoft.com — dotnet core</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

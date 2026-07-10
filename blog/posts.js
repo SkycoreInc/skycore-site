@@ -3,6 +3,66 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "network-security-audit-firmware-backdoor",
+    title: "Beyond Tenda: Why Every SMB Needs a Proactive Network Security Audit in Montreal",
+    date: "2026-07-07",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "A hidden admin backdoor in Tenda router firmware is a stark reminder: your network's foundation might be compromised. Learn why proactive network security audits are non-negotiable for SMBs.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "ai-ransomware-protection-montreal",
+    title: "AI Ransomware Attacks: Essential Security Hardening for Montreal SMBs",
+    date: "2026-07-05",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "AI-powered ransomware like JadePuffer is here, demanding a new level of defense. Learn critical security hardening strategies for SMBs to protect against these advanced threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380589/pexels-photo-5380589.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "advanced-microsoft-365-security",
+    title: "Protect Your Business: Advanced Microsoft 365 Security Hardening in Montreal",
+    date: "2026-07-03",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Cyber threats like ConsentFix and ClickFix are bypassing traditional MFA to hijack Microsoft 365 accounts in seconds. Discover SkyCore Solutions' advanced security hardening strategies.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/1181207/pexels-photo-1181207.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "azure-cli-zero-trust-security-montreal",
+    title: "Azure CLI Attacks Underscore Urgent Need for Zero Trust Security in Montreal",
+    date: "2026-07-01",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "Recent reports of massive Azure CLI password spray attacks demonstrate that cloud environments are constant targets. Discover how adopting a zero-trust security model can fortify your business against sophisticated cyber threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/9783812/pexels-photo-9783812.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "patch-tuesday-security-hardening-montreal",
+    title: "Beyond Patch Tuesday: Essential Cybersecurity Hardening for Montreal SMBs",
+    date: "2026-06-29",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Microsoft's record-breaking June 2026 Patch Tuesday highlights the relentless threat landscape. For Montreal SMBs, robust cybersecurity hardening is non-negotiable.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/4489171/pexels-photo-4489171.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "signal-threat-cybersecurity-hardening-smb-montreal",
+    title: "Signal Warning Echoes: Why Cybersecurity Hardening is Crucial for Montreal SMBs",
+    date: "2026-06-27",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A recent FBI warning about Signal backup recovery key theft underscores growing credential compromise risks for businesses. SkyCore Solutions helps Montreal SMBs implement robust cybersecurity.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/9504092/pexels-photo-9504092.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "zero-day-security-hardening-montreal",
     title: "Cisco Zero-Day Exploits: Why Proactive Security Hardening is Non-Negotiable for Montreal Businesses",
     date: "2026-06-25",
