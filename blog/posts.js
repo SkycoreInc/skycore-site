@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "proactive-cybersecurity-smb-montreal",
+    title: "Protect Your Business: Proactive Cybersecurity Hardening for SMBs in Montreal",
+    date: "2026-07-11",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Recent security threats like the urgent ShareFile incident highlight the critical need for robust cybersecurity. Learn how proactive security hardening, zero trust, and regular network audits can protect your Montreal business.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/37730211/pexels-photo-37730211.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "network-security-audit-firmware-backdoor",
     title: "Beyond Tenda: Why Every SMB Needs a Proactive Network Security Audit in Montreal",
     date: "2026-07-07",
