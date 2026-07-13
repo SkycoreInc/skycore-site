@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "pipeda-compliance-it-checklist-skycore",
+    title: "Your PIPEDA Compliance IT Checklist: A SkyCore Solutions Guide to Data Protection",
+    date: "2026-07-13",
+    readTime: "22 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours (initial setup)",
+    keyword: "PIPEDA compliance IT checklist",
+    excerpt: "This guide provides a comprehensive PIPEDA compliance IT checklist, translating legal requirements into actionable technical steps for your infrastructure. Ensure personal information is protected with expert strategies.",
+    image: "https://images.pexels.com/photos/30965500/pexels-photo-30965500.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "smb-azure-cloud-migration-guide",
     title: "Your Essential Cloud Migration Guide for SMB: Azure Strategy by SkyCore Solutions",
     date: "2026-07-10",
