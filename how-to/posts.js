@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "hyper-v-migration-azure-guide-smbs",
+    title: "Mastering Your Hyper-V Migration to Azure: A Comprehensive Guide for SMBs",
+    date: "2026-07-13",
+    readTime: "20 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "4-6 hours (initial setup & assessment)",
+    keyword: "Hyper-V migration to Azure guide",
+    excerpt: "This comprehensive Hyper-V migration to Azure guide from SkyCore Solutions will walk you through transforming your on-premises virtual machines into resilient, scalable cloud resources. Prepare your infrastructure, execute seamless migrations, and harness the full power of Azure for your business.",
+    image: "https://images.pexels.com/photos/159489/pexels-photo-159489.png?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "pipeda-compliance-it-checklist-skycore",
     title: "Your PIPEDA Compliance IT Checklist: A SkyCore Solutions Guide to Data Protection",
     date: "2026-07-13",
