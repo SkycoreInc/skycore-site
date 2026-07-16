@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "dmarc-configuration-step-by-step",
+    title: "Mastering DMARC Configuration Step-by-Step for Advanced Email Security",
+    date: "2026-07-16",
+    readTime: "18 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-4 hours (initial setup), ongoing monitoring",
+    keyword: "DMARC configuration step by step",
+    excerpt: "This comprehensive guide walks you through DMARC configuration step-by-step, unifying SPF and DKIM to prevent email spoofing and enhance sender reputation. Protect your domains effectively.",
+    image: "https://images.pexels.com/photos/30885916/pexels-photo-30885916.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "hyper-v-migration-azure-guide-smbs",
     title: "Mastering Your Hyper-V Migration to Azure: A Comprehensive Guide for SMBs",
     date: "2026-07-13",
