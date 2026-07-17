@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "microsoft-teams-phone-setup-small-business",
+    title: "Seamless Communication: Your Microsoft Teams Phone Setup for Small Business",
+    date: "2026-07-17",
+    readTime: "15 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Microsoft Teams Phone setup small business",
+    excerpt: "Upgrade your small business communication with a comprehensive Microsoft Teams Phone setup. This guide provides step-by-step instructions for implementing external calling, voicemail, and other essential PBX features.",
+    image: "https://images.pexels.com/photos/7964566/pexels-photo-7964566.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "dmarc-configuration-step-by-step",
     title: "Mastering DMARC Configuration Step-by-Step for Advanced Email Security",
     date: "2026-07-16",
