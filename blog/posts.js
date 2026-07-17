@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cybersecurity-smb-zero-day-strategy",
+    title: "Fortifying Your Defenses: Essential Cybersecurity SMB Strategies in a Zero-Day World",
+    date: "2026-07-17",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Recent news highlights escalating threats like the ACR Stealer and critical SharePoint zero-days. Discover how comprehensive cybersecurity SMB strategies can shield your Montreal business from sophisticated attacks and ensure data integrity.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/37261778/pexels-photo-37261778.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "cybersecurity-smb-hardening-montreal",
     title: "Fortifying Your Defenses: Essential Cybersecurity Hardening for Montreal SMBs",
     date: "2026-07-15",
