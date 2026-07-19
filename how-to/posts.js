@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "active-directory-tiering-best-practices-skycore",
+    title: "Mastering Active Directory Tiering Best Practices for Enhanced Security",
+    date: "2026-07-19",
+    readTime: "15 min read",
+    category: "Security Hardening",
+    difficulty: "Advanced",
+    timeEstimate: "4-6 hours (planning + initial implementation)",
+    keyword: "Active Directory tiering best practices",
+    excerpt: "Active Directory tiering is fundamental to modern cybersecurity, preventing privilege escalation and protecting your most critical assets. This guide outlines how to implement these practices.",
+    image: "https://images.pexels.com/photos/38117126/pexels-photo-38117126.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-teams-phone-setup-small-business",
     title: "Seamless Communication: Your Microsoft Teams Phone Setup for Small Business",
     date: "2026-07-17",
