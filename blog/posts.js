@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "wordpress-rce-smb-security-hardening",
+    title: "Urgent Patch Management: Why the WordPress RCE Flaw Demands Stronger Cybersecurity for SMBs in Montreal",
+    date: "2026-07-19",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Public exploits for the WordPress wp2shell RCE vulnerability are here, making immediate patching crucial. This incident underscores the urgent need for robust cybersecurity measures for SMBs.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/2882659/pexels-photo-2882659.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "cybersecurity-smb-zero-day-strategy",
     title: "Fortifying Your Defenses: Essential Cybersecurity SMB Strategies in a Zero-Day World",
     date: "2026-07-17",

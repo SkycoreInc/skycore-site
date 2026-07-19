@@ -13,6 +13,16 @@
     </image>
 
     <item>
+      <title>Urgent Patch Management: Why the WordPress RCE Flaw Demands Stronger Cybersecurity for SMBs in Montreal</title>
+      <link>https://skycoresolutions.com/blog/wordpress-rce-smb-security-hardening.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/wordpress-rce-smb-security-hardening.html</guid>
+      <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Public exploits for the WordPress wp2shell RCE vulnerability are here, making immediate patching crucial. This incident underscores the urgent need for robust cybersecurity measures for SMBs.</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/2882659/pexels-photo-2882659.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>Fortifying Your Defenses: Essential Cybersecurity SMB Strategies in a Zero-Day World</title>
       <link>https://skycoresolutions.com/blog/cybersecurity-smb-zero-day-strategy.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/cybersecurity-smb-zero-day-strategy.html</guid>
