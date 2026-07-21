@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "critical-servicenow-flaw-security-hardening",
+    title: "Critical ServiceNow Flaw Exploited: Bolstering Your Defenses with Advanced Security Hardening",
+    date: "2026-07-21",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "A critical ServiceNow AI Platform flaw highlights the urgent need for robust security. SkyCore Solutions helps Montreal businesses implement proactive measures against advanced cyber threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/3828944/pexels-photo-3828944.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "wordpress-rce-smb-security-hardening",
     title: "Urgent Patch Management: Why the WordPress RCE Flaw Demands Stronger Cybersecurity for SMBs in Montreal",
     date: "2026-07-19",
