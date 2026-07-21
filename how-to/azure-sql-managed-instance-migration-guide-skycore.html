@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seamless Azure SQL Managed Instance Migration Guide for SMBs: A SkyCore Solutions Blueprint — SkyCore Solutions</title>
+  <meta name="description" content="SkyCore Solutions' comprehensive Azure SQL Managed Instance migration guide for SMBs. Learn to move your SQL Server databases with minimal downtime, leveraging Azure CLI and best practices for cloud migration." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Seamless Azure SQL Managed Instance Migration Guide for SMBs: A SkyCore Solutions Blueprint — SkyCore Solutions" />
+  <meta property="og:description" content="SkyCore Solutions' comprehensive Azure SQL Managed Instance migration guide for SMBs. Learn to move your SQL Server databases with minimal downtime, leveraging Azure CLI and best practices for cloud migration." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-sql-managed-instance-migration-guide-skycore.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Seamless Azure SQL Managed Instance Migration Guide for SMBs: A SkyCore Solutions Blueprint — SkyCore Solutions" />
+  <meta name="twitter:description" content="SkyCore Solutions' comprehensive Azure SQL Managed Instance migration guide for SMBs. Learn to move your SQL Server databases with minimal downtime, leveraging Azure CLI and best practices for cloud migration." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-sql-managed-instance-migration-guide-skycore.html" />
+  <meta property="article:published_time" content="2026-07-21" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Seamless Azure SQL Managed Instance Migration Guide for SMBs: A SkyCore Solutions Blueprint",
+  "description": "SkyCore Solutions' comprehensive Azure SQL Managed Instance migration guide for SMBs. Learn to move your SQL Server databases with minimal downtime, leveraging Azure CLI and best practices for cloud migration.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Active Azure Subscription, SQL Server 2012 or later (on-premises or VM), SQL Server instance enabled by Azure Arc (recommended for assessment & migration tools), Azure CLI (latest version) installed, PowerShell with Az module (latest version) installed, Azure Administrator or Contributor role, Estimated cost: Variable, starting from ~$500/month for a basic General Purpose MI (excludes networking, storage, and migration tool costs). Try Azure SQL Managed Instance free for up to a year (720 vCore hours on GP instance)."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Understand Azure SQL Managed Instance & Readiness Assessment",
+        "text": "Before migrating, understand the benefits of Azure SQL Managed Instance and assess your current SQL Server environment for compatibility and sizing."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Your Azure Network Environment (VNet & Subnet)",
+        "text": "Azure SQL Managed Instance requires deployment into a dedicated virtual network (VNet) and subnet, ensuring isolation and secure connectivity."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Choose Your Managed Instance Service Tier & Size",
+        "text": "Select the appropriate service tier (General Purpose or Business Critical) and hardware configuration based on your performance and availability requirements."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy Azure SQL Managed Instance",
+        "text": "Provision your Azure SQL Managed Instance within the prepared virtual network."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Select & Prepare Your Migration Method (LRS Recommended for SMBs)",
+        "text": "Choose between Log Replay Service (LRS) for compatible, flexible migrations or Managed Instance Link for near real-time, minimal downtime scenarios."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Execute the Database Migration using Azure Arc & LRS",
+        "text": "Initiate and monitor the database migration from your Arc-enabled SQL Server to Azure SQL Managed Instance using the LRS method via the Azure portal."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Post-Migration Tasks & Optimization",
+        "text": "Complete essential post-migration steps, including application connectivity updates, security adjustments, and performance tuning."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-07-21 &middot; 12 min read &middot; Cloud Migration</div>
+<h1>Seamless Azure SQL Managed Instance Migration Guide for SMBs: A SkyCore Solutions Blueprint</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Abstract illustration of data migrating from an on-premise server to an Azure cloud database, representing an Azure SQL Managed Instance migration." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For Small and Medium-sized Businesses (SMBs) grappling with aging on-premises SQL Server infrastructure, escalating maintenance costs, or the need for enhanced security and scalability, migrating to the cloud is no longer an option—it's a necessity. Azure SQL Managed Instance offers a fully managed Platform as a Service (PaaS) solution that provides near 100% compatibility with the latest SQL Server Database Engine, reducing the operational overhead of managing virtual machines and operating systems. This comprehensive <strong>Azure SQL Managed Instance migration guide</strong> from SkyCore Solutions will walk you through the entire process, empowering you to move your SQL Server databases to Azure efficiently and securely. By the end of this guide, you will have your critical SQL Server workloads running on a robust, scalable, and fully managed Azure SQL Managed Instance, freeing up your IT resources to focus on business innovation.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>Active Azure Subscription</li><li>SQL Server 2012 or later (on-premises or VM)</li><li>SQL Server instance enabled by Azure Arc (recommended for assessment & migration tools)</li><li>Azure CLI (latest version) installed</li><li>PowerShell with Az module (latest version) installed</li><li>Azure Administrator or Contributor role</li><li>Estimated cost: Variable, starting from ~$500/month for a basic General Purpose MI (excludes networking, storage, and migration tool costs). Try Azure SQL Managed Instance free for up to a year (720 vCore hours on GP instance).</li></ul></div>
+
+<h2>Step 1: Understand Azure SQL Managed Instance & Readiness Assessment</h2>
+<p>Before initiating any migration, it's crucial to understand Azure SQL Managed Instance (MI) and assess your existing SQL Server environment. MI provides a fully isolated SQL Server instance in the cloud, handling upgrades, patching, backups, and monitoring automatically. It offers a high degree of compatibility with on-premises SQL Server, minimizing application changes. The assessment phase identifies potential migration blockers and helps determine the right target configuration.</p>
+
+<p>For SMBs, leveraging <a href="https://learn.microsoft.com/en-us/azure/azure-sql/migration-guides/managed-instance/sql-server-to-managed-instance-overview">Azure Migrate</a> is highly recommended. It helps discover and assess your SQL data estate at scale, providing Azure SQL deployment recommendations, target sizing, and monthly cost estimates. If your SQL Server instance is already enabled by Azure Arc, the assessment capabilities are built right into the Azure portal.</p>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the Azure portal, search for &quot;Azure Migrate&quot;, create a project, and add the &quot;Database assessment&quot; tool. Alternatively, if your SQL Server is Azure Arc-enabled, go to the SQL Server resource in the Azure portal and look for the &quot;Database Migration&quot; pane to view automatic readiness reports.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Pay close attention to features in your current SQL Server environment that might not be fully supported in Azure SQL Managed Instance, such as FileStream/FileTable, PolyBase, and cross-instance transactions. If these are critical, a SQL Server on Azure Virtual Machine might be a better fit.</div>
+
+<h2>Step 2: Prepare Your Azure Network Environment (VNet & Subnet)</h2>
+<p>Azure SQL Managed Instance requires a dedicated virtual network (VNet) and subnet for its deployment. This provides network isolation and allows you to establish secure connectivity to your on-premises resources or other Azure services. Proper VNet configuration is critical for successful MI deployment.</p>
+
+<p>First, create a Resource Group to contain your network resources and the Managed Instance itself.</p>
+<pre><code class="language-azurecli">az group create --name SkyCoreSQLMigrationRG --location eastus</code></pre>
+<ul>
+    <li><code>--name SkyCoreSQLMigrationRG</code>: Name of your new resource group.</li>
+    <li><code>--location eastus</code>: Azure region for the resource group. Choose a region close to your users or other Azure resources.</li>
+</ul>
+
+<p>Next, create a Virtual Network. For SMBs, a simple VNet with a /16 or /24 address space is usually sufficient.</p>
+<pre><code class="language-azurecli">az network vnet create \
+    --resource-group SkyCoreSQLMigrationRG \
+    --name SkyCoreManagedInstanceVNet \
+    --address-prefix 10.0.0.0/16 \
+    --location eastus</code></pre>
+<ul>
+    <li><code>--name SkyCoreManagedInstanceVNet</code>: Name for your VNet.</li>
+    <li><code>--address-prefix 10.0.0.0/16</code>: The CIDR block for your VNet.</li>
+</ul>
+
+<p>Now, create a dedicated subnet for Azure SQL Managed Instance. This subnet *must not* contain any other resources and requires specific network configurations (delegation, network security groups, and routing tables, which Azure automatically handles during MI creation if delegation is set correctly).</p>
+<pre><code class="language-azurecli">az network vnet subnet create \
+    --resource-group SkyCoreSQLMigrationRG \
+    --vnet-name SkyCoreManagedInstanceVNet \
+    --name ManagedInstanceSubnet \
+    --address-prefix 10.0.0.0/24 \
+    --service-endpoints Microsoft.Storage \
+    --delegations "Microsoft.Sql/managedInstances"</code></pre>
+<ul>
+    <li><code>--name ManagedInstanceSubnet</code>: Name for the MI subnet.</li>
+    <li><code>--address-prefix 10.0.0.0/24</code>: The CIDR block for the subnet. A /24 provides enough IPs for a few Managed Instances.</li>
+    <li><code>--service-endpoints Microsoft.Storage</code>: Enables secure access to Azure Storage from the subnet.</li>
+    <li><code>--delegations "Microsoft.Sql/managedInstances"</code>: Crucially delegates the subnet to Azure SQL Managed Instance, allowing Azure to manage network configuration.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Go to &quot;Virtual networks&quot; &gt; &quot;+ Create&quot; to create the VNet. Then, within the VNet, navigate to &quot;Subnets&quot; &gt; &quot;+ Subnet&quot; to create the dedicated subnet, ensuring you select &quot;Microsoft.Sql/managedInstances&quot; under &quot;Subnet delegation.&quot;</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Incorrect VNet or subnet configuration is the most common reason for Managed Instance deployment failures. Ensure the subnet has no other resources, has enough IP addresses (minimum /27, /24 recommended for future growth), and is properly delegated to <code>Microsoft.Sql/managedInstances</code>.</div>
+
+<h2>Step 3: Choose Your Managed Instance Service Tier & Size</h2>
+<p>Azure SQL Managed Instance offers two service tiers: General Purpose and Business Critical. Selecting the right tier and sizing is vital for performance and cost optimization.</p>
+<ul>
+    <li><strong>General Purpose:</strong> Offers balanced compute and storage, ideal for most SMB workloads with typical performance requirements (I/O latency &gt; 5 ms). It's more cost-effective and provides 99.99% availability. This is generally the best choice for most SMBs.</li>
+    <li><strong>Business Critical:</strong> Designed for mission-critical applications requiring the lowest I/O latency (&lt; 3 ms), higher resilience (using Always On availability groups), and features like In-Memory OLTP. This tier comes at a higher cost.</li>
+</ul>
+
+<p>For SMBs, we generally recommend starting with the **General Purpose** tier. You can scale resources (vCores and storage) without downtime later if needed. Use your assessment data (CPU, memory, I/O baseline) from Step 1 to guide your initial sizing.</p>
+<ul>
+    <li><strong>CPU:</strong> Match your baseline CPU usage.</li>
+    <li><strong>Memory:</strong> Choose vCore options that align with your memory needs.</li>
+    <li><strong>Storage:</strong> Preallocate data and log file sizes based on baseline throughput.</li>
+</ul>
+
+<p>For many SMBs, a good starting point might be 4-8 vCores with 256 GB of storage on the General Purpose tier, which provides a solid balance of performance and cost.</p>
+
+<h2>Step 4: Deploy Azure SQL Managed Instance</h2>
+<p>With your network prepared and your service tier/sizing determined, you can now deploy your Azure SQL Managed Instance. This process can take several hours.</p>
+
+<p>Use the Azure CLI to create the Managed Instance. Replace placeholders with your specific values.</p>
+<pre><code class="language-azurecli">az sql mi create \
+    --resource-group SkyCoreSQLMigrationRG \
+    --name SkyCoreSMBInstance \
+    --vnet-name SkyCoreManagedInstanceVNet \
+    --subnet ManagedInstanceSubnet \
+    --capacity 4 \
+    --family Gen5 \
+    --storage 256GB \
+    --license-type BasePrice \
+    --admin-user sqladmin \
+    --admin-password &quot;YourStrongPassword123!&quot; \
+    --tier GeneralPurpose \
+    --location eastus</code></pre>
+<ul>
+    <li><code>--name SkyCoreSMBInstance</code>: The desired name for your Managed Instance.</li>
+    <li><code>--vnet-name SkyCoreManagedInstanceVNet</code>: The name of the VNet created in Step 2.</li>
+    <li><code>--subnet ManagedInstanceSubnet</code>: The name of the dedicated subnet created in Step 2.</li>
+    <li><code>--capacity 4</code>: Number of vCores (e.g., 4, 8, 16). Adjust based on your assessment.</li>
+    <li><code>--family Gen5</code>: Hardware generation (Gen5 is commonly recommended).</li>
+    <li><code>--storage 256GB</code>: Storage size in GB.</li>
+    <li><code>--license-type BasePrice</code>: Uses the Azure Hybrid Benefit if you have existing SQL Server licenses with Software Assurance. Use <code>LicenseIncluded</code> if you need new licensing.</li>
+    <li><code>--admin-user sqladmin</code>: The Managed Instance administrator username.</li>
+    <li><code>--admin-password</code>: A strong password for the admin user.</li>
+    <li><code>--tier GeneralPurpose</code>: Service tier (<code>GeneralPurpose</code> or <code>BusinessCritical</code>).</li>
+    <li><code>--location eastus</code>: The Azure region for the Managed Instance.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to &quot;Azure SQL&quot; &gt; &quot;+ Create&quot; &gt; &quot;SQL managed instance.&quot; Fill in the details, ensuring you select the correct subscription, resource group, instance name, region, administrator credentials, and critically, the VNet and dedicated subnet created earlier.</p>
+
+<p><strong>Run this to verify:</strong> Monitor the deployment status. It can take several hours.</p>
+<pre><code class="language-azurecli">az sql mi show --resource-group SkyCoreSQLMigrationRG --name SkyCoreSMBInstance --query "provisioningState"</code></pre>
+<p>Wait until <code>provisioningState</code> shows &quot;Succeeded&quot;.</p>
+
+<h2>Step 5: Select & Prepare Your Migration Method (LRS Recommended for SMBs)</h2>
+<p>Azure SQL Managed Instance offers two primary online migration methods leveraging SQL Server enabled by Azure Arc:</p>
+<ol>
+    <li><strong>Managed Instance Link (Distributed Availability Group):</strong> Offers near real-time replication with minimal downtime. It provides a read-only replica on the target MI during migration. Supported for SQL Server 2016+ on Windows Server 2016+. Recommended for business-critical workloads requiring the lowest possible downtime.</li>
+    <li><strong>Log Replay Service (LRS) (Log Shipping):</strong> A highly compatible method that continuously uploads backups (full, differential, log) to an Azure blob storage account, which MI then automatically restores. It involves some acceptable planned downtime during the final cutover. Supported for SQL Server 2012+ on Windows Server 2012+.</li>
+</ol>
+
+<p>For most SMBs, we recommend the **Log Replay Service (LRS)** method. It is generally simpler to set up, more compatible with older SQL Server versions (2012+), and the &quot;some planned downtime&quot; is often acceptable for general-purpose workloads. The Managed Instance link, while offering lower downtime, relies on Distributed Availability Groups which can add complexity for SMBs without dedicated DBA resources.</p>
+
+<p>Regardless of the method, your SQL Server instance must be <a href="https://learn.microsoft.com/en-us/azure/azure-arc/data/overview">enabled by Azure Arc</a> with the latest Azure extension for SQL Server. This enables integrated assessment and migration tools directly from the Azure portal.</p>
+
+<h3>Prepare for LRS Migration:</h3>
+<p>The LRS method requires an Azure Blob Storage account to temporarily store your database backups. Create a storage account in the same region as your Managed Instance.</p>
+
+<pre><code class="language-azurecli">az storage account create \
+    --resource-group SkyCoreSQLMigrationRG \
+    --name skycoresqlbackups \
+    --location eastus \
+    --sku Standard_LRS \
+    --kind StorageV2</code></pre>
+<ul>
+    <li><code>--name skycoresqlbackups</code>: A globally unique name for your storage account.</li>
+    <li><code>--sku Standard_LRS</code>: Standard Locally-Redundant Storage is sufficient for most SMB backup needs.</li>
+</ul>
+
+<p>Next, create a container within the storage account for your backups.</p>
+<pre><code class="language-azurecli">az storage container create \
+    --name sqldatabackups \
+    --account-name skycoresqlbackups \
+    --public-access off</code></pre>
+<ul>
+    <li><code>--name sqldatabackups</code>: Name of the container for your backups.</li>
+    <li><code>--public-access off</code>: Ensure the container is not publicly accessible.</li>
+</ul>
+
+<p>You'll need a Shared Access Signature (SAS) token for this container, which the LRS will use to access the backups. Generate a SAS token with appropriate permissions (read, write, delete, list).</p>
+<pre><code class="language-azurecli">az storage container generate-sas \
+    --name sqldatabackups \
+    --account-name skycoresqlbackups \
+    --permissions rwdl \
+    --expiry 2027-07-21T00:00:00Z \
+    --output tsv</code></pre>
+<ul>
+    <li><code>--permissions rwdl</code>: Grants Read, Write, Delete, and List permissions.</li>
+    <li><code>--expiry 2027-07-21T00:00:00Z</code>: Set an appropriate expiry date for the SAS token (e.g., a year from now).</li>
+</ul>
+
+<p>Record the generated SAS token. You will need it in the next step when configuring the migration.</p>
+
+<h2>Step 6: Execute the Database Migration using Azure Arc & LRS</h2>
+<p>The actual migration initiation for Azure Arc-enabled SQL Servers is primarily driven through the Azure portal, simplifying the process for SMBs. This step assumes your on-premises SQL Server is Arc-enabled and you've prepared for LRS migration.</p>
+
+<p class="gui-note"><strong>Portal steps (primary method for Arc-enabled SQL Server migration):</strong></p>
+<ol>
+    <li>Go to the Azure portal and navigate to your **SQL Server - Azure Arc** resource (your on-premises SQL Server instance).</li>
+    <li>In the left-hand menu, select **Database Migration**. This pane provides a summary of your migration status and recommendations.</li>
+    <li>Click on **Migrate databases** or select the databases you wish to migrate.</li>
+    <li>On the &quot;Choose migration method&quot; step, select **Log Replay Service (LRS)**.</li>
+    <li>Follow the prompts to configure the LRS:</li>
+    <ul>
+        <li>**Target Azure SQL Managed Instance:** Select the Managed Instance you deployed in Step 4.</li>
+        <li>**Azure Blob Storage account:** Provide the details of the storage account and container created in Step 5 (e.g., <code>https://skycoresqlbackups.blob.core.windows.net/sqldatabackups</code>).</li>
+        <li>**Shared access signature (SAS) URI:** Paste the SAS token you generated in Step 5.</li>
+    </ul>
+    <li>The system will guide you through taking an initial full backup of your source databases and placing them into the specified blob storage. Follow these instructions precisely.</li>
+    <li>Once the initial full backup is restored, LRS will continuously monitor the blob storage for new differential and transaction log backups. You will need to configure your on-premises SQL Server to continue sending these backups to the blob storage.</li>
+    <li>Monitor the migration status in the Azure portal. The databases will be in a &quot;Restoring&quot; state on the Managed Instance.</li>
+    <li>When you are ready for the final cutover (during acceptable planned downtime), take one last transaction log backup from your source, upload it, and then in the Azure portal, select the database and choose **Complete migration**. This finalizes the migration, brings the database online on MI, and ensures minimal data loss.</li>
+</ol>
+
+<p><strong>Run this to verify (after migration completion):</strong> Connect to your Azure SQL Managed Instance using SQL Server Management Studio (SSMS) or Azure Data Studio and verify your migrated databases are online and accessible.</p>
+<pre><code class="language-powershell"># Example using PowerShell to get connection string
+$mi = Get-AzSqlInstance -ResourceGroupName SkyCoreSQLMigrationRG -Name SkyCoreSMBInstance
+Write-Host &quot;Managed Instance Host: $($mi.DnsName)&quot;
+# Use SSMS or Azure Data Studio to connect using this host and the admin credentials.</code></pre>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For smaller databases, you might consider the native backup and restore method. This involves taking a full backup of your database, uploading it to Azure Blob Storage, and then restoring it directly to Azure SQL Managed Instance using T-SQL commands. This method is simpler but requires more downtime as it's an offline migration.</div>
+
+<h2>Step 7: Post-Migration Tasks & Optimization</h2>
+<p>Once your databases are successfully migrated to Azure SQL Managed Instance, several crucial post-migration tasks are needed to ensure smooth operation, optimal performance, and robust security.</p>
+
+<h3>1. Update Application Connection Strings:</h3>
+<p>Modify your applications to connect to the new Azure SQL Managed Instance endpoint. The hostname is typically <code>&lt;mi-name&gt;.&lt;region&gt;.database.windows.net</code>.</p>
+
+<h3>2. Migrate Instance-Level Objects:</h3>
+<p>Azure SQL Managed Instance is an instance-level PaaS offering, meaning you'll need to migrate any critical instance-level objects from your source SQL Server. This includes:</p>
+<ul>
+    <li><strong>Logins:</strong> Recreate SQL Server logins and map them to database users. Consider using Azure Active Directory authentication for enhanced security and simplified management.</li>
+    <li><strong>SQL Agent Jobs:</strong> Recreate scheduled jobs.</li>
+    <li><strong>Server-level Triggers:</strong> If any, port them to the Managed Instance.</li>
+    <li><strong>Linked Servers:</strong> Reconfigure any linked servers.</li>
+    <li><strong>Credentials and Certificates:</strong> Migrate as needed.</li>
+</ul>
+
+<p>There isn't a direct CLI command to migrate all these objects automatically. You'll typically use T-SQL scripts or tools like SQL Server Management Studio (SSMS) to script out and recreate these objects.</p>
+<pre><code class="language-azurecli"># Example: Connect to MI using Azure Data Studio or SSMS after migration
+# No direct CLI for migrating SQL Agent Jobs, logins, etc. post-migration.
+# Use T-SQL scripts to create logins, jobs, etc. based on your source server.</code></pre>
+
+<h3>3. Network Security & Connectivity:</h3>
+<ul>
+    <li>Configure Network Security Group (NSG) rules on your Managed Instance's subnet to control inbound and outbound traffic, allowing only necessary connections (e.g., from your application servers, administrative workstations).</li>
+    <li>If connecting from on-premises, establish a secure connection via VPN Gateway or Azure ExpressRoute.</li>
+</ul>
+
+<h3>4. Performance Tuning & Monitoring:</h3>
+<ul>
+    <li>Review database compatibility levels and adjust to the latest for performance benefits.</li>
+    <li>Enable Azure SQL Managed Instance's built-in monitoring tools (e.g., Azure Monitor, SQL Analytics, Query Performance Insight) to track performance.</li>
+    <li>Adjust vCores or storage tiers if initial sizing proves inadequate or over-provisioned.</li>
+</ul>
+<pre><code class="language-azurecli"># Example: Update MI capacity (vCores) if needed
+az sql mi update \
+    --resource-group SkyCoreSQLMigrationRG \
+    --name SkyCoreSMBInstance \
+    --capacity 8</code></pre>
+<ul>
+    <li><code>--capacity 8</code>: Scales the instance to 8 vCores (example).</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Go to your Azure SQL Managed Instance resource. Under &quot;Settings,&quot; select &quot;Compute + storage&quot; to adjust vCores or storage. Under &quot;Security,&quot; configure Azure Active Directory admin. Use &quot;Monitoring&quot; options for performance insights.</p>
+
+<p><strong>Run this to verify:</strong> Connect to your applications to ensure they can successfully connect to the new Azure SQL Managed Instance and perform all required functions. Review Azure Monitor metrics for initial performance baselines.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide provides a solid foundation for your Azure SQL Managed Instance migration, complex scenarios can arise. If your environment involves intricate hybrid Active Directory setups, strict compliance requirements, large-scale multi-database migrations, or highly sensitive, mission-critical production applications where any downtime is unacceptable, professional assistance can be invaluable. SkyCore Solutions specializes in navigating these complexities, ensuring a secure, efficient, and truly seamless migration that aligns with your specific business needs and minimizes risks.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-sql/migration-guides/managed-instance/sql-server-to-managed-instance-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — sql server to managed instance overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/dms/tutorial-sql-server-managed-instance-online-ads" target="_blank" rel="noopener noreferrer">learn.microsoft.com — tutorial sql server managed instance online ads</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — sql managed instance paas overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/data-migration/" target="_blank" rel="noopener noreferrer">learn.microsoft.com — data migration</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-sql-managed-instance-migration-guide-skycore",
+    title: "Seamless Azure SQL Managed Instance Migration Guide for SMBs: A SkyCore Solutions Blueprint",
+    date: "2026-07-21",
+    readTime: "12 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "4-8 hours (including planning and deployment)",
+    keyword: "Azure SQL Managed Instance migration guide",
+    excerpt: "This Azure SQL Managed Instance migration guide from SkyCore Solutions provides SMBs with a clear, step-by-step blueprint to move their SQL Server databases to the cloud, ensuring operational continuity and enhanced security.",
+    image: "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "active-directory-tiering-best-practices-skycore",
     title: "Mastering Active Directory Tiering Best Practices for Enhanced Security",
     date: "2026-07-19",
