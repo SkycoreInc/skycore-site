@@ -3,6 +3,66 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "critical-servicenow-flaw-security-hardening",
+    title: "Critical ServiceNow Flaw Exploited: Bolstering Your Defenses with Advanced Security Hardening",
+    date: "2026-07-21",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "A critical ServiceNow AI Platform flaw highlights the urgent need for robust security. SkyCore Solutions helps Montreal businesses implement proactive measures against advanced cyber threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/3828944/pexels-photo-3828944.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "wordpress-rce-smb-security-hardening",
+    title: "Urgent Patch Management: Why the WordPress RCE Flaw Demands Stronger Cybersecurity for SMBs in Montreal",
+    date: "2026-07-19",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Public exploits for the WordPress wp2shell RCE vulnerability are here, making immediate patching crucial. This incident underscores the urgent need for robust cybersecurity measures for SMBs.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/2882659/pexels-photo-2882659.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "cybersecurity-smb-zero-day-strategy",
+    title: "Fortifying Your Defenses: Essential Cybersecurity SMB Strategies in a Zero-Day World",
+    date: "2026-07-17",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Recent news highlights escalating threats like the ACR Stealer and critical SharePoint zero-days. Discover how comprehensive cybersecurity SMB strategies can shield your Montreal business from sophisticated attacks and ensure data integrity.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/37261778/pexels-photo-37261778.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "cybersecurity-smb-hardening-montreal",
+    title: "Fortifying Your Defenses: Essential Cybersecurity Hardening for Montreal SMBs",
+    date: "2026-07-15",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "With cyber threats escalating, robust security hardening is essential for every business. Discover how proactive strategies like patch management and zero trust can protect your Montreal SMB.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38482455/pexels-photo-38482455.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "microsoft-365-security-hardening-montreal",
+    title: "Beyond the .bash_history: Essential Microsoft 365 Security Hardening for Montreal SMBs",
+    date: "2026-07-13",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "A recent misconfigured server exposed critical phishing operations. Learn how to secure your Microsoft 365 environment with SkyCore Solutions' expert hardening strategies.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/1181378/pexels-photo-1181378.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "proactive-cybersecurity-smb-montreal",
+    title: "Protect Your Business: Proactive Cybersecurity Hardening for SMBs in Montreal",
+    date: "2026-07-11",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Recent security threats like the urgent ShareFile incident highlight the critical need for robust cybersecurity. Learn how proactive security hardening, zero trust, and regular network audits can protect your Montreal business.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/37730211/pexels-photo-37730211.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "network-security-audit-firmware-backdoor",
     title: "Beyond Tenda: Why Every SMB Needs a Proactive Network Security Audit in Montreal",
     date: "2026-07-07",

@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mastering Your Hyper-V Migration to Azure: A Comprehensive Guide for SMBs — SkyCore Solutions</title>
+  <meta name="description" content="Unlock cloud benefits with our Hyper-V migration to Azure guide. Learn to assess, plan, and execute a seamless transition for your SMB, optimizing costs and improving resilience." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Mastering Your Hyper-V Migration to Azure: A Comprehensive Guide for SMBs — SkyCore Solutions" />
+  <meta property="og:description" content="Unlock cloud benefits with our Hyper-V migration to Azure guide. Learn to assess, plan, and execute a seamless transition for your SMB, optimizing costs and improving resilience." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/hyper-v-migration-azure-guide-smbs.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/159489/pexels-photo-159489.png?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mastering Your Hyper-V Migration to Azure: A Comprehensive Guide for SMBs — SkyCore Solutions" />
+  <meta name="twitter:description" content="Unlock cloud benefits with our Hyper-V migration to Azure guide. Learn to assess, plan, and execute a seamless transition for your SMB, optimizing costs and improving resilience." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/159489/pexels-photo-159489.png?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/hyper-v-migration-azure-guide-smbs.html" />
+  <meta property="article:published_time" content="2026-07-13" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Mastering Your Hyper-V Migration to Azure: A Comprehensive Guide for SMBs",
+  "description": "Unlock cloud benefits with our Hyper-V migration to Azure guide. Learn to assess, plan, and execute a seamless transition for your SMB, optimizing costs and improving resilience.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Active Azure Subscription (Pay-As-You-Go or Enterprise Agreement), Azure Account with "Contributor" role or custom roles for Azure Migrate and Recovery Services Vault management., On-premises Hyper-V hosts (Windows Server 2012 R2 or later) running the VMs to be migrated., Network connectivity from Hyper-V hosts to Azure URLs (specific ports and endpoints)., Azure CLI installed (latest version) on your workstation, or PowerShell with the Az module., Local administrator access on Hyper-V hosts for agent installation."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Plan Your Migration and Prepare Azure",
+        "text": "Initiate your migration journey by creating an Azure Migrate project and a Recovery Services Vault within your Azure subscription."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy Azure Migrate Appliance for VM Discovery and Assessment",
+        "text": "Set up an Azure Migrate appliance on one of your Hyper-V hosts to discover your VMs and generate a detailed assessment report for cost and sizing."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Analyze Your Assessment and Right-Size VMs",
+        "text": "Review the Azure Migrate assessment report to understand your VM readiness, identify optimal Azure VM SKUs, and estimate costs."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Prepare for Replication: Install Azure Site Recovery Provider",
+        "text": "Install the Azure Site Recovery Provider and agent on each of your Hyper-V hosts to enable data replication to Azure."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Enable Replication for Hyper-V VMs",
+        "text": "Configure and start continuous data replication from your on-premises Hyper-V VMs to an Azure Recovery Services Vault."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Perform a Test Migration (Dry Run)",
+        "text": "Execute a test migration to validate your replicated VMs in an isolated Azure environment without impacting your production workloads."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Execute the Full Migration (Failover)",
+        "text": "Perform the final cutover, migrating your production Hyper-V VMs to Azure and completing your cloud transition."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Post-Migration Optimization and Cleanup",
+        "text": "Finalize your migration by optimizing Azure resources, decommissioning on-premises infrastructure, and securing your new cloud environment."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-07-13 · 20 min read · Cloud Migration</div>
+<h1>Mastering Your Hyper-V Migration to Azure: A Comprehensive Guide for SMBs</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/159489/pexels-photo-159489.png?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="IT professionals migrating Hyper-V virtual machines to Microsoft Azure cloud infrastructure, following a detailed Hyper-V migration to Azure guide." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For many Small to Medium Businesses (SMBs) in Montreal and beyond, the journey to cloud adoption can seem daunting, yet the benefits—enhanced resilience, scalability, and cost optimization—are undeniable. If your IT infrastructure currently relies on on-premises Hyper-V virtual machines, a meticulously planned <strong>Hyper-V migration to Azure guide</strong> is your blueprint for success. This guide from SkyCore Solutions will walk you through the entire process, from initial assessment to final cutover, ensuring a smooth transition to Azure. By the end, you'll have your critical workloads running securely and efficiently in the cloud, leveraging Microsoft's robust infrastructure to drive your business forward.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul>
+<li><strong>Azure Subscription:</strong> An active Azure subscription. For SMBs, a Pay-As-You-Go subscription is typically sufficient to start, offering flexibility.</li>
+<li><strong>Azure Account Permissions:</strong> An Azure account with at least "Contributor" role permissions on the target subscription and resource group to create and manage Azure Migrate projects, Recovery Services Vaults, and Azure VMs.</li>
+<li><strong>On-premises Hyper-V Environment:</strong> Hyper-V hosts running Windows Server 2012 R2 or later, hosting the VMs you intend to migrate. Ensure adequate resources (CPU, RAM, storage, network) for running the Azure Site Recovery provider and for initial data synchronization.</li>
+<li><strong>Network Connectivity:</strong> Your Hyper-V hosts must have outbound internet connectivity to specific Azure URLs for replication, discovery, and communication. This includes endpoints for Azure Migrate, Azure Site Recovery, and Azure Storage.</li>
+<li><strong>Azure CLI or PowerShell:</strong> The latest version of Azure CLI installed on your administrative workstation, or PowerShell with the `Az` module (e.g., `Install-Module Az -Scope CurrentUser`). We'll prioritize CLI commands.</li>
+<li><strong>Local Administrator Access:</strong> Local administrator rights on all Hyper-V hosts where you will install the replication provider.</li>
+<li><strong>Estimated Cost:</strong> While Azure Migrate assessment is free, you will incur costs for Azure resources (VMs, storage, network) once migrated. During replication, Azure Site Recovery incurs charges per protected instance. Always review the <a href="https://azure.microsoft.com/en-us/pricing/details/site-recovery/" target="_blank">Azure Site Recovery pricing</a> and <a href="https://azure.microsoft.com/en-us/pricing/calculator/" target="_blank">Azure pricing calculator</a>.</li>
+</ul></div>
+
+<h2>Step 1: Plan Your Migration and Prepare Azure</h2>
+Before diving into technicalities, a well-structured plan is crucial. This initial step involves setting up the foundational Azure resources that will host your migration project and subsequently, your migrated VMs. For SMBs, centralizing your migration efforts within a dedicated Azure Migrate project ensures better organization and visibility.
+
+<pre><code class="language-azurecli">az group create --name SkyCore-HyperVMigration-RG --location eastus
+az migrate project create --resource-group SkyCore-HyperVMigration-RG --name SkyCore-HyperV-Project --location eastus
+</code></pre>
+<ul>
+<li><code>--resource-group SkyCore-HyperVMigration-RG</code>: Specifies the name of the resource group to create for your migration project. We recommend a dedicated resource group for clear organization.</li>
+<li><code>--name SkyCore-HyperV-Project</code>: The name for your Azure Migrate project. This hub will centralize your assessment and migration activities.</li>
+<li><code>--location eastus</code>: The Azure region where your project will reside. Choose a region geographically close to your on-premises environment for optimal performance during replication and for your future cloud services.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to the Azure portal, search for "Azure Migrate", and create a new project. Select the subscription, resource group, and desired region. The portal wizard will often prompt you to create a new resource group if one doesn't exist.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az migrate project show --resource-group SkyCore-HyperVMigration-RG --name SkyCore-HyperV-Project --query "properties.provisioningState"
+</code></pre>
+<p>This command should return `Succeeded` indicating your project is ready.</p>
+
+<h2>Step 2: Deploy Azure Migrate Appliance for VM Discovery and Assessment</h2>
+Unlike the migration phase itself, which leverages the Azure Site Recovery provider directly, the initial discovery and assessment of your Hyper-V VMs for a comprehensive <strong>Hyper-V migration to Azure guide</strong> typically involves deploying a lightweight Azure Migrate appliance. This appliance runs on one of your Hyper-V hosts and securely collects configuration and performance data from your other Hyper-V VMs for analysis.
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> The Azure Migrate appliance for *assessment discovery* is different from the Azure Site Recovery provider for *migration replication*. Do not confuse these two components. For assessment, the appliance is a VM deployed on one of your Hyper-V hosts. For migration, the provider is software installed directly on each Hyper-V host.</div>
+
+<p>As of the current documentation, deploying the Azure Migrate appliance and initiating discovery for assessment is primarily a portal-driven process to simplify setup for SMBs.</p>
+
+<p class="gui-note"><strong>Portal steps:</strong></p>
+<ol>
+<li>Navigate to your Azure Migrate project (<code>SkyCore-HyperV-Project</code>) in the Azure portal.</li>
+<li>Under <strong>Migration goals</strong> &gt; <strong>Servers, databases and web apps</strong>, select <strong>Discover</strong> under the <strong>Azure Migrate: Server Assessment</strong> tool.</li>
+<li>Select <strong>Discover machines</strong>. For virtualization type, choose <strong>Hyper-V</strong>.</li>
+<li>Follow the prompts to download the VHD file for the Azure Migrate appliance.</li>
+<li>Import this VHD onto one of your Hyper-V hosts to create a new VM for the appliance.</li>
+<li>Power on the appliance VM. Open a browser on the appliance to access its configuration manager.</li>
+<li>Configure connectivity, specify credentials for Hyper-V host access (ensure they have necessary permissions to discover VMs), and complete the registration to your Azure Migrate project.</li>
+<li>The appliance will then start discovering VMs on your Hyper-V hosts. This process can take up to 15-30 minutes for initial discovery.</li>
+</ol>
+<p><strong>Run this to verify (after ~30 minutes):</strong></p>
+<pre><code class="language-azurecli">az migrate project show --resource-group SkyCore-HyperVMigration-RG --name SkyCore-HyperV-Project --query "properties.discoveryStatus"
+</code></pre>
+<p>This command should indicate `Active` or `InProgress` if discovery is running. You can also check the Azure portal under <strong>Azure Migrate</strong> &gt; <strong>Servers, databases and web apps</strong> &gt; <strong>Discovered servers</strong> for a count of your discovered VMs.</p>
+
+<h2>Step 3: Analyze Your Assessment and Right-Size VMs</h2>
+Once discovery is complete, the Azure Migrate: Server Assessment tool will have gathered comprehensive data on your Hyper-V VMs. This data is critical for SMBs to make informed decisions about cloud resource sizing and cost management before embarking on the actual <strong>Hyper-V migration to Azure guide</strong> execution. An accurate assessment prevents over-provisioning (and unnecessary costs) or under-provisioning (and performance issues) in Azure.
+
+<p class="gui-note"><strong>Portal steps:</strong></p>
+<ol>
+<li>In your Azure Migrate project, navigate to <strong>Servers, databases and web apps</strong> &gt; <strong>Azure Migrate: Server Assessment</strong>.</li>
+<li>Click on <strong>Assess</strong> &gt; <strong>Azure VM</strong>.</li>
+<li>In the <strong>Assess servers to Azure VMs</strong> wizard:
+<ul>
+<li><strong>Assessment name:</strong> Provide a meaningful name (e.g., <code>SkyCore-HyperV-Assessment-Phase1</code>).</li>
+<li><strong>Source settings:</strong> Select your discovered Hyper-V appliance.</li>
+<li><strong>Target settings:</strong> Choose your target Azure region (e.g., <code>East US</code>) and desired Azure storage type (recommend `Premium SSD` for most production SMB workloads for better performance).</li>
+<li><strong>VM sizing properties:</strong> For SMBs, we recommend selecting <strong>Performance-based</strong> sizing criteria. This uses collected performance data to recommend optimal Azure VM SKUs, preventing guesswork. For instance, if a VM typically uses 30% CPU, it won't be recommended an oversized Azure VM.</li>
+<li><strong>Compute savings:</strong> Consider `Azure Hybrid Benefit` if you have existing Windows Server licenses with Software Assurance, and `Reserved Instances` for stable workloads to significantly reduce costs.</li>
+<li><strong>Select VMs to assess:</strong> Choose the specific VMs or groups of VMs you wish to include in this assessment.</li>
+</ul>
+</li>
+<li>Review the assessment details and click <strong>Create assessment</strong>.</li>
+</ol>
+<p>Allow a few minutes for the assessment to generate. Once complete, you can drill down into the assessment report to view:</p>
+<ul>
+<li><strong>Azure readiness:</strong> Identifies any compatibility issues.</li>
+<li><strong>Monthly cost estimate:</strong> Provides a projected cost for compute and storage.</li>
+<li><strong>Suggested Azure VM SKUs:</strong> Recommended VM sizes (e.g., <code>Standard_D2s_v5</code> for general purpose SMB applications, <code>Standard_E4s_v5</code> for memory-intensive workloads).</li>
+<li><strong>Storage type recommendations:</strong> SSDs are almost always recommended for better performance.</li>
+</ul>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For most SMB general-purpose workloads, the <code>Standard_D2s_v5</code> or <code>Standard_D4s_v5</code> Azure VM SKUs offer a good balance of performance and cost, especially when combined with Premium SSDs. Always validate recommendations against your specific application requirements.</div>
+
+<p><strong>Run this to verify:</strong> Review the generated assessment report directly in the Azure portal. There isn't a direct CLI command to export a full assessment report, but you can see the assessment status:</p>
+<pre><code class="language-azurecli">az migrate assessment list --resource-group SkyCore-HyperVMigration-RG --project-name SkyCore-HyperV-Project --query "[].{Name:name, Status:properties.status}"
+</code></pre>
+<p>Ensure the status of your assessment is `Created` or `Completed`.</p>
+
+<h2>Step 4: Prepare for Replication: Install Azure Site Recovery Provider</h2>
+With your assessment complete, the next critical phase in your <strong>Hyper-V migration to Azure guide</strong> is to prepare your Hyper-V hosts for data replication. This involves installing the Azure Site Recovery Provider and the Microsoft Azure Recovery Services (MARS) agent directly on each Hyper-V host or cluster node from which you plan to migrate VMs. This software facilitates the secure and efficient replication of your VM data to Azure.
+
+<p class="gui-note"><strong>Portal steps to download the provider and key:</strong></p>
+<ol>
+<li>In your Azure Migrate project (<code>SkyCore-HyperV-Project</code>), go to <strong>Servers, databases and web apps</strong>.</li>
+<li>Under <strong>Azure Migrate: Server Migration</strong>, click <strong>Replicate</strong>.</li>
+<li>On the <strong>Specify intent</strong> page, ensure <strong>Servers or virtual machines (VMs)</strong> is selected for "What do you want to migrate".</li>
+<li>For "Where do you want to migrate to", select <strong>Azure VM</strong>.</li>
+<li>Under "How will you select workloads", choose <strong>From replication provider (Hyper-V)</strong>.</li>
+<li>Select your target region (e.g., <code>East US</code>) and confirm. Click <strong>Create resources</strong>. This action creates the necessary Recovery Services vault in the background.</li>
+<li>On the <strong>Prepare Hyper-V host servers</strong> step, you'll find links to <strong>Download the Hyper-V Replication provider</strong> (<code>AzureSiteRecoveryProvider.exe</code>) and <strong>Download the registration key file</strong>. Copy both these files to each Hyper-V host you intend to protect.</li>
+</ol>
+
+<p><strong>CLI-like commands for installation on Hyper-V Host:</strong></p>
+<p>On each Hyper-V host, open an elevated PowerShell or Command Prompt, navigate to the directory where you copied the installer and key file, and run the following:</p>
+<pre><code class="language-powershell"># Extract the contents of the installer to a temporary folder
+.\AzureSiteRecoveryProvider.exe /q /x:C:\Temp\ExtractedASR
+
+# Navigate into the extracted directory
+cd C:\Temp\ExtractedASR
+
+# Install the Hyper-V replication provider (this includes the MARS agent)
+.\setupdr.exe /i
+</code></pre>
+<ul>
+<li><code>/q /x:C:\Temp\ExtractedASR</code>: Specifies a quiet extraction (`/q`) to the specified path (`/x`). This is a standard command-line switch for many executables.</li>
+<li><code>cd C:\Temp\ExtractedASR</code>: Changes the directory to where the setup files were extracted.</li>
+<li><code>.\setupdr.exe /i</code>: Executes the installation of the Site Recovery provider. This command handles the core installation logic.</li>
+</ul>
+
+<p>After running `setupdr.exe /i`, the Microsoft Azure Site Recovery Registration Wizard will launch (or should be launched separately if running Hyper-V Core Server) to complete the registration. While the main installation has CLI switches, the registration step often involves a guided wizard due to the need to browse for the vault key file and select Azure subscription details.</p>
+
+<p class="gui-note"><strong>Portal steps to register the provider (after installation):</strong></p>
+<ol>
+<li>After running `setupdr.exe /i`, the <strong>Microsoft Azure Site Recovery Registration Wizard</strong> should appear.</li>
+<li>For <strong>Vault Settings</strong>, click <strong>Browse</strong> and locate the <strong>vault registration key file</strong> you downloaded earlier.</li>
+<li>Select your Azure Site Recovery subscription, the Recovery Services vault (created in Step 1), and the Hyper-V site. If it's your first host, you'll define a new Hyper-V site name (e.g., <code>SkyCoreHyperVSite</code>).</li>
+<li>For <strong>Proxy Settings</strong>, for SMBs, typically select <strong>Connect directly to Azure Site Recovery without a proxy server</strong> unless your network requires a proxy.</li>
+<li>Complete the wizard. The Hyper-V host will then register with your Recovery Services vault.</li>
+</ol>
+
+<p><strong>Run this to verify (after ~30 minutes):</strong></p>
+<p class="gui-note"><strong>Portal verification:</strong> In your Azure Migrate project, navigate to <strong>Servers, databases and web apps</strong> &gt; <strong>Azure Migrate: Server Migration</strong>. Under "Migration and modernization" click on <strong>Replicate</strong>. On the <strong>Prepare Hyper-V host servers</strong> step, check that your Hyper-V hosts appear as registered under <strong>Hyper-V servers</strong>. Metadata collection can take some time.</p>
+
+<h2>Step 5: Enable Replication for Hyper-V VMs</h2>
+Once your Hyper-V hosts are registered, you can proceed to enable replication for your individual VMs. This step initiates the continuous synchronization of your VM data from on-premises to your Azure Recovery Services Vault. This is a crucial phase in your <strong>Hyper-V migration to Azure guide</strong>, establishing the groundwork for future failovers.
+
+<p class="gui-note"><strong>Portal steps:</strong></p>
+<ol>
+<li>In your Azure Migrate project, navigate to <strong>Servers, databases and web apps</strong> &gt; <strong>Azure Migrate: Server Migration</strong>.</li>
+<li>Click <strong>Replicate</strong>.</li>
+<li>On the <strong>Replicate</strong> page:
+<ul>
+<li><strong>Source settings:</strong> Ensure your Hyper-V hosts are registered.</li>
+<li><strong>Virtual machines:</strong> Select the VMs you want to replicate. You can select multiple VMs here.</li>
+<li><strong>Target settings:</strong>
+<ul>
+<li><strong>Target location:</strong> Confirm the Azure region (e.g., <code>East US</code>).</li>
+<li><strong>Subscription/Resource group:</strong> Choose the target subscription and resource group where your Azure VMs will be created.</li>
+<li><strong>Virtual network:</strong> Select the Azure Virtual Network and subnet where your future Azure VMs will connect. Plan this carefully.</li>
+<li><strong>Disaster recovery type:</strong> This guide focuses on migration, so the primary purpose is moving VMs.</li>
+<li><strong>Cache storage account:</strong> A temporary storage account automatically created in the background to handle replication data.</li>
+<li><strong>Availability options:</strong> For SMBs, consider `Availability Sets` for critical multi-VM applications to ensure high availability within an Azure region. For single VMs, `No infrastructure redundancy required` is common.</li>
+<li><strong>Azure Hybrid Benefit:</strong> Enable this if you qualify to save costs on Windows Server VMs.</li>
+</ul>
+</li>
+<li><strong>Replication settings:</strong>
+<ul>
+<li><strong>OS disk:</strong> Confirm the OS disk type and size.</li>
+<li><strong>Data disks:</strong> Review and adjust as needed.</li>
+<li><strong>Target VM size:</strong> The assessment recommendations (Step 3) are crucial here. Select the appropriate VM size (e.g., <code>Standard_D4s_v5</code>).</li>
+<li><strong>OS type:</strong> Windows or Linux.</li>
+</ul>
+</li>
+<li>Review your settings and click <strong>Enable replication</strong>.</li>
+</ol>
+<p>Allow time for initial replication to complete. This can vary significantly based on the size of your VMs and available bandwidth. You can monitor replication progress in the Azure portal.</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az site-recovery replicated-item list --resource-group SkyCore-HyperVMigration-RG --vault-name <RecoveryServicesVaultName> --query "[].{VMName:properties.friendlyName, Status:properties.replicationHealth}"
+</code></pre>
+<ul>
+<li><code>--vault-name <RecoveryServicesVaultName></code>: Replace with the actual name of the Recovery Services Vault created by Azure Migrate. You can find this in the Azure portal within your migration project.</li>
+</ul>
+<p>You should see `Normal` under the `Status` column for your replicated VMs once initial synchronization is complete.</p>
+
+<h2>Step 6: Perform a Test Migration (Dry Run)</h2>
+This is arguably the most critical step in any robust <strong>Hyper-V migration to Azure guide</strong>, especially for SMBs. A test migration allows you to validate the functionality of your replicated VMs in an isolated Azure environment without disrupting your on-premises production workloads. It's your dress rehearsal for the final cutover.
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Always perform at least one test migration for each critical application. Use a dedicated, isolated Azure virtual network for testing to prevent any impact on your production Azure resources or on-premises environment. Document any issues and resolve them before the actual migration.</div>
+
+<p class="gui-note"><strong>Portal steps:</strong></p>
+<ol>
+<li>In your Azure Migrate project, navigate to <strong>Servers, databases and web apps</strong> &gt; <strong>Azure Migrate: Server Migration</strong>.</li>
+<li>Click on <strong>Replicating servers</strong>. Select the VM(s) you wish to test.</li>
+<li>Click <strong>Test migration</strong>.</li>
+<li>On the <strong>Test migration</strong> blade, select the isolation Azure Virtual Network that you've prepared for testing (e.g., `SkyCore-TestVNet`). This network should not be connected to your on-premises network to avoid IP conflicts or unintended communication.</li>
+<li>Click <strong>Test migration</strong>.</li>
+</ol>
+<p>Azure Site Recovery creates a test Azure VM from the latest replicated data. This process takes some time to complete. Once the test VM is running, you can connect to it via RDP/SSH using its public IP (if configured, or via Azure Bastion/VPN) and perform your validation checks:</p>
+<ul>
+<li>Verify OS boots correctly.</li>
+<li>Check if applications start and function as expected.</li>
+<li>Confirm network connectivity within the test VNet.</li>
+</ul>
+<p>After validation, remember to clean up the test resources:</p>
+<p class="gui-note"><strong>Portal steps to clean up test migration:</strong></p>
+<ol>
+<li>Go back to <strong>Replicating servers</strong>, select the VM you just tested.</li>
+<li>Click <strong>Clean up test migration</strong>. This will delete the test Azure VM and associated resources.</li>
+</ol>
+
+<p><strong>Run this to verify:</strong> There are no direct CLI commands to initiate or clean up a test migration from the provided documentation. Verification relies on monitoring the Azure portal for the status of the `Test Failover` job and checking for the creation and deletion of the test VM.</p>
+
+<h2>Step 7: Execute the Full Migration (Failover)</h2>
+With successful test migrations confirming readiness, it's time for the final cutover. This step in our <strong>Hyper-V migration to Azure guide</strong> involves performing a full migration, which is essentially a planned failover of your production VMs to Azure. This will shut down your on-premises VMs and bring up their counterparts in Azure, transitioning your workloads to the cloud.
+
+<p class="gui-note"><strong>Portal steps:</strong></p>
+<ol>
+<li>Before initiating, ensure your on-premises Hyper-V VM is shut down or gracefully powered off to prevent data loss or inconsistencies during the cutover.</li>
+<li>In your Azure Migrate project, navigate to <strong>Servers, databases and web apps</strong> &gt; <strong>Azure Migrate: Server Migration</strong>.</li>
+<li>Click on <strong>Replicating servers</strong>. Select the VM(s) you wish to migrate.</li>
+<li>Click <strong>Migrate</strong>.</li>
+<li>On the <strong>Migrate</strong> blade, confirm that you want to shut down the on-premises VM (this is recommended for a clean migration).</li>
+<li>Click <strong>Migrate</strong>.</li>
+</ol>
+<p>Azure Site Recovery initiates the failover process. This will:</p>
+<ul>
+<li>Perform a final data synchronization to ensure the latest changes are replicated.</li>
+<li>Create the production Azure VM(s) in your designated Azure VNet.</li>
+<li>Power on the Azure VM(s).</li>
+</ul>
+<p>Once the migration job completes, you should have your production applications running on the Azure VMs. Perform thorough post-migration validations, just as you did in the test migration, but this time on your production network segment in Azure.</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az vm show --resource-group <TargetResourceGroup> --name <AzureVMName> --query "powerState"
+</code></pre>
+<ul>
+<li><code><TargetResourceGroup></code>: The Azure resource group where your migrated VM resides.</li>
+<li><code><AzureVMName></code>: The name of your newly migrated Azure VM.</li>
+</ul>
+<p>This command should return `VM running`, indicating your VM has successfully started in Azure.</p>
+
+<h2>Step 8: Post-Migration Optimization and Cleanup</h2>
+Completing the failover isn't the final step in a comprehensive <strong>Hyper-V migration to Azure guide</strong>. Post-migration activities are crucial for optimizing performance, managing costs, and securely decommissioning your legacy infrastructure.
+
+<p class="gui-note"><strong>Portal steps:</strong></p>
+<ol>
+<li><strong>Finalize migration:</strong> Once satisfied that your workloads are stable in Azure, go to <strong>Azure Migrate</strong> &gt; <strong>Servers, databases and web apps</strong> &gt; <strong>Azure Migrate: Server Migration</strong> &gt; <strong>Replicating servers</strong>. Select the migrated VM, and click <strong>Stop replication</strong>. This marks the migration as complete and stops billing for Azure Site Recovery for that VM.</li>
+<li><strong>Decommission on-premises VMs:</strong> Safely power off and eventually decommission your original Hyper-V VMs. Ensure you retain backups or snapshots according to your retention policies before complete removal.</li>
+<li><strong>Optimize Azure resources:</strong>
+<ul>
+<li><strong>Review VM sizing:</strong> Based on real-world usage in Azure, adjust VM sizes if your assessment was slightly off.</li>
+<li><strong>Implement auto-shutdown:</strong> For non-production VMs, configure auto-shutdown schedules to save costs.</li>
+<li><strong>Monitor costs:</strong> Use Azure Cost Management + Billing to track and analyze your cloud spending.</li>
+<li><strong>Apply Azure Hybrid Benefit/Reserved Instances:</strong> If not already done, apply these for further cost savings.</li>
+</ul>
+</li>
+<li><strong>Security hardening:</strong> Implement Azure Security Center recommendations, configure Network Security Groups (NSGs), and consider Azure Firewall for enhanced security.</li>
+<li><strong>Backup strategy:</strong> Implement Azure Backup for your migrated Azure VMs to ensure data protection.</li>
+</ol>
+
+<p><strong>Example CLI for stopping replication (after successful migration):</strong></p>
+<pre><code class="language-powershell">$vaultName = "<RecoveryServicesVaultName>"
+$resourceGroupName = "SkyCore-HyperVMigration-RG"
+$siteName = "SkyCoreHyperVSite"
+$vmName = "<YourMigratedVMName>"
+
+# Get the Site Recovery context
+Set-AzContext -SubscriptionId (Get-AzSubscription | Select-Object -First 1).Id # Adjust if multiple subscriptions
+
+# Get the ASR protected item for the VM
+$protectedItem = Get-AzRecoveryServicesAsrReplicatedItem -VaultId (Get-AzRecoveryServicesVault -Name $vaultName -ResourceGroupName $resourceGroupName).ID | Where-Object { $_.Properties.OsDiskName -eq "$vmName" }
+
+# Stop replication and delete the replicated item
+if ($protectedItem) {
+    Remove-AzRecoveryServicesAsrReplicatedItem -InputObject $protectedItem -ReplicationProvider HyperV -Force
+    Write-Host "Replication stopped for VM: $vmName"
+} else {
+    Write-Host "Protected item for VM $vmName not found."
+}
+</code></pre>
+<ul>
+<li><code><RecoveryServicesVaultName></code>: Replace with the actual name of your Recovery Services Vault.</li>
+<li><code><YourMigratedVMName></code>: The original name of the VM you migrated.</li>
+<li>This PowerShell script requires the `Az.RecoveryServices` module and finds the replicated item by its OS disk name, then removes it.</li>
+</ul>
+
+<p><strong>Run this to verify (replication status after stopping):</strong></p>
+<p class="gui-note"><strong>Portal verification:</strong> Navigate to <strong>Azure Migrate</strong> &gt; <strong>Servers, databases and web apps</strong> &gt; <strong>Azure Migrate: Server Migration</strong> &gt; <strong>Replicating servers</strong>. The VM should no longer appear in the list, or its status should indicate replication has stopped.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this <strong>Hyper-V migration to Azure guide</strong> provides a clear path for SMBs, certain scenarios benefit greatly from expert intervention. If your environment includes complex inter-dependent applications, advanced networking requirements (e.g., ExpressRoute, complex VPNs), specific compliance mandates, hybrid identity integration (e.g., AD sync), or if you need to minimize downtime beyond simple planned outages, SkyCore Solutions can provide tailored assistance. We specialize in navigating these complexities to ensure a robust, secure, and cost-effective cloud transition for your business, allowing your internal teams to focus on core operations.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/migrate/tutorial-assess-hyper-v" target="_blank" rel="noopener noreferrer">learn.microsoft.com — tutorial assess hyper v</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/migrate/tutorial-migrate-hyper-v" target="_blank" rel="noopener noreferrer">learn.microsoft.com — tutorial migrate hyper v</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/site-recovery/hyper-v-azure-tutorial" target="_blank" rel="noopener noreferrer">learn.microsoft.com — hyper v azure tutorial</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — migrate services overview</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

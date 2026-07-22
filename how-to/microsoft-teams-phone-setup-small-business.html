@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seamless Communication: Your Microsoft Teams Phone Setup for Small Business — SkyCore Solutions</title>
+  <meta name="description" content="Empower your small business with a robust Microsoft Teams Phone setup. This guide covers licensing, configuration, and best practices for external calling and PBX features." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Seamless Communication: Your Microsoft Teams Phone Setup for Small Business — SkyCore Solutions" />
+  <meta property="og:description" content="Empower your small business with a robust Microsoft Teams Phone setup. This guide covers licensing, configuration, and best practices for external calling and PBX features." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/microsoft-teams-phone-setup-small-business.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/7964566/pexels-photo-7964566.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Seamless Communication: Your Microsoft Teams Phone Setup for Small Business — SkyCore Solutions" />
+  <meta name="twitter:description" content="Empower your small business with a robust Microsoft Teams Phone setup. This guide covers licensing, configuration, and best practices for external calling and PBX features." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/7964566/pexels-photo-7964566.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/microsoft-teams-phone-setup-small-business.html" />
+  <meta property="article:published_time" content="2026-07-17" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Seamless Communication: Your Microsoft Teams Phone Setup for Small Business",
+  "description": "Empower your small business with a robust Microsoft Teams Phone setup. This guide covers licensing, configuration, and best practices for external calling and PBX features.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Active Microsoft 365 subscription (e.g., Business Basic, Standard, Premium, or Enterprise E1/E3/E5) for all users., Global Administrator or Teams Administrator role in your Microsoft 365 tenant., PowerShell with the Microsoft Teams module installed (minimum version 5.0.0 for PowerShell and 4.x for Teams module)., Stable internet connection with sufficient bandwidth for VoIP."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Verify Core Microsoft 365 and Teams Licensing",
+        "text": "Ensure your users have the foundational Microsoft 365 licenses that include Teams, preparing them for the Phone System add-on."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Acquire and Assign Teams Phone Standard Licenses",
+        "text": "Provision the essential Teams Phone Standard add-on, which provides crucial PBX capabilities like call transfer, voicemail, and auto attendants."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Acquire and Assign Microsoft Teams Calling Plan Licenses",
+        "text": "Connect your Teams Phone System to the Public Switched Telephone Network (PSTN) by purchasing and assigning a Microsoft Calling Plan for external calls."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Emergency Address (E911)",
+        "text": "Set up accurate emergency addresses for your physical locations to ensure proper routing of emergency calls (E911/911)."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Acquire and Assign Phone Numbers to Users",
+        "text": "Obtain new phone numbers or port existing ones, then assign them to individual users enabled with Teams Phone and a Calling Plan."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Voice Routing and Calling Policies",
+        "text": "Customize call routing behaviors and user calling permissions through Teams Calling Policies to align with your business needs."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Verify Voicemail and Call Answering Rules",
+        "text": "Confirm that voicemail is correctly configured and users can manage their call answering rules within the Teams client."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-07-17 · 15 min read · Cloud Migration</div>
+<h1>Seamless Communication: Your Microsoft Teams Phone Setup for Small Business</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/7964566/pexels-photo-7964566.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Professionals collaborating using Microsoft Teams Phone in a modern small business office environment, highlighting digital communication." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For small businesses in Montreal and beyond, an efficient communication system is no longer a luxury—it's a necessity. Outdated PBX systems often mean rigid contracts, high maintenance, and a fragmented user experience. This guide will walk you through a comprehensive <strong>Microsoft Teams Phone setup for small business</strong>, leveraging Microsoft's all-in-the-cloud voice solution. By the end, your team will be making and receiving external phone calls directly from Microsoft Teams, unified with your existing collaboration tools, and equipped with enterprise-grade PBX features like voicemail, call transfers, and auto attendants, all managed seamlessly through the Microsoft 365 ecosystem.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li><strong>Active Microsoft 365 subscription:</strong> All users requiring external calling must have a foundational Microsoft 365 license (e.g., Business Basic, Standard, Premium, or Enterprise E1/E3/E5). These licenses include access to Microsoft Teams.</li><li><strong>Administrative Permissions:</strong> You must have a Global Administrator or Teams Administrator role within your Microsoft 365 tenant to perform the necessary configurations.</li><li><strong>PowerShell with Microsoft Teams Module:</strong> The latest version of PowerShell 7 (or higher) and the Microsoft Teams PowerShell module (<code>MicrosoftTeams</code>) are required for command-line administration. Install or update using <code>Install-Module -Name MicrosoftTeams</code>.</li><li><strong>Estimated Cost:</strong> Beyond your base Microsoft 365 subscription, expect per-user monthly costs for two primary add-ons: <em>Teams Phone Standard</em> (approximately $8-$10 CAD/user/month) and a <em>Microsoft Teams Calling Plan</em> (e.g., Domestic, ranging from $12-$15 CAD/user/month for unlimited minutes). Pay-As-You-Go plans offer flexibility for low-usage users.</li></ul></div>
+<h2>Step 1: Verify Core Microsoft 365 and Teams Licensing</h2>
+<p>Before diving into phone system specifics, it's crucial to confirm that your users have the fundamental Microsoft 365 licenses that include Microsoft Teams. This ensures the underlying platform is ready to host the voice features.</p>
+<pre><code class="language-powershell">Connect-MsolService
+Get-MsolUser -All | Select-Object DisplayName, UserPrincipalName, @{Name="Licenses";Expression={($_.Licenses.AccountSkuId | Out-String).Trim()}}
+</code></pre>
+<ul>
+<li><code>Connect-MsolService</code>: Establishes a connection to the Microsoft Online Services cloud, necessary for managing user licenses.</li>
+<li><code>Get-MsolUser -All</code>: Retrieves all user accounts in your tenant.</li>
+<li><code>Select-Object DisplayName, UserPrincipalName, @{Name="Licenses";Expression={($_.Licenses.AccountSkuId | Out-String).Trim()}}</code>: Formats the output to show each user's display name, UPN, and a list of assigned license SKUs. Look for SKUs like <code>BUSINESS_PREMIUM</code>, <code>STANDARDPACK</code>, <code>ENTERPRISEPACK</code>, or <code>TEAMS_EXPLORATORY</code> which include Teams.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the <a href="https://admin.microsoft.com">Microsoft 365 admin center</a> &gt; <strong>Users</strong> &gt; <strong>Active users</strong>. Select a user, then click on the <strong>Licenses & apps</strong> tab to view their assigned licenses.</p>
+<p><strong>Run this to verify:</strong> After executing the PowerShell command, inspect the output to confirm that the target users have an appropriate Microsoft 365 license that grants them access to Microsoft Teams.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Assuming all Microsoft 365 licenses include Teams calling. While most include basic Teams functionality, the ability to make external PSTN calls requires specific add-on licenses, which we'll cover in the next steps. Without these, users can only make internal Teams-to-Teams calls.</div>
+
+<h2>Step 2: Acquire and Assign Teams Phone Standard Licenses</h2>
+<p>The Teams Phone Standard license is the cornerstone of your Microsoft Teams Phone setup for small business, providing the Private Branch Exchange (PBX) capabilities. This includes essential features like call hold, park, transfer, voicemail, auto attendants, and call queues. You'll need one of these licenses for every user who requires external calling functionality.</p>
+<pre><code class="language-powershell">Connect-MsolService
+
+# Step 2a: Identify the SkuPartNumber for Teams Phone Standard
+# Note: SkuPartNumber might vary slightly based on your region or purchase agreement (e.g., New Commerce Experience).
+# Look for a SKU containing 'TEAMS_PHONE_STANDARD' or 'PHONE_SYSTEM'.
+$PhoneSystemSku = (Get-MsolAccountSku | Where-Object {$_.SkuPartNumber -like "*TEAMS_PHONE_STANDARD*" -or $_.SkuPartNumber -like "*PHONE_SYSTEM*"}).SkuPartNumber
+
+if (-not $PhoneSystemSku) {
+    Write-Warning "Teams Phone Standard SKU not found. Please verify available SKUs in Microsoft 365 admin center."
+} else {
+    Write-Host "Identified Teams Phone Standard SKU: $PhoneSystemSku"
+    # Step 2b: Assign the license to a specific user
+    $UserPrincipalName = "user@yourdomain.com" # Replace with the actual UPN
+    Set-MsolUserLicense -UserPrincipalName $UserPrincipalName -AddLicenses $PhoneSystemSku
+
+    Write-Host "Successfully assigned Teams Phone Standard to $UserPrincipalName."
+}
+</code></pre>
+<ul>
+<li><code>Connect-MsolService</code>: Connects to your Microsoft 365 tenant.</li>
+<li><code>Get-MsolAccountSku</code>: Lists all available license SKUs that your organization can purchase or has purchased. This is crucial for identifying the exact <code>SkuPartNumber</code> for Teams Phone Standard.</li>
+<li><code>Where-Object {$_.SkuPartNumber -like "*TEAMS_PHONE_STANDARD*" -or $_.SkuPartNumber -like "*PHONE_SYSTEM*"}</code>: Filters the SKUs to find the relevant Phone System license.</li>
+<li><code>Set-MsolUserLicense -UserPrincipalName $UserPrincipalName -AddLicenses $PhoneSystemSku</code>: Assigns the identified Phone System license to the specified user.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> First, purchase the licenses via <a href="https://admin.microsoft.com">Microsoft 365 admin center</a> &gt; <strong>Billing</strong> &gt; <strong>Purchase services</strong>. Search for "Teams Phone Standard". Once purchased, go to <strong>Users</strong> &gt; <strong>Active users</strong>, select the desired user, click <strong>Licenses & apps</strong>, and assign the "Microsoft Teams Phone Standard" license.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell">Get-MsolUser -UserPrincipalName "user@yourdomain.com" | Select-Object -ExpandProperty Licenses
+</code></pre>
+<p>Confirm that the <code>TEAMS_PHONE_STANDARD_SKU</code> (or similar) is listed under the user's assigned licenses.</p>
+
+<h2>Step 3: Acquire and Assign Microsoft Teams Calling Plan Licenses</h2>
+<p>To enable your users to make and receive calls from the Public Switched Telephone Network (PSTN) – that is, external phone numbers – you need a Microsoft Teams Calling Plan. For most small businesses, a Domestic Calling Plan is the most economical and straightforward option, offering a pool of minutes for calls within your country. Pay-As-You-Go plans are also available for users with very low outbound call volume.</p>
+<pre><code class="language-powershell">Connect-MsolService
+
+# Step 3a: Identify the SkuPartNumber for your desired Calling Plan (e.g., Domestic)
+# Look for a SKU containing 'DOMESTIC_CALLING_PLAN' or 'PSTN_CALLING_PLAN'.
+# Example for Canada: 'MCOEV_DOMESTIC_CALLING_PLAN_CA'
+$CallingPlanSku = (Get-MsolAccountSku | Where-Object {$_.SkuPartNumber -like "*DOMESTIC_CALLING_PLAN*"}).SkuPartNumber
+
+if (-not $CallingPlanSku) {
+    Write-Warning "Domestic Calling Plan SKU not found. Please verify available SKUs in Microsoft 365 admin center for your region."
+} else {
+    Write-Host "Identified Calling Plan SKU: $CallingPlanSku"
+    # Step 3b: Assign the Calling Plan license to a specific user
+    $UserPrincipalName = "user@yourdomain.com" # Replace with the actual UPN
+    Set-MsolUserLicense -UserPrincipalName $UserPrincipalName -AddLicenses $CallingPlanSku
+
+    Write-Host "Successfully assigned Calling Plan to $UserPrincipalName."
+}
+</code></pre>
+<ul>
+<li><code>Connect-MsolService</code>: Connects to your Microsoft 365 tenant.</li>
+<li><code>Get-MsolAccountSku</code>: Lists available license SKUs.</li>
+<li><code>Where-Object {$_.SkuPartNumber -like "*DOMESTIC_CALLING_PLAN*"}</code>: Filters for the Domestic Calling Plan SKU. Note that these SKUs are region-specific (e.g., US, UK, CA, EU countries).</li>
+<li><code>Set-MsolUserLicense -UserPrincipalName $UserPrincipalName -AddLicenses $CallingPlanSku</code>: Assigns the Calling Plan license to the specified user.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Purchase the Calling Plan via <a href="https://admin.microsoft.com">Microsoft 365 admin center</a> &gt; <strong>Billing</strong> &gt; <strong>Purchase services</strong>. Search for "Teams Domestic Calling Plan" (or International/Pay-As-You-Go). Once purchased, go to <strong>Users</strong> &gt; <strong>Active users</strong>, select the user, click <strong>Licenses & apps</strong>, and assign the appropriate Calling Plan license.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell">Get-MsolUser -UserPrincipalName "user@yourdomain.com" | Select-Object -ExpandProperty Licenses
+</code></pre>
+<p>Confirm that the <code>DOMESTIC_CALLING_PLAN_SKU</code> (or similar) is listed. Note that all users with the same Calling Plan in the same country share a pool of minutes, optimizing usage for SMBs.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For SMBs with varying call volumes, consider a hybrid approach: assign the Domestic Calling Plan to heavy users for pooled minutes and the Pay-As-You-Go Calling Plan (funded by Communication Credits) to light users to only pay for what they use. This can significantly optimize costs.</div>
+
+<h2>Step 4: Configure Emergency Address (E911)</h2>
+<p>Accurate emergency addresses are critically important for any phone system, especially for a Microsoft Teams Phone setup for small business. This ensures that emergency services can quickly locate your users if they dial 911 (or 999/112 in other regions) from their Teams client. You must define these addresses in the Teams Admin Center.</p>
+<pre><code class="language-powershell">Connect-MicrosoftTeams
+
+# Define your main office emergency address
+$LocationId = "SkyCoreMontrealMain"
+$Description = "SkyCore Montreal Main Office"
+$Address = "123 SkyCore Avenue, Suite 100, Montreal, QC H3B 3J7, Canada"
+
+New-CsOnlineLisLocation -LocationId $LocationId -Description $Description -Address $Address
+
+Write-Host "Emergency address '$LocationId' created successfully."
+</code></pre>
+<ul>
+<li><code>Connect-MicrosoftTeams</code>: Establishes a connection to the Microsoft Teams service.</li>
+<li><code>New-CsOnlineLisLocation</code>: Creates a new Location Information Service (LIS) entry for emergency addresses.</li>
+<li><code>-LocationId</code>: A unique identifier for your location (e.g., "OfficeMain", "Warehouse").</li>
+<li><code>-Description</code>: A human-readable description of the location.</li>
+<li><code>-Address</code>: The full civic address, including street, city, province/state, postal code, and country.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to the <a href="https://admin.teams.microsoft.com">Teams admin center</a> &gt; <strong>Locations</strong> &gt; <strong>Emergency addresses</strong>. Click <strong>Add</strong>, fill in the required address details, and save. Repeat for all physical locations.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell">Get-CsOnlineLisLocation
+</code></pre>
+<p>Ensure your newly created emergency address is listed correctly.</p>
+
+<h2>Step 5: Acquire and Assign Phone Numbers to Users</h2>
+<p>Once your users are licensed and emergency addresses are configured, the next step in your Microsoft Teams Phone setup is to assign actual phone numbers. You can either acquire new numbers directly from Microsoft through the Teams Admin Center or port existing numbers from your current carrier.</p>
+<pre><code class="language-powershell">Connect-MicrosoftTeams
+
+# Step 5a: View available numbers (if you've acquired them via TAC or PowerShell)
+Get-CsOnlineVoiceNumber
+
+# Step 5b: Assign a phone number to a user
+$UserPrincipalName = "user@yourdomain.com" # Replace with the actual UPN
+$PhoneNumber = "+15145551234" # Replace with the actual phone number you wish to assign (including country code)
+$LocationId = "SkyCoreMontrealMain" # The LocationId created in Step 4
+
+Set-CsPhoneNumberAssignment -Identity $UserPrincipalName -PhoneNumber $PhoneNumber -PhoneNumberType CallingPlan -LocationID $LocationId
+
+Write-Host "Phone number $PhoneNumber assigned to $UserPrincipalName successfully."
+</code></pre>
+<ul>
+<li><code>Connect-MicrosoftTeams</code>: Connects to the Teams service.</li>
+<li><code>Get-CsOnlineVoiceNumber</code>: Lists the phone numbers available in your tenant that can be assigned.</li>
+<li><code>Set-CsPhoneNumberAssignment</code>: Assigns a phone number to a user.</li>
+<li><code>-Identity</code>: The User Principal Name (UPN) of the user.</li>
+<li><code>-PhoneNumber</code>: The full phone number including the country code (e.g., +15145551234).</li>
+<li><code>-PhoneNumberType CallingPlan</code>: Specifies that this number is part of a Microsoft Calling Plan.</li>
+<li><code>-LocationID</code>: Links the phone number to an emergency address, critical for E911.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> To acquire numbers, go to <a href="https://admin.teams.microsoft.com">Teams admin center</a> &gt; <strong>Voice</strong> &gt; <strong>Phone numbers</strong> &gt; <strong>Add</strong>. Follow the wizard to select your country/region, number type (e.g., user), quantity, and emergency location. Once numbers are acquired, go to <strong>Users</strong> &gt; <strong>Manage users</strong>, select the user, click <strong>Account</strong>, and under "Phone number," assign an available number and emergency location.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell">Get-CsOnlineUser -Identity "user@yourdomain.com" | Select-Object DisplayName, LineUri, EnterpriseVoiceEnabled
+</code></pre>
+<p>Confirm that the <code>LineUri</code> field shows the assigned phone number (e.g., <code>tel:+15145551234</code>) and <code>EnterpriseVoiceEnabled</code> is <code>True</code>.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Forgetting to link the assigned phone number to an emergency address. This can delay or prevent emergency services from locating a caller. Always ensure the <code>-LocationID</code> parameter is used during number assignment or configured via the portal.</div>
+
+<h2>Step 6: Configure Voice Routing and Calling Policies</h2>
+<p>Calling policies dictate how users can make and receive calls, including features like call forwarding, delegation, call park, and private call allowance. For a small business, the global policy often suffices, but customizing policies allows for fine-grained control over specific user groups or roles within your Microsoft Teams Phone setup.</p>
+<pre><code class="language-powershell">Connect-MicrosoftTeams
+
+# Step 6a: Review existing calling policies
+Get-CsOnlineCallingPolicy
+
+# Step 6b: (Optional) Create a custom calling policy for specific needs
+# Example: A policy for receptionists who need call park and call delegation
+# New-CsOnlineCallingPolicy -Identity "SkyCoreReceptionistPolicy" -AllowCallForwarding $true -AllowDelegation $true -AllowCallParking $true
+
+# Step 6c: Assign a calling policy to a user
+# For most users, the Global policy is sufficient. To assign a custom policy:
+$UserPrincipalName = "user@yourdomain.com" # Replace with the actual UPN
+$PolicyName = "Global" # Or "SkyCoreReceptionistPolicy" if you created one
+
+Grant-CsCallingPolicy -Identity $UserPrincipalName -PolicyName $PolicyName
+
+Write-Host "Calling policy '$PolicyName' assigned to $UserPrincipalName successfully."
+</code></pre>
+<ul>
+<li><code>Connect-MicrosoftTeams</code>: Connects to the Teams service.</li>
+<li><code>Get-CsOnlineCallingPolicy</code>: Lists all available calling policies in your tenant, including the default Global policy.</li>
+<li><code>New-CsOnlineCallingPolicy</code>: (Optional) Creates a new custom calling policy with specific feature settings.</li>
+<li><code>Grant-CsCallingPolicy</code>: Assigns a specified calling policy to a user.</li>
+<li><code>-Identity</code>: The User Principal Name (UPN) of the user.</li>
+<li><code>-PolicyName</code>: The name of the calling policy to assign (e.g., "Global" or your custom policy name).</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to the <a href="https://admin.teams.microsoft.com">Teams admin center</a> &gt; <strong>Voice</strong> &gt; <strong>Calling policies</strong>. You can modify the Global policy or click <strong>Add</strong> to create a new custom policy. To assign, go to <strong>Users</strong> &gt; <strong>Manage users</strong>, select the user, click <strong>Policies</strong>, then <strong>Edit</strong>, and select the desired Calling policy.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell">Get-CsOnlineUser -Identity "user@yourdomain.com" | Select-Object DisplayName, CallingPolicy
+</code></pre>
+<p>Confirm that the correct calling policy name is associated with the user.</p>
+
+<h2>Step 7: Verify Voicemail and Call Answering Rules</h2>
+<p>Voicemail is an integral part of any modern phone system. With Microsoft Teams Phone, voicemail is automatically provisioned for licensed users. Users can manage their voicemail greetings and call answering rules directly from their Teams client, while administrators can configure global voicemail policies.</p>
+<pre><code class="language-powershell">Connect-MicrosoftTeams
+
+# Step 7a: Review global voicemail policies
+Get-CsOnlineVoicemailPolicy
+
+# Most SMBs will use the Global policy. Ensure PSTN voicemail is enabled (usually by default).
+# Set-CsOnlineVoicemailPolicy -Identity Global -PstnVoicemailEnabled $true
+
+# Step 7b: (Optional) Assign a custom voicemail policy if created
+# New-CsOnlineVoicemailPolicy -Identity "NoVoicemailPolicy" -PstnVoicemailEnabled $false
+# Grant-CsOnlineVoicemailPolicy -Identity "user@yourdomain.com" -PolicyName "NoVoicemailPolicy"
+
+Write-Host "Voicemail policies reviewed. Individual user settings are managed via the Teams client."
+</code></pre>
+<ul>
+<li><code>Connect-MicrosoftTeams</code>: Connects to the Teams service.</li>
+<li><code>Get-CsOnlineVoicemailPolicy</code>: Displays existing voicemail policies.</li>
+<li><code>Set-CsOnlineVoicemailPolicy</code>: Allows modification of a voicemail policy, for example, enabling/disabling PSTN voicemail.</li>
+<li><code>Grant-CsOnlineVoicemailPolicy</code>: Assigns a specific voicemail policy to a user.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to the <a href="https://admin.teams.microsoft.com">Teams admin center</a> &gt; <strong>Voice</strong> &gt; <strong>Voicemail policies</strong>. Review the Global policy settings. Users configure their personal voicemail greetings and call answering rules (e.g., call forwarding, simultaneous ring) directly within their Microsoft Teams client settings under <strong>Calls</strong>.</p>
+<p><strong>Run this to verify:</strong> Initiate an external call to a user's assigned Teams phone number and let it ring to voicemail. Confirm that the voicemail is recorded and accessible within the user's Teams client under the <strong>Calls</strong> app &gt; <strong>Voicemail</strong> tab. Also, ask the user to configure a custom greeting and test again.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide covers a robust Microsoft Teams Phone setup for most small businesses, certain scenarios benefit greatly from expert consultation. If your organization requires complex call routing (e.g., multi-level auto attendants, sophisticated call queue routing), integration with existing CRM systems, porting a large volume of phone numbers from an archaic PBX, a hybrid identity setup (on-premises Active Directory synchronization), or optimizing a global communication strategy, SkyCore Solutions is here to help. Our Azure architects specialize in ensuring your Teams Phone system meets your unique business demands efficiently and securely.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/microsoftteams/business-voice/whats-business-voice" target="_blank" rel="noopener noreferrer">learn.microsoft.com — whats business voice</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/microsoftteams/calling-plan-landing-page" target="_blank" rel="noopener noreferrer">learn.microsoft.com — calling plan landing page</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/microsoftteams/teams-add-on-licensing/microsoft-teams-add-on-licensing" target="_blank" rel="noopener noreferrer">learn.microsoft.com — microsoft teams add on licensing</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

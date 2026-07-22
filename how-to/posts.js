@@ -3,6 +3,78 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-sql-managed-instance-migration-guide-skycore",
+    title: "Seamless Azure SQL Managed Instance Migration Guide for SMBs: A SkyCore Solutions Blueprint",
+    date: "2026-07-21",
+    readTime: "12 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "4-8 hours (including planning and deployment)",
+    keyword: "Azure SQL Managed Instance migration guide",
+    excerpt: "This Azure SQL Managed Instance migration guide from SkyCore Solutions provides SMBs with a clear, step-by-step blueprint to move their SQL Server databases to the cloud, ensuring operational continuity and enhanced security.",
+    image: "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "active-directory-tiering-best-practices-skycore",
+    title: "Mastering Active Directory Tiering Best Practices for Enhanced Security",
+    date: "2026-07-19",
+    readTime: "15 min read",
+    category: "Security Hardening",
+    difficulty: "Advanced",
+    timeEstimate: "4-6 hours (planning + initial implementation)",
+    keyword: "Active Directory tiering best practices",
+    excerpt: "Active Directory tiering is fundamental to modern cybersecurity, preventing privilege escalation and protecting your most critical assets. This guide outlines how to implement these practices.",
+    image: "https://images.pexels.com/photos/38117126/pexels-photo-38117126.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "microsoft-teams-phone-setup-small-business",
+    title: "Seamless Communication: Your Microsoft Teams Phone Setup for Small Business",
+    date: "2026-07-17",
+    readTime: "15 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Microsoft Teams Phone setup small business",
+    excerpt: "Upgrade your small business communication with a comprehensive Microsoft Teams Phone setup. This guide provides step-by-step instructions for implementing external calling, voicemail, and other essential PBX features.",
+    image: "https://images.pexels.com/photos/7964566/pexels-photo-7964566.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "dmarc-configuration-step-by-step",
+    title: "Mastering DMARC Configuration Step-by-Step for Advanced Email Security",
+    date: "2026-07-16",
+    readTime: "18 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-4 hours (initial setup), ongoing monitoring",
+    keyword: "DMARC configuration step by step",
+    excerpt: "This comprehensive guide walks you through DMARC configuration step-by-step, unifying SPF and DKIM to prevent email spoofing and enhance sender reputation. Protect your domains effectively.",
+    image: "https://images.pexels.com/photos/30885916/pexels-photo-30885916.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "hyper-v-migration-azure-guide-smbs",
+    title: "Mastering Your Hyper-V Migration to Azure: A Comprehensive Guide for SMBs",
+    date: "2026-07-13",
+    readTime: "20 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "4-6 hours (initial setup & assessment)",
+    keyword: "Hyper-V migration to Azure guide",
+    excerpt: "This comprehensive Hyper-V migration to Azure guide from SkyCore Solutions will walk you through transforming your on-premises virtual machines into resilient, scalable cloud resources. Prepare your infrastructure, execute seamless migrations, and harness the full power of Azure for your business.",
+    image: "https://images.pexels.com/photos/159489/pexels-photo-159489.png?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "pipeda-compliance-it-checklist-skycore",
+    title: "Your PIPEDA Compliance IT Checklist: A SkyCore Solutions Guide to Data Protection",
+    date: "2026-07-13",
+    readTime: "22 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours (initial setup)",
+    keyword: "PIPEDA compliance IT checklist",
+    excerpt: "This guide provides a comprehensive PIPEDA compliance IT checklist, translating legal requirements into actionable technical steps for your infrastructure. Ensure personal information is protected with expert strategies.",
+    image: "https://images.pexels.com/photos/30965500/pexels-photo-30965500.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "smb-azure-cloud-migration-guide",
     title: "Your Essential Cloud Migration Guide for SMB: Azure Strategy by SkyCore Solutions",
     date: "2026-07-10",
