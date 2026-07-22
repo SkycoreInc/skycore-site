@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "configure-dmarc-dkim-spf-email-security",
+    title: "How to Configure DMARC, DKIM, and SPF for Robust Email Security with SkyCore Solutions",
+    date: "2026-07-22",
+    readTime: "12 min read",
+    category: "Security Hardening",
+    difficulty: "Advanced",
+    timeEstimate: "2-3 hours (initial setup), ongoing monitoring",
+    keyword: "how to configure DMARC DKIM SPF",
+    excerpt: "Email authentication is critical to defending against spoofing and phishing. This guide provides a detailed, CLI-first approach to configure DMARC, DKIM, and SPF for your domains.",
+    image: "https://images.pexels.com/photos/4489171/pexels-photo-4489171.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-sql-managed-instance-migration-guide-skycore",
     title: "Seamless Azure SQL Managed Instance Migration Guide for SMBs: A SkyCore Solutions Blueprint",
     date: "2026-07-21",

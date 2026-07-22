@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to Configure DMARC, DKIM, and SPF for Robust Email Security with SkyCore Solutions — SkyCore Solutions</title>
+  <meta name="description" content="Learn how to configure DMARC, DKIM, and SPF records to drastically improve email security, prevent spoofing, and combat phishing attacks. A comprehensive SkyCore Solutions guide." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="How to Configure DMARC, DKIM, and SPF for Robust Email Security with SkyCore Solutions — SkyCore Solutions" />
+  <meta property="og:description" content="Learn how to configure DMARC, DKIM, and SPF records to drastically improve email security, prevent spoofing, and combat phishing attacks. A comprehensive SkyCore Solutions guide." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/configure-dmarc-dkim-spf-email-security.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/4489171/pexels-photo-4489171.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Configure DMARC, DKIM, and SPF for Robust Email Security with SkyCore Solutions — SkyCore Solutions" />
+  <meta name="twitter:description" content="Learn how to configure DMARC, DKIM, and SPF records to drastically improve email security, prevent spoofing, and combat phishing attacks. A comprehensive SkyCore Solutions guide." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/4489171/pexels-photo-4489171.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/configure-dmarc-dkim-spf-email-security.html" />
+  <meta property="article:published_time" content="2026-07-22" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Configure DMARC, DKIM, and SPF for Robust Email Security with SkyCore Solutions",
+  "description": "Learn how to configure DMARC, DKIM, and SPF records to drastically improve email security, prevent spoofing, and combat phishing attacks. A comprehensive SkyCore Solutions guide.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Administrative access to your domain's DNS provider (e.g., Cloudflare, GoDaddy, Azure DNS), Global Administrator or Exchange Administrator roles in Microsoft 365 (if applicable), A comprehensive list of all legitimate email sending services and IP addresses for your domain (e.g., transactional email providers, marketing platforms, CRMs, internal servers), Fundamental understanding of email flow, DNS record types (TXT, CNAME), and mail headers"}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Step 1: Understand SPF, DKIM, and DMARC Fundamentals",
+        "text": "Before configuration, a solid grasp of each protocol's role is essential for effective deployment and troubleshooting."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 2: Implement Sender Policy Framework (SPF)",
+        "text": "Configure SPF to explicitly define which mail servers are authorized to send email on behalf of your domain."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 3: Deploy DomainKeys Identified Mail (DKIM)",
+        "text": "Set up DKIM to digitally sign your outbound emails, ensuring message integrity and sender authenticity."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 4: Configure Domain-based Message Authentication, Reporting, and Conformance (DMARC)",
+        "text": "Implement DMARC to define policies for handling unauthenticated emails and receive critical reporting."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 5: Validate and Monitor Your Configuration",
+        "text": "Verify the successful deployment of your SPF, DKIM, and DMARC records and establish a monitoring routine."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-07-22 · 12 min read · Security Hardening</div>
+<h1>How to Configure DMARC, DKIM, and SPF for Robust Email Security with SkyCore Solutions</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/4489171/pexels-photo-4489171.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Digital shield protecting email icons, illustrating how to configure DMARC DKIM SPF for email security." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In an era dominated by sophisticated cyber threats, securing your organization's email communication is non-negotiable. Business Email Compromise (BEC), ransomware, and phishing attacks frequently leverage email spoofing to impersonate legitimate senders and defraud recipients. To decisively combat these threats, you must rigorously implement email authentication protocols: Sender Policy Framework (SPF), DomainKeys Identified Mail (DKIM), and Domain-based Message Authentication, Reporting, and Conformance (DMARC). This comprehensive guide from SkyCore Solutions will walk you through exactly how to configure DMARC DKIM SPF records, providing a CLI-first, authoritative approach to fortify your email defenses and restore trust in your domain's outgoing communications.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>Administrative access to your domain's DNS provider (e.g., Cloudflare, GoDaddy, Azure DNS)</li><li>Global Administrator or Exchange Administrator roles in Microsoft 365 (if applicable)</li><li>A comprehensive list of all legitimate email sending services and IP addresses for your domain (e.g., transactional email providers, marketing platforms, CRMs, internal servers)</li><li>Fundamental understanding of email flow, DNS record types (TXT, CNAME), and mail headers</li></ul></div>
+
+<h2>Step 1: Understand SPF, DKIM, and DMARC Fundamentals</h2>
+<p>Before diving into configuration, it's crucial to understand the distinct role each protocol plays in email authentication and how they collectively strengthen your domain's security posture. These aren't standalone solutions but rather layers that build upon each other.</p>
+
+<h3>Sender Policy Framework (SPF)</h3>
+<p>SPF is a DNS TXT record that specifies which mail servers are authorized to send email on behalf of your domain. It addresses the 'envelope sender' (P1 sender or <code>MAIL FROM</code> address). When a recipient mail server receives an email, it checks the SPF record of the sending domain. If the sending IP address is not listed, the email may be flagged as suspicious, quarantined, or rejected.</p>
+
+<h3>DomainKeys Identified Mail (DKIM)</h3>
+<p>DKIM adds a cryptographic signature to outbound emails, verifying that the message content hasn't been tampered with during transit and confirming the sender's identity. It focuses on the 'header sender' (P2 sender or <code>From</code> address). DKIM involves a pair of cryptographic keys: a private key used by your sending server to sign the email, and a public key published in your domain's DNS that receiving servers use to verify the signature.</p>
+
+<h3>Domain-based Message Authentication, Reporting, and Conformance (DMARC)</h3>
+<p>DMARC builds upon SPF and DKIM by providing a policy framework for how recipient mail servers should handle emails that fail authentication. Crucially, DMARC introduces the concept of 'alignment,' meaning the domain in the <code>MAIL FROM</code> address (for SPF) and the <code>d=</code> tag in the DKIM signature must match the <code>From</code> header domain. DMARC also enables reporting, allowing you to receive aggregate and forensic reports on your email authentication results, which is vital for monitoring and refining your policies.</p>
+
+<h2>Step 2: Implement Sender Policy Framework (SPF)</h2>
+<p>The first step in fortifying your email security is to define your authorized sending sources using SPF. This involves creating or updating a TXT record in your domain's DNS to list all legitimate IP addresses and domains that send mail on your behalf. Remember, you can only have one SPF TXT record per domain.</p>
+
+<pre><code class="language-bash"># General SPF record format
+"v=spf1 ip4:192.0.2.1 include:spf.protection.outlook.com include:_spf.google.com ~all"</code></pre>
+<p>    - <code>v=spf1</code>: Specifies the SPF version being used (always spf1 for current implementations).
+    - <code>ip4:192.0.2.1</code>: Authorizes a specific IPv4 address to send mail for your domain. Use <code>ip6:</code> for IPv6.
+    - <code>include:spf.protection.outlook.com</code>: Authorizes all email servers associated with Microsoft 365 to send email for your domain. This is critical for M365 users.
+    - <code>include:_spf.google.com</code>: Authorizes Google Workspace email servers. Include any other services you use (e.g., <code>include:mailgun.org</code>, <code>include:sendgrid.net</code>).
+    - <code>~all</code> (Softfail): Specifies that emails from unauthorized senders should be marked as suspicious but generally accepted. This is recommended for initial deployment.
+    - <code>-all</code> (Hardfail): Specifies that emails from unauthorized senders should be rejected. This is the desired end state for SPF after thorough testing.
+</p>
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Exceeding the 10 DNS lookup limit. Each <code>include:</code> directive counts as a lookup. If your SPF record triggers more than 10 DNS lookups, recipient servers will ignore it, effectively making your SPF record useless. Consolidate or flatten includes where possible.</div>
+
+<h4>Configuration Steps for Microsoft 365 Custom Domains:</h4>
+<p>If you use Microsoft 365 with a custom domain (e.g., <code>yourcompany.com</code>), you <strong>must</strong> include Microsoft's SPF record. If you also send from other services, append their <code>include:</code> directives.</p>
+
+<pre><code class="language-bash"># Example SPF TXT record for a domain using Microsoft 365 and one other service
+Host: yourcompany.com
+Type: TXT
+Value: "v=spf1 include:spf.protection.outlook.com include:thirdpartymailer.com ~all"</code></pre>
+<p class="gui-note"><strong>Portal alternative:</strong> Log in to your DNS provider's control panel (e.g., Cloudflare, Azure DNS zone, GoDaddy DNS settings). Navigate to your domain's DNS records, add a new TXT record with <code>@</code> or your domain name as the Host, and paste the constructed SPF value.</p>
+<p><strong>Verification:</strong> Use an online SPF record checker (e.g., MXToolbox SPF Lookup) to ensure your record is correctly published and doesn't have syntax errors or exceed the 10-lookup limit. Ensure all your legitimate sending sources are authorized.</p>
+
+<h2>Step 3: Deploy DomainKeys Identified Mail (DKIM)</h2>
+<p>DKIM ensures the integrity and authenticity of your emails by cryptographically signing them. For Microsoft 365 custom domains, DKIM configuration involves generating two CNAME records, which point to Microsoft's DKIM infrastructure. These records contain the public keys used by recipient servers to verify your emails.</p>
+
+<h4>Configuration Steps for Microsoft 365 Custom Domains:</h4>
+<p>To enable DKIM for your custom domain in Microsoft 365, you'll use PowerShell to generate the necessary CNAME records.</p>
+
+<pre><code class="language-powershell"># Connect to Exchange Online PowerShell
+Connect-ExchangeOnline -UserPrincipalName admin@yourcompany.com
+
+# Enable DKIM signing for your domain and retrieve CNAME records
+New-DkimSigningConfig -DomainName yourcompany.com -Enabled $true
+Get-DkimSigningConfig -Identity yourcompany.com | Select-Object Selector1CNAME, Selector2CNAME</code></pre>
+<p>    - <code>Connect-ExchangeOnline -UserPrincipalName admin@yourcompany.com</code>: Establishes a remote PowerShell session to Exchange Online using your admin credentials.
+    - <code>New-DkimSigningConfig -DomainName yourcompany.com -Enabled $true</code>: Initiates DKIM signing for your specified custom domain. This command generates the private keys and makes the public key information available for DNS.
+    - <code>Get-DkimSigningConfig -Identity yourcompany.com | Select-Object Selector1CNAME, Selector2CNAME</code>: Retrieves the two CNAME records (selector1 and selector2) that you need to add to your public DNS.
+</p>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to <a href="https://security.microsoft.com">Microsoft Defender portal</a> &gt; Email &amp; collaboration &gt; Policies &amp; rules &gt; Threat policies &gt; Anti-spam &gt; DKIM. Select your custom domain and click "Create DKIM keys." Then, publish the generated CNAME records in your DNS.</p>
+
+<p>The output from <code>Get-DkimSigningConfig</code> will provide two CNAME records, typically formatted as:</p>
+<pre><code class="language-bash">Host: selector1._domainkey.yourcompany.com
+Type: CNAME
+Value: selector1-yourcompany-com._domainkey.yourcompany.onmicrosoft.com
+
+Host: selector2._domainkey.yourcompany.com
+Type: CNAME
+Value: selector2-yourcompany-com._domainkey.yourcompany.onmicrosoft.com</code></pre>
+
+<p>Add these two CNAME records to your domain's DNS zone at your DNS provider. Ensure the Host/Name field includes <code>selector1._domainkey</code> and <code>selector2._domainkey</code>, respectively. DNS propagation can take several hours.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Forgetting to enable DKIM signing for subdomains used for email. Each subdomain sending email on behalf of your primary domain needs its own DKIM configuration to pass DMARC alignment. You can apply the same PowerShell steps for each subdomain.</div>
+
+<p><strong>Verification:</strong> After DNS propagation, check the DKIM status in Microsoft Defender portal or use the following PowerShell command:</p>
+<pre><code class="language-powershell">Get-DkimSigningConfig -Identity yourcompany.com</code></pre>
+<p>The <code>Status</code> property should show <code>Enabled</code>. You can also use online DKIM checkers (e.g., MXToolbox DKIM Lookup) by entering <code>selector1</code> (or <code>selector2</code>) as the selector and your domain name. This should confirm the public key is retrievable.</p>
+
+<h2>Step 4: Configure Domain-based Message Authentication, Reporting, and Conformance (DMARC)</h2>
+<p>DMARC is the policy layer that ties SPF and DKIM together, dictating how receiving servers should handle emails failing authentication and providing critical feedback. This is an iterative process, starting with a monitoring-only policy before moving to enforcement.</p>
+
+<h4>DMARC Policy Options:</h4>
+<ul>
+    <li><code>p=none</code>: Monitoring mode. No action is taken on unauthenticated mail, but reports are sent. <strong>Recommended starting point.</strong></li>
+    <li><code>p=quarantine</code>: Emails failing DMARC are sent to the recipient's junk/spam folder.</li>
+    <li><code>p=reject</code>: Emails failing DMARC are outright rejected at the SMTP gateway. <strong>The ultimate goal for maximum protection.</strong></li>
+</ul>
+
+<h4>DMARC Report Options:</h4>
+<ul>
+    <li><code>rua=mailto:dmarc-aggregate@yourcompany.com</code>: Aggregate reports, sent daily, summarizing DMARC results. Essential for monitoring.</li>
+    <li><code>ruf=mailto:dmarc-forensic@yourcompany.com</code>: Forensic (failure) reports, sent almost immediately for individual failures. Can be verbose and contain sensitive information, so often omitted or sent to a dedicated mailbox with strict access controls.</li>
+</ul>
+
+<h4>Configuration Steps:</h4>
+<p>Create a TXT record for <code>_dmarc.yourcompany.com</code> at your DNS provider. Start with a conservative <code>p=none</code> policy and a dedicated email address for aggregate reports.</p>
+
+<pre><code class="language-bash"># Initial DMARC TXT record (monitoring mode)
+Host: _dmarc.yourcompany.com
+Type: TXT
+Value: "v=DMARC1; p=none; rua=mailto:dmarc-reports@yourcompany.com; pct=100"</code></pre>
+<p>    - <code>v=DMARC1</code>: Specifies the DMARC protocol version (always DMARC1).
+    - <code>p=none</code>: Sets the policy for emails that fail DMARC alignment to 'none' (monitoring).
+    - <code>rua=mailto:dmarc-reports@yourcompany.com</code>: Specifies the email address to receive aggregate DMARC reports. Replace with a real mailbox you control.
+    - <code>pct=100</code>: Applies the DMARC policy to 100% of your emails. Can be lowered during a phased rollout of stronger policies.
+</p>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Log in to your DNS provider's control panel. Add a new TXT record with <code>_dmarc</code> as the Host/Name, and paste the DMARC value.</p>
+
+<h4>Iterative Policy Refinement:</h4>
+<p>After observing aggregate reports (which may take a few days to start arriving), analyze the data. Identify legitimate sending sources that are failing SPF or DKIM. Correct any misconfigurations. Once you are confident that all legitimate mail is passing DMARC:</p>
+
+<pre><code class="language-bash"># Intermediate DMARC TXT record (quarantine policy)
+Host: _dmarc.yourcompany.com
+Type: TXT
+Value: "v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@yourcompany.com; pct=50"</code></pre>
+<p>    - <code>p=quarantine</code>: Changes the policy to quarantine failed emails.
+    - <code>pct=50</code>: Applies the quarantine policy to 50% of emails, allowing you to gradually increase enforcement while monitoring impact.
+</p>
+
+<pre><code class="language-bash"># Final DMARC TXT record (reject policy)
+Host: _dmarc.yourcompany.com
+Type: TXT
+Value: "v=DMARC1; p=reject; rua=mailto:dmarc-reports@yourcompany.com; pct=100; sp=reject"</code></pre>
+<p>    - <code>p=reject</code>: The strongest policy, rejecting all failed emails.
+    - <code>sp=reject</code>: Specifies the policy for subdomains. Important if you have subdomains that do not send email and you want to prevent spoofing from them.
+</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Rushing to <code>p=reject</code>. Moving directly to <code>p=reject</code> without thorough monitoring and correction of SPF/DKIM failures for legitimate senders will result in your own emails being blocked. Always start with <code>p=none</code>.</div>
+
+<p><strong>Verification:</strong> Use an online DMARC record checker (e.g., DMARCian, MXToolbox DMARC Lookup) to ensure your record is published correctly. Monitor the aggregate reports sent to your specified <code>rua</code> address to track authentication results.</p>
+
+<h2>Step 5: Validate and Monitor Your Configuration</h2>
+<p>Implementing SPF, DKIM, and DMARC is not a 'set it and forget it' task. Continuous validation and monitoring are crucial to ensure ongoing effectiveness and adapt to changes in your email sending infrastructure.</p>
+
+<h4>Key Validation Steps:</h4>
+<ol>
+    <li><strong>DNS Propagation:</strong> After adding or modifying any DNS records, allow 24-48 hours for global DNS propagation.</li>
+    <li><strong>Online Tools:</strong> Routinely use online tools like MXToolbox (SPF, DKIM, DMARC lookups) and DMARCian to verify your records are correctly published and formatted.</li>
+    <li><strong>Send Test Emails:</strong> Send emails from your domain to various email providers (Gmail, Outlook.com, Yahoo) and check the message headers for SPF, DKIM, and DMARC pass/fail results. Look for headers like <code>Authentication-Results</code>.</li>
+</ol>
+
+<h4>Monitoring DMARC Reports:</h4>
+<p>The <code>rua</code> (aggregate) reports provide XML-formatted data on how receiving servers are processing your mail. Tools like DMARCian, Valimail, or Proofpoint Essentials can parse these reports into human-readable dashboards, helping you:</p>
+<ul>
+    <li>Identify all IP addresses sending mail on behalf of your domain (even unauthorized ones).</li>
+    <li>See which sending sources are passing/failing SPF and DKIM.</li>
+    <li>Track the percentage of mail that is authenticated vs. rejected/quarantined.</li>
+    <li>Detect potential spoofing attempts from your domain.</li>
+</ul>
+<p>Regularly review these reports to catch new sending services, misconfigurations, or active threats that could compromise your domain's reputation.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3><p>While this guide provides a robust framework, complex email environments with numerous third-party sending services, legacy systems, or multiple subdomains can introduce significant challenges. Misconfigurations can lead to legitimate emails being blocked, impacting business operations. If you're managing a large enterprise environment, struggling with DMARC report interpretation, need to achieve <code>p=reject</code> quickly without disruption, or require advanced threat intelligence integration, SkyCore Solutions' expertise in Cloud Migration (Azure), Security Hardening, and Infrastructure Revamp can provide invaluable assistance. Don't let email security complexities compromise your business continuity or brand reputation. Our senior consultants ensure a seamless and secure implementation.</p><a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dmarc-configure" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/defender-office-365/email-authentication-dmarc-configure</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dkim-configure" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/defender-office-365/email-authentication-dkim-configure</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/defender-office-365/email-authentication-spf-configure" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/defender-office-365/email-authentication-spf-configure</a></li>
+    <li><a href="https://dmarc.org/overview/" target="_blank" rel="noopener noreferrer">dmarc.org — overview</a></li>
+    <li><a href="https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/" target="_blank" rel="noopener noreferrer">cloudflare.com — learning/email-security/dmarc-dkim-spf</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
