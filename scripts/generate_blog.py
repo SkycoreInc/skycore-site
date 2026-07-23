@@ -223,20 +223,10 @@ def generate_post(news_items: list[str]) -> dict:
 
     raw = ""
     current_prompt = prompt
-    model_idx = 0
 
     for attempt in range(1, 6):
-        model = GEMINI_MODELS[model_idx]
         try:
-<<<<<<< HEAD
-            print(f"   Using model: {model}")
-            response = CLIENT.models.generate_content(model=model, contents=current_prompt)
-            raw = response.text.strip()
-
-            # Strip accidental markdown fences
-=======
-            raw = _call_gemini(prompt)
->>>>>>> 282033f (Improve blog writing quality + add LinkedIn post auto-generation)
+            raw = _call_gemini(current_prompt)
             raw = re.sub(r"^```[a-z]*\n?", "", raw)
             raw = re.sub(r"\n?```$", "", raw)
             match = re.search(r"\{[\s\S]*\}", raw)
@@ -244,31 +234,12 @@ def generate_post(news_items: list[str]) -> dict:
                 raw = match.group(0)
             return json.loads(raw)
 
-<<<<<<< HEAD
-        except (genai_errors.ServerError, genai_errors.APIError) as e:
-            print(f"   Gemini API error (attempt {attempt}/5): {e}")
-            if attempt == 5:
-                raise RuntimeError(f"Gemini API unavailable after 5 attempts across all models: {e}")
-            # Advance to the next fallback model if available, then wait
-            if model_idx < len(GEMINI_MODELS) - 1:
-                model_idx += 1
-                print(f"   Switching to fallback model: {GEMINI_MODELS[model_idx]}")
-            else:
-                wait = 30 * attempt  # 30s, 60s, 90s …
-                print(f"   All models tried — waiting {wait}s before retry...")
-                time.sleep(wait)
-
-=======
->>>>>>> 282033f (Improve blog writing quality + add LinkedIn post auto-generation)
         except (json.JSONDecodeError, ValueError) as e:
             print(f"   JSON parse error (attempt {attempt}/5): {e}")
             if attempt == 5:
                 raise RuntimeError(f"Gemini returned invalid JSON after 5 attempts. Last error: {e}\n\nRaw:\n{raw[:500]}")
             print("   Retrying with stricter prompt...")
-<<<<<<< HEAD
             current_prompt = prompt + "\n\nCRITICAL: Your previous response had a JSON parse error. Ensure ALL double quotes inside string values are escaped as \\\" and there are NO unescaped special characters in htmlContent."
-=======
-            prompt += "\n\nCRITICAL: Previous response had a JSON parse error. Escape ALL double quotes inside string values as \\\" and avoid unescaped special characters in htmlContent."
 
 
 def generate_linkedin_post(post: dict) -> str:
@@ -304,7 +275,6 @@ def generate_linkedin_post(post: dict) -> str:
     except Exception as e:
         print(f"   LinkedIn post generation failed: {e}")
         return ""
->>>>>>> 282033f (Improve blog writing quality + add LinkedIn post auto-generation)
 
 
 def build_html(post: dict, hero_url: str) -> str:
@@ -377,21 +347,31 @@ def build_html(post: dict, hero_url: str) -> str:
 </html>"""
 
 
-def prepend_to_feed_xml(post: dict, thumb_url: str):
+def prepend_to_feed_xml(post: dict, thumb_url: str, linkedin_text: str = ""):
     from email.utils import formatdate
     from datetime import datetime
     feed_path = "blog/feed.xml"
     with open(feed_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    title   = post["title"].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    excerpt = post["excerpt"].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    slug    = post["slug"]
-    url     = f"https://skycoresolutions.com/blog/{slug}.html"
-    img     = thumb_url.replace("&amp;", "&").replace("&", "&amp;")  # normalize then escape
-    cat     = post["category"].replace("&", "&amp;")
-    dt      = datetime.strptime(post["date"], "%Y-%m-%d")
-    pub     = formatdate(dt.timestamp(), usegmt=True)
+    def xml_escape(s: str) -> str:
+        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+    title  = xml_escape(post["title"])
+    slug   = post["slug"]
+    url    = f"https://skycoresolutions.com/blog/{slug}.html"
+    img    = thumb_url.replace("&amp;", "&").replace("&", "&amp;")
+    cat    = xml_escape(post["category"])
+    dt     = datetime.strptime(post["date"], "%Y-%m-%d")
+    pub    = formatdate(dt.timestamp(), usegmt=True)
+
+    # Use the LinkedIn caption as the RSS description so Zapier posts it to LinkedIn.
+    # Append the article URL so the LinkedIn post links back to the blog.
+    if linkedin_text:
+        desc_raw = linkedin_text.strip() + f"\n\n🔗 Read the full article: {url}"
+    else:
+        desc_raw = post["excerpt"] + f" Read more: {url}"
+    description = xml_escape(desc_raw)
 
     new_item = (
         f"\n    <item>\n"
@@ -399,7 +379,7 @@ def prepend_to_feed_xml(post: dict, thumb_url: str):
         f"      <link>{url}</link>\n"
         f"      <guid isPermaLink=\"true\">{url}</guid>\n"
         f"      <pubDate>{pub}</pubDate>\n"
-        f"      <description>{excerpt}</description>\n"
+        f"      <description>{description}</description>\n"
         f"      <category>{cat}</category>\n"
         f"      <media:content url=\"{img}\" medium=\"image\"/>\n"
         f"    </item>\n"
@@ -448,11 +428,7 @@ def main():
     news = fetch_news()
     print(f"   {len(news)} headlines collected")
 
-<<<<<<< HEAD
     print(f"── Generating post via Gemini (primary: {GEMINI_MODELS[0]}) ──")
-=======
-    print("── Generating post via Gemini ──")
->>>>>>> 282033f (Improve blog writing quality + add LinkedIn post auto-generation)
     post = generate_post(news)
     print(f"   Slug : {post['slug']}")
     print(f"   Title: {post['title']}")
@@ -468,9 +444,6 @@ def main():
     prepend_to_posts_js(post, thumb_url)
     print("── posts.js updated ──")
 
-    prepend_to_feed_xml(post, thumb_url)
-    print("── feed.xml updated ──")
-
     print("── Generating LinkedIn post ──")
     linkedin_text = generate_linkedin_post(post)
     if linkedin_text:
@@ -478,9 +451,12 @@ def main():
         li_path = f"blog/linkedin/{post['slug']}.txt"
         with open(li_path, "w", encoding="utf-8") as f:
             f.write(linkedin_text)
-        print(f"── LinkedIn draft: {li_path} ──")
+        print(f"── LinkedIn draft saved: {li_path} ──")
     else:
-        print("   (LinkedIn generation skipped)")
+        print("   (LinkedIn generation skipped — using excerpt fallback)")
+
+    prepend_to_feed_xml(post, thumb_url, linkedin_text)
+    print("── feed.xml updated (LinkedIn caption in description) ──")
 
     import sys
     sys.path.insert(0, os.path.dirname(__file__))
