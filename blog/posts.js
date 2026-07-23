@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "refluxfs-linux-flaw-cybersecurity-hardening",
+    title: "RefluXFS & Beyond: Elevating Cybersecurity SMB Strategies in Montreal",
+    date: "2026-07-23",
+    readTime: "5 min read",
+    category: "Security Hardening",
+    excerpt: "The RefluXFS Linux kernel flaw underscores the urgent need for proactive cybersecurity. Learn how SkyCore Solutions helps Montreal SMBs implement robust security hardening.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/37730212/pexels-photo-37730212.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "critical-servicenow-flaw-security-hardening",
     title: "Critical ServiceNow Flaw Exploited: Bolstering Your Defenses with Advanced Security Hardening",
     date: "2026-07-21",
