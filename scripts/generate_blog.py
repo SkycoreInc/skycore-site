@@ -134,21 +134,46 @@ def pick_photo(image_query: str) -> tuple[str, str]:
     return pick_photo_fallback(used_urls)
 
 
+def _call_gemini(prompt: str) -> str:
+    """Call Gemini with model fallback on 503/UNAVAILABLE. Returns raw text."""
+    model_idx = 0
+    for attempt in range(1, 8):
+        model = GEMINI_MODELS[model_idx]
+        try:
+            response = CLIENT.models.generate_content(model=model, contents=prompt)
+            return response.text.strip()
+        except (genai_errors.ServerError, genai_errors.APIError) as e:
+            msg = str(e).upper()
+            if "503" in msg or "UNAVAILABLE" in msg:
+                next_idx = model_idx + 1
+                if next_idx < len(GEMINI_MODELS):
+                    print(f"   {model} returned 503 — switching to {GEMINI_MODELS[next_idx]}")
+                    model_idx = next_idx
+                else:
+                    wait = 30 * attempt
+                    print(f"   All models 503 (attempt {attempt}/7) — waiting {wait}s...")
+                    if attempt == 7:
+                        raise RuntimeError(f"All Gemini models unavailable after 7 attempts: {e}")
+                    time.sleep(wait)
+            else:
+                raise
+
+
 def generate_post(news_items: list[str]) -> dict:
     news_block = "\n".join(f"• {item}" for item in news_items)
     today = date.today().isoformat()
 
     prompt = textwrap.dedent(f"""
-        You are the content writer for SkyCore Solutions, a Montreal-based IT consulting firm.
-        Services offered:
-          1. Cloud Migration — Azure and hybrid architectures
-          2. Security Hardening — NIST, CIS Controls, zero-trust, compliance
+        You are a sharp, opinionated IT writer for SkyCore Solutions — a Montreal-based IT consulting firm.
+        Services:
+          1. Cloud Migration — Azure, hybrid cloud, Microsoft 365
+          2. Security Hardening — NIST, CIS Controls, zero-trust, ransomware defense, compliance
           3. Infrastructure Revamp — DevOps, CI/CD, containerization, legacy modernization
 
-        RECENT IT NEWS (use at least one real event as the article hook):
+        RECENT IT NEWS — use at least one as a concrete hook:
         {news_block}
 
-        TOP SEO KEYWORDS TO WEAVE IN NATURALLY (pick 4-6 most relevant):
+        SEO KEYWORDS — weave in 4-6 naturally, never force them:
         "managed IT services Montreal", "cloud migration Azure", "IT infrastructure Montreal",
         "cybersecurity SMB", "zero trust security", "ransomware protection SMB",
         "Microsoft 365 security", "cloud cost optimization", "IT consulting Montreal",
@@ -156,27 +181,43 @@ def generate_post(news_items: list[str]) -> dict:
         "IT compliance Canada", "network security audit", "business continuity IT",
         "endpoint security", "patch management", "disaster recovery plan"
 
-        Write a 750-900 word authoritative blog post that:
-        - Opens with a compelling real stat or news hook from the headlines above
-        - Provides specific, actionable technical advice (not vague generalities)
-        - Ties directly to ONE of SkyCore's three services
-        - Naturally incorporates 4-6 of the SEO keywords above
-        - Uses clear H2 and H3 subheadings
-        - Cites at least one real source (report, vendor, CVE, research firm)
-        - Ends with an article-cta block
+        WRITING RULES — every rule is mandatory:
+        1. NEVER open with: "In today's digital landscape", "As businesses", "It's no secret",
+           "In the current era", "In an increasingly", or any generic throat-clearing.
+        2. Open with ONE of: a shocking real stat, a named real breach/CVE from the news above,
+           a 1-sentence scenario that puts the reader in a bad situation, or a blunt question.
+        3. Write like a journalist breaking a story — direct, specific, occasionally blunt.
+           NOT like a consultant writing a whitepaper.
+        4. Every H2 section must include at least one: real tool name, specific number,
+           vendor name, CVE ID, or named framework. No content-free generalities.
+        5. Vary sentence rhythm. Short punchy sentences followed by longer explanatory ones.
+        6. Address the reader directly as "you" and "your business" — make it personal.
+        7. Avoid repeating the same words more than twice per paragraph.
+        8. No more than 3 consecutive bullet points — break into prose between lists.
 
-        Return ONLY valid JSON (no markdown code fences, no extra text) with these exact fields:
+        ARTICLE FORMAT — pick exactly ONE of these formats (choose based on which fits the news best):
+        A) "War Story" — Open with a real incident, walk through exactly what happened,
+           then explain what Montreal SMBs must do differently.
+        B) "Myth Busting" — Pick 3 things SMBs wrongly believe about the topic, bust each one with facts.
+        C) "The Numbers Don't Lie" — Heavy on real stats and data; explain what each number means practically.
+        D) "Step-by-Step Fix" — Give a concrete 5-7 step action plan with real implementation detail.
+        E) "Before & After" — Show the contrast between a vulnerable setup and a hardened one.
+
+        LENGTH: 780–920 words. Use H2 and H3 subheadings. End with an article-cta block.
+        Cite at least one real source (Verizon DBIR, IBM Cost of a Data Breach, specific CVE, CISA advisory, etc.).
+
+        Return ONLY valid JSON — no markdown fences, no extra text:
         {{
           "slug": "seo-url-slug-4-6-words",
-          "title": "Full compelling title with primary keyword",
-          "metaDescription": "145-155 char meta description with keyword",
+          "title": "Punchy compelling title (avoid 'In Today's...' style titles)",
+          "metaDescription": "145-155 char meta description with primary keyword",
           "date": "{today}",
           "readTime": "X min read",
           "category": "Security Hardening|Cloud Migration|Infrastructure Revamp|IT Strategy",
-          "excerpt": "2-sentence blog card excerpt under 160 chars",
-          "imageQuery": "3-word topic for photo (e.g. ransomware attack, azure cloud, server infrastructure)",
-          "imageAlt": "Descriptive alt text for the hero image (under 125 chars, includes primary keyword)",
-          "htmlContent": "Full article body HTML. Start with: <div class=\\"post-meta\\">DATE · READTIME · CATEGORY</div><h1>TITLE</h1><div class=\\"article-hero\\"><img src=\\"HERO_IMAGE_PLACEHOLDER\\" alt=\\"HERO_ALT_PLACEHOLDER\\" loading=\\"eager\\" fetchpriority=\\"high\\"></div> then article paragraphs/headings using <p> <h2> <h3> <ul> <li> <strong> <a>. End with: <div class=\\"article-cta\\"><h3 style=\\"margin-bottom:10px;\\">CTA_HEADING</h3><p style=\\"margin-bottom:20px;\\">CTA_TEXT</p><a href=\\"../contact.html\\" class=\\"btn btn-primary\\">Book a free consultation</a></div>"
+          "excerpt": "2-sentence blog card excerpt under 160 chars — make it intriguing, not generic",
+          "imageQuery": "3-word topic for Pexels photo (e.g. ransomware attack, azure cloud, server room)",
+          "imageAlt": "Descriptive alt text under 125 chars including primary keyword",
+          "htmlContent": "Full article HTML. Start with: <div class=\\"post-meta\\">DATE · READTIME · CATEGORY</div><h1>TITLE</h1><div class=\\"article-hero\\"><img src=\\"HERO_IMAGE_PLACEHOLDER\\" alt=\\"HERO_ALT_PLACEHOLDER\\" loading=\\"eager\\" fetchpriority=\\"high\\"></div> then <p> <h2> <h3> <ul> <li> <strong> <a> tags. End with: <div class=\\"article-cta\\"><h3 style=\\"margin-bottom:10px;\\">CTA_HEADING</h3><p style=\\"margin-bottom:20px;\\">CTA_TEXT</p><a href=\\"../contact.html\\" class=\\"btn btn-primary\\">Book a free consultation</a></div>"
         }}
     """).strip()
 
@@ -187,21 +228,23 @@ def generate_post(news_items: list[str]) -> dict:
     for attempt in range(1, 6):
         model = GEMINI_MODELS[model_idx]
         try:
+<<<<<<< HEAD
             print(f"   Using model: {model}")
             response = CLIENT.models.generate_content(model=model, contents=current_prompt)
             raw = response.text.strip()
 
             # Strip accidental markdown fences
+=======
+            raw = _call_gemini(prompt)
+>>>>>>> 282033f (Improve blog writing quality + add LinkedIn post auto-generation)
             raw = re.sub(r"^```[a-z]*\n?", "", raw)
             raw = re.sub(r"\n?```$", "", raw)
-
-            # Extract the outermost JSON object in case there's leading/trailing text
             match = re.search(r"\{[\s\S]*\}", raw)
             if match:
                 raw = match.group(0)
-
             return json.loads(raw)
 
+<<<<<<< HEAD
         except (genai_errors.ServerError, genai_errors.APIError) as e:
             print(f"   Gemini API error (attempt {attempt}/5): {e}")
             if attempt == 5:
@@ -215,12 +258,53 @@ def generate_post(news_items: list[str]) -> dict:
                 print(f"   All models tried — waiting {wait}s before retry...")
                 time.sleep(wait)
 
+=======
+>>>>>>> 282033f (Improve blog writing quality + add LinkedIn post auto-generation)
         except (json.JSONDecodeError, ValueError) as e:
             print(f"   JSON parse error (attempt {attempt}/5): {e}")
             if attempt == 5:
-                raise RuntimeError(f"Gemini returned invalid JSON after 5 attempts. Last error: {e}\n\nRaw response:\n{raw[:500]}")
+                raise RuntimeError(f"Gemini returned invalid JSON after 5 attempts. Last error: {e}\n\nRaw:\n{raw[:500]}")
             print("   Retrying with stricter prompt...")
+<<<<<<< HEAD
             current_prompt = prompt + "\n\nCRITICAL: Your previous response had a JSON parse error. Ensure ALL double quotes inside string values are escaped as \\\" and there are NO unescaped special characters in htmlContent."
+=======
+            prompt += "\n\nCRITICAL: Previous response had a JSON parse error. Escape ALL double quotes inside string values as \\\" and avoid unescaped special characters in htmlContent."
+
+
+def generate_linkedin_post(post: dict) -> str:
+    """Generate a LinkedIn-style post for the blog article."""
+    prompt = textwrap.dedent(f"""
+        Write a LinkedIn post promoting this blog article from SkyCore Solutions
+        (Montreal IT consulting — Cloud Migration, Security Hardening, Infrastructure Revamp).
+
+        ARTICLE TITLE: {post['title']}
+        ARTICLE EXCERPT: {post['excerpt']}
+        ARTICLE CATEGORY: {post['category']}
+        ARTICLE URL: https://skycoresolutions.com/blog/{post['slug']}.html
+
+        STYLE RULES — follow exactly:
+        1. Open with a bold hook line — a shocking stat, a blunt statement, or a provocative question.
+           Must make someone stop scrolling. No generic openers.
+        2. 2-3 short sentences of context (1 line each, no long paragraphs).
+        3. A short intro line like "Here's what every Montreal SMB needs to know:" or similar.
+        4. 4-5 bullet points using relevant emojis (🔴 🟠 ⚠️ 🔐 🛡️ ☁️ etc.).
+           Each bullet: bold label + colon + one clear sentence of value.
+        5. One "Why this matters" or takeaway paragraph (2-3 sentences max).
+        6. A CTA line: invite them to read the article, comment, or follow SkyCore.
+        7. Blank line, then 15-20 relevant hashtags on one line.
+
+        TONE: Direct, confident, slightly urgent. Not salesy. Sounds like a knowledgeable IT advisor,
+        not a marketing bot. Use "you" and "your business".
+
+        Return ONLY the raw LinkedIn post text — no JSON, no markdown, no extra explanation.
+    """).strip()
+
+    try:
+        return _call_gemini(prompt)
+    except Exception as e:
+        print(f"   LinkedIn post generation failed: {e}")
+        return ""
+>>>>>>> 282033f (Improve blog writing quality + add LinkedIn post auto-generation)
 
 
 def build_html(post: dict, hero_url: str) -> str:
@@ -364,7 +448,11 @@ def main():
     news = fetch_news()
     print(f"   {len(news)} headlines collected")
 
+<<<<<<< HEAD
     print(f"── Generating post via Gemini (primary: {GEMINI_MODELS[0]}) ──")
+=======
+    print("── Generating post via Gemini ──")
+>>>>>>> 282033f (Improve blog writing quality + add LinkedIn post auto-generation)
     post = generate_post(news)
     print(f"   Slug : {post['slug']}")
     print(f"   Title: {post['title']}")
@@ -382,6 +470,17 @@ def main():
 
     prepend_to_feed_xml(post, thumb_url)
     print("── feed.xml updated ──")
+
+    print("── Generating LinkedIn post ──")
+    linkedin_text = generate_linkedin_post(post)
+    if linkedin_text:
+        os.makedirs("blog/linkedin", exist_ok=True)
+        li_path = f"blog/linkedin/{post['slug']}.txt"
+        with open(li_path, "w", encoding="utf-8") as f:
+            f.write(linkedin_text)
+        print(f"── LinkedIn draft: {li_path} ──")
+    else:
+        print("   (LinkedIn generation skipped)")
 
     import sys
     sys.path.insert(0, os.path.dirname(__file__))
