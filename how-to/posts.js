@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-monitor-log-analytics-setup-guide-smb",
+    title: "Your Essential Azure Monitor Log Analytics Setup Guide for SMBs",
+    date: "2026-07-25",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 hours",
+    keyword: "Azure Monitor Log Analytics setup guide",
+    excerpt: "This Azure Monitor Log Analytics setup guide empowers SMBs to centralize logs, enhance security, and streamline troubleshooting across their Azure environment. Follow our authoritative steps.",
+    image: "https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-mfa-configuration-guide",
     title: "Authoritative Azure MFA Configuration Guide: Fortify Your Cloud Security with Conditional Access",
     date: "2026-07-25",
