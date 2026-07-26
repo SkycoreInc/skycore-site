@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "hotel-wi-fi-hijack-m365-smb",
+    title: "Your Hotel Wi-Fi Isn't Safe: Why Your Microsoft 365 Is a Prime Target",
+    date: "2026-07-25",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "A recent wave of attacks reveals hackers are compromising hotel Wi-Fi DNS to steal Microsoft 365 credentials. If your SMB relies on M365, this is a direct threat.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/12663160/pexels-photo-12663160.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "refluxfs-linux-flaw-cybersecurity-hardening",
     title: "RefluXFS & Beyond: Elevating Cybersecurity SMB Strategies in Montreal",
     date: "2026-07-23",

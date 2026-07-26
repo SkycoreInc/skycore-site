@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Essential Azure Monitor Log Analytics Setup Guide for SMBs — SkyCore Solutions</title>
+  <meta name="description" content="Implement Azure Monitor Log Analytics for your SMB with our step-by-step guide. Centralize logs, enhance security, and troubleshoot effectively using CLI/PowerShell and Portal." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Your Essential Azure Monitor Log Analytics Setup Guide for SMBs — SkyCore Solutions" />
+  <meta property="og:description" content="Implement Azure Monitor Log Analytics for your SMB with our step-by-step guide. Centralize logs, enhance security, and troubleshoot effectively using CLI/PowerShell and Portal." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-monitor-log-analytics-setup-guide-smb.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Your Essential Azure Monitor Log Analytics Setup Guide for SMBs — SkyCore Solutions" />
+  <meta name="twitter:description" content="Implement Azure Monitor Log Analytics for your SMB with our step-by-step guide. Centralize logs, enhance security, and troubleshoot effectively using CLI/PowerShell and Portal." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-monitor-log-analytics-setup-guide-smb.html" />
+  <meta property="article:published_time" content="2026-07-25" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Your Essential Azure Monitor Log Analytics Setup Guide for SMBs",
+  "description": "Implement Azure Monitor Log Analytics for your SMB with our step-by-step guide. Centralize logs, enhance security, and troubleshoot effectively using CLI/PowerShell and Portal.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An Azure account with an active subscription (create a free account if needed), Azure CLI installed (version 2.x or later) or Azure PowerShell Az module (version 5.x or later), Microsoft.OperationalInsights/workspaces/write permissions on the target resource group (e.g., 'Log Analytics Contributor' role), Basic understanding of Azure Resource Groups and resource deployment"}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Introduction to Azure Monitor Log Analytics for SMBs",
+        "text": "Understand the foundational role of Azure Monitor and its Log Analytics component in centralizing observability for your SMB infrastructure."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Prerequisites and Planning Your Log Analytics Workspace",
+        "text": "Before deployment, select an appropriate Azure region and design your resource group strategy for optimal monitoring."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Creating the Azure Log Analytics Workspace",
+        "text": "Establish the central repository for all your log data by deploying a new Log Analytics workspace."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configuring Data Collection: Azure Activity Log",
+        "text": "Integrate the Azure Activity Log to capture subscription-level events, critical for security and auditing."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configuring Data Collection: Azure Virtual Machines (via AMA)",
+        "text": "Deploy the Azure Monitor Agent (AMA) to your Azure VMs to collect guest-level performance metrics and event logs."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configuring Data Collection: Other Azure Resources",
+        "text": "Enable diagnostic settings for various Azure services to stream their resource-specific logs to your Log Analytics workspace."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Exploring Your Data with Log Analytics Queries (KQL)",
+        "text": "Learn to navigate the Log Analytics interface and execute basic Kusto Query Language (KQL) queries to extract insights from your collected data."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-07-25 &middot; 18 min read &middot; Infrastructure Revamp</div>
+<h1>Your Essential Azure Monitor Log Analytics Setup Guide for SMBs</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="A detailed Azure Monitor dashboard showing various logs, metrics, and analytics for an SMB IT infrastructure, relevant to an Azure Monitor Log Analytics setup guide." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro">
+<p>At SkyCore Solutions, we understand that for SMBs, maintaining robust, secure, and performant IT infrastructure is paramount, often with limited resources. The challenge of gaining comprehensive visibility into your cloud environment can feel daunting. This is where <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/overview" target="_blank">Azure Monitor</a>, Microsoft's unified observability service, becomes an indispensable tool. Specifically, this <strong>Azure Monitor Log Analytics setup guide</strong> will walk you through establishing a central hub for all your operational logs.</p>
+<p>By the end of this guide, you will have a fully functional Azure Log Analytics workspace, configured to collect critical telemetry from your Azure resources. This will empower your team to proactively monitor performance, enhance security posture, streamline troubleshooting, and comply with audit requirements – all without requiring enterprise-grade complexity or budget.</p>
+</div>
+<div class="howto-prereqs">
+<h4>Prerequisites</h4>
+<ul>
+<li><strong>Azure Subscription:</strong> An active Azure subscription. A <a href="https://azure.microsoft.com/en-ca/free/" target="_blank">free account</a> is sufficient for initial testing.</li>
+<li><strong>Permissions:</strong> An Azure account with permissions to create and manage resources within a resource group. Specifically, you will need <code>Microsoft.OperationalInsights/workspaces/write</code> permissions, typically granted by roles like &quot;Log Analytics Contributor&quot; or &quot;Owner&quot; for the target resource group.</li>
+<li><strong>Azure CLI / Azure PowerShell:</strong> Either <a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli" target="_blank">Azure CLI</a> (version 2.x or later) or the <a href="https://learn.microsoft.com/en-us/powershell/azure/install-az-ps" target="_blank">Azure PowerShell Az module</a> (version 5.x or later) installed and configured on your local machine or via Azure Cloud Shell.</li>
+<li><strong>Estimated Cost:</strong> Log Analytics primarily uses a consumption-based pricing model. The recommended &quot;PerGB2018&quot; tier charges per GB of data ingested and optionally for data retention beyond 31 days. For SMBs, initial costs are typically low (e.g., $2.76 CAD per GB ingested in Canada Central at time of writing) and scale with your usage.</li>
+</ul>
+</div>
+
+<h2>Step 1: Introduction to Azure Monitor Log Analytics for SMBs</h2>
+<p>Before we dive into the technical steps, it's crucial to understand why Log Analytics is a game-changer for SMBs. Azure Monitor collects various types of telemetry – logs, metrics, traces, and events – from your entire cloud and hybrid environment. Log Analytics is the powerful tool within Azure Monitor specifically designed to collect, store, query, and analyze your log data. For an SMB, this means:</p>
+<ul>
+<li><strong>Centralized Visibility:</strong> Instead of disparate logs across VMs, network devices, and Azure services, all your critical operational data resides in one searchable location.</li>
+<li><strong>Proactive Troubleshooting:</strong> Quickly diagnose issues by correlating logs across different systems.</li>
+<li><strong>Enhanced Security:</strong> Monitor for suspicious activities, audit user actions, and gain insights into potential threats.</li>
+<li><strong>Cost Optimization:</strong> Identify underutilized resources or anomalous usage patterns.</li>
+<li><strong>Compliance Readiness:</strong> Maintain historical records of operations for audit and compliance purposes.</li>
+</ul>
+<p>This centralized data platform also underpins other critical Azure services like <a href="https://learn.microsoft.com/en-us/azure/defender-for-cloud/overview" target="_blank">Microsoft Defender for Cloud</a> and <a href="https://learn.microsoft.com/en-us/azure/sentinel/overview" target="_blank">Microsoft Sentinel</a>, ensuring your investment in Log Analytics has broader benefits.</p>
+
+<h2>Step 2: Prerequisites and Planning Your Log Analytics Workspace</h2>
+<p>A Log Analytics workspace is your dedicated data store within Azure Monitor. Proper planning ensures efficient operation and cost management. As SkyCore Solutions operates from Montreal, we'll use <code>canadacentral</code> as our example region, which is often ideal for Canadian SMBs due to data residency and latency considerations.</p>
+
+<p>First, ensure you are logged into your Azure subscription:</p>
+<pre><code class="language-azurecli">az login</code></pre>
+<pre><code class="language-powershell">Connect-AzAccount</code></pre>
+
+<p>Next, we recommend creating a dedicated resource group for your monitoring resources. This simplifies management and access control.</p>
+
+<pre><code class="language-azurecli">az group create --name rg-skycore-monitoring --location canadacentral</code></pre>
+<ul>
+<li><code>--name rg-skycore-monitoring</code>: A logical name for your resource group. We recommend a naming convention that indicates its purpose.</li>
+<li><code>--location canadacentral</code>: The Azure region where your resource group will reside. Choose a region geographically close to your primary operations or other Azure resources for optimal performance and data residency.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong>
+Navigate to &quot;Resource groups&quot; in the Azure portal, click &quot;Create&quot;, provide a name (e.g., <code>rg-skycore-monitoring</code>) and select a region (e.g., &quot;Canada Central&quot;).</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong>
+While you can use an existing resource group, creating a dedicated one for monitoring (e.g., <code>rg-skycore-monitoring</code>) allows for easier application of granular Role-Based Access Control (RBAC) and lifecycle management. This segregation is a best practice for SMBs to maintain a clean and manageable Azure environment.</div>
+
+<h2>Step 3: Creating the Azure Log Analytics Workspace</h2>
+<p>Now, let's create the Log Analytics workspace itself. This will be the central repository for all your collected logs. For SMBs, the &quot;PerGB2018&quot; pricing tier is generally the most flexible and cost-effective as it charges based on actual data ingestion, scaling with your needs.</p>
+
+<pre><code class="language-azurecli">az monitor log-analytics workspace create \
+    --resource-group rg-skycore-monitoring \
+    --workspace-name la-skycore-prod \
+    --location canadacentral \
+    --sku PerGB2018</code></pre>
+<ul>
+<li><code>--resource-group rg-skycore-monitoring</code>: The resource group we created in the previous step.</li>
+<li><code>--workspace-name la-skycore-prod</code>: A unique name for your Log Analytics workspace within your subscription. Ensure it's descriptive, for example, <code>la-&lt;company&gt;-&lt;environment&gt;</code>.</li>
+<li><code>--location canadacentral</code>: The region for your workspace. This should ideally match your resource group and the majority of the resources you intend to monitor.</li>
+<li><code>--sku PerGB2018</code>: This is the recommended pricing tier for most SMBs. It offers a pay-as-you-go model for data ingestion. Other SKUs exist, but &quot;PerGB2018&quot; provides good flexibility without upfront commitments.</li>
+</ul>
+
+<pre><code class="language-powershell">New-AzOperationalInsightsWorkspace `
+    -ResourceGroupName &quot;rg-skycore-monitoring&quot; `
+    -Name &quot;la-skycore-prod&quot; `
+    -Location &quot;canadacentral&quot; `
+    -Sku &quot;PerGB2018&quot;</code></pre>
+
+<p class="gui-note"><strong>Portal alternative:</strong>
+1. In the Azure portal search bar, type &quot;Log Analytics workspaces&quot; and select it.
+2. Click &quot;Create&quot;.
+3. On the &quot;Basics&quot; tab:
+   - <strong>Subscription:</strong> Select your Azure subscription.
+   - <strong>Resource group:</strong> Choose <code>rg-skycore-monitoring</code>.
+   - <strong>Name:</strong> Enter <code>la-skycore-prod</code>.
+   - <strong>Region:</strong> Select &quot;Canada Central&quot;.
+4. Click &quot;Review + create&quot; and then &quot;Create&quot;.</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az monitor log-analytics workspace show --resource-group rg-skycore-monitoring --workspace-name la-skycore-prod --query "{name:name, location:location, sku:sku.name}" -o table</code></pre>
+<pre><code class="language-powershell">Get-AzOperationalInsightsWorkspace -ResourceGroupName &quot;rg-skycore-monitoring&quot; -Name &quot;la-skycore-prod&quot; | Format-Table Name, Location, Sku</code></pre>
+<p>This command will display the name, location, and SKU of your newly created workspace, confirming its successful deployment.</p>
+
+<h2>Step 4: Configuring Data Collection: Azure Activity Log</h2>
+<p>With your workspace ready, the next crucial step in this Azure Monitor Log Analytics setup guide is to start collecting data. The Azure Activity Log provides insights into subscription-level events, such as when a resource is created, deleted, or updated. This is fundamental for security, auditing, and understanding administrative changes in your environment.</p>
+
+<p>We'll configure diagnostic settings to send the Activity Log to our Log Analytics workspace.</p>
+
+<pre><code class="language-azurecli">az monitor diagnostic-settings create \
+    --name "SendActivityLogToLA" \
+    --resource "/subscriptions/&lt;your-subscription-id&gt;" \
+    --logs "[{category: 'Administrative', enabled: true}, {category: 'Security', enabled: true}, {category: 'ServiceHealth', enabled: true}]" \
+    --workspace la-skycore-prod \
+    --resource-group rg-skycore-monitoring \
+    --event-hub-name '' \
+    --storage-account-id ''</code></pre>
+<ul>
+<li><code>--name "SendActivityLogToLA"</code>: A descriptive name for your diagnostic setting.</li>
+<li><code>--resource "/subscriptions/&lt;your-subscription-id&gt;"</code>: This targets your entire subscription. Replace <code>&lt;your-subscription-id&gt;</code> with your actual Azure subscription ID. You can get it by running <code>az account show --query id -o tsv</code>.</li>
+<li><code>--logs "[{category: 'Administrative', enabled: true}, {category: 'Security', enabled: true}, {category: 'ServiceHealth', enabled: true}]"</code>: Specifies which categories of Activity Log to send. For SMBs, &quot;Administrative&quot;, &quot;Security&quot;, and &quot;ServiceHealth&quot; are essential to capture.</li>
+<li><code>--workspace la-skycore-prod</code>: The name of your Log Analytics workspace.</li>
+<li><code>--resource-group rg-skycore-monitoring</code>: The resource group where your workspace resides.</li>
+<li><code>--event-hub-name ''</code> and <code>--storage-account-id ''</code>: We leave these blank as we are sending logs directly to Log Analytics.</li>
+</ul>
+
+<pre><code class="language-powershell">$workspaceId = (Get-AzOperationalInsightsWorkspace -ResourceGroupName &quot;rg-skycore-monitoring&quot; -Name &quot;la-skycore-prod&quot;).ResourceId
+$subscriptionId = (Get-AzContext).Subscription.Id
+New-AzDiagnosticSetting `
+    -Name &quot;SendActivityLogToLA&quot; `
+    -ResourceId &quot;/subscriptions/$subscriptionId&quot; `
+    -LogActionGroup &quot;Administrative&quot; `
+    -LogActionGroup &quot;Security&quot; `
+    -LogActionGroup &quot;ServiceHealth&quot; `
+    -WorkspaceId $workspaceId `
+    -Enabled $true</code></pre>
+
+<p class="gui-note"><strong>Portal alternative:</strong>
+1. In the Azure portal, search for &quot;Monitor&quot; and select it.
+2. In the left-hand menu, under &quot;Settings&quot;, click &quot;Diagnostic settings&quot;.
+3. Click &quot;Add diagnostic setting&quot;.
+4. Under &quot;Scope&quot;, ensure your subscription is selected.
+5. Provide a &quot;Diagnostic setting name&quot; (e.g., <code>SendActivityLogToLA</code>).
+6. Under &quot;Categories&quot;, select &quot;Administrative&quot;, &quot;Security&quot;, and &quot;ServiceHealth&quot;.
+7. Under &quot;Destination details&quot;, check &quot;Send to Log Analytics workspace&quot;.
+8. Select your Subscription and <code>la-skycore-prod</code> as the &quot;Log Analytics workspace&quot;.
+9. Click &quot;Save&quot;.</p>
+
+<p><strong>Run this to verify:</strong> Wait a few minutes for data to start flowing, then query your workspace.</p>
+<pre><code class="language-azurecli">az monitor log-analytics query --workspace la-skycore-prod --analytics-query "AzureActivity | take 5" --timespan 5m</code></pre>
+<pre><code class="language-powershell">$query = &quot;AzureActivity | take 5&quot;
+Invoke-AzOperationalInsightsQuery -WorkspaceName &quot;la-skycore-prod&quot; -Query $query -Timespan (New-TimeSpan -Minutes 5)</code></pre>
+<p>If you see results, your Activity Log is successfully sending data to Log Analytics.</p>
+
+<h2>Step 5: Configuring Data Collection: Azure Virtual Machines (via AMA)</h2>
+<p>Monitoring your Azure Virtual Machines is critical for understanding performance, identifying issues, and maintaining security. Microsoft now recommends using the Azure Monitor Agent (AMA) over the legacy Log Analytics agent for comprehensive guest-level collection. This step outlines how to deploy AMA to an existing Azure VM.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: Azure Monitor Agent (AMA) vs. Log Analytics Agent:</strong>
+Ensure you are using the Azure Monitor Agent (AMA) for new deployments. While the legacy Log Analytics agent still functions, AMA offers superior performance, security, and simpler management through Data Collection Rules (DCRs). Migrating from the legacy agent to AMA is recommended for all SMBs.</div>
+
+<p>First, you need to create a Data Collection Rule (DCR) which defines what data to collect and where to send it. For simplicity, we'll create a basic DCR to collect Windows event logs (System, Security, Application) and performance counters.</p>
+
+<p>Create a DCR JSON file (e.g., <code>basic-dcr.json</code>):</p>
+<pre><code class="language-json">{
+  "properties": {
+    "dataSources": {
+      "windowsEventLogs": [
+        {
+          "streams": ["Microsoft-WindowsEvent"],
+          "dataSourceId": "windowsEventLogs-1",
+          "xPathQueries": [
+            "Event!*[System[(Level=1 or Level=2 or Level=3 or Level=4 or Level=0)]]",
+            "Security!*[System[(Level=1 or Level=2 or Level=3 or Level=4 or Level=0)]]",
+            "Application!*[System[(Level=1 or Level=2 or Level=3 or Level=4 or Level=0)]]"
+          ]
+        }
+      ],
+      "performanceCounters": [
+        {
+          "streams": ["Microsoft-InsightsMetrics"],
+          "dataSourceId": "perfCounters-1",
+          "samplingFrequencyInSeconds": 60,
+          "counterSpecifiers": [
+            "\\Processor(_Total)\\% Processor Time",
+            "\\Memory\\Available MBytes",
+            "\\LogicalDisk(_Total)\\% Free Space",
+            "\\Network Interface(*)\\Bytes Total/sec"
+          ]
+        }
+      ]
+    },
+    "destinations": {
+      "logAnalytics": [
+        {
+          "workspaceResourceId": "/subscriptions/&lt;your-subscription-id&gt;/resourceGroups/rg-skycore-monitoring/providers/Microsoft.OperationalInsights/workspaces/la-skycore-prod",
+          "name": "la-skycore-prod-destination"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+        "streams": [
+          "Microsoft-WindowsEvent",
+          "Microsoft-InsightsMetrics"
+        ],
+        "destinations": ["la-skycore-prod-destination"]
+      }
+    ]
+  }
+}</code></pre>
+<p><strong>IMPORTANT:</strong> Replace <code>&lt;your-subscription-id&gt;</code> with your actual Azure subscription ID in the <code>workspaceResourceId</code> field.</p>
+
+<p>Now, create the DCR using the CLI:</p>
+<pre><code class="language-azurecli">az monitor data-collection rule create \
+    --resource-group rg-skycore-monitoring \
+    --rule-name dcr-skycore-windows-vms \
+    --location canadacentral \
+    --json-file basic-dcr.json</code></pre>
+<ul>
+<li><code>--resource-group rg-skycore-monitoring</code>: Your monitoring resource group.</li>
+<li><code>--rule-name dcr-skycore-windows-vms</code>: A name for your Data Collection Rule.</li>
+<li><code>--location canadacentral</code>: The region for the DCR.</li>
+<li><code>--json-file basic-dcr.json</code>: Path to the DCR definition file you created.</li>
+</ul>
+
+<p>Next, associate the DCR with your target Azure VM. Replace <code>&lt;your-vm-name&gt;</code> and <code>&lt;your-vm-resource-group&gt;</code> with your VM's details.</p>
+
+<pre><code class="language-azurecli">az vm extension set \
+    --name AzureMonitorWindowsAgent \
+    --publisher Microsoft.Azure.Monitor \
+    --resource-group &lt;your-vm-resource-group&gt; \
+    --vm-name &lt;your-vm-name&gt; \
+    --enable-auto-upgrade true \
+    --settings "{\"dataCollectionRuleResourceId\":\"/subscriptions/&lt;your-subscription-id&gt;/resourceGroups/rg-skycore-monitoring/providers/Microsoft.Insights/dataCollectionRules/dcr-skycore-windows-vms\"}"</code></pre>
+<ul>
+<li><code>--name AzureMonitorWindowsAgent</code>: The name of the Azure Monitor Agent extension for Windows. (For Linux, use <code>AzureMonitorLinuxAgent</code>).</li>
+<li><code>--resource-group &lt;your-vm-resource-group&gt;</code>: The resource group where your VM is located.</li>
+<li><code>--vm-name &lt;your-vm-name&gt;</code>: The name of the virtual machine you want to monitor.</li>
+<li><code>--settings "{\"dataCollectionRuleResourceId\":\"...\"}"</code>: Specifies the DCR to apply. Remember to replace <code>&lt;your-subscription-id&gt;</code>. Note the escaped double quotes.</li>
+</ul>
+
+<pre><code class="language-powershell"># First, get your DCR's Resource ID
+$dcr = Get-AzDataCollectionRule -ResourceGroupName &quot;rg-skycore-monitoring&quot; -Name &quot;dcr-skycore-windows-vms&quot;
+
+# Get your VM object
+$vm = Get-AzVM -ResourceGroupName &quot;&lt;your-vm-resource-group&gt;&quot; -Name &quot;&lt;your-vm-name&gt;&quot;
+
+# Set the Azure Monitor Agent extension
+Set-AzVMExtension `
+    -ResourceGroupName $vm.ResourceGroupName `
+    -VMName $vm.Name `
+    -Name &quot;AzureMonitorWindowsAgent&quot; `
+    -Publisher &quot;Microsoft.Azure.Monitor&quot; `
+    -ExtensionType &quot;AzureMonitorWindowsAgent&quot; `
+    -TypeHandlerVersion &quot;1.0&quot; `
+    -EnableAutomaticUpgrade `
+    -Setting @{&quot;dataCollectionRuleResourceId&quot;=$dcr.Id}</code></pre>
+
+<p class="gui-note"><strong>Portal alternative:</strong>
+1. In the Azure portal, navigate to your Log Analytics workspace (<code>la-skycore-prod</code>).
+2. Under &quot;Settings&quot;, select &quot;Data Collection Rules&quot; and click &quot;Create&quot; to define your DCR.
+   - Configure &quot;Resources&quot; (select your VMs), &quot;Collect and deliver&quot; (specify event logs and performance counters, send to your LA workspace).
+3. Alternatively, for a specific VM:
+   - Navigate to your Virtual Machine in the Azure portal.
+   - In the left-hand menu, under &quot;Monitoring&quot;, select &quot;Insights&quot;.
+   - Click &quot;Enable&quot; and follow the prompts. This process guides you through creating a default DCR and associating it with the VM.</p>
+
+<p><strong>Run this to verify:</strong> Allow 5-10 minutes for the agent to install and data to flow.</p>
+<pre><code class="language-azurecli">az monitor log-analytics query --workspace la-skycore-prod --analytics-query "Event | where Computer == '&lt;your-vm-name&gt;' | take 5" --timespan 15m</code></pre>
+<pre><code class="language-powershell">$query = &quot;Event | where Computer == '&lt;your-vm-name&gt;' | take 5&quot;
+Invoke-AzOperationalInsightsQuery -WorkspaceName &quot;la-skycore-prod&quot; -Query $query -Timespan (New-TimeSpan -Minutes 15)</code></pre>
+<p>Replace <code>&lt;your-vm-name&gt;</code> with your actual VM name. If events are returned, your VM is successfully sending log data.</p>
+
+<h2>Step 6: Configuring Data Collection: Other Azure Resources</h2>
+<p>Beyond Activity Logs and VMs, most Azure services (e.g., Azure SQL Database, App Services, Key Vault, Azure Firewall) can send their diagnostic logs and metrics to a Log Analytics workspace. This is done via diagnostic settings, similar to how we configured the Activity Log, but applied at the resource level.</p>
+
+<p>The process is consistent for most Azure resources. Here's a generic example for an Azure Key Vault:</p>
+
+<pre><code class="language-azurecli">az monitor diagnostic-settings create \
+    --name &quot;SendKeyVaultLogsToLA&quot; \
+    --resource &quot;/subscriptions/&lt;your-subscription-id&gt;/resourceGroups/&lt;your-keyvault-resource-group&gt;/providers/Microsoft.KeyVault/vaults/&lt;your-keyvault-name&gt;&quot; \
+    --logs &quot;[{category: 'AuditEvent', enabled: true}]&quot; \
+    --metrics &quot;[{category: 'AllMetrics', enabled: true}]&quot; \
+    --workspace la-skycore-prod \
+    --resource-group rg-skycore-monitoring</code></pre>
+<ul>
+<li><code>--resource &quot;...&quot;</code>: The full Azure Resource ID of the service you want to monitor. You can find this in the resource's &quot;Properties&quot; blade in the Azure portal or via <code>az resource show --name &lt;resource-name&gt; --resource-group &lt;resource-group&gt; --query id -o tsv</code>.</li>
+<li><code>--logs</code>: A JSON array specifying which log categories to send. Available categories vary by service (e.g., &quot;AuditEvent&quot; for Key Vault, &quot;AppServiceHTTPLogs&quot; for App Services).</li>
+<li><code>--metrics</code>: A JSON array specifying which metrics to send. &quot;AllMetrics&quot; is common.</li>
+</ul>
+
+<pre><code class="language-powershell">$workspaceId = (Get-AzOperationalInsightsWorkspace -ResourceGroupName &quot;rg-skycore-monitoring&quot; -Name &quot;la-skycore-prod&quot;).ResourceId
+$keyVaultResourceId = (Get-AzKeyVault -ResourceGroupName &quot;&lt;your-keyvault-resource-group&gt;&quot; -VaultName &quot;&lt;your-keyvault-name&gt;&quot;).ResourceId
+New-AzDiagnosticSetting `
+    -Name &quot;SendKeyVaultLogsToLA&quot; `
+    -ResourceId $keyVaultResourceId `
+    -Log &quot;AuditEvent&quot; `
+    -Metric &quot;AllMetrics&quot; `
+    -WorkspaceId $workspaceId `
+    -Enabled $true</code></pre>
+
+<p class="gui-note"><strong>Portal alternative:</strong>
+1. Navigate to the specific Azure resource (e.g., your Azure SQL Database, App Service, Key Vault) in the Azure portal.
+2. In the left-hand menu, under &quot;Monitoring&quot;, select &quot;Diagnostic settings&quot;.
+3. Click &quot;Add diagnostic setting&quot;.
+4. Provide a name, check &quot;Send to Log Analytics workspace&quot;, select your subscription and <code>la-skycore-prod</code>.
+5. Select the relevant log categories and metrics you wish to collect for that specific service.
+6. Click &quot;Save&quot;.</p>
+
+<p><strong>Run this to verify:</strong> Wait a few minutes for data to flow.</p>
+<pre><code class="language-azurecli">az monitor log-analytics query --workspace la-skycore-prod --analytics-query "AzureDiagnostics | where ResourceProvider == 'MICROSOFT.KEYVAULT' | take 5" --timespan 15m</code></pre>
+<pre><code class="language-powershell">$query = &quot;AzureDiagnostics | where ResourceProvider == 'MICROSOFT.KEYVAULT' | take 5&quot;
+Invoke-AzOperationalInsightsQuery -WorkspaceName &quot;la-skycore-prod&quot; -Query $query -Timespan (New-TimeSpan -Minutes 15)</code></pre>
+<p>Replace <code>MICROSOFT.KEYVAULT</code> with the appropriate resource provider (e.g., <code>MICROSOFT.WEB</code> for App Services) and check for results.</p>
+
+<h2>Step 7: Exploring Your Data with Log Analytics Queries (KQL)</h2>
+<p>The power of Log Analytics truly comes alive with Kusto Query Language (KQL). KQL is a robust and intuitive query language designed for exploring and analyzing large datasets. This is where you transform raw logs into actionable insights.</p>
+
+<p>To access the Log Analytics query interface:</p>
+<p class="gui-note"><strong>Portal steps:</strong>
+1. In the Azure portal, search for &quot;Log Analytics workspaces&quot; and select <code>la-skycore-prod</code>.
+2. In the left-hand menu, under &quot;General&quot;, select &quot;Logs&quot;.</p>
+
+<p>You'll see a query editor. The left sidebar lists available tables (e.g., <code>AzureActivity</code>, <code>Event</code>, <code>AzureDiagnostics</code>). Here are a few basic KQL examples to get you started:</p>
+
+<pre><code class="language-kql">AzureActivity
+| take 10
+| project TimeGenerated, OperationName, ResourceGroup, Caller</code></pre>
+<ul>
+<li>This query retrieves the 10 most recent entries from the <code>AzureActivity</code> table and displays specific columns (<code>project</code>).</li>
+</ul>
+
+<pre><code class="language-kql">Event
+| where TimeGenerated &gt; ago(1h)
+| where EventID == 4624 // Successful logon event for Windows
+| project TimeGenerated, Computer, Account, Activity</code></pre>
+<ul>
+<li>This query filters the <code>Event</code> table for events within the last hour, specifically for successful Windows logons (Event ID 4624), projecting relevant details.</li>
+</ul>
+
+<pre><code class="language-kql">AzureDiagnostics
+| where ResourceProvider == "MICROSOFT.WEB"
+| summarize count() by OperationName
+| order by count_ desc</code></pre>
+<ul>
+<li>This query counts operations from Azure App Services (<code>MICROSOFT.WEB</code>) and groups them by <code>OperationName</code>, showing which operations are most frequent.</li>
+</ul>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip: Use Simple Mode first:</strong>
+If KQL seems daunting, start with the &quot;Simple mode&quot; in the Log Analytics query editor. It provides a spreadsheet-like experience with point-and-click filtering and sorting. As you build queries in Simple mode, you can switch to &quot;KQL mode&quot; to see the underlying KQL query, which is an excellent way to learn!</div>
+
+<h3>When to bring in a consultant</h3>
+<p>This Azure Monitor Log Analytics setup guide covers the essential steps for SMBs to get started with centralized logging. While the initial setup is manageable, specific scenarios can benefit significantly from professional guidance. If your SMB has a complex hybrid cloud environment, strict regulatory compliance requirements (like HIPAA or PCI DSS), needs advanced custom alerting and dashboards, or is integrating with existing SIEM (Security Information and Event Management) solutions like Microsoft Sentinel, a specialized consultant from SkyCore Solutions can ensure an optimized, secure, and scalable implementation. We can help with advanced KQL queries, custom workbooks, automated remediation, and deeper security hardening.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — log analytics overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace" target="_blank" rel="noopener noreferrer">learn.microsoft.com — quick create workspace</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/metrics-getting-started" target="_blank" rel="noopener noreferrer">learn.microsoft.com — metrics getting started</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — alerts overview</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
