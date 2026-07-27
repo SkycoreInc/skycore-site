@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cisa-github-leak-smb-security",
+    title: "CISA's Embarrassing GitHub Leak: Why Your Montreal SMB Isn't Safe",
+    date: "2026-07-27",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Even the Cybersecurity and Infrastructure Security Agency isn't immune to sloppy security. Their recent GitHub leak is a stark reminder: if they can mess up, your Montreal SMB is at risk.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/4816921/pexels-photo-4816921.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "hotel-wi-fi-hijack-m365-smb",
     title: "Your Hotel Wi-Fi Isn't Safe: Why Your Microsoft 365 Is a Prime Target",
     date: "2026-07-25",
