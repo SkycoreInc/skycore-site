@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "microsoft-365-business-premium-setup-guide",
+    title: "Microsoft 365 Business Premium Setup Guide for SMBs: A SkyCore Solutions Implementation",
+    date: "2026-07-29",
+    readTime: "12 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours (excluding data migration)",
+    keyword: "Microsoft 365 Business Premium setup guide",
+    excerpt: "This comprehensive Microsoft 365 Business Premium setup guide empowers SMBs to securely migrate and optimize their IT infrastructure. Follow our expert steps for a seamless transition.",
+    image: "https://images.pexels.com/photos/1181207/pexels-photo-1181207.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-monitor-log-analytics-setup-guide-smb",
     title: "Your Essential Azure Monitor Log Analytics Setup Guide for SMBs",
     date: "2026-07-25",

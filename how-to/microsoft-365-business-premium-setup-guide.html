@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Microsoft 365 Business Premium Setup Guide for SMBs: A SkyCore Solutions Implementation — SkyCore Solutions</title>
+  <meta name="description" content="SkyCore Solutions' comprehensive guide to setting up Microsoft 365 Business Premium for SMBs. Enhance productivity, security, and device management efficiently." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Microsoft 365 Business Premium Setup Guide for SMBs: A SkyCore Solutions Implementation — SkyCore Solutions" />
+  <meta property="og:description" content="SkyCore Solutions' comprehensive guide to setting up Microsoft 365 Business Premium for SMBs. Enhance productivity, security, and device management efficiently." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/microsoft-365-business-premium-setup-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/1181207/pexels-photo-1181207.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Microsoft 365 Business Premium Setup Guide for SMBs: A SkyCore Solutions Implementation — SkyCore Solutions" />
+  <meta name="twitter:description" content="SkyCore Solutions' comprehensive guide to setting up Microsoft 365 Business Premium for SMBs. Enhance productivity, security, and device management efficiently." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/1181207/pexels-photo-1181207.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/microsoft-365-business-premium-setup-guide.html" />
+  <meta property="article:published_time" content="2026-07-29" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Microsoft 365 Business Premium Setup Guide for SMBs: A SkyCore Solutions Implementation",
+  "description": "SkyCore Solutions' comprehensive guide to setting up Microsoft 365 Business Premium for SMBs. Enhance productivity, security, and device management efficiently.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Microsoft 365 Business Premium subscription., A global administrator account with appropriate permissions., A custom domain name (e.g., yourcompany.com) ready for verification., PowerShell 7 or higher installed on your administrative workstation., Microsoft.Graph PowerShell module installed (`Install-Module Microsoft.Graph -Scope CurrentUser`)., MSOnline PowerShell module installed (`Install-Module MSOnline -Scope CurrentUser`)., Azure AD Connect (if planning a hybrid identity setup)., Estimated Cost: Microsoft 365 Business Premium typically costs around $22 USD/user/month. Data migration tools may incur additional costs."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Acquire Your Subscription and Access the Admin Center",
+        "text": "This initial step covers signing up for Microsoft 365 Business Premium and gaining access to the primary administrative portals."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Connect PowerShell to Microsoft 365 Services",
+        "text": "Before proceeding with advanced configurations, establish secure PowerShell connections to your Microsoft 365 tenant."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Add and Verify Your Custom Domain",
+        "text": "Associate your company's domain name with Microsoft 365 to enable professional email and services under your brand."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create User Accounts and Assign Licenses",
+        "text": "Populate your tenant with your employees' accounts and grant them access to Business Premium features by assigning licenses."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Multi-Factor Authentication (MFA) and Security Defaults",
+        "text": "Implement essential identity protection by enforcing MFA, a critical component of Microsoft 365 Business Premium's security posture."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy Microsoft Defender for Business",
+        "text": "Activate and configure endpoint protection for your company's devices, safeguarding against malware, ransomware, and other cyber threats."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Set Up Basic Device Management with Microsoft Intune",
+        "text": "Establish foundational policies for managing and securing your organization's devices (Windows, macOS, iOS, Android) using Intune."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implement Data Loss Prevention (DLP) Policies",
+        "text": "Protect sensitive organizational data from accidental or intentional sharing by configuring DLP rules in the Microsoft Purview Compliance Portal."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Migrate Existing Email and File Data",
+        "text": "Transition your existing emails, documents, and other business data to Microsoft 365 services like Exchange Online, SharePoint, and OneDrive."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "User Onboarding and Ongoing Maintenance",
+        "text": "Prepare your users for the new environment and establish routines for continuous monitoring and management of your Microsoft 365 tenant."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-07-29 · 12 min read · Cloud Migration</div>
+<h1>Microsoft 365 Business Premium Setup Guide for SMBs: A SkyCore Solutions Implementation</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/1181207/pexels-photo-1181207.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="An IT professional setting up Microsoft 365 Business Premium on a laptop, demonstrating cloud migration and security." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For Small and Medium-sized Businesses (SMBs) in today's rapidly evolving digital landscape, robust security, seamless collaboration, and efficient device management are no longer luxuries but necessities. The challenge often lies in implementing these solutions without enterprise-level resources or complexity. This is where <strong>Microsoft 365 Business Premium</strong> shines, offering a powerful, integrated suite designed specifically for organizations up to 300 users.</p><p>As your trusted Montreal-based IT consultants at SkyCore Solutions, we've crafted this comprehensive <strong>Microsoft 365 Business Premium setup guide</strong> to walk you through the entire implementation process. By the end of this guide, you will have a fully configured, secure, and productive Microsoft 365 environment, empowering your team with the best tools while protecting your critical business assets.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>An active Microsoft 365 Business Premium subscription.</li><li>A global administrator account with appropriate permissions.</li><li>A custom domain name (e.g., yourcompany.com) ready for verification.</li><li>PowerShell 7 or higher installed on your administrative workstation.</li><li>Microsoft.Graph PowerShell module installed (<code>Install-Module Microsoft.Graph -Scope CurrentUser</code>).</li><li>MSOnline PowerShell module installed (<code>Install-Module MSOnline -Scope CurrentUser</code>).</li><li>Azure AD Connect (if planning a hybrid identity setup).</li><li>Estimated Cost: Microsoft 365 Business Premium typically costs around $22 USD/user/month. Data migration tools may incur additional costs.</li></ul></div>
+<h2>Step 1: Acquire Your Subscription and Access the Admin Center</h2>
+<p>The first step in your cloud migration journey is securing your Microsoft 365 Business Premium subscription. While the initial purchase is a web-based process, accessing the administrative portals is crucial for all subsequent configurations.</p>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the <a href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-microsoft-365-business-products">Microsoft 365 Business Premium product page</a> to purchase your subscription. Once purchased, you will receive an email with instructions to access the Microsoft 365 admin center at <a href="https://admin.microsoft.com">admin.microsoft.com</a>. Sign in with the administrative credentials created during the sign-up process. Familiarize yourself with the dashboard; this will be your primary graphical interface.</p>
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Bookmark <code>admin.microsoft.com</code>, <code>security.microsoft.com</code>, and <code>compliance.microsoft.com</code>. These three portals will be your command centers for managing M365 Business Premium.</div>
+<h2>Step 2: Connect PowerShell to Microsoft 365 Services</h2>
+<p>For efficient and scriptable management, especially for tasks involving many users or repetitive actions, PowerShell is indispensable. We recommend using the modern Microsoft Graph PowerShell SDK and the MSOnline module for some tenant-level configurations.</p>
+<pre><code class="language-powershell"># Install required modules (if not already installed)
+Install-Module -Name Microsoft.Graph -Scope CurrentUser -Force
+Install-Module -Name MSOnline -Scope CurrentUser -Force
+
+# Connect to Microsoft Graph
+Connect-MgGraph -Scopes "User.Read.All", "Domain.ReadWrite.All", "Policy.ReadWrite.ConditionalAccess", "DeviceManagementManagedDevices.ReadWrite.All", "DeviceManagementApps.ReadWrite.All", "Group.ReadWrite.All", "Directory.ReadWrite.All", "Application.ReadWrite.All"
+
+# Connect to MSOnline (Azure AD PowerShell - legacy but still useful)
+Connect-MsolService
+</code></pre>
+<ul>
+<li><code>Install-Module Microsoft.Graph</code>: Installs the primary module for interacting with the Microsoft Graph API.</li>
+<li><code>Install-Module MSOnline</code>: Installs the legacy module for Azure Active Directory management.</li>
+<li><code>Connect-MgGraph -Scopes "..."</code>: Establishes a connection to Microsoft Graph, requesting specific permissions (scopes) needed for tenant, user, domain, and device management. Always connect with the least privilege required.</li>
+<li><code>Connect-MsolService</code>: Establishes a connection to the MSOnline service using your global administrator credentials.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> While not a direct portal alternative for connecting PowerShell, you can verify your administrative access by logging into <code>admin.microsoft.com</code> and confirming you see all administrative options.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell"># Verify Graph connection by listing tenant domains
+Get-MgDomain
+
+# Verify MSOnline connection by listing tenant domains
+Get-MsolDomain
+</code></pre>
+<h2>Step 3: Add and Verify Your Custom Domain</h2>
+<p>Integrating your organization's custom domain (e.g., skycore.com) is fundamental. This allows your users to have professional email addresses (user@skycore.com) and utilize Microsoft 365 services under your brand identity.</p>
+<pre><code class="language-powershell"># Define your custom domain
+$DomainName = "yourcompany.com"
+
+# Add the domain to Microsoft 365 using MSOnline
+New-MsolDomain -Name $DomainName
+
+# Get DNS verification records (TXT record) required by Microsoft 365
+Get-MsolDomainVerificationDNS -DomainName $DomainName -Mode DnsTxtRecord
+</code></pre>
+<ul>
+<li><code>$DomainName = "yourcompany.com"</code>: Replace <code>"yourcompany.com"</code> with your actual domain name.</li>
+<li><code>New-MsolDomain</code>: Initiates the process of adding your domain to Microsoft 365.</li>
+<li><code>Get-MsolDomainVerificationDNS</code>: Retrieves the specific DNS TXT record value you need to add to your domain registrar's DNS settings. This record proves ownership.</li>
+</ul>
+<p>Once you have the TXT record value, log into your domain registrar's portal (e.g., GoDaddy, Namecheap, Cloudflare) and add this TXT record to your domain's DNS settings. After the record propagates (which can take minutes to hours), return to PowerShell to complete the verification.</p>
+<pre><code class="language-powershell"># Once TXT record is propagated at your registrar, run this to verify
+Confirm-MsolDomain -DomainName $DomainName
+</code></pre>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Microsoft 365 admin center (<code>admin.microsoft.com</code>), navigate to <strong>Settings > Domains</strong>. Click <strong>Add domain</strong>, enter your domain name, and follow the wizard to add the required TXT record to your domain registrar's DNS. Once the TXT record is added and propagated, click <strong>Verify</strong> in the admin center.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell"># Check the status of your domain after verification
+Get-MsolDomain -DomainName $DomainName | Select-Object Name, Status, IsVerified
+</code></pre>
+<h2>Step 4: Create User Accounts and Assign Licenses</h2>
+<p>Populating your tenant with user accounts is crucial. Microsoft 365 Business Premium includes licenses for each user, providing access to Exchange Online, SharePoint, OneDrive, Microsoft Teams, and desktop applications.</p>
+<pre><code class="language-powershell"># Define user details and the UPN suffix (your verified domain)
+$FirstName = "Jane"
+$LastName = "Doe"
+$DisplayName = "Jane Doe"
+$UserPrincipalName = "jane.doe@yourcompany.com" # Ensure this uses your verified domain
+$UsageLocation = "CA" # Two-letter country code (e.g., US, CA, UK)
+$LicenseSkuId = (Get-MsolAccountSku | Where-Object {$_.SkuPartNumber -eq "SMB_BUSPREM"}).AccountSkuId # Get the SKU ID for Business Premium
+
+# Create a new user account using Microsoft Graph PowerShell
+New-MgUser -DisplayName $DisplayName -GivenName $FirstName -Surname $LastName -UserPrincipalName $UserPrincipalName -MailNickname ($FirstName + $LastName) -UsageLocation $UsageLocation -PasswordProfile @{ ForceChangePasswordNextSignIn = $true; Password = (ConvertTo-SecureString -String "InitialPassw0rd!" -AsPlainText -Force) }
+
+# Find the new user object
+$User = Get-MgUser -UserId $UserPrincipalName
+
+# Assign the Microsoft 365 Business Premium license
+Set-MsolUserLicense -UserPrincipalName $UserPrincipalName -AddLicenses $LicenseSkuId
+</code></pre>
+<ul>
+<li><code>$UserPrincipalName</code>: This should match the email address you want for the user on your custom domain.</li>
+<li><code>$UsageLocation</code>: Required for license assignment; specifies the user's country/region.</li>
+<li><code>$LicenseSkuId</code>: Automatically retrieves the SKU ID for Microsoft 365 Business Premium. This ensures the correct license is assigned.</li>
+<li><code>New-MgUser</code>: Creates a new user in Azure AD. We recommend forcing a password change on first sign-in for security.</li>
+<li><code>Set-MsolUserLicense</code>: Assigns the specified license to the user.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Microsoft 365 admin center (<code>admin.microsoft.com</code>), navigate to <strong>Users > Active users</strong>. Click <strong>Add a user</strong>, fill in the user details, ensure the correct domain is selected, and assign the Microsoft 365 Business Premium license during the wizard. You can also bulk add users from a CSV file.</p>
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-powershell"># List all users and their assigned licenses
+Get-MsolUser -All | Select-Object DisplayName, UserPrincipalName, @{N="Licenses";E={($_.Licenses.AccountSkuId | ForEach-Object {(Get-MsolAccountSku | Where-Object {$_.AccountSkuId -eq $_}).SkuPartNumber}) -join ", "}}
+</code></pre>
+<h2>Step 5: Configure Multi-Factor Authentication (MFA) and Security Defaults</h2>
+<p>MFA is the single most effective way to prevent identity compromise. Microsoft 365 Business Premium includes Azure AD Premium P1, which allows for advanced Conditional Access policies. For SMBs, enabling Security Defaults is an excellent starting point.</p>
+<pre><code class="language-powershell"># Microsoft recommends using Conditional Access for more granular control.
+# However, for quick setup, Security Defaults offer a strong baseline.
+# Security Defaults can only be enabled/disabled via the portal or Microsoft Graph API, not MSOnline.
+
+# To check if Security Defaults are enabled via Graph (requires specific permission)
+# Connect-MgGraph -Scopes "Policy.Read.All"
+# Get-MgPolicyIdentitySecurityDefaultEnforcementPolicy
+
+# If you need to enable it via PowerShell (advanced, usually done via portal for initial setup)
+# (This is illustrative; direct PowerShell for this requires Graph API calls with specific JSON payloads)
+# $Body = @{
+#    IsEnabled = $true
+# }
+# Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/v1.0/policies/identitySecurityDefaultsEnforcementPolicy" -Body (ConvertTo-Json $Body)
+</code></pre>
+<ul>
+<li>Security Defaults enforce MFA for all users/admins, block legacy authentication, and require MFA for privileged activities.</li>
+<li>While direct enablement via simple PowerShell for Security Defaults is complex due to Graph API interaction, it's best handled in the portal for initial setup.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Microsoft 365 admin center (<code>admin.microsoft.com</code>), navigate to <strong>Show all > Azure Active Directory</strong>. This will open the Azure AD admin center. In the left navigation, go to <strong>Azure Active Directory > Properties</strong>. Scroll down and click <strong>Manage Security defaults</strong>. Toggle <strong>Enable Security defaults</strong> to <strong>Yes</strong> and save. This immediately enforces MFA for all users upon their next sign-in, requiring them to register a method like the Microsoft Authenticator app.</p>
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Enabling Security Defaults without prior communication can disrupt user access. Inform your team in advance about the need to register for MFA and provide clear instructions.</div>
+<p><strong>Run this to verify (Conditional Access policy example for granular control):</strong></p>
+<pre><code class="language-powershell"># This example creates a Conditional Access policy to require MFA for all users
+# Make sure to exclude a break-glass account from all CA policies.
+
+Connect-MgGraph -Scopes "Policy.ReadWrite.ConditionalAccess"
+
+# Create Conditional Access policy
+$Users = @{ Include = @("All") }
+$Conditions = @{
+    ClientAppTypes = @("all")
+    SignInRiskLevels = @("none") # You can add Low, Medium, High if you have Azure AD Identity Protection
+}
+$GrantControls = @{
+    Operator = "OR"
+    BuiltInControls = @("mfa")
+}
+$Policy = @{
+    DisplayName = "Require MFA for All Users"
+    State = "EnabledForReportingOnly" # Start with "EnabledForReportingOnly" or "Disabled" to test
+    Conditions = $Conditions
+    GrantControls = $GrantControls
+    Targets = @{ Users = $Users }
+}
+
+New-MgIdentityConditionalAccessPolicy -BodyParameter $Policy
+</code></pre>
+<ul>
+<li><code>State = "EnabledForReportingOnly"</code>: Crucial for testing. This allows you to see the impact of the policy without enforcing it, preventing lockout. Once confident, change to <code>"Enabled"</code>.</li>
+</ul>
+<h2>Step 6: Deploy Microsoft Defender for Business</h2>
+<p>Microsoft Defender for Business, included with Microsoft 365 Business Premium, provides enterprise-grade endpoint security tailored for SMBs. It's designed to protect devices from advanced threats and provides automated investigation and response capabilities.</p>
+<pre><code class="language-powershell"># While direct PowerShell for initial Defender for Business onboarding is complex and often GUI-driven,
+# you can use PowerShell to enroll devices into Intune, which then facilitates Defender deployment.
+
+# Example: Setting up a Windows device enrollment profile in Intune (via Graph API)
+Connect-MgGraph -Scopes "DeviceManagementManagedDevices.ReadWrite.All"
+
+# Create a new enrollment profile (simplified example for AutoPilot or direct enrollment)
+# This is a high-level conceptual example, actual JSON payload for Graph API is extensive.
+$EnrollmentProfile = @{
+    displayName = "SkyCore Solutions - Windows Enrollment Profile"
+    description = "Profile for Windows AutoPilot enrollment"
+    enrollmentType = "windowsAutopilot"
+    # ... more complex properties like OOBE settings, etc.
+}
+# New-MgDeviceManagementWindowsAutopilotDeploymentProfile -BodyParameter $EnrollmentProfile
+</code></pre>
+<ul>
+<li>Initial setup of Defender for Business is primarily done through the Microsoft 365 Defender portal.</li>
+<li>Device enrollment (covered in Step 7) is a prerequisite for Defender for Business to protect endpoints.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the Microsoft 365 admin center (<code>admin.microsoft.com</code>), and under <strong>Setup</strong>, select <strong>Go to Microsoft Defender</strong>. This will redirect you to <code>security.microsoft.com</code>. Follow the guided setup to onboard your devices. For Windows devices, this typically involves either a group policy deployment script, Microsoft Intune (recommended for M365 BP), or manual installation. Microsoft recommends leveraging Intune for seamless deployment.</p>
+<p><strong>Run this to verify:</strong></p>
+<p class="gui-note">In the Microsoft 365 Defender portal (<code>security.microsoft.com</code>), go to <strong>Assets > Devices</strong>. After enrolling devices (see Step 7), they should appear here with a health status. Also, review <strong>Configuration management > Device configuration</strong> to ensure Defender policies are deployed.</p>
+<h2>Step 7: Set Up Basic Device Management with Microsoft Intune</h2>
+<p>Intune, also part of Microsoft 365 Business Premium, allows you to manage and secure devices across various platforms. For SMBs, focus on essential policies like compliance, Windows Update rings, and basic app deployment.</p>
+<pre><code class="language-powershell"># For creating Intune device compliance policies using Graph PowerShell
+Connect-MgGraph -Scopes "DeviceManagementManagedDevices.ReadWrite.All", "DeviceManagementApps.ReadWrite.All", "DeviceManagementConfiguration.ReadWrite.All"
+
+# Example: Create a simple Windows compliance policy (requires complex JSON structure for Graph)
+# This is a conceptual example for illustration purposes.
+$CompliancePolicyBody = @{
+    displayName = "SkyCore Solutions - Windows Basic Compliance"
+    description = "Ensures basic security for Windows devices"
+    platform = "windows10AndLater"
+    settings = @(
+        @{ settingName = "osMinimumVersion"; value = "10.0.19041" }, # Minimum Windows 10 version
+        @{ settingName = "passwordRequired"; value = $true },
+        @{ settingName = "encryptionRequired"; value = $true }
+    )
+    # ... more properties like assignment to groups
+}
+# New-MgDeviceManagementDeviceCompliancePolicy -BodyParameter $CompliancePolicyBody
+</code></pre>
+<ul>
+<li>Initial Intune setup and policy creation via PowerShell can be quite verbose due to the complexity of the Graph API payloads.</li>
+<li>The portal is often more practical for SMBs to define these policies.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> From the Microsoft 365 admin center, navigate to <strong>Show all > Endpoint Manager</strong>. This opens the Microsoft Intune admin center (<code>endpoint.microsoft.com</code>). Go to <strong>Devices > Enroll devices</strong> and set up enrollment options (e.g., Windows enrollment for AutoPilot or manual MDM enrollment). Then, go to <strong>Devices > Compliance policies</strong> and create a new policy, for example, to require BitLocker encryption and a minimum OS version for Windows devices. Assign this policy to your user groups.</p>
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For SMBs, start with a few critical compliance policies (e.g., password requirements, device encryption, up-to-date antivirus) and assign them to a pilot group before broad deployment.</div>
+<p><strong>Run this to verify:</strong></p>
+<p class="gui-note">In the Microsoft Intune admin center (<code>endpoint.microsoft.com</code>), go to <strong>Devices > All devices</strong> to see enrolled devices. Navigate to <strong>Devices > Compliance policies</strong> and review the reporting for your deployed policies to ensure devices are compliant.</p>
+<h2>Step 8: Implement Data Loss Prevention (DLP) Policies</h2>
+<p>Data Loss Prevention (DLP) policies, managed within the Microsoft Purview Compliance Portal, help protect sensitive information like client data, financial records, or intellectual property from being accidentally or intentionally shared outside your organization. This is a key security feature of Microsoft 365 Business Premium.</p>
+<pre><code class="language-powershell"># Connect to the Security &amp; Compliance Center PowerShell
+Connect-IPPSSession -UserPrincipalName "admin@yourcompany.com"
+
+# Example: Create a basic DLP policy to detect and block sharing of credit card numbers to external users
+# This is a simplified example. Real DLP policies can be much more complex.
+New-DlpComplianceRule -Name "SkyCore Solutions - Block Credit Card Sharing External"
+-Policy "SkyCore Solutions DLP Policy"
+-ContentContainsSensitiveInformation @(@{Name="Credit Card Number"})
+-AccessScope "ExternalUsers"
+-BlockAccess $true
+-RuleErrorAction "Stop"
+-Disabled $false
+</code></pre>
+<ul>
+<li><code>Connect-IPPSSession</code>: Establishes a connection to the Microsoft Purview Compliance PowerShell module.</li>
+<li><code>New-DlpComplianceRule</code>: Creates a new DLP rule.</li>
+<li><code>-ContentContainsSensitiveInformation</code>: Specifies the sensitive information types (SITs) to detect.</li>
+<li><code>-AccessScope "ExternalUsers"</code>: Defines who the policy applies to when sharing externally.</li>
+<li><code>-BlockAccess $true</code>: Configures the policy to block the sharing action.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the Microsoft 365 admin center (<code>admin.microsoft.com</code>), then <strong>Show all > Compliance</strong>. This will open the Microsoft Purview Compliance Portal (<code>compliance.microsoft.com</code>). In the left navigation, go to <strong>Data loss prevention > Policies</strong>. Click <strong>Create policy</strong>, choose a category (e.g., Financial), select a template (e.g., US Financial Data), and customize the rules for your organization. You can choose to audit first, then block.</p>
+<p><strong>Run this to verify:</strong></p>
+<p class="gui-note">In the Microsoft Purview Compliance Portal (<code>compliance.microsoft.com</code>), go to <strong>Data loss prevention > Alerts</strong> and <strong>Data loss prevention > Reports</strong> to monitor policy matches and incidents. Test the policy by attempting to share sensitive data to an external recipient.</p>
+<h2>Step 9: Migrate Existing Email and File Data</h2>
+<p>Migrating existing data is often the most time-consuming part of a cloud migration. Microsoft 365 offers various tools for email (Exchange Online) and file (SharePoint/OneDrive) migration.</p>
+<pre><code class="language-powershell"># For Exchange migrations, you typically use New-MigrationBatch for cutover, staged, or hybrid scenarios.
+# This requires elevated permissions and configuration of migration endpoints.
+
+# Example for a simple PST import (often used for smaller mailboxes)
+# First, set up the Azure AzCopy tool and secure storage for PSTs.
+# Then use the Import-RecipientDataProperty -Identity "user@yourcompany.com" -PSTFile "C:\path\to\user.pst" cmdlets
+# (Note: This is an oversimplification; PST import is a multi-step process involving Azure storage and Import service.)
+
+# For file migration to SharePoint/OneDrive, the SharePoint Migration Tool (SPMT) is GUI-based.
+# PowerShell can be used for advanced SharePoint management but not direct migration of files from local shares.
+Connect-PnPOnline -Url "https://yourcompany.sharepoint.com/sites/yourteam" -Interactive
+# Example: Create a SharePoint document library
+# New-PnPList -Title "Company Documents" -Template DocumentLibrary
+</code></pre>
+<ul>
+<li>Email migration can be performed via cutover migration (for <2000 mailboxes), staged migration (for larger POP/IMAP accounts), or hybrid migration (for Exchange on-premises).</li>
+<li>File migration to SharePoint and OneDrive often uses tools like the SharePoint Migration Tool (SPMT) or Mover.io (acquired by Microsoft).</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> For email, in the Exchange admin center (<code>admin.exchange.microsoft.com</code>), navigate to <strong>Migration > New migration batch</strong> and follow the wizard for your specific migration type. For files, download and use the <a href="https://learn.microsoft.com/en-us/sharepoint/migrate-to-sharepoint-online">SharePoint Migration Tool (SPMT)</a> to migrate files from network shares or local drives to SharePoint Online and OneDrive for Business. Alternatively, use <a href="https://mover.io">Mover.io</a> for cloud-to-cloud migrations.</p>
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Data migration is complex. Plan meticulously, conduct pilot migrations, and allocate sufficient time. Poorly executed migrations can lead to data loss or significant downtime. Consider professional help for larger or more sensitive datasets.</div>
+<p><strong>Run this to verify:</strong></p>
+<p class="gui-note">Have users log into Outlook Web App (OWA) and their desktop Outlook client to confirm email access. Verify file migration by having users access their OneDrive and SharePoint sites to ensure all documents are present and accessible.</p>
+<h2>Step 10: User Onboarding and Ongoing Maintenance</h2>
+<p>A successful setup extends beyond technical configuration. Proper user onboarding and establishing ongoing maintenance routines are critical for long-term success and security.</p>
+<pre><code class="language-powershell"># Example: Remind users to reset their passwords (if forced on first login)
+# This script would query users who haven't logged in yet or still have initial passwords.
+# Get-MsolUser -All | Where-Object {$_.StrongPasswordRequired -eq $true -and $_.LastPasswordChangeTimestamp -eq $null} | Select-Object UserPrincipalName, DisplayName
+
+# Example: Automate reporting of license usage
+Get-MsolAccountSku | Select-Object SkuPartNumber, ActiveUnits, ConsumedUnits, WarningUnits, SuspendedUnits
+</code></pre>
+<ul>
+<li>User training ensures adoption and minimizes support calls.</li>
+<li>Regular monitoring of security alerts and license usage maintains a healthy tenant.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> In the Microsoft 365 admin center, review <strong>Reports > Usage</strong> to monitor adoption of services like Exchange, SharePoint, and Teams. Periodically check the Microsoft 365 Defender portal for active incidents and alerts. Communicate effectively with your users about new features, security best practices (like phishing awareness), and how to get support.</p>
+<p><strong>Run this to verify:</strong></p>
+<p class="gui-note">Conduct a user survey or hold a Q&amp;A session to gather feedback on the new environment. Regularly check your admin centers for any service health advisories or security recommendations.</p>
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide provides a robust framework for setting up Microsoft 365 Business Premium, certain scenarios benefit greatly from expert intervention. If your SMB requires a hybrid Active Directory setup, needs complex data migration from legacy systems (e.g., custom databases, older Exchange versions), demands advanced security configurations (e.g., fine-tuned Conditional Access, custom DLP policies, or third-party integrations), or has stringent compliance requirements, bringing in a specialized IT consultant is highly recommended. SkyCore Solutions can provide tailored strategies, ensure minimal business disruption during migration, and optimize your M365 environment for maximum security and efficiency.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/microsoft-365/admin/setup/setup" target="_blank" rel="noopener noreferrer">learn.microsoft.com — setup</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
