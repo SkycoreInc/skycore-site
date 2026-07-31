@@ -450,7 +450,53 @@ def pick_photo(image_query: str, category: str) -> tuple[str, str]:
 
 # ── Article generation ────────────────────────────────────────────────────────
 
+def _call_gemini(prompt: str) -> str:
+    """Call Gemini with model fallback on 503/UNAVAILABLE. Returns raw text."""
+    model_idx = 0
+    api_attempts = 0
+    MAX_API = 6
+    while True:
+        model = GEMINI_MODELS[model_idx]
+        api_attempts += 1
+        try:
+            print(f"   Using model: {model}")
+            response = CLIENT.models.generate_content(model=model, contents=prompt)
+            return response.text.strip()
+        except Exception as e:
+            err_str = str(e)
+            is_retryable = (
+                "503" in err_str or "UNAVAILABLE" in err_str or
+                "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or
+                "500" in err_str
+            )
+            if is_retryable and api_attempts < MAX_API:
+                if model_idx < len(GEMINI_MODELS) - 1:
+                    model_idx += 1
+                    print(f"   API error — switching to fallback: {GEMINI_MODELS[model_idx]}")
+                else:
+                    wait = min(15 * (2 ** (api_attempts - 1)), 120)
+                    print(f"   All models tried — retrying in {wait}s...")
+                    time.sleep(wait)
+            else:
+                raise
+
+
+def _parse_json(raw: str) -> dict:
+    """Strip markdown fences, extract outermost JSON object, parse."""
+    raw = re.sub(r"^```[a-z]*\n?", "", raw)
+    raw = re.sub(r"\n?```$", "", raw)
+    match = re.search(r"\{[\s\S]*\}", raw)
+    if match:
+        raw = match.group(0)
+    return json.loads(raw)
+
+
 def generate_article(kw_item: dict, ref_docs: str, source_urls: list[str]) -> dict:
+    """
+    Two-pass generation:
+      Pass 1 — metadata JSON (slug, title, steps, etc.) — small, no HTML inside, safe to parse
+      Pass 2 — raw HTML content — returned as plain text, zero JSON escaping issues
+    """
     keyword  = kw_item["keyword"]
     category = kw_item["category"]
     today    = date.today().isoformat()
@@ -473,43 +519,27 @@ Instructions for using this material:
 ---
 """
 
-    prompt = textwrap.dedent(f"""
-        You are a senior IT consultant at SkyCore Solutions, a global IT consulting firm
-        specializing in Cloud Migration (Azure), Security Hardening, and Infrastructure Revamp.
+    content_rules = textwrap.dedent(f"""
+        You are a senior IT consultant at SkyCore Solutions, specializing in
+        Cloud Migration (Azure), Security Hardening, and Infrastructure Revamp.
 
-        Write a comprehensive, authoritative how-to guide for this keyword:
-        PRIMARY KEYWORD: "{keyword}"
-        CATEGORY: {category}
-        DATE: {today}
+        Topic: "{keyword}"  |  Category: {category}  |  Date: {today}
         {doc_section}
+        CONTENT RULES:
+        - CLI-FIRST: Lead every step with the PowerShell/Azure CLI/bash command.
+          GUI steps follow as "Portal alternative:" only.
+        - ACCURATE: Use exact syntax from the reference docs — real flags, real parameters.
+        - DIRECT: No fluff. No "in today's digital landscape." Get to commands fast.
+        - HONEST: Include gotchas, common errors, production risks. Say so when DIY is risky.
+        - OPINIONATED: Tell readers what you actually recommend.
+        - LENGTH: 1,800–2,500 words of real substance.
+    """).strip()
 
-        CONTENT PHILOSOPHY:
-        - CLI-FIRST: Every step leads with the PowerShell, Azure CLI, or bash command.
-          GUI instructions are secondary, mentioned only as "or in the portal: ..." after
-          the command. Readers are IT admins who prefer copy-paste over clicking.
-        - ACCURATE: Use exact command syntax from the reference docs above (if provided).
-          Include real flags and parameters, not just the bare minimum.
-        - DIRECT: No fluff. No "in today's digital landscape." Get to the commands fast.
-        - HONEST: Include real-world gotchas, common errors, and what to watch out for.
-          If something is complex or risky in production, say so.
-        - OPINIONATED: Tell readers what you actually recommend, not just what's possible.
-        - LENGTH: 1,800-2,500 words of real substance.
+    # ── Pass 1: metadata JSON (no htmlContent) ────────────────────────────────
+    meta_prompt = content_rules + textwrap.dedent(f"""
 
-        STRUCTURE (use these exact HTML elements):
-        1. <div class="post-meta">{today} · READTIME · {category}</div>
-        2. <h1>TITLE</h1>
-        3. <div class="article-hero"><img src="HERO_IMAGE_PLACEHOLDER" alt="HERO_ALT_PLACEHOLDER" loading="eager" fetchpriority="high"></div>
-        4. <div class="howto-intro"><p>Hook paragraph — state the problem, why this matters, what the reader will have working by the end. Include the primary keyword naturally.</p></div>
-        5. <div class="howto-prereqs"><h4>Prerequisites</h4><ul>...</ul></div>
-        6. Steps: use <h2>Step N: [Strong action verb + what exactly happens]</h2>
-           - Each step: 1 paragraph context, then the command(s) in <pre><code class="language-powershell"> or <code class="language-bash"> or <code class="language-azurecli">
-           - After commands: explain what each flag does (1 line each)
-           - If there's a GUI alternative: <p class="gui-note"><strong>Portal alternative:</strong> ...</p>
-           - End of step: expected output or how to confirm it worked
-        7. <div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> ...</div> — add 2-3 of these throughout
-        8. <div class="howto-consultant-cta"><h3>When to bring in a consultant</h3><p>Be honest about when DIY becomes risky. This is a soft CTA, not a sales pitch.</p><a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
-
-        Return ONLY valid JSON (no markdown fences) with these exact fields:
+        Return ONLY valid JSON (no markdown fences, no extra text) with these fields.
+        Do NOT include htmlContent here — that comes in a separate step.
         {{
           "slug": "seo-url-slug-4-6-words",
           "title": "Full compelling title including primary keyword",
@@ -526,57 +556,70 @@ Instructions for using this material:
           "prerequisites": ["item 1", "item 2", "item 3"],
           "steps": [
             {{"name": "Step name", "text": "One sentence describing what this step accomplishes"}}
-          ],
-          "htmlContent": "Full article HTML as described above."
+          ]
         }}
     """).strip()
 
-    current_prompt = prompt
-    api_attempts   = 0
-    json_attempts  = 0
-    model_idx      = 0
-    MAX_API        = 6
-    MAX_JSON       = 3
-
-    while True:
-        model = GEMINI_MODELS[model_idx]
+    print("-- Pass 1: generating metadata JSON --")
+    meta = None
+    for attempt in range(1, 4):
         try:
-            api_attempts += 1
-            print(f"   Using model: {model}")
-            response = CLIENT.models.generate_content(model=model, contents=current_prompt)
-            raw = response.text.strip()
-            raw = re.sub(r"^```[a-z]*\n?", "", raw)
-            raw = re.sub(r"\n?```$", "", raw)
-            match = re.search(r"\{[\s\S]*\}", raw)
-            if match:
-                raw = match.group(0)
-            return json.loads(raw)
+            raw = _call_gemini(meta_prompt)
+            meta = _parse_json(raw)
+            break
         except (json.JSONDecodeError, ValueError) as e:
-            json_attempts += 1
-            print(f"   JSON parse failed (attempt {json_attempts}/{MAX_JSON}): {e}")
-            if json_attempts >= MAX_JSON:
-                raise RuntimeError(f"Gemini returned invalid JSON after {MAX_JSON} parse attempts: {e}")
-            current_prompt += "\n\nCRITICAL: JSON parse error. Escape ALL double quotes inside strings with \\\" — especially inside htmlContent."
-        except Exception as e:
-            err_str = str(e)
-            is_retryable = (
-                "503" in err_str or "UNAVAILABLE" in err_str or
-                "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or
-                "500" in err_str
-            )
-            if is_retryable and api_attempts < MAX_API:
-                # Try next fallback model before waiting
-                if model_idx < len(GEMINI_MODELS) - 1:
-                    model_idx += 1
-                    print(f"   Gemini API error (attempt {api_attempts}/{MAX_API}): {err_str[:120]}")
-                    print(f"   Switching to fallback model: {GEMINI_MODELS[model_idx]}")
-                else:
-                    wait = min(15 * (2 ** (api_attempts - 1)), 120)
-                    print(f"   Gemini API error (attempt {api_attempts}/{MAX_API}): {err_str[:120]}")
-                    print(f"   All models tried — retrying in {wait}s...")
-                    time.sleep(wait)
-            else:
-                raise
+            print(f"   Metadata JSON parse failed (attempt {attempt}/3): {e}")
+            if attempt == 3:
+                raise RuntimeError(f"Metadata JSON invalid after 3 attempts: {e}")
+            meta_prompt += "\n\nCRITICAL: JSON parse error — no HTML, no double quotes inside values."
+
+    # ── Pass 2: raw HTML content ───────────────────────────────────────────────
+    steps_summary = "\n".join(
+        f"  Step {i+1}: {s['name']} — {s['text']}"
+        for i, s in enumerate(meta.get("steps", []))
+    )
+    html_prompt = content_rules + textwrap.dedent(f"""
+
+        You already planned this article:
+        TITLE: {meta['title']}
+        STEPS OUTLINE:
+        {steps_summary}
+
+        Now write the FULL HTML body. Output RAW HTML ONLY — no JSON, no markdown fences,
+        no explanation. Start directly with the first HTML tag.
+
+        Use SINGLE QUOTES for ALL HTML attributes (class='...', href='...', src='...')
+        so the output stays clean for JSON embedding later.
+
+        REQUIRED STRUCTURE:
+        <div class='post-meta'>{today} · {meta['readTime']} · {category}</div>
+        <h1>{meta['title']}</h1>
+        <div class='article-hero'><img src='HERO_IMAGE_PLACEHOLDER' alt='HERO_ALT_PLACEHOLDER' loading='eager' fetchpriority='high'></div>
+        <div class='howto-intro'><p>Hook paragraph with the primary keyword naturally included.</p></div>
+        <div class='howto-prereqs'><h4>Prerequisites</h4><ul>...</ul></div>
+
+        For each step:
+        <h2>Step N: [Strong action verb + what exactly happens]</h2>
+        <p>Context paragraph</p>
+        <pre><code class='language-powershell'>command here</code></pre>
+        <p>Flag explanations (one line each)</p>
+        <p class='gui-note'><strong>Portal alternative:</strong> ...</p>
+        <p><strong>Expected result:</strong> ...</p>
+
+        Sprinkle 2-3 of these throughout:
+        <div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> ...</div>
+
+        End with:
+        <div class='howto-consultant-cta'><h3>When to bring in a consultant</h3><p>Honest advice about when DIY becomes risky.</p><a href='../contact.html' class='btn btn-primary'>Book a free consultation</a></div>
+    """).strip()
+
+    print("-- Pass 2: generating HTML content --")
+    html_content = _call_gemini(html_prompt).strip()
+    html_content = re.sub(r"^```[a-z]*\n?", "", html_content)
+    html_content = re.sub(r"\n?```$", "", html_content)
+
+    meta["htmlContent"] = html_content
+    return meta
 
 
 # ── HTML builder ──────────────────────────────────────────────────────────────
