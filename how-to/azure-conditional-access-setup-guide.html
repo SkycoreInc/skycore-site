@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mastering Azure Conditional Access: A SkyCore Setup Guide for Enhanced Security — SkyCore Solutions</title>
+  <meta name="description" content="SkyCore Solutions' Azure Conditional Access setup guide empowers your organization to implement Zero Trust principles, enforce MFA, and strengthen security policies using CLI/PowerShell for cloud environments." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Mastering Azure Conditional Access: A SkyCore Setup Guide for Enhanced Security — SkyCore Solutions" />
+  <meta property="og:description" content="SkyCore Solutions' Azure Conditional Access setup guide empowers your organization to implement Zero Trust principles, enforce MFA, and strengthen security policies using CLI/PowerShell for cloud environments." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-conditional-access-setup-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/1990764/pexels-photo-1990764.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mastering Azure Conditional Access: A SkyCore Setup Guide for Enhanced Security — SkyCore Solutions" />
+  <meta name="twitter:description" content="SkyCore Solutions' Azure Conditional Access setup guide empowers your organization to implement Zero Trust principles, enforce MFA, and strengthen security policies using CLI/PowerShell for cloud environments." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/1990764/pexels-photo-1990764.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-conditional-access-setup-guide.html" />
+  <meta property="article:published_time" content="2026-07-31" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Mastering Azure Conditional Access: A SkyCore Setup Guide for Enhanced Security",
+  "description": "SkyCore Solutions' Azure Conditional Access setup guide empowers your organization to implement Zero Trust principles, enforce MFA, and strengthen security policies using CLI/PowerShell for cloud environments.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Microsoft Entra ID P1 or P2 license (or equivalent licenses that include Microsoft Entra ID P1 capabilities like Microsoft 365 E3)., An administrative account with at least Conditional Access Administrator or Security Administrator role in Microsoft Entra ID., Emergency access ('break-glass') accounts configured and thoroughly tested to prevent lockout scenarios., A clear understanding of your organization's user groups, critical applications, and trusted network locations (e.g., corporate office IPs)., MFA registration rollout strategy and user communication plan in place."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Understand Conditional Access Fundamentals",
+        "text": "Grasp the core principles of Azure Conditional Access and its pivotal role as Microsoft Entra's Zero Trust policy engine."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Verify Prerequisites and Licensing",
+        "text": "Confirm your environment meets the necessary licensing and administrative role requirements for Conditional Access policy creation and management."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Establish Emergency Access Accounts",
+        "text": "Ensure critical 'break-glass' accounts are securely configured, tested, and explicitly excluded from all Conditional Access policies to prevent administrative lockout."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Define Named Locations",
+        "text": "Configure trusted IP ranges and locations within Microsoft Entra ID to inform Conditional Access policy decisions, such as excluding MFA for corporate networks."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create a Baseline MFA Policy for All Users",
+        "text": "Implement a foundational Conditional Access policy requiring multi-factor authentication for all users accessing all cloud resources, utilizing authentication strength."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implement MFA for Administrative Roles",
+        "text": "Enforce strong authentication for users holding privileged administrative roles within your tenant, such as Global Administrator or Conditional Access Administrator."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Block Legacy Authentication Protocols",
+        "text": "Prevent access attempts from applications using less secure, legacy authentication methods like POP3 or IMAP, which are often targets for credential stuffing."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Require MFA for Azure Management Access",
+        "text": "Mandate multi-factor authentication for all access attempts to the Azure management portal to protect your cloud infrastructure."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Enforce Device Compliance or Hybrid Join",
+        "text": "Establish policies that require devices to be either marked as compliant by Microsoft Intune or Azure AD Hybrid Joined for access to sensitive resources."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Test Policies with Report-Only Mode",
+        "text": "Utilize report-only mode and the 'What If' tool to thoroughly assess the impact of new or modified policies before full enforcement, minimizing disruption."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Monitor and Refine Policies",
+        "text": "Continuously review policy effectiveness, analyze sign-in logs, and make adjustments based on security posture requirements, user feedback, and emerging threats."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class='post-meta'>2026-07-31 · 18 min read · Security Hardening</div>
+<h1>Mastering Azure Conditional Access: A SkyCore Setup Guide for Enhanced Security</h1>
+<div class='article-hero'><img src='https://skycore.solutions/assets/img/azure-conditional-access-hero.webp' alt='Abstract illustration of secure access with a padlock and cloud icons, representing Azure Conditional Access' loading='eager' fetchpriority='high'></div>
+<div class='howto-intro'><p>As a core component of Microsoft's Zero Trust strategy, <a href='https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview' target='_blank'>Azure Conditional Access</a> serves as the sophisticated policy engine within Microsoft Entra ID. It brings together identity-driven signals to make intelligent, real-time access control decisions, ensuring that only authorized users on compliant devices access your sensitive resources. This guide from SkyCore Solutions will walk you through setting up robust Azure Conditional Access policies, enhancing your organization's security posture against modern threats while maintaining user productivity.</p></div>
+<div class='howto-prereqs'><h4>Prerequisites</h4><ul><li><strong>Microsoft Entra ID P1 License:</strong> Azure Conditional Access requires at least a Microsoft Entra ID P1 license.</li><li><strong>Administrative Roles:</strong> You need an administrator role that allows managing Conditional Access policies, such as Conditional Access Administrator, Security Administrator, or Global Administrator.</li><li><strong>Emergency Access Accounts:</strong> Ensure dedicated 'break-glass' accounts are configured and protected.</li><li><strong>Understanding of Identity and Access Management (IAM):</strong> A foundational understanding of user identities, groups, and application access is beneficial.</li><li><strong>Microsoft Graph PowerShell SDK:</strong> While many initial setups utilize the portal, understanding how to interact with the Microsoft Graph PowerShell SDK for automation is key for advanced management. Install it via <code>Install-Module Microsoft.Graph -Scope CurrentUser</code>.</li></ul></div>
+
+<h2>Step 1: Understand Conditional Access Fundamentals</h2>
+<p>Azure Conditional Access operates on an "if-then" logic, where "if" represents conditions (e.g., user, location, device) and "then" represents the access controls enforced (e.g., require MFA, block access). It evaluates various signals to make granular decisions post-first-factor authentication, acting as a crucial element in a Zero Trust security model.</p>
+<p>Common signals include user/group identity, IP location, device state, application being accessed, and real-time risk detection from Microsoft Entra ID Protection. Common decisions range from blocking access to granting it with additional requirements like multifactor authentication or a compliant device.</p>
+<pre><code class='language-powershell'># No direct command for conceptual understanding.
+# This step involves reviewing documentation to grasp core concepts.
+# Refer to: https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview
+</code></pre>
+<p><strong>Expected result:</strong> A clear understanding of how Conditional Access functions as an identity-driven Zero Trust policy engine, making decisions based on signals and enforcing access controls.</p>
+
+<h2>Step 2: Verify Prerequisites and Licensing</h2>
+<p>Before configuring policies, ensure your Microsoft Entra tenant has the necessary licensing and that your administrative account possesses the required roles. Conditional Access functionality is dependent on Microsoft Entra ID P1 or P2 licenses.</p>
+<pre><code class='language-powershell'># Connect to Microsoft Graph
+Connect-MgGraph -Scopes 'User.Read.All','Policy.Read.All','Policy.ReadWrite.ConditionalAccess'
+
+# Check your current user's assigned roles (requires specific permissions, or check via portal)
+Get-MgUserAppRoleAssignment -UserId (Get-MgContext).UserId | Select-Object -ExpandProperty DisplayName
+
+# To list Conditional Access policies (requires Conditional Access Administrator or Security Administrator role)
+Get-MgIdentityConditionalAccessPolicy | Select-Object DisplayName, State
+</code></pre>
+<p><code>Connect-MgGraph -Scopes 'User.Read.All','Policy.Read.All','Policy.ReadWrite.ConditionalAccess'</code>: Establishes a connection to Microsoft Graph with necessary permissions for reading user roles and managing Conditional Access policies.</p>
+<p><code>Get-MgUserAppRoleAssignment -UserId (Get-MgContext).UserId</code>: Retrieves the application role assignments (including Entra ID roles) for the currently connected user.</p>
+<p><code>Get-MgIdentityConditionalAccessPolicy</code>: Lists existing Conditional Access policies in your tenant, allowing you to verify permissions.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Sign in to the <a href='https://entra.microsoft.com/' target='_blank'>Microsoft Entra admin center</a>. Navigate to <strong>Entra ID > Overview > Manage tenants > Licenses</strong> to verify license status. For roles, go to <strong>Entra ID > Users > All users > Select a user > Assigned roles</strong>.</p>
+<p><strong>Expected result:</strong> Confirmation of active Microsoft Entra ID P1/P2 licenses and verification that your administrative account holds a role like Conditional Access Administrator, Security Administrator, or Global Administrator.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Attempting to configure Conditional Access policies without the correct license or administrative permissions will result in errors or blocked access to the configuration options. Always verify these prerequisites first.</div>
+
+<h2>Step 3: Establish Emergency Access Accounts</h2>
+<p>Emergency access, or 'break-glass,' accounts are critical to prevent administrative lockout in scenarios where Conditional Access policies are misconfigured, or identity services experience outages. These accounts should be highly secured, physical-access controlled, and explicitly excluded from *all* Conditional Access policies.</p>
+<pre><code class='language-powershell'># No direct CLI for creating 'break-glass' accounts in a specific way beyond standard user creation.
+# This step involves creating standard user accounts and assigning them high-privileged roles.
+# Ensure these accounts are cloud-only and not synchronized from on-premises directories.
+
+# Example: Assigning Global Administrator role to an existing user (replace 'breakglassuser@yourdomain.com' with actual UPN)
+$user = Get-MgUser -UserId 'breakglassuser@yourdomain.com'
+$roleId = (Get-MgDirectoryRole -Filter "DisplayName eq 'Global Administrator'").Id
+New-MgDirectoryRoleMemberByRef -DirectoryRoleId $roleId -Body @{ '@odata.id'="https://graph.microsoft.com/v1.0/users/$($user.Id)" }
+
+# Later, when creating policies, explicitly exclude these accounts.
+</code></pre>
+<p><code>Get-MgUser -UserId 'breakglassuser@yourdomain.com'</code>: Retrieves the user object for the emergency access account.</p>
+<p><code>Get-MgDirectoryRole -Filter "DisplayName eq 'Global Administrator'"</code>: Finds the object ID for the Global Administrator role.</p>
+<p><code>New-MgDirectoryRoleMemberByRef</code>: Assigns the Global Administrator role to the specified emergency user account.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Create a new user in <strong>Microsoft Entra admin center > Entra ID > Users > All users > New user > Create new user</strong>. Assign roles via <strong>Assigned roles > Add assignments</strong>. Ensure these accounts are cloud-only. Then, when configuring Conditional Access policies, under <strong>Assignments > Exclude > Users and groups</strong>, select these emergency access accounts.</p>
+<p><strong>Expected result:</strong> One or more dedicated emergency access accounts with high-privileged roles (e.g., Global Administrator) are configured, tested, and ready to be excluded from all Conditional Access policies.</p>
+
+<h2>Step 4: Define Named Locations</h2>
+<p>Named locations allow you to define trusted IP ranges or geographic regions that can be used as conditions in your Conditional Access policies. This is useful for scenarios such as not requiring MFA when users are within your corporate network (trusted location) or blocking access from known malicious countries.</p>
+<pre><code class='language-powershell'># Connect to Microsoft Graph if not already connected
+Connect-MgGraph -Scopes 'Policy.ReadWrite.ConditionalAccess'
+
+# Define a new IP named location (e.g., your corporate office)
+$ipRanges = @('203.0.113.0/24', '198.51.100.0/24') # Replace with your actual IP ranges
+$namedLocationName = 'SkyCore Trusted Corporate Network'
+
+New-MgIdentityConditionalAccessNamedLocation -DisplayName $namedLocationName -IpRanges @(
+    $ipRanges | ForEach-Object { @{ 'CidrAddress' = $_ } }
+) -OdataType '#microsoft.graph.ipNamedLocation'
+
+# Define a new Countries named location (e.g., for blocking specific countries)
+$countryLocationName = 'SkyCore Blocked Countries'
+$countryCodes = @('RU', 'CN', 'KP') # Example ISO 3166-1 alpha-2 codes
+
+New-MgIdentityConditionalAccessNamedLocation -DisplayName $countryLocationName -CountriesAndRegions @(
+    $countryCodes | ForEach-Object { @{ 'CountryOrRegion' = $_; 'Include' = $true } }
+) -OdataType '#microsoft.graph.countriesAndRegionsNamedLocation'
+</code></pre>
+<p><code>New-MgIdentityConditionalAccessNamedLocation</code>: Creates a new named location in Microsoft Entra ID.</p>
+<p><code>-DisplayName</code>: Specifies the user-friendly name for the named location.</p>
+<p><code>-IpRanges</code>: Used for IP-based locations, accepting an array of CIDR addresses.</p>
+<p><code>-CountriesAndRegions</code>: Used for country-based locations, accepting an array of ISO 3166-1 alpha-2 country codes.</p>
+<p><code>-OdataType</code>: Specifies the type of named location (IP or countries/regions).</p>
+<p class='gui-note'><strong>Portal alternative:</strong> In the <a href='https://entra.microsoft.com/' target='_blank'>Microsoft Entra admin center</a>, navigate to <strong>Entra ID > Conditional Access > Named locations</strong>. Select <strong>New location > IP ranges location</strong> or <strong>New location > Countries/Regions location</strong>. Enter the required details and save.</p>
+<p><strong>Expected result:</strong> Trusted IP ranges (e.g., corporate network) and potentially specific country/region lists are defined as named locations within Microsoft Entra ID, ready for use in Conditional Access policies.</p>
+
+<h2>Step 5: Create a Baseline MFA Policy for All Users</h2>
+<p>Implementing Multi-Factor Authentication (MFA) is one of the most effective security measures. <a href='https://www.cisa.gov/mfa' target='_blank'>CISA</a> and <a href='https://pages.nist.gov/800-63-3/sp800-63b.html' target='_blank'>NIST SP 800-63B</a> strongly recommend MFA for all users, particularly for administrative accounts. This foundational policy requires MFA for all users accessing all cloud apps, utilizing an authentication strength.</p>
+<pre><code class='language-powershell'># While direct PowerShell for creating a *full* Conditional Access policy definition
+# with all conditions and grant controls isn't explicitly provided as a single command in the reference docs,
+# you would typically use the Microsoft Graph PowerShell SDK to interact with the underlying Graph API.
+
+# Connect to Microsoft Graph with appropriate permissions
+Connect-MgGraph -Scopes 'Policy.ReadWrite.ConditionalAccess'
+
+# A conceptual example of creating a Conditional Access policy via PowerShell:
+# Note: Constructing the 'Conditions' and 'GrantControls' objects directly in PowerShell
+# for a complex policy is intricate and often involves building nested objects or JSON payloads.
+# For exact syntax, refer to the Microsoft Graph API documentation for Conditional Access policies.
+
+# Example of a simplified New-MgIdentityConditionalAccessPolicy command structure (not a full working example for the policy below):
+# New-MgIdentityConditionalAccessPolicy -DisplayName '01_Require_MFA_for_All_Users' `
+# -Conditions @{
+#     # Refer to Graph API documentation for full conditions structure
+# } `
+# -GrantControls @{
+#     # Refer to Graph API documentation for full grant controls structure
+# } `
+# -State 'enabledForReportingButBlocked' # or 'enabled' after testing
+
+# For initial setup, the Microsoft Entra admin center provides a guided, template-based approach.
+</code></pre>
+<p><code>New-MgIdentityConditionalAccessPolicy</code>: The cmdlet used to create a new Conditional Access policy via Microsoft Graph PowerShell. However, the complex JSON or nested object structure required for <code>-Conditions</code> and <code>-GrantControls</code> is best developed by consulting the Microsoft Graph API documentation directly, as the provided reference documentation for this guide focuses on GUI steps for policy content.</p>
+<p class='gui-note'><strong>Portal alternative (recommended for initial setup):</strong> Sign in to the <a href='https://entra.microsoft.com/' target='_blank'>Microsoft Entra admin center</a> as at least a Conditional Access Administrator.
+<ol>
+    <li>Navigate to <strong>Entra ID > Conditional Access > Policies</strong>.</li>
+    <li>Select <strong>New policy</strong>.</li>
+    <li>Give your policy a name, e.g., '01_Require_MFA_for_All_Users'.</li>
+    <li>Under <strong>Assignments > Users or workload identities</strong>:
+        <ul>
+            <li>Under <strong>Include</strong>, select <strong>All users</strong>.</li>
+            <li>Under <strong>Exclude</strong>: Select <strong>Users and groups</strong> and choose your organization's emergency access/break-glass accounts. Optionally, exclude directory synchronization accounts (e.g., Microsoft Entra Connect Sync Account) or guest users if you have separate policies for them.</li>
+        </ul>
+    </li>
+    <li>Under <strong>Target resources > Cloud apps or actions > Include</strong>, select <strong>All cloud apps</strong>.</li>
+    <li>Under <strong>Access controls > Grant</strong>:
+        <ul>
+            <li>Select <strong>Grant access</strong>.</li>
+            <li>Select <strong>Require authentication strength</strong>, then choose the built-in <strong>Multifactor authentication strength</strong> from the list.</li>
+            <li>Select <strong>Select</strong>.</li>
+        </ul>
+    </li>
+    <li>Confirm your settings and set <strong>Enable policy</strong> to <strong>Report-only</strong>.</li>
+    <li>Select <strong>Create</strong>.</li>
+</ol></p>
+<p><strong>Expected result:</strong> A new Conditional Access policy is created, named '01_Require_MFA_for_All_Users', configured to require multifactor authentication for all included users accessing all cloud applications. The policy is initially set to "Report-only" mode for testing.</p>
+
+<h2>Step 6: Implement MFA for Administrative Roles</h2>
+<p>Securing administrative accounts is paramount. This policy specifically targets users assigned to privileged Microsoft Entra roles, mandating MFA for their access to any cloud application. This aligns with Microsoft's recommendation for securing security information registration and admin portals.</p>
+<pre><code class='language-powershell'># Similar to Step 5, for creating the policy via CLI, you would use New-MgIdentityConditionalAccessPolicy.
+# The primary difference would be in the 'Users' condition, targeting specific directory roles.
+
+# Example of targeting specific roles in the policy conditions (conceptual):
+# -Conditions @{
+#     Users = @{
+#         IncludeRoles = @(
+#             (Get-MgDirectoryRole -Filter "DisplayName eq 'Global Administrator'").Id,
+#             (Get-MgDirectoryRole -Filter "DisplayName eq 'Conditional Access Administrator'").Id,
+#             # Add other sensitive roles here
+#         )
+#         ExcludeUsers = @('emergencyaccount@yourdomain.com')
+#     }
+#     # Other conditions remain similar to the 'All Users' policy
+# }
+</code></pre>
+<p class='gui-note'><strong>Portal alternative (recommended):</strong>
+<ol>
+    <li>In the <a href='https://entra.microsoft.com/' target='_blank'>Microsoft Entra admin center</a>, navigate to <strong>Entra ID > Conditional Access > Policies</strong>.</li>
+    <li>Select <strong>New policy</strong>.</li>
+    <li>Name it, e.g., '02_MFA_for_Admin_Roles'.</li>
+    <li>Under <strong>Assignments > Users or workload identities</strong>:
+        <ul>
+            <li>Under <strong>Include > Directory roles</strong>, select specific administrative roles like <strong>Global Administrator</strong>, <strong>Conditional Access Administrator</strong>, <strong>Security Administrator</strong>, <strong>Exchange Administrator</strong>, etc.</li>
+            <li>Under <strong>Exclude</strong>: Select your emergency access/break-glass accounts.</li>
+        </ul>
+    </li>
+    <li>Under <strong>Target resources > Cloud apps or actions > Include</strong>, select <strong>All cloud apps</strong>.</li>
+    <li>Under <strong>Access controls > Grant</strong>:
+        <ul>
+            <li>Select <strong>Grant access</strong>.</li>
+            <li>Select <strong>Require multifactor authentication</strong>.</li>
+            <li>Select <strong>Select</strong>.</li>
+        </ul>
+    </li>
+    <li>Set <strong>Enable policy</strong> to <strong>Report-only</strong> and <strong>Create</strong>.</li>
+</ol></p>
+<p><strong>Expected result:</strong> A policy named '02_MFA_for_Admin_Roles' is in "Report-only" mode, requiring MFA for users in specified administrative roles when accessing any cloud application.</p>
+
+<h2>Step 7: Block Legacy Authentication Protocols</h2>
+<p>Legacy authentication protocols (e.g., POP3, IMAP, SMTP, older versions of MAPI) do not support modern security features like MFA and are highly susceptible to credential stuffing and brute-force attacks. Blocking these protocols significantly reduces your attack surface.</p>
+<pre><code class='language-powershell'># As with previous policy creation steps, this involves New-MgIdentityConditionalAccessPolicy.
+# The key condition here is 'Client apps', specifically targeting 'Other clients'.
+
+# Conceptual structure for 'Client apps' condition:
+# -Conditions @{
+#     ClientAppTypes = @('other') # 'other' specifically targets legacy auth clients
+# }
+# -GrantControls @{
+#     BlockAccess = $true
+# }
+</code></pre>
+<p class='gui-note'><strong>Portal alternative (recommended):</strong>
+<ol>
+    <li>In the <a href='https://entra.microsoft.com/' target='_blank'>Microsoft Entra admin center</a>, navigate to <strong>Entra ID > Conditional Access > Policies</strong>.</li>
+    <li>Select <strong>New policy</strong>.</li>
+    <li>Name it, e.g., '03_Block_Legacy_Authentication'.</li>
+    <li>Under <strong>Assignments > Users or workload identities</strong>:
+        <ul>
+            <li>Under <strong>Include</strong>, select <strong>All users</strong>.</li>
+            <li>Under <strong>Exclude</strong>: Select your emergency access/break-glass accounts.</li>
+        </ul>
+    </li>
+    <li>Under <strong>Target resources > Cloud apps or actions > Include</strong>, select <strong>All cloud apps</strong>.</li>
+    <li>Under <strong>Conditions > Client apps</strong>:
+        <ul>
+            <li>Set <strong>Configure</strong> to <strong>Yes</strong>.</li>
+            <li>Select <strong>Other clients</strong>. (This targets clients using legacy authentication protocols).</li>
+        </ul>
+    </li>
+    <li>Under <strong>Access controls > Grant</strong>:
+        <ul>
+            <li>Select <strong>Block access</strong>.</li>
+            <li>Select <strong>Select</strong>.</li>
+        </ul>
+    </li>
+    <li>Set <strong>Enable policy</strong> to <strong>Report-only</strong> and <strong>Create</strong>.</li>
+</ol></p>
+<p><strong>Expected result:</strong> A policy named '03_Block_Legacy_Authentication' is in "Report-only" mode, preventing all users from authenticating using legacy protocols across all cloud applications.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Blocking legacy authentication can break older applications or devices that rely on these protocols (e.g., some older mail clients, printers, or legacy applications that don't support modern authentication). Use Report-only mode extensively to identify affected users and applications before enforcing this policy.</div>
+
+<h2>Step 8: Require MFA for Azure Management Access</h2>
+<p>Protecting access to the Azure management portal is critical to safeguard your cloud infrastructure. This policy mandates MFA for any attempt to access Azure management interfaces (e.g., Azure portal, Azure PowerShell, Azure CLI).</p>
+<pre><code class='language-powershell'># For CLI, the key difference from the 'All Users' MFA policy is the 'Cloud apps' condition,
+# targeting 'Microsoft Azure Management'.
+
+# Conceptual structure for 'Cloud apps' condition:
+# -Conditions @{
+#     Applications = @{
+#         IncludeApplications = @('797f4846-ba00-4fd7-ba43-dac1f8f63013') # App ID for 'Microsoft Azure Management'
+#     }
+# }
+# -GrantControls @{
+#     RequireMfa = $true
+# }
+</code></pre>
+<p class='gui-note'><strong>Portal alternative (recommended):</strong>
+<ol>
+    <li>In the <a href='https://entra.microsoft.com/' target='_blank'>Microsoft Entra admin center</a>, navigate to <strong>Entra ID > Conditional Access > Policies</strong>.</li>
+    <li>Select <strong>New policy</strong>.</li>
+    <li>Name it, e.g., '04_MFA_for_Azure_Management'.</li>
+    <li>Under <strong>Assignments > Users or workload identities</strong>:
+        <ul>
+            <li>Under <strong>Include</strong>, select <strong>All users</strong>.</li>
+            <li>Under <strong>Exclude</strong>: Select your emergency access/break-glass accounts.</li>
+        </ul>
+    </li>
+    <li>Under <strong>Target resources > Cloud apps or actions > Include</strong>:
+        <ul>
+            <li>Select <strong>Select apps</strong>.</li>
+            <li>Search for and select <strong>Microsoft Azure Management</strong>.</li>
+        </ul>
+    </li>
+    <li>Under <strong>Access controls > Grant</strong>:
+        <ul>
+            <li>Select <strong>Grant access</strong>.</li>
+            <li>Select <strong>Require multifactor authentication</strong>.</li>
+            <li>Select <strong>Select</strong>.</li>
+        </ul>
+    </li>
+    <li>Set <strong>Enable policy</strong> to <strong>Report-only</strong> and <strong>Create</strong>.</li>
+</ol></p>
+<p><strong>Expected result:</strong> A policy named '04_MFA_for_Azure_Management' is in "Report-only" mode, requiring MFA for all users attempting to access the Azure management portal or related services.</p>
+
+<h2>Step 9: Enforce Device Compliance or Hybrid Join</h2>
+<p>Requiring devices to be managed and compliant ensures that access to sensitive applications only occurs from devices that meet your organization's security standards (e.g., up-to-date OS, antivirus installed, disk encryption). This typically integrates with Microsoft Intune for device compliance or requires devices to be Microsoft Entra hybrid joined.</p>
+<pre><code class='language-powershell'># For CLI, the policy would use New-MgIdentityConditionalAccessPolicy, with the 'Devices' condition.
+# The 'Grant controls' would include 'RequireCompliantDevice' or 'RequireDomainJoinedDevice'.
+
+# Conceptual structure for 'Device state' and 'Grant controls':
+# -Conditions @{
+#     Applications = @{
+#         IncludeApplications = @('Specific_Sensitive_App_ID') # Or 'All cloud apps'
+#     }
+#     Devices = @{
+#         # No specific properties here, it's about the grant control below
+#     }
+# }
+# -GrantControls @{
+#     Operator = 'OR' # Important: Allow either compliant OR hybrid joined
+#     GrantAccess = $true
+#     RequireCompliantDevice = $true
+#     RequireDomainJoinedDevice = $true
+# }
+</code></pre>
+<p class='gui-note'><strong>Portal alternative (recommended):</strong>
+<ol>
+    <li>In the <a href='https://entra.microsoft.com/' target='_blank'>Microsoft Entra admin center</a>, navigate to <strong>Entra ID > Conditional Access > Policies</strong>.</li>
+    <li>Select <strong>New policy</strong>.</li>
+    <li>Name it, e.g., '05_Require_Compliant_or_HybridJoined_Device'.</li>
+    <li>Under <strong>Assignments > Users or workload identities</strong>:
+        <ul>
+            <li>Under <strong>Include</strong>, select <strong>All users</strong> (or specific groups for sensitive apps).</li>
+            <li>Under <strong>Exclude</strong>: Select your emergency access/break-glass accounts.</li>
+        </ul>
+    </li>
+    <li>Under <strong>Target resources > Cloud apps or actions > Include</strong>, select <strong>All cloud apps</strong> (or specific sensitive applications like SharePoint, Salesforce, etc.).</li>
+    <li>Under <strong>Access controls > Grant</strong>:
+        <ul>
+            <li>Select <strong>Grant access</strong>.</li>
+            <li>Select <strong>Require device to be marked as compliant</strong> AND/OR <strong>Require Microsoft Entra hybrid joined device</strong>. We recommend using <strong>Require device to be marked as compliant</strong> for cloud-native organizations or those using Intune, and adding <strong>Require Microsoft Entra hybrid joined device</strong> if you have a significant on-premises AD presence. Configure the 'For multiple controls' option to <strong>Require one of the selected controls</strong> (logical OR).</li>
+            <li>Select <strong>Select</strong>.</li>
+        </ul>
+    </li>
+    <li>Set <strong>Enable policy</strong> to <strong>Report-only</strong> and <strong>Create</strong>.</li>
+</ol></p>
+<p><strong>Expected result:</strong> A policy named '05_Require_Compliant_or_HybridJoined_Device' is in "Report-only" mode, mandating that users access specified cloud apps from either a compliant device (managed by Intune) or a Microsoft Entra hybrid joined device.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Rolling out device compliance policies without ensuring all users' devices can *actually* become compliant or hybrid joined will lead to widespread access issues. Thorough testing in Report-only mode and communication with users is essential. Ensure your Intune compliance policies are correctly configured and devices are registering their state.</div>
+
+<h2>Step 10: Test Policies with Report-Only Mode</h2>
+<p>Before enforcing any Conditional Access policy, always deploy it in "Report-only" mode. This allows you to evaluate the potential impact of a policy on users and applications without actually enforcing it, minimizing disruption to your organization.</p>
+<pre><code class='language-powershell'># To set an existing policy to Report-only mode (if not already set during creation):
+Connect-MgGraph -Scopes 'Policy.ReadWrite.ConditionalAccess'
+
+# Replace 'Policy ID' with the actual ID of your policy
+# Get-MgIdentityConditionalAccessPolicy | Select-Object DisplayName, Id # Use this to find policy IDs
+$policyId = 'YOUR_POLICY_ID'
+
+Update-MgIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $policyId -State 'enabledForReportingButBlocked'
+
+# To use the 'What If' tool (no direct CLI equivalent; it's a portal feature)
+# The 'What If' tool helps predict policy impact for specific users/conditions.
+</code></pre>
+<p><code>Update-MgIdentityConditionalAccessPolicy</code>: Modifies an existing Conditional Access policy.</p>
+<p><code>-ConditionalAccessPolicyId</code>: Specifies the ID of the policy to update.</p>
+<p><code>-State 'enabledForReportingButBlocked'</code>: Sets the policy to report-only mode.</p>
+<p class='gui-note'><strong>Portal alternative (recommended for testing):</strong>
+<ol>
+    <li>For policies created in Report-only mode, navigate to <strong>Entra ID > Conditional Access > Policies</strong>. Select the policy and review its status.</li>
+    <li>To use the 'What If' tool: On the Conditional Access <strong>Policies</strong> page, select <strong>What If</strong>.</li>
+    <li>Configure the test parameters (User, Cloud apps, IP address, Device state, etc.) to simulate a sign-in scenario.</li>
+    <li>Select <strong>What If</strong> to view the results, which indicate which policies would apply and if access would be granted or blocked.</li>
+    <li>Review the <strong>Sign-in logs</strong> (<strong>Entra ID > Monitoring & health > Sign-in logs</strong>) and filter by <strong>Conditional Access > Report-only</strong> status to see the impact of your policies over time.</li>
+    <li>Once thoroughly tested and confident in the policy's impact, edit the policy and change <strong>Enable policy</strong> from <strong>Report-only</strong> to <strong>On</strong>.</li>
+</ol></p>
+<p><strong>Expected result:</strong> Policies are deployed in Report-only mode. You have used the "What If" tool and reviewed sign-in logs to confirm the expected behavior and impact of your new policies without affecting user access.</p>
+
+<h2>Step 11: Monitor and Refine Policies</h2>
+<p>Conditional Access policies are not a "set it and forget it" solution. Continuous monitoring of sign-in logs and security reports is essential to identify potential issues, unexpected blocks, or evolving threats. Regularly review and refine your policies based on user feedback, organizational changes, and emerging security best practices.</p>
+<pre><code class='language-powershell'># To review sign-in logs for Conditional Access details
+Connect-MgGraph -Scopes 'AuditLog.Read.All','Policy.Read.All'
+
+Get-MgAuditLogSignIn -Filter "createdDateTime ge $( (Get-Date).AddDays(-7).ToString('yyyy-MM-ddTHH:mm:ssZ') )" |
+Select-Object UserPrincipalName, AppDisplayName, IpAddress, `
+@{Name='ConditionalAccessPolicyResult'; Expression={$_.ConditionalAccessStatus.DisplayName}} |
+Format-Table -AutoSize
+
+# This command retrieves sign-in logs from the last 7 days and displays relevant Conditional Access information.
+</code></pre>
+<p><code>Get-MgAuditLogSignIn</code>: Retrieves sign-in events from the audit logs.</p>
+<p><code>-Filter "createdDateTime ge ..."</code>: Filters logs to a specific date range (last 7 days in this example).</p>
+<p><code>Select-Object ...</code>: Selects and formats specific properties including the Conditional Access policy result.</p>
+<p class='gui-note'><strong>Portal alternative (recommended):</strong> In the <a href='https://entra.microsoft.com/' target='_blank'>Microsoft Entra admin center</a>, navigate to <strong>Entra ID > Monitoring & health > Sign-in logs</strong>. Utilize filters for <strong>Conditional Access</strong> status (e.g., 'Success', 'Failure', 'Not applied', 'Report-only') to drill down into policy evaluations. Pay close attention to users who frequently encounter blocks or warnings that indicate a policy misconfiguration or a new threat. The <strong>Conditional Access Overview</strong> page also provides a summary of recent activity and policy coverage.</p>
+<p><strong>Expected result:</strong> An ongoing process for monitoring Conditional Access policy impact is established. Policies are periodically reviewed and updated to adapt to changes in your environment and threat landscape.</p>
+
+<div class='howto-consultant-cta'><h3>When to bring in a consultant</h3><p>While this guide provides a solid foundation for setting up Azure Conditional Access, the nuances of integrating with complex infrastructure, managing hybrid identities, fine-tuning policies for diverse user groups, or responding to advanced threats can be challenging. Misconfigurations can inadvertently lock out legitimate users or leave critical resources exposed. If your organization has complex compliance requirements, extensive third-party application integrations, or requires highly customized access controls, engaging a specialized IT consultant like SkyCore Solutions can ensure policies are optimized, secure, and seamlessly integrated without disrupting business operations. We bring expertise in cloud migration, security hardening, and infrastructure revamp to help you deploy Conditional Access effectively and confidently.</p><a href='../contact.html' class='btn btn-primary'>Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/entra/identity</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/howto-conditional-access-policy-all-users-mfa" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/entra/identity</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-policy-common" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/entra/identity</a></li>
+    <li><a href="https://www.cisa.gov/mfa" target="_blank" rel="noopener noreferrer">cisa.gov — mfa</a></li>
+    <li><a href="https://pages.nist.gov/800-63-3/sp800-63b.html" target="_blank" rel="noopener noreferrer">pages.nist.gov — 800-63-3/sp800-63b.html</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

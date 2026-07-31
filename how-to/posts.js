@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-conditional-access-setup-guide",
+    title: "Mastering Azure Conditional Access: A SkyCore Setup Guide for Enhanced Security",
+    date: "2026-07-31",
+    readTime: "18 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Azure conditional access setup guide",
+    excerpt: "Implement a robust Azure Conditional Access setup to enforce Zero Trust principles and strengthen your organization's security posture. This guide provides SkyCore's recommended policies for MFA and device compliance.",
+    image: "https://images.pexels.com/photos/1990764/pexels-photo-1990764.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-365-business-premium-setup-guide",
     title: "Microsoft 365 Business Premium Setup Guide for SMBs: A SkyCore Solutions Implementation",
     date: "2026-07-29",
