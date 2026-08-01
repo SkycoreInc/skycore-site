@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-migrate-on-premise-cloud-guide",
+    title: "On-Premise to Azure Migration Guide: SkyCore's Recommended Path",
+    date: "2026-08-01",
+    readTime: "15 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "Weeks to Months (for full migration project)",
+    keyword: "on premise to Azure migration guide",
+    excerpt: "This guide provides SkyCore Solutions' recommended, CLI-first approach for migrating on-premise workloads to Azure, leveraging the Azure Migrate service. We cover everything from initial discovery and assessment to replication and final cutover.",
+    image: "https://images.pexels.com/photos/17489153/pexels-photo-17489153.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-conditional-access-setup-guide",
     title: "Mastering Azure Conditional Access: A SkyCore Setup Guide for Enhanced Security",
     date: "2026-07-31",
