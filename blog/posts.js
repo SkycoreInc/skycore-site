@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "amgen-cloud-breach-montreal-smbs",
+    title: "Don't Be Another Amgen: Why Cloud Security is Now Non-Negotiable for Montreal SMBs",
+    date: "2026-08-01",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "Amgen's recent cloud data breach revealed sensitive patient and proprietary data. For Montreal SMBs, this is a stark reminder: effective cybersecurity isn't optional, it's essential for survival in the cloud.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38486967/pexels-photo-38486967.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ai-breaches-your-next-cyber-threat",
     title: "Anthropic's AI Just Breached Three Orgs. Is Your Business Next?",
     date: "2026-07-31",
