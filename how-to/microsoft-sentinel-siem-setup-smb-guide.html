@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mastering Microsoft Sentinel SIEM Setup for SMBs: An Implementation Guide by SkyCore Solutions — SkyCore Solutions</title>
+  <meta name="description" content="Elevate your SMB's cybersecurity with this authoritative guide on Microsoft Sentinel SIEM setup. Learn to deploy, configure data connectors, and detect threats efficiently." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Mastering Microsoft Sentinel SIEM Setup for SMBs: An Implementation Guide by SkyCore Solutions — SkyCore Solutions" />
+  <meta property="og:description" content="Elevate your SMB's cybersecurity with this authoritative guide on Microsoft Sentinel SIEM setup. Learn to deploy, configure data connectors, and detect threats efficiently." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/microsoft-sentinel-siem-setup-smb-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/5380618/pexels-photo-5380618.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mastering Microsoft Sentinel SIEM Setup for SMBs: An Implementation Guide by SkyCore Solutions — SkyCore Solutions" />
+  <meta name="twitter:description" content="Elevate your SMB's cybersecurity with this authoritative guide on Microsoft Sentinel SIEM setup. Learn to deploy, configure data connectors, and detect threats efficiently." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/5380618/pexels-photo-5380618.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/microsoft-sentinel-siem-setup-smb-guide.html" />
+  <meta property="article:published_time" content="2026-08-01" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Mastering Microsoft Sentinel SIEM Setup for SMBs: An Implementation Guide by SkyCore Solutions",
+  "description": "Elevate your SMB's cybersecurity with this authoritative guide on Microsoft Sentinel SIEM setup. Learn to deploy, configure data connectors, and detect threats efficiently.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Azure subscription (free account sufficient for initial setup, but costs apply for data ingestion)., Azure CLI installed and configured (version 2.50.0 or later recommended)., PowerShell with the Az module installed (version 9.0.0 or later recommended)., Azure Account with 'Contributor' permissions at the subscription level and 'Microsoft Sentinel Contributor' on the target resource group., Understanding of basic Azure concepts (resource groups, regions)., Estimated initial cost: Free for the first 10 GB/day for 31 days. Post-free tier, expect costs starting from ~$125 CAD/month for typical SMB data volumes (approx. 5-10 GB/day for Log Analytics + Sentinel per-GB charges). Costs scale with ingested data."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Your Azure Environment and Log Analytics Workspace",
+        "text": "This step establishes the foundational Azure resources required, including a dedicated resource group and a Log Analytics workspace where all security data will be centralized."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Onboard Microsoft Sentinel to Your Workspace",
+        "text": "This crucial step officially enables Microsoft Sentinel within your chosen Log Analytics workspace, activating its SIEM capabilities."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Connect Essential Data Sources for Comprehensive SMB Security",
+        "text": "Ingest critical security logs from your Microsoft ecosystem into Sentinel, starting with Microsoft Entra ID and Azure Activity logs to gain immediate visibility."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Enable Built-in Threat Detection and Analytics Rules",
+        "text": "Activate out-of-the-box analytical rules provided by Microsoft Sentinel to automatically detect suspicious activities and generate security incidents."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Basic Incident Investigation and Automated Response",
+        "text": "Set up an initial automation rule to streamline incident management, reducing manual effort and speeding up your response to common threats."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-08-01 · 9 min read · Infrastructure Revamp</div>
+<h1>Mastering Microsoft Sentinel SIEM Setup for SMBs: An Implementation Guide by SkyCore Solutions</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/5380618/pexels-photo-5380618.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="A vibrant Microsoft Sentinel dashboard displaying security events, threat intelligence, and incident management views, symbolizing robust SIEM setup for an SMB." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In today&apos;s evolving threat landscape, Small to Medium-sized Businesses (SMBs) are increasingly targeted, often lacking the dedicated security teams of larger enterprises. Implementing a robust Security Information and Event Management (SIEM) solution is no longer a luxury but a necessity to protect digital assets. Microsoft Sentinel offers a cloud-native, AI-driven SIEM platform that scales cost-effectively, making it an ideal choice for SMBs looking to enhance their security posture without significant upfront infrastructure investment. This guide from SkyCore Solutions will walk you through a comprehensive, authoritative Microsoft Sentinel SIEM setup for SMBs, enabling you to detect, investigate, and respond to threats efficiently. By the end of this guide, you will have a foundational Microsoft Sentinel environment configured, ingesting critical security logs, and actively detecting threats within your Azure and Microsoft 365 ecosystems.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>An active Azure subscription (a <a href="https://azure.microsoft.com/free/">free Azure account</a> is sufficient for initial setup, but costs will apply for data ingestion beyond the free tier).</li><li>Azure CLI installed and configured on your workstation (version 2.50.0 or later recommended).</li><li>PowerShell with the Az module installed (version 9.0.0 or later recommended).</li><li>An Azure Account with &apos;Contributor&apos; permissions at the subscription level and &apos;Microsoft Sentinel Contributor&apos; on the target resource group. These roles are essential for deploying and managing Sentinel resources.</li><li>A basic understanding of Azure concepts such as resource groups, subscriptions, and regions.</li><li><strong>Estimated initial cost:</strong> Microsoft Sentinel offers a generous free tier of 10 GB/day for the first 31 days for new workspaces. After this, costs are primarily based on data ingested into the Log Analytics workspace and Sentinel&apos;s per-GB charges. For a typical SMB generating 5-10 GB of security logs daily, expect costs starting from approximately $125 - $250 CAD per month, varying based on data volume, retention policies, and pricing tier chosen. SkyCore Solutions recommends starting with a Pay-as-you-go Log Analytics tier for flexibility, and adjusting to a commitment tier once data ingestion patterns stabilize.</li></ul></div>
+
+<h2>Step 1: Prepare Your Azure Environment and Log Analytics Workspace</h2>
+<p>Before deploying Microsoft Sentinel, you need a dedicated Azure Resource Group to logically organize your resources and a Log Analytics workspace. This workspace acts as the central data store for all logs that Microsoft Sentinel will analyze. For SMBs, we recommend a single, well-managed workspace.</p>
+<pre><code class="language-azurecli"># Define variables for your deployment
+$RESOURCE_GROUP_NAME="SkyCore-Sentinel-RG"
+$LOCATION="eastus"
+$WORKSPACE_NAME="SkyCore-Sentinel-Workspace"
+
+# 1. Create a Resource Group
+az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
+
+# 2. Create a Log Analytics Workspace
+az monitor log-analytics workspace create \
+    --resource-group $RESOURCE_GROUP_NAME \
+    --workspace-name $WORKSPACE_NAME \
+    --location $LOCATION \
+    --sku PerGB2018 \
+    --retention-time 90
+</code></pre>
+<ul>
+    <li><code>$RESOURCE_GROUP_NAME</code>: A descriptive name for your resource group. For consistency, SkyCore Solutions recommends a &quot;SkyCore-&lt;Service&gt;-RG&quot; naming convention.</li>
+    <li><code>$LOCATION</code>: The Azure region where your resources will be deployed. Choose a region geographically close to your operations for optimal performance and compliance. We recommend <code>eastus</code> or <code>canadacentral</code> for Montreal-based businesses.</li>
+    <li><code>$WORKSPACE_NAME</code>: A unique name for your Log Analytics workspace.</li>
+    <li><code>--sku PerGB2018</code>: This is the recommended pricing tier for SMBs, offering pay-as-you-go flexibility. Other tiers like &quot;Capacity Reservation&quot; can offer discounts for predictable, higher data volumes but require commitment.</li>
+    <li><code>--retention-time 90</code>: Sets the data retention to 90 days. Microsoft Sentinel requires a minimum of 90 days retention for full functionality, and this period is often sufficient for SMB compliance and basic threat hunting. You can extend this later if needed.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong>
+    <ol>
+        <li>Sign in to the <a href="https://portal.azure.com">Azure portal</a>.</li>
+        <li>Search for &quot;Resource groups&quot; and click &quot;Create&quot;. Provide the resource group name (e.g., <code>SkyCore-Sentinel-RG</code>) and region (e.g., <code>East US</code>).</li>
+        <li>Search for &quot;Log Analytics workspaces&quot; and click &quot;Create&quot;. Select the newly created resource group, provide a workspace name (e.g., <code>SkyCore-Sentinel-Workspace</code>), and choose the same region. Under &quot;Pricing tier&quot;, select &quot;Per GB (2018)&quot;. Navigate to &quot;Retention&quot; and set it to &quot;90 days&quot; (or more if compliance requires).</li>
+    </ol>
+</p>
+<p>Run this to verify:</p>
+<pre><code class="language-azurecli">az monitor log-analytics workspace show --resource-group $RESOURCE_GROUP_NAME --workspace-name $WORKSPACE_NAME --query "{name:name,sku:sku.name,retentionDays:retentionInDays}"
+</code></pre>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> While the <code>PerGB2018</code> SKU is flexible, continuously monitor your data ingestion volume. If your daily ingestion consistently exceeds 5-10 GB, consider evaluating a Capacity Reservation tier to potentially reduce costs in the long run. Use Azure Cost Management to track your Log Analytics costs closely.</div>
+
+<h2>Step 2: Onboard Microsoft Sentinel to Your Workspace</h2>
+<p>With your Log Analytics workspace ready, the next step is to enable Microsoft Sentinel on it. This action activates Sentinel&apos;s powerful SIEM and SOAR (Security Orchestration, Automation, and Response) capabilities, allowing you to centralize security event collection and analysis.</p>
+<pre><code class="language-azurecli"># Onboard Microsoft Sentinel to the Log Analytics Workspace
+az sentinel create \
+    --resource-group $RESOURCE_GROUP_NAME \
+    --workspace-name $WORKSPACE_NAME
+</code></pre>
+<ul>
+    <li><code>--resource-group $RESOURCE_GROUP_NAME</code>: Specifies the resource group where your Log Analytics workspace resides.</li>
+    <li><code>--workspace-name $WORKSPACE_NAME</code>: The name of the Log Analytics workspace to which Microsoft Sentinel will be added.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong>
+    <ol>
+        <li>Sign in to the <a href="https://portal.azure.com">Azure portal</a>.</li>
+        <li>Search for &quot;Microsoft Sentinel&quot; and select it.</li>
+        <li>Click &quot;Create&quot;.</li>
+        <li>You will see a list of Log Analytics workspaces. Select the <code>SkyCore-Sentinel-Workspace</code> you created in Step 1 and click &quot;Add&quot;.</li>
+        <li>Allow a few minutes for the onboarding process to complete.</li>
+    </ol>
+</p>
+<p>Run this to verify:</p>
+<pre><code class="language-azurecli">az sentinel workspace list-incidents --resource-group $RESOURCE_GROUP_NAME --workspace-name $WORKSPACE_NAME --query "length(@)"
+</code></pre>
+<p>This command attempts to list incidents. If it executes successfully (even if it returns 0, meaning no incidents yet), it confirms Sentinel is active on the workspace.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Once deployed, moving a Microsoft Sentinel-enabled Log Analytics workspace to another resource group or subscription is NOT supported. Plan your resource group and subscription strategy carefully from the start, especially if you anticipate future organizational changes or tenant migrations.</div>
+
+<h2>Step 3: Connect Essential Data Sources for Comprehensive SMB Security</h2>
+<p>To detect threats effectively, Microsoft Sentinel needs data. For SMBs, integrating foundational Microsoft services is paramount. We&apos;ll focus on connecting Microsoft Entra ID (Azure Active Directory) for identity logs and Azure Activity for control plane operations, as these provide immediate and critical visibility into your cloud environment. The most efficient way to onboard these for SMBs is often by installing the relevant &quot;solutions&quot; from the Content Hub or directly via the Data Connectors blade.</p>
+
+<pre><code class="language-powershell"># Define variables
+$ResourceGroupName = &quot;SkyCore-Sentinel-RG&quot;
+$WorkspaceName = &quot;SkyCore-Sentinel-Workspace&quot;
+
+Write-Host &quot;For Azure AD, Azure Activity Logs, and Microsoft 365 Defender, SkyCore Solutions recommends using the Azure portal&apos;s Sentinel Data Connectors or Content Hub for initial setup to ensure all dependencies and configurations are correctly applied for SMBs. There is no direct, universal CLI/PowerShell command to enable all aspects of these high-level service-to-service connectors automatically due to their integrated nature.&quot;
+Write-Host &quot;You would typically configure diagnostic settings for specific Azure AD log categories (e.g., SigninLogs, AuditLogs) and for Azure Activity logs to stream to your Log Analytics workspace.&quot;
+
+# Example of what *would* be done conceptually for diagnostic settings for Azure AD:
+# (This is illustrative; actual implementation for Azure AD tenant requires specific Graph API or Azure Portal steps)
+# az monitor diagnostic-settings create \
+#     --name &quot;AzureAD-to-Sentinel&quot; \
+#     --resource &quot;/providers/Microsoft.AzureActiveDirectory/diagnosticsSettings/&lt;tenant_id&gt;&quot; \
+#     --workspace $WORKSPACE_ID \
+#     --logs &apos;[{&quot;category&quot;: &quot;AuditLogs&quot;, &quot;enabled&quot;: true}, {&quot;category&quot;: &quot;SigninLogs&quot;, &quot;enabled&quot;: true}]&apos;
+
+# For Microsoft 365 Defender, it&apos;s a one-click integration in the portal.
+Write-Host &quot;Ensure relevant &apos;Solutions&apos; are installed from the Content Hub (e.g., Azure Active Directory, Azure Activity) to get pre-built analytics and workbooks.&quot;
+</code></pre>
+<ul>
+    <li>For <strong>Microsoft Entra ID</strong> and <strong>Azure Activity Logs</strong>: While specific diagnostic settings can be configured via CLI/PowerShell for many Azure resources, the most straightforward and complete way for SMBs to enable the primary first-party connectors (including the required solutions and pre-built content) is through the Azure portal&apos;s Microsoft Sentinel &quot;Data connectors&quot; blade. These are service-to-service integrations that handle the backend configuration to stream logs like <code>SigninLogs</code>, <code>AuditLogs</code>, and <code>AzureActivity</code> to your workspace.</li>
+    <li>For <strong>Microsoft 365 Defender</strong> (if you have Microsoft 365 Business Premium or higher): This connector provides a consolidated stream of security data from Defender for Endpoint, Defender for Office 365, Defender for Identity, and Defender for Cloud Apps. It&apos;s a crucial connector for SMBs using the Microsoft 365 ecosystem. This is typically configured via a single &quot;Connect&quot; button in the Microsoft 365 Defender portal or the Sentinel Data Connectors blade.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative (Recommended for Data Connectors):</strong>
+    <ol>
+        <li>In the <a href="https://portal.azure.com">Azure portal</a>, navigate to your Microsoft Sentinel workspace.</li>
+        <li>From the Sentinel navigation menu, select &quot;Content hub&quot;. Search for &quot;Azure Active Directory&quot; and &quot;Azure Activity&quot; solutions. Click on each and select &quot;Install&quot; if not already installed. This typically includes the data connectors and pre-built content.</li>
+        <li>Alternatively, select &quot;Data connectors&quot; from the Sentinel navigation menu.</li>
+        <li>Search for &quot;Azure Active Directory&quot; and click on it. Select &quot;Open connector page&quot;. Follow the instructions under &quot;Configuration&quot; to configure diagnostic settings to stream logs (e.g., <code>AuditLogs</code>, <code>SigninLogs</code>, <code>NonInteractiveUserSignInLogs</code>, <code>ServicePrincipalSignInLogs</code>) to your Log Analytics workspace.</li>
+        <li>Repeat for &quot;Azure Activity&quot;. For Azure Activity, ensure your subscription&apos;s activity logs are sent to the Log Analytics workspace.</li>
+        <li>If you have Microsoft 365 Business Premium or higher, search for &quot;Microsoft 365 Defender&quot;. Select &quot;Open connector page&quot; and click &quot;Connect&quot;. This connector brings in logs from various M365 services (e.g., M365 Audit Logs, Azure AD, Defender for Endpoint).</li>
+    </ol>
+</p>
+<p>Run this to verify:</p>
+<pre><code class="language-azurecli"># Check if data is flowing for AzureActivity (wait a few minutes after connecting)
+az monitor log-analytics query --workspace $WORKSPACE_NAME --analytics-query "AzureActivity | take 10"
+
+# Check for Microsoft Entra ID Sign-in logs
+az monitor log-analytics query --workspace $WORKSPACE_NAME --analytics-query "SigninLogs | take 10"
+
+# Check for Microsoft 365 Defender (if connected and data has started flowing)
+az monitor log-analytics query --workspace $WORKSPACE_NAME --analytics-query "AlertEvidence | take 10"
+</code></pre>
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Start with essential Microsoft data sources. Once those are stable, consider adding other critical data sources like firewalls (via Syslog/CEF), Microsoft Defender for Endpoint (if not using M365D connector), or cloud infrastructure logs (AWS/GCP if applicable). Focus on data that provides high security value first to manage costs.</div>
+
+<h2>Step 4: Enable Built-in Threat Detection and Analytics Rules</h2>
+<p>With data flowing into Sentinel, the next step is to activate its intelligence to detect threats. Microsoft Sentinel provides numerous out-of-the-box analytics rules, which significantly reduce noise and group related alerts into actionable incidents. For SMBs, starting with these built-in rules is the most efficient approach.</p>
+<pre><code class="language-powershell"># Define variables
+$ResourceGroupName = &quot;SkyCore-Sentinel-RG&quot;
+$WorkspaceName = &quot;SkyCore-Sentinel-Workspace&quot;
+
+# Get pre-built analytics rules that are currently disabled
+$rulesToEnable = Get-AzSentinelAnalyticsRule \
+    -ResourceGroupName $ResourceGroupName \
+    -WorkspaceName $WorkspaceName \
+    | Where-Object { $_.Kind -ne &apos;Fusion&apos; -and $_.Enabled -eq $false -and $_.Query -ne $null }
+
+# Enable a selection of high-value, built-in rules for SMBs. Fusion rule is auto-enabled.
+$highValueRules = @(
+    &quot;Multiple failed sign-ins to non-existent accounts&quot;,
+    &quot;Suspicious sign-in activity&quot;,
+    &quot;Unusual resource deployment&quot;,
+    &quot;Impossible travel activity&quot;,
+    &quot;Multi-stage attack detected by Microsoft Defender XDR&quot; # If M365D connector is active
+)
+
+foreach ($ruleName in $highValueRules) {
+    $rule = $rulesToEnable | Where-Object { $_.DisplayName -eq $ruleName }
+    if ($rule) {
+        Write-Host &quot;Enabling analytics rule: $($rule.DisplayName)&quot;
+        $rule.Enabled = $true
+        $rule | Update-AzSentinelAnalyticsRule
+    } else {
+        Write-Host &quot;Rule &apos;$ruleName&apos; not found or already enabled, or its query is null.&quot;
+    }
+}
+
+# The &apos;Fusion&apos; rule is Microsoft&apos;s AI-driven detection. It is usually enabled by default and cannot be disabled manually via this method.
+# You can verify its status via the portal if needed.
+</code></pre>
+<ul>
+    <li>The PowerShell script iterates through commonly high-value, built-in analytics rules for SMBs and enables them.</li>
+    <li><code>Get-AzSentinelAnalyticsRule</code>: Retrieves all analytics rules in your workspace.</li>
+    <li><code>Update-AzSentinelAnalyticsRule</code>: Modifies an existing rule, in this case, setting <code>Enabled</code> to <code>$true</code>.</li>
+    <li><strong>Fusion Rule:</strong> This is Microsoft&apos;s AI-driven detection, essential for cross-domain attack correlation. It is usually enabled by default and doesn&apos;t require manual activation via these commands.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong>
+    <ol>
+        <li>In the <a href="https://portal.azure.com">Azure portal</a>, navigate to your Microsoft Sentinel workspace.</li>
+        <li>From the Sentinel navigation menu, select &quot;Analytics&quot;.</li>
+        <li>Go to the &quot;Rule templates&quot; tab.</li>
+        <li>Filter by &quot;Data connectors&quot; to see rules relevant to your connected sources (e.g., &quot;Azure Active Directory&quot; or &quot;Azure Activity&quot;).</li>
+        <li>Select high-priority rules (e.g., &quot;Suspicious sign-in activity&quot;, &quot;Impossible travel activity&quot;, &quot;Multiple failed sign-ins&quot;). Click &quot;Create rule&quot; or &quot;Enable&quot; for each. Review the settings, ensuring &quot;Enable rule at time of creation&quot; is selected, and then &quot;Review and create&quot;.</li>
+        <li>Under the &quot;Active rules&quot; tab, verify your newly enabled rules. Ensure the &quot;Fusion&quot; rule is active.</li>
+    </ol>
+</p>
+<p>Run this to verify:</p>
+<pre><code class="language-powershell">Get-AzSentinelAnalyticsRule -ResourceGroupName $ResourceGroupName -WorkspaceName $WorkspaceName | Where-Object { $_.Enabled -eq $true } | Select-Object DisplayName, Status
+</code></pre>
+
+<h2>Step 5: Configure Basic Incident Investigation and Automated Response</h2>
+<p>Effective SIEM goes beyond detection; it includes rapid investigation and response. For SMBs, establishing a basic automation rule can significantly reduce alert fatigue and accelerate initial response to common, high-confidence threats. We&apos;ll set up a simple automation rule to change the status of an incident upon creation, signaling it&apos;s being reviewed.</p>
+<pre><code class="language-azurecli"># Define variables
+$RESOURCE_GROUP_NAME="SkyCore-Sentinel-RG"
+$WORKSPACE_NAME="SkyCore-Sentinel-Workspace"
+
+# Create an Automation Rule to set incident status to &apos;Active&apos; upon creation
+az sentinel automation-rule create \
+    --resource-group $RESOURCE_GROUP_NAME \
+    --workspace-name $WORKSPACE_NAME \
+    --name "Set New Incidents to Active" \
+    --order 1 \
+    --triggers-on IncidentCreation \
+    --actions &apos;[{"actionType": "Incident", "parameters": {"classification": null, "classificationComment": null, "severity": null, "owner": null, "status": "Active"}, "order": 1}]&apos; \
+    --display-name "Set New Incidents to Active" \
+    --rule-type Playbook \
+    --enable-rule true
+</code></pre>
+<ul>
+    <li><code>--name &quot;Set New Incidents to Active&quot;</code>: A descriptive name for your automation rule.</li>
+    <li><code>--order 1</code>: Defines the order in which automation rules are executed. Lower numbers execute first.</li>
+    <li><code>--triggers-on IncidentCreation</code>: This rule will activate whenever a new incident is created in Sentinel.</li>
+    <li><code>--actions</code>: Defines the actions to be taken. Here, it sets the incident status to &quot;Active&quot;. For more advanced automation, you would integrate <a href="https://learn.microsoft.com/en-us/azure/sentinel/tutorial-respond-threats-playbooks">playbooks (Azure Logic Apps)</a>.</li>
+    <li><code>--display-name</code>: User-friendly name shown in the portal.</li>
+    <li><code>--rule-type Playbook</code>: Despite the action being a direct incident modification, automation rules are often categorized under &apos;Playbook&apos; type for consistency in the CLI context, even if no Logic App is directly invoked here.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong>
+    <ol>
+        <li>In the <a href="https://portal.azure.com">Azure portal</a>, navigate to your Microsoft Sentinel workspace.</li>
+        <li>From the Sentinel navigation menu, select &quot;Automation&quot;.</li>
+        <li>Go to the &quot;Automation rules&quot; tab and click &quot;Create&quot; &gt; &quot;Add new rule&quot;.</li>
+        <li>Provide a &quot;Rule name&quot; (e.g., &quot;Set New Incidents to Active&quot;).</li>
+        <li>Under &quot;When incident is created&quot;, ensure &quot;When incident is created&quot; is selected.</li>
+        <li>Under &quot;Actions&quot;, click &quot;+ Add action&quot;, choose &quot;Change status&quot;, and set &quot;Status&quot; to &quot;Active&quot;.</li>
+        <li>Click &quot;Apply&quot; and then &quot;Create&quot;.</li>
+    </ol>
+</p>
+<p>Run this to verify:</p>
+<pre><code class="language-azurecli">az sentinel automation-rule list --resource-group $RESOURCE_GROUP_NAME --workspace-name $WORKSPACE_NAME --query "[?displayName == &apos;Set New Incidents to Active&apos;].{Name:displayName,Enabled:enabled,Order:order}"
+</code></pre>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide provides a solid foundation for your Microsoft Sentinel SIEM setup for SMBs, several scenarios warrant specialized assistance. If your environment includes complex hybrid Active Directory infrastructures, requires deep integration with diverse third-party security tools (e.g., specialized firewalls, EDR solutions), or demands advanced custom threat intelligence feeds, a consultant can be invaluable. Additionally, navigating intricate regulatory compliance requirements (like HIPAA, PCI DSS) or designing custom SOAR playbooks for automated remediation often benefits from expert guidance. SkyCore Solutions excels in tailoring Microsoft Sentinel deployments to meet unique SMB challenges, ensuring optimal security posture and operational efficiency.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/sentinel/overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard" target="_blank" rel="noopener noreferrer">learn.microsoft.com — quickstart onboard</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/sentinel/connect-data-sources" target="_blank" rel="noopener noreferrer">learn.microsoft.com — connect data sources</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/sentinel/tutorial-detect-threats-built-in" target="_blank" rel="noopener noreferrer">learn.microsoft.com — tutorial detect threats built in</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/sentinel/incident-investigation" target="_blank" rel="noopener noreferrer">learn.microsoft.com — incident investigation</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

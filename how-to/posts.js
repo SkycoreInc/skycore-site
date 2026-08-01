@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "microsoft-sentinel-siem-setup-smb-guide",
+    title: "Mastering Microsoft Sentinel SIEM Setup for SMBs: An Implementation Guide by SkyCore Solutions",
+    date: "2026-08-01",
+    readTime: "9 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2 hours",
+    keyword: "Microsoft Sentinel SIEM setup SMB",
+    excerpt: "Boost your SMB's security posture with Microsoft Sentinel. This guide covers the essential steps for Microsoft Sentinel SIEM setup, from deployment to threat detection.",
+    image: "https://images.pexels.com/photos/5380618/pexels-photo-5380618.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-migrate-on-premise-cloud-guide",
     title: "On-Premise to Azure Migration Guide: SkyCore's Recommended Path",
     date: "2026-08-01",
