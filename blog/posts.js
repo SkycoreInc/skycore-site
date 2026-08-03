@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ai-cybersecurity-myths-montreal-smb",
+    title: "Don't Fall for the AI Hype: What Montreal SMBs Really Need for Cybersecurity",
+    date: "2026-08-03",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "AI is everywhere, and the pressure to keep up is real. But are you falling for myths about what AI can truly do for your SMB's cybersecurity?",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5473956/pexels-photo-5473956.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "amgen-cloud-breach-montreal-smbs",
     title: "Don't Be Another Amgen: Why Cloud Security is Now Non-Negotiable for Montreal SMBs",
     date: "2026-08-01",
