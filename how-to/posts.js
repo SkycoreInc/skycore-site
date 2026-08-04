@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "harden-windows-server-2022-skycore",
+    title: "How to Harden Windows Server 2022: A SkyCore Solutions Guide",
+    date: "2026-08-04",
+    readTime: "12 min read",
+    category: "Security Hardening",
+    difficulty: "Advanced",
+    timeEstimate: "2-3 hours",
+    keyword: "how to harden Windows Server 2022",
+    excerpt: "Harden your Windows Server 2022 environment against evolving threats with a multi-layered security approach. This guide provides actionable steps for robust protection and compliance.",
+    image: "https://images.pexels.com/photos/4597280/pexels-photo-4597280.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-sentinel-siem-setup-smb-guide",
     title: "Mastering Microsoft Sentinel SIEM Setup for SMBs: An Implementation Guide by SkyCore Solutions",
     date: "2026-08-01",
