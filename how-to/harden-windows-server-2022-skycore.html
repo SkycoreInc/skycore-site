@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to Harden Windows Server 2022: A SkyCore Solutions Guide — SkyCore Solutions</title>
+  <meta name="description" content="Enhance your Windows Server 2022 security posture with SkyCore Solutions' expert guide. Learn to implement crucial hardening measures including WDAC, Credential Guard, and JEA to protect your infrastructure." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="How to Harden Windows Server 2022: A SkyCore Solutions Guide — SkyCore Solutions" />
+  <meta property="og:description" content="Enhance your Windows Server 2022 security posture with SkyCore Solutions' expert guide. Learn to implement crucial hardening measures including WDAC, Credential Guard, and JEA to protect your infrastructure." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/harden-windows-server-2022-skycore.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/4597280/pexels-photo-4597280.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Harden Windows Server 2022: A SkyCore Solutions Guide — SkyCore Solutions" />
+  <meta name="twitter:description" content="Enhance your Windows Server 2022 security posture with SkyCore Solutions' expert guide. Learn to implement crucial hardening measures including WDAC, Credential Guard, and JEA to protect your infrastructure." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/4597280/pexels-photo-4597280.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/harden-windows-server-2022-skycore.html" />
+  <meta property="article:published_time" content="2026-08-04" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Harden Windows Server 2022: A SkyCore Solutions Guide",
+  "description": "Enhance your Windows Server 2022 security posture with SkyCore Solutions' expert guide. Learn to implement crucial hardening measures including WDAC, Credential Guard, and JEA to protect your infrastructure.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Administrative access to Windows Server 2022 instances, A dedicated test environment for policy validation, Familiarity with PowerShell and Group Policy Management, Up-to-date backups of all servers before implementing changes"}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Activate and Maintain Windows Defender Antivirus",
+        "text": "Ensure Windows Defender Antivirus is actively protecting your server by verifying real-time monitoring and keeping malware definitions current."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implement Windows Defender Application Control (WDAC)",
+        "text": "Restrict unauthorized applications from running on the server by creating and enforcing robust application control policies."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Enable Credential Guard for LSA Protection",
+        "text": "Protect sensitive login credentials by isolating the Local Security Authority (LSA) from the operating system using virtualization-based security."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy Just Enough Administration (JEA)",
+        "text": "Minimize standing administrative privileges by granting users only the specific permissions required to perform their tasks, for a limited time."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Harden Transport Layer Security (TLS) Settings",
+        "text": "Disable weak and outdated TLS/SSL protocols and cipher suites to ensure secure network communications."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Leverage Hardware-Based and Firmware Protections",
+        "text": "Utilize modern server hardware features like Secured-core server and Control Flow Guard to enhance the system's foundational security posture."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Adopt and Apply CIS Benchmarks",
+        "text": "Implement a comprehensive, industry-recognized secure configuration baseline using CIS Benchmarks to address a wide range of security vulnerabilities."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implement Privileged Access Management (PAM)",
+        "text": "Control, monitor, and audit elevated access to critical systems and data, integrating with solutions like Microsoft Identity Manager for Just-in-Time administration."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Monitor and Respond to Threats",
+        "text": "Establish robust logging, auditing, and advanced threat detection capabilities to proactively identify and respond to security incidents."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class='post-meta'>2026-08-04 · 12 min read · Security Hardening</div>
+<h1>How to Harden Windows Server 2022: A SkyCore Solutions Guide</h1>
+<div class='article-hero'><img src='https://images.pexels.com/photos/4597280/pexels-photo-4597280.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600' alt='A digital illustration of a fortified server, representing the security hardening of Windows Server 2022.' loading='eager' fetchpriority='high'></div>
+<div class='howto-intro'><p>In today's ever-evolving threat landscape, proactively securing your infrastructure is not merely a best practice—it's an imperative. Windows Server 2022 offers a robust foundation, but its full security potential is only realized through diligent hardening. At SkyCore Solutions, we understand that a well-hardened server dramatically reduces the attack surface, protects sensitive data, and ensures business continuity. This guide outlines the essential steps to effectively harden Windows Server 2022, leveraging built-in features and industry-leading security benchmarks to establish a resilient security posture.</p></div>
+<div class='howto-prereqs'><h4>Prerequisites</h4><ul><li>Administrative access to the Windows Server 2022 instance.</li><li>A clear understanding of your server's role and dependencies to avoid disrupting critical services.</li><li>A robust backup and recovery strategy in place.</li><li>Access to a non-production or test environment for pilot deployments and thorough testing of security configurations.</li><li>Familiarity with PowerShell for command-line execution.</li><li>Network connectivity for updates and external resource access.</li></ul></div>
+
+<h2>Step 1: Activate and Maintain Windows Defender Antivirus</h2>
+<p>Windows Defender Antivirus is an integral component of Windows Server 2022, providing real-time protection against malware, viruses, and other malicious threats. Ensuring it is active, properly configured, and regularly updated is your foundational line of defense. This step ensures continuous monitoring and up-to-date threat intelligence.</p>
+<pre><code class='language-powershell'># Verify Windows Defender Antivirus status
+Get-MpComputerStatus | Format-Table AntivirusEnabled, RealtimeProtectionEnabled, AntivirusSignatureLastUpdated
+
+# Ensure real-time protection is enabled
+Set-MpPreference -DisableRealtimeMonitoring $false
+
+# Update Antivirus definitions to the latest version
+Update-MpSignature
+
+# Configure daily automatic definition updates (if not already managed by Windows Update/WSUS)
+Set-MpPreference -SignatureUpdatesScheduledDay Everyday -SignatureUpdatesScheduledTime 02:00
+
+# Configure a scheduled quick scan (adjust time as appropriate for your environment)
+Set-MpPreference -ScanScheduleDay Everyday -ScanScheduleTime 03:00 -ScanType QuickScan
+
+# Add an exclusion for a specific path (e.g., application data that might be falsely flagged)
+Add-MpPreference -ExclusionPath 'D:\ApplicationData\'
+
+# Add an exclusion for a specific file extension
+Add-MpPreference -ExclusionExtension 'log'
+
+# Add an exclusion for a specific process (e.g., an application executable)
+Add-MpPreference -ExclusionProcess 'C:\Program Files\MyApp\MyApp.exe'</code></pre>
+<p><code>Get-MpComputerStatus</code>: Retrieves the current status of Windows Defender Antivirus, including whether it's enabled, real-time protection status, and signature update information.</p>
+<p><code>Set-MpPreference -DisableRealtimeMonitoring $false</code>: Explicitly enables real-time monitoring, ensuring continuous scanning of files and processes.</p>
+<p><code>Update-MpSignature</code>: Manually initiates an update for the antivirus and antispyware definitions.</p>
+<p><code>Set-MpPreference -SignatureUpdatesScheduledDay Everyday -SignatureUpdatesScheduledTime 02:00</code>: Configures Windows Defender to check for and apply signature updates daily at 2:00 AM.</p>
+<p><code>Set-MpPreference -ScanScheduleDay Everyday -ScanScheduleTime 03:00 -ScanType QuickScan</code>: Schedules a daily quick scan to run at 3:00 AM. For critical servers, a quick scan is often sufficient for daily checks, with full scans scheduled during maintenance windows.</p>
+<p><code>Add-MpPreference -ExclusionPath 'D:\ApplicationData\'</code>: Adds a folder path to the exclusion list, preventing Windows Defender from scanning its contents. Use with caution.</p>
+<p><code>Add-MpPreference -ExclusionExtension 'log'</code>: Adds a file extension to the exclusion list. Use with caution.</p>
+<p><code>Add-MpPreference -ExclusionProcess 'C:\Program Files\MyApp\MyApp.exe'</code>: Adds a process to the exclusion list, meaning Windows Defender will not monitor I/O activity for this specific process. Use with caution and only for applications with known compatibility issues.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> For a single server, you can open the 'Windows Security' application, navigate to 'Virus & threat protection', then 'Virus & threat protection settings' to manage real-time protection, updates, and exclusions. For multiple servers, use Group Policy Objects (GPO) under 'Computer Configuration' &gt; 'Administrative Templates' &gt; 'Windows Components' &gt; 'Microsoft Defender Antivirus'.</p>
+<p><strong>Expected result:</strong> Windows Defender Antivirus will report as enabled with real-time protection active. Signature definitions will be current, and scheduled scans/updates will be configured. Exclusions, if added, will be listed in `Get-MpPreference` output.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Over-reliance on exclusions can create significant security gaps. Only exclude paths, extensions, or processes when absolutely necessary due to performance issues or application incompatibility, and always document the justification. Regularly review and minimize these exclusions. Enabling real-time protection on heavily I/O-bound servers without proper tuning can also impact performance.</div>
+
+<h2>Step 2: Implement Windows Defender Application Control (WDAC)</h2>
+<p>Windows Defender Application Control (WDAC) is a powerful, kernel-level application allow-listing feature that strictly controls which applications are permitted to run on your server. Instead of blocking known bad applications, WDAC only allows explicitly trusted applications, scripts, and drivers to execute, providing a robust defense against zero-day exploits and advanced persistent threats. This is a critical step in preventing unauthorized code execution.</p>
+<pre><code class='language-powershell'># Step 2a: Install the WDAC PowerShell module (if not already present)
+Install-Module -Name WDACConfig -Force
+
+# Step 2b: Create an initial WDAC policy in audit mode for a single server.
+# This scans the specified path and creates rules for executables and installers found.
+# -Level Publisher is recommended for stability; -Level Hash is most restrictive.
+# Replace 'C:\ServerApps' with the primary directory where your trusted applications reside.
+New-CIPolicy -FilePath 'C:\WDAC\WDACPolicy.xml' -ScanPath 'C:\Windows', 'C:\Program Files', 'C:\ServerApps' -Level Publisher -UserPEs -Audit -MultiplePolicyFormat
+
+# Step 2c: Review and refine the generated policy (manual step outside of CLI)
+# Open C:\WDAC\WDACPolicy.xml in a text editor to review rules, add custom rules, and remove unintended allowances.
+# Ensure the policy allows all necessary applications, drivers, and scripts.
+
+# Step 2d: Convert the XML policy to a binary format for deployment
+ConvertFrom-CIPolicy -FilePath 'C:\WDAC\WDACPolicy.xml' -BinaryFilePath 'C:\WDAC\WDACPolicy.bin'
+
+# Step 2e: Deploy the WDAC policy locally (for testing or standalone servers)
+# Copy the binary policy to the CodeIntegrity policies folder and rename it with a unique GUID.
+# Get a new GUID for the policy
+$PolicyGUID = [guid]::NewGuid()
+Copy-Item -Path 'C:\WDAC\WDACPolicy.bin' -Destination "C:\Windows\System32\CodeIntegrity\CiPolicies\Active\$PolicyGUID.cip"
+
+# Step 2f: (Optional, for enforcing) Reboot the server for the policy to take effect.
+# To move from Audit mode to Enforced mode, you must edit the XML policy (RuleOptions) and redeploy.
+# <RuleOptions>
+#   <RuleOption RefID="1" Value="0"/> <!-- 0 = Enabled:UMCI -->
+#   <RuleOption RefID="2" Value="0"/> <!-- 0 = Audit Mode (remove this line for enforced) -->
+# </RuleOptions>
+# Re-convert and redeploy the binary after editing.
+</code></pre>
+<p><code>Install-Module -Name WDACConfig -Force</code>: Installs the `WDACConfig` PowerShell module, which provides cmdlets like `New-CIPolicy` and `ConvertFrom-CIPolicy` to manage WDAC policies.</p>
+<p><code>New-CIPolicy -FilePath ... -ScanPath ... -Level Publisher -UserPEs -Audit -MultiplePolicyFormat</code>: Generates an XML-based WDAC policy. `-ScanPath` specifies directories to scan for executables and installers. `-Level Publisher` creates rules based on software publisher certificates, which is generally more flexible than hashing. `-UserPEs` includes user-mode executables. `-Audit` configures the policy in audit mode, logging violations without blocking. `-MultiplePolicyFormat` prepares it for stacked policies if you intend to use multiple policies.</p>
+<p><code>ConvertFrom-CIPolicy -FilePath ... -BinaryFilePath ...</code>: Converts the human-readable XML policy into a binary format (`.bin`) that Windows can enforce.</p>
+<p><code>Copy-Item ... -Destination "C:\Windows\System32\CodeIntegrity\CiPolicies\Active\$PolicyGUID.cip"</code>: Deploys the binary policy by copying it to the specified system directory and assigning it a unique GUID filename. This path is where Windows looks for active WDAC policies.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> WDAC policy creation and deployment are primarily PowerShell-driven. For enterprise deployment, Group Policy Objects (GPO) are used to distribute the binary policies (Computer Configuration &gt; Administrative Templates &gt; System &gt; Device Guard &gt; "Deploy Windows Defender Application Control policy").</p>
+<p><strong>Expected result:</strong> After deployment and a reboot, the server will operate under the WDAC policy. In audit mode, events will be logged to 'Applications and Services Logs' &gt; 'Microsoft' &gt; 'Windows' &gt; 'CodeIntegrity' &gt; 'Operational' if an unauthorized application attempts to run. In enforced mode, such attempts will be blocked.</p>
+
+<h2>Step 3: Enable Credential Guard for LSA Protection</h2>
+<p>Credential Guard leverages virtualization-based security to isolate the Local Security Authority (LSA) process, where sensitive credentials are stored. This isolation helps protect NTLM password hashes, Kerberos Ticket Granting Tickets (TGTs), and other cached credentials from sophisticated credential theft attacks like Pass-the-Hash. Enabling Credential Guard significantly raises the bar for attackers trying to compromise user credentials.</p>
+<pre><code class='language-powershell'># Step 3a: Verify hardware compatibility for Credential Guard
+# Look for 'DeviceGuard*Present' and 'HyperVRequirement*Present'
+Get-ComputerInfo | Select-Object -Property DeviceGuard*Present, HyperVRequirement*Present
+
+# Step 3b: Enable Virtualization-based Security (VBS) via Group Policy (recommended for broad deployment)
+# This is a conceptual step to be performed in the Group Policy Management Editor (GPMC).
+# Path: Computer Configuration > Administrative Templates > System > Device Guard > "Turn On Virtualization Based Security"
+# Set to 'Enabled'.
+# Configure options: "Secure Boot", "DMA Protection" (if supported), "Credential Guard".
+
+# Step 3c: (Alternative for standalone server or testing) Enable via Registry using PowerShell
+# This requires a reboot to take effect.
+# Ensure Secure Boot is enabled in UEFI firmware, and Hyper-V features are installed.
+# Check Device Guard readiness using Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard
+# It might require installing Hyper-V on the server if not already done.
+# Add-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart
+
+# Set LsaCfgFlags to enable Credential Guard (Value 1 = Enabled with UEFI lock, 2 = Enabled without lock, 3 = Enabled with EFI and Virtualization Lock)
+$registryPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa'
+If (-not (Test-Path $registryPath)) { New-Item -Path $registryPath -Force | Out-Null }
+Set-ItemProperty -Path $registryPath -Name 'LsaCfgFlags' -Value 1 -Force
+
+# Set Device Guard VirtualizationBasedSecurity registry keys
+$deviceGuardPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard'
+If (-not (Test-Path $deviceGuardPath)) { New-Item -Path $deviceGuardPath -Force | Out-Null }
+Set-ItemProperty -Path $deviceGuardPath -Name 'EnableVirtualizationBasedSecurity' -Value 1 -Force
+Set-ItemProperty -Path $deviceGuardPath -Name 'RequirePlatformSecurityFeatures' -Value 1 -Force # Requires Secure Boot, TPM
+
+# After registry changes, a reboot is required.
+# Restart-Computer -Force
+</code></pre>
+<p><code>Get-ComputerInfo | Select-Object -Property DeviceGuard*Present, HyperVRequirement*Present</code>: This command helps determine if your server's hardware meets the basic requirements for Credential Guard, such as UEFI firmware, Secure Boot, and CPU virtualization extensions.</p>
+<p><code>Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name 'LsaCfgFlags' -Value 1 -Force</code>: Configures the Local Security Authority (LSA) to enable Credential Guard. A value of `1` signifies enabling Credential Guard with UEFI lock, making it harder to disable remotely.</p>
+<p><code>Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard' -Name 'EnableVirtualizationBasedSecurity' -Value 1 -Force</code>: Enables Virtualization-based Security (VBS), which is a prerequisite for Credential Guard.</p>
+<p><code>Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard' -Name 'RequirePlatformSecurityFeatures' -Value 1 -Force</code>: Specifies that VBS requires platform security features like Secure Boot and TPM 2.0 to be enabled.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> For enabling VBS and Credential Guard, the primary GUI method is through Group Policy Management Editor (Computer Configuration &gt; Administrative Templates &gt; System &gt; Device Guard &gt; "Turn On Virtualization Based Security"). Ensure "Enable Credential Guard" is selected within this policy. Remember to link the GPO to the appropriate OU and perform a `gpupdate /force` on the target server, followed by a reboot.</p>
+<p><strong>Expected result:</strong> After a successful reboot, run `Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard`. The output should show `SecurityServicesRunning` indicating Credential Guard and `VirtualizationBasedSecurityStatus` as `1` (Running).</p>
+
+<h2>Step 4: Deploy Just Enough Administration (JEA)</h2>
+<p>Just Enough Administration (JEA) is a security technology that enables delegated administration for anything manageable with PowerShell. It allows you to grant users only the specific permissions they need to perform their tasks, for a limited time, without granting them full administrator rights. JEA significantly reduces the risk of privilege escalation and lateral movement, as even if an attacker compromises a user account, their scope of action is severely limited.</p>
+<pre><code class='language-powershell'># Step 4a: Define a role capability file (.psrc) that outlines what a user can do.
+# Example: Allows managing services and checking disk space.
+$PSRCContent = @"
+VisibleCmdlets = @{ Name = 'Get-Service' }, @{ Name = 'Restart-Service'; Parameters = @{ Name = 'Name'; ValidateSet = 'Spooler', 'W3SVC' } }, @{ Name = 'Get-DiskSpace'; Parameters = @{ Name = 'DriveLetter'; ValidateSet = 'C', 'D' } }
+# Custom function example (requires defining Get-DiskSpace in a module)
+"@
+$PSRCPath = 'C:\JEA\Roles\ServiceManager.psrc'
+New-Item -Path $PSRCPath -ItemType File -Force
+Set-Content -Path $PSRCPath -Value $PSRCContent
+
+# Step 4b: Define a session configuration file (.pssc) that maps users to roles.
+# This example maps members of the "Domain Admins" group to the ServiceManager role.
+# In a real-world scenario, you would create a dedicated JEA access group.
+$PSSCContent = @"
+# This is a sample PSSC file. Customize it for your environment.
+@{@{
+    ModuleName       = 'Microsoft.PowerShell.Core'
+    Name             = 'RestrictedServiceAdmin'
+    Guid             = 'b94e09f7-9c97-40c6-a61f-1335b75a1c22' # Replace with a new GUID
+    Author           = 'SkyCore Solutions'
+    Description      = 'JEA endpoint for managing specific services.'
+    SessionType      = 'RestrictedRemoteServer'
+    RunAsVirtualAccount = $true # Use a virtual account for least privilege
+    RoleDefinitions  = @{
+        'CONTOSO\JEA_ServiceManagers' = @{ RoleCapabilities = 'C:\JEA\Roles\ServiceManager.psrc' }
+    }
+    TranscriptDirectory = 'C:\JEA\Transcripts'
+    LogPipelineCommands = $true
+}}
+"@
+$PSSCPath = 'C:\JEA\RestrictedServiceAdmin.pssc'
+New-Item -Path $PSSCPath -ItemType File -Force
+Set-Content -Path $PSSCPath -Value $PSSCContent
+
+# Create the transcript directory
+New-Item -Path 'C:\JEA\Transcripts' -ItemType Directory -Force
+
+# Step 4c: Register the JEA session configuration.
+# This makes the endpoint available for users to connect to.
+Register-PSSessionConfiguration -Name 'RestrictedServiceAdmin' -Path $PSSCPath -Force
+
+# Step 4d: Verify the JEA endpoint
+Get-PSSessionConfiguration -Name 'RestrictedServiceAdmin'
+
+# Step 4e: Test the JEA endpoint as an authorized user (e.g., member of CONTOSO\JEA_ServiceManagers)
+# Enter-PSSession -ComputerName localhost -ConfigurationName RestrictedServiceAdmin
+# Try Get-Service (should work)
+# Try Stop-Service -Name W3SVC (should fail if not explicitly allowed or outside ValidateSet)
+# Exit-PSSession
+</code></pre>
+<p><code>New-CIPolicy -FilePath ... -ScanPath ... -Level Publisher -UserPEs -Audit -MultiplePolicyFormat</code>: This cmdlet, though mentioned in WDAC, demonstrates the creation of a definition. For JEA, `VisibleCmdlets`, `VisibleFunctions`, and `VisibleExternalCommands` are defined within the `.psrc` file, explicitly listing what cmdlets/functions/scripts a user can run and with what parameters.</p>
+<p><code>RunAsVirtualAccount = $true</code>: Within the `.pssc` file, this setting configures the JEA session to run under a temporary virtual account with minimal privileges, further enforcing the principle of least privilege.</p>
+<p><code>RoleDefinitions = @{ 'CONTOSO\JEA_ServiceManagers' = @{ RoleCapabilities = 'C:\JEA\Roles\ServiceManager.psrc' } }</code>: This section maps Active Directory security groups (or local groups) to specific role capability files, defining who can access the JEA endpoint and what they can do.</p>
+<p><code>TranscriptDirectory = 'C:\JEA\Transcripts'</code>: Configures JEA to log all actions taken by users within a JEA session to a specified directory, providing an audit trail.</p>
+<p><code>Register-PSSessionConfiguration -Name 'RestrictedServiceAdmin' -Path $PSSCPath -Force</code>: Registers the JEA session configuration on the server, making it an available endpoint for remote PowerShell sessions.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> JEA is primarily a PowerShell-driven feature. There is no direct GUI for creating `.psrc` or `.pssc` files, or for registering JEA endpoints. Management of the security groups associated with `RoleDefinitions` would be done via Active Directory Users and Computers or similar identity management tools.</p>
+<p><strong>Expected result:</strong> `Get-PSSessionConfiguration -Name 'RestrictedServiceAdmin'` will show the registered JEA endpoint. Authorized users connecting via `Enter-PSSession` with the specified configuration name will only be able to execute the cmdlets and functions defined in their assigned role capabilities, with full transcription enabled.</p>
+
+<h2>Step 5: Harden Transport Layer Security (TLS) Settings</h2>
+<p>Weak or outdated Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols and cipher suites can expose your server to critical vulnerabilities, allowing attackers to intercept or tamper with encrypted communications. Hardening TLS settings involves disabling older, insecure protocols (like SSL 2.0, SSL 3.0, TLS 1.0, and TLS 1.1) and prioritizing strong, modern cipher suites. This ensures that all network communications to and from your server use the strongest available encryption.</p>
+<pre><code class='language-powershell'># Step 5a: Disable SSL 2.0, SSL 3.0, TLS 1.0, and TLS 1.1 by setting their 'Enabled' value to 0.
+# Ensure you perform this in a test environment first, as it can break compatibility with legacy clients/applications.
+
+# Function to disable a specific protocol version (Client and Server)
+Function Disable-SChannelProtocol {
+    Param (
+        [string]$ProtocolName
+    )
+    $protocolPath = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$ProtocolName"
+
+    # Disable Client
+    $clientPath = "$protocolPath\Client"
+    If (-not (Test-Path $clientPath)) { New-Item -Path $clientPath -Force | Out-Null }
+    Set-ItemProperty -Path $clientPath -Name 'Enabled' -Value 0 -PropertyType DWord -Force
+    Set-ItemProperty -Path $clientPath -Name 'DisabledByDefault' -Value 1 -PropertyType DWord -Force
+
+    # Disable Server
+    $serverPath = "$protocolPath\Server"
+    If (-not (Test-Path $serverPath)) { New-Item -Path $serverPath -Force | Out-Null }
+    Set-ItemProperty -Path $serverPath -Name 'Enabled' -Value 0 -PropertyType DWord -Force
+    Set-ItemProperty -Path $serverPath -Name 'DisabledByDefault' -Value 1 -PropertyType DWord -Force
+
+    Write-Host "Disabled $ProtocolName for both Client and Server." -ForegroundColor Green
+}
+
+# Apply the function for vulnerable protocols
+Disable-SChannelProtocol -ProtocolName 'SSL 2.0'
+Disable-SChannelProtocol -ProtocolName 'SSL 3.0'
+Disable-SChannelProtocol -ProtocolName 'TLS 1.0'
+Disable-SChannelProtocol -ProtocolName 'TLS 1.1'
+
+# Step 5b: Prioritize strong cipher suites (via Group Policy or registry)
+# This is a conceptual configuration. The recommended list of cipher suites evolves.
+# Always refer to the latest security guidelines (e.g., CIS Benchmarks, NIST).
+# Example via Group Policy (Recommended for enterprise):
+# Path: Computer Configuration > Administrative Templates > Network > SSL Configuration Settings > "SSL Cipher Suite Order"
+# Set to 'Enabled' and paste your ordered list of preferred cipher suites.
+# Example order (verify latest recommendations):
+# TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
+# (This list should be much longer and more comprehensive based on current best practices)
+
+# Restart the server or relevant services (e.g., IIS) for changes to take effect.
+# For IIS: iisreset /restart
+# For server-wide SChannel changes: Restart-Computer -Force
+</code></pre>
+<p><code>Set-ItemProperty -Path ... -Name 'Enabled' -Value 0 -PropertyType DWord -Force</code>: Sets the `Enabled` registry value to `0` for a specific TLS/SSL protocol version, effectively disabling it for both client and server roles.</p>
+<p><code>Set-ItemProperty -Path ... -Name 'DisabledByDefault' -Value 1 -PropertyType DWord -Force</code>: Sets the `DisabledByDefault` registry value to `1`, reinforcing the disabling of the protocol even if applications try to explicitly enable it.</p>
+<p>Cipher Suite Order (Group Policy): This setting allows administrators to define a prioritized list of cryptographic cipher suites that Windows will attempt to use for TLS/SSL connections. Stronger suites should be placed at the top of the list.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Disabling protocols is primarily done via registry edits or Group Policy. Managing cipher suite order is best accomplished through Group Policy Management Editor (Computer Configuration &gt; Administrative Templates &gt; Network &gt; SSL Configuration Settings &gt; "SSL Cipher Suite Order").</p>
+<p><strong>Expected result:</strong> After a reboot (or service restart), network vulnerability scanners will report that deprecated TLS/SSL protocols are no longer supported by the server, and connections will negotiate strong, modern cipher suites.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Aggressive disabling of older TLS protocols (especially TLS 1.0 and 1.1) can break compatibility with legacy clients, applications, and hardware that do not support newer TLS versions (e.g., older printers, IoT devices, or very old web browsers). Always test these changes extensively in a non-production environment before deploying to production.</div>
+
+<h2>Step 6: Leverage Hardware-Based and Firmware Protections</h2>
+<p>Modern server hardware offers powerful security features that provide a robust foundation for Windows Server 2022. Secured-core server is a classification for servers that integrate hardware-backed security features like Trusted Platform Module (TPM) 2.0, Secure Boot, and Virtualization-based Security (VBS) to protect against firmware vulnerabilities and advanced malware. Control Flow Guard (CFG) is a compiler-level technology that helps prevent memory corruption vulnerabilities from being exploited. Utilizing these features provides deeper, more resilient protection.</p>
+<pre><code class='language-powershell'># Step 6a: Verify Secured-core server readiness and status (primarily hardware-driven)
+# This command checks various hardware-backed security features.
+Get-ComputerInfo | Select-Object -Property DeviceGuard*Present, HyperVRequirement*Present, VmHostBelowMinVersion, TpmPresent, SecureBootEnabled
+
+# Step 6b: Ensure Secure Boot and TPM 2.0 are enabled in the server's UEFI firmware settings.
+# This is a manual step requiring access to the server's BIOS/UEFI configuration utility.
+# - Access UEFI settings during boot.
+# - Locate 'Secure Boot' and ensure it's 'Enabled'.
+# - Locate 'TPM' or 'Security Device' settings and ensure TPM 2.0 is 'Enabled' and 'Active'.
+
+# Step 6c: (Re-verify) Virtualization-based Security (VBS) status
+# VBS is a prerequisite for features like Credential Guard and HVCI (Hypervisor-Enforced Code Integrity).
+# This was addressed in Step 3, but worth re-checking its running status.
+Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard | Select-Object -Property VirtualizationBasedSecurityStatus, HypervisorEnforcedCodeIntegrityPolicy
+
+# Step 6d: Control Flow Guard (CFG) is enabled by default for many system processes and applications.
+# To check if an *individual process* is running with CFG enabled:
+# Get a process, then try to access its CFG status (may require specific permissions or versions of PowerShell)
+# Note: This is an advanced check and not directly configurable via a simple server-wide command for existing applications.
+# CFG is a compiler feature, so applications must be built with it.
+Get-Process | Where-Object {$_.ProcessName -eq 'explorer' -or $_.ProcessName -eq 'svchost'} | ForEach-Object {
+    try {
+        $processInfo = Get-CimInstance -ClassName Win32_Process -Filter "ProcessId = $($_.Id)"
+        # Note: Direct 'ControlFlowGuardEnabled' property is not always directly exposed via WMI for all OS versions or powershell versions.
+        # It's more about ensuring the OS and critical applications are compiled with CFG support.
+        # Microsoft's documentation states CFG is enabled by default for system processes.
+        Write-Host "Process $($_.ProcessName) (ID: $($_.Id)) - CFG status relies on compilation and OS features."
+    } catch {
+        Write-Host "Could not retrieve CFG info for $($_.ProcessName): $($_.Exception.Message)"
+    }
+}
+</code></pre>
+<p><code>Get-ComputerInfo | Select-Object -Property DeviceGuard*Present, HyperVRequirement*Present, VmHostBelowMinVersion, TpmPresent, SecureBootEnabled</code>: Provides a comprehensive overview of hardware security capabilities, indicating whether TPM, Secure Boot, and Hyper-V virtualization requirements are met.</p>
+<p><code>VirtualizationBasedSecurityStatus</code> and <code>HypervisorEnforcedCodeIntegrityPolicy</code> (from `Get-CimInstance -ClassName Win32_DeviceGuard`): These properties indicate whether VBS is active and if Hypervisor-Enforced Code Integrity (HVCI), which relies on VBS, is enabled. HVCI prevents unsigned drivers and system files from loading, further protecting the kernel.</p>
+<p>Control Flow Guard (CFG): This is primarily a defense-in-depth mitigation built into Windows Server 2022 and enabled at the compiler level for applications. It works by enforcing valid execution paths for code, making it much harder for attackers to exploit memory corruption vulnerabilities. While there isn't a simple command to toggle CFG for all applications, ensuring your OS is up-to-date helps maximize its coverage for system components.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Configuring Secure Boot and TPM 2.0 requires accessing the physical server's UEFI/BIOS settings during startup. There is no direct GUI for managing Control Flow Guard beyond ensuring Windows Server is updated, which enables it for supported components by default.</p>
+<p><strong>Expected result:</strong> `Get-ComputerInfo` output will show `TpmPresent` as True, `SecureBootEnabled` as True, and `DeviceGuard*Present` flags indicating readiness. `VirtualizationBasedSecurityStatus` will be `1` (Running), confirming VBS is active. For Control Flow Guard, system components and compatible applications will be running with this protection enabled inherently.</p>
+
+<h2>Step 7: Adopt and Apply CIS Benchmarks</h2>
+<p>The Center for Internet Security (CIS) Benchmarks provide a globally recognized, vendor-neutral consensus-based set of best-practice configuration guides to harden systems against cyber threats. Applying the CIS Microsoft Windows Server 2022 Benchmark involves a comprehensive review and adjustment of numerous settings, encompassing account policies, audit policies, user rights assignments, security options, and event log configurations. This step transforms your server from a default installation to a rigorously secured system.</p>
+<pre><code class='language-powershell'># Step 7a: Download the relevant CIS Benchmark for Windows Server 2022.
+# Access https://www.cisecurity.org/benchmark/microsoft_windows_server to download the PDF.
+# (This is a manual step, requiring browser access and potentially a free registration for non-commercial use).
+
+# Step 7b: Review the benchmark and develop a compliance plan.
+# The benchmark provides detailed recommendations, typically categorized into Level 1 (essential) and Level 2 (higher security).
+# Prioritize settings based on your organizational risk appetite and server role.
+
+# Step 7c: Implement benchmark recommendations, primarily via Group Policy Objects (GPO).
+# Example: Configuring account lockout policy as recommended by CIS.
+# This requires creating or editing a GPO (e.g., 'Server Hardening Policy') in Active Directory.
+# Path: Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Account Lockout Policy
+#   - Account lockout threshold: 5 invalid logon attempts
+#   - Account lockout duration: 15 minutes
+#   - Reset account lockout counter after: 15 minutes
+
+# Example: Configuring audit policy.
+# Use auditpol via command line for granular control or Group Policy.
+# auditpol /set /category:"Account Logon" /subcategory:"Credential Validation" /success:enable /failure:enable
+# auditpol /set /category:"Logon/Logoff" /subcategory:"Logoff" /success:enable /failure:enable
+# auditpol /set /category:"Object Access" /subcategory:"File System" /success:enable /failure:enable
+
+# Example: Disabling the Guest account.
+Set-ItemProperty -Path 'HKLM:\SAM\SAM\Domains\Account\Users\Names\Guest' -Name 'UserAccountControl' -Value 0x102 -Force
+# Also ensure this is set via GPO: Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > Security Options > "Accounts: Guest account status" set to 'Disabled'.
+
+# Step 7d: Export and analyze current local security policy settings (for comparison or backup).
+secedit /export /cfg C:\Baseline_SecurityPolicy.inf /area SECURITYPOLICY /log C:\Baseline_SecurityPolicy.log
+
+# Step 7e: Utilize CIS-CAT Pro (requires CIS SecureSuite Membership) for automated assessment.
+# CIS-CAT Pro Assessor allows scanning your system against the benchmark to identify compliance gaps.
+# (This is a tool-based step, not a direct command to apply hardening, but to *verify* it).
+</code></pre>
+<p><code>auditpol /set /category:"Account Logon" /subcategory:"Credential Validation" /success:enable /failure:enable</code>: Configures advanced audit policies to log successful and failed credential validation attempts, a key recommendation from CIS for monitoring authentication activities.</p>
+<p><code>Set-ItemProperty -Path 'HKLM:\SAM\SAM\Domains\Account\Users\Names\Guest' -Name 'UserAccountControl' -Value 0x102 -Force</code>: Disables the built-in Guest account by modifying its UserAccountControl flag in the registry. (0x102 = `ACCOUNTDISABLE | DONT_EXPIRE_PASSWORD`).</p>
+<p><code>secedit /export /cfg C:\Baseline_SecurityPolicy.inf /area SECURITYPOLICY /log C:\Baseline_SecurityPolicy.log</code>: Exports the current local security policy settings to an INF file, which can be useful for backup, comparison, or later import (`secedit /configure`).</p>
+<p class='gui-note'><strong>Portal alternative:</strong> The majority of CIS Benchmark recommendations are implemented through Group Policy Objects (GPOs) in an Active Directory environment or Local Security Policy Editor (`secpol.msc`) for standalone servers. There is no single GUI to "apply a CIS Benchmark"; it's a methodical process of configuring individual security settings as per the benchmark document.</p>
+<p><strong>Expected result:</strong> After applying benchmark configurations and a `gpupdate /force` (if using GPO), your server's security settings will align with the CIS Benchmark recommendations. Verification can be done by manually checking settings, or ideally, by using CIS-CAT Pro Assessor to generate a compliance report.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Blindly applying CIS Benchmarks without thorough understanding and testing can lead to service disruptions or application failures. Some recommendations might be overly restrictive for specific server roles or legacy applications. Always create a phased implementation plan, test in non-production, and use audit modes where available before enforcing.</div>
+
+<h2>Step 8: Implement Privileged Access Management (PAM)</h2>
+<p>Privileged Access Management (PAM) is a comprehensive strategy and set of tools designed to control, monitor, and audit elevated access to critical systems and data. This step builds upon Just Enough Administration (JEA) by addressing the lifecycle of privileged accounts, including their provisioning, de-provisioning, and secure use. Microsoft Identity Manager (MIM) with Just-in-Time (JIT) administration capabilities is a key tool in this domain, providing temporary, audited access to privileged roles.</p>
+<pre><code class='language-powershell'># Step 8a: Define a JIT-enabled security group in Active Directory.
+# (This is a conceptual step performed in Active Directory Users and Computers or via PowerShell for AD management)
+# Example: New-ADGroup -Name "SG_JIT_ServerAdmins" -GroupScope Global -GroupCategory Security -Path "OU=Security Groups,DC=contoso,DC=com"
+
+# Step 8b: Configure Microsoft Identity Manager (MIM) for Just-in-Time (JIT) administration.
+# This requires a deployed MIM environment and is a complex, multi-step process.
+# MIM configuration involves:
+# 1. Defining PAM roles (e.g., "Server Admin Role").
+# 2. Specifying eligible users for these roles.
+# 3. Configuring approval workflows for activation requests.
+# 4. Integrating with Active Directory (or other directories).
+# 5. Setting up "bastion forests" for clean privileged access.
+
+# Example: (MIM PowerShell, highly specific to MIM setup)
+# New-MIMRequest @{
+#    Action = "Add"
+#    Requestor = "domain\user"
+#    TargetObjectType = "PAMRole"
+#    TargetObjectDisplayName = "Server Admin Role"
+#    ... other properties for JIT request
+# }
+# This command is conceptual for demonstrating a JIT request and would be part of a larger MIM workflow.
+
+# Step 8c: Enforce the principle of least privilege for all service accounts.
+# (Manual audit and configuration step)
+# - Review all service accounts and their assigned permissions.
+# - Ensure they only have the minimum necessary permissions to perform their function.
+# - Do not use domain administrator accounts for services.
+# - Use Group Managed Service Accounts (gMSA) where possible for improved security and automatic password management.
+# Example for creating a gMSA:
+# New-ADServiceAccount -Name "gMSA_WebApp" -DNSHostName "gMSA_WebApp.contoso.com" -PrincipalsAllowedToRetrieveManagedPassword "SG_WebAppServers"
+
+# Step 8d: Implement a secure workstation solution for privileged users.
+# Use dedicated, hardened administrative workstations (PAWs or Secure Admin Workstations)
+# that are isolated from the general network and internet. (Conceptual, requires separate infrastructure).
+</code></pre>
+<p><code>New-ADServiceAccount -Name "gMSA_WebApp" -DNSHostName "gMSA_WebApp.contoso.com" -PrincipalsAllowedToRetrieveManagedPassword "SG_WebAppServers"</code>: This command creates a Group Managed Service Account (gMSA), which is a powerful security feature for service accounts. gMSAs manage their own passwords, simplifying administration and enhancing security by eliminating static passwords and credential theft risks associated with traditional service accounts.</p>
+<p>Microsoft Identity Manager (MIM) with JIT administration: While not a single command, MIM provides the framework for users to request temporary membership in privileged groups. Upon approval, MIM elevates the user's privileges for a defined period, after which access is automatically revoked. This "just-in-time" approach eliminates standing access for privileged accounts.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> PAM implementation typically involves a combination of Active Directory management tools for group creation, dedicated PAM solutions (like Microsoft Identity Manager or third-party products), and infrastructure decisions (e.g., dedicated admin workstations). There is no single native Windows Server GUI for a complete PAM solution.</p>
+<p><strong>Expected result:</strong> Privileged users will require explicit, time-limited requests to gain elevated access. Service accounts will be secured using gMSAs or equivalent least-privilege configurations. All privileged actions will be auditable through the PAM system.</p>
+
+<h2>Step 9: Monitor and Respond to Threats</h2>
+<p>Hardening a server is an ongoing process, not a one-time task. Establishing robust logging, auditing, and advanced threat detection capabilities is crucial to proactively identify, investigate, and respond to security incidents. This involves configuring detailed event logging, setting up centralized log management, and leveraging solutions like Microsoft Defender for Endpoint or Advanced Threat Analytics to detect suspicious activities and potential breaches.</p>
+<pre><code class='language-powershell'># Step 9a: Configure advanced audit policies for comprehensive logging.
+# This ensures critical security events are recorded.
+# For example, audit process creation, privilege use, and system integrity.
+# Note: For domain-joined servers, configure this via GPO (Computer Configuration > Policies > Windows Settings > Security Settings > Advanced Audit Policy Configuration).
+# Use 'auditpol' command for local configuration or to verify.
+
+# Audit Process Tracking (important for WDAC and general security monitoring)
+auditpol /set /subcategory:"Process Creation" /success:enable /failure:enable
+
+# Audit Privilege Use
+auditpol /set /subcategory:"Privilege Use" /success:enable /failure:enable
+
+# Audit System Integrity
+auditpol /set /subcategory:"System Integrity" /success:enable /failure:enable
+
+# Step 9b: Configure Windows Event Forwarding (WEF) for centralized log collection.
+# This pushes security events from the server to a central Windows Event Collector (WEC).
+# On the Event Collector (WEC) server:
+# wecutil qc /q
+# Then, create a subscription for source-initiated events.
+# On the Windows Server 2022 (source) server:
+# winrm quickconfig -q
+# winrm set winrm/config/client @{TrustedHosts="WEC_Server_FQDN"}
+# wevtutil ss "Security" /l:40000 /c:1 /e:true /r:"http://WEC_Server_FQDN:5985/wsman/SubscriptionManager/WEC"
+
+# Step 9c: Enable and configure Microsoft Defender for Endpoint (MDE) (if licensed).
+# MDE provides Endpoint Detection and Response (EDR) capabilities.
+# This is typically deployed via Group Policy, Microsoft Endpoint Manager, or a script.
+# (Conceptual step, requires MDE onboarding package).
+# Example via script for onboarding (simplified):
+# PowerShell.exe -ExecutionPolicy ByPass -File "C:\Path\To\WindowsDefenderATPOnboardingScript.cmd"
+
+# Step 9d: Regularly review security event logs.
+# Use Event Viewer (`eventvwr.msc`), or a SIEM/SOAR solution if logs are centralized.
+# Focus on Event IDs related to:
+#   - Account logon/logoff failures (4625, 4624)
+#   - Security group changes (4728, 4732)
+#   - Process creation (4688)
+#   - Windows Defender Application Control (CodeIntegrity events, 3077, 3078)
+</code></pre>
+<p><code>auditpol /set /subcategory:"Process Creation" /success:enable /failure:enable</code>: Enables auditing of process creation events, which includes details like the executable name, process ID, and parent process, crucial for detecting malicious activity.</p>
+<p><code>winrm quickconfig -q</code>: Configures the Windows Remote Management (WinRM) service, which is used for event forwarding, on the client server.</p>
+<p><code>winrm set winrm/config/client @{TrustedHosts="WEC_Server_FQDN"}</code>: Configures the WinRM client on the source server to trust the Event Collector server, allowing secure communication for event forwarding.</p>
+<p><code>wevtutil ss "Security" /l:40000 /c:1 /e:true /r:"http://WEC_Server_FQDN:5985/wsman/SubscriptionManager/WEC"</code>: Subscribes the Security event log on the source server to forward events to the specified Windows Event Collector. Adjust log size (`/l`) as needed.</p>
+<p>Microsoft Defender for Endpoint (MDE): MDE offers advanced EDR capabilities, including behavioral detection, automated investigation, and vulnerability management. Onboarding devices to MDE is critical for a comprehensive threat detection and response strategy.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Advanced audit policy configuration is best managed through Group Policy Objects (GPOs). Windows Event Forwarding can be configured through Event Viewer by setting up subscriptions (on the collector) and source subscriptions (on the source servers). Microsoft Defender for Endpoint is managed via the Microsoft 365 Defender portal.</p>
+<p><strong>Expected result:</strong> Your server will generate detailed audit logs for critical security events. These logs will be forwarded to a central collector for aggregation and analysis. If MDE is deployed, it will actively monitor for threats and integrate with your security operations center (SOC).</p>
+
+<div class='howto-consultant-cta'><h3>When to bring in a consultant</h3><p>While this guide provides a solid framework for hardening Windows Server 2022, the complexity of enterprise environments, the need for custom application compatibility, and the sheer volume of security considerations can be daunting. Implementing advanced features like WDAC, JEA, and comprehensive PAM solutions, or achieving full compliance with strict regulatory benchmarks (e.g., NIST, HIPAA, PCI DSS), often requires specialized expertise. DIY approaches can inadvertently introduce vulnerabilities, break critical business applications, or fail to account for unique operational requirements. If you lack the internal resources, time, or deep expertise to meticulously plan, implement, and validate these hardening steps, SkyCore Solutions is here to help. Our senior IT consultants specialize in these exact areas, ensuring your Windows Server 2022 infrastructure is not just secure, but also optimized for your specific business needs without disruption.</p><a href='../contact.html' class='btn btn-primary'>Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/windows-server/security/security-and-assurance" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/windows-server/security</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/windows-server/security/windows-defender/windows-defender-overview-windows-server" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/windows-server/security</a></li>
+    <li><a href="https://www.cisecurity.org/benchmark/microsoft_windows_server" target="_blank" rel="noopener noreferrer">cisecurity.org — benchmark/microsoft_windows_server</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

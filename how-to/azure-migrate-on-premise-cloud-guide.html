@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>On-Premise to Azure Migration Guide: SkyCore's Recommended Path — SkyCore Solutions</title>
+  <meta name="description" content="Unlock a seamless on-premise to Azure migration with SkyCore Solutions. This guide covers discovery, assessment, planning, and execution using Azure Migrate." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="On-Premise to Azure Migration Guide: SkyCore's Recommended Path — SkyCore Solutions" />
+  <meta property="og:description" content="Unlock a seamless on-premise to Azure migration with SkyCore Solutions. This guide covers discovery, assessment, planning, and execution using Azure Migrate." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-migrate-on-premise-cloud-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/17489153/pexels-photo-17489153.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="On-Premise to Azure Migration Guide: SkyCore's Recommended Path — SkyCore Solutions" />
+  <meta name="twitter:description" content="Unlock a seamless on-premise to Azure migration with SkyCore Solutions. This guide covers discovery, assessment, planning, and execution using Azure Migrate." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/17489153/pexels-photo-17489153.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-migrate-on-premise-cloud-guide.html" />
+  <meta property="article:published_time" content="2026-08-01" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "On-Premise to Azure Migration Guide: SkyCore's Recommended Path",
+  "description": "Unlock a seamless on-premise to Azure migration with SkyCore Solutions. This guide covers discovery, assessment, planning, and execution using Azure Migrate.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Active Azure Subscription with owner or contributor roles, On-premises infrastructure access (VMware vCenter, Hyper-V host, or physical servers), Network connectivity from on-premises datacenter to Azure (VPN or ExpressRoute recommended), Administrative credentials for target on-premises servers/VMs for discovery, Understanding of Azure pricing models and basic cloud concepts"}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Phase 1: Initial Setup and Azure Migrate Project Creation",
+        "text": "Establish the foundational environment in Azure for your migration by creating a dedicated resource group and an Azure Migrate project, which serves as your central hub."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Phase 2: Discovery and Business Case (Decide)",
+        "text": "Discover your on-premises server inventory and performance data, then generate a comprehensive business case to justify your migration to Azure."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Phase 3: Migration Planning and Readiness (Plan)",
+        "text": "Assess your team's skills, define the optimal data migration path, and meticulously plan the migration sequence to minimize risk and downtime."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Phase 4: Replication and Test Migration",
+        "text": "Prepare your on-premises machines and Azure environment for replication, then initiate data synchronization to Azure and perform critical test migrations."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Phase 5: Full Migration and Cutover",
+        "text": "Execute the final migration of your workloads to Azure, validate functionality, and decommission on-premises resources post-cutover."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Phase 6: Post-Migration Optimization and Security Hardening",
+        "text": "Optimize your newly migrated Azure resources for cost and performance, and implement robust security hardening measures."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class='post-meta'>2026-08-01 · 15 min read · Cloud Migration</div>
+<h1>On-Premise to Azure Migration Guide: SkyCore's Recommended Path</h1>
+<div class='article-hero'><img src='https://skycoresolutions.com/assets/images/azure-migration-hero.jpg' alt='Cloud migration path from on-premise servers to Azure cloud infrastructure' loading='eager' fetchpriority='high'></div>
+<div class='howto-intro'><p>Navigating an on-premise to Azure migration can be a complex undertaking, but with SkyCore Solutions' expertise and a structured approach, organizations can achieve a seamless transition. This guide outlines a comprehensive, six-phase strategy, leveraging Azure Migrate as the central hub for discovery, assessment, and the actual migration of your on-premises machines to Azure, ensuring minimal downtime and robust post-migration optimization. While Azure Site Recovery is excellent for disaster recovery, our primary recommendation for server migration is Azure Migrate due to its purpose-built capabilities for this journey.</p></div>
+<div class='howto-prereqs'><h4>Prerequisites</h4><ul>
+    <li>An active Azure subscription with appropriate permissions (Contributor role at the subscription level for comprehensive management, or specific built-in roles for Azure Migrate operations: Azure Migrate Contributor, User Access Administrator).</li>
+    <li>Familiarity with Azure concepts, including Resource Groups, Virtual Networks, and Storage Accounts.</li>
+    <li>Connectivity between your on-premises environment and Azure (e.g., Internet, VPN, ExpressRoute).</li>
+    <li>Adequate on-premises compute and network resources for deploying the Azure Migrate appliance.</li>
+    <li>Review of Azure Migrate supported regions for your desired Azure datacenter location.</li>
+</ul></div>
+
+<h2>Step 1: Phase 1: Initial Setup and Azure Migrate Project Creation</h2>
+<p>The first critical step in any on-premise to Azure migration is to establish a dedicated environment within Azure. This involves creating a resource group to logically organize your migration assets and then provisioning an Azure Migrate project, which will serve as the centralized hub for all subsequent discovery, assessment, and migration activities.</p>
+<pre><code class='language-powershell'># Create a new Azure Resource Group for your migration project
+az group create `
+    --name 'SkyCoreMigrationRG' `
+    --location 'eastus'
+
+# Create a new Azure Migrate project within the resource group
+az migrate project create `
+    --name 'SkyCoreMigrateProject' `
+    --resource-group 'SkyCoreMigrationRG' `
+    --location 'eastus'
+</code></pre>
+<p><code>--name</code>: Specifies the unique name for the resource group or Azure Migrate project.</p>
+<p><code>--location</code>: Designates the Azure region where the resources will be deployed (e.g., 'eastus', 'westeurope').</p>
+<p><code>--resource-group</code>: Links the Azure Migrate project to the previously created resource group.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the Azure portal, search for 'Resource groups', click '+ Create', fill in details. Then search for 'Azure Migrate', click '+ Create project', and select your resource group.</p>
+<p><strong>Expected result:</strong> A new Azure resource group named 'SkyCoreMigrationRG' and an Azure Migrate project named 'SkyCoreMigrateProject' will be successfully provisioned in the 'eastus' region.</p>
+
+<h2>Step 2: Phase 2: Discovery and Business Case (Decide)</h2>
+<p>With the Azure Migrate project in place, the next phase focuses on understanding your existing on-premises environment. This involves discovering your server inventory, collecting performance data, and then using this data to build a compelling business case for moving to Azure. The recommended approach for discovery is to deploy a lightweight Azure Migrate appliance in your datacenter.</p>
+<pre><code class='language-powershell'># Install Azure CLI extensions for Azure Migrate (if not already installed)
+az extension add --name 'azure-migrate' --yes
+
+# Create a discovery site for VMware (example)
+# Note: Appliance deployment (OVF/VHD download) and registration are typically portal-driven or require
+# running a script on-premises. The CLI is primarily for managing the Azure-side discovery aspects
+# after the appliance is registered. This command sets up the 'Discovery site'.
+az migrate vmware-migration create-project `
+    --resource-group 'SkyCoreMigrationRG' `
+    --name 'SkyCoreVMwareDiscovery' `
+    --location 'eastus' `
+    --assessment-project 'SkyCoreMigrateProject' `
+    --storage-account 'skycoremigratestorage' # Replace with a valid, existing storage account
+</code></pre>
+<p><code>az extension add --name 'azure-migrate'</code>: Installs the necessary Azure CLI extension for Azure Migrate commands.</p>
+<p><code>az migrate vmware-migration create-project</code>: Initiates the creation of a VMware migration project which includes a discovery component. Use `hyperv-migration` or `physical-server-migration` as appropriate.</p>
+<p><code>--assessment-project</code>: Links the discovery to your central Azure Migrate project.</p>
+<p><code>--storage-account</code>: Specifies an Azure Storage account where discovery data will be stored temporarily. This must exist prior to running the command.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> From your Azure Migrate project, navigate to 'Servers, databases and web apps', click 'Discover' under 'Discovery and assessment', choose your server type (e.g., VMware vSphere), download the appliance OVF/VHD file, deploy it on-premises, and then register it with your Azure Migrate project using the provided project ID and key.</p>
+<p><strong>Expected result:</strong> The Azure Migrate appliance will collect configuration and performance data from your on-premises servers, continuously sending it to the Azure Migrate service. This data is then used within the Azure Migrate portal to generate a business case, providing insights into total cost of ownership (TCO) comparisons, resource utilization-based recommendations, and potential cost savings.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Network connectivity issues between the on-premises Azure Migrate appliance and Azure. Ensure required firewall ports are open (typically HTTPS outbound to Azure Migrate service endpoints) and that DNS resolution is functioning correctly. If continuous connectivity is an issue, consider the Azure Migrate Collector for a snapshot discovery, but it lacks continuous monitoring.</div>
+
+<h2>Step 3: Phase 3: Migration Planning and Readiness (Plan)</h2>
+<p>Once your environment is discovered and assessed, the planning phase focuses on tactical decisions: evaluating your team's readiness, choosing the optimal data migration path, and meticulously sequencing your workload migrations. This phase is crucial for minimizing risk and ensuring a smooth cutover.</p>
+<h3>Assess Migration Readiness and Skills</h3>
+<p>Evaluate your team's existing Azure skills and experience with migration tools. Identify any knowledge gaps that require targeted training or external support. SkyCore Solutions often recommends engaging external expertise, especially for complex or large-scale projects, to validate strategies and accelerate progress.</p>
+<h3>Choose Your Data Migration Path</h3>
+<p>Selecting the right data migration path is paramount for security, speed, and cost-effectiveness. Your choice will largely depend on available network connections, data volume, and sensitivity.</p>
+<pre><code class='language-powershell'># Example: Create an Azure Virtual Network and VPN Gateway for secure data transfer
+# This assumes you are opting for a VPN-based data transfer path.
+
+# Create a Virtual Network (VNet)
+az network vnet create `
+    --resource-group 'SkyCoreMigrationRG' `
+    --name 'SkyCoreMigrateVNet' `
+    --address-prefix '10.0.0.0/16' `
+    --location 'eastus'
+
+# Create a GatewaySubnet within the VNet
+az network vnet subnet create `
+    --resource-group 'SkyCoreMigrationRG' `
+    --vnet-name 'SkyCoreMigrateVNet' `
+    --name 'GatewaySubnet' `
+    --address-prefixes '10.0.1.0/24'
+
+# Create a Public IP for the VPN Gateway
+az network public-ip create `
+    --resource-group 'SkyCoreMigrationRG' `
+    --name 'SkyCoreVPNGatewayIP' `
+    --allocation-method 'Dynamic' `
+    --sku 'Standard'
+
+# Create the VPN Gateway
+# Note: This command can take 30-45 minutes to complete.
+az network vnet-gateway create `
+    --resource-group 'SkyCoreMigrationRG' `
+    --name 'SkyCoreVPNGateway' `
+    --location 'eastus' `
+    --public-ip-address 'SkyCoreVPNGatewayIP' `
+    --vnet 'SkyCoreMigrateVNet' `
+    --gateway-type 'Vpn' `
+    --vpn-type 'RouteBased' `
+    --sku 'VpnGw1' `
+    --no-wait # Allows the command to return immediately while the gateway deploys in the background
+</code></pre>
+<p><code>az network vnet create</code>: Creates a virtual network in Azure to host your migrated resources.</p>
+<p><code>az network vnet subnet create</code>: Defines a dedicated subnet required for the VPN Gateway.</p>
+<p><code>az network public-ip create</code>: Provisions a public IP address for external connectivity to the VPN Gateway.</p>
+<p><code>az network vnet-gateway create</code>: Deploys the VPN Gateway, which will establish secure connectivity to your on-premises network.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> For network setup, navigate to 'Virtual networks' or 'Virtual network gateways' in the Azure portal and follow the wizard to create these resources. For Azure Data Box, search for 'Azure Data Box' and create an order.</p>
+<p><strong>Data Migration Path Options:</strong></p>
+<ul>
+    <li><strong>ExpressRoute:</strong> Recommended for all workloads when available, offering private, dedicated, high-speed, and secure connections. Requires prior setup and has associated costs.</li>
+    <li><strong>VPN:</strong> A secure alternative when ExpressRoute isn't feasible. Creates an encrypted tunnel over the public internet, though typically slower than ExpressRoute. Requires an Azure VPN Gateway.</li>
+    <li><strong>Azure Data Box:</strong> Ideal for large-scale, offline migrations with massive data volumes. Microsoft ships you a physical device for data transfer, avoiding network bandwidth usage, but involving shipping time.</li>
+    <li><strong>Public Internet:</strong> Suitable only for less sensitive data when other options are unavailable. Least secure and can consume significant network bandwidth.</li>
+</ul>
+<h3>Determine the Migration Sequence</h3>
+<p>Organize your migration into logical waves, prioritizing workloads based on dependencies and business impact. Use the dependency mapping data collected during discovery to group interdependent applications and servers, ensuring they migrate together to prevent service disruptions.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Overlooking critical dependencies between applications or services. A thorough dependency analysis is paramount. Unforeseen dependencies can lead to application outages and rollback scenarios, significantly impacting migration timelines and costs. Leverage Azure Migrate's dependency visualization to accurately map connections.</div>
+
+<h2>Step 4: Phase 4: Replication and Test Migration</h2>
+<p>This phase involves the technical preparation of your on-premises machines and Azure environment for data synchronization. You'll set up continuous replication of your chosen workloads to Azure and then perform essential test migrations to validate the process without affecting your production environment.</p>
+<pre><code class='language-powershell'># Install the Server Migration extension if not already present
+az extension add --name 'server-migration' --yes
+
+# Enable replication for an on-premises machine (example for VMware/physical server)
+# Note: This command assumes the Azure Migrate appliance is already registered and discovered machines.
+# The actual replication is initiated through the Azure Migrate project in the portal or by providing
+# detailed replication properties not directly exposed in a simple 'start-replication' CLI for all scenarios.
+# For a more realistic CLI, you'd be interacting with specific ASR replication components or
+# using more complex 'az migrate server-migration' commands with JSON payloads for properties.
+# As the reference points to the portal for general setup, a conceptual CLI is given.
+
+# --- Conceptual CLI for enabling replication via Azure Migrate project ---
+# This part is highly dependent on the type of server (VMware, Hyper-V, Physical) and
+# the specific replication policy and target details.
+# General approach:
+# 1. Create a replication policy (if not already existing in the project)
+# 2. Select machines to replicate
+# 3. Configure replication settings (target VNet, subnet, disks, etc.)
+
+# Example for creating a replication policy (placeholders)
+# This would typically be a sub-command under 'az migrate' or 'az site-recovery'
+# az migrate replication policy create \
+#    --resource-group 'SkyCoreMigrationRG' \
+#    --project-name 'SkyCoreMigrateProject' \
+#    --name 'SkyCoreDefaultReplicationPolicy' \
+#    --recovery-point-retention-in-days 7 \
+#    --app-consistent-snapshot-frequency-in-hours 4
+
+# After policy and target settings, you would enable replication for specific discovered machines.
+# This often involves detailed JSON input for machine properties, disks, and network settings.
+# For simplicity, we direct to the portal for initial setup of specific machine replication,
+# as the CLI for this granular step can be extensive and vary greatly.
+
+# Perform a test migration for a replicated server (using Azure Migrate Server Migration)
+# Replace 'MyMigratedVM' with the actual name of your server configured for migration.
+az migrate server-migration test-migrate `
+    --resource-group 'SkyCoreMigrationRG' `
+    --project-name 'SkyCoreMigrateProject' `
+    --name 'MyMigratedVM' `
+    --vnet 'SkyCoreMigrateVNet' `
+    --subnet 'default' # Or a specific test subnet, e.g., 'SkyCoreTestSubnet'
+</code></pre>
+<p><code>az migrate server-migration test-migrate</code>: Initiates a test migration of a specified server to Azure, creating a VM without impacting ongoing replication or the source on-premises machine.</p>
+<p><code>--name</code>: The name of the server migration item you want to test migrate.</p>
+<p><code>--vnet</code>: The target Azure Virtual Network for the test VM.</p>
+<p><code>--subnet</code>: The specific subnet within the target VNet for the test VM.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Within your Azure Migrate project, under 'Servers, databases and web apps', navigate to 'Replicating servers'. Select the servers you wish to replicate, click 'Replicate', and follow the wizard to configure target settings. Once replication is healthy, select a server and click 'Test migration' to initiate a test failover.</p>
+<p><strong>Expected result:</strong> Your on-premises servers will begin continuous replication to Azure. A test migration will successfully provision a replica VM in Azure within an isolated network, allowing you to validate application functionality, connectivity, and performance without affecting your production environment. You should resolve any issues identified during the test migration before proceeding.</p>
+
+<h2>Step 5: Phase 5: Full Migration and Cutover</h2>
+<p>With successful test migrations validating your process, you are ready for the final cutover. This phase involves executing the full migration of your workloads, ensuring data consistency, validating operations in Azure, and finally, decommissioning the legacy on-premises resources.</p>
+<pre><code class='language-powershell'># Perform a final synchronization and stop replication before cutover (recommended)
+# This step ensures the latest data is transferred and then stops new changes from replicating.
+az migrate server-migration stop-replication `
+    --resource-group 'SkyCoreMigrationRG' `
+    --project-name 'SkyCoreMigrateProject' `
+    --name 'MyMigratedVM' `
+    --replication-stop-type 'FinalSync' # Ensures a final sync is attempted
+
+# Execute the full migration (cutover) for a replicated server
+# This command powers off the on-premises machine, performs a final data sync,
+# and creates the final Azure VM.
+az migrate server-migration start-migration `
+    --resource-group 'SkyCoreMigrationRG' `
+    --project-name 'SkyCoreMigrateProject' `
+    --name 'MyMigratedVM' `
+    --target-resource-group 'SkyCoreTargetVMsRG' # Target RG for the final VM
+    # Additional parameters like --target-vnet, --target-subnet, --target-disk-type etc.
+    # might be required based on your specific setup and migration type.
+</code></pre>
+<p><code>az migrate server-migration stop-replication</code>: Halts the continuous replication for a server, optionally performing a final data synchronization.</p>
+<p><code>az migrate server-migration start-migration</code>: Executes the final migration, powering off the source, performing a last data transfer, and creating the production Azure VM.</p>
+<p><code>--replication-stop-type 'FinalSync'</code>: Specifies that a final synchronization should occur before stopping replication, ensuring minimal data loss.</p>
+<p><code>--target-resource-group</code>: The resource group in Azure where the final migrated VM will reside.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> From your Azure Migrate project, under 'Servers, databases and web apps', navigate to 'Replicating servers'. Select the server(s) you wish to migrate, click 'Migrate', confirm the shutdown of the on-premises machine, and complete the process. This will provision the final Azure VM.</p>
+<p><strong>Expected result:</strong> The specified on-premises workload will be successfully migrated to Azure. The source on-premises machine will be powered off (or marked for decommissioning), and a fully functional production VM will be running in Azure. You should perform comprehensive post-migration validation to ensure all applications and services operate as expected within the Azure environment.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Inadequate post-migration validation. It's not enough for the VM to boot; every application, service, and data integrity point must be thoroughly tested. Allocate sufficient time for validation before decommissioning on-premises assets. Consider running in hybrid mode for a short period if possible.</div>
+
+<h2>Step 6: Phase 6: Post-Migration Optimization and Security Hardening</h2>
+<p>Migration is not the final step; optimizing your Azure resources for cost and performance, and implementing robust security hardening, are crucial for realizing the full benefits of the cloud. This phase focuses on refining your Azure footprint and fortifying your defenses.</p>
+<h3>Cost and Performance Optimization</h3>
+<p>Review your migrated VMs and services for rightsizing, leveraging Azure Advisor recommendations, and exploring cost-saving features like Reserved Instances or Azure Hybrid Benefit.</p>
+<pre><code class='language-powershell'># Resize an Azure VM to optimize cost or performance
+# Identify VMs based on performance metrics (CPU, RAM usage) from Azure Monitor.
+az vm resize `
+    --resource-group 'SkyCoreTargetVMsRG' `
+    --name 'MyMigratedVM' `
+    --size 'Standard_D2s_v4' # Example new VM size (e.g., from Standard_D4s_v3 to D2s_v4)
+
+# Enable Azure Hybrid Benefit for a VM (if eligible with Windows Server/SQL Server licenses)
+az vm update `
+    --resource-group 'SkyCoreTargetVMsRG' `
+    --name 'MyMigratedVM' `
+    --set licenseType='Windows_Server' # Or 'Windows_Server_and_SQL_Server'
+</code></pre>
+<p><code>az vm resize</code>: Changes the VM size (SKU) to a more appropriate one based on actual workload demands.</p>
+<p><code>--size</code>: The new VM size to apply (e.g., 'Standard_D2s_v4').</p>
+<p><code>az vm update --set licenseType='Windows_Server'</code>: Configures the VM to utilize Azure Hybrid Benefit, reducing compute costs.</p>
+<h3>Security Hardening</h3>
+<p>Implement a layered security approach using Azure Security Center, Network Security Groups (NSGs), Azure Key Vault, and identity management best practices.</p>
+<pre><code class='language-powershell'># Create a Network Security Group (NSG) for a specific subnet or VM
+az network nsg create `
+    --resource-group 'SkyCoreTargetVMsRG' `
+    --name 'SkyCoreWebNSG' `
+    --location 'eastus'
+
+# Add an inbound rule to allow HTTPS (port 443) traffic to the NSG
+az network nsg rule create `
+    --resource-group 'SkyCoreTargetVMsRG' `
+    --nsg-name 'SkyCoreWebNSG' `
+    --name 'AllowHttpsInbound' `
+    --priority 100 `
+    --direction 'Inbound' `
+    --access 'Allow' `
+    --protocol 'Tcp' `
+    --source-port-ranges '*' `
+    --destination-port-ranges 443 `
+    --source-address-prefixes 'Internet' `
+    --destination-address-prefixes '*'
+
+# Associate the NSG with a Subnet (recommended) or a specific Network Interface
+az network vnet subnet update `
+    --resource-group 'SkyCoreTargetVMsRG' `
+    --vnet-name 'SkyCoreMigrateVNet' `
+    --name 'default' `
+    --network-security-group 'SkyCoreWebNSG'
+
+# Enable Azure Defender for Servers (via Azure Security Center)
+# This is typically configured at the subscription level via the portal or policy.
+# Conceptual command to enable for a subscription:
+# az security auto-provisioning-setting update --name 'default' --auto-provision 'On'
+</code></pre>
+<p><code>az network nsg create</code>: Provisions a network security group to filter network traffic to and from Azure resources.</p>
+<p><code>az network nsg rule create</code>: Defines a specific rule within an NSG, such as allowing inbound HTTPS.</p>
+<p><code>--priority</code>: Determines the order in which rules are processed (lower numbers are processed first).</p>
+<p><code>--source-address-prefixes 'Internet'</code>: Specifies that traffic from any external IP address is allowed.</p>
+<p><code>az network vnet subnet update</code>: Associates an NSG with an entire subnet, applying its rules to all resources within that subnet.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> For VM resizing, navigate to the VM's blade, select 'Size' under 'Settings'. For NSG management, search for 'Network security groups', create/configure rules, and associate them with subnets or NICs. For security posture, visit 'Azure Security Center' (now Microsoft Defender for Cloud) to enable enhanced security features and review recommendations.</p>
+<p><strong>Expected result:</strong> Your Azure resources are now right-sized for efficiency, leveraging cost-saving programs, and protected by a robust set of security controls, including network segmentation and threat detection capabilities, aligning with SkyCore's best practices for cloud governance and security.</p>
+
+<div class='howto-consultant-cta'><h3>When to bring in a consultant</h3><p>While this guide provides a solid framework, the complexity of on-premise to Azure migration can quickly escalate with multi-tier applications, intricate dependencies, compliance requirements, or large-scale data volumes. DIY approaches become risky when internal teams lack deep expertise in specific Azure services, advanced networking, or robust security hardening strategies post-migration. If your team is stretched thin, facing tight deadlines, or grappling with complex hybrid scenarios, engaging a specialized consultant like SkyCore Solutions can significantly de-risk the project, accelerate your timeline, and ensure a secure, optimized, and cost-effective transition. We provide validated strategies, hands-on execution, and comprehensive post-migration support to unlock the full potential of your Azure environment.</p><a href='../contact.html' class='btn btn-primary'>Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/site-recovery/migrate-tutorial-on-premises-azure" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/azure/site-recovery</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/azure/migrate</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/azure/cloud-adoption-framework</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

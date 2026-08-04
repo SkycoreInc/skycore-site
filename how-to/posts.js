@@ -3,6 +3,54 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "harden-windows-server-2022-skycore",
+    title: "How to Harden Windows Server 2022: A SkyCore Solutions Guide",
+    date: "2026-08-04",
+    readTime: "12 min read",
+    category: "Security Hardening",
+    difficulty: "Advanced",
+    timeEstimate: "2-3 hours",
+    keyword: "how to harden Windows Server 2022",
+    excerpt: "Harden your Windows Server 2022 environment against evolving threats with a multi-layered security approach. This guide provides actionable steps for robust protection and compliance.",
+    image: "https://images.pexels.com/photos/4597280/pexels-photo-4597280.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "microsoft-sentinel-siem-setup-smb-guide",
+    title: "Mastering Microsoft Sentinel SIEM Setup for SMBs: An Implementation Guide by SkyCore Solutions",
+    date: "2026-08-01",
+    readTime: "9 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2 hours",
+    keyword: "Microsoft Sentinel SIEM setup SMB",
+    excerpt: "Boost your SMB's security posture with Microsoft Sentinel. This guide covers the essential steps for Microsoft Sentinel SIEM setup, from deployment to threat detection.",
+    image: "https://images.pexels.com/photos/5380618/pexels-photo-5380618.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "azure-migrate-on-premise-cloud-guide",
+    title: "On-Premise to Azure Migration Guide: SkyCore's Recommended Path",
+    date: "2026-08-01",
+    readTime: "15 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "Weeks to Months (for full migration project)",
+    keyword: "on premise to Azure migration guide",
+    excerpt: "This guide provides SkyCore Solutions' recommended, CLI-first approach for migrating on-premise workloads to Azure, leveraging the Azure Migrate service. We cover everything from initial discovery and assessment to replication and final cutover.",
+    image: "https://images.pexels.com/photos/17489153/pexels-photo-17489153.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "azure-conditional-access-setup-guide",
+    title: "Mastering Azure Conditional Access: A SkyCore Setup Guide for Enhanced Security",
+    date: "2026-07-31",
+    readTime: "18 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Azure conditional access setup guide",
+    excerpt: "Implement a robust Azure Conditional Access setup to enforce Zero Trust principles and strengthen your organization's security posture. This guide provides SkyCore's recommended policies for MFA and device compliance.",
+    image: "https://images.pexels.com/photos/1990764/pexels-photo-1990764.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-365-business-premium-setup-guide",
     title: "Microsoft 365 Business Premium Setup Guide for SMBs: A SkyCore Solutions Implementation",
     date: "2026-07-29",
