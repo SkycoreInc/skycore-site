@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-migrate-assessment-guide-smb-cloud-migration",
+    title: "Demystifying Cloud Readiness: Your Azure Migrate Assessment Guide for SMBs",
+    date: "2026-08-05",
+    readTime: "18 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-4 hours (initial setup & discovery)",
+    keyword: "Azure Migrate assessment guide SMB",
+    excerpt: "This comprehensive Azure Migrate assessment guide for SMBs walks you through discovering your on-premises VMware environment and generating data-driven Azure readiness assessments. Gain clear insights into costs, performance, and migration paths.",
+    image: "https://images.pexels.com/photos/7971339/pexels-photo-7971339.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "harden-windows-server-2022-skycore",
     title: "How to Harden Windows Server 2022: A SkyCore Solutions Guide",
     date: "2026-08-04",
