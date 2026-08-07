@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "m365-phishing-payroll-financial-breach",
+    title: "Microsoft 365 Phishing Just Got Nastier: Is Your Payroll Next?",
+    date: "2026-08-07",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Sophisticated AitM phishing campaigns are actively hijacking Microsoft 365 accounts to compromise financial workflows. Learn what your Montreal business must do to protect its critical data.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/4973899/pexels-photo-4973899.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ai-cybersecurity-myths-montreal-smb",
     title: "Don't Fall for the AI Hype: What Montreal SMBs Really Need for Cybersecurity",
     date: "2026-08-03",
