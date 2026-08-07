@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "smb-cybersecurity-audit-checklist",
+    title: "Essential Cybersecurity Audit Checklist for SMBs: SkyCore's 2026 Guide",
+    date: "2026-08-07",
+    readTime: "12-15 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 days (initial assessment)",
+    keyword: "cybersecurity audit checklist SMB",
+    excerpt: "SkyCore Solutions presents a vital cybersecurity audit checklist for SMBs to bolster defenses. Implement proactive security hardening steps and ensure compliance.",
+    image: "https://images.pexels.com/photos/8962452/pexels-photo-8962452.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-migrate-assessment-guide-smb-cloud-migration",
     title: "Demystifying Cloud Readiness: Your Azure Migrate Assessment Guide for SMBs",
     date: "2026-08-05",
