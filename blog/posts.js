@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "metabase-zero-day-montreal-smb",
+    title: "Your Data Exposed: The Metabase Zero-Day and Why Your Montreal Business is Next",
+    date: "2026-08-09",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A maximum-severity Metabase zero-day allowed unauthenticated access and data theft, hitting real businesses. This isn't just big tech's problem—it's a critical warning for every Montreal SMB.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/19856564/pexels-photo-19856564.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "m365-phishing-payroll-financial-breach",
     title: "Microsoft 365 Phishing Just Got Nastier: Is Your Payroll Next?",
     date: "2026-08-07",

@@ -13,6 +13,34 @@
     </image>
 
     <item>
+      <title>Your Data Exposed: The Metabase Zero-Day and Why Your Montreal Business is Next</title>
+      <link>https://skycoresolutions.com/blog/metabase-zero-day-montreal-smb.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/metabase-zero-day-montreal-smb.html</guid>
+      <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
+      <description>**A maximum-severity zero-day just let hackers walk right into businesses like yours.**
+The recent Metabase vulnerability allowed unauthenticated access and widespread data theft.
+This wasn't theoretical; real companies faced critical breaches.
+It's a stark reminder that advanced threats aren't just for big tech.
+
+Here's what every Montreal SMB needs to know:
+🔴 **Unauthenticated Access:** The Metabase zero-day bypassed all login screens, granting full database control.
+⚠️ **Data Theft Risk:** This meant sensitive customer, financial, and operational data was vulnerable to immediate extraction.
+🛡️ **SMBs Are Targets:** Don't assume your business is too small; attackers specifically seek less protected environments.
+🔐 **Proactive Security:** Relying solely on software updates is insufficient; robust security hardening is non-negotiable.
+☁️ **Cloud Vulnerabilities:** Even cloud-based systems can harbor critical gaps if not properly secured and monitored.
+
+This incident isn't just news; it's a direct warning. Your business's security posture needs constant vigilance and expert review to prevent becoming the next headline.
+
+Dive deeper into the Metabase zero-day and what it means for your Montreal business. Read the article now: https://skycoresolutions.com/blog/metabase-zero-day-montreal-smb.html
+
+#CyberSecurity #DataSecurity #SMBsecurity #MontrealIT #ITconsulting #CloudSecurity #ZeroDay #Metabase #SecurityHardening #InfrastructureSecurity #DataProtection #CyberThreats #ITsecurity #BusinessContinuity #RiskManagement #SkyCoreSolutions #MontrealSMB #ITservices #CloudMigration #SecurityAudit
+
+🔗 Read the full article: https://skycoresolutions.com/blog/metabase-zero-day-montreal-smb.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/19856564/pexels-photo-19856564.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>Microsoft 365 Phishing Just Got Nastier: Is Your Payroll Next?</title>
       <link>https://skycoresolutions.com/blog/m365-phishing-payroll-financial-breach.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/m365-phishing-payroll-financial-breach.html</guid>
