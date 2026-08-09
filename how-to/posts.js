@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-arc-hybrid-cloud-management-smb",
+    title: "Your Essential Azure Arc Hybrid Cloud Management Guide for SMBs",
+    date: "2026-08-09",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Azure Arc hybrid cloud management guide",
+    excerpt: "This Azure Arc hybrid cloud management guide helps SMBs seamlessly integrate on-premises infrastructure with Azure, bringing unified governance and operational consistency. Enhance your IT efficiency and security today.",
+    image: "https://images.pexels.com/photos/6134011/pexels-photo-6134011.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "smb-cybersecurity-audit-checklist",
     title: "Essential Cybersecurity Audit Checklist for SMBs: SkyCore's 2026 Guide",
     date: "2026-08-07",
