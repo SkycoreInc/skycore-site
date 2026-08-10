@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Master Phishing Simulation Setup with Azure & M365 Defender — SkyCore Solutions</title>
+  <meta name="description" content="Comprehensive phishing simulation setup guide for enterprises using Azure and Microsoft 365 Defender. Enhance security hardening and employee awareness." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Master Phishing Simulation Setup with Azure & M365 Defender — SkyCore Solutions" />
+  <meta property="og:description" content="Comprehensive phishing simulation setup guide for enterprises using Azure and Microsoft 365 Defender. Enhance security hardening and employee awareness." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/phishing-simulation-setup-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/38486957/pexels-photo-38486957.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Master Phishing Simulation Setup with Azure & M365 Defender — SkyCore Solutions" />
+  <meta name="twitter:description" content="Comprehensive phishing simulation setup guide for enterprises using Azure and Microsoft 365 Defender. Enhance security hardening and employee awareness." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/38486957/pexels-photo-38486957.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/phishing-simulation-setup-guide.html" />
+  <meta property="article:published_time" content="2026-08-10" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Master Phishing Simulation Setup with Azure & M365 Defender",
+  "description": "Comprehensive phishing simulation setup guide for enterprises using Azure and Microsoft 365 Defender. Enhance security hardening and employee awareness.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Azure Subscription with Global Administrator or Security Administrator role., Microsoft 365 E5 or Microsoft Defender for Office 365 Plan 2 license for Attack Simulation Training., Working knowledge of Azure Active Directory and Exchange Online mail flow., PowerShell 7+ and Azure CLI installed., ExchangeOnlineManagement and Microsoft.Graph PowerShell modules."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Verify Administrative Permissions & Module Installation",
+        "text": "Ensure your account possesses the necessary Global Administrator or Security Administrator roles and that required PowerShell modules are installed for managing Azure AD and Exchange Online."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Strategize Your Phishing Campaign",
+        "text": "Define the scope, objectives, target audience, and type of phishing simulation to conduct, which is crucial before technical configuration."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Target User Groups in Azure AD",
+        "text": "Create or identify specific Azure AD security groups to precisely target your simulation campaigns and manage recipient lists efficiently."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Whitelist Simulation Sources in Exchange Online",
+        "text": "Configure Exchange Online mail flow rules to prevent legitimate simulation emails from being blocked by internal filters, ensuring deliverability."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Advanced Delivery Policy for Third-Party Simulators",
+        "text": "If using a third-party phishing simulation platform, set up an Advanced Delivery policy in Microsoft 365 Defender to correctly categorize and deliver these simulations."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Plan and Build the Phishing Simulation Campaign (M365 Defender AST)",
+        "text": "Design your simulation by selecting the attack technique, crafting the email payload, configuring a landing page, and associating relevant training modules."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Launch and Monitor the Phishing Simulation",
+        "text": "Initiate your planned simulation campaign and actively monitor its progress, ensuring it reaches the intended targets and gathers initial engagement data."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Analyze Simulation Results and Generate Reports",
+        "text": "Collect and analyze the comprehensive simulation data to identify vulnerable users, understand common click patterns, and measure awareness improvements."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implement Post-Simulation Remediation & Training",
+        "text": "Follow up with targeted training for users who fell for the simulation, reinforce security awareness, and adjust future security policies based on insights gained."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class='post-meta'>2026-08-10 · 12 min read · Security Hardening</div>
+<h1>Master Phishing Simulation Setup with Azure & M365 Defender</h1>
+<div class='article-hero'><img src='https://skycoresolutions.com/images/phishing-simulation-hero.jpg' alt='A digital fish hook catching a stylized email icon, representing phishing simulation and cybersecurity training.' loading='eager' fetchpriority='high'></div>
+<div class='howto-intro'><p>Phishing remains one of the most persistent and effective attack vectors against organizations. Proactive defense isn't just about technical controls; it's about empowering your users. Setting up effective <strong>phishing simulation</strong> campaigns using Azure and Microsoft 365 Defender allows you to test user resilience, identify vulnerable points, and deliver targeted training before a real attack compromises your systems. This guide provides a direct, CLI-first approach to configuring your environment and launching robust phishing simulations, ensuring your organization builds a stronger human firewall.</p></div>
+<div class='howto-prereqs'><h4>Prerequisites</h4><ul><li>An active Azure/Microsoft 365 subscription with Global Administrator or Security Administrator roles.</li><li>Familiarity with PowerShell and Azure CLI.</li><li>A clear understanding of your organization's security posture and user base.</li><li>(Optional, for third-party tools) IP addresses, sending domains, and URLs of your chosen third-party phishing simulation platform.</li></ul></div>
+
+<h2>Step 1: Verify Administrative Permissions & Module Installation</h2>
+<p>Before initiating any configuration, confirm that your administrative account possesses the necessary roles and that the required PowerShell modules for managing Azure AD and Exchange Online are installed. This ensures you have the authority and tools to perform all subsequent steps.</p>
+<pre><code class='language-powershell'># Check current user's Azure AD roles
+Connect-MsolService
+Get-MsolRole -RoleName 'Security Administrator' | Get-MsolRoleMember
+
+# Install Azure AD PowerShell module (if not already installed)
+Install-Module -Name AzureAD -Scope CurrentUser -Force
+
+# Install Exchange Online PowerShell module (if not already installed)
+Install-Module -Name ExchangeOnlineManagement -Scope CurrentUser -Force
+
+# Connect to Exchange Online PowerShell
+Connect-ExchangeOnline -UserPrincipalName admin@yourdomain.com -ShowProgress $true
+</code></pre>
+<p><code>Connect-MsolService</code>: Establishes a connection to Microsoft Online Services.</p>
+<p><code>Get-MsolRole -RoleName 'Security Administrator' | Get-MsolRoleMember</code>: Retrieves members of the 'Security Administrator' role. We recommend this role over 'Global Administrator' for least privilege principles.</p>
+<p><code>Install-Module -Name AzureAD -Scope CurrentUser -Force</code>: Installs the Azure AD module for managing users and groups.</p>
+<p><code>Install-Module -Name ExchangeOnlineManagement -Scope CurrentUser -Force</code>: Installs the modern Exchange Online module.</p>
+<p><code>Connect-ExchangeOnline -UserPrincipalName admin@yourdomain.com -ShowProgress $true</code>: Connects to Exchange Online using your administrator account.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> To check roles in the Azure portal, navigate to 'Azure Active Directory' > 'Roles and administrators' and search for 'Security Administrator'. Click on it to see assigned members. Module installation is CLI-only.</p>
+<p><strong>Expected result:</strong> Your administrative account is listed as a member of 'Security Administrator' (or 'Global Administrator'), and all modules install successfully, allowing you to connect to Azure AD and Exchange Online.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Attempting to install modules without elevated PowerShell permissions or encountering certificate trust errors. Ensure PowerShell is run as Administrator. For certificate errors, check your execution policy (`Set-ExecutionPolicy RemoteSigned`).</div>
+
+<h2>Step 2: Strategize Your Phishing Campaign</h2>
+<p>Before diving into technical configurations, it's crucial to define the strategic aspects of your phishing simulation. A well-planned campaign ensures relevance, effectiveness, and accurate measurement of your security posture. This step is foundational and entirely conceptual.</p>
+<pre><code class='language-powershell'># No direct CLI command for strategy; this is a planning phase.
+# Document your strategy diligently. Example:
+# New-Item -Path C:\PhishingSims -Name "CampaignStrategy.txt" -ItemType File
+# Add-Content -Path C:\PhishingSims\CampaignStrategy.txt -Value "Campaign Name: Q3 Spear Phishing Test`nObjective: Measure susceptibility to credential harvesting`nTarget Group: All Marketing & Sales Staff`nAttack Technique: Credential Harvest`nPayload: Fake Microsoft 365 login page`nTraining Focus: Recognizing malicious URLs & MFA importance`nStart Date: 2026-09-01`nEnd Date: 2026-09-15"
+</code></pre>
+<p><code>New-Item</code> and <code>Add-Content</code> are provided as examples for documenting your strategy in a text file, though any document management system is suitable.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> This step is entirely conceptual and typically involves discussions, whiteboard sessions, and documentation creation outside of any specific portal. Record your decisions in a shared document or project management tool.</p>
+<p><strong>Expected result:</strong> A clearly documented plan outlining your campaign's objectives, target audience, chosen attack technique (e.g., credential harvest, malware attachment, drive-by URL), specific payloads, and the corresponding training content. This document will guide subsequent technical steps.</p>
+
+<h2>Step 3: Prepare Target User Groups in Azure AD</h2>
+<p>To precisely target your phishing simulation campaigns and manage recipient lists efficiently, create or identify specific Azure AD security groups. This ensures your simulation reaches the intended audience without affecting unintended users and simplifies reporting.</p>
+<pre><code class='language-powershell'># Connect to Azure AD if not already connected
+Connect-AzureAD
+
+# Create a new security group for your simulation target (if needed)
+New-AzureADGroup -DisplayName "Phishing Simulation - Q3 Marketing" -MailEnabled $false -SecurityEnabled $true -Description "Target group for Q3 phishing simulation campaign for Marketing"
+
+# Add users to the new security group (replace with actual UPNs)
+$users = @("user1@yourdomain.com", "user2@yourdomain.com")
+$groupId = (Get-AzureADGroup -DisplayName "Phishing Simulation - Q3 Marketing").ObjectId
+foreach ($user in $users) {
+    $userId = (Get-AzureADUser -ObjectId $user).ObjectId
+    Add-AzureADGroupMember -ObjectId $groupId -RefObjectId $userId
+}
+
+# Verify group members
+Get-AzureADGroupMember -ObjectId $groupId | Select-Object DisplayName, UserPrincipalName
+</code></pre>
+<p><code>New-AzureADGroup</code>: Creates a new Azure AD security group.</p>
+<p><code>Add-AzureADGroupMember</code>: Adds specified users to the newly created group.</p>
+<p><code>Get-AzureADGroupMember</code>: Retrieves members of a specific Azure AD group.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> In the Azure portal, navigate to 'Azure Active Directory' > 'Groups' > 'New group'. Select 'Security' as the Group type, provide a name and description, then add members. You can also manage existing groups from this section.</p>
+<p><strong>Expected result:</strong> A dedicated Azure AD security group populated with the specific users targeted for your phishing simulation campaign. This group will be referenced when configuring the simulation.</p>
+
+<h2>Step 4: Whitelist Simulation Sources in Exchange Online</h2>
+<p>To prevent your legitimate phishing simulation emails from being quarantined or blocked by internal Exchange Online filters (such as ATP/Defender for Office 365), you must configure mail flow rules. This is critical for ensuring deliverability and accurate reporting of user behavior.</p>
+<pre><code class='language-powershell'># Connect to Exchange Online if not already connected
+Connect-ExchangeOnline -UserPrincipalName admin@yourdomain.com -ShowProgress $true
+
+# Define simulator properties (replace with your simulator's actual details)
+$simulatorIPs = @("192.0.2.1", "198.51.100.2") # Example IP addresses
+$simulatorDomains = @("phishingsimulator.com", "another-sim.net") # Example domains
+
+# Create a transport rule to bypass spam filtering for simulation emails
+New-TransportRule -Name "Bypass Spam Filtering for Phishing Simulations" `
+    -FromAddresses $simulatorDomains `
+    -SenderIpRanges $simulatorIPs `
+    -SetSCL -1 `
+    -StopRuleProcessing $true `
+    -Comments "Rule to allow phishing simulation emails to bypass spam filtering."
+
+# (Optional, but recommended) Create a rule to bypass Zero-hour Auto Purge (ZAP)
+# Note: ZAP bypass for *specific conditions* is generally handled by Advanced Delivery Policy (Step 5).
+# For very specific scenarios where ZAP must be bypassed via transport rule, consider conditions carefully.
+# A simpler approach for *general* whitelisting is the one above + Advanced Delivery.
+</code></pre>
+<p><code>New-TransportRule</code>: Creates a new mail flow rule in Exchange Online.</p>
+<p><code>-FromAddresses</code>: Specifies the sending domains of your phishing simulation platform.</p>
+<p><code>-SenderIpRanges</code>: Specifies the sending IP addresses of your phishing simulation platform.</p>
+<p><code>-SetSCL -1</code>: Sets the Spam Confidence Level to -1, effectively bypassing spam filtering.</p>
+<p><code>-StopRuleProcessing $true</code>: Ensures no other rules process these emails, preventing conflicts.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> In the Microsoft 365 admin center, navigate to 'Exchange admin center' > 'Mail flow' > 'Rules'. Click 'Add a rule', choose 'Create a new rule...', and configure conditions (e.g., 'The sender' > 'IP address is in any of these ranges or exactly matches' and 'The sender' > 'domain is') and actions ('Set the spam confidence level (SCL) to' > '-1').</p>
+<p><strong>Expected result:</strong> Mail flow rules are created in Exchange Online that explicitly allow emails from your phishing simulation platform's IP addresses and domains to bypass spam filtering and deliver directly to user inboxes, ensuring simulation emails are not blocked.</p>
+
+<h2>Step 5: Configure Advanced Delivery Policy for Third-Party Simulators</h2>
+<p>If you're utilizing a third-party phishing simulation platform, setting up an Advanced Delivery policy in Microsoft 365 Defender is paramount. This policy correctly categorizes these simulations, preventing them from being blocked by Defender for Office 365 features like ZAP (Zero-hour Auto Purge) and ensuring they don't impact your security posture metrics negatively.</p>
+<pre><code class='language-powershell'># Connect to Security &amp; Compliance Center PowerShell (if not already connected)
+Connect-IPPSSession -UserPrincipalName admin@yourdomain.com -ShowProgress $true
+
+# Define third-party simulator details (replace with your actual data)
+$simTenantId = "a1b2c3d4-e5f6-7890-1234-567890abcdef" # Your tenant ID
+$simName = "Third-Party Phishing Platform"
+$simURL = @("sims.phishingservice.com", "training.phishingprovider.net") # Simulation URLs
+$simDomain = @("phishing-sender.com", "secure-training.org") # Sending domains
+$simIP = @("203.0.113.10", "198.18.0.5") # Sending IPs
+
+# Create or update the Advanced Delivery Phish Simulation Override policy
+Set-AdvancedDeliveryPhishSimulationOverride -Identity $simTenantId `
+    -Name $simName `
+    -PhishSimulationURL $simURL `
+    -PhishSimulationSendingDomains $simDomain `
+    -PhishSimulationIPs $simIP
+</code></pre>
+<p><code>Connect-IPPSSession</code>: Connects to the Security & Compliance Center PowerShell, required for advanced delivery cmdlets.</p>
+<p><code>Set-AdvancedDeliveryPhishSimulationOverride</code>: Configures the advanced delivery policy for phishing simulations. If an override for your tenant ID doesn't exist, this command will create it; otherwise, it updates it.</p>
+<p><code>-Identity $simTenantId</code>: Your Microsoft 365 tenant ID, which uniquely identifies your organization.</p>
+<p><code>-Name $simName</code>: A friendly name for your third-party simulator configuration.</p>
+<p><code>-PhishSimulationURL</code>: A list of URLs used in your simulation emails that point to landing pages or malicious content.</p>
+<p><code>-PhishSimulationSendingDomains</code>: A list of email sending domains used by your third-party simulator.</p>
+<p><code>-PhishSimulationIPs</code>: A list of sending IP addresses used by your third-party simulator.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> In the Microsoft 365 Defender portal, navigate to 'Email & collaboration' > 'Policies & rules' > 'Threat policies' > 'Advanced delivery'. Under the 'Phishing simulation' tab, click 'Add' or 'Edit' to configure your third-party simulation settings.</p>
+<p><strong>Expected result:</strong> An Advanced Delivery policy is successfully configured in Microsoft 365 Defender, classifying emails and URLs from your specified third-party phishing simulation platform as legitimate simulations, preventing false positives and ensuring accurate reporting.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Incomplete or incorrect IP addresses, domains, or URLs. Even a single missing value can cause your simulations to be blocked. Always double-check this information with your third-party vendor's documentation.</div>
+
+<h2>Step 6: Plan and Build the Phishing Simulation Campaign (M365 Defender AST)</h2>
+<p>With your environment prepared, it's time to design the actual phishing simulation campaign within Microsoft 365 Defender's Attack Simulation Training (AST). While some setup elements can be managed via PowerShell, the comprehensive building of the campaign — including selecting attack techniques, crafting email payloads, configuring landing pages, and associating training modules — is primarily an interactive process best done through the Defender portal for its rich UI and template library.</p>
+<pre><code class='language-powershell'># While full campaign creation is GUI-driven, you can list existing simulations via PowerShell:
+# (Note: Requires connecting to Security &amp; Compliance Center PowerShell first, as in Step 5)
+Get-AttackSimulation
+</code></pre>
+<p><code>Get-AttackSimulation</code>: Retrieves details about existing phishing simulation campaigns configured in Microsoft 365 Defender. This command is useful for auditing and verification.</p>
+<p class='gui-note'><strong>Portal alternative (Primary Method):</strong> In the Microsoft 365 Defender portal, navigate to 'Email & collaboration' > 'Attack simulation training'. Click 'Simulations' > 'Launch a simulation'. Follow the wizard:
+<ol>
+    <li><strong>Select technique:</strong> Choose 'Credential Harvest', 'Malware Attachment', 'URL for Malware Attachment', 'Link in attachment', 'Drive-by URL', 'OAuth Consent Grant', or 'Operation X'. We typically recommend 'Credential Harvest' for initial broad campaigns.</li>
+    <li><strong>Name simulation:</strong> Provide a descriptive name and description.</li>
+    <li><strong>Select payload and login page:</strong> Choose from existing payloads/templates or create a custom one. Craft a compelling email subject and body. Select an appropriate landing page (e.g., a fake Microsoft login page).</li>
+    <li><strong>Target users:</strong> Select the Azure AD security group prepared in Step 3.</li>
+    <li><strong>Assign training:</strong> Link relevant training modules from Microsoft's library or your custom content.</li>
+    <li><strong>Select simulation logic:</strong> Define criteria for repeating attacks or assigning training immediately.</li>
+    <li><strong>Review:</strong> Check all settings before launching.</li>
+</ol></p>
+<p><strong>Expected result:</strong> A fully configured phishing simulation campaign within M365 Defender AST, with a chosen attack technique, a crafted email payload, a designated landing page, and associated training modules ready to be launched against your target user group.</p>
+
+<h2>Step 7: Launch and Monitor the Phishing Simulation</h2>
+<p>Once your phishing simulation campaign is meticulously planned and built, the next step is to launch it and actively monitor its progress. This ensures it reaches the intended targets, helps you identify any unforeseen issues, and allows for the initial collection of engagement data.</p>
+<pre><code class='language-powershell'># Launching a specific campaign is primarily a GUI action within M365 Defender.
+# However, you can monitor the status of all simulations via PowerShell.
+# (Note: Requires connecting to Security &amp; Compliance Center PowerShell first)
+Get-AttackSimulation | Select-Object Name, CreationTime, LastModifiedTime, Status, AttackTechnique, `
+    @{Name='TargetUsers'; Expression={$_.Payload.TargetUsers | Out-String}}, `
+    @{Name='LandingPage'; Expression={$_.Payload.LandingPageUrl}}
+</code></pre>
+<p><code>Get-AttackSimulation</code>: Used here to retrieve and display key details about all simulations, including their current status (e.g., 'Running', 'Completed', 'Scheduled').</p>
+<p class='gui-note'><strong>Portal alternative (Primary Method for Launch):</strong> In the Microsoft 365 Defender portal, navigate to 'Email & collaboration' > 'Attack simulation training' > 'Simulations'. Select your prepared simulation and click 'Launch simulation'. After launching, monitor its progress on the 'Overview' tab or within the specific simulation's details page.</p>
+<p><strong>Expected result:</strong> The phishing simulation campaign is successfully launched, and emails are being delivered to the target group. You can observe the status changing from 'Scheduled' to 'Running' and begin to see initial user engagement data populate within the Defender portal.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Rushing the launch. Always perform a test run with a small, internal group if possible to catch any issues with email rendering, landing page functionality, or tracking before a broad release. Pay attention to delivery issues in the logs.</div>
+
+<h2>Step 8: Analyze Simulation Results and Generate Reports</h2>
+<p>After the simulation concludes or runs for a sufficient period, the crucial phase of analysis begins. This involves collecting and interpreting comprehensive simulation data to identify vulnerable users, understand common click patterns, and measure the effectiveness of your security awareness programs.</p>
+<pre><code class='language-powershell'># Connect to Security &amp; Compliance Center PowerShell if not already connected
+Connect-IPPSSession -UserPrincipalName admin@yourdomain.com -ShowProgress $true
+
+# Get detailed results for a specific simulation (replace with actual Simulation ID or Name)
+# Find Simulation ID using: (Get-AttackSimulation).SimulationId
+$simulationId = (Get-AttackSimulation -Name "Phishing Simulation - Q3 Marketing").SimulationId
+
+# Get overall results for the simulation
+Get-AttackSimulationReport -SimulationId $simulationId
+
+# Get user-specific compromise information
+Get-AttackSimulationUserReport -SimulationId $simulationId | Select-Object UserPrincipalName, `
+    @{'Name'='Compromised'; Expression={$_.UserStatus -eq 'Compromised'}}, `
+    PhishClicked, LandingPageVisited, DataSubmitted, Trained
+</code></pre>
+<p><code>Get-AttackSimulationReport</code>: Provides aggregate data for a specified simulation, including overall compromise rates, user actions, and training completion.</p>
+<p><code>Get-AttackSimulationUserReport</code>: Retrieves detailed information for each user participating in the simulation, indicating their specific actions (e.g., clicked the link, entered credentials, completed training).</p>
+<p><code>-SimulationId</code>: The unique identifier for your phishing simulation campaign.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> In the Microsoft 365 Defender portal, navigate to 'Email & collaboration' > 'Attack simulation training' > 'Simulations'. Click on your completed simulation. The 'Report' tab provides a rich, interactive dashboard with overall metrics, user-specific data, and insights into behaviors. You can also export reports from here.</p>
+<p><strong>Expected result:</strong> Detailed reports showing which users fell for the simulation (e.g., clicked a link, entered credentials), which users visited the landing page, and who completed the associated training. This data will inform your remediation and future training efforts.</p>
+
+<h2>Step 9: Implement Post-Simulation Remediation & Training</h2>
+<p>The final and arguably most important step is to act on the insights gained from your simulation. This involves providing targeted training for users who fell for the simulation, reinforcing security awareness across the organization, and adjusting future security policies or controls based on identified vulnerabilities. This is an ongoing process.</p>
+<pre><code class='language-powershell'># While direct "remediation" is mostly policy/training, you can use PowerShell to identify users
+# for follow-up actions (e.g., assigning specific training modules in a learning platform).
+# Example: Identify compromised users for a follow-up email.
+$simulationId = (Get-AttackSimulation -Name "Phishing Simulation - Q3 Marketing").SimulationId
+$compromisedUsers = Get-AttackSimulationUserReport -SimulationId $simulationId | Where-Object {$_.UserStatus -eq 'Compromised'} | Select-Object UserPrincipalName
+
+# Output the list of compromised users to a file for further action
+$compromisedUsers | Export-Csv -Path "C:\PhishingSims\CompromisedUsers_Q3.csv" -NoTypeInformation
+
+# (Conceptual, depends on your learning platform's API/PowerShell module)
+# Foreach ($user in $compromisedUsers) {
+#     Invoke-LearningPlatformAPI -Action AssignTraining -User $user.UserPrincipalName -Training "Advanced Phishing Recognition"
+# }
+</code></pre>
+<p><code>Where-Object {$_.UserStatus -eq 'Compromised'}</code>: Filters the user report to identify only those who fell for the simulation.</p>
+<p><code>Export-Csv</code>: Exports the list of compromised users to a CSV file for easy follow-up.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Within the Microsoft 365 Defender portal, navigate to 'Email & collaboration' > 'Attack simulation training' > 'Simulations'. In the report for your simulation, identify compromised users. The AST platform automatically assigns training to users who fall for a simulation if configured in Step 6. For broader communication, you would use your internal communication channels (email, Teams announcements) and your learning management system (LMS) for custom or supplemental training.</p>
+<p><strong>Expected result:</strong> A clear plan for targeted intervention is in place. Compromised users receive specific, often automated, security awareness training. General security awareness is reinforced across the organization, and insights from the simulation inform adjustments to security policies, technical controls, or future simulation strategies.</p>
+
+<div class='howto-consultant-cta'><h3>When to bring in a consultant</h3><p>While M365 Defender's Attack Simulation Training is powerful, its full potential can be complex to unlock. DIY phishing simulations often fall short due to common issues: inaccurate whitelisting leading to blocked emails, poorly crafted payloads that aren't convincing, incorrect scope, or, critically, misinterpreting results and failing to implement effective follow-up. If your organization lacks dedicated security awareness staff, struggles with PowerShell scripting, or needs to develop a sophisticated, ongoing security awareness program integrated with broader security strategies, bringing in an expert is highly recommended. SkyCore Solutions can design, implement, and manage your phishing simulation campaigns, ensuring maximum impact with minimal internal overhead, and help you translate simulation data into actionable security improvements.</p><a href='../contact.html' class='btn btn-primary'>Book a free consultation</a></div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

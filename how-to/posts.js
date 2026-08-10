@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "phishing-simulation-setup-guide",
+    title: "Master Phishing Simulation Setup with Azure & M365 Defender",
+    date: "2026-08-10",
+    readTime: "12 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "phishing simulation setup guide",
+    excerpt: "Deploy effective phishing simulations using Microsoft 365 Defender and Azure AD. This guide covers setup, whitelisting, and reporting for enhanced security awareness.",
+    image: "https://images.pexels.com/photos/38486957/pexels-photo-38486957.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-arc-hybrid-cloud-management-smb",
     title: "Your Essential Azure Arc Hybrid Cloud Management Guide for SMBs",
     date: "2026-08-09",
