@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "power-plant-breach-montreal-smb",
+    title: "A Power Plant Fell. Is Your Montreal Business Next?",
+    date: "2026-08-11",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A Polish power plant was breached via its private network, shutting down a turbine. This isn't just critical infrastructure news; it's a chilling reminder for every Montreal SMB to revisit their security posture.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/211151/pexels-photo-211151.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "metabase-zero-day-montreal-smb",
     title: "Your Data Exposed: The Metabase Zero-Day and Why Your Montreal Business is Next",
     date: "2026-08-09",
