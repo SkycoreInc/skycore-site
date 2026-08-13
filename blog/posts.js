@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "sharepoint-exploit-cybersecurity-smb-montreal",
+    title: "SharePoint Exploit: Why Your Montreal SMB Can't Afford Complacency",
+    date: "2026-08-13",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are exploiting a critical SharePoint vulnerability (CVE-2026-55040) right now. Your business in Montreal faces unprecedented cyber threats and needs proactive defense.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/15049671/pexels-photo-15049671.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "power-plant-breach-montreal-smb",
     title: "A Power Plant Fell. Is Your Montreal Business Next?",
     date: "2026-08-11",
