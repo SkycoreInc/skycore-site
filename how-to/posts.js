@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "sql-server-azure-migration-guide",
+    title: "Comprehensive SQL Server to Azure Migration Guide by SkyCore Solutions",
+    date: "2026-08-13",
+    readTime: "18 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-4 hours",
+    keyword: "SQL Server to Azure migration guide",
+    excerpt: "Seamlessly migrate your SQL Server databases to Azure with SkyCore's detailed guide, covering assessment, tooling, and target options for optimal cloud modernization.",
+    image: "https://images.pexels.com/photos/17489157/pexels-photo-17489157.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "phishing-simulation-setup-guide",
     title: "Master Phishing Simulation Setup with Azure & M365 Defender",
     date: "2026-08-10",
