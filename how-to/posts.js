@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-container-apps-deployment-guide-smb",
+    title: "Streamlining Operations with Azure Container Apps: An SMB Deployment Guide by SkyCore Solutions",
+    date: "2026-08-13",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 hours",
+    keyword: "Azure Container Apps deployment guide",
+    excerpt: "Deploying Azure Container Apps offers SMBs a powerful serverless platform to run containerized applications without complex infrastructure management. This guide walks you through setting up and deploying your first container app.",
+    image: "https://images.pexels.com/photos/29690177/pexels-photo-29690177.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "sql-server-azure-migration-guide",
     title: "Comprehensive SQL Server to Azure Migration Guide by SkyCore Solutions",
     date: "2026-08-13",
