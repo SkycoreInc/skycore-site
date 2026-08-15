@@ -13,6 +13,34 @@
     </image>
 
     <item>
+      <title>SharePoint Flaw Exploded: Why Your Microsoft 365 Isn't As Safe As You Think</title>
+      <link>https://skycoresolutions.com/blog/sharepoint-vulnerability-smb-security-alert.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/sharepoint-vulnerability-smb-security-alert.html</guid>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <description>**Your Microsoft 365 isn't as safe as you think, especially if you use SharePoint.**
+Attackers are actively exploiting a critical SharePoint vulnerability, CVE-2026-55040. This isn't just a problem for large enterprises. Your SMB is a prime target, with data directly at risk.
+
+Here's what every Montreal SMB needs to know:
+
+🔴 **Critical Flaw:** CVE-2026-55040 is a serious SharePoint vulnerability being actively exploited by attackers right now.
+⚠️ **Active Exploitation:** This isn't a theoretical threat; bad actors are already leveraging this flaw to breach systems.
+🔐 **SMBs Are Targets:** Small and medium-sized businesses are often seen as easier targets due to potentially weaker security postures.
+🛡️ **Your Data at Risk:** This vulnerability directly exposes sensitive data stored within your SharePoint environment, impacting privacy and operations.
+☁️ **Harden M365:** Proactive security hardening is crucial to protect your Microsoft 365 ecosystem against such exploits and maintain business continuity.
+
+Ignoring this vulnerability can lead to devastating data breaches, operational downtime, and significant reputational damage. Proactive security isn't just good practice; it's essential for business resilience in today's threat landscape. Don't wait for an incident to happen.
+
+Read the full article to understand the threat and take immediate steps to protect your Microsoft 365 environment.
+https://skycoresolutions.com/blog/sharepoint-vulnerability-smb-security-alert.html
+
+#Cybersecurity #Microsoft365 #SharePoint #SMB #ITSecurity #DataProtection #Vulnerability #CloudSecurity #SecurityHardening #MontrealIT #SkyCoreSolutions #ITConsulting #CyberThreat #RiskManagement #ProactiveSecurity #M365Security #CVE #DigitalSecurity #BusinessContinuity
+
+🔗 Read the full article: https://skycoresolutions.com/blog/sharepoint-vulnerability-smb-security-alert.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/2882654/pexels-photo-2882654.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>SharePoint Exploit: Why Your Montreal SMB Can't Afford Complacency</title>
       <link>https://skycoresolutions.com/blog/sharepoint-exploit-cybersecurity-smb-montreal.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/sharepoint-exploit-cybersecurity-smb-montreal.html</guid>

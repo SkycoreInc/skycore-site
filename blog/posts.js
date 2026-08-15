@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "sharepoint-vulnerability-smb-security-alert",
+    title: "SharePoint Flaw Exploded: Why Your Microsoft 365 Isn't As Safe As You Think",
+    date: "2026-08-15",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are actively exploiting a critical SharePoint vulnerability, CVE-2026-55040, putting your data at risk. This isn't just a problem for enterprise giants; your SMB is a prime target. Learn how to harden your Microsoft 365 security.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/2882654/pexels-photo-2882654.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "sharepoint-exploit-cybersecurity-smb-montreal",
     title: "SharePoint Exploit: Why Your Montreal SMB Can't Afford Complacency",
     date: "2026-08-13",
