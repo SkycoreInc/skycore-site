@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-backup-setup-guide",
+    title: "Mastering Azure Backup: A SkyCore Solutions Setup Guide for Cloud VMs",
+    date: "2026-08-16",
+    readTime: "~10-12 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 hours",
+    keyword: "Azure backup setup guide",
+    excerpt: "This comprehensive guide from SkyCore Solutions details setting up Azure Backup for your virtual machines. Protect your critical data with robust policies, immutable vaults, and strategic recovery planning.",
+    image: "https://images.pexels.com/photos/6429140/pexels-photo-6429140.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-container-apps-deployment-guide-smb",
     title: "Streamlining Operations with Azure Container Apps: An SMB Deployment Guide by SkyCore Solutions",
     date: "2026-08-13",
