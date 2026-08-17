@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "sharepoint-exploit-skycore-solution",
+    title: "The SharePoint Catastrophe: Are You Next? Actionable Steps for Montreal Businesses",
+    date: "2026-08-17",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are already exploiting SharePoint vulnerabilities. Don't be a victim. Discover critical security steps you need now.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/14000470/pexels-photo-14000470.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "sharepoint-vulnerability-smb-security-alert",
     title: "SharePoint Flaw Exploded: Why Your Microsoft 365 Isn't As Safe As You Think",
     date: "2026-08-15",
