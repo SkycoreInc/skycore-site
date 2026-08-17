@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "microsoft-defender-for-business-setup-guide",
+    title: "Microsoft Defender for Business Setup Guide: Fortifying SMB Endpoints",
+    date: "2026-08-17",
+    readTime: "20 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Microsoft Defender for Business setup guide",
+    excerpt: "This comprehensive Microsoft Defender for Business setup guide provides SMBs with step-by-step instructions to protect their endpoints effectively. Learn to deploy, configure, and manage this essential security solution.",
+    image: "https://images.pexels.com/photos/5483064/pexels-photo-5483064.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-backup-setup-guide",
     title: "Mastering Azure Backup: A SkyCore Solutions Setup Guide for Cloud VMs",
     date: "2026-08-16",

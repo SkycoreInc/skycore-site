@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Microsoft Defender for Business Setup Guide: Fortifying SMB Endpoints — SkyCore Solutions</title>
+  <meta name="description" content="Implement Microsoft Defender for Business with our expert guide. Secure your SMB's Windows, Mac, and mobile devices against cyber threats effectively." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Microsoft Defender for Business Setup Guide: Fortifying SMB Endpoints — SkyCore Solutions" />
+  <meta property="og:description" content="Implement Microsoft Defender for Business with our expert guide. Secure your SMB's Windows, Mac, and mobile devices against cyber threats effectively." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/microsoft-defender-for-business-setup-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/5483064/pexels-photo-5483064.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Microsoft Defender for Business Setup Guide: Fortifying SMB Endpoints — SkyCore Solutions" />
+  <meta name="twitter:description" content="Implement Microsoft Defender for Business with our expert guide. Secure your SMB's Windows, Mac, and mobile devices against cyber threats effectively." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/5483064/pexels-photo-5483064.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/microsoft-defender-for-business-setup-guide.html" />
+  <meta property="article:published_time" content="2026-08-17" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Microsoft Defender for Business Setup Guide: Fortifying SMB Endpoints",
+  "description": "Implement Microsoft Defender for Business with our expert guide. Secure your SMB's Windows, Mac, and mobile devices against cyber threats effectively.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Microsoft 365 Business Premium subscription or a standalone Microsoft Defender for Business license., Global Administrator or Security Administrator role in your Microsoft 365 tenant., Access to the Microsoft 365 admin center (admin.microsoft.com) and Microsoft Defender portal (security.microsoft.com)., A list of users who need security administration or reader access., PowerShell 5.1 or newer (for local device onboarding scripts and advanced user management)., Internet connectivity for all devices to be onboarded."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Verify Subscription and Access the Microsoft Defender Portal",
+        "text": "Ensure your Microsoft Defender for Business subscription is active and initiate the setup process in the Defender portal."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Add Users and Assign Licenses",
+        "text": "Provision new users and assign them the necessary Microsoft Defender for Business licenses to enable protection."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Assign Security Roles",
+        "text": "Grant appropriate security roles to your IT team members, defining their access to the Microsoft Defender portal."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Email Notifications for Security Alerts",
+        "text": "Set up automated email notifications to ensure your security team receives timely alerts about detected threats and vulnerabilities."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Onboard Windows Devices",
+        "text": "Deploy the Defender for Business agent to your Windows 10/11 devices, bringing them under centralized security management."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Review and Customize Security Policies",
+        "text": "Inspect and modify the default Next-generation protection and Firewall policies to align with your organization's specific security posture."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Onboard Non-Windows Devices and Servers (Optional)",
+        "text": "Extend endpoint protection to your macOS, iOS, Android devices, and Windows/Linux servers if applicable."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-08-17 &middot; 20 min read &middot; Infrastructure Revamp</div>
+<h1>Microsoft Defender for Business Setup Guide: Fortifying SMB Endpoints</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/5483064/pexels-photo-5483064.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="A digital shield icon representing cybersecurity protection over a modern small business office environment, illustrating the Microsoft Defender for Business setup guide." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro">
+    <p>In today's dynamic threat landscape, small and medium-sized businesses (SMBs) are increasingly targeted by sophisticated cyberattacks, including ransomware, malware, and phishing. Traditional antivirus solutions often fall short, leaving critical data and operations vulnerable. As a senior Azure architect at SkyCore Solutions, we understand these challenges, and we're here to guide you through implementing a robust, enterprise-grade solution tailored for SMBs: <b>Microsoft Defender for Business</b>.</p>
+    <p>Microsoft Defender for Business brings powerful endpoint security capabilities from the industry-leading Microsoft Defender for Endpoint, optimized for organizations with up to 300 users. It provides next-generation protection, endpoint detection and response (EDR), automated investigation and remediation, and attack surface reduction capabilities, all managed from a streamlined portal. By following this <b>Microsoft Defender for Business setup guide</b>, you will successfully deploy and configure this essential service, ensuring your company's Windows, Mac, and mobile devices are protected from day one.</p>
+</div>
+<div class="howto-prereqs">
+    <h4>Prerequisites</h4>
+    <ul>
+        <li><b>Licensing:</b> An active Microsoft 365 Business Premium subscription or a standalone Microsoft Defender for Business license. For server protection, additional licenses are required.</li>
+        <li><b>Administrative Roles:</b> You must have the <b>Global Administrator</b> or <b>Security Administrator</b> role assigned in your Microsoft 365 tenant to perform the initial setup and configuration.</li>
+        <li><b>Access:</b> Access to the <a href="https://admin.microsoft.com" target="_blank">Microsoft 365 admin center</a> and the <a href="https://security.microsoft.com" target="_blank">Microsoft Defender portal</a>.</li>
+        <li><b>User Information:</b> A list of your IT security team members (names and email addresses) who require access to the Microsoft Defender portal for management and monitoring.</li>
+        <li><b>Tools:</b> A modern web browser (Microsoft Edge is recommended for optimal experience). For device onboarding and advanced user management, PowerShell (version 5.1 or newer) is beneficial, along with the Azure AD or Microsoft Graph PowerShell modules.</li>
+        <li><b>Estimated Cost:</b> Microsoft Defender for Business is included with Microsoft 365 Business Premium, providing excellent value. If purchased standalone, costs are per user, per month. Server protection requires separate Defender for Servers licensing.</li>
+    </ul>
+</div>
+
+<h2>Step 1: Verify Subscription and Access the Microsoft Defender Portal</h2>
+<p>Before you begin the setup, it's crucial to confirm that your organization has the correct licensing and to initiate the provisioning of Microsoft Defender for Business. While there isn't a direct CLI command to 'start' the service, the process begins by accessing the Microsoft Defender portal, which triggers the provisioning if it hasn't already occurred.</p>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the <a href="https://security.microsoft.com" target="_blank">Microsoft Defender portal</a>. Upon signing in with an appropriate administrator account, select <b>Assets</b> &gt; <b>Devices</b> from the navigation pane. If Defender for Business has not yet been provisioned for your tenant, this action will typically trigger the automatic provisioning process. You should then see the setup wizard home screen.</p>
+
+<p><strong>Confirmation:</strong> After a brief moment, you should be presented with the Microsoft Defender for Business setup wizard or the Device inventory dashboard, indicating that the service is active and ready for configuration.</p>
+
+<h2>Step 2: Add Users and Assign Licenses</h2>
+<p>For your devices to be protected by Microsoft Defender for Business, each user associated with those devices must have a valid license assigned. This step ensures that all endpoint protection features are available to their devices.</p>
+
+<p>For bulk user management, especially in larger SMBs or for automation, PowerShell offers efficiency. Ensure you have the Microsoft Graph PowerShell module installed (<code>Install-Module Microsoft.Graph -Scope CurrentUser</code>).</p>
+<pre><code class="language-powershell">
+# Connect to Microsoft Graph
+Connect-MgGraph -Scopes "User.ReadWrite.All", "LicenseAssignment.ReadWrite.All"
+
+# Get the SKU ID for your Defender for Business or Microsoft 365 Business Premium license
+# Use 'Get-MgSubscribedSku | Format-Table SkuPartNumber, SkuId, ServicePlans' to find exact values
+# Example for Microsoft 365 Business Premium (SkuPartNumber will vary, adjust filter)
+$licenseSkuId = (Get-MgSubscribedSku | Where-Object { $_.SkuPartNumber -like "*BUSINESS_PREMIUM*" -or $_.SkuPartNumber -like "*MDB_STANDALONE*" }).SkuId
+
+# Example: Assign license to a specific user
+$userPrincipalName = "user@yourdomain.com"
+$userObjectId = (Get-MgUser -Filter "userPrincipalName eq '$userPrincipalName'").Id
+Set-MgUserLicense -UserId $userObjectId -AddLicenses @{SkuId = $licenseSkuId}
+
+# Example: Assign license to a group of unlicensed users (use with caution in production!)
+# Get-MgUser -Filter "assignedLicenses/any(a:a/skuId eq null)" -All | ForEach-Object {
+#     Set-MgUserLicense -UserId $_.Id -AddLicenses @{SkuId = $licenseSkuId}
+# }
+</code></pre>
+<ul>
+    <li><b><code>Connect-MgGraph -Scopes "User.ReadWrite.All", "LicenseAssignment.ReadWrite.All"</code>:</b> Establishes a connection to Microsoft Graph with the necessary permissions to read and write user and license assignments.</li>
+    <li><b><code>Get-MgSubscribedSku</code>:</b> Retrieves all available license SKUs in your tenant. You'll need to filter to find the specific SKU ID for your Defender for Business or Microsoft 365 Business Premium license. Common <code>SkuPartNumber</code> values for Business Premium might include <code>SMB_BUS_PREM</code> or similar. For standalone Defender for Business, look for <code>MDB_STANDALONE</code> or equivalent.</li>
+    <li><b><code>Set-MgUserLicense</code>:</b> Assigns the specified license SKU to a user using their unique object ID.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> For most SMBs, managing users and licenses through the <a href="https://admin.microsoft.com" target="_blank">Microsoft 365 admin center</a> is simpler. Go to <b>Users</b> &gt; <b>Active users</b>. Select the user(s) you wish to license, then click <b>Manage product licenses</b>. Check the box next to your Microsoft 365 Business Premium or Microsoft Defender for Business license, and click <b>Save changes</b>.</p>
+
+<p><strong>Confirmation:</strong> In the Microsoft 365 admin center, verify that the users you've assigned licenses to now show the correct license under their product license details. This confirms the entitlement for Defender for Business.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> While the setup wizard focuses on initial onboarding, take the time to document your security team's roles and responsibilities. Regularly review who has access to the Defender portal and ensure their permissions are appropriate for their role.</div>
+
+<h2>Step 3: Assign Security Roles</h2>
+<p>Access to the Microsoft Defender portal should be restricted based on the principle of least privilege. Assigning appropriate security roles ensures that your IT team can manage and monitor threats effectively without having excessive permissions. The setup wizard offers a simplified way to grant these roles.</p>
+
+<p>For more granular or programmatic role assignments outside the wizard, you can use PowerShell to manage Entra ID (Azure AD) roles. Ensure you're connected to Microsoft Graph as shown in Step 2.</p>
+<pre><code class="language-powershell">
+# Find the Security Administrator role template ID
+$securityAdminRoleTemplateId = (Get-MgDirectoryRoleTemplate | Where-Object { $_.DisplayName -eq "Security Administrator" }).Id
+
+# Create a new instance of the role (if it doesn't exist already, typically it does)
+# $role = New-MgDirectoryRole -DirectoryRoleTemplateId $securityAdminRoleTemplateId
+
+# Find the existing Security Administrator role object ID (if already instantiated)
+$securityAdminRoleId = (Get-MgDirectoryRole | Where-Object { $_.DisplayName -eq "Security Administrator" }).Id
+
+# Find the user object ID for the person you want to assign the role
+$userPrincipalName = "securityadmin@yourdomain.com"
+$userObjectId = (Get-MgUser -Filter "userPrincipalName eq '$userPrincipalName'").Id
+
+# Assign the Security Administrator role to the user
+New-MgDirectoryRoleMember -DirectoryRoleId $securityAdminRoleId -UserId $userObjectId
+
+# To assign Security Reader role:
+# $securityReaderRoleTemplateId = (Get-MgDirectoryRoleTemplate | Where-Object { $_.DisplayName -eq "Security Reader" }).Id
+# $securityReaderRoleId = (Get-MgDirectoryRole | Where-Object { $_.DisplayName -eq "Security Reader" }).Id
+# New-MgDirectoryRoleMember -DirectoryRoleId $securityReaderRoleId -UserId $userObjectId
+</code></pre>
+<ul>
+    <li><b><code>Get-MgDirectoryRoleTemplate</code>:</b> Retrieves a list of available directory roles in Entra ID by their templates. We filter to find 'Security Administrator' or 'Security Reader'.</li>
+    <li><b><code>Get-MgDirectoryRole</code>:</b> Retrieves instantiated roles in your tenant to get their unique object IDs.</li>
+    <li><b><code>Get-MgUser</code>:</b> Fetches the user's object ID, which is required for role assignment.</li>
+    <li><b><code>New-MgDirectoryRoleMember</code>:</b> Assigns the specified directory role (using its object ID) to the specified user (using their object ID).</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> During the initial setup wizard in the <a href="https://security.microsoft.com" target="_blank">Microsoft Defender portal</a>, you will be prompted to grant access to your security team. You can assign either <b>Security Administrator</b> (view and edit) or <b>Security Reader</b> (view only) roles to selected users. If you're not using the wizard, or need to adjust later, go to <a href="https://admin.microsoft.com" target="_blank">Microsoft 365 admin center</a> &gt; <b>Users</b> &gt; <b>Active users</b>, select a user, and under <b>Account</b>, click <b>Manage roles</b>. Assign the appropriate Entra ID security role there.</p>
+
+<p><strong>Confirmation:</strong> Have a user who was assigned the 'Security Reader' role attempt to access the Microsoft Defender portal. They should be able to view dashboards and alerts but should be blocked from making any configuration changes, confirming correct role assignment.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Over-assigning the Global Administrator role. This role provides unrestricted access to your entire Microsoft 365 tenant. For daily security management tasks, always use the 'Security Administrator' role or 'Security Reader' role. Reserve Global Administrator for initial setup and critical, high-privilege operations only.</div>
+
+<h2>Step 4: Configure Email Notifications for Security Alerts</h2>
+<p>Timely awareness of security incidents is paramount. Setting up email notifications ensures that your security team is immediately informed when an alert is generated or a new vulnerability is discovered, even when they are away from the Defender portal.</p>
+
+<p>While direct CLI/PowerShell commands for MDB's email notification settings are not typically used for this specific feature in an SMB context (as the portal provides a user-friendly interface), it's a critical configuration done via the UI.</p>
+
+<p class="gui-note"><strong>Portal steps:</strong> During the setup wizard in the <a href="https://security.microsoft.com" target="_blank">Microsoft Defender portal</a>, you will reach the 'Set up email notifications' step. Enter the email addresses of your security team members who should receive alerts. If you're configuring this outside the wizard, navigate to <b>Settings</b> &gt; <b>Endpoints</b> &gt; <b>Email notifications</b>. Here you can add or modify notification rules, specifying the alert types and recipients.</p>
+
+<p><strong>Confirmation:</strong> Configure a test notification rule for a low-severity alert, if possible, and trigger a test alert (e.g., by creating a harmless EICAR test file on a protected device) to ensure emails are received by the designated recipients.</p>
+
+<h2>Step 5: Onboard Windows Devices</h2>
+<p>Onboarding your Windows devices is the most critical step to begin protecting your endpoints. Microsoft Defender for Business supports various onboarding methods for Windows 10 and 11 devices. For most SMBs without an existing Microsoft Intune deployment, using the local script method is often the simplest and most recommended approach for initial deployments, as it also enrolls the device into Intune automatically.</p>
+
+<p>The local script method performs three key actions: it creates a trust with Microsoft Entra ID (if none exists), enrolls the device in Microsoft Intune, and onboards it to Defender for Business. We recommend onboarding up to 10 devices at a time using this script for smooth deployment.</p>
+<pre><code class="language-powershell">
+# Placeholder for the downloaded onboarding script
+# This script needs to be downloaded from the Microsoft Defender portal first.
+# Example path after extraction: C:\temp\WindowsDefenderATPOnboardingScript.cmd
+
+# Navigate to the directory where you extracted the onboarding package
+Set-Location -Path "C:\Path\To\Extracted\OnboardingPackage"
+
+# Run the onboarding script with administrative privileges
+Start-Process -FilePath ".\WindowsDefenderATPOnboardingScript.cmd" -Verb RunAs
+</code></pre>
+<ul>
+    <li><b>Download the script:</b> The primary action here is to download the onboarding package from the Defender portal. The package typically contains a <code>.cmd</code> script that orchestrates the onboarding.</li>
+    <li><b><code>Set-Location</code>:</b> Changes your current directory to where you've extracted the onboarding script.</li>
+    <li><b><code>Start-Process -FilePath ".\WindowsDefenderATPOnboardingScript.cmd" -Verb RunAs</code>:</b> Executes the downloaded onboarding script with administrative privileges. This script handles the installation and configuration of the Defender for Business agent on the local machine.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal steps (to get the script):</strong> In the <a href="https://security.microsoft.com" target="_blank">Microsoft Defender portal</a>, navigate to <b>Settings</b> &gt; <b>Endpoints</b> &gt; <b>Device management</b> &gt; <b>Onboarding</b>. Select <b>Windows 10 and 11</b> as the operating system and then choose <b>Local Script</b> from the 'Deployment method' dropdown. Click <b>Download onboarding package</b>. Once downloaded, extract the contents and copy them to the Windows device you wish to onboard. Run the script with administrative privileges.</p>
+<p class="gui-note"><strong>Alternative (for Intune-managed devices):</strong> If your organization already uses Microsoft Intune, Defender for Business offers automatic onboarding. During the setup wizard, or by checking <b>Settings</b> &gt; <b>Endpoints</b> &gt; <b>Configuration management</b> &gt; <b>Enforcement scope</b>, you can select the option to automatically onboard 'all devices enrolled' in Intune. This is the simplest method for Intune-managed environments.</p>
+
+<p><strong>Confirmation:</strong> After running the script, allow a few minutes for the device to report back. In the <a href="https://security.microsoft.com" target="_blank">Microsoft Defender portal</a>, go to <b>Assets</b> &gt; <b>Devices</b>. Your newly onboarded device should appear in the list with a healthy status. You can also run the following PowerShell command on the device itself to verify the Defender sensor's status:</p>
+<pre><code class="language-powershell">
+Get-Service -Name "Sense" # The 'Sense' service is the Microsoft Defender for Endpoint sensor
+</code></pre>
+
+<h2>Step 6: Review and Customize Security Policies</h2>
+<p>Microsoft Defender for Business comes with default security policies for next-generation protection (antivirus/antimalware) and firewall protection. These default policies are pre-configured with recommended settings to provide strong protection from day one. However, SkyCore Solutions always recommends reviewing these policies and customizing them to align with your specific organizational needs and security posture.</p>
+
+<p>For SMBs, managing these policies directly within the Microsoft Defender portal offers a simplified experience, abstracting away the complexities of Intune configuration profiles or Group Policy Objects.</p>
+
+<p class="gui-note"><strong>Portal steps:</strong> In the <a href="https://security.microsoft.com" target="_blank">Microsoft Defender portal</a>, navigate to <b>Settings</b> &gt; <b>Endpoints</b> &gt; <b>Configuration management</b> &gt; <b>Device policies</b>. Here you will find the default policies for Next-generation protection (Antivirus) and Firewall. Select a policy to review its settings. You can edit existing policies, or create new ones, to refine detection levels, exclusions, scheduled scans, and firewall rules. Ensure settings like cloud-delivered protection, real-time protection, and behavioral monitoring are enabled.</p>
+
+<p><strong>Confirmation:</strong> After reviewing and making any necessary adjustments, ensure the policies are applied to the correct device groups. Monitor your device health in the Defender portal dashboard to see the impact of your policies. You can verify local client settings on a device using PowerShell:</p>
+<pre><code class="language-powershell">
+# Get current Windows Defender Antivirus settings
+Get-MpPreference
+
+# Get current Windows Defender Firewall rules (requires admin privileges)
+Get-NetFirewallRule -PolicyStore ActiveStore | Where-Object { $_.Enabled -eq 'True' }
+</code></pre>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Start with the default policies, which provide robust baseline protection. As you become more familiar with Defender for Business and your environment's specific needs, incrementally customize policies. Avoid making too many changes at once to simplify troubleshooting. Consider a phased rollout of customized policies to a small group of test devices first.</div>
+
+<h2>Step 7: Onboard Non-Windows Devices and Servers (Optional)</h2>
+<p>While Windows endpoints are often the primary focus, modern SMBs utilize a diverse range of devices. Microsoft Defender for Business extends protection to macOS, iOS, Android, and even servers (with additional licensing). Expanding protection across your entire device fleet provides a unified security posture.</p>
+
+<p>The onboarding methods for these platforms differ, often leveraging mobile device management (MDM) solutions like Microsoft Intune for mobile devices or specific onboarding scripts for servers.</p>
+
+<p class="gui-note"><strong>Portal steps:</strong> In the <a href="https://security.microsoft.com" target="_blank">Microsoft Defender portal</a>, go to <b>Settings</b> &gt; <b>Endpoints</b> &gt; <b>Device management</b> &gt; <b>Onboarding</b>. Here you'll find different tabs for each operating system: <b>Mac</b>, <b>Mobile (new capabilities are available for iOS and Android devices!)</b>, and <b>Servers (Windows Server or Linux Server)</b>. Select the relevant tab and follow the specific guidance to download onboarding packages or integrate with your MDM solution.</p>
+<ul>
+    <li><b>Mac:</b> Typically involves downloading a package and deploying it via a management solution or manually.</li>
+    <li><b>iOS/Android:</b> Requires integration with an MDM solution (like Microsoft Intune) to deploy the Microsoft Defender app and associated policies.</li>
+    <li><b>Servers:</b> For Windows Server or Linux Server, you'll need additional licenses (e.g., Microsoft Defender for Servers Plan 1 or 2, included with Azure Defender or specific server licenses). Onboarding involves downloading a script or connecting to Azure Arc for hybrid servers.</li>
+</ul>
+
+<p><strong>Confirmation:</strong> After onboarding, verify that these devices appear in the <b>Assets</b> &gt; <b>Devices</b> list within the Microsoft Defender portal and are reporting their security status correctly.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide provides a comprehensive pathway for your Microsoft Defender for Business setup, certain scenarios can benefit significantly from expert assistance. If your organization has complex hybrid Active Directory environments, needs integration with existing third-party security solutions, requires advanced compliance reporting (e.g., CMMC, HIPAA), or plans a large-scale migration from legacy endpoint protection, SkyCore Solutions is here to help. Our team specializes in ensuring seamless, secure, and optimized cloud security deployments, allowing you to focus on your core business. Don't hesitate to reach out for tailored support and strategic guidance.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/microsoft-365/security/defender-business/mdb-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — mdb overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/microsoft-365/security/defender-business/mdb-setup-configuration" target="_blank" rel="noopener noreferrer">learn.microsoft.com — mdb setup configuration</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/microsoft-365/security/defender-business/mdb-onboard-devices" target="_blank" rel="noopener noreferrer">learn.microsoft.com — mdb onboard devices</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/microsoft-365/security/defender-business/mdb-configure-security-settings" target="_blank" rel="noopener noreferrer">learn.microsoft.com — mdb configure security settings</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
