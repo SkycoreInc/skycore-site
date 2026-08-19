@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "physical-server-azure-migration",
+    title: "Seamless Physical Server to Azure VM Migration with SkyCore Solutions",
+    date: "2026-08-19",
+    readTime: "9 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "physical server to Azure VM migration",
+    excerpt: "Streamline your physical server to Azure VM migration. SkyCore Solutions leverages Azure Migrate to offer a unified, cost-effective, and robust path to cloud adoption.",
+    image: "https://images.pexels.com/photos/38833792/pexels-photo-38833792.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-defender-for-business-setup-guide",
     title: "Microsoft Defender for Business Setup Guide: Fortifying SMB Endpoints",
     date: "2026-08-17",
