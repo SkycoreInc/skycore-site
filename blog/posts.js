@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "windows-rce-ransomware-montreal-cybersecurity",
+    title: "Windows RCE and Medusa Ransomware: Is Your Montreal Business the Next Target?",
+    date: "2026-08-19",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A critical remote code execution flaw in Windows IKE is actively exploited, and the Medusa ransomware gang has breached over 500 critical organizations. Ignoring these threats is no longer an option for Montreal businesses.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/17302202/pexels-photo-17302202.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "sharepoint-exploit-skycore-solution",
     title: "The SharePoint Catastrophe: Are You Next? Actionable Steps for Montreal Businesses",
     date: "2026-08-17",
