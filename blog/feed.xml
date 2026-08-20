@@ -13,6 +13,211 @@
     </image>
 
     <item>
+      <title>Windows RCE and Medusa Ransomware: Is Your Montreal Business the Next Target?</title>
+      <link>https://skycoresolutions.com/blog/windows-rce-ransomware-montreal-cybersecurity.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/windows-rce-ransomware-montreal-cybersecurity.html</guid>
+      <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+      <description>**Your Montreal business could be the next victim of Medusa ransomware.**
+
+A critical Windows RCE flaw is actively exploited right now.
+The Medusa ransomware gang has already breached over 500 organizations worldwide.
+Ignoring these escalating threats is no longer an option for Montreal businesses.
+
+Here's what every Montreal business needs to know:
+
+🔴 **Active Threat:** A critical Windows IKE remote code execution flaw is currently being exploited in the wild.
+⚠️ **Ransomware Rising:** The Medusa ransomware group has breached over 500 organizations, demanding high ransoms and exfiltrating data.
+🏙️ **Local Impact:** Montreal businesses are direct targets due to the widespread nature of these vulnerabilities and attacks.
+🔐 **Immediate Action:** Patching, robust security hardening, and proactive monitoring are essential to protect your critical systems.
+🛡️ **Proactive Defense:** Don't wait to become a statistic; understand the risks and implement preventive measures now.
+
+This isn't just news; it's a direct threat to your operations, data, and reputation. Proactive cybersecurity measures are no longer optional, but critical for business continuity. Your organization's resilience depends on understanding and mitigating these risks *before* an incident occurs.
+
+Read our latest article to understand the full scope of these threats and how SkyCore Solutions can help secure your business.
+
+#Cybersecurity #Montreal #ITSecurity #Ransomware #MedusaRansomware #WindowsRCE #SecurityHardening #CyberThreats #DataProtection #SMBsecurity #ITConsulting #CloudSecurity #InfrastructureSecurity #SkyCoreSolutions #CyberAwareness #RiskManagement #ITServices #MontrealTech #BusinessSecurity #CyberAttack
+
+🔗 Read the full article: https://skycoresolutions.com/blog/windows-rce-ransomware-montreal-cybersecurity.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/17302202/pexels-photo-17302202.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>The SharePoint Catastrophe: Are You Next? Actionable Steps for Montreal Businesses</title>
+      <link>https://skycoresolutions.com/blog/sharepoint-exploit-skycore-solution.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/sharepoint-exploit-skycore-solution.html</guid>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+      <description>**SharePoint vulnerabilities are being exploited RIGHT NOW. Are you protected?**
+
+This isn't a future threat; it's an immediate risk for Montreal businesses.
+Attackers are actively targeting unpatched and misconfigured SharePoint environments.
+Ignoring this could lead to catastrophic data breaches and operational downtime.
+
+Here’s what every Montreal business leader needs to know about securing their SharePoint:
+
+🔴 **Identify Risks:** Pinpoint the specific vulnerabilities in your current SharePoint setup before they're exploited.
+🔐 **Patching Protocol:** Understand the crucial importance of immediate and consistent patching for all SharePoint versions.
+🛡️ **Access Control:** Learn how to implement robust access management to prevent unauthorized entry and data exfiltration.
+⚠️ **Proactive Monitoring:** Discover techniques for continuous monitoring to detect suspicious activity before it escalates.
+☁️ **Cloud Security Best Practices:** Explore how migrating or hardening your cloud-based SharePoint can offer enhanced protection.
+
+Proactive security isn't just about avoiding a breach; it's about safeguarding your reputation, client trust, and operational continuity. Don't wait for an incident to force your hand – secure your critical systems today.
+
+Read our latest blog post for actionable steps your Montreal business can take now to prevent a SharePoint catastrophe: https://skycoresolutions.com/blog/sharepoint-exploit-skycore-solution.html
+
+#SharePointSecurity #Cybersecurity #ITSecurity #DataProtection #MontrealBusiness #SMBsecurity #CloudSecurity #SecurityHardening #VulnerabilityManagement #CyberThreats #ITConsulting #SkyCoreSolutions #MicrosoftSharePoint #InformationSecurity #PreventativeMeasures #RiskManagement #ITAdvice #MontrealIT #ProtectYourBusiness
+
+🔗 Read the full article: https://skycoresolutions.com/blog/sharepoint-exploit-skycore-solution.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/14000470/pexels-photo-14000470.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>SharePoint Flaw Exploded: Why Your Microsoft 365 Isn't As Safe As You Think</title>
+      <link>https://skycoresolutions.com/blog/sharepoint-vulnerability-smb-security-alert.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/sharepoint-vulnerability-smb-security-alert.html</guid>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <description>**Your Microsoft 365 isn't as safe as you think, especially if you use SharePoint.**
+Attackers are actively exploiting a critical SharePoint vulnerability, CVE-2026-55040. This isn't just a problem for large enterprises. Your SMB is a prime target, with data directly at risk.
+
+Here's what every Montreal SMB needs to know:
+
+🔴 **Critical Flaw:** CVE-2026-55040 is a serious SharePoint vulnerability being actively exploited by attackers right now.
+⚠️ **Active Exploitation:** This isn't a theoretical threat; bad actors are already leveraging this flaw to breach systems.
+🔐 **SMBs Are Targets:** Small and medium-sized businesses are often seen as easier targets due to potentially weaker security postures.
+🛡️ **Your Data at Risk:** This vulnerability directly exposes sensitive data stored within your SharePoint environment, impacting privacy and operations.
+☁️ **Harden M365:** Proactive security hardening is crucial to protect your Microsoft 365 ecosystem against such exploits and maintain business continuity.
+
+Ignoring this vulnerability can lead to devastating data breaches, operational downtime, and significant reputational damage. Proactive security isn't just good practice; it's essential for business resilience in today's threat landscape. Don't wait for an incident to happen.
+
+Read the full article to understand the threat and take immediate steps to protect your Microsoft 365 environment.
+https://skycoresolutions.com/blog/sharepoint-vulnerability-smb-security-alert.html
+
+#Cybersecurity #Microsoft365 #SharePoint #SMB #ITSecurity #DataProtection #Vulnerability #CloudSecurity #SecurityHardening #MontrealIT #SkyCoreSolutions #ITConsulting #CyberThreat #RiskManagement #ProactiveSecurity #M365Security #CVE #DigitalSecurity #BusinessContinuity
+
+🔗 Read the full article: https://skycoresolutions.com/blog/sharepoint-vulnerability-smb-security-alert.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/2882654/pexels-photo-2882654.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>SharePoint Exploit: Why Your Montreal SMB Can't Afford Complacency</title>
+      <link>https://skycoresolutions.com/blog/sharepoint-exploit-cybersecurity-smb-montreal.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/sharepoint-exploit-cybersecurity-smb-montreal.html</guid>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
+      <description>**Is your SharePoint an open door for attackers?**
+
+Attackers are actively exploiting a critical SharePoint vulnerability (CVE-2026-55040) right now.
+This isn't a future threat; it's happening today.
+Your business in Montreal faces real and immediate risks.
+
+For Montreal SMBs, here's what's critical:
+
+🔴 **Urgent Threat:** Attackers are actively exploiting a critical SharePoint vulnerability (CVE-2026-55040), making your business an immediate target.
+⚠️ **SMB Vulnerability:** Montreal's small and medium businesses are not immune; they are often targeted due to perceived easier entry points.
+🔐 **High Stakes:** A successful breach can lead to devastating data loss, severe financial penalties, and significant damage to your reputation.
+🛡️ **Beyond Patches:** Effective defense requires more than just patching; it demands proactive security hardening and continuous monitoring.
+
+Ignoring this vulnerability is a direct invitation for cybercriminals. Your business needs a proactive, robust defense strategy to avoid becoming another statistic, protecting both your data and your bottom line.
+
+Dive deeper into the threat and how to secure your SharePoint environment. Read the full article now:
+https://skycoresolutions.com/blog/sharepoint-exploit-cybersecurity-smb-montreal.html
+
+#SharePoint #Cybersecurity #SMB #Montreal #ITSecurity #DataProtection #Vulnerability #Exploit #SecurityHardening #CloudSecurity #ITConsulting #SkyCoreSolutions #CVE #CyberThreats #ProactiveDefense #ManagedSecurity #BusinessContinuity #InfraSecurity #MontrealTech
+
+🔗 Read the full article: https://skycoresolutions.com/blog/sharepoint-exploit-cybersecurity-smb-montreal.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/15049671/pexels-photo-15049671.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>A Power Plant Fell. Is Your Montreal Business Next?</title>
+      <link>https://skycoresolutions.com/blog/power-plant-breach-montreal-smb.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/power-plant-breach-montreal-smb.html</guid>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <description>**A power plant turbine shut down due to a cyberattack. Think your Montreal business is immune?**
+
+A critical Polish power plant was breached via its private network, causing a turbine shutdown. This isn't just international news; it's a stark warning for every Montreal SMB. Your private network and data could be next.
+
+Here's what every Montreal SMB needs to consider right now:
+
+🔴 **The Reality:** Cyberattacks are sophisticated and target private networks, not just public-facing systems.
+⚠️ **Your Exposure:** Many SMBs underestimate their vulnerability, assuming they're too small to be a target.
+🔐 **Proactive Hardening:** Robust security isn't just about firewalls; it's about comprehensive infrastructure hardening and continuous monitoring.
+🛡️ **Data Integrity:** A breach can cripple operations, compromise client data, and severely damage your reputation.
+☁️ **Cloud Security:** Even cloud environments require expert configuration and ongoing management to protect against advanced threats.
+
+Don't wait for a crisis to expose your weaknesses. Understanding these threats and taking proactive steps to harden your IT infrastructure is no longer optional; it's essential for your business's survival and continuity in Montreal's digital landscape.
+
+Read the full article to understand the lessons learned and how to fortify your defenses.
+
+#Cybersecurity #ITSecurity #MontrealSMB #SMBsecurity #SecurityHardening #CloudSecurity #DataProtection #CyberAttack #ITConsulting #SkyCoreSolutions #BusinessContinuity #RiskManagement #InfrastructureSecurity #NetworkSecurity #MontrealBusiness #TechSecurity #DigitalSecurity #InformationSecurity #ProactiveSecurity #ThreatPrevention
+
+🔗 Read the full article: https://skycoresolutions.com/blog/power-plant-breach-montreal-smb.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/211151/pexels-photo-211151.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>Your Data Exposed: The Metabase Zero-Day and Why Your Montreal Business is Next</title>
+      <link>https://skycoresolutions.com/blog/metabase-zero-day-montreal-smb.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/metabase-zero-day-montreal-smb.html</guid>
+      <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
+      <description>**A maximum-severity zero-day just let hackers walk right into businesses like yours.**
+The recent Metabase vulnerability allowed unauthenticated access and widespread data theft.
+This wasn't theoretical; real companies faced critical breaches.
+It's a stark reminder that advanced threats aren't just for big tech.
+
+Here's what every Montreal SMB needs to know:
+🔴 **Unauthenticated Access:** The Metabase zero-day bypassed all login screens, granting full database control.
+⚠️ **Data Theft Risk:** This meant sensitive customer, financial, and operational data was vulnerable to immediate extraction.
+🛡️ **SMBs Are Targets:** Don't assume your business is too small; attackers specifically seek less protected environments.
+🔐 **Proactive Security:** Relying solely on software updates is insufficient; robust security hardening is non-negotiable.
+☁️ **Cloud Vulnerabilities:** Even cloud-based systems can harbor critical gaps if not properly secured and monitored.
+
+This incident isn't just news; it's a direct warning. Your business's security posture needs constant vigilance and expert review to prevent becoming the next headline.
+
+Dive deeper into the Metabase zero-day and what it means for your Montreal business. Read the article now: https://skycoresolutions.com/blog/metabase-zero-day-montreal-smb.html
+
+#CyberSecurity #DataSecurity #SMBsecurity #MontrealIT #ITconsulting #CloudSecurity #ZeroDay #Metabase #SecurityHardening #InfrastructureSecurity #DataProtection #CyberThreats #ITsecurity #BusinessContinuity #RiskManagement #SkyCoreSolutions #MontrealSMB #ITservices #CloudMigration #SecurityAudit
+
+🔗 Read the full article: https://skycoresolutions.com/blog/metabase-zero-day-montreal-smb.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/19856564/pexels-photo-19856564.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
+      <title>Microsoft 365 Phishing Just Got Nastier: Is Your Payroll Next?</title>
+      <link>https://skycoresolutions.com/blog/m365-phishing-payroll-financial-breach.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/m365-phishing-payroll-financial-breach.html</guid>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+      <description>**Your Microsoft 365 account could be the direct path to a payroll financial breach.**
+
+Sophisticated "Adversary-in-the-Middle" (AitM) phishing campaigns are on the rise.
+They're designed to bypass MFA and hijack your Microsoft 365 accounts.
+The goal? To compromise your financial workflows, starting with payroll.
+
+Here's what every Montreal business needs to understand about this escalating threat:
+
+**⚠️ The Threat:** AitM phishing bypasses traditional MFA, making it incredibly effective at stealing legitimate session tokens.
+**🔴 How it Works:** Attackers intercept your login process in real-time, gaining full access to your M365 environment.
+**🔐 Your Vulnerability:** Many businesses unknowingly have gaps in their M365 security, leaving payroll and financial data exposed.
+**🛡️ Immediate Steps:** Discover critical security measures you must implement *now* to protect financial workflows.
+**☁️ Expert Insight:** Learn how proactive security hardening can defend your cloud infrastructure against these sophisticated attacks.
+
+Ignoring these advanced threats puts your company's finances at immediate risk. Proactive security hardening is no longer optional; it's essential to safeguard your M365 environment and critical financial data. Don't wait for a breach to act.
+
+Read the full article for critical steps to secure your M365 and payroll:
+https://skycoresolutions.com/blog/m365-phishing-payroll-financial-breach.html
+
+#Cybersecurity #M365Security #PhishingAttack #AitM #PayrollSecurity #FinancialBreach #SecurityHardening #CloudSecurity #Microsoft365 #ITSecurity #MontrealBusiness #SMBsecurity #DataProtection #InfoSec #CyberThreats #SkyCoreSolutions #ITConsulting #PreventativeMeasures #BusinessContinuity #CyberAwareness
+
+🔗 Read the full article: https://skycoresolutions.com/blog/m365-phishing-payroll-financial-breach.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/4973899/pexels-photo-4973899.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>Don't Fall for the AI Hype: What Montreal SMBs Really Need for Cybersecurity</title>
       <link>https://skycoresolutions.com/blog/ai-cybersecurity-myths-montreal-smb.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/ai-cybersecurity-myths-montreal-smb.html</guid>

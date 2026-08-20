@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seamless Physical Server to Azure VM Migration with SkyCore Solutions — SkyCore Solutions</title>
+  <meta name="description" content="Migrate physical servers to Azure VMs using Azure Migrate. SkyCore Solutions guides you through discovery, assessment, and migration for secure and efficient cloud adoption." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Seamless Physical Server to Azure VM Migration with SkyCore Solutions — SkyCore Solutions" />
+  <meta property="og:description" content="Migrate physical servers to Azure VMs using Azure Migrate. SkyCore Solutions guides you through discovery, assessment, and migration for secure and efficient cloud adoption." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/physical-server-azure-migration.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/38833792/pexels-photo-38833792.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Seamless Physical Server to Azure VM Migration with SkyCore Solutions — SkyCore Solutions" />
+  <meta name="twitter:description" content="Migrate physical servers to Azure VMs using Azure Migrate. SkyCore Solutions guides you through discovery, assessment, and migration for secure and efficient cloud adoption." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/38833792/pexels-photo-38833792.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/physical-server-azure-migration.html" />
+  <meta property="article:published_time" content="2026-08-19" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Seamless Physical Server to Azure VM Migration with SkyCore Solutions",
+  "description": "Migrate physical servers to Azure VMs using Azure Migrate. SkyCore Solutions guides you through discovery, assessment, and migration for secure and efficient cloud adoption.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Azure subscription with necessary permissions to create resources and manage Azure Migrate projects., Network connectivity between your on-premises datacenter and Azure for data replication., On-premises physical servers running supported operating systems (excluding Windows Server 2003 or SUSE Linux for assessment)., A server in your on-premises environment to host the Azure Migrate appliance (e.g., a Windows Server VM or physical machine with sufficient resources)."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Initialize Azure Migrate Project",
+        "text": "Establishes a centralized Azure Migrate project to manage your entire migration journey."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy Azure Migrate Appliance and Discover Physical Servers",
+        "text": "Deploys an on-premises appliance to discover and collect data from your physical servers for migration analysis."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure and Run Server Assessment",
+        "text": "Analyzes the discovered physical server data to understand Azure readiness, estimate costs, and determine optimal Azure VM sizes."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Review Assessment Results and Develop Migration Plan",
+        "text": "Evaluates the detailed assessment report to refine your migration strategy and build a strong business case for cloud adoption."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Azure Landing Zone",
+        "text": "Sets up the foundational Azure infrastructure, including networking and storage, to host your migrated physical servers."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Execute Physical Server Migration to Azure",
+        "text": "Initiates the replication and cutover process to successfully transition your physical server workloads to Azure Virtual Machines."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class='post-meta'>2026-08-19 · 9 min read · Cloud Migration</div>
+<h1>Seamless Physical Server to Azure VM Migration with SkyCore Solutions</h1>
+<div class='article-hero'><img src='https://skycore.com/images/physical-server-to-azure-vm-migration.webp' alt='Physical server datacenter rack being migrated to Azure cloud with SkyCore Solutions' loading='eager' fetchpriority='high'></div>
+<div class='howto-intro'><p>Migrating physical servers to Azure Virtual Machines (VMs) is a critical step for organizations looking to modernize their infrastructure, enhance scalability, and reduce operational overhead. At SkyCore Solutions, we specialize in leveraging Azure Migrate, Microsoft's purpose-built service, to streamline this complex transition. This guide provides a comprehensive, CLI-first approach to ensure a successful physical server to Azure VM migration, covering everything from initial assessment to final cutover, with a focus on precision and best practices.</p></div>
+<div class='howto-prereqs'><h4>Prerequisites</h4><ul>
+<li>An active Azure subscription with Contributor or Owner roles for creating resources and managing Azure Migrate. For specific role requirements, consult the Azure Migrate documentation on preparing Azure accounts.</li>
+<li>A network connection from your on-premises environment to Azure, ideally through Azure ExpressRoute or a Site-to-Site VPN, to facilitate data replication.</li>
+<li>Sufficient on-premises resources (CPU, RAM, storage) to deploy the Azure Migrate appliance.</li>
+<li>Ensure the physical servers you intend to migrate are not running unsupported operating systems such as Windows Server 2003 or SUSE Linux, as assessment and migration are not supported for these versions.</li>
+<li>An established Azure landing zone, including virtual networks (VNets), subnets, and network security groups (NSGs), ready to host your migrated VMs.</li>
+</ul></div>
+
+<h2>Step 1: Initialize Azure Migrate Project</h2>
+<p>The first step in any cloud migration journey is to establish a centralized hub for discovery, assessment, and migration. Azure Migrate provides this unified platform, acting as your command center. We'll start by creating an Azure Migrate project and adding the 'Discovery and assessment' tool to it, which is essential for understanding your on-premises environment.</p>
+<pre><code class='language-powershell'># Define variables
+$ResourceGroupName = 'SkyCoreMigrateRG'
+$Location = 'eastus' # Choose an Azure region close to your on-premises datacenter
+$ProjectName = 'SkyCorePhysicalMigrationProject'
+$SolutionName = 'Servers'
+$PublisherName = 'Microsoft'
+$ProductName = 'AzureMigrate'
+
+# Create an Azure Resource Group if it doesn't exist
+az group create --name $ResourceGroupName --location $Location
+
+# Create the Azure Migrate project
+az migrate project create `
+    --resource-group $ResourceGroupName `
+    --name $ProjectName `
+    --location $Location
+
+# Add the 'Discovery and assessment' solution to the project
+az migrate solution create `
+    --resource-group $ResourceGroupName `
+    --project-name $ProjectName `
+    --name $SolutionName `
+    --publisher-name $PublisherName `
+    --product-name $ProductName
+</code></pre>
+<p><code>--resource-group</code>: Specifies the name of the resource group where the Azure Migrate project will reside.</p>
+<p><code>--name</code>: Defines the name for the Azure Migrate project or solution.</p>
+<p><code>--location</code>: Designates the Azure region where the project resources will be deployed. This should ideally be the same region you plan to migrate your servers to.</p>
+<p><code>--publisher-name</code>: Identifies the publisher of the migration tool (e.g., 'Microsoft').</p>
+<p><code>--product-name</code>: Specifies the product name of the migration tool (e.g., 'AzureMigrate').</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the Azure portal, search for 'Azure Migrate', select 'Create project', provide a subscription, resource group, project name, and geographic region. Then, from the 'Overview' page, select 'Discover, assess and migrate' under 'Servers, databases and web apps'.</p>
+<p><strong>Expected result:</strong> An Azure Migrate project will be provisioned in your specified resource group and location. The 'Discovery and assessment' tool will be integrated, providing a foundation for your migration activities.</p>
+
+<h2>Step 2: Deploy Azure Migrate Appliance and Discover Physical Servers</h2>
+<p>With the Azure Migrate project in place, the next crucial step is to discover your on-premises physical servers. This is achieved by deploying a lightweight Azure Migrate appliance within your datacenter. This appliance acts as a data collector, continuously gathering configuration and performance data from your servers and securely sending it to the Azure Migrate service. This process is primarily guided through the Azure portal to download the appliance; there isn't a direct single Azure CLI command to deploy the appliance itself, as it runs on-premises.</p>
+<pre><code class='language-powershell'># This step primarily involves portal-guided download and on-premises deployment.
+# Conceptual command for generating a project key for appliance registration (actual key generated in portal)
+# Note: The exact command to generate the registration key via CLI is not directly provided in the reference docs.
+# The portal flow is to generate the key after selecting "Discover servers".
+
+# Example of how you would interact with the appliance once deployed (conceptual CLI, not from reference docs)
+# (On the appliance machine after deployment and initial setup)
+# AzureMigrateAppliance.exe --register --project-id <AzureMigrateProjectID> --key <GeneratedProjectKey>
+# The appliance automatically starts discovery after successful registration.
+</code></pre>
+<p><code>--project-id</code>: The unique identifier of your Azure Migrate project.</p>
+<p><code>--key</code>: The registration key generated from the Azure Migrate project in the Azure portal.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> From your Azure Migrate project, navigate to 'Servers, databases and web apps' > 'Discovery and assessment' > 'Discover'. Select 'Physical or other (AWS, GCP, Xen, etc.)' for 'What do you want to migrate?'. Then, 'Discover servers' and follow the prompts to generate a project key and download the Azure Migrate appliance (a .OVA for VMware, .VHD for Hyper-V, or .ZIP for physical server appliance installer). Deploy the appliance on an on-premises Windows Server, configure it, and register it using the generated project key. The appliance will then automatically start discovering your physical servers.</p>
+<p><strong>Expected result:</strong> After successful deployment and registration, the Azure Migrate appliance will connect to your Azure Migrate project. Within minutes, your on-premises physical servers' metadata and performance data will begin populating the 'Discovered servers' section in your Azure Migrate project, making them ready for assessment.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Network connectivity between the Azure Migrate appliance and Azure endpoints is crucial. Ensure appropriate firewall rules (outbound HTTPS 443 to Azure URLs) are in place. Without this, the appliance cannot register or send discovery data, leading to delays and incomplete inventories. Also, ensure the appliance has network access to all physical servers it needs to discover, potentially requiring specific port openings for agentless discovery (e.g., WinRM for Windows, SSH for Linux).</div>
+
+<h2>Step 3: Configure and Run Server Assessment</h2>
+<p>Once your physical servers are discovered, the next critical step is to assess them for Azure readiness, determine optimal Azure VM sizes, and estimate migration costs. Azure Migrate: Discovery and assessment tool offers two primary assessment types: 'As-is on-premises' (based on current configuration) or 'Performance-based' (based on utilization data). SkyCore Solutions generally recommends a performance-based assessment for a more accurate sizing and cost prediction.</p>
+<pre><code class='language-powershell'># Define variables for assessment
+$AssessmentName = 'PhysicalServersPerformanceAssessment'
+$GroupName = 'AllPhysicalServers' # This group would be created in the portal first or populated dynamically
+$TargetLocation = 'eastus'
+$SizingCriterion = 'PerformanceBased' # Or 'AsIs'
+$TimeRange = 'Percentile95' # For performance-based sizing. Can be 'DailyAverage', 'Percentile95', 'Percentile99' etc.
+$PerformanceHistory = 30 # Number of days of performance data to consider (1-60)
+$VmSeries = 'All' # Or specific series like 'Dv3', 'Ev3'
+$ReservedInstancePeriod = '1Year' # Or '3Year', 'None'
+$SavingsOption = 'AzureReservation' # Or 'AzureSavingsPlan', 'None'
+$OfferCode = 'MSAZR0003P' # e.g., 'Pay as you go'
+$Currency = 'USD'
+$DiscountPercentage = 0 # If using 'None' for SavingsOption, specify any discount percentage
+$VmUptimeHours = 744 # Monthly hours (e.g., 24*31 for always on)
+
+# Note: As of current documentation, directly creating an assessment via Azure CLI with all parameters
+# for physical servers is not explicitly detailed. The process is heavily portal-driven.
+# The following is a conceptual command demonstrating what such a CLI call *might* look like,
+# based on general Azure Migrate assessment capabilities for VMs.
+# You would typically create an assessment group first, adding discovered servers to it.
+
+# Conceptual command to create an assessment
+# az migrate assessment create `
+#     --resource-group $ResourceGroupName `
+#     --project-name $ProjectName `
+#     --name $AssessmentName `
+#     --group-name $GroupName `
+#     --target-location $TargetLocation `
+#     --sizing-criterion $SizingCriterion `
+#     --time-range $TimeRange `
+#     --performance-history $PerformanceHistory `
+#     --vm-series $VmSeries `
+#     --reserved-instance-period $ReservedInstancePeriod `
+#     --savings-option $SavingsOption `
+#     --offer-code $OfferCode `
+#     --currency $Currency `
+#     --discount-percentage $DiscountPercentage `
+#     --vm-uptime-hours $VmUptimeHours `
+#     --assessment-type 'AzureVM' # Implicit for server assessments
+</code></pre>
+<p><code>--resource-group</code>: The resource group containing your Azure Migrate project.</p>
+<p><code>--project-name</code>: The name of your Azure Migrate project.</p>
+<p><code>--name</code>: A unique name for your assessment.</p>
+<p><code>--group-name</code>: The name of the group of discovered servers you want to assess. This group needs to be created first, typically through the portal, where you add your physical servers.</p>
+<p><code>--target-location</code>: The Azure region where you plan to migrate the servers. This impacts cost and VM availability.</p>
+<p><code>--sizing-criterion</code>: Specifies whether the assessment is 'AsIs' (based on current config) or 'PerformanceBased' (based on CPU/memory utilization, IOPS, throughput).</p>
+<p><code>--time-range</code>: For performance-based assessments, defines how utilization data is aggregated (e.g., 'Percentile95' is recommended to avoid over-provisioning while ensuring performance).</p>
+<p><code>--performance-history</code>: The duration in days (1-60) over which performance data is collected and analyzed.</p>
+<p><code>--reserved-instance-period</code>: Defines if costs should be calculated assuming 1-year or 3-year Azure Reserved Instances, or 'None' for Pay-as-you-go rates.</p>
+<p><code>--savings-option</code>: Specifies if cost estimates should factor in 'AzureReservation', 'AzureSavingsPlan', or 'None'. Note that in assessments, only one savings option can be simulated at a time.</p>
+<p><code>--offer-code</code>: The Azure offer you are using (e.g., 'MSAZR0003P' for Pay-as-you-go). This impacts pricing.</p>
+<p><code>--currency</code>: The currency for cost estimations.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> From your Azure Migrate project, navigate to 'Servers, databases and web apps' > 'Discovery and assessment'. Select 'Assess' > 'Azure VM'. Then, specify 'Assessment type' as 'Azure VM' and 'Discovery source' (e.g., 'Servers discovered from Azure Migrate appliance'). Review and edit 'Assessment properties' such as 'Target location', 'Storage type' (recommend 'Automatic' for performance-based), 'Savings options', 'VM Size' (choose 'Performance-based' and specify 'Time range' and 'Performance history'). Click 'Create assessment'.</p>
+<p><strong>Expected result:</strong> A new assessment will be created, and after a few minutes, a detailed report will be available. This report will provide Azure readiness status for each server, recommended Azure VM SKUs, suggested disk types based on IOPS/throughput, and estimated monthly compute and storage costs. It will also highlight any compatibility issues or warnings.</p>
+
+<h2>Step 4: Review Assessment Results and Develop Migration Plan</h2>
+<p>The assessment report is the cornerstone of a successful migration. This phase involves a thorough analysis of the generated report to make informed decisions about your migration strategy, prioritize workloads, and build a compelling business case for moving to Azure. There are no direct CLI commands for this analysis; it's a strategic and analytical process.</p>
+<pre><code class='language-powershell'># No direct CLI commands for reviewing the assessment report's content in a human-readable format.
+# You would typically interact with the Azure portal or export the report for offline analysis.
+
+# Example of exporting assessment summary (conceptual, not from reference docs directly for this exact purpose):
+# az migrate project assessment export-summary `
+#     --resource-group $ResourceGroupName `
+#     --project-name $ProjectName `
+#     --name $AssessmentName `
+#     --output-format 'csv' # Or 'json'
+</code></pre>
+<p><code>--output-format</code>: Specifies the desired output format for the exported summary.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> In your Azure Migrate project, under 'Discovery and assessment', navigate to 'Assessments'. Click on your newly created assessment to view the detailed report. Review sections like 'Azure readiness', 'Cost details', 'VM sizing', and 'Migration issues'. Export the assessment report to CSV or Excel for deeper analysis and stakeholder discussions.</p>
+<p><strong>Expected result:</strong> A clear understanding of your physical servers' Azure readiness, a prioritized list of servers for migration, optimized Azure VM sizing recommendations, and a detailed cost estimate. This information will form the basis of your migration plan, including potential migration waves, target architectures, and budget allocations. SkyCore Solutions typically facilitates workshops at this stage to refine the plan and address any concerns.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Ignoring assessment warnings or compatibility issues can lead to failed migrations or post-migration performance problems. Pay close attention to recommended remediation steps, especially for unsupported operating system features or applications. Don't simply accept the default sizing; validate it against your own performance expectations and budgetary constraints.</div>
+
+<h2>Step 5: Prepare Azure Landing Zone</h2>
+<p>Before initiating the actual migration, it's crucial to prepare your Azure environment, known as the landing zone. This involves setting up the foundational infrastructure—networking, storage, and security—to host your migrated physical servers. A well-designed landing zone ensures connectivity, performance, and security for your workloads in Azure.</p>
+<pre><code class='language-powershell'># Define variables for your landing zone
+$LandingZoneRG = 'SkyCoreLandingZoneRG'
+$AzureRegion = 'eastus'
+$VNetName = 'SkyCoreProductionVNet'
+$VNetAddressPrefix = '10.0.0.0/16'
+$Subnet1Name = 'AppSubnet'
+$Subnet1Prefix = '10.0.1.0/24'
+$Subnet2Name = 'DBSunet'
+$Subnet2Prefix = '10.0.2.0/24'
+$NSGName = 'SkyCoreAppNSG'
+$StorageAccountName = 'skycoremigratestgacc' # Must be globally unique, lowercase, no special chars
+
+# Create Resource Group for the landing zone
+az group create --name $LandingZoneRG --location $AzureRegion
+
+# Create Virtual Network (VNet)
+az network vnet create `
+    --resource-group $LandingZoneRG `
+    --name $VNetName `
+    --address-prefix $VNetAddressPrefix `
+    --location $AzureRegion
+
+# Add Subnets to the VNet
+az network vnet subnet create `
+    --resource-group $LandingZoneRG `
+    --vnet-name $VNetName `
+    --name $Subnet1Name `
+    --address-prefixes $Subnet1Prefix
+
+az network vnet subnet create `
+    --resource-group $LandingZoneRG `
+    --vnet-name $VNetName `
+    --name $Subnet2Name `
+    --address-prefixes $Subnet2Prefix
+
+# Create Network Security Group (NSG) for security
+az network nsg create `
+    --resource-group $LandingZoneRG `
+    --name $NSGName `
+    --location $AzureRegion
+
+# Example: Add an NSG rule (e.g., allow RDP/SSH from a specific IP range)
+az network nsg rule create `
+    --resource-group $LandingZoneRG `
+    --nsg-name $NSGName `
+    --name 'AllowManagementInbound' `
+    --priority 100 `
+    --direction Inbound `
+    --access Allow `
+    --protocol Tcp `
+    --source-address-prefixes 'YourOnPremiseIPRange' `
+    --destination-address-prefixes '*' `
+    --destination-port-ranges 3389 22
+
+# Create a storage account for boot diagnostics and potential temporary use
+az storage account create `
+    --resource-group $LandingZoneRG `
+    --name $StorageAccountName `
+    --location $AzureRegion `
+    --sku Standard_LRS `
+    --kind StorageV2
+</code></pre>
+<p><code>--resource-group</code>: The resource group where your Azure landing zone resources will be deployed.</p>
+<p><code>--location</code>: The Azure region for these resources, matching your migration target.</p>
+<p><code>--name</code>: The name of the resource being created (resource group, VNet, subnet, NSG, storage account).</p>
+<p><code>--address-prefix</code>: The CIDR block for the virtual network.</p>
+<p><code>--address-prefixes</code>: The CIDR block for a specific subnet.</p>
+<p><code>--nsg-name</code>: The name of the Network Security Group to which the rule is added.</p>
+<p><code>--priority</code>: The processing order for the NSG rule (lower numbers are processed first).</p>
+<p><code>--access</code>: Whether to 'Allow' or 'Deny' traffic.</p>
+<p><code>--protocol</code>: The network protocol (e.g., 'Tcp', 'Udp', 'Any').</p>
+<p><code>--source-address-prefixes</code>: The source IP addresses or CIDR blocks allowed/denied.</p>
+<p><code>--destination-port-ranges</code>: The destination ports allowed/denied.</p>
+<p><code>--sku</code>: The performance tier and redundancy of the storage account (e.g., 'Standard_LRS' for locally redundant storage).</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Manually create a resource group, virtual network, subnets, Network Security Groups, and storage accounts through the Azure portal. Ensure all networking components are correctly configured, including peering, VPN gateways, or ExpressRoute connections, if necessary.</p>
+<p><strong>Expected result:</strong> A fully configured Azure environment with appropriate networking, security, and storage resources, ready to receive and host your migrated physical servers as Azure VMs.</p>
+
+<h2>Step 6: Execute Physical Server Migration to Azure</h2>
+<p>This is the final and most critical phase: migrating your physical servers to Azure Virtual Machines. Azure Migrate handles the end-to-end process, including continuous replication, test migrations, and the final cutover. The process for physical servers largely mirrors that for other VMs, involving deploying a Mobility agent on the source server, enabling replication, and managing failovers.</p>
+<p>Note: The provided documentation emphasizes Azure Migrate for server migration over Azure Site Recovery. While Site Recovery's underlying mechanisms might be similar, Azure Migrate is the recommended service. Explicit Azure CLI commands for the entire physical server migration workflow (specifically for replication and cutover) are not extensively detailed in the provided Microsoft Learn links, which tend to focus on the portal experience for this part. However, we can infer and provide conceptual CLI steps based on typical Azure Migrate and Site Recovery operations.</p>
+<pre><code class='language-powershell'># Step 6.1: Prepare for replication - Install Azure Migrate Mobility agent on source physical servers.
+# This involves downloading the agent installer from the Azure Migrate project in the portal
+# and running it on each physical server.
+# The agent installer typically comes with a configuration file or requires project details during setup.
+
+# Conceptual command to enable replication (details would be specific to Azure Migrate's implementation)
+# You would need to register the mobility service on the source server, then enable replication.
+# The replication process typically involves selecting the source physical server, target Azure VM settings,
+# and replication policy.
+
+# Define replication variables
+$SourceServerName = 'MyPhysicalServer01'
+$TargetVMName = 'MyPhysicalServer01-VM'
+$TargetResourceGroup = $LandingZoneRG # The RG where the new Azure VM will be created
+$TargetVNetName = $VNetName
+$TargetSubnetName = $Subnet1Name
+$AzureDiskType = 'Standard_HDD' # Based on assessment, or 'Premium_LRS' for better performance
+$ReplicationPolicyName = 'SkyCoreReplicationPolicy' # Policy defining RPO/RTO, typically configured in portal
+
+# Conceptual: Enable replication for a discovered physical server
+# This command is illustrative; exact syntax for physical servers via CLI is not directly provided in references.
+# The process involves creating a replication item in Azure Migrate, associating it with the source server.
+# az migrate server replication enable `
+#     --resource-group $ResourceGroupName `
+#     --project-name $ProjectName `
+#     --name $SourceServerName `
+#     --target-vm-name $TargetVMName `
+#     --target-resource-group $TargetResourceGroup `
+#     --target-vnet-name $TargetVNetName `
+#     --target-subnet-name $TargetSubnetName `
+#     --azure-disk-type $AzureDiskType `
+#     --replication-policy $ReplicationPolicyName `
+#     --operating-system-type 'Windows' # or 'Linux'
+
+# Step 6.2: Run a Test Migration
+# A test migration allows you to validate the migrated VM in Azure without impacting the production source server.
+# az migrate server test-migrate `
+#     --resource-group $ResourceGroupName `
+#     --project-name $ProjectName `
+#     --name $SourceServerName `
+#     --target-vnet-name $TargetVNetName # Specify the test failover VNet
+
+# Step 6.3: Perform a Full Migration (Cutover)
+# This is the actual migration where the source physical server is shut down, and the Azure VM takes over.
+# It should only be performed after successful testing.
+# az migrate server migrate `
+#     --resource-group $ResourceGroupName `
+#     --project-name $ProjectName `
+#     --name $SourceServerName `
+#     --cutover # Indicates this is the final cutover migration
+
+# Step 6.4: Complete Migration
+# After successful cutover, finalize the migration to stop replication and clean up source artifacts.
+# az migrate server complete-migration `
+#     --resource-group $ResourceGroupName `
+#     --project-name $ProjectName `
+#     --name $SourceServerName
+</code></pre>
+<p><code>--resource-group</code>: The resource group of your Azure Migrate project.</p>
+<p><code>--project-name</code>: The name of your Azure Migrate project.</p>
+<p><code>--name</code>: The name of the source physical server being migrated.</p>
+<p><code>--target-vm-name</code>: The desired name for the Azure VM.</p>
+<p><code>--target-resource-group</code>: The resource group in your Azure landing zone where the new VM will be created.</p>
+<p><code>--target-vnet-name</code>: The Azure Virtual Network for the migrated VM.</p>
+<p><code>--target-subnet-name</code>: The specific subnet within the VNet for the VM.</p>
+<p><code>--azure-disk-type</code>: The type of managed disk to use for the Azure VM (e.g., 'Standard_HDD', 'Premium_LRS').</p>
+<p><code>--replication-policy</code>: The name of the replication policy governing replication frequency and RPO.</p>
+<p><code>--operating-system-type</code>: The OS of the source server ('Windows' or 'Linux').</p>
+<p><code>--cutover</code>: Flag to indicate a final migration, which typically triggers a shutdown of the source.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> From your Azure Migrate project, navigate to 'Servers, databases and web apps' > 'Migration tools'. Select 'Replicate' under Azure Migrate Server Migration. In 'Replicate sources', select 'Physical or other (AWS, GCP, Xen, etc.)', choose the appliance, and select your source servers. Configure target settings (VM size, disks, VNet, subnet). Enable replication. Once replication is healthy, perform a 'Test migration' from the replicated items. After successful testing, initiate the 'Migrate' (cutover) action. Finally, select 'Complete migration' to finalize.</p>
+<p><strong>Expected result:</strong> Your physical server workload will be successfully transitioned and running as a new Azure Virtual Machine. The old physical server can then be decommissioned. Post-migration, validate connectivity, application functionality, and performance in the Azure environment.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Skipping the test migration is a critical risk. Always perform a test migration to validate the migrated VM, its applications, and network connectivity in isolation before attempting a full cutover. This uncovers issues without impacting production. Another common error is failing to adequately prepare the source server (e.g., uninstalling anti-virus that might interfere with Mobility Agent, ensuring latest OS updates).</div>
+
+<div class='howto-consultant-cta'><h3>When to bring in a consultant</h3><p>While this guide provides a solid framework, physical server migration can present unique challenges, particularly in complex environments with custom applications, stringent compliance requirements, or tight downtime windows. SkyCore Solutions routinely handles scenarios involving intricate network dependencies, legacy applications, large datasets, and specialized hardware. If your organization lacks deep Azure expertise, requires a guaranteed migration timeline, or has business-critical applications demanding near-zero downtime, attempting a DIY migration can introduce significant risk. Engaging SkyCore Solutions ensures a meticulously planned, securely executed, and fully optimized migration, allowing your team to focus on core business operations.</p><a href='../contact.html' class='btn btn-primary'>Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/azure/migrate</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/site-recovery/migrate-tutorial-on-premises-azure" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/azure/site-recovery</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/migrate/tutorial-assess-physical" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/azure/migrate</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/migrate/tutorial-migrate-physical-virtual-machines" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/azure/migrate</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

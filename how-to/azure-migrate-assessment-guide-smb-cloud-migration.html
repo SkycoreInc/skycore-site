@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demystifying Cloud Readiness: Your Azure Migrate Assessment Guide for SMBs — SkyCore Solutions</title>
+  <meta name="description" content="Unlock your cloud potential with this comprehensive Azure Migrate assessment guide for SMBs. Discover, assess, and plan your VMware migration to Azure efficiently." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Demystifying Cloud Readiness: Your Azure Migrate Assessment Guide for SMBs — SkyCore Solutions" />
+  <meta property="og:description" content="Unlock your cloud potential with this comprehensive Azure Migrate assessment guide for SMBs. Discover, assess, and plan your VMware migration to Azure efficiently." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-migrate-assessment-guide-smb-cloud-migration.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/7971339/pexels-photo-7971339.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Demystifying Cloud Readiness: Your Azure Migrate Assessment Guide for SMBs — SkyCore Solutions" />
+  <meta name="twitter:description" content="Unlock your cloud potential with this comprehensive Azure Migrate assessment guide for SMBs. Discover, assess, and plan your VMware migration to Azure efficiently." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/7971339/pexels-photo-7971339.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-migrate-assessment-guide-smb-cloud-migration.html" />
+  <meta property="article:published_time" content="2026-08-05" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Demystifying Cloud Readiness: Your Azure Migrate Assessment Guide for SMBs",
+  "description": "Unlock your cloud potential with this comprehensive Azure Migrate assessment guide for SMBs. Discover, assess, and plan your VMware migration to Azure efficiently.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Active Azure Subscription with Owner or Contributor and Azure Migrate Contributor roles, Azure CLI (version 2.x or later) or Azure PowerShell Az module (version 5.x or later), VMware vCenter Server (version 5.5 to 8.0) and ESXi hosts (5.5 or later), vCenter Server read-only user account with VM guest operation permissions, VMware Tools (version 10.2.1 or later) installed on all target VMs, Windows VMs: PowerShell 2.0+ installed, Linux VMs: SSH key-based authentication enabled for agentless discovery, Network access for the Azure Migrate Appliance (direct or via proxy), Available resources in vCenter for the appliance: 8 vCPUs, 32 GB RAM, ~80 GB disk storage"}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Your Azure Environment and Create an Azure Migrate Project",
+        "text": "Set up your Azure subscription, create a resource group, and provision the Azure Migrate project, which serves as the central hub for your migration journey."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Your VMware Environment for Discovery",
+        "text": "Configure the necessary permissions and ensure your vCenter Server and virtual machines are ready for data collection by the Azure Migrate appliance."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy the Azure Migrate Discovery and Assessment Appliance",
+        "text": "Deploy the lightweight virtual appliance within your VMware environment to collect configuration and performance data from your on-premises servers."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Start Continuous Discovery and Collect Performance Data",
+        "text": "Configure the deployed appliance to connect to your vCenter Server and initiate the continuous collection of server metadata, performance metrics, and application details."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create and Analyze Your Azure VM Assessment",
+        "text": "Utilize the collected data to generate a detailed Azure VM assessment, providing insights into cloud readiness, cost estimates, and right-sizing recommendations."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-08-05 · 18 min read · Cloud Migration</div>
+<h1>Demystifying Cloud Readiness: Your Azure Migrate Assessment Guide for SMBs</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/7971339/pexels-photo-7971339.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Diagram illustrating cloud migration assessment with data points and a cloud icon, relevant for Azure Migrate assessment guide SMB" loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For many small and medium-sized businesses (SMBs) in Montreal and beyond, the prospect of migrating existing on-premises infrastructure to the cloud can seem daunting. Concerns about cost, complexity, and potential downtime often overshadow the undeniable benefits of Azure's scalability, security, and operational efficiency. That's where <span class="primary-keyword">Azure Migrate</span> comes in. This powerful, free Microsoft service provides a unified platform to discover, assess, and plan your cloud migration with confidence.</p>
+<p>This authoritative <span class="primary-keyword">Azure Migrate assessment guide for SMBs</span> from SkyCore Solutions will walk you through the essential steps to accurately evaluate your current VMware environment, understand its cloud readiness, estimate costs, and identify the optimal Azure targets. By the end of this guide, you will have a clear, data-driven assessment report detailing your path to Azure, making informed decisions easier than ever.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li><strong>Azure Subscription:</strong> An active Azure subscription. For creating projects and registering appliances, the Azure user account requires both <code>Contributor</code> and <code>Azure Migrate Contributor</code> built-in roles on the subscription or resource group.</li><li><strong>Azure CLI / PowerShell:</strong> Ensure you have the latest Azure CLI (version 2.x or later) or Azure PowerShell Az module (version 5.x or later) installed and configured on your workstation.</li><li><strong>VMware vCenter Server:</strong> vCenter Server version 5.5, 6.0, 6.5, 6.7, 7.0, or 8.0. Your servers must be hosted on an ESXi host running version 5.5 or later.</li><li><strong>vCenter Server Account:</strong> A vCenter Server read-only account is required for the Azure Migrate appliance to discover servers. For application discovery and agentless dependency analysis, this account must also have permissions for VM guest operations.</li><li><strong>VMware Tools:</strong> VMware Tools (version 10.2.1 or later) must be installed and running on all Windows and Linux VMs you intend to discover for comprehensive data collection.</li><li><strong>Windows Server Prerequisites:</strong> For Windows servers, PowerShell version 2.0 or later is required for application discovery and agentless dependency analysis.</li><li><strong>Linux Server Prerequisites:</strong> For Linux servers, SSH key-based authentication is recommended for configuration and performance data, installed applications, and agentless dependency analysis.</li><li><strong>Network Connectivity:</strong> The Azure Migrate appliance requires outbound internet access (either directly or via an HTTPS proxy) to connect to Azure.</li><li><strong>Appliance Resources:</strong> Your vCenter Server must be able to allocate 8 vCPUs, 32 GB RAM, and approximately 80 GB of disk storage for the Azure Migrate appliance VM.</li><li><strong>Estimated Cost:</strong> The Azure Migrate service itself is free for discovery and assessment. You only incur costs when you actually migrate and provision resources in Azure. The assessment phase is designed to help you *estimate* those future costs.</li></ul></div>
+
+<h2>Step 1: Prepare Your Azure Environment and Create an Azure Migrate Project</h2>
+<p>The first step in any Azure migration journey is to establish a foundational environment. This involves setting up a dedicated resource group to logically organize your migration assets and then provisioning the Azure Migrate project itself. This project acts as your central console for all discovery, assessment, and migration activities, providing a unified view of your journey.</p>
+
+<p>First, log in to Azure CLI or PowerShell. For CLI, use <code>az login</code>. For PowerShell, use <code>Connect-AzAccount</code>.</p>
+
+<p><strong>Azure CLI:</strong></p>
+<pre><code class="language-azurecli"># Set your desired Azure region (e.g., canadacentral for Montreal businesses)
+AZURE_REGION="canadacentral"
+
+# Define resource group and Azure Migrate project names
+RESOURCE_GROUP_NAME="SkyCore-Migrate-RG"
+MIGRATE_PROJECT_NAME="SkyCore-AzureMigrate-Project"
+
+# Create a resource group for your Azure Migrate project
+az group create --name "$RESOURCE_GROUP_NAME" --location "$AZURE_REGION"
+
+# Create the Azure Migrate project
+az migrate project create --name "$MIGRATE_PROJECT_NAME" \
+    --resource-group "$RESOURCE_GROUP_NAME" \
+    --location "$AZURE_REGION" \
+    --scope "/subscriptions/$(az account show --query id -o tsv)"</code></pre>
+<ul>
+    <li><code>AZURE_REGION</code>: Specifies the Azure region where your resource group and Azure Migrate project will reside. For SMBs in Montreal, <code>canadacentral</code> is an excellent choice for data residency and proximity.</li>
+    <li><code>RESOURCE_GROUP_NAME</code>: A logical container for your Azure resources. Using a dedicated resource group for migration assets simplifies management and cleanup.</li>
+    <li><code>MIGRATE_PROJECT_NAME</code>: The unique name for your Azure Migrate project.</li>
+    <li><code>--scope</code>: Defines the scope of the project, typically your entire subscription for SMBs to ensure all relevant resources can be discovered.</li>
+</ul>
+
+<p><strong>Azure PowerShell:</strong></p>
+<pre><code class="language-powershell"># Set your desired Azure region
+$AzureRegion = "canadacentral"
+
+# Define resource group and Azure Migrate project names
+$ResourceGroupName = "SkyCore-Migrate-RG"
+$MigrateProjectName = "SkyCore-AzureMigrate-Project"
+
+# Create a resource group for your Azure Migrate project
+New-AzResourceGroup -Name $ResourceGroupName -Location $AzureRegion
+
+# Get your current subscription ID
+$SubscriptionId = (Get-AzContext).Subscription.Id
+
+# Create the Azure Migrate project
+New-AzMigrateProject -Name $MigrateProjectName -ResourceGroupName $ResourceGroupName `
+    -Location $AzureRegion -Scope "/subscriptions/$SubscriptionId"</code></pre>
+<ul>
+    <li><code>$AzureRegion</code>: Similar to CLI, defines the Azure region for your resources.</li>
+    <li><code>$ResourceGroupName</code>: Name of the resource group.</li>
+    <li><code>$MigrateProjectName</code>: Name of your Azure Migrate project.</li>
+    <li><code>-Scope</code>: Specifies the scope of the project, linking it to your Azure subscription.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the Azure portal, search for "Azure Migrate", and click "Create project". Fill in the subscription, resource group, and project details, then click "Create".</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az migrate project show --name "$MIGRATE_PROJECT_NAME" --resource-group "$RESOURCE_GROUP_NAME" --query "properties.provisioningState" -o tsv</code></pre>
+<pre><code class="language-powershell">(Get-AzMigrateProject -Name $MigrateProjectName -ResourceGroupName $ResourceGroupName).ProvisioningState</code></pre>
+<p>The output should show <code>Succeeded</code>.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For SMBs, consistency is key. Always use the same Azure region for your Azure Migrate project as you intend for your target Azure VM deployments. This reduces latency during data collection and simplifies resource management.</div>
+
+<h2>Step 2: Prepare Your VMware Environment for Discovery</h2>
+<p>Before the Azure Migrate appliance can begin collecting data, your on-premises VMware environment needs a few configurations. The most critical aspect is ensuring the Azure Migrate appliance has appropriate permissions to communicate with your vCenter Server and access your virtual machines. This step focuses on establishing a secure, read-only connection that allows for comprehensive discovery without granting excessive privileges.</p>
+
+<p>This step is primarily an on-premises configuration within your vCenter Server. There are no direct Azure CLI or PowerShell commands for this part, as it involves your local VMware infrastructure.</p>
+
+<ol>
+    <li>
+        <p><strong>Create a vCenter Server User Account:</strong></p>
+        <p>Within your vCenter Server, create a new user account (e.g., <code>AzureMigrateUser</code>) and assign it a role with the following read-only permissions:</p>
+        <ul>
+            <li><code>Datacenter</code> > <code>Host</code> > <code>Configuration</code> > <code>Read all</code></li>
+            <li><code>Datacenter</code> > <code>Host</code> > <code>Network</code> > <code>Assign network</code></li>
+            <li><code>Datacenter</code> > <code>Host</code> > <code>Inventory</code> > <code>Edit configuration</code></li>
+            <li><code>Datacenter</code> > <code>VM</code> > <code>Configuration</code> > <code>Read all</code></li>
+            <li><code>Datacenter</code> > <code>VM</code> > <code>Interaction</code> > <code>Guest operation modifications</code> (critical for agentless dependency analysis and application discovery)</li>
+            <li><code>Datacenter</code> > <code>VM</code> > <code>Inventory</code> > <code>Read all</code></li>
+            <li><code>Datacenter</code> > <code>VM</code> > <code>Provisioning</code> > <code>Allow disk access</code></li>
+            <li><code>Datacenter</code> > <code>Folder</code> > <code>Read all</code></li>
+            <li><code>Datacenter</code> > <code>Datastore</code> > <code>Allocate space</code></li>
+            <li><code>Datacenter</code> > <code>Datastore</code> > <code>Browse datastore</code></li>
+            <li><code>Datacenter</code> > <code>Network</code> > <code>Assign network</code></li>
+            <li><code>Datacenter</code> > <code>Resource</code> > <code>Assign VM to resource pool</code></li>
+        </ul>
+        <p>Assign this role at the vCenter Server instance level, and propagate it to all child objects.</p>
+    </li>
+    <li>
+        <p><strong>Install VMware Tools:</strong></p>
+        <p>Ensure VMware Tools (version 10.2.1 or later) is installed and running on all Windows and Linux VMs you intend to discover. This is crucial for collecting comprehensive performance data and enabling agentless dependency analysis.</p>
+    </li>
+    <li>
+        <p><strong>PowerShell for Windows VMs / SSH for Linux VMs:</strong></p>
+        <p>For Windows VMs, verify PowerShell 2.0 or later is installed. For Linux VMs, configure SSH key-based authentication (recommended for secure and efficient discovery).</p>
+    </li>
+</ol>
+
+<p class="gui-note"><strong>Portal alternative:</strong> This step is managed directly within your vCenter Server client. Log in, navigate to "Administration" > "Users and Groups" > "Roles" to create a custom role, and then assign it to a new user account. Ensure the permissions listed above are included.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Insufficient vCenter user permissions are the most common cause of discovery failures. Double-check that the read-only account has 'Guest operation modifications' enabled, especially if you plan to utilize agentless dependency analysis or application discovery, which are invaluable for SMBs optimizing their migration.</div>
+
+<h2>Step 3: Deploy the Azure Migrate Discovery and Assessment Appliance</h2>
+<p>The Azure Migrate appliance is a lightweight virtual machine that you deploy in your VMware environment. Its primary role is to discover your on-premises servers, collect their configuration data, and continuously gather performance metrics. For SMBs, deploying this appliance is straightforward and provides the critical data needed for an accurate assessment without requiring agents on every VM.</p>
+
+<p>This step involves downloading an OVA file from the Azure portal and deploying it in your vCenter Server. While you generate the project key in Azure, the core deployment is a VMware operation.</p>
+
+<p><strong>Azure CLI:</strong> (Used to generate the project key for appliance registration)</p>
+<pre><code class="language-azurecli"># Generate a new key for the appliance to register with the Azure Migrate project
+az migrate project generate-key --name "$MIGRATE_PROJECT_NAME" --resource-group "$RESOURCE_GROUP_NAME" --query "properties.key" -o tsv</code></pre>
+<ul>
+    <li><code>--name</code>: The name of your Azure Migrate project.</li>
+    <li><code>--resource-group</code>: The resource group where your Azure Migrate project resides.</li>
+    <li>This command outputs a project key, which you'll use during the appliance configuration.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative (Primary Method for SMBs):</strong></p>
+<ol>
+    <li>Navigate to the Azure portal, search for "Azure Migrate", and select your project.</li>
+    <li>Under <strong>Discovery and assessment</strong>, select <strong>Discover</strong>.</li>
+    <li>Choose <strong>Discover servers</strong> > <strong>Are your servers virtualized?</strong> and select <strong>Yes, with VMware vSphere hypervisor</strong>.</li>
+    <li>Under <strong>1. Prepare appliance</strong>, provide a name for the Azure Migrate appliance (e.g., <code>SkyCore-Migrate-Appliance</code>).</li>
+    <li>Click <strong>Generate key</strong>. Copy this key – you'll need it later to register the appliance.</li>
+    <li>Click <strong>Download</strong> to download the OVA file.</li>
+    <li>Import the OVA file into your vCenter Server to create a new VM. Power on the VM.</li>
+    <li>Access the appliance's console to set up its network configuration (static IP recommended for SMBs).</li>
+    <li>Open a browser to the appliance's configuration manager (<code>https://&lt;ApplianceIP&gt;:44368</code>).</li>
+    <li>Follow the on-screen instructions to set up prerequisites, provide the generated project key, and connect to Azure.</li>
+</ol>
+
+<p><strong>Run this to verify:</strong> After the appliance configuration completes, check the Azure portal.</p>
+<p class="gui-note"><strong>Portal Verification:</strong> In your Azure Migrate project, under <strong>Discovery and assessment</strong> > <strong>Discover servers</strong>, you should see your appliance listed with a status of "Connected". This confirms successful registration.</p>
+
+<h2>Step 4: Start Continuous Discovery and Collect Performance Data</h2>
+<p>With the Azure Migrate appliance successfully deployed and connected, the next critical step is to configure it to connect to your vCenter Server and initiate the continuous discovery process. This is where the appliance starts collecting detailed inventory data, configuration specifics, and most importantly, performance metrics over a configurable period. This data is the backbone of an accurate and optimized assessment for your SMB.</p>
+
+<p>Similar to Step 3, the configuration for discovery is primarily done through the appliance's web-based configuration manager.</p>
+
+<p class="gui-note"><strong>Portal/Appliance Configuration Manager (Primary Method):</strong></p>
+<ol>
+    <li>Open the appliance's web-based configuration manager (<code>https://&lt;ApplianceIP&gt;:44368</code>) in your browser.</li>
+    <li>Navigate to the <strong>Specify vCenter Server details</strong> section.</li>
+    <li>Enter the vCenter Server FQDN or IP address and the credentials for the read-only vCenter user account you created in Step 2. Click <strong>Add vCenter Server</strong>.</li>
+    <li>In the <strong>Specify server credentials</strong> section, provide the credentials for your Windows and Linux servers. This is crucial for application discovery and agentless dependency analysis.
+        <ul>
+            <li>For Windows servers: Enter domain/local administrator credentials or user accounts with local administrator privileges.</li>
+            <li>For Linux servers: Enter username and password or SSH private key.</li>
+        </ul>
+        <p>SkyCore recommends providing credentials for both OS types to get the richest assessment data.</p>
+    </li>
+    <li>In the <strong>Start discovery</strong> section, specify the discovery scope (e.g., all VMs, specific folders, or resource pools). For SMBs, starting with all VMs is often the most straightforward approach.</li>
+    <li>Click <strong>Start discovery</strong>.</li>
+</ol>
+
+<p>Discovery begins immediately. It takes some time for discovered servers to appear in the Azure portal (typically 15-30 minutes for initial inventory, longer for performance data). Performance data collection continues for up to 30 days, providing a robust dataset for your assessment.</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az migrate discovered-machine list --project-name "$MIGRATE_PROJECT_NAME" --resource-group "$RESOURCE_GROUP_NAME" --query "[].properties.displayName" -o tsv</code></pre>
+<pre><code class="language-powershell">Get-AzMigrateDiscoveredMachine -ProjectName $MigrateProjectName -ResourceGroupName $ResourceGroupName | Select-Object DisplayName</code></pre>
+<p>This command lists the display names of servers discovered by the appliance. You should see a growing list of your on-premises VMs.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Let the appliance collect performance data for at least 7 days, ideally 30 days. This period captures weekly and monthly peak utilization, leading to a much more accurate and cost-effective right-sizing assessment for your Azure VMs, preventing both under-provisioning and overspending.</div>
+
+<h2>Step 5: Create and Analyze Your Azure VM Assessment</h2>
+<p>This is the culmination of your discovery efforts. Once the Azure Migrate appliance has collected sufficient configuration and performance data, you can create a detailed assessment report. This report will provide crucial insights for your <span class="primary-keyword">Azure Migrate assessment guide SMB</span> strategy, including Azure readiness, estimated monthly costs, VM sizing recommendations, and potential cost savings through Azure Hybrid Benefit and Reserved Instances. This step focuses on optimizing for cost and performance for typical SMB workloads.</p>
+
+<p><strong>Azure CLI:</strong></p>
+<pre><code class="language-azurecli"># Define assessment name and other parameters
+ASSESSMENT_NAME="SkyCore-VMware-AzureVM-Assessment"
+GROUP_NAME="SkyCore-VMware-Group" # Default group created by appliance if not specified
+
+# Create an assessment group (if not already created by appliance)
+az migrate group create --name "$GROUP_NAME" --project-name "$MIGRATE_PROJECT_NAME" --resource-group "$RESOURCE_GROUP_NAME"
+
+# Create the Azure VM assessment
+az migrate assessment create --name "$ASSESSMENT_NAME" \
+    --group-name "$GROUP_NAME" \
+    --project-name "$MIGRATE_PROJECT_NAME" \
+    --resource-group "$RESOURCE_GROUP_NAME" \
+    --assessment-type "AzureVM" \
+    --azure-hybrid-benefit "Yes" \
+    --azure-storage-type "Premium" \
+    --confidence-threshold "High" \
+    --currency "CAD" \
+    --discount-percentage 0 \
+    --do-not-auto-resolve-vm-series "No" \
+    --ea-csp-discount-percentage 0 \
+    --environment-type "Standard" \
+    --optimization-preference "MinimizeCost" \
+    --perf-data-start-time "$(date -v-30d '+%Y-%m-%dT%H:%M:%SZ')" \
+    --perf-data-end-time "$(date '+%Y-%m-%dT%H:%M:%SZ')" \
+    --percentile 95 \
+    --pricing-tier "Standard" \
+    --reserved-instance "None" \
+    --right-sizing-factor 1.0 \
+    --sizing-criterion "PerformanceBased" \
+    --target-location "canadacentral" \
+    --time-range "Last30Days" \
+    --vm-uptime "24x7"
+</code></pre>
+<ul>
+    <li><code>ASSESSMENT_NAME</code>: A descriptive name for your assessment.</li>
+    <li><code>GROUP_NAME</code>: The name of the group of discovered servers you want to assess. The appliance usually creates a default group.</li>
+    <li><code>--assessment-type "AzureVM"</code>: Specifies that this is an assessment for migrating to Azure Virtual Machines.</li>
+    <li><code>--azure-hybrid-benefit "Yes"</code>: <strong>SMB Recommendation:</strong> Set to <code>Yes</code> if you have active Software Assurance for your Windows Server licenses. This significantly reduces VM costs by letting you use your existing licenses.</li>
+    <li><code>--azure-storage-type "Premium"</code>: <strong>SMB Recommendation:</strong> For most business-critical workloads, Premium SSDs offer excellent performance and reliability.</li>
+    <li><code>--confidence-threshold "High"</code>: Only includes VMs in the assessment that have a high confidence rating for performance data.</li>
+    <li><code>--currency "CAD"</code>: Sets the currency for cost estimation, crucial for Montreal-based SMBs.</li>
+    <li><code>--optimization-preference "MinimizeCost"</code>: <strong>SMB Recommendation:</strong> Focuses the assessment on finding the most cost-effective Azure VM sizes while meeting performance requirements.</li>
+    <li><code>--perf-data-start-time</code> & <code>--perf-data-end-time</code>: Specifies the time window for performance data analysis. <code>Last30Days</code> is generally preferred for comprehensive data.</li>
+    <li><code>--percentile 95</code>: Uses the 95th percentile of performance data. This means the assessment will size VMs to handle 95% of peak loads, avoiding over-provisioning for rare spikes.</li>
+    <li><code>--reserved-instance "None"</code>: <strong>SMB Recommendation:</strong> Start with <code>None</code> for the initial assessment. Once workloads are stable, consider 1-year Reserved Instances (set to <code>OneYear</code>) for predictable VMs to achieve significant savings.</li>
+    <li><code>--sizing-criterion "PerformanceBased"</code>: <strong>SMB Recommendation:</strong> This is crucial. Performance-based sizing uses collected utilization data (CPU, RAM, disk I/O) to recommend the right-sized Azure VMs, avoiding costly 'lift and shift' of oversized on-premises VMs.</li>
+    <li><code>--target-location "canadacentral"</code>: The target Azure region for your VMs.</li>
+    <li><code>--vm-uptime "24x7"</code>: Assumes VMs run continuously. Adjust if you have scheduled shutdowns.</li>
+</ul>
+
+<p><strong>Azure PowerShell:</strong></p>
+<pre><code class="language-powershell"># Define assessment name and other parameters
+$AssessmentName = "SkyCore-VMware-AzureVM-Assessment"
+$GroupName = "SkyCore-VMware-Group"
+
+# Create an assessment group (if not already created by appliance)
+New-AzMigrateGroup -Name $GroupName -ProjectName $MigrateProjectName -ResourceGroupName $ResourceGroupName
+
+# Calculate performance data start and end times for the last 30 days
+$PerfDataEndTime = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+$PerfDataStartTime = (Get-Date).AddDays(-30).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+
+# Create the Azure VM assessment
+New-AzMigrateAssessment -Name $AssessmentName -GroupName $GroupName `
+    -ProjectName $MigrateProjectName -ResourceGroupName $ResourceGroupName `
+    -AssessmentType "AzureVM" `
+    -AzureHybridBenefit "Yes" `
+    -AzureStorageType "Premium" `
+    -ConfidenceThreshold "High" `
+    -Currency "CAD" `
+    -DiscountPercentage 0 `
+    -DoNotAutoResolveVmSeries "No" `
+    -EaCspDiscountPercentage 0 `
+    -EnvironmentType "Standard" `
+    -OptimizationPreference "MinimizeCost" `
+    -PerfDataStartTime $PerfDataStartTime `
+    -PerfDataEndTime $PerfDataEndTime `
+    -Percentile 95 `
+    -PricingTier "Standard" `
+    -ReservedInstance "None" `
+    -RightSizingFactor 1.0 `
+    -SizingCriterion "PerformanceBased" `
+    -TargetLocation "canadacentral" `
+    -TimeRange "Last30Days" `
+    -VmUptime "24x7"</code></pre>
+
+<p class="gui-note"><strong>Portal alternative:</strong></p>
+<ol>
+    <li>In your Azure Migrate project, navigate to <strong>Servers, databases and web apps</strong> > <strong>Discovery and assessment</strong>.</li>
+    <li>Click <strong>Assess</strong> and select <strong>Azure VM</strong>.</li>
+    <li>In <strong>Basics</strong>, select the Azure Migrate project, assessment name, and choose to create a new group or use an existing one.</li>
+    <li>In <strong>Specify assessment details</strong>, configure the settings. For SMBs, ensure <strong>Sizing criterion</strong> is <code>Performance-based</code>, <strong>Time range</strong> is <code>Last 30 days</code>, and <strong>Target location</strong> is set to your preferred region (e.g., Canada Central). Enable <strong>Azure Hybrid Benefit</strong> if applicable.</li>
+    <li>Click <strong>Create assessment</strong>.</li>
+</ol>
+
+<p><strong>Run this to verify:</strong> After a few minutes, the assessment should be created and ready for review.</p>
+<p class="gui-note"><strong>Portal Verification:</strong> In your Azure Migrate project, go to <strong>Servers, databases and web apps</strong> > <strong>Discovery and assessment</strong> > <strong>Assessments</strong>. Click on your newly created assessment to view the summary, estimated monthly costs, readiness, and VM sizing recommendations. Pay close attention to the <strong>Confidence rating</strong> – a higher rating indicates more reliable data was used for the assessment.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Relying solely on 'As-is' sizing (configuration-based) for your assessment. While quicker, it often leads to oversized, more expensive Azure VMs because on-premises VMs are frequently over-provisioned. Always opt for 'Performance-based' sizing with sufficient data collection for an accurate, cost-optimized assessment.</div>
+
+<h3>When to bring in a consultant</h3>
+<p>While this guide provides a solid framework for SMBs to conduct their Azure Migrate assessment, certain scenarios can benefit significantly from professional expertise. SkyCore Solutions routinely assists clients with:</p>
+<ul>
+    <li><strong>Complex Application Dependencies:</strong> If your environment involves intricate, multi-tier applications with complex interdependencies, a consultant can help map these out precisely to ensure a smooth migration order and minimal downtime.</li>
+    <li><strong>Hybrid Identity and Directory Services:</strong> Integrating on-premises Active Directory with Azure Active Directory (now Microsoft Entra ID) and configuring hybrid identity solutions can be challenging.</li>
+    <li><strong>Advanced Networking:</strong> Designing secure and optimized network architectures, including VPNs, ExpressRoute, and VNet peering, for your cloud environment.</li>
+    <li><strong>Large-Scale or Mission-Critical Migrations:</strong> For businesses with hundreds of VMs or workloads that demand near-zero downtime, a phased, expertly managed migration plan is essential.</li>
+    <li><strong>Security Hardening and Compliance:</strong> Ensuring your Azure environment meets industry-specific compliance standards and is hardened against modern threats.</li>
+    <li><strong>Database Modernization:</strong> Migrating complex SQL Server or other database instances to Azure SQL Database or Azure SQL Managed Instance, optimizing for performance and cost.</li>
+</ul>
+<p>For these situations, or if you simply prefer expert guidance to accelerate your cloud journey and minimize risk, don't hesitate to reach out. We're here to ensure your cloud migration is a success.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — migrate services overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/migrate/tutorial-discover-vmware" target="_blank" rel="noopener noreferrer">learn.microsoft.com — tutorial discover vmware</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/migrate/tutorial-assess-vmware-azure-vm" target="_blank" rel="noopener noreferrer">learn.microsoft.com — tutorial assess vmware azure vm</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/migrate/concepts-assessment-calculation" target="_blank" rel="noopener noreferrer">learn.microsoft.com — concepts assessment calculation</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

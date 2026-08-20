@@ -3,6 +3,76 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "windows-rce-ransomware-montreal-cybersecurity",
+    title: "Windows RCE and Medusa Ransomware: Is Your Montreal Business the Next Target?",
+    date: "2026-08-19",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A critical remote code execution flaw in Windows IKE is actively exploited, and the Medusa ransomware gang has breached over 500 critical organizations. Ignoring these threats is no longer an option for Montreal businesses.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/17302202/pexels-photo-17302202.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "sharepoint-exploit-skycore-solution",
+    title: "The SharePoint Catastrophe: Are You Next? Actionable Steps for Montreal Businesses",
+    date: "2026-08-17",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are already exploiting SharePoint vulnerabilities. Don't be a victim. Discover critical security steps you need now.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/14000470/pexels-photo-14000470.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "sharepoint-vulnerability-smb-security-alert",
+    title: "SharePoint Flaw Exploded: Why Your Microsoft 365 Isn't As Safe As You Think",
+    date: "2026-08-15",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are actively exploiting a critical SharePoint vulnerability, CVE-2026-55040, putting your data at risk. This isn't just a problem for enterprise giants; your SMB is a prime target. Learn how to harden your Microsoft 365 security.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/2882654/pexels-photo-2882654.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "sharepoint-exploit-cybersecurity-smb-montreal",
+    title: "SharePoint Exploit: Why Your Montreal SMB Can't Afford Complacency",
+    date: "2026-08-13",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are exploiting a critical SharePoint vulnerability (CVE-2026-55040) right now. Your business in Montreal faces unprecedented cyber threats and needs proactive defense.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/15049671/pexels-photo-15049671.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "power-plant-breach-montreal-smb",
+    title: "A Power Plant Fell. Is Your Montreal Business Next?",
+    date: "2026-08-11",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A Polish power plant was breached via its private network, shutting down a turbine. This isn't just critical infrastructure news; it's a chilling reminder for every Montreal SMB to revisit their security posture.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/211151/pexels-photo-211151.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "metabase-zero-day-montreal-smb",
+    title: "Your Data Exposed: The Metabase Zero-Day and Why Your Montreal Business is Next",
+    date: "2026-08-09",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A maximum-severity Metabase zero-day allowed unauthenticated access and data theft, hitting real businesses. This isn't just big tech's problem—it's a critical warning for every Montreal SMB.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/19856564/pexels-photo-19856564.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "m365-phishing-payroll-financial-breach",
+    title: "Microsoft 365 Phishing Just Got Nastier: Is Your Payroll Next?",
+    date: "2026-08-07",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Sophisticated AitM phishing campaigns are actively hijacking Microsoft 365 accounts to compromise financial workflows. Learn what your Montreal business must do to protect its critical data.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/4973899/pexels-photo-4973899.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ai-cybersecurity-myths-montreal-smb",
     title: "Don't Fall for the AI Hype: What Montreal SMBs Really Need for Cybersecurity",
     date: "2026-08-03",
