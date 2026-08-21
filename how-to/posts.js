@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-api-management-setup-guide-smb-skycore",
+    title: "Comprehensive Azure API Management Setup Guide for SMBs by SkyCore Solutions",
+    date: "2026-08-21",
+    readTime: "12 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "1.5-2 hours",
+    keyword: "Azure API Management setup guide",
+    excerpt: "SkyCore Solutions presents a comprehensive Azure API Management setup guide specifically for SMBs. Master API deployment, security, and developer engagement to modernize your digital infrastructure.",
+    image: "https://images.pexels.com/photos/5583957/pexels-photo-5583957.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "physical-server-azure-migration",
     title: "Seamless Physical Server to Azure VM Migration with SkyCore Solutions",
     date: "2026-08-19",
