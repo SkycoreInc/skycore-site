@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "entra-id-exploit-montreal-smbs-cybersecurity",
+    title: "Entra ID Exploit: Why Your Cloud Identity Just Became Ground Zero",
+    date: "2026-08-21",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A maximum-severity flaw in Microsoft Entra ID was actively exploited, highlighting the brutal reality of modern cyber threats. Don't wait for your cloud identity to become an attacker's playground.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/19285776/pexels-photo-19285776.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "windows-rce-ransomware-montreal-cybersecurity",
     title: "Windows RCE and Medusa Ransomware: Is Your Montreal Business the Next Target?",
     date: "2026-08-19",
