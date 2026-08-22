@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-hybrid-cloud-small-business",
+    title: "Streamline Operations: Your Hybrid Cloud Setup for Small Business with Azure",
+    date: "2026-08-22",
+    readTime: "12 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "4-6 hours",
+    keyword: "hybrid cloud setup small business",
+    excerpt: "Unlock the power of hybrid cloud for your small business by seamlessly integrating on-premises resources with Azure. Enhance flexibility, security, and disaster recovery capabilities with a step-by-step guide.",
+    image: "https://images.pexels.com/photos/37288655/pexels-photo-37288655.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-api-management-setup-guide-smb-skycore",
     title: "Comprehensive Azure API Management Setup Guide for SMBs by SkyCore Solutions",
     date: "2026-08-21",
