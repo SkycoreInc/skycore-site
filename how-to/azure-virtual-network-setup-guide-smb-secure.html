@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkyCore Solutions: The Ultimate Azure Virtual Network Setup Guide for SMBs — SkyCore Solutions</title>
+  <meta name="description" content="Optimize your small to medium-sized business infrastructure with this comprehensive Azure Virtual Network setup guide. Learn to build a secure, scalable network in Azure." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="SkyCore Solutions: The Ultimate Azure Virtual Network Setup Guide for SMBs — SkyCore Solutions" />
+  <meta property="og:description" content="Optimize your small to medium-sized business infrastructure with this comprehensive Azure Virtual Network setup guide. Learn to build a secure, scalable network in Azure." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-virtual-network-setup-guide-smb-secure.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/18332045/pexels-photo-18332045.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SkyCore Solutions: The Ultimate Azure Virtual Network Setup Guide for SMBs — SkyCore Solutions" />
+  <meta name="twitter:description" content="Optimize your small to medium-sized business infrastructure with this comprehensive Azure Virtual Network setup guide. Learn to build a secure, scalable network in Azure." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/18332045/pexels-photo-18332045.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-virtual-network-setup-guide-smb-secure.html" />
+  <meta property="article:published_time" content="2026-08-25" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "SkyCore Solutions: The Ultimate Azure Virtual Network Setup Guide for SMBs",
+  "description": "Optimize your small to medium-sized business infrastructure with this comprehensive Azure Virtual Network setup guide. Learn to build a secure, scalable network in Azure.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Azure subscription (Pay-As-You-Go or CSP agreement recommended)., Azure CLI installed locally or access to Azure Cloud Shell (version 2.0.28+)., Azure PowerShell (Az module version 5.4.1+) installed locally or access to Azure Cloud Shell., An Azure account with 'Contributor' or 'Owner' role for resource creation., Basic understanding of networking concepts (IP addresses, CIDR, subnets)., Estimated Cost: Initial VNet, subnet, and NSG components are mostly free, but associated resources (VMs, VPN Gateways) incur costs. Expect minimal cost for a basic VNet, but a VPN Gateway could cost ~$30-50/month for a basic SKU. Running the quickstart test VMs will incur charges for compute and storage."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Step 1: Laying the Foundation \u2013 Create a Resource Group",
+        "text": "Organize your Azure resources logically into a dedicated resource group for your virtual network components."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 2: Designing Your Azure Virtual Network (VNet) for SMB",
+        "text": "Establish the foundational private network in Azure that will house all your cloud resources."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 3: Segmenting Your Network with Subnets",
+        "text": "Divide your VNet into smaller, isolated segments to enhance security and manageability."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 4: Implementing Network Security with Network Security Groups (NSGs)",
+        "text": "Control inbound and outbound traffic to and from your subnets and associated resources for robust security."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 5: Enabling Secure Connectivity to On-Premises (Optional but Recommended for Hybrid SMBs)",
+        "text": "Extend your Azure VNet to your on-premises network, facilitating hybrid cloud operations."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 6: Testing and Validation",
+        "text": "Verify the basic setup and connectivity within your newly configured Azure Virtual Network."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-08-25 · 18 min read · Infrastructure Revamp</div>
+<h1>SkyCore Solutions: The Ultimate Azure Virtual Network Setup Guide for SMBs</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/18332045/pexels-photo-18332045.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Diagram illustrating Azure Virtual Network components connecting cloud resources, ideal for SMB infrastructure revamp." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In today's fast-paced digital landscape, small to medium-sized businesses (SMBs) are increasingly turning to cloud solutions to enhance agility, scalability, and resilience. A well-designed network is the cornerstone of any successful cloud migration. This comprehensive <strong>Azure Virtual Network setup guide for SMBs</strong> from SkyCore Solutions will walk you through the essential steps to establish a secure, private, and robust network in Microsoft Azure. By the end of this guide, you will have a fully functional Azure Virtual Network, segmented with subnets and secured with Network Security Groups, ready to host your critical business applications and services. This is a foundational step in any serious infrastructure revamp, ensuring your journey to the cloud is secure from day one.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>An active Azure subscription (Pay-As-You-Go or CSP agreement recommended).</li><li>Azure CLI installed locally or access to Azure Cloud Shell (version 2.0.28+).</li><li>Azure PowerShell (Az module version 5.4.1+) installed locally or access to Azure Cloud Shell.</li><li>An Azure account with 'Contributor' or 'Owner' role for resource creation.</li><li>Basic understanding of networking concepts (IP addresses, CIDR, subnets).</li><li>Estimated Cost: Initial VNet, subnet, and NSG components are mostly free, but associated resources (VMs, VPN Gateways) incur costs. Expect minimal cost for a basic VNet, but a VPN Gateway could cost ~$30-50/month for a basic SKU. Running the quickstart test VMs will incur charges for compute and storage.</li></ul></div>
+
+<h2>Step 1: Laying the Foundation – Create a Resource Group</h2>
+<p>Every Azure resource must reside within a resource group, which acts as a logical container for related services. This simplifies management, monitoring, and billing. For your Azure Virtual Network, we recommend creating a dedicated resource group to house all network-related components, ensuring a clean and organized Azure environment for your SMB.</p>
+
+<pre><code class="language-azurecli">az group create --name SkyCore-VNet-RG --location canadacentral</code></pre>
+<ul>
+<li><code>--name SkyCore-VNet-RG</code>: A unique name for your resource group. We recommend a naming convention that indicates its purpose and origin (e.g., SkyCore-&lt;Project&gt;-RG).</li>
+<li><code>--location canadacentral</code>: The Azure region where your resource group and its resources will be deployed. For optimal performance, choose a region geographically close to your users or on-premises infrastructure. We're using 'Canada Central' as SkyCore Solutions is based in Montreal.</li>
+</ul>
+
+<pre><code class="language-powershell">New-AzResourceGroup -Name SkyCore-VNet-RG -Location canadacentral</code></pre>
+<ul>
+<li><code>-Name SkyCore-VNet-RG</code>: Specifies the name of the new resource group.</li>
+<li><code>-Location canadacentral</code>: Defines the Azure region for the resource group.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong>
+<ol>
+<li>Sign in to the <a href="https://portal.azure.com">Azure portal</a>.</li>
+<li>In the search bar, type 'Resource groups' and select it.</li>
+<li>Click '+ Create'.</li>
+<li>Select your <strong>Subscription</strong>, then enter <code>SkyCore-VNet-RG</code> for <strong>Resource group name</strong>.</li>
+<li>Choose <code>(Canada) Canada Central</code> for <strong>Region</strong>.</li>
+<li>Click 'Review + create', then 'Create'.</li>
+</ol></p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az group show --name SkyCore-VNet-RG --output table</code></pre>
+
+<h2>Step 2: Designing Your Azure Virtual Network (VNet) for SMB</h2>
+<p>The Azure Virtual Network (VNet) is the fundamental building block for your private network in Azure, providing an isolated and highly secure environment. It allows your Azure resources, such as Virtual Machines (VMs), App Services, and databases, to communicate securely with each other, the internet, and your on-premises networks. For SMBs, careful planning of your VNet's IP address space is crucial to ensure future scalability and avoid conflicts with existing on-premises networks.</p>
+
+<pre><code class="language-azurecli">az network vnet create \
+    --resource-group SkyCore-VNet-RG \
+    --name SkyCore-Prod-VNet \
+    --address-prefix 10.0.0.0/16 \
+    --location canadacentral \
+    --subnet-name DefaultSubnet \
+    --subnet-prefix 10.0.0.0/24</code></pre>
+<ul>
+<li><code>--resource-group SkyCore-VNet-RG</code>: The resource group where the VNet will be created.</li>
+<li><code>--name SkyCore-Prod-VNet</code>: A descriptive name for your virtual network.</li>
+<li><code>--address-prefix 10.0.0.0/16</code>: The private IP address range for your entire VNet, using CIDR notation. For most SMBs, a /16 prefix (providing 65,536 addresses) offers ample room for growth. We recommend using RFC1918 private IP ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to prevent conflicts with public IP addresses.</li>
+<li><code>--location canadacentral</code>: The Azure region for the VNet. It should match your resource group.</li>
+<li><code>--subnet-name DefaultSubnet</code>: Creates an initial default subnet within your VNet.</li>
+<li><code>--subnet-prefix 10.0.0.0/24</code>: The IP address range for the default subnet. A /24 prefix provides 256 addresses (251 usable after Azure reserves 5).</li>
+</ul>
+
+<pre><code class="language-powershell">New-AzVirtualNetwork -ResourceGroupName SkyCore-VNet-RG `
+    -Name SkyCore-Prod-VNet `
+    -AddressPrefix 10.0.0.0/16 `
+    -Location canadacentral `
+    -Subnet @{Name='DefaultSubnet'; AddressPrefix='10.0.0.0/24'}</code></pre>
+<ul>
+<li><code>-ResourceGroupName SkyCore-VNet-RG</code>: Specifies the resource group.</li>
+<li><code>-Name SkyCore-Prod-VNet</code>: Name of the virtual network.</li>
+<li><code>-AddressPrefix 10.0.0.0/16</code>: The overall CIDR block for the VNet.</li>
+<li><code>-Location canadacentral</code>: The region.</li>
+<li><code>-Subnet @{Name='DefaultSubnet'; AddressPrefix='10.0.0.0/24'}</code>: Defines the initial subnet and its address range.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong>
+<ol>
+<li>In the Azure portal, search for 'Virtual networks' and select it.</li>
+<li>Click '+ Create'.</li>
+<li>On the <strong>Basics</strong> tab:
+    <ul>
+    <li><strong>Subscription</strong>: Select your subscription.</li>
+    <li><strong>Resource group</strong>: Choose <code>SkyCore-VNet-RG</code>.</li>
+    <li><strong>Name</strong>: Enter <code>SkyCore-Prod-VNet</code>.</li>
+    <li><strong>Region</strong>: Select <code>(Canada) Canada Central</code>.</li>
+    </ul>
+</li>
+<li>Click 'Next: IP Addresses'.</li>
+<li>For <strong>IPv4 address space</strong>, ensure it's <code>10.0.0.0/16</code>.</li>
+<li>Under <strong>Subnets</strong>, click on the 'default' subnet to edit it.
+    <ul>
+    <li><strong>Subnet name</strong>: Change to <code>DefaultSubnet</code> (if not already).</li>
+    <li><strong>Subnet address range</strong>: Ensure it's <code>10.0.0.0/24</code>.</li>
+    <li>Click 'Save'.</li>
+    </ul>
+</li>
+<li>Click 'Review + create', then 'Create'.</li>
+</ol></p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: IP Address Overlap</strong><br>Ensure your Azure VNet's address space does not overlap with your existing on-premises network or any other connected Azure VNets. Overlapping IP ranges will lead to routing conflicts and prevent successful communication between networks. Always plan your IP scheme carefully, documenting allocations for future reference.</div>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az network vnet show --resource-group SkyCore-VNet-RG --name SkyCore-Prod-VNet --output json</code></pre>
+
+<h2>Step 3: Segmenting Your Network with Subnets</h2>
+<p>Subnets allow you to segment your Azure Virtual Network into smaller, more manageable logical networks. This is crucial for security (by applying different Network Security Groups to different subnets), network performance, and organization. For SMBs, common subnet divisions might include separate subnets for web servers, application servers, databases, and administrative jump boxes.</p>
+
+<pre><code class="language-azurecli">az network vnet subnet create \
+    --resource-group SkyCore-VNet-RG \
+    --vnet-name SkyCore-Prod-VNet \
+    --name WebSubnet \
+    --address-prefixes 10.0.1.0/24 \
+    --service-endpoints Microsoft.Storage Microsoft.Sql</code></pre>
+<ul>
+<li><code>--resource-group SkyCore-VNet-RG</code>: The resource group containing your VNet.</li>
+<li><code>--vnet-name SkyCore-Prod-VNet</code>: The VNet where you're creating the subnet.</li>
+<li><code>--name WebSubnet</code>: A descriptive name for the new subnet (e.g., WebSubnet, AppSubnet, DBSecuritySubnet).</li>
+<li><code>--address-prefixes 10.0.1.0/24</code>: The CIDR block for this subnet, which must be within the VNet's address space and not overlap with other subnets.</li>
+<li><code>--service-endpoints Microsoft.Storage Microsoft.Sql</code>: (Optional) Enables service endpoints for Azure Storage and SQL Database on this subnet. This allows resources in the subnet to securely access these Azure services directly over the Azure backbone, enhancing security. Recommended for subnets hosting application servers or databases.</li>
+</ul>
+
+<pre><code class="language-powershell">Add-AzVirtualNetworkSubnetConfig -Name 'WebSubnet' `
+    -AddressPrefix '10.0.1.0/24' `
+    -VirtualNetwork (Get-AzVirtualNetwork -ResourceGroupName SkyCore-VNet-RG -Name SkyCore-Prod-VNet) | `
+    Set-AzVirtualNetwork</code></pre>
+<ul>
+<li><code>-Name 'WebSubnet'</code>: Name of the new subnet.</li>
+<li><code>-AddressPrefix '10.0.1.0/24'</code>: Address range for the subnet.</li>
+<li><code>-VirtualNetwork (Get-AzVirtualNetwork...)</code>: Retrieves the VNet object to add the subnet to.</li>
+<li><code>Set-AzVirtualNetwork</code>: Applies the changes to the VNet.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong>
+<ol>
+<li>In the Azure portal, navigate to your <code>SkyCore-Prod-VNet</code>.</li>
+<li>In the left-hand menu, under <strong>Settings</strong>, select 'Subnets'.</li>
+<li>Click '+ Subnet'.</li>
+<li>For <strong>Name</strong>, enter <code>WebSubnet</code>.</li>
+<li>For <strong>Address range (CIDR block)</strong>, enter <code>10.0.1.0/24</code>.</li>
+<li>(Optional) For <strong>Service endpoints</strong>, select <code>Microsoft.Storage</code> and <code>Microsoft.Sql</code>.</li>
+<li>Click 'Save'.</li>
+</ol></p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az network vnet subnet list --resource-group SkyCore-VNet-RG --vnet-name SkyCore-Prod-VNet --output table</code></pre>
+
+<h2>Step 4: Implementing Network Security with Network Security Groups (NSGs)</h2>
+<p>Network Security Groups (NSGs) are critical for filtering network traffic to and from Azure resources within an Azure Virtual Network. An NSG contains security rules that allow or deny inbound and outbound traffic based on source/destination IP address, port, and protocol. This is your primary tool for securing individual subnets or even network interfaces of VMs for your SMB, ensuring that only authorized traffic can flow to your applications.</p>
+
+<pre><code class="language-azurecli">az network nsg create \
+    --resource-group SkyCore-VNet-RG \
+    --name SkyCore-Web-NSG \
+    --location canadacentral</code></pre>
+<ul>
+<li><code>--resource-group SkyCore-VNet-RG</code>: The resource group for the NSG.</li>
+<li><code>--name SkyCore-Web-NSG</code>: A descriptive name for your NSG (e.g., specific to the subnet it secures).</li>
+<li><code>--location canadacentral</code>: The region for the NSG.</li>
+</ul>
+
+<pre><code class="language-powershell">New-AzNetworkSecurityGroup -ResourceGroupName SkyCore-VNet-RG `
+    -Name SkyCore-Web-NSG `
+    -Location canadacentral</code></pre>
+<ul>
+<li><code>-ResourceGroupName SkyCore-VNet-RG</code>: Specifies the resource group.</li>
+<li><code>-Name SkyCore-Web-NSG</code>: Name of the NSG.</li>
+<li><code>-Location canadacentral</code>: The region.</li>
+</ul>
+
+<p>Now, let's add a rule to allow inbound HTTP/HTTPS traffic to our web servers, and then associate this NSG with our <code>WebSubnet</code>.</p>
+
+<pre><code class="language-azurecli"># Allow HTTP (Port 80) inbound
+az network nsg rule create \
+    --resource-group SkyCore-VNet-RG \
+    --nsg-name SkyCore-Web-NSG \
+    --name Allow-HTTP-Inbound \
+    --priority 100 \
+    --direction Inbound \
+    --access Allow \
+    --protocol Tcp \
+    --source-address-prefixes Internet \
+    --source-port-ranges '*' \
+    --destination-address-prefixes 'VirtualNetwork' \
+    --destination-port-ranges 80 \
+    --description "Allow inbound HTTP traffic from internet to web servers"
+
+# Allow HTTPS (Port 443) inbound
+az network nsg rule create \
+    --resource-group SkyCore-VNet-RG \
+    --nsg-name SkyCore-Web-NSG \
+    --name Allow-HTTPS-Inbound \
+    --priority 110 \
+    --direction Inbound \
+    --access Allow \
+    --protocol Tcp \
+    --source-address-prefixes Internet \
+    --source-port-ranges '*' \
+    --destination-address-prefixes 'VirtualNetwork' \
+    --destination-port-ranges 443 \
+    --description "Allow inbound HTTPS traffic from internet to web servers"
+
+# Associate NSG with WebSubnet
+az network vnet subnet update \
+    --resource-group SkyCore-VNet-RG \
+    --vnet-name SkyCore-Prod-VNet \
+    --name WebSubnet \
+    --network-security-group SkyCore-Web-NSG</code></pre>
+<ul>
+<li><code>--nsg-name SkyCore-Web-NSG</code>: The NSG to which the rule is added.</li>
+<li><code>--name Allow-HTTP-Inbound</code> / <code>Allow-HTTPS-Inbound</code>: Unique name for the security rule.</li>
+<li><code>--priority 100</code> / <code>110</code>: Rules are processed in priority order (lower numbers processed first). Reserve 1-99 for critical system rules.</li>
+<li><code>--direction Inbound</code>: Specifies the rule applies to incoming traffic.</li>
+<li><code>--access Allow</code>: Specifies to allow traffic matching the rule.</li>
+<li><code>--protocol Tcp</code>: Specifies the protocol. Can also be Udp, Icmp, or Any.</li>
+<li><code>--source-address-prefixes Internet</code>: Allows traffic from any public IP address. For more granular control, you can specify specific IP addresses or CIDR blocks.</li>
+<li><code>--destination-address-prefixes 'VirtualNetwork'</code>: Applies the rule to all resources within the VNet. Can also be a specific subnet or IP.</li>
+<li><code>--destination-port-ranges 80</code> / <code>443</code>: The target port for inbound traffic.</li>
+<li><code>az network vnet subnet update ... --network-security-group SkyCore-Web-NSG</code>: This command links the NSG to the <code>WebSubnet</code>. All resources within this subnet will now be subject to the rules defined in <code>SkyCore-Web-NSG</code>.</li>
+</ul>
+
+<pre><code class="language-powershell"># Allow HTTP (Port 80) inbound
+Add-AzNetworkSecurityRuleConfig -Name 'Allow-HTTP-Inbound' `
+    -NetworkSecurityGroup (Get-AzNetworkSecurityGroup -ResourceGroupName SkyCore-VNet-RG -Name SkyCore-Web-NSG) `
+    -Priority 100 `
+    -Direction Inbound `
+    -Access Allow `
+    -Protocol Tcp `
+    -SourceAddressPrefix '*' `
+    -SourcePortRange '*' `
+    -DestinationAddressPrefix 'VirtualNetwork' `
+    -DestinationPortRange 80 | Set-AzNetworkSecurityGroup
+
+# Allow HTTPS (Port 443) inbound
+Add-AzNetworkSecurityRuleConfig -Name 'Allow-HTTPS-Inbound' `
+    -NetworkSecurityGroup (Get-AzNetworkSecurityGroup -ResourceGroupName SkyCore-VNet-RG -Name SkyCore-Web-NSG) `
+    -Priority 110 `
+    -Direction Inbound `
+    -Access Allow `
+    -Protocol Tcp `
+    -SourceAddressPrefix '*' `
+    -SourcePortRange '*' `
+    -DestinationAddressPrefix 'VirtualNetwork' `
+    -DestinationPortRange 443 | Set-AzNetworkSecurityGroup
+
+# Associate NSG with WebSubnet
+$vnet = Get-AzVirtualNetwork -ResourceGroupName SkyCore-VNet-RG -Name SkyCore-Prod-VNet
+$webSubnet = Get-AzVirtualNetworkSubnetConfig -Name 'WebSubnet' -VirtualNetwork $vnet
+$nsg = Get-AzNetworkSecurityGroup -ResourceGroupName SkyCore-VNet-RG -Name SkyCore-Web-NSG
+$webSubnet.NetworkSecurityGroup = $nsg
+$vnet | Set-AzVirtualNetwork</code></pre>
+
+<p class="gui-note"><strong>Portal alternative:</strong>
+<ol>
+<li>In the Azure portal, search for 'Network security groups' and select it.</li>
+<li>Click '+ Create'.
+    <ul>
+    <li><strong>Subscription</strong>: Select your subscription.</li>
+    <li><strong>Resource group</strong>: Choose <code>SkyCore-VNet-RG</code>.</li>
+    <li><strong>Name</strong>: Enter <code>SkyCore-Web-NSG</code>.</li>
+    <li><strong>Region</strong>: Select <code>(Canada) Canada Central</code>.</li>
+    <li>Click 'Review + create', then 'Create'.</li>
+    </ul>
+</li>
+<li>Once created, navigate to <code>SkyCore-Web-NSG</code>.</li>
+<li>In the left-hand menu, under <strong>Settings</strong>, select 'Inbound security rules'.</li>
+<li>Click '+ Add' for HTTP (Port 80):
+    <ul>
+    <li><strong>Source</strong>: 'Any'</li>
+    <li><strong>Source port ranges</strong>: '*'</li>
+    <li><strong>Destination</strong>: 'VirtualNetwork'</li>
+    <li><strong>Destination port ranges</strong>: '80'</li>
+    <li><strong>Protocol</strong>: 'TCP'</li>
+    <li><strong>Action</strong>: 'Allow'</li>
+    <li><strong>Priority</strong>: '100'</li>
+    <li><strong>Name</strong>: 'Allow-HTTP-Inbound'</li>
+    <li>Click 'Add'.</li>
+    </ul>
+</li>
+<li>Repeat the above step for HTTPS (Port 443):
+    <ul>
+    <li><strong>Destination port ranges</strong>: '443'</li>
+    <li><strong>Priority</strong>: '110'</li>
+    <li><strong>Name</strong>: 'Allow-HTTPS-Inbound'</li>
+    </ul>
+</li>
+<li>To associate with the subnet:
+    <ul>
+    <li>Navigate back to your <code>SkyCore-Prod-VNet</code>.</li>
+    <li>In the left-hand menu, under <strong>Settings</strong>, select 'Subnets'.</li>
+    <li>Click on <code>WebSubnet</code>.</li>
+    <li>For <strong>Network security group</strong>, select <code>SkyCore-Web-NSG</code> from the dropdown.</li>
+    <li>Click 'Save'.</li>
+    </ul>
+</li>
+</ol></p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip: Least Privilege Principle</strong><br>Always follow the principle of least privilege when configuring NSG rules. Instead of allowing broad access (e.g., from 'Any' source), restrict traffic to only what is absolutely necessary. For example, if you know your RDP access will only come from your office IP, specify that IP address instead of 'Any' or 'Internet'. This significantly reduces your attack surface.</div>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az network nsg rule list --resource-group SkyCore-VNet-RG --nsg-name SkyCore-Web-NSG --output table</code></pre>
+
+<h2>Step 5: Enabling Secure Connectivity to On-Premises (Optional but Recommended for Hybrid SMBs)</h2>
+<p>For many SMBs, a pure cloud approach isn't feasible immediately. Connecting your Azure Virtual Network to your on-premises network creates a hybrid environment, allowing seamless communication between your cloud resources and existing infrastructure. Azure offers several methods for this:</p>
+<ul>
+    <li><strong>Point-to-Site VPN:</strong> Ideal for individual developers or administrators connecting securely from a client machine to the Azure VNet. It's simple to set up but not scalable for an entire office.</li>
+    <li><strong>Site-to-Site VPN:</strong> The most common choice for SMBs, establishing an encrypted tunnel over the internet between your on-premises VPN device (router/firewall) and an Azure VPN Gateway in your VNet. This connects your entire on-premises network to Azure.</li>
+    <li><strong>Azure ExpressRoute:</strong> Provides a dedicated, private connection through an ExpressRoute partner. Traffic doesn't traverse the public internet, offering higher bandwidth, lower latency, and increased reliability. While superior, ExpressRoute is generally more complex and costly, making Site-to-Site VPN the preferred option for most SMBs initially.</li>
+</ul>
+<p>For this guide, we'll focus on the recommendation for most SMBs: a Site-to-Site VPN Gateway. Note that setting up a VPN Gateway involves more complex steps than covered in this VNet setup guide and typically warrants its own dedicated implementation plan.</p>
+
+<pre><code class="language-azurecli"># This is a conceptual command; actual VPN Gateway setup is multi-step and complex.
+# Consider consulting documentation specific to Azure VPN Gateway for full implementation.
+
+# Example: Create a VPN Gateway (requires a 'GatewaySubnet' first)
+# az network vnet subnet create \
+#     --resource-group SkyCore-VNet-RG \
+#     --vnet-name SkyCore-Prod-VNet \
+#     --name GatewaySubnet \
+#     --address-prefixes 10.0.254.0/27 # /27 is minimum for GatewaySubnet
+
+# az network public-ip create \
+#     --resource-group SkyCore-VNet-RG \
+#     --name SkyCore-VpnGateway-PIP \
+#     --sku Basic \
+#     --allocation-method Static
+
+# az network vnet gateway create \
+#     --resource-group SkyCore-VNet-RG \
+#     --name SkyCore-VpnGateway \
+#     --location canadacentral \
+#     --public-ip-address SkyCore-VpnGateway-PIP \
+#     --vnet SkyCore-Prod-VNet \
+#     --gateway-type Vpn \
+#     --vpn-type RouteBased \
+#     --sku Basic \
+#     --no-wait</code></pre>
+<ul>
+<li>A VPN Gateway requires a dedicated subnet named <code>GatewaySubnet</code> within your VNet, with a minimum size of /27.</li>
+<li>You'll also need a Public IP address for the VPN Gateway.</li>
+<li><code>--gateway-type Vpn</code>: Specifies a VPN gateway.</li>
+<li><code>--vpn-type RouteBased</code>: Recommended for Site-to-Site VPNs due to its flexibility.</li>
+<li><code>--sku Basic</code>: The lowest-cost option, suitable for initial SMB needs. Other SKUs (e.g., VpnGw1, VpnGw2) offer higher throughput and capabilities.</li>
+</ul>
+
+<pre><code class="language-powershell"># This is a conceptual command; actual VPN Gateway setup is multi-step and complex.
+# Consider consulting documentation specific to Azure VPN Gateway for full implementation.
+
+# Example: Create a VPN Gateway (requires a 'GatewaySubnet' first)
+# Add-AzVirtualNetworkSubnetConfig -Name 'GatewaySubnet' `
+#     -AddressPrefix '10.0.254.0/27' `
+#     -VirtualNetwork (Get-AzVirtualNetwork -ResourceGroupName SkyCore-VNet-RG -Name SkyCore-Prod-VNet) | `
+#     Set-AzVirtualNetwork
+
+# $pip = New-AzPublicIpAddress -ResourceGroupName SkyCore-VNet-RG `
+#     -Name 'SkyCore-VpnGateway-PIP' `
+#     -Location 'canadacentral' `
+#     -AllocationMethod 'Static' `
+#     -Sku 'Basic'
+
+# New-AzVirtualNetworkGateway -ResourceGroupName SkyCore-VNet-RG `
+#     -Name 'SkyCore-VpnGateway' `
+#     -Location 'canadacentral' `
+#     -IpConfigurations @{Name='vpngatewayipconfig'; PublicIpAddress=$pip; Subnet=(Get-AzVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -VirtualNetwork (Get-AzVirtualNetwork -ResourceGroupName SkyCore-VNet-RG -Name SkyCore-Prod-VNet))} `
+#     -GatewayType 'Vpn' `
+#     -VpnType 'RouteBased' `
+#     -GatewaySku 'Basic'</code></pre>
+
+<p class="gui-note"><strong>Portal alternative (conceptual for VPN Gateway):</strong>
+<ol>
+<li>Navigate to your <code>SkyCore-Prod-VNet</code>.</li>
+<li>Under <strong>Settings</strong>, click 'Subnets', then '+ Subnet'. Create a subnet named <code>GatewaySubnet</code> with an address range like <code>10.0.254.0/27</code>.</li>
+<li>In the Azure portal, search for 'Virtual network gateways' and select it.</li>
+<li>Click '+ Create'.</li>
+<li>Configure the gateway type as 'VPN', VPN type as 'Route-based', and select a 'Basic' SKU. Associate it with your VNet and create a new Public IP address.</li>
+<li>This creates the Azure side of the VPN. You would then create a 'Local network gateway' (representing your on-premises network) and a 'Connection' between your VNet Gateway and Local network gateway, configuring shared keys and IPsec policies. This requires detailed knowledge of your on-premises VPN device configuration.</li>
+</ol></p>
+
+<p><strong>Run this to verify (if gateway created):</strong></p>
+<pre><code class="language-azurecli"># az network vnet gateway show --resource-group SkyCore-VNet-RG --name SkyCore-VpnGateway --output json</code></pre>
+
+<h2>Step 6: Testing and Validation</h2>
+<p>After setting up your Azure Virtual Network, subnets, and Network Security Groups, it's crucial to validate your configuration. The simplest way to do this for an <strong>Azure Virtual Network setup guide for SMBs</strong> is to deploy a virtual machine into one of your subnets and test basic connectivity. Ensure the VM can communicate with the internet (if intended) and, if you have multiple subnets, that VMs in different subnets can communicate as per your NSG rules.</p>
+
+<p>To perform basic validation, you would typically:</p>
+<ol>
+    <li><strong>Deploy a test VM:</strong> Deploy a simple Windows or Linux VM into your <code>WebSubnet</code> (or <code>DefaultSubnet</code> if you skipped Step 3). Ensure you choose the correct VNet and subnet during VM creation.</li>
+    <li><strong>Verify NSG rules:</strong> Try to access services (e.g., HTTP/HTTPS if configured) on your VM from the internet (if a public IP is assigned). Attempt RDP/SSH access from your admin workstation, ensuring the NSG rules permit it (e.g., creating an NSG rule to allow RDP from your specific public IP to the VM's subnet).</li>
+    <li><strong>Internal communication:</strong> If you created multiple subnets and deployed VMs into each, test communication between them (e.g., ping or port connectivity tests).</li>
+</ol>
+
+<p>While specific VM deployment commands are beyond the scope of this core VNet guide, these validation steps are essential for confirming your network foundation is solid.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>Setting up an Azure Virtual Network is a critical first step, but scaling it, integrating complex services, or ensuring enterprise-grade security can become intricate. If your SMB requires advanced configurations like multi-VNet peering for complex applications, hybrid identity management with Azure AD Connect, robust disaster recovery strategies, or a highly customized security posture beyond basic NSG rules (e.g., Azure Firewall, WAF), bringing in seasoned experts like SkyCore Solutions can save significant time and prevent costly misconfigurations. We specialize in tailoring Azure solutions to meet specific business needs, ensuring a secure and efficient cloud infrastructure.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+
+<p><strong>Conclusion:</strong></p>
+<p>Establishing a robust Azure Virtual Network is the bedrock for any SMB looking to leverage the power of Microsoft Azure. This guide has provided you with a comprehensive, step-by-step approach to create, segment, and secure your cloud network, empowering you to confidently deploy your applications and services. By following this <strong>Azure Virtual Network setup guide for SMBs</strong>, you've laid a scalable and secure foundation for your cloud journey. As your business evolves, your Azure VNet can grow with you, accommodating new services and expanding connectivity requirements, truly setting the stage for an impactful infrastructure revamp.</p>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — virtual networks overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/quick-create-portal" target="_blank" rel="noopener noreferrer">learn.microsoft.com — quick create portal</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — network security groups overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways" target="_blank" rel="noopener noreferrer">learn.microsoft.com — vpn gateway about vpngateways</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — virtual network peering overview</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
