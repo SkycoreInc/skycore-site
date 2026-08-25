@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "wordpress-saml-exploit-security-montreal",
+    title: "Your WordPress Admins Are Targeted: The SAML Bypass Threat Is Real",
+    date: "2026-08-25",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Hackers are exploiting critical SAML flaws in WordPress, allowing unauthenticated admin access. Discover how to protect your IT infrastructure in Montreal from these active threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/4160094/pexels-photo-4160094.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "defender-weaponized-cybersecurity-myths",
     title: "Even Your Defender Can Be Weaponized: 3 Cybersecurity Myths Busted for Montreal SMBs",
     date: "2026-08-23",
