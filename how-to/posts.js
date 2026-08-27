@@ -3,6 +3,30 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-virtual-network-setup-guide-smb-secure",
+    title: "SkyCore Solutions: The Ultimate Azure Virtual Network Setup Guide for SMBs",
+    date: "2026-08-25",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Azure Virtual Network setup guide SMB",
+    excerpt: "This comprehensive Azure Virtual Network setup guide for SMBs walks you through establishing a secure, scalable, and efficient network in the cloud. Future-proof your business operations.",
+    image: "https://images.pexels.com/photos/18332045/pexels-photo-18332045.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "github-actions-ci-cd-pipeline-setup",
+    title: "Mastering GitHub Actions: A Comprehensive CI/CD Pipeline Setup Guide",
+    date: "2026-08-25",
+    readTime: "20 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "GitHub Actions CI CD pipeline setup",
+    excerpt: "Learn to implement powerful CI/CD pipelines using GitHub Actions for automated, secure, and efficient software delivery. This guide covers everything from workflow basics to advanced deployment strategies.",
+    image: "https://images.pexels.com/photos/357440/pexels-photo-357440.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-hybrid-cloud-small-business",
     title: "Streamline Operations: Your Hybrid Cloud Setup for Small Business with Azure",
     date: "2026-08-22",
