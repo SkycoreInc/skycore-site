@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "ci-cd-pipeline-small-teams",
+    title: "CI/CD Pipeline Setup for Small Teams: Streamlining Development with Azure & GitHub",
+    date: "2026-08-28",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "3-4 hours",
+    keyword: "CI CD pipeline setup for small teams",
+    excerpt: "Equipping small teams with robust CI/CD pipelines is critical for modern software delivery. This guide details setup using industry-leading tools, ensuring efficiency and reliability.",
+    image: "https://images.pexels.com/photos/4440200/pexels-photo-4440200.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-virtual-network-setup-guide-smb-secure",
     title: "SkyCore Solutions: The Ultimate Azure Virtual Network Setup Guide for SMBs",
     date: "2026-08-25",
