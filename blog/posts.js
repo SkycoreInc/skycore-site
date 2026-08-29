@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "papercut-exploits-montreal-smb-cybersecurity",
+    title: "Your Patches Aren't Enough: What the Latest PaperCut Exploits Mean for Montreal SMBs",
+    date: "2026-08-29",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are chaining vulnerabilities and acting fast, as seen with the recent PaperCut NG and MF exploits. This isn't just about applying patches; it's about a proactive, layered defense for Montreal SMBs.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38482452/pexels-photo-38482452.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "snowflake-extortion-montreal-smb-security",
     title: "Snowflake Extortion: Why Your Cloud Data Isn't Safe (And What Montreal SMBs Must Do)",
     date: "2026-08-27",
