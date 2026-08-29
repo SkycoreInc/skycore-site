@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "microsoft-purview-compliance-setup-guide-smb",
+    title: "Empowering SMBs: Your Microsoft Purview Compliance Setup Guide for Data Protection",
+    date: "2026-08-29",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "3-5 hours",
+    keyword: "Microsoft Purview compliance setup guide",
+    excerpt: "SkyCore Solutions presents a practical Microsoft Purview compliance setup guide for SMBs to navigate modern data challenges. Protect sensitive data and meet regulatory requirements with confidence.",
+    image: "https://images.pexels.com/photos/30901558/pexels-photo-30901558.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ci-cd-pipeline-small-teams",
     title: "CI/CD Pipeline Setup for Small Teams: Streamlining Development with Azure & GitHub",
     date: "2026-08-28",
