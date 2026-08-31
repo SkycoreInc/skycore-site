@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "router-spy-basic-it-hygiene-montreal",
+    title: "Your Router Just Became a Spy: Why Basic IT Hygiene Isn't Enough Anymore",
+    date: "2026-08-31",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A router shipped listening, a signed adware hiding malware, AI-powered ransomware attacks — the news is grim. Basic IT hygiene won't cut it against today's threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/27663079/pexels-photo-27663079.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "papercut-exploits-montreal-smb-cybersecurity",
     title: "Your Patches Aren't Enough: What the Latest PaperCut Exploits Mean for Montreal SMBs",
     date: "2026-08-29",
