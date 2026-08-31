@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "devops-implementation-small-business",
+    title: "Empowering Small Businesses with DevOps: A SkyCore Guide to Azure & GitHub",
+    date: "2026-08-31",
+    readTime: "12 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "DevOps implementation for small business",
+    excerpt: "Small businesses can significantly benefit from DevOps by streamlining operations and accelerating delivery. This guide provides a practical approach using Azure Pipelines and GitHub Actions.",
+    image: "https://images.pexels.com/photos/1181260/pexels-photo-1181260.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "microsoft-purview-compliance-setup-guide-smb",
     title: "Empowering SMBs: Your Microsoft Purview Compliance Setup Guide for Data Protection",
     date: "2026-08-29",
