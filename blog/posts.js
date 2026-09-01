@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "stop-being-easy-target-smb-security",
+    title: "Stop Being an Easy Target: Why Simple Attacks Are Hitting Montreal SMBs Hard",
+    date: "2026-09-01",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers aren't always building sophisticated zero-day exploits. They're looking for repeatable, low-effort wins. Is your Montreal business leaving its digital doors wide open for them?",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38701978/pexels-photo-38701978.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "router-spy-basic-it-hygiene-montreal",
     title: "Your Router Just Became a Spy: Why Basic IT Hygiene Isn't Enough Anymore",
     date: "2026-08-31",
