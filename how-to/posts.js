@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "it-infrastructure-modernization-guide",
+    title: "Accelerating IT Infrastructure Modernization: A SkyCore Solutions Guide",
+    date: "2026-09-01",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "IT infrastructure modernization guide",
+    excerpt: "SkyCore Solutions presents a comprehensive guide to modernizing your IT infrastructure, integrating best practices from Azure and Google Cloud. This guide covers strategic planning, secure cloud adoption, and continuous operational excellence across hybrid and multi-cloud environments.",
+    image: "https://images.pexels.com/photos/13539298/pexels-photo-13539298.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "devops-implementation-small-business",
     title: "Empowering Small Businesses with DevOps: A SkyCore Guide to Azure & GitHub",
     date: "2026-08-31",
