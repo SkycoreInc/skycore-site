@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-logic-apps-workflow-automation-guide-smb",
+    title: "Elevate SMB Efficiency: An Azure Logic Apps Workflow Automation Guide",
+    date: "2026-09-01",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Azure Logic Apps workflow automation guide",
+    excerpt: "Unlock powerful workflow automation for your SMB with this comprehensive Azure Logic Apps guide. Learn to build, deploy, and manage automated processes, from data integration to notification systems, to boost efficiency.",
+    image: "https://images.pexels.com/photos/7947841/pexels-photo-7947841.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "it-infrastructure-modernization-guide",
     title: "Accelerating IT Infrastructure Modernization: A SkyCore Solutions Guide",
     date: "2026-09-01",
