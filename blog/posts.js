@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "credential-theft-smb-security-myths-montreal",
+    title: "Your Credentials Are Everywhere: It's Time to Bust These 3 SMB Security Myths",
+    date: "2026-09-03",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Think your business is safe from credential theft? A new infostealer variant proves otherwise, targeting an astonishing 469 locations. It's time to bust some dangerous SMB security myths.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38482451/pexels-photo-38482451.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "stop-being-easy-target-smb-security",
     title: "Stop Being an Easy Target: Why Simple Attacks Are Hitting Montreal SMBs Hard",
     date: "2026-09-01",
