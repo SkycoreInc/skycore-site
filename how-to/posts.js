@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "kubernetes-setup-guide-small-business-aks",
+    title: "Streamlined Kubernetes Setup for Small Businesses: An Azure AKS Guide",
+    date: "2026-09-04",
+    readTime: "10-12 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Kubernetes setup guide small business",
+    excerpt: "Small businesses can leverage Kubernetes for efficient application deployment. This guide provides a practical, opinionated walkthrough for setting up Azure Kubernetes Service (AKS).",
+    image: "https://images.pexels.com/photos/2097627/pexels-photo-2097627.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-logic-apps-workflow-automation-guide-smb",
     title: "Elevate SMB Efficiency: An Azure Logic Apps Workflow Automation Guide",
     date: "2026-09-01",

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Streamlined Kubernetes Setup for Small Businesses: An Azure AKS Guide — SkyCore Solutions</title>
+  <meta name="description" content="Unlock cloud-native power for your small business. This guide simplifies Kubernetes setup using Azure AKS, focusing on cost-effective, robust deployments." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Streamlined Kubernetes Setup for Small Businesses: An Azure AKS Guide — SkyCore Solutions" />
+  <meta property="og:description" content="Unlock cloud-native power for your small business. This guide simplifies Kubernetes setup using Azure AKS, focusing on cost-effective, robust deployments." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/kubernetes-setup-guide-small-business-aks.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/2097627/pexels-photo-2097627.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Streamlined Kubernetes Setup for Small Businesses: An Azure AKS Guide — SkyCore Solutions" />
+  <meta name="twitter:description" content="Unlock cloud-native power for your small business. This guide simplifies Kubernetes setup using Azure AKS, focusing on cost-effective, robust deployments." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/2097627/pexels-photo-2097627.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/kubernetes-setup-guide-small-business-aks.html" />
+  <meta property="article:published_time" content="2026-09-04" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Streamlined Kubernetes Setup for Small Businesses: An Azure AKS Guide",
+  "description": "Unlock cloud-native power for your small business. This guide simplifies Kubernetes setup using Azure AKS, focusing on cost-effective, robust deployments.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Active Azure subscription with Contributor access., Azure CLI installed and configured., kubectl installed., Basic understanding of cloud concepts and containerization."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Initial Setup: Tools and Azure Login",
+        "text": "This step ensures all necessary command-line tools are installed and authenticated against your Azure subscription."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create an Azure Resource Group",
+        "text": "Establish a dedicated resource group to logically organize and manage all components associated with your AKS cluster."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure a Virtual Network (Optional but Recommended)",
+        "text": "Set up a custom Azure Virtual Network (VNet) and subnet to provide a secure and isolated networking environment for your AKS cluster."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy Azure Kubernetes Service (AKS) Cluster",
+        "text": "Provision a basic, production-ready AKS cluster with configurations optimized for small business needs, balancing cost and performance."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Connect to Your AKS Cluster",
+        "text": "Configure your local kubectl command-line tool to interact securely with your newly created AKS cluster."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy a Sample Application",
+        "text": "Deploy a simple NGINX web server to your AKS cluster to verify its functionality and learn basic deployment commands."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Monitor and Scale Your AKS Cluster",
+        "text": "Explore basic monitoring capabilities and discuss initial strategies for scaling your applications and cluster nodes."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Cost Management and Cluster Teardown",
+        "text": "Understand how to manage costs effectively and safely deprovision your AKS cluster and associated resources when no longer needed."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class='post-meta'>2026-09-04 · 10-12 min read · Infrastructure Revamp</div>
+<h1>Streamlined Kubernetes Setup for Small Businesses: An Azure AKS Guide</h1>
+<div class='article-hero'><img src='https://skycore.com/blog/images/aks-small-business-hero.webp' alt='Diagram illustrating Azure Kubernetes Service (AKS) architecture with a focus on small business scalability and cost-efficiency' loading='eager' fetchpriority='high'></div>
+<div class='howto-intro'><p>As a senior IT consultant at SkyCore Solutions, I frequently advise small businesses on leveraging robust cloud technologies without breaking the bank. For organizations looking to modernize their application deployments and improve scalability, an Azure Kubernetes Service (AKS) setup is an excellent choice. This guide will walk you through a streamlined, opinionated approach to deploying a production-ready AKS cluster, balancing cost-efficiency with essential features suitable for small business needs.</p></div>
+<div class='howto-prereqs'><h4>Prerequisites</h4><ul>
+<li>An active Azure subscription.</li>
+<li>Azure CLI installed (version 2.30.0 or higher recommended).</li>
+<li>kubectl installed (version 1.22.0 or higher recommended).</li>
+<li>PowerShell (for Windows users) or Bash/Zsh (for Linux/macOS users) terminal access.</li>
+<li>Basic understanding of cloud concepts and command-line interfaces.</li>
+</ul></div>
+
+<h2>Step 1: Initial Setup: Tools and Azure Login</h2>
+<p>Before deploying anything in Azure, ensure your local environment is correctly configured with the necessary tools and authenticated against your Azure subscription. This step covers installing `kubectl` (if not already present), connecting to Azure, and setting up default configurations to streamline subsequent commands.</p>
+<pre><code class='language-powershell'># Install kubectl if not already installed
+az aks install-cli
+
+# Log in to Azure. This will open a browser window for authentication.
+az login --output none
+
+# Set your default Azure subscription (replace with your subscription ID or name)
+# This is crucial for ensuring all subsequent commands operate within the correct context.
+az account set --subscription 'Your-Azure-Subscription-Name-or-ID'
+
+# Set default resource group and location for convenience (optional but recommended)
+# This reduces verbosity in future commands. You can override these per command.
+az configure --defaults group='SkyCoreAKSResourceGroup' location='eastus'
+</code></pre>
+<p><code>az aks install-cli</code>: Installs or updates <code>kubectl</code>, the Kubernetes command-line tool, on your local machine.</p>
+<p><code>az login</code>: Authenticates your Azure CLI session, connecting it to your Azure account.</p>
+<p><code>az account set --subscription</code>: Specifies which Azure subscription to use for all subsequent CLI commands.</p>
+<p><code>az configure --defaults group='SkyCoreAKSResourceGroup' location='eastus'</code>: Configures default values for the resource group and location, making future commands shorter.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Log in to the Azure Portal at <a href='https://portal.azure.com'>portal.azure.com</a>. Verify your subscription in the top-right corner. You'd still need CLI for <code>kubectl</code>.</p>
+<p><strong>Expected result:</strong> You will be successfully logged in to Azure, `kubectl` will be installed, and your default subscription and potentially resource group/location will be configured for your CLI session.</p>
+
+<h2>Step 2: Create an Azure Resource Group</h2>
+<p>An Azure Resource Group acts as a logical container for your Azure resources. For a small business, creating a dedicated resource group for your AKS cluster and its related components (like virtual networks, load balancers, and storage accounts) helps with organization, cost management, and lifecycle management. All resources within this guide will reside in this group.</p>
+<pre><code class='language-powershell'>az group create --name 'SkyCoreAKSResourceGroup' --location 'eastus'
+</code></pre>
+<p><code>--name</code>: Specifies the unique name for your new resource group.</p>
+<p><code>--location</code>: Defines the Azure region where the resource group metadata will be stored and where resources will be deployed by default.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to 'Resource groups' > 'Create'. Fill in the subscription, resource group name, and region, then review and create.</p>
+<p><strong>Expected result:</strong> A JSON output confirming the successful creation of the resource group, including its name, location, and provisioning state.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Forgetting to set a default resource group or explicitly specify it with each command can lead to resources being created in unintended locations or resource groups. Always verify your current context with <code>az configure --list-defaults</code> or check the command output carefully.</div>
+
+<h2>Step 3: Configure a Virtual Network (Optional but Recommended)</h2>
+<p>While AKS can create its own virtual network (VNet) by default, creating a custom VNet and subnet offers greater control over network topology, enhances security, and simplifies integration with other Azure services. This is a best practice for small businesses planning for future growth or needing isolated environments.</p>
+<pre><code class='language-powershell'># Define variables for VNet and Subnet names and addresses
+$vnetName = 'SkyCoreAKSVNet'
+$vnetAddressPrefix = '10.0.0.0/16'
+$aksSubnetName = 'aks-subnet'
+$aksSubnetAddressPrefix = '10.0.0.0/24'
+$otherSubnetName = 'app-gateway-subnet' # Example for future use like Application Gateway
+$otherSubnetAddressPrefix = '10.0.1.0/24'
+
+# Create the Virtual Network
+az network vnet create `
+    --name $vnetName `
+    --address-prefixes $vnetAddressPrefix `
+    --output none
+
+# Create a subnet specifically for AKS nodes
+az network vnet subnet create `
+    --vnet-name $vnetName `
+    --name $aksSubnetName `
+    --address-prefixes $aksSubnetAddressPrefix `
+    --output none
+
+# (Optional) Create another subnet for other services, e.g., Application Gateway or jumpbox
+az network vnet subnet create `
+    --vnet-name $vnetName `
+    --name $otherSubnetName `
+    --address-prefixes $otherSubnetAddressPrefix `
+    --output none
+
+# Retrieve the full resource ID of the AKS subnet for cluster deployment
+$aksSubnetId = az network vnet subnet show `
+    --vnet-name $vnetName `
+    --name $aksSubnetName `
+    --query id --output tsv
+
+Write-Host "AKS Subnet ID: $aksSubnetId"
+</code></pre>
+<p><code>az network vnet create</code>: Creates a new virtual network with a specified address space.</p>
+<p><code>--address-prefixes</code>: Defines the CIDR block for the VNet.</p>
+<p><code>az network vnet subnet create</code>: Creates a new subnet within the specified VNet.</p>
+<p><code>--vnet-name</code>: Links the subnet to its parent virtual network.</p>
+<p><code>--address-prefixes</code>: Defines the CIDR block for the subnet.</p>
+<p><code>az network vnet subnet show --query id --output tsv</code>: Retrieves the unique resource ID of the created subnet, essential for linking AKS to it.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Go to 'Virtual networks' > 'Create'. Define the VNet and then navigate into it to add subnets from the 'Subnets' blade.</p>
+<p><strong>Expected result:</strong> The virtual network and its subnets are created. The `Write-Host` command will output the full resource ID of the AKS subnet, which you'll need in the next step.</p>
+
+<h2>Step 4: Deploy Azure Kubernetes Service (AKS) Cluster</h2>
+<p>This is the core step: provisioning your AKS cluster. For a small business, the goal is a balanced configuration that offers reliability and scalability without incurring excessive costs. We'll use Azure CNI for advanced networking, enable the cluster autoscaler for efficiency, and configure a basic service principal for authentication.</p>
+<pre><code class='language-powershell'># Define cluster name and Kubernetes version
+$aksClusterName = 'SkyCoreAKSDemoCluster'
+$kubernetesVersion = '1.28.5' # Check Azure docs for the latest stable version
+
+# Deploy the AKS cluster
+az aks create `
+    --name $aksClusterName `
+    --kubernetes-version $kubernetesVersion `
+    --node-count 2 ` # Start with 2 nodes for high availability and basic workload
+    --node-vm-size Standard_DS2_v2 ` # General purpose VM size, good for small business
+    --network-plugin azure ` # Use Azure CNI for advanced networking features
+    --vnet-subnet-id $aksSubnetId ` # Link to our custom VNet subnet
+    --enable-managed-identity ` # Recommended for secure AKS cluster operations
+    --enable-cluster-autoscaler ` # Automate node scaling for cost efficiency
+    --min-count 1 ` # Minimum nodes when autoscaler is active
+    --max-count 3 ` # Maximum nodes when autoscaler is active
+    --load-balancer-sku standard ` # Standard SKU for advanced features like zone redundancy
+    --generate-ssh-keys ` # Generate SSH keys for node access (optional but good for troubleshooting)
+    --tags 'Project=SkyCoreAKS' 'Environment=Dev' # Tag resources for cost management
+    --output none
+</code></pre>
+<p><code>--name</code>: The unique name for your AKS cluster.</p>
+<p><code>--kubernetes-version</code>: Specifies the desired Kubernetes version. Always check Azure documentation for the latest stable version.</p>
+<p><code>--node-count</code>: Initial number of nodes in the default node pool. Two nodes provide basic high availability.</p>
+<p><code>--node-vm-size</code>: The size of the virtual machines for your worker nodes. `Standard_DS2_v2` is a common choice for balanced workloads.</p>
+<p><code>--network-plugin azure</code>: Configures the cluster to use Azure CNI, assigning each pod its own IP address from the VNet subnet. This is recommended for production and advanced networking.</p>
+<p><code>--vnet-subnet-id</code>: The resource ID of the subnet dedicated to your AKS cluster nodes.</p>
+<p><code>--enable-managed-identity</code>: Enables managed identities for AKS, a more secure alternative to service principals for Azure resource interaction.</p>
+<p><code>--enable-cluster-autoscaler</code>: Automatically scales the number of nodes based on resource demand, helping manage costs.</p>
+<p><code>--min-count</code>, <code>--max-count</code>: Define the lower and upper limits for the cluster autoscaler.</p>
+<p><code>--load-balancer-sku standard</code>: Uses the Standard Load Balancer, offering enhanced features over Basic SKU.</p>
+<p><code>--generate-ssh-keys</code>: Creates a new SSH key pair and stores it in Azure for accessing cluster nodes.</p>
+<p><code>--tags</code>: Apply Azure tags for better resource management and cost tracking.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Go to 'Kubernetes services' > 'Create'. Fill in all necessary details across 'Basics', 'Node pools', 'Networking' (select 'Azure CNI' and link your custom VNet/subnet), 'Integrations', 'Advanced', and 'Tags' tabs. Ensure autoscaling is enabled under 'Node pools'.</p>
+<p><strong>Expected result:</strong> This command can take 10-15 minutes to complete. A successful deployment will show a JSON output detailing the cluster's properties, or if `--output none` is used, a silent success. The cluster will be provisioned in your resource group.</p>
+
+<h2>Step 5: Connect to Your AKS Cluster</h2>
+<p>Once your AKS cluster is deployed, you need to configure your local `kubectl` client to securely connect and interact with it. This involves downloading the cluster's credentials and merging them into your `kubectl` configuration file.</p>
+<pre><code class='language-powershell'># Get credentials for your AKS cluster
+az aks get-credentials `
+    --resource-group 'SkyCoreAKSResourceGroup' `
+    --name 'SkyCoreAKSDemoCluster' `
+    --overwrite-existing # Overwrite if credentials for this cluster already exist
+
+# Verify connection by listing nodes
+kubectl get nodes
+</code></pre>
+<p><code>az aks get-credentials</code>: Downloads the credentials and updates your local `kubectl` configuration file (~/.kube/config).</p>
+<p><code>--resource-group</code>: Specifies the resource group where your AKS cluster resides.</p>
+<p><code>--name</code>: The name of your AKS cluster.</p>
+<p><code>--overwrite-existing</code>: Ensures that if you've connected to this cluster before, the credentials are refreshed, preventing potential issues with outdated access tokens.</p>
+<p><code>kubectl get nodes</code>: A `kubectl` command to list all worker nodes in your Kubernetes cluster, verifying successful connection.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to your AKS cluster in the Azure Portal, go to 'Connect' blade, and copy the provided <code>az aks get-credentials</code> command.</p>
+<p><strong>Expected result:</strong> The `kubectl` configuration file is updated. `kubectl get nodes` will output a list of your cluster's nodes, showing their status (e.g., 'Ready'), roles, age, and version.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> If <code>kubectl get nodes</code> fails with an authentication error or "Unable to connect to the server," ensure you've run <code>az login</code> recently and <code>az aks get-credentials</code> successfully. Network firewalls blocking access to the Kubernetes API server can also cause this (less common for public clusters, but relevant for private ones).</div>
+
+<h2>Step 6: Deploy a Sample Application</h2>
+<p>With your AKS cluster ready and your `kubectl` configured, let's deploy a simple NGINX web server. This step demonstrates basic Kubernetes deployment and service exposure, confirming your cluster is fully operational and capable of hosting applications.</p>
+<pre><code class='language-powershell'># Deploy an NGINX application
+kubectl create deployment nginx --image=nginx
+
+# Expose the NGINX deployment as a LoadBalancer service
+# This will provision an Azure Load Balancer and assign a public IP address.
+kubectl expose deployment nginx `
+    --port=80 `
+    --type=LoadBalancer
+
+# Check the status of the service and get its external IP
+Write-Host "Waiting for NGINX service external IP..."
+$ip = ''
+while (-not $ip) {
+    Start-Sleep -Seconds 5
+    $ip = (kubectl get service nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    Write-Host "Current IP: $ip (Waiting for external IP...)"
+}
+Write-Host "NGINX External IP: $ip"
+
+# Access the application via the browser (replace with the actual IP)
+# Example: Start-Process "http://$ip" # For Windows
+# Example: open "http://$ip" # For macOS
+# Example: xdg-open "http://$ip" # For Linux
+</code></pre>
+<p><code>kubectl create deployment nginx --image=nginx</code>: Creates a Kubernetes Deployment named 'nginx' that runs the official NGINX Docker image.</p>
+<p><code>kubectl expose deployment nginx --port=80 --type=LoadBalancer</code>: Creates a Kubernetes Service that exposes the NGINX deployment on port 80. `LoadBalancer` type provisions an Azure Load Balancer to provide a public IP address.</p>
+<p><code>kubectl get service nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}'</code>: Queries the 'nginx' service and extracts its external IP address once the Azure Load Balancer provisions it.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> While you can't deploy apps directly in the portal, you can monitor your cluster's workloads and services under your AKS cluster's 'Workloads' and 'Services and ingresses' blades.</p>
+<p><strong>Expected result:</strong> An NGINX deployment will be created. A few minutes after exposing the service, `kubectl get service nginx` will show an `EXTERNAL-IP`. Browsing to this IP in a web browser should display the default "Welcome to Nginx!" page.</p>
+
+<h2>Step 7: Monitor and Scale Your AKS Cluster</h2>
+<p>Effective monitoring is crucial for small businesses to ensure application health and optimize costs. AKS integrates well with Azure Monitor. Scaling, both at the application and infrastructure level, is vital for handling varying workloads efficiently.</p>
+<pre><code class='language-powershell'># Enable Azure Monitor for containers (if not enabled during cluster creation)
+# It's recommended to enable this for production clusters.
+az aks enable-addons `
+    --addons monitoring `
+    --name 'SkyCoreAKSDemoCluster' `
+    --resource-group 'SkyCoreAKSResourceGroup'
+
+# View basic node and pod metrics (requires Metrics Server, usually pre-installed)
+kubectl top nodes
+kubectl top pods -n default # See pods in the 'default' namespace
+
+# Manually scale the NGINX application to 3 replicas
+kubectl scale deployment/nginx --replicas=3
+
+# Verify the scaled deployment
+kubectl get pods -l app=nginx
+
+# Test cluster autoscaler (e.g., by creating a high-demand workload or checking logs)
+# You can see autoscaler logs in Azure Monitor for containers or by checking the events:
+# kubectl get events --field-selector 'involvedObject.name=cluster-autoscaler' -n kube-system
+</code></pre>
+<p><code>az aks enable-addons --addons monitoring</code>: Activates the Azure Monitor for containers add-on for your AKS cluster, providing deep visibility into cluster health and performance.</p>
+<p><code>kubectl top nodes</code>: Displays CPU and memory usage for your cluster nodes.</p>
+<p><code>kubectl top pods</code>: Displays CPU and memory usage for individual pods.</p>
+<p><code>kubectl scale deployment/nginx --replicas=3</code>: Increases the number of running instances (pods) of your NGINX application to three.</p>
+<p><code>kubectl get pods -l app=nginx</code>: Lists pods matching the label `app=nginx` to verify the scaling.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> For monitoring, navigate to your AKS cluster, then go to the 'Insights' blade. Here you'll find detailed dashboards for node, controller, and container performance. For scaling, you can manually adjust node counts under 'Node pools' or review autoscaler status.</p>
+<p><strong>Expected result:</strong> Azure Monitor for containers will be enabled for your cluster. `kubectl top` commands will show resource usage. Your NGINX application will scale to three pods, distributed across your cluster nodes.</p>
+
+<h2>Step 8: Cost Management and Cluster Teardown</h2>
+<p>Understanding and managing costs is paramount for small businesses. Azure provides tools for cost analysis. When your AKS cluster is no longer needed, it's crucial to deprovision all associated resources to avoid unnecessary charges. The simplest and most recommended way is to delete the entire resource group.</p>
+<pre><code class='language-powershell'># View estimated costs in Azure Cost Management
+# Portal: Navigate to "Cost Management + Billing" -> "Cost management" -> "Cost analysis"
+# Filter by your resource group 'SkyCoreAKSResourceGroup'
+
+# --- CLEANUP (ONLY RUN WHEN YOU ARE DONE AND WANT TO DELETE ALL RESOURCES) ---
+
+# Delete the entire resource group and all its contents
+# This is irreversible. Confirm carefully!
+az group delete `
+    --name 'SkyCoreAKSResourceGroup' `
+    --no-wait ` # Don't wait for the deletion to complete (it can take time)
+    --yes         # Confirm the deletion without a prompt
+</code></pre>
+<p><code>az group delete</code>: Deletes an entire resource group and all resources contained within it.</p>
+<p><code>--name</code>: Specifies the name of the resource group to be deleted.</p>
+<p><code>--no-wait</code>: Allows the command to return immediately without waiting for the deletion operation to finish.</p>
+<p><code>--yes</code>: Suppresses the confirmation prompt, proceeding directly with the deletion.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to 'Resource groups', select 'SkyCoreAKSResourceGroup', then click 'Delete resource group'. You will need to type the resource group name to confirm.</p>
+<p><strong>Expected result:</strong> The deletion process for the `SkyCoreAKSResourceGroup` will initiate. All your AKS cluster resources, VNet, Load Balancers, and any other components created in that resource group will be permanently removed from your Azure subscription. Verify in the Azure Portal that the resource group is gone after some time.</p>
+<div class='howto-consultant-cta'><h3>When to bring in a consultant</h3><p>While this guide provides a solid foundation for a small business AKS setup, complex scenarios like integrating with existing on-premises systems, implementing advanced security measures (e.g., private clusters, network policies, identity federation), optimizing for specific application workloads, or migrating existing applications often benefit from expert guidance. DIY solutions can introduce hidden security vulnerabilities or cost inefficiencies without specialized knowledge. If you're looking to scale beyond basic deployments, require stringent compliance, or simply want to accelerate your cloud journey, SkyCore Solutions can provide tailored strategies and hands-on implementation support.</p><a href='../contact.html' class='btn btn-primary'>Book a free consultation</a></div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
