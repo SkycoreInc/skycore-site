@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-firewall-setup-configuration-guide-smb",
+    title: "Comprehensive Azure Firewall Setup and Configuration Guide for SMBs",
+    date: "2026-09-05",
+    readTime: "12 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2 hours",
+    keyword: "Azure Firewall setup and configuration guide",
+    excerpt: "This Azure Firewall setup and configuration guide provides SMBs with the steps to enhance network security, control traffic, and protect against threats.",
+    image: "https://images.pexels.com/photos/5483248/pexels-photo-5483248.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "kubernetes-setup-guide-small-business-aks",
     title: "Streamlined Kubernetes Setup for Small Businesses: An Azure AKS Guide",
     date: "2026-09-04",

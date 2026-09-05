@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comprehensive Azure Firewall Setup and Configuration Guide for SMBs — SkyCore Solutions</title>
+  <meta name="description" content="Secure your Azure environment with this comprehensive Azure Firewall setup and configuration guide. Learn to deploy, configure rules, and protect your SMB workloads efficiently." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Comprehensive Azure Firewall Setup and Configuration Guide for SMBs — SkyCore Solutions" />
+  <meta property="og:description" content="Secure your Azure environment with this comprehensive Azure Firewall setup and configuration guide. Learn to deploy, configure rules, and protect your SMB workloads efficiently." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-firewall-setup-configuration-guide-smb.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/5483248/pexels-photo-5483248.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Comprehensive Azure Firewall Setup and Configuration Guide for SMBs — SkyCore Solutions" />
+  <meta name="twitter:description" content="Secure your Azure environment with this comprehensive Azure Firewall setup and configuration guide. Learn to deploy, configure rules, and protect your SMB workloads efficiently." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/5483248/pexels-photo-5483248.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-firewall-setup-configuration-guide-smb.html" />
+  <meta property="article:published_time" content="2026-09-05" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Comprehensive Azure Firewall Setup and Configuration Guide for SMBs",
+  "description": "Secure your Azure environment with this comprehensive Azure Firewall setup and configuration guide. Learn to deploy, configure rules, and protect your SMB workloads efficiently.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Azure subscription with 'Contributor' or 'Owner' role., Azure CLI installed and authenticated (version 2.40.0 or later recommended)., Basic understanding of IP networking concepts (VNet, subnets, routing)., Estimated monthly cost: ~$700 USD (Azure Firewall Standard + Public IP, before traffic costs)., A custom domain name (optional, but recommended for advanced testing)."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Set up the Network Environment for Azure Firewall",
+        "text": "Create the necessary resource group, virtual network, and subnets to host the Azure Firewall and your workload."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy Azure Firewall Standard with a Firewall Policy",
+        "text": "Provision the Azure Firewall service into its dedicated subnet, opting for the Standard SKU and configuring an associated Firewall Policy for rule management."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy a Workload Virtual Machine for Testing",
+        "text": "Create a virtual machine in your workload subnet, ensuring it has no public IP address so all outbound traffic routes through the firewall."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure User-Defined Route (UDR) to Direct Traffic to Azure Firewall",
+        "text": "Implement a custom route table that forces all outbound traffic from your workload subnet to pass through the Azure Firewall's private IP address."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Define Azure Firewall Rules with Firewall Policy",
+        "text": "Create application and network rules within your Firewall Policy to allow specific outbound traffic (e.g., web access, DNS resolution) while blocking others."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Test the Azure Firewall Configuration",
+        "text": "Verify that your firewall rules are correctly applied by attempting to access permitted and blocked destinations from your workload virtual machine."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-09-05 &middot; 12 min read &middot; Infrastructure Revamp</div>
+<h1>Comprehensive Azure Firewall Setup and Configuration Guide for SMBs</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/5483248/pexels-photo-5483248.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Azure Firewall protecting cloud network traffic, illustrating its setup and configuration guide." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro">
+    <p>As a growing SMB, ensuring robust network security for your Azure cloud environment is paramount. Uncontrolled outbound access or inadequate threat protection can expose your critical applications and data to significant risks. This is where Azure Firewall comes in, acting as your cloud-native, intelligent network security service to provide top-tier threat protection.</p>
+    <p>At SkyCore Solutions, we frequently guide Montreal-based SMBs through enhancing their Azure security posture. This comprehensive <strong>Azure Firewall setup and configuration guide</strong> is designed to walk you through deploying and configuring Azure Firewall to control both inbound and outbound network traffic, securing your valuable Azure workloads, and achieving compliance. By the end of this guide, you will have a fully functional Azure Firewall protecting a sample workload, with custom rules dictating network access.</p>
+</div>
+<div class="howto-prereqs">
+    <h4>Prerequisites</h4>
+    <ul>
+        <li>An active Azure subscription with 'Contributor' or 'Owner' role assigned.</li>
+        <li>Azure CLI installed and authenticated (version 2.40.0 or later recommended).</li>
+        <li>Basic understanding of IP networking concepts (Virtual Networks, subnets, routing).</li>
+        <li>Estimated monthly cost: Azure Firewall Standard, along with a Public IP address, can incur costs of approximately $700 USD/month, before considering data processing charges. This is a significant investment for an SMB, but critical for robust security.</li>
+        <li>A custom domain name (optional, but recommended for advanced testing).</li>
+    </ul>
+</div>
+
+<h2>Step 1: Set up the Network Environment for Azure Firewall</h2>
+<p>Before deploying Azure Firewall, we need a dedicated network infrastructure. This involves creating a resource group to logically organize all our resources, a virtual network (VNet), and specific subnets: one for the Azure Firewall itself (<code>AzureFirewallSubnet</code>) and another for our workload servers (<code>Workload-SN</code>). The <code>AzureFirewallSubnet</code> requires a specific naming convention and a minimum size of /26 for proper functionality.</p>
+
+<pre><code class="language-azurecli">
+az group create --name Test-FW-RG --location westus
+
+az network vnet create \
+    --name Test-FW-VN \
+    --resource-group Test-FW-RG \
+    --location westus \
+    --address-prefix 10.0.0.0/16 \
+    --subnet-name AzureFirewallSubnet \
+    --subnet-prefix 10.0.0.0/26
+
+az network vnet subnet create \
+    --name Workload-SN \
+    --vnet-name Test-FW-VN \
+    --resource-group Test-FW-RG \
+    --address-prefix 10.0.2.0/24
+</code></pre>
+<ul>
+    <li><code>--name Test-FW-RG</code>: Defines the name of your resource group.</li>
+    <li><code>--location westus</code>: Specifies the Azure region for all resources. Consistency here is key.</li>
+    <li><code>--address-prefix 10.0.0.0/16</code>: The overall IP address range for your virtual network.</li>
+    <li><code>--subnet-name AzureFirewallSubnet</code>: The mandatory name for the subnet hosting Azure Firewall.</li>
+    <li><code>--subnet-prefix 10.0.0.0/26</code>: The required minimum size for the Azure Firewall subnet.</li>
+    <li><code>--subnet-name Workload-SN</code>: The subnet where your application servers will reside.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to 'Resource groups' &gt; 'Create', then 'Virtual networks' &gt; 'Create'. During VNet creation, you can add subnets under the 'IP addresses' tab. Ensure to name the Firewall subnet exactly <code>AzureFirewallSubnet</code>.</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> While this guide uses a single VNet for simplicity, for production environments, SkyCore Solutions recommends a hub-and-spoke topology. The Azure Firewall would reside in a central 'hub' VNet, peered with 'spoke' VNets containing your workloads. This offers better segmentation and scalability.</div>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">
+az network vnet show --name Test-FW-VN --resource-group Test-FW-RG --query "subnets[].name" -o tsv
+</code></pre>
+<p>You should see <code>AzureFirewallSubnet</code> and <code>Workload-SN</code> listed.</p>
+
+<h2>Step 2: Deploy Azure Firewall Standard with a Firewall Policy</h2>
+<p>Now that our network is ready, we'll deploy the Azure Firewall itself. For SMBs, we highly recommend the Azure Firewall Standard SKU. It provides L3-L7 filtering, incorporates Microsoft's real-time threat intelligence feeds, and offers superior protection compared to Basic, without the additional cost of Premium's IDPS features which might be overkill for many SMBs initially. We will also create a Firewall Policy, which is the preferred method for managing rules, even for a single firewall.</p>
+
+<pre><code class="language-azurecli">
+az network public-ip create \
+    --name fw-pip \
+    --resource-group Test-FW-RG \
+    --location westus \
+    --sku Standard \
+    --allocation-method Static
+
+az network firewall create \
+    --name Test-FW01 \
+    --resource-group Test-FW-RG \
+    --location westus \
+    --sku Standard \
+    --tier Standard \
+    --virtual-network Test-FW-VN \
+    --public-ip-address fw-pip \
+    --firewall-policy null # This will create a classic firewall, we will attach a policy later if we want.
+
+# Note: The above command deploys using classic rules directly. Let's adapt to use Firewall Policy from the start, as it's the preferred method.
+# First, create the Firewall Policy, then associate it during firewall creation (or update if already created).
+
+az network firewall policy create \
+    --name Test-FW-Policy \
+    --resource-group Test-FW-RG \
+    --location westus
+
+# Now, deploy the firewall and associate the policy.
+# If you already ran the 'firewall create' command above, you can update it:
+
+az network firewall update \
+    --name Test-FW01 \
+    --resource-group Test-FW-RG \
+    --firewall-policy Test-FW-Policy
+
+# Or, if starting fresh (preferred for policy management):
+# az network firewall create \
+#    --name Test-FW01 \
+#    --resource-group Test-FW-RG \
+#    --location westus \
+#    --sku Standard \
+#    --tier Standard \
+#    --virtual-network Test-FW-VN \
+#    --public-ip-address fw-pip \
+#    --firewall-policy Test-FW-Policy
+</code></pre>
+<ul>
+    <li><code>az network public-ip create ...</code>: Creates a Standard SKU public IP address that the firewall will use for outbound connections. Static allocation ensures the IP doesn't change.</li>
+    <li><code>az network firewall policy create ...</code>: Creates an empty Firewall Policy that we will attach to our firewall. Policies allow for centralized rule management and inheritance.</li>
+    <li><code>az network firewall update ...</code> (or <code>create</code> with <code>--firewall-policy</code>): Deploys or updates the Azure Firewall.</li>
+    <li><code>--name Test-FW01</code>: The name of your Azure Firewall instance.</li>
+    <li><code>--sku Standard --tier Standard</code>: Specifies the Azure Firewall Standard SKU, recommended for SMBs due to its feature set (L3-L7, Microsoft Threat Intel) and balanced cost.</li>
+    <li><code>--virtual-network Test-FW-VN</code>: Associates the firewall with the virtual network created earlier.</li>
+    <li><code>--public-ip-address fw-pip</code>: Links the firewall to the newly created public IP.</li>
+    <li><code>--firewall-policy Test-FW-Policy</code>: Associates the firewall with the dedicated Firewall Policy for rule management.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to 'Firewalls' &gt; 'Create'. Fill in the basics, choose 'Standard' for SKU, 'West US' for region. For 'Firewall Policy', select 'Create new' and provide a name (e.g., <code>Test-FW-Policy</code>). For 'Public IP address', select 'Create new' and name it <code>fw-pip</code>. Ensure the VNet is <code>Test-FW-VN</code>.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Azure Firewall, especially the Standard SKU, incurs a significant cost. Always review <a href="https://azure.microsoft.com/en-us/pricing/details/azure-firewall/" target="_blank" rel="noopener">Azure Firewall pricing</a> to understand the hourly charges and data processing costs. Ensure you plan for this expense in your budget.</div>
+
+<p><strong>Run this to verify:</strong> Get the private IP of your firewall, which will be needed for routing.</p>
+<pre><code class="language-azurecli">
+FIREWALL_PRIVATE_IP=$(az network firewall show -g Test-FW-RG -n Test-FW01 --query "ipConfigurations[0].privateIpAddress" -o tsv)
+echo "Azure Firewall Private IP: $FIREWALL_PRIVATE_IP"
+</code></pre>
+
+<h2>Step 3: Deploy a Workload Virtual Machine for Testing</h2>
+<p>To demonstrate Azure Firewall's capabilities, we'll deploy a simple Ubuntu Linux virtual machine into the <code>Workload-SN</code> subnet. Crucially, this VM will *not* have a public IP address. This ensures that all its outbound internet traffic is forced through the Azure Firewall, allowing us to enforce our security rules effectively.</p>
+
+<pre><code class="language-azurecli">
+az vm create \
+    --name Srv-Work \
+    --resource-group Test-FW-RG \
+    --image Ubuntu2204 \
+    --vnet-name Test-FW-VN \
+    --subnet Workload-SN \
+    --size Standard_B2s \
+    --admin-username azureuser \
+    --generate-ssh-keys \
+    --no-wait # Continue without waiting for VM creation to complete
+
+# Deploy Azure Bastion for secure access to the VM
+az network public-ip create --resource-group Test-FW-RG --name Bastion-PIP --sku Standard --allocation-method Static
+az network vnet subnet create --resource-group Test-FW-RG --vnet-name Test-FW-VN --name AzureBastionSubnet --address-prefix 10.0.1.0/27
+az network bastion create --name Test-Bastion --public-ip-address Bastion-PIP --resource-group Test-FW-RG --vnet-name Test-FW-VN --location westus
+</code></pre>
+<ul>
+    <li><code>--name Srv-Work</code>: The name of your test virtual machine.</li>
+    <li><code>--image Ubuntu2204</code>: Specifies an Ubuntu Server 22.04 LTS image.</li>
+    <li><code>--vnet-name Test-FW-VN --subnet Workload-SN</code>: Places the VM in the correct subnet within our VNet.</li>
+    <li><code>--size Standard_B2s</code>: A cost-effective VM size suitable for testing.</li>
+    <li><code>--generate-ssh-keys</code>: Creates SSH keys for secure access.</li>
+    <li><code>--no-wait</code>: Allows the CLI to return immediately while the VM deployment continues in the background.</li>
+    <li><code>az network bastion create ...</code>: Deploys Azure Bastion, which provides secure RDP/SSH connectivity to your VMs directly through the Azure portal, eliminating the need for public IPs on your VMs. The <code>AzureBastionSubnet</code> also requires a specific name and a minimum /27 prefix.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to 'Virtual machines' &gt; 'Create'. Select 'Ubuntu Server 22.04 LTS'. On the 'Networking' tab, ensure 'Virtual network' is <code>Test-FW-VN</code> and 'Subnet' is <code>Workload-SN</code>. For 'Public IP', select '(None)'. For Bastion, search 'Bastion' in the portal, then 'Create', choosing <code>Test-FW-VN</code> and <code>Bastion-PIP</code> for the public IP. Ensure the Bastion subnet is <code>AzureBastionSubnet</code>.</p>
+
+<p><strong>Run this to verify:</strong> Wait for the VM to finish deploying (can take a few minutes). Then verify its network interface has no public IP.</p>
+<pre><code class="language-azurecli">
+az vm show --resource-group Test-FW-RG --name Srv-Work --query "networkProfile.networkInterfaces[0].id" -o tsv
+# (Wait for the above command to return the NIC ID, then run:)
+az network nic show --ids $(az vm show --resource-group Test-FW-RG --name Srv-Work --query "networkProfile.networkInterfaces[0].id" -o tsv) --query "ipConfigurations[0].publicIpAddress" -o tsv
+</code></pre>
+<p>This last command should return 'null' or an empty string, indicating no public IP.</p>
+
+<h2>Step 4: Configure User-Defined Route (UDR) to Direct Traffic to Azure Firewall</h2>
+<p>For your <code>Workload-SN</code> subnet to send all its outbound traffic through the Azure Firewall, we need to implement a User-Defined Route (UDR). This UDR will instruct the subnet to forward all traffic destined for <code>0.0.0.0/0</code> (i.e., the internet) to the private IP address of your Azure Firewall. This is a critical step to ensure the firewall inspects and filters all traffic.</p>
+
+<pre><code class="language-azurecli">
+FIREWALL_PRIVATE_IP=$(az network firewall show -g Test-FW-RG -n Test-FW01 --query "ipConfigurations[0].privateIpAddress" -o tsv)
+
+az network route-table create \
+    --name RT-FW \
+    --resource-group Test-FW-RG \
+    --location westus
+
+az network route-table route create \
+    --name FW-Route \
+    --resource-group Test-FW-RG \
+    --route-table-name RT-FW \
+    --address-prefix 0.0.0.0/0 \
+    --next-hop-type VirtualAppliance \
+    --next-hop-ip-address $FIREWALL_PRIVATE_IP
+
+az network vnet subnet update \
+    --name Workload-SN \
+    --vnet-name Test-FW-VN \
+    --resource-group Test-FW-RG \
+    --route-table RT-FW
+</code></pre>
+<ul>
+    <li><code>FIREWALL_PRIVATE_IP=...</code>: Retrieves the private IP address of your deployed Azure Firewall.</li>
+    <li><code>az network route-table create ...</code>: Creates a new route table named <code>RT-FW</code>.</li>
+    <li><code>az network route-table route create ...</code>: Adds a default route to the route table.</li>
+    <li><code>--address-prefix 0.0.0.0/0</code>: Represents all IP addresses (the internet).</li>
+    <li><code>--next-hop-type VirtualAppliance</code>: Specifies that the next hop is a network virtual appliance, in this case, our Azure Firewall.</li>
+    <li><code>--next-hop-ip-address $FIREWALL_PRIVATE_IP</code>: The specific private IP of your firewall that traffic should be directed to.</li>
+    <li><code>az network vnet subnet update ...</code>: Associates the newly created route table with the <code>Workload-SN</code> subnet.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Search for 'Route tables' &gt; 'Create'. After creation, open the route table, select 'Routes' &gt; 'Add'. Set 'Route name' to <code>FW-Route</code>, 'Address prefix' to <code>0.0.0.0/0</code>, 'Next hop type' to 'Virtual appliance', and 'Next hop address' to your firewall's private IP. Then, go to 'Subnets' &gt; 'Associate' and select <code>Test-FW-VN</code> and <code>Workload-SN</code>.</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">
+az network vnet subnet show -g Test-FW-RG -n Workload-SN --vnet-name Test-FW-VN --query "routeTable.name" -o tsv
+</code></pre>
+<p>This should output <code>RT-FW</code>.</p>
+
+<h2>Step 5: Define Azure Firewall Rules with Firewall Policy</h2>
+<p>Azure Firewall, by default, denies all traffic. We must explicitly define rules to allow specific outbound (and potentially inbound) connections. We'll use the Firewall Policy created earlier to define both Application Rules (for FQDNs) and Network Rules (for IP addresses, protocols, and ports). Remember that rule processing prioritizes DNAT rules, then Network rules, and finally Application rules.</p>
+
+<pre><code class="language-azurecli">
+# Define a variable for the Firewall Policy name
+FIREWALL_POLICY_NAME="Test-FW-Policy"
+
+# Create an Application Rule Collection
+az network firewall policy rule-collection-group collection add-application-collection \
+    --name AppCollection01 \
+    --policy-name $FIREWALL_POLICY_NAME \
+    --resource-group Test-FW-RG \
+    --priority 100 \
+    --action Allow
+
+# Add an Application Rule to allow access to www.google.com
+az network firewall policy rule-collection-group collection rule add-application-rule \
+    --collection-name AppCollection01 \
+    --name AllowGoogle \
+    --policy-name $FIREWALL_POLICY_NAME \
+    --resource-group Test-FW-RG \
+    --source-addresses '*' \
+    --protocols Http Https \
+    --target-fqdns www.google.com
+
+# Create a Network Rule Collection
+az network firewall policy rule-collection-group collection add-network-collection \
+    --name NetCollection01 \
+    --policy-name $FIREWALL_POLICY_NAME \
+    --resource-group Test-FW-RG \
+    --priority 200 \
+    --action Allow
+
+# Add a Network Rule to allow outbound DNS access (port 53 UDP/TCP)
+# This is crucial for FQDN resolution
+az network firewall policy rule-collection-group collection rule add-network-rule \
+    --collection-name NetCollection01 \
+    --name AllowDNS \
+    --policy-name $FIREWALL_POLICY_NAME \
+    --resource-group Test-FW-RG \
+    --protocols UDP TCP \
+    --source-addresses '*' \
+    --destination-addresses '*' \
+    --destination-ports 53
+</code></pre>
+<ul>
+    <li><code>az network firewall policy rule-collection-group collection add-application-collection ...</code>: Creates an application rule collection.</li>
+    <li><code>--name AppCollection01</code>: Name for your application rule collection.</li>
+    <li><code>--priority 100</code>: Rule collections are processed by priority (lower number is higher priority).</li>
+    <li><code>--action Allow</code>: Specifies that rules in this collection will allow traffic.</li>
+    <li><code>az network firewall policy rule-collection-group collection rule add-application-rule ...</code>: Adds a rule to the application rule collection.</li>
+    <li><code>--target-fqdns www.google.com</code>: Allows access to the Fully Qualified Domain Name (FQDN) of Google.</li>
+    <li><code>az network firewall policy rule-collection-group collection add-network-collection ...</code>: Creates a network rule collection.</li>
+    <li><code>--destination-addresses '*'</code>: Allows DNS queries to any external DNS server. For production, you might restrict this to known DNS servers.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to your Firewall Policy (<code>Test-FW-Policy</code>) &gt; 'Rule collections'. Select '+ Add a rule collection'. For Application rule: 'Name' <code>AppCollection01</code>, 'Priority' <code>100</code>, 'Action' <code>Allow</code>. Under 'Rules', 'Name' <code>AllowGoogle</code>, 'Source type' <code>IP Address</code>, 'Source' <code>*</code>, 'Protocol' <code>http, https</code>, 'Target FQDNs' <code>www.google.com</code>. For Network rule: Select '+ Add a rule collection'. 'Name' <code>NetCollection01</code>, 'Priority' <code>200</code>, 'Action' <code>Allow</code>. Under 'Rules', 'Name' <code>AllowDNS</code>, 'Source type' <code>IP Address</code>, 'Source' <code>*</code>, 'Protocol' <code>UDP, TCP</code>, 'Destination type' <code>IP Address</code>, 'Destination' <code>*</code>, 'Destination ports' <code>53</code>.</p>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Forgetting to add DNS (port 53) network rules is a frequent mistake. If your application rules rely on FQDNs, the firewall needs to be able to resolve those FQDNs, which requires outbound DNS access. Without this, FQDN-based rules will fail.</div>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">
+az network firewall policy rule-collection-group collection show -n AppCollection01 --policy-name Test-FW-Policy -g Test-FW-RG --query "rules[0].name" -o tsv
+az network firewall policy rule-collection-group collection show -n NetCollection01 --policy-name Test-FW-Policy -g Test-FW-RG --query "rules[0].name" -o tsv
+</code></pre>
+<p>You should see <code>AllowGoogle</code> and <code>AllowDNS</code> respectively.</p>
+
+<h2>Step 6: Test the Azure Firewall Configuration</h2>
+<p>With the firewall deployed, UDR configured, and rules in place, it's time to test if our <strong>Azure Firewall setup and configuration guide</strong> has been successful. We'll connect to the <code>Srv-Work</code> VM using Azure Bastion and attempt to access allowed and blocked resources.</p>
+
+<p><strong>Connect to the VM:</strong></p>
+<pre><code class="language-azurecli">
+# Get the SSH private key you downloaded when creating the VM
+# For example, if you saved it as Srv-Work_key.pem:
+chmod 400 Srv-Work_key.pem
+
+# Get the private IP of the Workload VM
+VM_PRIVATE_IP=$(az vm list-ip-addresses -g Test-FW-RG -n Srv-Work --query "[0].virtualMachine.network.privateIpAddresses[0]" -o tsv)
+echo "Workload VM Private IP: $VM_PRIVATE_IP"
+
+# Use Azure CLI to connect via Bastion (this will open a browser tab for SSH)
+az network bastion ssh --name Test-Bastion --resource-group Test-FW-RG --target-ip $VM_PRIVATE_IP --auth-type SshKey --username azureuser --ssh-key Srv-Work_key.pem
+</code></pre>
+<p class="gui-note"><strong>Portal alternative:</strong> Go to 'Virtual machines' &gt; <code>Srv-Work</code>. Select 'Connect' &gt; 'Bastion'. Provide your username (<code>azureuser</code>) and the path to your SSH private key file (<code>Srv-Work_key.pem</code>). This will open a new browser tab with an SSH session.</p>
+
+<p>Once connected to <code>Srv-Work</code>, run the following commands:</p>
+<pre><code class="language-bash">
+# Update package list (requires internet access - should be allowed by firewall)
+sudo apt update
+
+# Install curl for web testing
+sudo apt install -y curl
+
+# Test access to www.google.com (should succeed due to Application Rule)
+curl -I www.google.com
+
+# Test access to a known blocked site (e.g., www.microsoft.com - should fail, as no rule explicitly allows it)
+curl -I www.microsoft.com
+
+# Test DNS resolution (should succeed due to Network Rule for port 53)
+dig www.google.com
+</code></pre>
+
+<p><strong>Expected outcomes:</strong></p>
+<ul>
+    <li><code>sudo apt update</code>: Should complete successfully, demonstrating outbound access.</li>
+    <li><code>curl -I www.google.com</code>: Should return an HTTP 200 OK status or similar response, confirming access to Google.</li>
+    <li><code>curl -I www.microsoft.com</code>: Should time out or return an error, as this FQDN is not explicitly allowed by an application rule, and all other outbound traffic is denied by default.</li>
+    <li><code>dig www.google.com</code>: Should successfully resolve the IP address for <code>www.google.com</code>, confirming DNS is working through the firewall.</li>
+</ul>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide covers a fundamental Azure Firewall setup, real-world SMB environments often have complexities that benefit from expert guidance. Consider engaging SkyCore Solutions if you're dealing with:</p>
+<ul>
+    <li>Integrating Azure Firewall with existing on-premises networks (hybrid connectivity).</li>
+    <li>Advanced security hardening, including intrusion detection/prevention systems (IDPS) or specific compliance requirements (e.g., PCI DSS, HIPAA).</li>
+    <li>Complex application dependencies requiring intricate NAT, Network, and Application rule configurations.</li>
+    <li>Optimizing Azure Firewall policies for cost, performance, and multi-subscription management (using Azure Firewall Manager).</li>
+    <li>Automating deployments and rule changes using Infrastructure as Code (e.g., Bicep, Terraform).</li>
+    <li>Incident response planning and advanced logging/monitoring with Azure Sentinel.</li>
+</ul>
+<p>Our team of Azure architects specializes in tailoring cloud security solutions to the unique needs of SMBs, ensuring your infrastructure is secure, efficient, and compliant.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+
+<p>By following this <strong>Azure Firewall setup and configuration guide</strong>, you've successfully deployed a critical security component in your Azure environment. You've learned how to leverage Azure Firewall Standard, enforce outbound traffic rules using Firewall Policies, and ensure your workloads communicate securely. This foundational setup provides a strong starting point for protecting your SMB's cloud infrastructure against a wide range of network threats.</p>
+<p>Remember that security is an ongoing process. Regularly review your firewall rules, keep an eye on Microsoft's threat intelligence updates, and consider advanced features as your security needs evolve. SkyCore Solutions is always here to help you navigate these complexities and ensure your cloud strategy remains robust and secure.</p>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/firewall/overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/firewall/tutorial-firewall-deploy-portal" target="_blank" rel="noopener noreferrer">learn.microsoft.com — tutorial firewall deploy portal</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/firewall/rule-processing" target="_blank" rel="noopener noreferrer">learn.microsoft.com — rule processing</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/firewall/firewall-faq" target="_blank" rel="noopener noreferrer">learn.microsoft.com — firewall faq</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
