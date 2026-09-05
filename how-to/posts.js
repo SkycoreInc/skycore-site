@@ -3,6 +3,90 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-firewall-setup-configuration-guide-smb",
+    title: "Comprehensive Azure Firewall Setup and Configuration Guide for SMBs",
+    date: "2026-09-05",
+    readTime: "12 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2 hours",
+    keyword: "Azure Firewall setup and configuration guide",
+    excerpt: "This Azure Firewall setup and configuration guide provides SMBs with the steps to enhance network security, control traffic, and protect against threats.",
+    image: "https://images.pexels.com/photos/5483248/pexels-photo-5483248.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "kubernetes-setup-guide-small-business-aks",
+    title: "Streamlined Kubernetes Setup for Small Businesses: An Azure AKS Guide",
+    date: "2026-09-04",
+    readTime: "10-12 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Kubernetes setup guide small business",
+    excerpt: "Small businesses can leverage Kubernetes for efficient application deployment. This guide provides a practical, opinionated walkthrough for setting up Azure Kubernetes Service (AKS).",
+    image: "https://images.pexels.com/photos/2097627/pexels-photo-2097627.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "azure-logic-apps-workflow-automation-guide-smb",
+    title: "Elevate SMB Efficiency: An Azure Logic Apps Workflow Automation Guide",
+    date: "2026-09-01",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Azure Logic Apps workflow automation guide",
+    excerpt: "Unlock powerful workflow automation for your SMB with this comprehensive Azure Logic Apps guide. Learn to build, deploy, and manage automated processes, from data integration to notification systems, to boost efficiency.",
+    image: "https://images.pexels.com/photos/7947841/pexels-photo-7947841.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "it-infrastructure-modernization-guide",
+    title: "Accelerating IT Infrastructure Modernization: A SkyCore Solutions Guide",
+    date: "2026-09-01",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "IT infrastructure modernization guide",
+    excerpt: "SkyCore Solutions presents a comprehensive guide to modernizing your IT infrastructure, integrating best practices from Azure and Google Cloud. This guide covers strategic planning, secure cloud adoption, and continuous operational excellence across hybrid and multi-cloud environments.",
+    image: "https://images.pexels.com/photos/13539298/pexels-photo-13539298.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "devops-implementation-small-business",
+    title: "Empowering Small Businesses with DevOps: A SkyCore Guide to Azure & GitHub",
+    date: "2026-08-31",
+    readTime: "12 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "DevOps implementation for small business",
+    excerpt: "Small businesses can significantly benefit from DevOps by streamlining operations and accelerating delivery. This guide provides a practical approach using Azure Pipelines and GitHub Actions.",
+    image: "https://images.pexels.com/photos/1181260/pexels-photo-1181260.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "microsoft-purview-compliance-setup-guide-smb",
+    title: "Empowering SMBs: Your Microsoft Purview Compliance Setup Guide for Data Protection",
+    date: "2026-08-29",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "3-5 hours",
+    keyword: "Microsoft Purview compliance setup guide",
+    excerpt: "SkyCore Solutions presents a practical Microsoft Purview compliance setup guide for SMBs to navigate modern data challenges. Protect sensitive data and meet regulatory requirements with confidence.",
+    image: "https://images.pexels.com/photos/30901558/pexels-photo-30901558.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "ci-cd-pipeline-small-teams",
+    title: "CI/CD Pipeline Setup for Small Teams: Streamlining Development with Azure & GitHub",
+    date: "2026-08-28",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "3-4 hours",
+    keyword: "CI CD pipeline setup for small teams",
+    excerpt: "Equipping small teams with robust CI/CD pipelines is critical for modern software delivery. This guide details setup using industry-leading tools, ensuring efficiency and reliability.",
+    image: "https://images.pexels.com/photos/4440200/pexels-photo-4440200.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-virtual-network-setup-guide-smb-secure",
     title: "SkyCore Solutions: The Ultimate Azure Virtual Network Setup Guide for SMBs",
     date: "2026-08-25",
