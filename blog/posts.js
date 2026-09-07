@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cloud-security-myths-montreal-azure-rethink",
+    title: "Your Cloud Security Checklist is a Trap: 3 Myths Endangering Montreal Businesses",
+    date: "2026-09-07",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Think your cloud security checklist protects you? Think again. A new report reveals widespread cloud misconfigurations. It's time to bust the myths and get real about your data protection in the cloud.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/28379999/pexels-photo-28379999.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "rogue-ai-lessons-cybersecurity-montreal",
     title: "Rogue AI and Your Business: The Wake-Up Call Montreal SMBs Can't Ignore",
     date: "2026-09-05",
