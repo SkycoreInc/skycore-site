@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "vmware-to-hyperv-migration-guide",
+    title: "Definitive VMware to Hyper-V Migration Guide: CLI-First Enterprise Strategy",
+    date: "2026-09-07",
+    readTime: "12-15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Advanced",
+    timeEstimate: "8-16 hours (for planning, execution of a small batch of VMs, and testing)",
+    keyword: "VMware to Hyper-V migration guide",
+    excerpt: "Master the complex process of migrating virtual machines from VMware to Hyper-V using SkyCore Solutions' expert strategies. This guide provides a robust, CLI-first approach for secure and efficient transitions.",
+    image: "https://images.pexels.com/photos/5050305/pexels-photo-5050305.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-firewall-setup-configuration-guide-smb",
     title: "Comprehensive Azure Firewall Setup and Configuration Guide for SMBs",
     date: "2026-09-05",
