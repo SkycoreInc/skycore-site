@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-devtest-labs-setup-guide-smb",
+    title: "Mastering Azure DevTest Labs: An Essential Setup Guide for SMBs",
+    date: "2026-09-09",
+    readTime: "15 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "1.5 hours",
+    keyword: "Azure DevTest Labs setup guide",
+    excerpt: "Streamline your development and testing with this comprehensive Azure DevTest Labs setup guide. Learn how to quickly provision VMs, implement crucial cost controls, and ensure consistent environments for your SMB.",
+    image: "https://images.pexels.com/photos/32778341/pexels-photo-32778341.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "vmware-to-hyperv-migration-guide",
     title: "Definitive VMware to Hyper-V Migration Guide: CLI-First Enterprise Strategy",
     date: "2026-09-07",
