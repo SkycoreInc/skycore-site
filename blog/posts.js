@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cve-exposure-kill-plan-smb",
+    title: "Exposure After a CVE: Your 5-Step Kill Plan for Montreal SMBs",
+    date: "2026-09-09",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A major vulnerability like ShieldCrash drops, but are you exposed? For many Montreal businesses, this question triggers a chaotic scramble. Learn a 5-step plan to secure your business.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38486969/pexels-photo-38486969.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "cloud-security-myths-montreal-azure-rethink",
     title: "Your Cloud Security Checklist is a Trap: 3 Myths Endangering Montreal Businesses",
     date: "2026-09-07",
