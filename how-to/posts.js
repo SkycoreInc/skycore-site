@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "smb-network-segmentation-strategy-guide",
+    title: "Essential SMB Network Segmentation Guide: Enhance Security & Performance",
+    date: "2026-09-10",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "network segmentation guide SMB",
+    excerpt: "Implement robust network segmentation for your SMB to drastically reduce attack surfaces and improve data protection. This guide covers planning, execution, and ongoing management.",
+    image: "https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-devtest-labs-setup-guide-smb",
     title: "Mastering Azure DevTest Labs: An Essential Setup Guide for SMBs",
     date: "2026-09-09",
