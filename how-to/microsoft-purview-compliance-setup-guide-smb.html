@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Empowering SMBs: Your Microsoft Purview Compliance Setup Guide for Data Protection — SkyCore Solutions</title>
+  <meta name="description" content="Streamline data governance and protection for your SMB with our Microsoft Purview compliance setup guide. Learn to classify, label, and prevent data loss effectively in the age of AI." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Empowering SMBs: Your Microsoft Purview Compliance Setup Guide for Data Protection — SkyCore Solutions" />
+  <meta property="og:description" content="Streamline data governance and protection for your SMB with our Microsoft Purview compliance setup guide. Learn to classify, label, and prevent data loss effectively in the age of AI." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/microsoft-purview-compliance-setup-guide-smb.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/30901558/pexels-photo-30901558.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Empowering SMBs: Your Microsoft Purview Compliance Setup Guide for Data Protection — SkyCore Solutions" />
+  <meta name="twitter:description" content="Streamline data governance and protection for your SMB with our Microsoft Purview compliance setup guide. Learn to classify, label, and prevent data loss effectively in the age of AI." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/30901558/pexels-photo-30901558.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/microsoft-purview-compliance-setup-guide-smb.html" />
+  <meta property="article:published_time" content="2026-08-29" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Empowering SMBs: Your Microsoft Purview Compliance Setup Guide for Data Protection",
+  "description": "Streamline data governance and protection for your SMB with our Microsoft Purview compliance setup guide. Learn to classify, label, and prevent data loss effectively in the age of AI.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Microsoft 365 Business Premium, Microsoft 365 E3, or Microsoft 365 E5 license (at least one for administration, ideally for all users who will utilize Purview features)., Global Administrator or Compliance Administrator role in Microsoft 365 for configuration., Azure Az PowerShell module installed and updated to the latest version. (`Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force`), Exchange Online PowerShell V3 module installed and updated to the latest version. (`Install-Module -Name ExchangeOnlineManagement -Scope CurrentUser -Repository PSGallery -Force`), Admin access to the Microsoft Purview portal (compliance.microsoft.com)., A clear understanding of your organization's sensitive data types, data locations, and pertinent regulatory obligations (e.g., GDPR, HIPAA, PCI-DSS)., Estimated Cost: Microsoft Purview capabilities are included with qualifying Microsoft 365 subscriptions (e.g., Business Premium, E3, E5). There are no direct additional costs for using the core Purview features covered in this guide beyond your existing Microsoft 365 license."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Access and Initial Configuration of the Microsoft Purview Portal",
+        "text": "This step establishes your administrative connection to Microsoft Purview and the necessary PowerShell modules, which serve as the central hub for all compliance activities."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Identify and Classify Sensitive Data with Sensitive Information Types (SITs)",
+        "text": "Before you can protect your data, you must understand what constitutes sensitive information within your organization by utilizing Microsoft Purview's Sensitive Information Types."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create and Publish Sensitivity Labels for Data Protection",
+        "text": "Sensitivity labels provide a unified way to classify and protect your data across Microsoft 365 apps and services, applying visual markings, encryption, and access restrictions."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Microsoft Purview Message Encryption",
+        "text": "Ensure secure email communication, especially when sharing sensitive information with external parties, by implementing Microsoft Purview Message Encryption via Exchange Online transport rules."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implement Data Loss Prevention (DLP) Policies",
+        "text": "DLP policies prevent accidental or intentional oversharing of sensitive information, helping you maintain compliance and protect your organization's critical data."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Monitor Compliance Activity with Audit Logs and Activity Explorer",
+        "text": "Regularly monitoring compliance activities and user actions on sensitive data is crucial for maintaining security, identifying risks, and demonstrating adherence to regulatory requirements."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-08-29 · 15 min read · Infrastructure Revamp</div>
+<h1>Empowering SMBs: Your Microsoft Purview Compliance Setup Guide for Data Protection</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/30901558/pexels-photo-30901558.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Secure data in the cloud with Microsoft Purview compliance setup guide for SMBs." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In today's fast-evolving digital landscape, Small to Medium-sized Businesses (SMBs) face unprecedented challenges: a growing volume of data, the rapid adoption of AI technologies, and an ever-tightening web of regulatory requirements. Accidental data breaches, compliance fines, and reputational damage are significant risks that can cripple an SMB. This is where a robust <strong>Microsoft Purview compliance setup guide</strong> becomes indispensable. Microsoft Purview offers a comprehensive suite of solutions designed to help your organization gain visibility into its data, safeguard sensitive information wherever it lives, and efficiently manage compliance risks.</p>
+<p>As your trusted Azure architects at SkyCore Solutions, we've developed this guide to walk you through establishing a foundational Microsoft Purview compliance setup. By the end of this guide, you will have configured essential data classification, labeling, and data loss prevention capabilities, significantly enhancing your SMB's data security and compliance posture.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>Microsoft 365 Business Premium, Microsoft 365 E3, or Microsoft 365 E5 license (at least one for administration, ideally for all users who will utilize Purview features).</li><li>Global Administrator or Compliance Administrator role in Microsoft 365 for configuration.</li><li>Azure Az PowerShell module installed and updated to the latest version. (`Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force`)</li><li>Exchange Online PowerShell V3 module installed and updated to the latest version. (`Install-Module -Name ExchangeOnlineManagement -Scope CurrentUser -Repository PSGallery -Force`)</li><li>Admin access to the Microsoft Purview portal (compliance.microsoft.com).</li><li>A clear understanding of your organization's sensitive data types, data locations, and pertinent regulatory obligations (e.g., GDPR, HIPAA, PCI-DSS).</li><li>Estimated Cost: Microsoft Purview capabilities are included with qualifying Microsoft 365 subscriptions (e.g., Business Premium, E3, E5). There are no direct additional costs for using the core Purview features covered in this guide beyond your existing Microsoft 365 license.</li></ul></div>
+
+<h2>Step 1: Access and Initial Configuration of the Microsoft Purview Portal</h2>
+<p>The Microsoft Purview portal is your unified command center for data security, governance, and compliance. While many advanced Purview features are best configured through the portal due to their visual nature and integrated workflows, establishing a PowerShell connection is crucial for scripting, automation, and specific administrative tasks.</p>
+
+<p>First, connect to the Microsoft Purview Compliance PowerShell session. This session allows you to manage many of the underlying components that Purview orchestrates, such as Information Protection (including sensitivity labels) and Data Loss Prevention policies.</p>
+<pre><code class="language-powershell">Connect-IPPSSession -UserPrincipalName &quot;admin@yourdomain.com&quot;</code></pre>
+<ul>
+<li><code>-UserPrincipalName</code>: Specify the UPN of a user with Global Administrator or Compliance Administrator roles. You will be prompted for credentials.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate directly to <a href="https://compliance.microsoft.com" target="_blank">compliance.microsoft.com</a> using an account with appropriate administrative permissions. The Purview portal provides a streamlined interface for exploring and configuring all Purview solutions. Familiarize yourself with the left-hand navigation pane to locate Data classification, Information Protection, and Data loss prevention sections.</p>
+
+<p><strong>Run this to verify:</strong> After connecting, you can verify your session by running a simple cmdlet, for example:</p>
+<pre><code class="language-powershell">Get-Label</code></pre>
+<ul>
+<li>This command will list any existing sensitivity labels in your organization. If successful, your PowerShell session is properly established.</li>
+</ul>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: Licensing and Permissions</strong><br>Many Microsoft Purview features require specific Microsoft 365 licenses (e.g., Microsoft 365 Business Premium, E3, E5) and appropriate administrative roles (e.g., Global Administrator, Compliance Administrator, Information Protection Administrator). Without the correct licensing and permissions, certain features may not be visible or configurable, leading to unexpected errors or limitations. Always ensure your administrative accounts and target users are properly licensed.</div>
+
+<h2>Step 2: Identify and Classify Sensitive Data with Sensitive Information Types (SITs)</h2>
+<p>The cornerstone of any effective compliance strategy is understanding your data. Microsoft Purview's Sensitive Information Types (SITs) enable you to identify sensitive data across your digital estate, whether it's credit card numbers, national identification numbers, or custom intellectual property. SMBs should start by leveraging the extensive library of built-in SITs before considering custom ones.</p>
+
+<p>While creating custom SITs is primarily a portal-driven experience for visual pattern matching and testing, you can list existing SITs via PowerShell to understand what's available.</p>
+<pre><code class="language-powershell">Get-DlpSensitiveInformationType | Format-Table Name, Description</code></pre>
+<ul>
+<li><code>Get-DlpSensitiveInformationType</code>: Retrieves a list of all sensitive information types available in your tenant, including built-in and custom types.</li>
+<li><code>Format-Table Name, Description</code>: Displays the name and description for easier readability.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> For identifying and creating SITs, the Purview portal offers a superior, more intuitive experience. Navigate to <strong>Data classification > Sensitive info types</strong>. Here, you can review the hundreds of built-in SITs, test them against example content, and create custom SITs using dictionaries, regular expressions, or functions. For most SMBs, starting with a review of relevant built-in SITs is highly recommended to cover common sensitive data patterns like credit card numbers, social security numbers, or health information.</p>
+
+<p><strong>Run this to verify:</strong> After reviewing built-in SITs or creating a custom one in the portal, you can run the `Get-DlpSensitiveInformationType` command again to confirm that new or specific SITs are now listed.</p>
+
+<h2>Step 3: Create and Publish Sensitivity Labels for Data Protection</h2>
+<p>Microsoft Purview Information Protection (MPIP) uses sensitivity labels to classify and protect sensitive data. These labels allow you to apply flexible protection actions such as encryption, visual markings (headers, footers, watermarks), and access restrictions to documents, emails, and even Teams meetings. For SMBs, we recommend starting with a simple, clear hierarchy of labels.</p>
+
+<p>Here's how to create and publish sensitivity labels using PowerShell (after connecting your IPPSession from Step 1):</p>
+<pre><code class="language-powershell"># 1. Create a basic 'Confidential - All Employees' label
+New-Label -Name &quot;Confidential - All Employees&quot; -DisplayName &quot;Confidential - All Employees&quot; -Tooltip &quot;This content is confidential and intended for all employees.&quot; -Comment &quot;Used for general internal confidential information.&quot; -Priority 10
+
+# 2. Configure visual marking for the 'Confidential - All Employees' label (e.g., a footer)
+Set-Label -Identity &quot;Confidential - All Employees&quot; -AddFooter &quot;True&quot; -FooterText &quot;%%LABEL%% - SkyCore Solutions Confidential&quot; -FontSize 9 -FontColor &quot;#808080&quot; -Alignment &quot;Center&quot;
+
+# 3. Create a more restrictive 'Highly Confidential - Internal Only' label with encryption
+New-Label -Name &quot;Highly Confidential - Internal Only&quot; -DisplayName &quot;Highly Confidential - Internal Only&quot; -Tooltip &quot;This content is highly confidential and restricted to internal SkyCore Solutions employees. It will be encrypted.&quot; -Comment &quot;Used for highly sensitive internal information requiring encryption.&quot; -Priority 20
+
+# 4. Configure encryption for 'Highly Confidential - Internal Only' label
+# This grants Full Control to members of a specific Microsoft 365 group (e.g., 'InternalOnlyGroup')
+$accessRights = New-CsCustomPermissions -Users &quot;InternalOnlyGroup@yourdomain.com&quot; -AccessRights FullControl
+Set-Label -Identity &quot;Highly Confidential - Internal Only&quot; -EncryptionEnabled $true -CustomPermissions $accessRights -AddWatermark &quot;True&quot; -WatermarkText &quot;HIGHLY CONFIDENTIAL&quot; -AddHeader &quot;True&quot; -HeaderText &quot;%%LABEL%%&quot;
+
+# 5. Create a label policy to publish these labels to users
+New-LabelPolicy -Name &quot;SMB Standard Labels&quot; -Labels @(&quot;Confidential - All Employees&quot;, &quot;Highly Confidential - Internal Only&quot;) -Force
+
+# 6. Publish the label policy
+Publish-LabelPolicy -Identity &quot;SMB Standard Labels&quot;
+</code></pre>
+<ul>
+<li><code>New-Label</code>: Creates a new sensitivity label.</li>
+<li><code>-Name</code> / <code>-DisplayName</code>: The internal and user-facing name of the label.</li>
+<li><code>-Tooltip</code> / <code>-Comment</code>: Provide descriptive information.</li>
+<li><code>-Priority</code>: Determines the order labels appear. Higher numbers mean lower priority (appear later in the list).</li>
+<li><code>Set-Label</code>: Modifies an existing label.</li>
+<li><code>-AddFooter</code> / <code>-FooterText</code>: Configures visual markings. <code>%%LABEL%%</code> is a dynamic placeholder.</li>
+<li><code>-EncryptionEnabled $true</code>: Enables encryption.</li>
+<li><code>-CustomPermissions</code>: Defines who has access to encrypted content. For SMBs, using a Microsoft 365 group is efficient. Replace 'InternalOnlyGroup@yourdomain.com' with an actual group email.</li>
+<li><code>New-LabelPolicy</code>: Creates a policy to group labels.</li>
+<li><code>-Labels @(&quot;Label1&quot;, &quot;Label2&quot;)</code>: Assigns specified labels to the policy.</li>
+<li><code>Publish-LabelPolicy</code>: Makes the label policy available to users.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> For a more visual and guided setup, navigate to <strong>Information Protection > Labels</strong> and <strong>Information Protection > Label policies</strong> in the Purview portal. This interface allows you to define label settings (visual marking, encryption, auto-labeling), test them, and then publish them to specific users or groups. For SMBs, this is often the easiest way to create and manage labels.</p>
+
+<p><strong>Run this to verify:</strong> To confirm your label policies are published, you can use:</p>
+<pre><code class="language-powershell">Get-LabelPolicy | Format-Table Name, Labels, IsPublished</code></pre>
+<ul>
+<li>This command shows the names of your label policies, the labels included, and whether they are published.</li>
+</ul>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip: Start simple, then expand.</strong><br>For SMBs, begin with a small set of clear, actionable sensitivity labels (e.g., Public, General, Confidential, Highly Confidential). Avoid over-complication initially. Focus on user adoption and understanding. As your organization matures, you can introduce more granular labels or automatic labeling policies based on SIT detections. Implement in &quot;test mode&quot; or with a small pilot group first.</div>
+
+<h2>Step 4: Configure Microsoft Purview Message Encryption</h2>
+<p>Email is a primary vector for sharing sensitive information, often externally. Microsoft Purview Message Encryption (M365 ME) allows you to send encrypted emails and attachments to anyone, inside or outside your organization, ensuring only authorized recipients can read the content. M365 ME is largely automatic for eligible tenants, but you often need transport rules to enforce encryption based on content or recipient.</p>
+
+<p>While the core M365 ME service is typically enabled by default with your Microsoft 365 license, you can configure transport rules in Exchange Online to automatically apply encryption. This example creates a rule to encrypt emails containing the custom sensitive info type &quot;Project Confidential Info&quot; (assuming you created one in Step 2) when sent externally.</p>
+<pre><code class="language-powershell"># Connect to Exchange Online PowerShell if not already connected
+Connect-ExchangeOnline -UserPrincipalName &quot;admin@yourdomain.com&quot;
+
+# Create a transport rule to encrypt outbound emails containing a specific SIT
+New-TransportRule -Name &quot;Encrypt Outbound Project Confidential&quot; `
+    -Comments &quot;Automatically encrypts emails containing 'Project Confidential Info' SIT when sent outside the organization.&quot; `
+    -SentToScope &quot;NotInOrganization&quot; `
+    -ApplyClassification &quot;Project Confidential Info (Encrypt)&quot; `
+    -SetSCL -1 `
+    -RuleErrorAction &quot;Stop&quot; `
+    -Enabled $true</code></pre>
+<ul>
+<li><code>-SentToScope &quot;NotInOrganization&quot;</code>: Applies the rule to emails sent to external recipients.</li>
+<li><code>-ApplyClassification &quot;Project Confidential Info (Encrypt)&quot;</code>: This parameter requires an existing sensitivity label or a mail flow classification that enforces encryption. For simplicity and to integrate with Purview, it's often best to link this to a sensitivity label that applies encryption (e.g., the 'Highly Confidential - Internal Only' label from Step 3, which can be modified to allow external sharing if needed for specific scenarios). Alternatively, you could directly use the `ApplyRightsProtectionTemplate` parameter if you have specific templates. For this guide, assuming a label that encrypts is the best path. You might need to adjust this if your Purview label for encryption isn't available directly here. A common SMB approach is to use sensitivity labels with encryption directly from Outlook/Office apps. A transport rule acts as a fallback or enforcement for specific conditions.</li>
+<li>To ensure this rule works, you need to ensure the sensitivity label used (`Project Confidential Info (Encrypt)`) is configured to apply encryption. If you're using a label like 'Highly Confidential - Internal Only' which encrypts, you'd integrate it by having users apply that label or by a different mechanism. For transport rules specifically targeting encryption, ensure you have the correct Classification or RMS template available. The example uses a conceptual 'Classification' that would be tied to encryption. For Purview Message Encryption itself, the service enables the ability to encrypt; rules trigger when to use it.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the <strong>Exchange admin center</strong> (admin.exchange.microsoft.com) <strong>> Mail flow > Rules</strong>. Here, you can create new rules and select actions such as &quot;Modify the message security &gt; Apply Office 365 Message Encryption and rights protection&quot; or &quot;Apply a rights management template&quot; based on conditions like sender, recipient, or sensitive information contained in the message. This portal approach provides a visual builder for complex mail flow rules.</p>
+
+<p><strong>Run this to verify:</strong> To list existing transport rules and check their status:</p>
+<pre><code class="language-powershell">Get-TransportRule | Format-Table Name, State, Conditions</code></pre>
+<ul>
+<li>Verify that your new encryption rule appears and is enabled. Then, send a test email containing the specified sensitive information to an external recipient to confirm it's encrypted upon arrival.</li>
+</ul>
+
+<h2>Step 5: Implement Data Loss Prevention (DLP) Policies</h2>
+<p>Microsoft Purview Data Loss Prevention (DLP) policies are critical for preventing accidental oversharing of sensitive information. DLP can monitor and restrict data sharing across various locations, including Exchange Online, SharePoint Online, OneDrive for Business, and Microsoft Teams. For SMBs, starting with a basic policy that detects and alerts on common sensitive data is a smart move, initially in audit mode.</p>
+
+<p>Here's how to create a DLP policy using PowerShell (after connecting your IPPSession from Step 1):</p>
+<pre><code class="language-powershell"># 1. Create a new DLP compliance policy in Audit mode
+New-DlpCompliancePolicy -Name &quot;SMB Standard DLP Policy&quot; `
+    -Comment &quot;DLP policy for detecting common sensitive information across M365 services.&quot; `
+    -Identity &quot;SMB Standard DLP Policy&quot; `
+    -PolicyScope &quot;All&quot; `
+    -Mode &quot;AuditAndNotify&quot; `
+    -Enabled $true
+
+# 2. Add a rule to the DLP policy to detect US Social Security Numbers (SSN)
+New-DlpComplianceRule -Policy &quot;SMB Standard DLP Policy&quot; `
+    -Name &quot;Detect US SSN&quot; `
+    -ContentContainsSensitiveInformation @(@{Name=&quot;U.S. Social Security Number (SSN)&quot;; minCount=&quot;1&quot;}) `
+    -AccessScope &quot;External&quot; `
+    -BlockAccess &quot;False&quot; `
+    -BlockAccessExternal &quot;False&quot; `
+    -NotifyUser &quot;Owner,PolicyTip&quot; `
+    -IncidentReportEmail &quot;complianceadmin@yourdomain.com&quot; `
+    -Priority 100 `
+    -RuleMode &quot;Audit&quot; `
+    -Enabled $true</code></pre>
+<ul>
+<li><code>New-DlpCompliancePolicy</code>: Creates a new DLP policy.</li>
+<li><code>-PolicyScope &quot;All&quot;</code>: Applies the policy to all locations (Exchange, SharePoint, OneDrive, Teams).</li>
+<li><code>-Mode &quot;AuditAndNotify&quot;</code>: Recommended starting mode for SMBs. It logs incidents and notifies users/admins without blocking actions. Once confident, you can change to `Enforce`.</li>
+<li><code>New-DlpComplianceRule</code>: Adds a rule to the specified policy.</li>
+<li><code>-Policy &quot;SMB Standard DLP Policy&quot;</code>: Links the rule to your newly created policy.</li>
+<li><code>-ContentContainsSensitiveInformation</code>: Specifies the SITs to detect. Here, it's 'U.S. Social Security Number (SSN)'.</li>
+<li><code>-AccessScope &quot;External&quot;</code>: Triggers when sensitive content is shared outside the organization.</li>
+<li><code>-BlockAccess &quot;False&quot;</code> / <code>-BlockAccessExternal &quot;False&quot;</code>: In audit mode, we set these to false. Change to true for enforcement.</li>
+<li><code>-NotifyUser &quot;Owner,PolicyTip&quot;</code>: Notifies the content owner and shows a policy tip.</li>
+<li><code>-IncidentReportEmail</code>: Sends incident reports to the specified email address.</li>
+<li><code>-RuleMode &quot;Audit&quot;</code>: Ensures the rule operates in audit-only mode, without blocking.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to <strong>Data loss prevention > Policies</strong> in the Purview portal. Click &quot;Create policy&quot; to use a template (e.g., &quot;Financial &gt; U.S. Personally Identifiable Information (PII) Data&quot;) or a custom policy. The portal provides a wizard-like experience to define locations, conditions (which SITs to detect), and actions (block, audit, notify). This is often simpler for SMBs configuring their first policies.</p>
+
+<p><strong>Run this to verify:</strong> To list your DLP policies and their associated rules:</p>
+<pre><code class="language-powershell">Get-DlpCompliancePolicy | Format-Table Name, Mode, PolicyScope
+Get-DlpComplianceRule -Policy &quot;SMB Standard DLP Policy&quot; | Format-Table Name, ContentContainsSensitiveInformation, RuleMode</code></pre>
+<ul>
+<li>Verify that your DLP policy and rule are listed and are in `Audit` mode as intended.</li>
+</ul>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: Deploying DLP in Enforce Mode Too Soon</strong><br>Immediately deploying DLP policies in &quot;Enforce&quot; mode can lead to significant user frustration and disruptions. Always start with &quot;Audit&quot; or &quot;AuditAndNotify&quot; mode. This allows you to monitor policy matches, identify false positives, and fine-tune your rules without impacting user productivity. Transition to enforcement gradually after you're confident in your policy's accuracy.</div>
+
+<h2>Step 6: Monitor Compliance Activity with Audit Logs and Activity Explorer</h2>
+<p>A robust compliance setup isn't a one-time configuration; it requires continuous monitoring. Microsoft Purview provides unified audit logs and the Activity explorer to help you track user activities, discover how sensitive data is being used, and identify potential compliance risks or policy violations.</p>
+
+<p>You can search the unified audit log using PowerShell to retrieve specific activities. This example searches for all file deletion activities in SharePoint Online by a specific user.</p>
+<pre><code class="language-powershell"># Search for file deletions by a specific user in SharePoint Online
+Search-UnifiedAuditLog `
+    -Operations &quot;FileDeleted&quot; `
+    -UserIds &quot;user@yourdomain.com&quot; `
+    -StartDate (Get-Date).AddDays(-7) `
+    -EndDate (Get-Date) `
+    -ResultSize 1000 | `
+    Format-Table CreationDate, UserIds, Operations, Workload, ObjectIds</code></pre>
+<ul>
+<li><code>-Operations</code>: Specifies the audit operation to search for (e.g., `FileDeleted`, `FileAccessed`, `LabelApplied`).</li>
+<li><code>-UserIds</code>: Filters activities by specific users.</li>
+<li><code>-StartDate</code> / <code>-EndDate</code>: Defines the time range for the search.</li>
+<li><code>-ResultSize</code>: Specifies the maximum number of results to return.</li>
+<li><code>ObjectIds</code>: The name of the file or object acted upon.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> The Purview portal offers visual and user-friendly tools for monitoring. Navigate to <strong>Audit > Audit search</strong> to search the unified audit log with various filters for activities, users, dates, and workloads. For deeper insights into sensitive data, use <strong>Data classification > Activity explorer</strong>. Activity explorer provides a visual dashboard to see where sensitive data resides, how it's being used, and which sensitivity labels are being applied, giving you an immediate overview of data interactions.</p>
+
+<p><strong>Run this to verify:</strong> Execute the PowerShell command above, adjusting the <code>-UserIds</code> and <code>-Operations</code> as needed for recent activity in your tenant. You should see audit records if the specified user performed the operation within the timeframe. Similarly, navigating to <strong>Activity explorer</strong> in the Purview portal should populate with data over time, confirming that auditing is active and reporting information.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide provides a solid foundation for your Microsoft Purview compliance setup, certain scenarios warrant professional assistance. If your SMB operates in a highly regulated industry (e.g., healthcare, finance) with complex compliance requirements, deals with a hybrid Active Directory environment, needs advanced custom sensitive information types, or requires integration with third-party applications, a specialized consultant can be invaluable. SkyCore Solutions can provide expert guidance in these areas, ensuring your Purview deployment is optimally configured for your unique business needs and minimizes compliance risk. Don't hesitate to reach out if you find yourself navigating these complexities.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/purview/purview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — purview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/purview/information-protection" target="_blank" rel="noopener noreferrer">learn.microsoft.com — information protection</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

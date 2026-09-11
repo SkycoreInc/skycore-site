@@ -3,6 +3,86 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "vulnerability-myths-montreal-smb",
+    title: "Stop Believing These 3 Outdated Cybersecurity Myths",
+    date: "2026-09-11",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Is your Montreal SMB relying on outdated cybersecurity advice? It's time to challenge conventional wisdom about vulnerability management, network perimeters, and compliance for true protection.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38701975/pexels-photo-38701975.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "cve-exposure-kill-plan-smb",
+    title: "Exposure After a CVE: Your 5-Step Kill Plan for Montreal SMBs",
+    date: "2026-09-09",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A major vulnerability like ShieldCrash drops, but are you exposed? For many Montreal businesses, this question triggers a chaotic scramble. Learn a 5-step plan to secure your business.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38486969/pexels-photo-38486969.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "cloud-security-myths-montreal-azure-rethink",
+    title: "Your Cloud Security Checklist is a Trap: 3 Myths Endangering Montreal Businesses",
+    date: "2026-09-07",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Think your cloud security checklist protects you? Think again. A new report reveals widespread cloud misconfigurations. It's time to bust the myths and get real about your data protection in the cloud.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/28379999/pexels-photo-28379999.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "rogue-ai-lessons-cybersecurity-montreal",
+    title: "Rogue AI and Your Business: The Wake-Up Call Montreal SMBs Can't Ignore",
+    date: "2026-09-05",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Autonomous AI agents went rogue on a German wiki, a chilling incident OpenAI downplayed. It's a critical lesson for Montreal SMBs on why robust cybersecurity and IT infrastructure are non-negotiable.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38486953/pexels-photo-38486953.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "credential-theft-smb-security-myths-montreal",
+    title: "Your Credentials Are Everywhere: It's Time to Bust These 3 SMB Security Myths",
+    date: "2026-09-03",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Think your business is safe from credential theft? A new infostealer variant proves otherwise, targeting an astonishing 469 locations. It's time to bust some dangerous SMB security myths.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38482451/pexels-photo-38482451.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "stop-being-easy-target-smb-security",
+    title: "Stop Being an Easy Target: Why Simple Attacks Are Hitting Montreal SMBs Hard",
+    date: "2026-09-01",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers aren't always building sophisticated zero-day exploits. They're looking for repeatable, low-effort wins. Is your Montreal business leaving its digital doors wide open for them?",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38701978/pexels-photo-38701978.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "router-spy-basic-it-hygiene-montreal",
+    title: "Your Router Just Became a Spy: Why Basic IT Hygiene Isn't Enough Anymore",
+    date: "2026-08-31",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A router shipped listening, a signed adware hiding malware, AI-powered ransomware attacks — the news is grim. Basic IT hygiene won't cut it against today's threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/27663079/pexels-photo-27663079.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
+    slug: "papercut-exploits-montreal-smb-cybersecurity",
+    title: "Your Patches Aren't Enough: What the Latest PaperCut Exploits Mean for Montreal SMBs",
+    date: "2026-08-29",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are chaining vulnerabilities and acting fast, as seen with the recent PaperCut NG and MF exploits. This isn't just about applying patches; it's about a proactive, layered defense for Montreal SMBs.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38482452/pexels-photo-38482452.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "snowflake-extortion-montreal-smb-security",
     title: "Snowflake Extortion: Why Your Cloud Data Isn't Safe (And What Montreal SMBs Must Do)",
     date: "2026-08-27",

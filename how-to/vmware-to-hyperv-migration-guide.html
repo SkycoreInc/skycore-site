@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Definitive VMware to Hyper-V Migration Guide: CLI-First Enterprise Strategy — SkyCore Solutions</title>
+  <meta name="description" content="Migrate VMware VMs to Hyper-V with this expert, CLI-first guide from SkyCore Solutions. Learn manual VHDX conversion, SCVMM use, and critical post-migration hardening for secure infrastructure." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Definitive VMware to Hyper-V Migration Guide: CLI-First Enterprise Strategy — SkyCore Solutions" />
+  <meta property="og:description" content="Migrate VMware VMs to Hyper-V with this expert, CLI-first guide from SkyCore Solutions. Learn manual VHDX conversion, SCVMM use, and critical post-migration hardening for secure infrastructure." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/vmware-to-hyperv-migration-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/5050305/pexels-photo-5050305.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Definitive VMware to Hyper-V Migration Guide: CLI-First Enterprise Strategy — SkyCore Solutions" />
+  <meta name="twitter:description" content="Migrate VMware VMs to Hyper-V with this expert, CLI-first guide from SkyCore Solutions. Learn manual VHDX conversion, SCVMM use, and critical post-migration hardening for secure infrastructure." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/5050305/pexels-photo-5050305.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/vmware-to-hyperv-migration-guide.html" />
+  <meta property="article:published_time" content="2026-09-07" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Definitive VMware to Hyper-V Migration Guide: CLI-First Enterprise Strategy",
+  "description": "Migrate VMware VMs to Hyper-V with this expert, CLI-first guide from SkyCore Solutions. Learn manual VHDX conversion, SCVMM use, and critical post-migration hardening for secure infrastructure.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Hyper-V host(s) running Windows Server 2016 or newer (2019/2022 recommended) with Hyper-V role installed and sufficient resources., Administrative access to both VMware vCenter/ESXi and the target Hyper-V host(s)., Sufficient storage capacity (local or shared) on the Hyper-V host for converted virtual disks., Network connectivity between the VMware environment and the Hyper-V host for data transfer., PowerCLI installed on a management workstation (optional but highly recommended for VMware inventory automation)., Understanding of networking fundamentals, virtualization concepts, and Windows Server administration., System Center Virtual Machine Manager (SCVMM) environment (optional, for enterprise-scale V2V operations)."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Step 1: Pre-Migration Assessment and Planning",
+        "text": "This foundational step involves identifying all virtual machines slated for migration, assessing their compatibility with Hyper-V, and planning resource allocation on the target hosts."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 2: Prepare VMware Virtual Machines for Migration",
+        "text": "This step involves cleaning up and optimizing VMware VMs to ensure a smoother transition, primarily focusing on snapshot consolidation and uninstalling VMware-specific drivers."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 3: Prepare the Hyper-V Host Environment",
+        "text": "This step ensures your Hyper-V host is properly configured with the Hyper-V role, adequate storage paths, and virtual networks to receive the migrated VMs."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 4: VM Disk Export and Conversion Strategy (Manual vmdk to vhdx)",
+        "text": "This step details the recommended manual approach for exporting VMware VMDK disks and converting them into the Hyper-V VHDX format, ensuring optimal compatibility and performance."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 4 (Alternative): Enterprise V2V with System Center Virtual Machine Manager (SCVMM)",
+        "text": "For large-scale enterprise migrations, SCVMM provides an integrated solution for performing V2V conversions directly, streamlining management and orchestration."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 5: Create and Configure Hyper-V Virtual Machines",
+        "text": "This step focuses on creating the new Hyper-V virtual machine and attaching the previously converted VHDX disks, alongside configuring its core resources."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 6: Post-Migration Hardening and Optimization",
+        "text": "This critical step involves installing Hyper-V Integration Services, configuring network settings within the guest, and applying optimizations for performance and security."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 7: Validation, Testing, and Cutover",
+        "text": "The final stage involves comprehensive testing of the migrated VMs and applications, performance validation, and planning a phased cutover to minimize business disruption."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class='post-meta'>2026-09-07 · 12-15 min read · Infrastructure Revamp</div>
+<h1>Definitive VMware to Hyper-V Migration Guide: CLI-First Enterprise Strategy</h1>
+<div class='article-hero'><img src='https://images.pexels.com/photos/5050305/pexels-photo-5050305.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600' alt='IT professional overseeing a complex server migration in a modern data center, illustrating a VMware to Hyper-V infrastructure revamp.' loading='eager' fetchpriority='high'></div>
+<div class='howto-intro'><p>Successfully navigating a <strong>VMware to Hyper-V migration</strong> demands meticulous planning, precise execution, and a deep understanding of both virtualization platforms. This guide provides a CLI-first, enterprise-grade strategy, offering direct, actionable PowerShell commands and critical insights to ensure a smooth, secure, and performant transition for your virtualized infrastructure. We'll cover everything from initial assessment to post-migration optimization, helping you minimize downtime and maximize operational efficiency.</p></div>
+<div class='howto-prereqs'><h4>Prerequisites</h4><ul>
+<li>Administrative access to VMware vSphere/ESXi hosts and vCenter Server.</li>
+<li>Administrative access to the Windows Server(s) designated as Hyper-V hosts.</li>
+<li>PowerShell with Hyper-V Module installed on the Hyper-V host.</li>
+<li>PowerCLI module installed on a management workstation for VMware interactions.</li>
+<li>Sufficient disk space on the Hyper-V host(s) for migrated VMs and temporary conversion files.</li>
+<li>Network connectivity between VMware infrastructure and Hyper-V hosts.</li>
+<li>System Center Virtual Machine Manager (SCVMM) environment (optional, for enterprise V2V migration).</li>
+<li>Backup solution in place for all VMs prior to migration.</li>
+<li>Basic understanding of networking, storage, and Windows Server administration.</li>
+</ul></div>
+
+<h2>Step 1: Perform Pre-Migration Assessment and Planning</h2>
+<p>Before any migration work begins, a comprehensive assessment of your existing VMware environment is crucial. This step identifies all virtual machines slated for migration, evaluates their compatibility with Hyper-V, and meticulously plans resource allocation on the target Hyper-V hosts. This phase is about discovery, documentation, and risk mitigation.</p>
+<pre><code class='language-powershell'># Connect to vCenter Server
+Connect-VIServer -Server 'your_vcenter_server_fqdn' -Credential (Get-Credential)
+
+# Get detailed information about all VMs
+$VMs = Get-VM | Select-Object Name, PowerState, NumCpu, MemoryGB, ProvisionedSpaceGB, UsedSpaceGB, HardDisks, NetworkAdapters, GuestId, OSFullName, @{N='VMHost';E={$_.VMHost.Name}}
+
+# Export VM details to a CSV for analysis
+$VMs | Export-Csv -Path 'C:\MigrationPlan\VMware_VM_Inventory.csv' -NoTypeInformation
+
+# Disconnect from vCenter
+Disconnect-VIServer -Server 'your_vcenter_server_fqdn' -Confirm:$false
+</code></pre>
+<p><code>Connect-VIServer</code>: Establishes a connection to your vCenter Server instance.</p>
+<p><code>Get-VM</code>: Retrieves all virtual machines from the connected vCenter or ESXi host.</p>
+<p><code>Select-Object</code>: Specifies the properties of the VM objects to include, creating custom properties for host information.</p>
+<p><code>Export-Csv</code>: Exports the selected VM data to a CSV file for detailed analysis and planning.</p>
+<p><code>Disconnect-VIServer</code>: Terminates the connection to the vCenter Server.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Use the vSphere Client to manually gather VM information, including CPU, memory, disk usage, network adapters, and guest OS details. Navigate to 'VMs and Templates', select VMs, and review their 'Summary' and 'Configuration' tabs.</p>
+<p><strong>Expected result:</strong> A detailed CSV file containing inventory of all VMware VMs, including resource usage, disk configurations, and network settings, which forms the basis for your migration plan. This allows you to identify potential compatibility issues (e.g., old OS versions, specific hardware dependencies) and allocate appropriate resources on Hyper-V.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Inadequate assessment often leads to overlooked dependencies, resource starvation on Hyper-V, or compatibility issues with guest operating systems. Crucially, older operating systems (e.g., Windows XP, Windows Server 2003) might not fully support Hyper-V Integration Services or may require specific legacy hardware configurations in Hyper-V (Generation 1 VMs), making thorough pre-assessment indispensable.</div>
+
+<h2>Step 2: Prepare VMware Virtual Machines for Migration</h2>
+<p>Optimizing and cleaning up VMware VMs before migration can significantly smooth the transition. This step focuses on snapshot consolidation, uninstalling VMware-specific drivers and tools, and general disk cleanup to reduce disk size and potential conflicts on the target Hyper-V environment.</p>
+<pre><code class='language-powershell'># Connect to vCenter Server
+Connect-VIServer -Server 'your_vcenter_server_fqdn' -Credential (Get-Credential)
+
+# --- Sub-step 2.1: Consolidate Snapshots (CRITICAL) ---
+# Get all VMs with snapshots
+Get-VM | Get-Snapshot | Select-Object VM, Name, Created | Out-GridView -Title 'VMs with Snapshots'
+
+# For a specific VM, consolidate snapshots
+# Replace 'YourVMName' with the actual VM name
+Get-VM -Name 'YourVMName' | Remove-Snapshot -RemoveChildren -Confirm:$false
+
+# --- Sub-step 2.2: Uninstall VMware Tools (Inside Guest OS) ---
+# This step MUST be performed within the guest OS of each VM.
+# RDP/Console into 'YourVMName'
+# Open PowerShell as Administrator inside the guest VM:
+Write-Host "Please manually uninstall 'VMware Tools' from within the guest OS via 'Add or Remove Programs'."
+Write-Host "Reboot the VM after uninstallation."
+
+# --- Sub-step 2.3: General Disk Cleanup (Inside Guest OS) ---
+# Run Disk Cleanup (cleanmgr.exe) to remove temporary files.
+# Consider defragmenting disks (for non-SSD VMs)
+Write-Host "Consider running 'cleanmgr.exe' and disk defragmentation (if applicable) within the guest OS."
+
+# Disconnect from vCenter
+Disconnect-VIServer -Server 'your_vcenter_server_fqdn' -Confirm:$false
+</code></pre>
+<p><code>Get-Snapshot</code>: Identifies existing snapshots, which must be removed before migration.</p>
+<p><code>Remove-Snapshot</code>: Deletes snapshots for a specified VM. `RemoveChildren` ensures all associated child snapshots are removed.</p>
+<p><code>Write-Host</code>: Provides instructions for manual steps to be performed within the guest OS.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> In the vSphere Client, right-click a VM, navigate to 'Snapshot', and select 'Consolidate'. For VMware Tools, log into the guest OS, go to 'Control Panel' -> 'Programs and Features', and uninstall 'VMware Tools'.</p>
+<p><strong>Expected result:</strong> VMware VMs are free of snapshots, VMware Tools are uninstalled, and guest OS disks are cleaned up. This reduces the disk image size and prevents potential conflicts with Hyper-V drivers post-migration.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Forgetting to uninstall VMware Tools. Leaving VMware Tools installed can lead to driver conflicts, poor performance, and system instability once the VM is running on Hyper-V. Always uninstall them and reboot the VM prior to disk conversion. Also, skipping snapshot consolidation can lead to data loss or conversion failures.</div>
+
+<h2>Step 3: Prepare the Hyper-V Host Environment</h2>
+<p>A robust Hyper-V host environment is foundational for successful migration. This step involves installing the Hyper-V role, configuring storage paths, and setting up virtual networks to seamlessly integrate the migrated VMs into their new home.</p>
+<pre><code class='language-powershell'># --- Sub-step 3.1: Install Hyper-V Role ---
+# Run on the target Windows Server where Hyper-V role is not yet installed
+Add-WindowsFeature -Name Hyper-V -IncludeManagementTools
+Restart-Computer -Force
+
+# --- Sub-step 3.2: Configure Hyper-V Default Storage Paths ---
+# It's good practice to dedicate specific storage for VHDX files and VM configurations.
+# Create base directories if they don't exist
+$VMPath = 'D:\Hyper-V\Virtual Machines'
+$VHDXPath = 'D:\Hyper-V\Virtual Hard Disks'
+New-Item -Path $VMPath -ItemType Directory -Force
+New-Item -Path $VHDXPath -ItemType Directory -Force
+
+# Set the default paths for new VMs and VHDX files
+Set-VMHost -Path $VMPath -VirtualHardDiskPath $VHDXPath
+
+# --- Sub-step 3.3: Configure Virtual Networks ---
+# Get available physical network adapters
+Get-NetAdapter | Select-Object Name, Status, MacAddress | Out-GridView -Title 'Available Network Adapters'
+
+# Create an external virtual switch. Replace 'Ethernet' with your actual physical adapter name.
+New-VMSwitch -Name 'External_Switch' -NetAdapterName 'Ethernet' -AllowManagementOS $true
+
+# Verify virtual switch creation
+Get-VMSwitch | Select-Object Name, SwitchType, NetAdapterInterfaceDescription
+</code></pre>
+<p><code>Add-WindowsFeature -Name Hyper-V</code>: Installs the Hyper-V role and its associated management tools.</p>
+<p><code>Restart-Computer -Force</code>: Initiates an immediate reboot, necessary for the Hyper-V role installation to complete.</p>
+<p><code>New-Item -ItemType Directory</code>: Creates the specified directories for VM configuration files and virtual hard disks.</p>
+<p><code>Set-VMHost</code>: Configures default paths for virtual machine files and virtual hard disks on the Hyper-V host.</p>
+<p><code>Get-NetAdapter</code>: Lists all physical network adapters on the host.</p>
+<p><code>New-VMSwitch</code>: Creates a new virtual switch. Use <code>-NetAdapterName</code> to bind it to a physical adapter for external network access. `AllowManagementOS` allows the host OS to share the adapter.</p>
+<p><code>Get-VMSwitch</code>: Verifies the creation and configuration of virtual switches.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> In Server Manager, add the Hyper-V role. After reboot, open Hyper-V Manager, navigate to 'Hyper-V Settings' to configure default paths, and use 'Virtual Switch Manager' to create and configure virtual switches.</p>
+<p><strong>Expected result:</strong> A fully configured Hyper-V host, ready to receive migrated VMs, with dedicated storage locations and network connectivity established.</p>
+
+<h2>Step 4: VM Disk Export and Conversion Strategy (Manual vmdk to vhdx)</h2>
+<p>This step details the recommended manual approach for exporting VMware VMDK disks and converting them into the Hyper-V VHDX format. This method is highly reliable and provides granular control over the conversion process, ensuring optimal compatibility and performance. It's suitable for small to medium migrations where SCVMM might be overkill.</p>
+<pre><code class='language-powershell'># --- Sub-step 4.1: Identify the VMDK Path and Copy to Hyper-V Host ---
+# Connect to vCenter (if not already connected)
+# Connect-VIServer -Server 'your_vcenter_server_fqdn' -Credential (Get-Credential)
+
+# Get the VMDK path for the VM (replace 'YourVMName')
+$VM = Get-VM -Name 'YourVMName'
+$VMDKPath = $VM.HardDisks[0].ExtensionData.Backing.FileName
+Write-Host "VMDK Path for 'YourVMName': $VMDKPath"
+
+# BEFORE COPYING: Power off the VMware VM! This is CRITICAL.
+# Once powered off, use SCP/SFTP or direct storage access to copy the .vmdk file
+# from the ESXi datastore to a temporary location on your Hyper-V host (e.g., C:\TempVMDK).
+Write-Host "Ensure 'YourVMName' is powered off in VMware before proceeding."
+Write-Host "Manually copy the VMDK file '$VMDKPath' to 'C:\TempVMDK\YourVMName.vmdk' on the Hyper-V host."
+
+# --- Sub-step 4.2: Convert VMDK to VHDX ---
+# Run this on the Hyper-V host where the VMDK was copied.
+$SourceVMDK = 'C:\TempVMDK\YourVMName.vmdk'
+$DestinationVHDX = 'D:\Hyper-V\Virtual Hard Disks\YourVMName_Disk01.vhdx' # Use the path defined in Step 3
+
+# IMPORTANT: Ensure the VMDK file is not locked by any process.
+# Consider using a tool like qemu-img if Convert-VHD has issues with specific VMDK types.
+# This example assumes Convert-VHD is sufficient, which it usually is for standard VMDKs.
+Convert-VHD -Path $SourceVMDK -DestinationPath $DestinationVHDX -VHDType Dynamic
+
+# For a fixed size disk (recommended for performance for boot drives):
+# Convert-VHD -Path $SourceVMDK -DestinationPath $DestinationVHDX -VHDType Fixed
+</code></pre>
+<p><code>$VMDKPath = $VM.HardDisks[0].ExtensionData.Backing.FileName</code>: Retrieves the absolute path to the primary VMDK file for a given VM.</p>
+<p><code>Write-Host</code>: Provides critical instructions for manual intervention (powering off the VM, copying the VMDK).</p>
+<p><code>Convert-VHD</code>: Converts a virtual hard disk from one format to another (e.g., VMDK to VHDX). This cmdlet is part of the Hyper-V module.</p>
+<p><code>-Path</code>: Specifies the source VMDK file.</p>
+<p><code>-DestinationPath</code>: Specifies the target path and filename for the new VHDX file.</p>
+<p><code>-VHDType Dynamic</code>: Creates a dynamically expanding VHDX. Use <code>-VHDType Fixed</code> for better performance for OS disks.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Power off the VMware VM in vSphere Client. Copy the VMDK from the datastore. On the Hyper-V host, open Hyper-V Manager, go to 'Action' -> 'Edit Disk...', browse to the VMDK, and follow the wizard to convert it to VHDX.</p>
+<p><strong>Expected result:</strong> A new VHDX file created in your designated Hyper-V virtual hard disk path, representing the converted VMware VMDK disk, ready to be attached to a new Hyper-V VM.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Attempting to convert a VMDK while the VMware VM is still running or has active snapshots. This will lead to data corruption or an inconsistent disk image. Always power off the source VM and consolidate all snapshots before copying its VMDK. Also, ensure sufficient free space on the target drive for the conversion process, as dynamic VHDX still requires a full copy during conversion.</div>
+
+<h2>Step 5: Enterprise V2V with System Center Virtual Machine Manager (SCVMM)</h2>
+<p>For large-scale enterprise migrations, System Center Virtual Machine Manager (SCVMM) provides an integrated, robust solution for performing V2V (Virtual to Virtual) conversions directly. SCVMM streamlines the migration process by handling disk conversion, VM creation, and initial configuration, making it ideal for environments with numerous VMs and centralized management needs.</p>
+<pre><code class='language-powershell'># Connect to SCVMM Server
+# Ensure SCVMM has been configured to manage both VMware and Hyper-V environments.
+# This requires installing SCVMM agents on ESXi hosts and adding vCenter Server to SCVMM.
+Connect-SCServer -ComputerName 'your_scvmm_server_fqdn'
+
+# --- Sub-step 5.1: Get Source VMware VM and Target Hyper-V Host ---
+$SourceVM = Get-SCVirtualMachine -Name 'YourVMName' -VMMServer 'your_scvmm_server_fqdn'
+$TargetHost = Get-SCVMHost -Name 'your_hyperv_host_fqdn' -VMMServer 'your_scvmm_server_fqdn'
+
+# --- Sub-step 5.2: Perform V2V Conversion ---
+# This command converts the VMware VM to a Hyper-V VM, placing it on the specified host.
+# Specify the path for the VHDX files on the target host's storage.
+# Ensure the VMware VM is powered off BEFORE running this command.
+New-SCV2V -VM $SourceVM -VMHost $TargetHost -Path "D:\Hyper-V\Virtual Machines" `
+          -Name "YourVMName_Migrated" -Description "Migrated from VMware" `
+          -RunAsynchronously -JobGroup (New-Guid)
+
+# --- Sub-step 5.3: Monitor the Conversion Job ---
+# Get-SCJob | Where-Object { $_.Status -eq 'Running' -and $_.Description -like '*V2V*' }
+# Refresh-VMHost -VMHost $TargetHost # Refresh the host in SCVMM after conversion
+</code></pre>
+<p><code>Connect-SCServer</code>: Connects to the SCVMM management server.</p>
+<p><code>Get-SCVirtualMachine</code>: Retrieves a virtual machine managed by SCVMM (can be VMware or Hyper-V).</p>
+<p><code>Get-SCVMHost</code>: Retrieves a virtual machine host managed by SCVMM (can be ESXi or Hyper-V).</p>
+<p><code>New-SCV2V</code>: Initiates the V2V conversion process. This cmdlet handles powering off the source VM (if configured), converting disks, and creating the new Hyper-V VM.</p>
+<p><code>-VM</code>: Specifies the source VMware virtual machine object.</p>
+<p><code>-VMHost</code>: Specifies the target Hyper-V host where the new VM will reside.</p>
+<p><code>-Path</code>: Defines the storage path on the target Hyper-V host for the VM files.</p>
+<p><code>-Name</code>: Assigns a new name to the migrated Hyper-V virtual machine.</p>
+<p><code>-RunAsynchronously</code>: Executes the command as a background job, allowing you to continue working.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> In the SCVMM Console, navigate to 'VMs and Services'. Right-click the desired VMware VM, select 'Migrate Virtual Machine' -> 'V2V'. Follow the wizard to choose the target Hyper-V host, storage paths, and network settings.</p>
+<p><strong>Expected result:</strong> The specified VMware VM is converted and recreated as a Hyper-V VM on the target host, with its disks converted to VHDX format. The new VM will appear in Hyper-V Manager and be manageable via SCVMM.</p>
+
+<h2>Step 6: Create and Configure Hyper-V Virtual Machines</h2>
+<p>With your VHDX disks ready (either through manual conversion or SCVMM), this step focuses on creating the new Hyper-V virtual machine shell and attaching the converted VHDX disks. You'll also configure essential resources like CPU, memory, and network adapters.</p>
+<pre><code class='language-powershell'># Run this on the Hyper-V host.
+
+# --- Sub-step 6.1: Create a New Hyper-V Virtual Machine ---
+# Choose Generation 1 for older OS (Windows Server 2003/XP), Generation 2 for modern OS (Windows Server 2012+ / Windows 8+).
+# Use the VM path defined in Step 3.
+$VMName = 'YourVMName_Migrated'
+$VHDXFilePath = 'D:\Hyper-V\Virtual Hard Disks\YourVMName_Disk01.vhdx' # Path from Step 4 or 5
+$MemoryStartupGB = 4
+$ProcessorCount = 2
+
+New-VM -Name $VMName -MemoryStartupBytes ($MemoryStartupGB * 1GB) -Generation 2 `
+       -NewVHDPath $null -SwitchName 'External_Switch' -Path 'D:\Hyper-V\Virtual Machines'
+
+# --- Sub-step 6.2: Attach the Converted VHDX Disk ---
+# Remove the empty VHD created by New-VM by default if -NewVHDPath is not null
+# If -NewVHDPath $null was used, there might not be a disk to remove.
+# For simplicity and clarity, we assume a new VM without an attached disk.
+Add-VMHardDiskDrive -VMName $VMName -Path $VHDXFilePath -ControllerType SCSI -ControllerNumber 0 -ControllerLocation 0
+
+# --- Sub-step 6.3: Configure CPU and other settings ---
+Set-VMProcessor -VMName $VMName -Count $ProcessorCount
+Set-VMMemory -VMName $VMName -StartupBytes ($MemoryStartupGB * 1GB) -MinimumBytes 512MB -MaximumBytes ($MemoryStartupGB * 2GB) -DynamicMemoryEnabled $true
+
+# Set boot order (e.g., to boot from the attached VHDX)
+Set-VMFirmware -VMName $VMName -FirstBootDevice (Get-VMHardDiskDrive -VMName $VMName)
+
+# --- Sub-step 6.4: Power On the VM for the First Time ---
+Start-VM -Name $VMName
+</code></pre>
+<p><code>New-VM</code>: Creates a new virtual machine. <code>-Generation 2</code> is recommended for modern OS, offering UEFI boot and other features. <code>-NewVHDPath $null</code> prevents creating a default empty VHDX. <code>-SwitchName</code> connects it to the virtual network.</p>
+<p><code>Add-VMHardDiskDrive</code>: Attaches an existing virtual hard disk (your converted VHDX) to the VM. <code>-ControllerType SCSI</code> is generally preferred for Generation 2 VMs for hot-add capabilities.</p>
+<p><code>Set-VMProcessor</code>: Configures the number of virtual processors for the VM.</p>
+<p><code>Set-VMMemory</code>: Adjusts memory settings, including dynamic memory, which allows Hyper-V to dynamically allocate RAM based on VM needs.</p>
+<p><code>Set-VMFirmware</code>: Configures UEFI/BIOS settings, including boot order. Essential for ensuring the VM boots from the correct disk.</p>
+<p><code>Start-VM</code>: Powers on the newly created virtual machine.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> In Hyper-V Manager, click 'Action' -> 'New' -> 'Virtual Machine...'. Follow the wizard to specify VM name, generation, memory, and network. On the 'Connect Virtual Hard Disk' page, select 'Use an existing virtual hard disk' and browse to your VHDX file. After creation, adjust CPU and memory settings in the VM's 'Settings'.</p>
+<p><strong>Expected result:</strong> A new Hyper-V VM created, with the converted VHDX attached, configured with initial CPU and memory resources, and successfully booted into its operating system.</p>
+
+<h2>Step 7: Post-Migration Hardening and Optimization</h2>
+<p>After the initial boot, several critical steps are needed to ensure the migrated VM performs optimally and securely on Hyper-V. This includes installing Hyper-V Integration Services, configuring network settings within the guest OS, and applying performance and security optimizations.</p>
+<pre><code class='language-powershell'># --- Sub-step 7.1: Install Hyper-V Integration Services (Inside Guest OS) ---
+# For Windows Server 2012 R2 and newer, Integration Services are built-in and auto-updated via Windows Update.
+# For older OS or if services are missing, you might need to manually install.
+# Mount the Integration Services ISO
+Mount-VMHostAssignableDevice -VMName 'YourVMName_Migrated' -HostDevice 'C:\Windows\System32\vmguest.iso' # Path to built-in ISO
+
+# Instruct user to manually install within guest OS
+Write-Host "Log into 'YourVMName_Migrated' via Hyper-V Manager Console."
+Write-Host "Open File Explorer, find the mounted Integration Services disk (D: or E: drive)."
+Write-Host "Run 'setup.exe' or 'Install-VMIntegrationServices.ps1' (for newer OS) to install or update."
+Write-Host "Reboot the guest VM after installation."
+
+# --- Sub-step 7.2: Verify Integration Services Status (On Hyper-V Host) ---
+Get-VMIntegrationService -VMName 'YourVMName_Migrated' | Format-Table Name, Enabled, PrimaryStatus
+
+# --- Sub-step 7.3: Configure Network Settings (Inside Guest OS) ---
+# After integration services, the network adapter will be properly recognized.
+# RDP/Console into the VM and verify/configure IP addressing.
+Write-Host "Verify network connectivity and IP configuration within the guest OS. Use 'ipconfig /all'."
+Write-Host "Reconfigure static IP addresses, DNS servers, and gateways if necessary."
+
+# Example for configuring static IP inside the guest (if no DHCP is desired):
+# Run this inside the guest VM (requires elevated privileges):
+# New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress "192.168.1.100" -PrefixLength 24 -DefaultGateway "192.168.1.1"
+# Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses "8.8.8.8","8.8.4.4"
+
+# --- Sub-step 7.4: Remove Legacy Hardware (Inside Guest OS) ---
+# Open Device Manager and remove any "ghost" VMware network adapters or SCSI controllers.
+Write-Host "In Device Manager within the guest OS, show hidden devices and remove any non-present VMware hardware."
+
+# --- Sub-step 7.5: Hyper-V Specific Optimizations (On Hyper-V Host) ---
+# Enable Production Checkpoints (recommended over standard snapshots)
+Set-VM -Name 'YourVMName_Migrated' -AutomaticCheckpointEnabled $true -CheckpointType Production
+
+# For Gen 2 VMs, consider disabling Secure Boot if applications require it (rare, but possible)
+# Set-VMFirmware -VMName 'YourVMName_Migrated' -EnableSecureBoot $false
+
+# Disconnect the Integration Services ISO
+# Dismount-VMHostAssignableDevice -VMName 'YourVMName_Migrated' -HostDevice 'C:\Windows\System32\vmguest.iso'
+</code></pre>
+<p><code>Mount-VMHostAssignableDevice</code>: Attaches a physical host device (like the Integration Services ISO) to a VM. Note: The path to `vmguest.iso` may vary by Windows Server version.</p>
+<p><code>Get-VMIntegrationService</code>: Verifies the status of individual Hyper-V Integration Services for a VM.</p>
+<p><code>New-NetIPAddress</code> / <code>Set-DnsClientServerAddress</code>: PowerShell cmdlets for configuring network settings directly within the guest OS (if run from within the guest).</p>
+<p><code>Set-VM -CheckpointType Production</code>: Configures the VM to use Production checkpoints, which leverage guest OS snapshot technologies for consistency.</p>
+<p><code>Set-VMFirmware -EnableSecureBoot</code>: Manages the Secure Boot setting for Generation 2 VMs.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Use Hyper-V Manager to connect to the VM. Within the VM, open 'Device Manager' to clean up old drivers. For network configuration, use 'Network and Sharing Center'. In Hyper-V Manager, for the VM's settings, configure checkpoints and other advanced features.</p>
+<p><strong>Expected result:</strong> The migrated Hyper-V VM has Hyper-V Integration Services installed and enabled, network connectivity is fully functional, and necessary performance/security optimizations are applied, ensuring optimal operation within the Hyper-V environment.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Skipping Hyper-V Integration Services installation or verification. Without these services, VMs will lack critical drivers, exhibit poor performance (slow disk I/O, no time synchronization, basic video driver), and may not be manageable by Hyper-V features like dynamic memory or live migration. This is a common oversight leading to poor post-migration experience.</div>
+
+<h2>Step 8: Validation, Testing, and Cutover</h2>
+<p>The final, critical stage involves comprehensive testing of the migrated VMs and their applications, performance validation, and planning a phased cutover. This ensures business continuity and confirms that the migration has met all functional and performance requirements.</p>
+<pre><code class='language-powershell'># --- Sub-step 8.1: Functional Validation ---
+# Access the migrated VM and its applications.
+# This requires manual interaction and application-specific test scripts.
+Write-Host "Perform comprehensive application testing on 'YourVMName_Migrated'."
+Write-Host "Verify all services are running and accessible (e.g., web servers, databases, file shares)."
+# Example: Check if a specific service is running inside the guest OS
+# Invoke-Command -VMName 'YourVMName_Migrated' -ScriptBlock { Get-Service -Name 'W3SVC' -ErrorAction SilentlyContinue } | Select-Object Name, Status
+
+# --- Sub-step 8.2: Performance Validation ---
+# Monitor key performance counters on both the Hyper-V host and within the guest VM.
+# Use Performance Monitor (perfmon.exe) or PowerShell to collect data.
+# Example: Collect CPU and Memory usage for a short period on the Hyper-V host for a specific VM
+Get-Counter '\Hyper-V VM(*)\% Processor Time' | Select-Object CounterSamples
+Get-Counter '\Hyper-V VM(*)\Consumed Memory' | Select-Object CounterSamples
+
+# --- Sub-step 8.3: Network Connectivity and Latency Testing ---
+Write-Host "Test network connectivity from and to 'YourVMName_Migrated'."
+Test-NetConnection -ComputerName 'YourVMName_Migrated' -Port 3389 # Example for RDP
+Test-NetConnection -ComputerName 'YourVMName_Migrated' -Port 80   # Example for HTTP
+
+# --- Sub-step 8.4: Backup and Disaster Recovery Testing ---
+Write-Host "Verify that the new Hyper-V VM can be backed up and restored successfully using your backup solution."
+Write-Host "Test your disaster recovery plan for the migrated VM."
+
+# --- Sub-step 8.5: Cutover Plan Execution ---
+# This is a high-level overview. Actual cutover requires detailed planning.
+Write-Host "Execute a planned, phased cutover. This typically involves:"
+Write-Host "1. Final sync of data (if applicable for applications like SQL replication)."
+Write-Host "2. Shut down the original VMware VM."
+Write-Host "3. Power on the Hyper-V VM and redirect traffic (DNS, load balancers, etc.)."
+Write-Host "4. Monitor closely for issues post-cutover."
+</code></pre>
+<p><code>Invoke-Command -VMName</code>: Executes a PowerShell script block directly within the guest VM.</p>
+<p><code>Get-Counter</code>: Collects performance counter data from the Hyper-V host or within a guest OS (if run inside the guest).</p>
+<p><code>Test-NetConnection</code>: Verifies network connectivity to a specified computer and port.</p>
+<p><code>Write-Host</code>: Provides textual guidance for manual testing and cutover strategy.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Use Hyper-V Manager to connect to the VM and manually test applications. Use Performance Monitor (Perfmon.exe) on both the Hyper-V host and within the guest OS to gather performance metrics. Ping and tracert utilities can confirm network paths.</p>
+<p><strong>Expected result:</strong> All applications and services on the migrated VM are validated to be fully functional and performing optimally. A successful cutover is executed with minimal downtime, and the original VMware VM is decommissioned or archived.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Insufficient testing or an incomplete rollback plan. Rushing the validation phase can lead to production issues post-cutover. Always allocate ample time for user acceptance testing (UAT), performance benchmarks, and ensure you have a clear, tested rollback strategy in case of unforeseen problems. Don't decommission the source VMware VM until the migrated Hyper-V VM has proven stable in production for an extended period.</div>
+
+<div class='howto-consultant-cta'><h3>When to bring in a consultant</h3><p>While this guide provides a definitive CLI-first approach, large-scale enterprise migrations, environments with complex application dependencies, or those requiring near-zero downtime can present significant challenges. If your team lacks specialized expertise in both VMware and Hyper-V, is constrained by time, or requires advanced automation and orchestration beyond basic SCVMM, bringing in an experienced IT consultant specializing in Cloud Migration and Infrastructure Revamp can mitigate risks, accelerate the process, and ensure a secure, optimized outcome. SkyCore Solutions has a proven track record in seamless virtualization migrations.</p><a href='../contact.html' class='btn btn-primary'>Book a free consultation</a></div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
