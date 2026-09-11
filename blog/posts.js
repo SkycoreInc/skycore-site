@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "vulnerability-myths-montreal-smb",
+    title: "Stop Believing These 3 Outdated Cybersecurity Myths",
+    date: "2026-09-11",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Is your Montreal SMB relying on outdated cybersecurity advice? It's time to challenge conventional wisdom about vulnerability management, network perimeters, and compliance for true protection.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38701975/pexels-photo-38701975.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "cve-exposure-kill-plan-smb",
     title: "Exposure After a CVE: Your 5-Step Kill Plan for Montreal SMBs",
     date: "2026-09-09",
