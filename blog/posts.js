@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "passkey-phishing-microsoft-365-security-montreal",
+    title: "Your Microsoft 365 Isn't Safe: Passkey Phishing Hijacks Cloud Accounts",
+    date: "2026-09-13",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Cybercriminals are deploying sophisticated passkey-themed phishing campaigns to hijack Microsoft Cloud accounts and steal critical data. Your business needs more than basic defenses to survive.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/15049670/pexels-photo-15049670.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "vulnerability-myths-montreal-smb",
     title: "Stop Believing These 3 Outdated Cybersecurity Myths",
     date: "2026-09-11",
