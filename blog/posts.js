@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "eight-second-breach-zero-trust-montreal",
+    title: "The Eight-Second Breach: Why Your SMB Needs Zero Trust Now",
+    date: "2026-09-15",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are exploiting vulnerabilities in seconds, not days. Discover why traditional security is failing and how a zero-trust model can protect your Montreal business.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380608/pexels-photo-5380608.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "passkey-phishing-microsoft-365-security-montreal",
     title: "Your Microsoft 365 Isn't Safe: Passkey Phishing Hijacks Cloud Accounts",
     date: "2026-09-13",
