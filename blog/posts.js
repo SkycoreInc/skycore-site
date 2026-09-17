@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cybersecurity-gap-montreal-smb-protection",
+    title: "The Glaring Gap: Why Your Montreal SMB is an Easy Target",
+    date: "2026-09-17",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are weaponizing new vulnerabilities in just five days, yet most businesses take over a month to patch. This isn't just a number; it's a critical threat to your Montreal business.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/37709121/pexels-photo-37709121.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "eight-second-breach-zero-trust-montreal",
     title: "The Eight-Second Breach: Why Your SMB Needs Zero Trust Now",
     date: "2026-09-15",
