@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mastering Azure DevTest Labs: An Essential Setup Guide for SMBs — SkyCore Solutions</title>
+  <meta name="description" content="This Azure DevTest Labs setup guide helps SMBs create cost-controlled, on-demand dev/test environments. Learn to provision VMs efficiently, enforce policies, and streamline workflows." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Mastering Azure DevTest Labs: An Essential Setup Guide for SMBs — SkyCore Solutions" />
+  <meta property="og:description" content="This Azure DevTest Labs setup guide helps SMBs create cost-controlled, on-demand dev/test environments. Learn to provision VMs efficiently, enforce policies, and streamline workflows." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-devtest-labs-setup-guide-smb.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/32778341/pexels-photo-32778341.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mastering Azure DevTest Labs: An Essential Setup Guide for SMBs — SkyCore Solutions" />
+  <meta name="twitter:description" content="This Azure DevTest Labs setup guide helps SMBs create cost-controlled, on-demand dev/test environments. Learn to provision VMs efficiently, enforce policies, and streamline workflows." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/32778341/pexels-photo-32778341.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-devtest-labs-setup-guide-smb.html" />
+  <meta property="article:published_time" content="2026-09-09" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Mastering Azure DevTest Labs: An Essential Setup Guide for SMBs",
+  "description": "This Azure DevTest Labs setup guide helps SMBs create cost-controlled, on-demand dev/test environments. Learn to provision VMs efficiently, enforce policies, and streamline workflows.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Active Azure Subscription with Contributor role or higher., Azure CLI installed (version 2.50.0 or later)., Azure PowerShell Az module installed (version 10.0.0 or later)., Basic understanding of Azure Resource Groups and Virtual Machines., An email address or webhook URL for autoshutdown notifications (e.g., Teams channel, Slack, or email distribution list)."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Your Azure Environment",
+        "text": "Before creating your lab, establish a dedicated resource group to logically organize and manage all DevTest Labs resources."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create the Azure DevTest Lab",
+        "text": "Provision the core DevTest Lab instance, which acts as the central container for your development and testing virtual machines, ensuring built-in cost management features from the start."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Essential Lab Policies for Cost Control",
+        "text": "Implement crucial policies to automatically manage costs by limiting VM sizes, the number of VMs per user, and setting daily autoshutdown schedules."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Add a Virtual Network (Optional but Recommended)",
+        "text": "Integrate an existing or new virtual network with your lab to provide network isolation, connectivity to other Azure resources, or hybrid connectivity to your on-premises infrastructure."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Provision a Virtual Machine within the Lab",
+        "text": "Create your first development or testing virtual machine using a pre-configured base image, inheriting the lab's policies for consistent and controlled environments."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Automate VM Setup with Artifacts (Advanced)",
+        "text": "Leverage artifacts to automatically install software, run scripts, and apply configurations to your VMs during or after creation, ensuring repeatable and consistent environments."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-09-09 &middot; 15 min read &middot; Infrastructure Revamp</div>
+<h1>Mastering Azure DevTest Labs: An Essential Setup Guide for SMBs</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/32778341/pexels-photo-32778341.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Screenshot of Azure DevTest Labs dashboard showing virtual machines and policies, representing an Azure DevTest Labs setup guide." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>For many small and medium-sized businesses (SMBs), managing development and testing environments can be a significant drain on resources. Inconsistent setups, forgotten VMs running overnight, and the time spent manually provisioning environments all contribute to inefficiency and escalating costs. This is where Azure DevTest Labs becomes an indispensable tool. It provides a self-service model for developers and testers to quickly spin up, manage, and tear down Azure Virtual Machines (VMs) and environments, all while enforcing robust cost controls and streamlining workflows.</p>
+<p>This comprehensive <strong>Azure DevTest Labs setup guide</strong> from SkyCore Solutions will walk you through the process of establishing a secure, cost-effective, and highly efficient DevTest Labs environment. By the end of this guide, you will have a fully configured Azure DevTest Lab, complete with essential policies, a network integration, and your first provisioned VM, ready for your team to accelerate their development and testing cycles.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul>
+<li><strong>Azure Subscription:</strong> An active Azure subscription with at least <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#contributor" target="_blank">Contributor</a> access at the subscription level or to a resource group where you intend to deploy the lab.</li>
+<li><strong>Azure CLI:</strong> The latest version of the Azure CLI installed on your workstation. Refer to the <a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli" target="_blank">official Microsoft documentation for installation</a>.</li>
+<li><strong>Azure PowerShell:</strong> The latest version of the Azure PowerShell Az module installed. Follow the <a href="https://learn.microsoft.com/en-us/powershell/azure/install-az-ps" target="_blank">Microsoft guide for installation</a>.</li>
+<li><strong>Basic Azure Knowledge:</strong> Familiarity with Azure Resource Groups and Virtual Machines is beneficial.</li>
+<li><strong>Cost Implications:</strong> While Azure DevTest Labs itself is a free service, you incur costs for the underlying Azure resources (VMs, storage, network) consumed within the lab. This guide heavily emphasizes cost control features.</li>
+<li><strong>Notification Endpoint:</strong> An email address or a webhook URL (e.g., for Microsoft Teams, Slack, or custom service) to receive autoshutdown notifications.</li>
+</ul></div>
+
+<h2>Step 1: Prepare Your Azure Environment</h2>
+<p>Before deploying any new Azure service, it's best practice to create a dedicated resource group. This helps organize your resources, simplifies management, and makes it easy to delete all related resources when they are no longer needed, preventing lingering costs.</p>
+
+<pre><code class="language-azurecli">az group create \
+  --name "SkyCore-DevTestLabs-RG" \
+  --location "canadacentral"
+</code></pre>
+<ul>
+<li><code>--name "SkyCore-DevTestLabs-RG"</code>: Specifies the name for your new resource group. We recommend a naming convention that indicates its purpose.</li>
+<li><code>--location "canadacentral"</code>: Sets the Azure region where the resource group will be deployed. Choose a region geographically close to your users for optimal performance.</li>
+</ul>
+
+<pre><code class="language-powershell">New-AzResourceGroup `
+  -Name "SkyCore-DevTestLabs-RG" `
+  -Location "Canada Central"
+</code></pre>
+<ul>
+<li><code>-Name "SkyCore-DevTestLabs-RG"</code>: The name of the resource group.</li>
+<li><code>-Location "Canada Central"</code>: The Azure region for the resource group.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> From the Azure portal, search for "Resource groups" &gt; Select "Create" &gt; Fill in Subscription, Resource group name (e.g., <code>SkyCore-DevTestLabs-RG</code>), and Region (e.g., <code>Canada Central</code>) &gt; Click "Review + create" then "Create".</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az group show --name "SkyCore-DevTestLabs-RG" --query name
+</code></pre>
+<pre><code class="language-powershell">Get-AzResourceGroup -Name "SkyCore-DevTestLabs-RG" | Select-Object ResourceGroupName
+</code></pre>
+
+<h2>Step 2: Create the Azure DevTest Lab</h2>
+<p>Now, let's create the DevTest Lab itself. This is the central hub where all your development and testing VMs will reside. When creating the lab, it's crucial for SMBs to immediately enable and configure autoshutdown policies to prevent VMs from running unnecessarily and incurring costs overnight or on weekends.</p>
+
+<pre><code class="language-azurecli">az lab create \
+  --resource-group "SkyCore-DevTestLabs-RG" \
+  --name "SkyCore-DevLab" \
+  --location "canadacentral" \
+  --autoshutdown-status Enabled \
+  --autoshutdown-time 1900 \
+  --autoshutdown-timezone "Canada/Eastern" \
+  --autoshutdown-notification-status Enabled \
+  --autoshutdown-notification-emails "devops@skycore.ca" \
+  --tags Project=DevTest Environment=DevOps
+</code></pre>
+<ul>
+<li><code>--resource-group "SkyCore-DevTestLabs-RG"</code>: The resource group created in Step 1.</li>
+<li><code>--name "SkyCore-DevLab"</code>: A unique name for your DevTest Lab.</li>
+<li><code>--location "canadacentral"</code>: The region for the lab, ideally matching your resource group.</li>
+<li><code>--autoshutdown-status Enabled</code>: <strong>Crucial for SMB cost control.</strong> Automatically shuts down all lab VMs daily.</li>
+<li><code>--autoshutdown-time 1900</code>: Sets the autoshutdown time to 7:00 PM (19:00 military time).</li>
+<li><code>--autoshutdown-timezone "Canada/Eastern"</code>: Specifies the time zone for the autoshutdown schedule.</li>
+<li><code>--autoshutdown-notification-status Enabled</code>: Sends a notification before autoshutdown.</li>
+<li><code>--autoshutdown-notification-emails "devops@skycore.ca"</code>: The email address to receive autoshutdown notifications. You could also use <code>--autoshutdown-notification-webhooks "https://your-teams-webhook-url"</code> for a Teams or Slack channel.</li>
+<li><code>--tags Project=DevTest Environment=DevOps</code>: Applies tags for better resource management and cost allocation.</li>
+</ul>
+
+<pre><code class="language-powershell">New-AzDevTestLab `
+  -ResourceGroupName "SkyCore-DevTestLabs-RG" `
+  -Name "SkyCore-DevLab" `
+  -Location "Canada Central" `
+  -AutoShutdownStatus Enabled `
+  -AutoShutdownTime 1900 `
+  -AutoShutdownTimeZone "Canada/Eastern" `
+  -AutoShutdownNotificationStatus Enabled `
+  -AutoShutdownNotificationMail "devops@skycore.ca" `
+  -Tag @{ Project="DevTest"; Environment="DevOps" }
+</code></pre>
+<ul>
+<li>Parameters are analogous to the Azure CLI commands.</li>
+<li><code>-Tag @{ Project="DevTest"; Environment="DevOps" }</code>: PowerShell syntax for defining tags.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Search for "DevTest Labs" &gt; Select "Create" &gt; Fill in "Subscription", "Resource group" (<code>SkyCore-DevTestLabs-RG</code>), "Lab name" (<code>SkyCore-DevLab</code>), and "Location". On the "Auto-shutdown" tab, set "Enabled" to <code>On</code>, specify "Scheduled shutdown" time (e.g., <code>19:00</code>) and "Time zone" (e.g., <code>Canada/Eastern</code>), and configure notifications. Finally, click "Review + create" then "Create".</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az lab show --resource-group "SkyCore-DevTestLabs-RG" --name "SkyCore-DevLab" --query '{name: name, location: location, autoshutdownStatus: autoshutdown.status}'
+</code></pre>
+<pre><code class="language-powershell">Get-AzDevTestLab -ResourceGroupName "SkyCore-DevTestLabs-RG" -Name "SkyCore-DevLab" | Select-Object Name, Location, AutoShutdownStatus
+</code></pre>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall: Forgetting Autoshutdown!</strong>
+<p>The single biggest cause of unexpected Azure costs in DevTest environments is forgetting to shut down VMs. Even if you don't configure all policies initially, ensure autoshutdown is enabled from day one. It's the most effective immediate cost-saving measure for any <strong>Azure DevTest Labs setup guide</strong>.</p></div>
+
+<h2>Step 3: Configure Essential Lab Policies for Cost Control</h2>
+<p>With your lab created, the next step is to enforce more granular cost controls and governance. DevTest Labs policies allow you to define limits on VM sizes, the number of VMs a user can create, and the total number of VMs in the lab. For SMBs, these policies are critical for managing budget and preventing resource sprawl.</p>
+
+<pre><code class="language-azurecli"># Set policy for allowed VM sizes
+az lab policy update \
+  --lab-name "SkyCore-DevLab" \
+  --resource-group "SkyCore-DevTestLabs-RG" \
+  --name AllowedVmSizesInLab \
+  --properties '{"status": "Enabled", "threshold": "[ \"Standard_D2s_v5\", \"Standard_E2s_v5\" ]"}'
+
+# Set policy for maximum VMs per user (e.g., 1 VM per developer)
+az lab policy update \
+  --lab-name "SkyCore-DevLab" \
+  --resource-group "SkyCore-DevTestLabs-RG" \
+  --name MaxVmsAllowedPerUser \
+  --properties '{"status": "Enabled", "threshold": "1"}'
+
+# Set policy for maximum total VMs in the lab
+az lab policy update \
+  --lab-name "SkyCore-DevLab" \
+  --resource-group "SkyCore-DevTestLabs-RG" \
+  --name MaxTotalVmsAllowed \
+  --properties '{"status": "Enabled", "threshold": "5"}'
+</code></pre>
+<ul>
+<li><code>--name AllowedVmSizesInLab</code>: This policy defines which VM sizes users can select when creating new VMs. For SMBs, <code>Standard_D2s_v5</code> (2 vCPUs, 8 GB RAM) or <code>Standard_E2s_v5</code> (2 vCPUs, 16 GB RAM) offer a good balance of performance and cost for most dev/test workloads. The <code>threshold</code> value is a JSON array of allowed SKU names.</li>
+<li><code>--name MaxVmsAllowedPerUser</code>: Limits the number of active VMs a single lab user can create. Setting this to <code>1</code> (or <code>2</code>) is a strong recommendation for SMBs to prevent individual users from consuming excessive resources.</li>
+<li><code>--name MaxTotalVmsAllowed</code>: Sets the overall maximum number of VMs that can exist in the lab at any given time. This helps manage the lab's total capacity and cost.</li>
+<li><code>--properties '{"status": "Enabled", "threshold": "..."}'</code>: This JSON string defines the policy's status (<code>Enabled</code> or <code>Disabled</code>) and its specific limit (<code>threshold</code>). Note the escaped double quotes within the threshold JSON for <code>AllowedVmSizesInLab</code>.</li>
+</ul>
+
+<pre><code class="language-powershell"># Set policy for allowed VM sizes
+$labName = "SkyCore-DevLab"
+$rgName = "SkyCore-DevTestLabs-RG"
+$allowedSizes = '[ "Standard_D2s_v5", "Standard_E2s_v5" ]'
+Set-AzDevTestLabPolicy -LabName $labName -ResourceGroupName $rgName -Name AllowedVmSizesInLab -Status Enabled -Threshold $allowedSizes
+
+# Set policy for maximum VMs per user
+Set-AzDevTestLabPolicy -LabName $labName -ResourceGroupName $rgName -Name MaxVmsAllowedPerUser -Status Enabled -Threshold "1"
+
+# Set policy for maximum total VMs in the lab
+Set-AzDevTestLabPolicy -LabName $labName -ResourceGroupName $rgName -Name MaxTotalVmsAllowed -Status Enabled -Threshold "5"
+</code></pre>
+<ul>
+<li><code>-Name AllowedVmSizesInLab</code>, <code>-Name MaxVmsAllowedPerUser</code>, <code>-Name MaxTotalVmsAllowed</code>: Specifies the policy to update.</li>
+<li><code>-Status Enabled</code>: Enables the policy.</li>
+<li><code>-Threshold "..."</code>: Sets the limit for the policy. Note that for <code>AllowedVmSizesInLab</code>, the threshold is a JSON string representing an array.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to your DevTest Lab &gt; Under "Settings", select "Configuration and policies" &gt; Under "Policies", click on each policy (e.g., "Allowed virtual machine sizes", "Virtual machines per user", "Virtual machines per lab") &gt; Set "Status" to <code>On</code> and configure the specific limits &gt; Click "Save".</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az lab policy show --lab-name "SkyCore-DevLab" --resource-group "SkyCore-DevTestLabs-RG" --name AllowedVmSizesInLab --query '{name: name, status: status, threshold: threshold}'
+az lab policy show --lab-name "SkyCore-DevLab" --resource-group "SkyCore-DevTestLabs-RG" --name MaxVmsAllowedPerUser --query '{name: name, status: status, threshold: threshold}'
+az lab policy show --lab-name "SkyCore-DevLab" --resource-group "SkyCore-DevTestLabs-RG" --name MaxTotalVmsAllowed --query '{name: name, status: status, threshold: threshold}'
+</code></pre>
+<pre><code class="language-powershell">Get-AzDevTestLabPolicy -LabName "SkyCore-DevLab" -ResourceGroupName "SkyCore-DevTestLabs-RG" -Name AllowedVmSizesInLab | Select-Object Name, Status, Threshold
+Get-AzDevTestLabPolicy -LabName "SkyCore-DevLab" -ResourceGroupName "SkyCore-DevTestLabs-RG" -Name MaxVmsAllowedPerUser | Select-Object Name, Status, Threshold
+Get-AzDevTestLabPolicy -LabName "SkyCore-DevLab" -ResourceGroupName "SkyCore-DevTestLabs-RG" -Name MaxTotalVmsAllowed | Select-Object Name, Status, Threshold
+</code></pre>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip: Use Formulas for Common VM Setups</strong>
+<p>For repeatable and consistent VM configurations, consider creating a "Formula" within your DevTest Lab. A formula is a base VM image with pre-installed software and settings. Users can then create VMs from this formula, ensuring everyone starts with the same environment. This significantly reduces setup time and ensures consistency across your dev/test teams.</p></div>
+
+<h2>Step 4: Add a Virtual Network (Optional but Recommended)</h2>
+<p>While DevTest Labs creates a default virtual network, for most SMBs, integrating your lab with an existing or new dedicated virtual network is highly recommended. This allows for better network isolation, controlled access to other Azure resources (like databases or storage accounts), or even hybrid connectivity back to your on-premises network. Note that associating a VNet directly via CLI during <code>az lab create</code> is not explicitly supported by the provided documentation; it's typically configured via the Azure portal during creation or added afterwards.</p>
+
+<p>First, let's create a new virtual network and subnet if you don't have one already. If you already have a VNet, you can skip this step and use its details in the portal configuration.</p>
+
+<pre><code class="language-azurecli"># Create a new Virtual Network
+az network vnet create \
+  --resource-group "SkyCore-DevTestLabs-RG" \
+  --name "SkyCore-DevLab-VNet" \
+  --location "canadacentral" \
+  --address-prefix "10.0.0.0/16"
+
+# Create a subnet within the VNet for DevTest Labs VMs
+az network vnet subnet create \
+  --resource-group "SkyCore-DevTestLabs-RG" \
+  --vnet-name "SkyCore-DevLab-VNet" \
+  --name "DevLabSubnet" \
+  --address-prefix "10.0.1.0/24"
+</code></pre>
+<ul>
+<li><code>--name "SkyCore-DevLab-VNet"</code>: Name for your new virtual network.</li>
+<li><code>--address-prefix "10.0.0.0/16"</code>: The address space for the VNet. Ensure this doesn't conflict with other networks if you plan for hybrid connectivity.</li>
+<li><code>--name "DevLabSubnet"</code>: A dedicated subnet within the VNet for your DevTest Labs VMs.</li>
+<li><code>--address-prefix "10.0.1.0/24"</code>: The address range for the subnet.</li>
+</ul>
+
+<pre><code class="language-powershell"># Create a new Virtual Network
+New-AzVirtualNetwork `
+  -ResourceGroupName "SkyCore-DevTestLabs-RG" `
+  -Name "SkyCore-DevLab-VNet" `
+  -Location "Canada Central" `
+  -AddressPrefix "10.0.0.0/16"
+
+# Create a subnet within the VNet for DevTest Labs VMs
+Add-AzVirtualNetworkSubnetConfig `
+  -Name "DevLabSubnet" `
+  -AddressPrefix "10.0.1.0/24" `
+  -VirtualNetwork (Get-AzVirtualNetwork -ResourceGroupName "SkyCore-DevTestLabs-RG" -Name "SkyCore-DevLab-VNet") | `
+Set-AzVirtualNetwork
+</code></pre>
+<ul>
+<li>Parameters are analogous to the Azure CLI commands.</li>
+<li><code>Add-AzVirtualNetworkSubnetConfig ... | Set-AzVirtualNetwork</code>: PowerShell pattern to add a subnet to an existing VNet object and then update the VNet in Azure.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative (for associating VNet with Lab):</strong> Navigate to your DevTest Lab &gt; Under "Settings", select "Configuration and policies" &gt; Select "Virtual networks" &gt; Click "+ Add" &gt; Select the desired Virtual Network (e.g., <code>SkyCore-DevLab-VNet</code>) and its subnet (e.g., <code>DevLabSubnet</code>) &gt; Click "Save". Alternatively, during lab creation, on the "Networking" tab, select your custom VNet and subnet.</p>
+
+<p><strong>Run this to verify (VNet and Subnet creation):</strong></p>
+<pre><code class="language-azurecli">az network vnet show --resource-group "SkyCore-DevTestLabs-RG" --name "SkyCore-DevLab-VNet" --query '{name: name, subnets: subnets[].name}'
+</code></pre>
+<pre><code class="language-powershell">Get-AzVirtualNetwork -ResourceGroupName "SkyCore-DevTestLabs-RG" -Name "SkyCore-DevLab-VNet" | Select-Object Name, @{Name='Subnets'; Expression={$_.Subnets.Name}}
+</code></pre>
+
+<h2>Step 5: Provision a Virtual Machine within the Lab</h2>
+<p>With the lab and policies in place, it's time to create your first virtual machine. This VM will automatically inherit the policies defined for the lab, ensuring it adheres to your organization's cost controls and standards. For SMBs, using a public Marketplace image is the quickest way to get started.</p>
+
+<pre><code class="language-azurecli">az lab vm create \
+  --lab-name "SkyCore-DevLab" \
+  --resource-group "SkyCore-DevTestLabs-RG" \
+  --name "DevVM-001" \
+  --image "MicrosoftWindowsDesktop:windows11-22h2-pro:win11-22h2-pro-g2:latest" \
+  --size "Standard_D2s_v5" \
+  --admin-username "devuser" \
+  --admin-password "P@ssw0rdSkyCore!1" \
+  --generate-public-ip true
+</code></pre>
+<ul>
+<li><code>--lab-name "SkyCore-DevLab"</code>: The name of your DevTest Lab.</li>
+<li><code>--resource-group "SkyCore-DevTestLabs-RG"</code>: The resource group containing your lab.</li>
+<li><code>--name "DevVM-001"</code>: A unique name for your new VM.</li>
+<li><code>--image "MicrosoftWindowsDesktop:windows11-22h2-pro:win11-22h2-pro-g2:latest"</code>: Specifies the base image for the VM. We recommend a recent Windows 11 Pro image for development. You can find other image URNs in the Azure portal or via <code>az vm image list</code>.</li>
+<li><code>--size "Standard_D2s_v5"</code>: The VM size. This must be one of the sizes allowed by your lab's policies (e.g., <code>Standard_D2s_v5</code>).</li>
+<li><code>--admin-username "devuser"</code>: The administrator username for the VM.</li>
+<li><code>--admin-password "P@ssw0rdSkyCore!1"</code>: A strong password for the administrator user. <strong>Note:</strong> For production-like environments or increased security, consider using Azure Key Vault to store and retrieve passwords, although this adds complexity.</li>
+<li><code>--generate-public-ip true</code>: Assigns a public IP address to the VM, allowing direct RDP/SSH access. For private internal networks, you might omit this and use bastion host or VPN.</li>
+</ul>
+
+<pre><code class="language-powershell">New-AzDevTestLabVM `
+  -LabName "SkyCore-DevLab" `
+  -ResourceGroupName "SkyCore-DevTestLabs-RG" `
+  -Name "DevVM-001" `
+  -ImageName "MicrosoftWindowsDesktop:windows11-22h2-pro:win11-22h2-pro-g2:latest" `
+  -Size "Standard_D2s_v5" `
+  -AdminUsername "devuser" `
+  -AdminPassword "P@ssw0rdSkyCore!1" `
+  -GeneratePublicIp
+</code></pre>
+<ul>
+<li>Parameters are analogous to the Azure CLI commands.</li>
+<li><code>-GeneratePublicIp</code>: Equivalent to <code>--generate-public-ip true</code>.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to your DevTest Lab &gt; Click "+ Add" &gt; On the "Choose a base" page, select your desired image (e.g., <code>Windows 11 Pro, version 22H2</code>) &gt; On the "Basic Settings" tab, fill in "Virtual machine name", "User name", "Password", and select "Virtual machine size" &gt; Click "Create".</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az lab vm show --lab-name "SkyCore-DevLab" --resource-group "SkyCore-DevTestLabs-RG" --name "DevVM-001" --query '{name: name, size: size, provisioningState: provisioningState}'
+</code></pre>
+<pre><code class="language-powershell">Get-AzDevTestLabVM -LabName "SkyCore-DevLab" -ResourceGroupName "SkyCore-DevTestLabs-RG" -Name "DevVM-001" | Select-Object Name, Size, ProvisioningState
+</code></pre>
+
+<h2>Step 6: Automate VM Setup with Artifacts (Advanced)</h2>
+<p>Artifacts are powerful pre-packaged scripts or tools that can be automatically applied to a VM during or after its creation. They allow you to automate tasks like installing software, running configuration scripts, or deploying applications. This ensures consistency across your dev/test environments and reduces manual setup time. While the core DevTest Labs provides a public repository of artifacts, SMBs often benefit from creating their own private repositories for custom scripts and applications.</p>
+
+<pre><code class="language-azurecli"># Add a private Git artifact repository to your lab
+az lab artifact-source create \
+  --lab-name "SkyCore-DevLab" \
+  --resource-group "SkyCore-DevTestLabs-RG" \
+  --name "SkyCorePrivateArtifacts" \
+  --display-name "SkyCore Private Artifacts" \
+  --source-type GitHub \
+  --uri "https://github.com/your-org/devtest-artifacts.git" \
+  --folder-path "/artifacts" \
+  --branch-ref "main" \
+  --personal-access-token "YOUR_GITHUB_PAT"
+</code></pre>
+<ul>
+<li><code>--name "SkyCorePrivateArtifacts"</code>: A name for your artifact source within the lab.</li>
+<li><code>--source-type GitHub</code>: Specifies the type of repository (GitHub, VSTS, etc.).</li>
+<li><code>--uri "https://github.com/your-org/devtest-artifacts.git"</code>: The URL of your private Git repository.</li>
+<li><code>--folder-path "/artifacts"</code>: The path within your repository where artifacts definitions are stored.</li>
+<li><code>--branch-ref "main"</code>: The default branch to pull artifacts from.</li>
+<li><code>--personal-access-token "YOUR_GITHUB_PAT"</code>: A GitHub Personal Access Token (PAT) with <code>repo</code> scope to access your private repository. <strong>Store this securely in Azure Key Vault and retrieve programmatically in production!</strong></li>
+</ul>
+
+<pre><code class="language-powershell"># Add a private Git artifact repository to your lab
+$pat = ConvertTo-SecureString "YOUR_GITHUB_PAT" -AsPlainText -Force
+Add-AzDevTestLabArtifactSource `
+  -LabName "SkyCore-DevLab" `
+  -ResourceGroupName "SkyCore-DevTestLabs-RG" `
+  -Name "SkyCorePrivateArtifacts" `
+  -DisplayName "SkyCore Private Artifacts" `
+  -SourceType GitHub `
+  -Uri "https://github.com/your-org/devtest-artifacts.git" `
+  -FolderPath "/artifacts" `
+  -BranchRef "main" `
+  -PersonalAccessToken $pat
+</code></pre>
+<ul>
+<li>Parameters are analogous to the Azure CLI commands.</li>
+<li><code>ConvertTo-SecureString ... -AsPlainText -Force</code>: Used to convert your PAT into a secure string for PowerShell.</li>
+</ul>
+
+<p class="gui-note"><strong>Portal alternative:</strong> Navigate to your DevTest Lab &gt; Under "Settings", select "Configuration and policies" &gt; Under "Artifacts", select "Artifact sources" &gt; Click "+ Add" &gt; Fill in details for your Git repository (e.g., "Name", "Display Name", "Source type", "Git clone URI", "Branch", "Personal Access Token") &gt; Click "Save". Once added, when creating a new VM, you can select the "Artifacts" tab and choose artifacts from your newly added repository.</p>
+
+<p><strong>Run this to verify:</strong></p>
+<pre><code class="language-azurecli">az lab artifact-source show --lab-name "SkyCore-DevLab" --resource-group "SkyCore-DevTestLabs-RG" --name "SkyCorePrivateArtifacts" --query '{name: name, sourceType: sourceType, uri: uri}'
+</code></pre>
+<pre><code class="language-powershell">Get-AzDevTestLabArtifactSource -LabName "SkyCore-DevLab" -ResourceGroupName "SkyCore-DevTestLabs-RG" -Name "SkyCorePrivateArtifacts" | Select-Object Name, SourceType, Uri
+</code></pre>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this <strong>Azure DevTest Labs setup guide</strong> provides a solid foundation for most SMBs, more complex scenarios can benefit significantly from expert guidance. Consider engaging SkyCore Solutions if you need assistance with:</p>
+<ul>
+<li>Integrating DevTest Labs with existing hybrid Active Directory environments or complex network topologies.</li>
+<li>Developing advanced custom artifacts and robust artifact repositories for specialized software deployments or CI/CD pipelines.</li>
+<li>Implementing comprehensive security hardening and compliance frameworks for your dev/test environments.</li>
+<li>Optimizing costs across multiple labs or complex subscription structures.</li>
+<li>Migrating existing on-premises dev/test infrastructure to Azure, ensuring minimal disruption and maximum efficiency.</li>
+</ul>
+<p>Our team of Azure architects at SkyCore Solutions specializes in tailoring cloud solutions to your unique business needs, ensuring you get the most out of your Azure investment.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/devtest-labs/devtest-lab-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — devtest lab overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/devtest-labs/devtest-lab-create-lab" target="_blank" rel="noopener noreferrer">learn.microsoft.com — devtest lab create lab</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/devtest-labs/devtest-lab-add-vm" target="_blank" rel="noopener noreferrer">learn.microsoft.com — devtest lab add vm</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/devtest-labs/devtest-lab-set-lab-policy" target="_blank" rel="noopener noreferrer">learn.microsoft.com — devtest lab set lab policy</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

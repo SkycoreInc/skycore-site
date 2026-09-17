@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Essential SMB Network Segmentation Guide: Enhance Security & Performance — SkyCore Solutions</title>
+  <meta name="description" content="This comprehensive network segmentation guide for SMBs details strategies, CLI commands, and best practices to isolate critical assets, boost security, and optimize network performance. Learn to implement effectively." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Essential SMB Network Segmentation Guide: Enhance Security & Performance — SkyCore Solutions" />
+  <meta property="og:description" content="This comprehensive network segmentation guide for SMBs details strategies, CLI commands, and best practices to isolate critical assets, boost security, and optimize network performance. Learn to implement effectively." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/smb-network-segmentation-strategy-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Essential SMB Network Segmentation Guide: Enhance Security & Performance — SkyCore Solutions" />
+  <meta name="twitter:description" content="This comprehensive network segmentation guide for SMBs details strategies, CLI commands, and best practices to isolate critical assets, boost security, and optimize network performance. Learn to implement effectively." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/smb-network-segmentation-strategy-guide.html" />
+  <meta property="article:published_time" content="2026-09-10" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Essential SMB Network Segmentation Guide: Enhance Security & Performance",
+  "description": "This comprehensive network segmentation guide for SMBs details strategies, CLI commands, and best practices to isolate critical assets, boost security, and optimize network performance. Learn to implement effectively.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Basic understanding of TCP/IP, subnets, and VLANs., Administrative access to your network firewall, routers, and managed switches., A current network diagram and inventory of all connected devices., Familiarity with host-based firewalls (e.g., Windows Firewall, iptables)., Basic knowledge of Azure networking concepts if leveraging cloud resources."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Understand Your Current Network & Assets",
+        "text": "Identify all devices, data flows, and critical assets on your network to determine what needs protection and isolation."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Define Segmentation Zones & Security Policies",
+        "text": "Group devices into logical segments (e.g., servers, users, guests, IoT) and establish clear rules for communication between these zones."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Plan IP Addressing and VLAN Implementation",
+        "text": "Design a new IP addressing scheme and VLAN IDs to logically separate your defined network segments without physical rewiring."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Firewall/Router for Inter-VLAN Routing & ACLs",
+        "text": "Implement the core segmentation policies on your central firewall or router, controlling traffic flow between VLANs using Access Control Lists (ACLs)."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Deploy VLANs on Managed Switches",
+        "text": "Assign VLANs to specific switch ports to ensure devices are correctly placed into their designated network segments."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implement Host-Based & Cloud Segmentation",
+        "text": "Apply host firewalls on critical servers (e.g., Windows Firewall, iptables) and configure Azure Network Security Groups (NSGs) for cloud-based resources to enforce granular security."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Test, Validate, and Document Segmentation",
+        "text": "Thoroughly test all segmentation rules to ensure desired traffic flows are permitted and unauthorized access is blocked, then document the new configuration."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Monitor and Periodically Review Segmentation Policies",
+        "text": "Establish ongoing monitoring of network traffic for anomalies and schedule regular reviews of your segmentation policies to adapt to business changes and emerging threats."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class='post-meta'>2026-09-10 · 18 min read · Infrastructure Revamp</div>
+<h1>Essential SMB Network Segmentation Guide: Enhance Security & Performance</h1>
+<div class='article-hero'><img src='https://skycore-solutions.com/img/network-segmentation-hero.jpg' alt='Network segmentation diagram showing isolated zones for servers, users, and guests' loading='eager' fetchpriority='high'></div>
+<div class='howto-intro'><p>Implementing robust network segmentation is no longer a luxury for large enterprises; it's a critical security and performance necessity for Small and Medium Businesses (SMBs). This essential SMB network segmentation guide details how to logically divide your network into isolated zones, significantly reducing your attack surface, containing breaches, and optimizing network traffic. By following these steps, you will enhance your security posture and improve operational efficiency.</p></div>
+<div class='howto-prereqs'><h4>Prerequisites</h4><ul><li>Access to your primary firewall/router for configuration.</li><li>Managed network switches (Layer 2 or Layer 3 capable of VLANs).</li><li>Administrative access to servers and cloud resources (e.g., Azure subscription).</li><li>A comprehensive understanding of your existing network topology and assets.</li><li>Backup of all network device configurations before making changes.</li><li>Basic knowledge of IP addressing, subnetting, and network protocols.</li></ul></div>
+
+<h2>Step 1: Understand Your Current Network & Assets</h2>
+<p>Before implementing any segmentation, you must thoroughly understand your existing network. Identify all devices, applications, data flows, and critical assets. This discovery phase helps determine what needs protection and isolation, forming the foundation of your segmentation strategy.</p>
+<pre><code class='language-powershell'># For Windows hosts, list active connections and open ports
+Get-NetTCPConnection | Select-Object LocalAddress, LocalPort, RemoteAddress, RemotePort, State, OwningProcess
+Get-NetFirewallRule -Action Allow | Select-Object DisplayName, Direction, Action, Enabled, Protocol, LocalPort, RemotePort | Format-Table -AutoSize
+
+# For basic network discovery using nmap (install if not present, e.g., via Chocolatey: choco install nmap)
+nmap -sn 192.168.1.0/24  # Discover hosts on a specific subnet
+nmap -sT -p- 192.168.1.100 # Scan a single host for all open TCP ports
+
+# List ARP cache for connected devices (useful for identifying MACs and IPs)
+arp -a
+</code></pre>
+<p><code>Get-NetTCPConnection</code>: Lists all active TCP connections from the local Windows machine, showing source/destination IPs and ports.</p>
+<p><code>Get-NetFirewallRule -Action Allow</code>: Displays firewall rules that permit incoming or outgoing traffic, giving insight into allowed communications.</p>
+<p><code>nmap -sn 192.168.1.0/24</code>: Performs a "ping scan" to discover all active hosts on the specified subnet without scanning their ports.</p>
+<p><code>nmap -sT -p- 192.168.1.100</code>: Executes a full TCP connect scan on a specific host (<code>192.168.1.100</code>) against all 65535 possible TCP ports (<code>-p-</code>).</p>
+<p><code>arp -a</code>: Displays the Address Resolution Protocol (ARP) cache, showing the IP-to-MAC address mappings of recently communicated devices on the local network.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Manually inventory all hardware (servers, workstations, IoT, printers, network devices), software applications, and cloud services. Use network diagramming tools (e.g., Visio, Lucidchart) to visually map out existing connections and data flows. Conduct interviews with department heads to understand business-critical applications and data.</p>
+<p><strong>Expected result:</strong> A detailed inventory of all network devices and critical assets, a basic network diagram, and an understanding of key communication paths and dependencies. This forms your baseline for segmentation.</p>
+
+<h2>Step 2: Define Segmentation Zones & Security Policies</h2>
+<p>Once you understand your network, group devices into logical segments (zones) based on their function, security requirements, and data sensitivity. Common zones include servers, user workstations, guest Wi-Fi, IoT devices, and point-of-sale systems. Establish clear security policies that dictate exactly which types of communication are allowed or denied between these zones, adhering to the principle of least privilege.</p>
+<pre><code class='language-powershell'># This step is primarily planning and documentation. While no direct CLI command
+# creates security policies, you might use PowerShell to create a structured
+# documentation file outlining your proposed zones and policies.
+
+# Example: Create a new text file to document proposed zones and inter-zone policies
+New-Item -Path "C:\NetworkSegmentationPlan.txt" -ItemType File -Value @"
+NETWORK SEGMENTATION PLAN - 2026-09-10
+
+1.  **Proposed Zones:**
+    *   **Management Zone (VLAN 10):** Network devices, domain controllers, central management servers.
+        *   IP Range: 10.10.10.0/24
+    *   **Server Zone (VLAN 20):** Application servers, database servers, file servers.
+        *   IP Range: 10.10.20.0/24
+    *   **User Workstation Zone (VLAN 30):** Employee PCs, laptops.
+        *   IP Range: 10.10.30.0/24
+    *   **Guest Wi-Fi Zone (VLAN 40):** Guest access, isolated from internal resources.
+        *   IP Range: 10.10.40.0/24
+    *   **IoT/VoIP Zone (VLAN 50):** IP phones, surveillance cameras, smart devices.
+        *   IP Range: 10.10.50.0/24
+
+2.  **Inter-Zone Communication Policies (Allow Rules):**
+    *   **Management -> Server:** RDP (3389), SMB (445), SQL (1433), HTTP/S (80/443) for admin.
+    *   **Management -> User:** RDP (3389) for helpdesk.
+    *   **Server -> Management:** DNS (53), NTP (123), AD (LDAP 389, LDAPS 636, Kerberos 88).
+    *   **User -> Server:** HTTP/S (80/443) for applications, SMB (445) for authorized file shares.
+    *   **User -> Internet:** All outbound (80/443/53/123).
+    *   **Guest Wi-Fi -> Internet:** All outbound (80/443/53/123) - NO INTERNAL ACCESS.
+    *   **IoT/VoIP -> Server:** SIP (5060), RTP (dynamic) for VoIP, specific ports for IoT platforms.
+    *   **All Zones -> DNS Server (Management Zone):** UDP 53.
+    *   **All Zones -> NTP Server (Management Zone):** UDP 123.
+
+3.  **Default Policy:** DENY ALL traffic between zones unless explicitly permitted.
+"@
+</code></pre>
+<p><code>New-Item -Path ... -ItemType File -Value ...</code>: Creates a new file at the specified path and populates it with the multi-line string content, serving as a structured way to document your segmentation plan.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Utilize whiteboard sessions, shared documents (e.g., Microsoft Word, Google Docs), or dedicated network policy management tools to define and document your segmentation zones and the traffic policies between them.</p>
+<p><strong>Expected result:</strong> A clear, documented plan outlining your defined network segments, their corresponding IP ranges/VLAN IDs, and detailed access control policies (which traffic is allowed between which zones, and which is explicitly denied).</p>
+
+<h2>Step 3: Plan IP Addressing and VLAN Implementation</h2>
+<p>Design a new IP addressing scheme that logically aligns with your defined segmentation zones. Assign unique VLAN IDs to each segment. This logical separation allows devices in different segments to coexist on the same physical infrastructure but remain isolated, significantly reducing the need for costly physical rewiring. Careful planning of IP ranges and subnet masks is crucial to prevent conflicts and ensure efficient routing.</p>
+<pre><code class='language-powershell'># This step is primarily design. While no direct CLI command designs an IP scheme,
+# you can use PowerShell to store or reference your planned IP ranges and VLANs.
+# You might use Get-NetAdapter or ipconfig /all to verify no conflicts with
+# existing ranges if you are partially re-addressing.
+
+# Example: Display network adapters to verify existing IP settings (for comparison)
+Get-NetAdapter | Select-Object Name, Status, LinkSpeed, MacAddress
+Get-NetIPAddress | Select-Object InterfaceAlias, IPAddress, PrefixLength, AddressFamily
+
+# Example: A simple output of your planned IP/VLAN scheme for quick reference
+Write-Output "Planned Network Segments:"
+Write-Output "Management Zone: VLAN 10, IP Range 10.10.10.0/24"
+Write-Output "Server Zone: VLAN 20, IP Range 10.10.20.0/24"
+Write-Output "User Workstation Zone: VLAN 30, IP Range 10.10.30.0/24"
+Write-Output "Guest Wi-Fi Zone: VLAN 40, IP Range 10.10.40.0/24"
+Write-Output "IoT/VoIP Zone: VLAN 50, IP Range 10.10.50.0/24"
+</code></pre>
+<p><code>Get-NetAdapter</code>: Retrieves basic information about network adapters on a Windows machine.</p>
+<p><code>Get-NetIPAddress</code>: Shows IP address configuration for network adapters, including IP, subnet mask (PrefixLength), and associated interface.</p>
+<p><code>Write-Output</code>: A simple PowerShell cmdlet to display text, here used to output your planned IP and VLAN scheme for confirmation or quick reference.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Use a spreadsheet or network design software to map out your new IP addressing scheme, including subnet IDs, host ranges, gateway IPs, and DNS server IPs for each VLAN. Clearly document VLAN IDs (e.g., VLAN 10 for Management, VLAN 20 for Servers, etc.).</p>
+<p><strong>Expected result:</strong> A fully defined IP addressing plan for each segment, including chosen subnet sizes, default gateway IPs, and corresponding VLAN IDs. This document will be critical for the next configuration steps.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Overlapping IP ranges or insufficient subnet sizes. Ensure each VLAN's IP range is unique and large enough to accommodate current and future devices. Incorrect subnetting can lead to network communication failures or security bypasses. Double-check your calculations.</div>
+
+<h2>Step 4: Configure Firewall/Router for Inter-VLAN Routing & ACLs</h2>
+<p>Your central firewall or Layer 3 router acts as the traffic cop between your newly defined VLANs. This step involves creating virtual interfaces (sub-interfaces) for each VLAN on the firewall and then implementing Access Control Lists (ACLs) to enforce your security policies. These ACLs precisely control which types of traffic are allowed or denied between segments.</p>
+<pre><code class='language-powershell'># This example uses generic router/firewall CLI commands, often accessed via SSH or console.
+# Syntax will vary based on device vendor (Cisco, Fortinet, pfSense, etc.).
+# Replace 'GigabitEthernet0/1' with your actual physical interface.
+
+# Connect to your firewall/router via SSH/console
+# ssh admin@your.firewall.ip
+# conf t
+
+# Create sub-interfaces for each VLAN on your internal interface
+# Example for a Cisco-like device:
+interface GigabitEthernet0/1.10
+ encapsulation dot1Q 10
+ ip address 10.10.10.1 255.255.255.0
+ description Management_VLAN_Gateway
+!
+interface GigabitEthernet0/1.20
+ encapsulation dot1Q 20
+ ip address 10.10.20.1 255.255.255.0
+ description Server_VLAN_Gateway
+!
+interface GigabitEthernet0/1.30
+ encapsulation dot1Q 30
+ ip address 10.10.30.1 255.255.255.0
+ description User_VLAN_Gateway
+!
+interface GigabitEthernet0/1.40
+ encapsulation dot1Q 40
+ ip address 10.10.40.1 255.255.255.0
+ description Guest_VLAN_Gateway
+!
+interface GigabitEthernet0/1.50
+ encapsulation dot1Q 50
+ ip address 10.10.50.1 255.255.255.0
+ description IoT_VoIP_VLAN_Gateway
+!
+
+# Create Access Control Lists (ACLs) to enforce inter-VLAN policies
+# Example for a Cisco-like device:
+
+# Policy: Servers can talk to Management (AD/DNS/NTP)
+ip access-list extended SERVER_TO_MANAGEMENT
+ permit tcp 10.10.20.0 0.0.0.255 10.10.10.0 0.0.0.255 eq 389  # LDAP
+ permit tcp 10.10.20.0 0.0.0.255 10.10.10.0 0.0.0.255 eq 636  # LDAPS
+ permit udp 10.10.20.0 0.0.0.255 10.10.10.0 0.0.0.255 eq 53   # DNS
+ permit tcp 10.10.20.0 0.0.0.255 10.10.10.0 0.0.0.255 eq 53   # DNS
+ permit udp 10.10.20.0 0.0.0.255 10.10.10.0 0.0.0.255 eq 123  # NTP
+ permit tcp 10.10.20.0 0.0.0.255 10.10.10.0 0.0.0.255 eq 88   # Kerberos
+ deny ip any any log
+ exit
+!
+
+# Policy: Users can talk to Servers (HTTP/S, SMB)
+ip access-list extended USER_TO_SERVER
+ permit tcp 10.10.30.0 0.0.0.255 10.10.20.0 0.0.0.255 eq 80    # HTTP
+ permit tcp 10.10.30.0 0.0.0.255 10.10.20.0 0.0.0.255 eq 443   # HTTPS
+ permit tcp 10.10.30.0 0.0.0.255 10.10.20.0 0.0.0.255 eq 445   # SMB (for allowed shares)
+ deny ip any any log
+ exit
+!
+
+# Policy: Guest Wi-Fi has NO INTERNAL ACCESS, ONLY INTERNET
+ip access-list extended GUEST_OUTBOUND_ONLY
+ deny ip 10.10.40.0 0.0.0.255 10.0.0.0 0.255.255.255  # Deny all internal RFC1918 ranges
+ permit ip 10.10.40.0 0.0.0.255 any                  # Permit all external
+ deny ip any any log
+ exit
+!
+
+# Apply ACLs to the relevant VLAN interfaces (inbound direction typically)
+# Example for a Cisco-like device:
+interface GigabitEthernet0/1.20
+ ip access-group SERVER_TO_MANAGEMENT in
+!
+interface GigabitEthernet0/1.30
+ ip access-group USER_TO_SERVER in
+!
+interface GigabitEthernet0/1.40
+ ip access-group GUEST_OUTBOUND_ONLY in
+!
+
+# Save configuration (command varies by vendor)
+# write memory
+# end
+</code></pre>
+<p><code>interface GigabitEthernet0/1.10</code>: Defines a sub-interface on the physical port, representing the gateway for VLAN 10.</p>
+<p><code>encapsulation dot1Q 10</code>: Specifies that this sub-interface will handle traffic tagged with VLAN ID 10.</p>
+<p><code>ip address 10.10.10.1 255.255.255.0</code>: Assigns the IP address and subnet mask that will serve as the default gateway for devices in VLAN 10.</p>
+<p><code>ip access-list extended [ACL_NAME]</code>: Initiates the creation of an extended Access Control List, allowing detailed rules based on source/destination IP, port, and protocol.</p>
+<p><code>permit [protocol] [source] [source_wildcard] [destination] [destination_wildcard] [eq port]</code>: An ACL rule that explicitly allows traffic matching the specified criteria.</p>
+<p><code>deny ip any any log</code>: A critical ACL rule placed at the end of each list to implicitly deny all traffic that doesn't match a preceding permit rule, and logs the denied attempts.</p>
+<p><code>ip access-group [ACL_NAME] in</code>: Applies the defined ACL to the specified interface for inbound traffic, filtering packets as they enter that VLAN's gateway.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Log into your firewall's web interface. Navigate to VLAN or interface settings to create new VLAN interfaces. Then, go to firewall rules or access policies to define your inter-VLAN ACLs, specifying source/destination zones, protocols, and ports. Ensure stateful inspection is enabled where possible.</p>
+<p><strong>Expected result:</strong> Your firewall/router will have distinct virtual interfaces for each VLAN, acting as their default gateways. Inter-VLAN traffic will now be controlled by the configured ACLs, with unapproved communication blocked.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Misconfigured ACLs or incorrect gateway IPs can lead to complete network outages or unintended access. Always test ACLs incrementally. Start with a default 'deny all' and explicitly permit necessary traffic. Incorrect `encapsulation dot1Q` can break VLAN tagging. Ensure your management access to the firewall is on a separate, secure interface or VLAN.</div>
+
+<h2>Step 5: Deploy VLANs on Managed Switches</h2>
+<p>With your firewall configured, the next step is to configure your managed network switches. This involves creating the VLANs on the switches, assigning specific access ports to their respective VLANs (untagged traffic), and configuring trunk ports between switches and to the firewall (tagged traffic). This ensures devices are correctly placed into their designated network segments.</p>
+<pre><code class='language-powershell'># This example uses generic switch CLI commands, often accessed via SSH or console.
+# Syntax will vary based on device vendor (Cisco, HP, UniFi, etc.).
+
+# Connect to your managed switch via SSH/console
+# ssh admin@your.switch.ip
+# conf t
+
+# Create VLANs globally
+vlan 10
+ name Management
+!
+vlan 20
+ name Servers
+!
+vlan 30
+ name Users
+!
+vlan 40
+ name Guests
+!
+vlan 50
+ name IoT_VoIP
+!
+
+# Configure Access Ports (for end devices like PCs, servers, phones)
+# Example: Port 1 on Management VLAN, Port 2 on Server VLAN
+interface GigabitEthernet0/1
+ description "Management PC"
+ switchport mode access
+ switchport access vlan 10
+ no shutdown
+!
+interface GigabitEthernet0/2
+ description "Web Server"
+ switchport mode access
+ switchport access vlan 20
+ no shutdown
+!
+interface GigabitEthernet0/3
+ description "User Workstation"
+ switchport mode access
+ switchport access vlan 30
+ no shutdown
+!
+interface GigabitEthernet0/4
+ description "Guest AP"
+ switchport mode access
+ switchport access vlan 40
+ no shutdown
+!
+interface GigabitEthernet0/5
+ description "VoIP Phone"
+ switchport mode access
+ switchport access vlan 50
+ no shutdown
+!
+
+# Configure Trunk Ports (for connecting to other switches or the firewall)
+# This port will carry traffic for all VLANs (tagged)
+interface GigabitEthernet0/24
+ description "Uplink to Firewall/Router"
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50 # Allow only necessary VLANs
+ no shutdown
+!
+
+# Save configuration (command varies by vendor)
+# write memory
+# exit
+</code></pre>
+<p><code>vlan 10</code>: Creates a new VLAN with ID 10 on the switch.</p>
+<p><code>name Management</code>: Assigns a descriptive name to the VLAN for easier identification.</p>
+<p><code>interface GigabitEthernet0/1</code>: Enters configuration mode for a specific physical port.</p>
+<p><code>switchport mode access</code>: Configures the port to be an access port, meaning it will carry traffic for only one VLAN (untagged).</p>
+<p><code>switchport access vlan 10</code>: Assigns the access port to VLAN 10. Devices connected to this port will automatically be in VLAN 10.</p>
+<p><code>switchport mode trunk</code>: Configures the port to be a trunk port, meaning it can carry traffic for multiple VLANs (tagged with 802.1Q).</p>
+<p><code>switchport trunk allowed vlan 10,20,30,40,50</code>: Specifies which VLANs are permitted to traverse this trunk link. This is a security best practice to prevent unwanted VLANs from leaking across.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Access your managed switch's web interface. Navigate to VLAN configuration, create the VLANs by their IDs and names. Then go to port settings, select each port, and assign it as an 'access' port for the desired VLAN (for end devices) or configure it as a 'trunk' port, allowing specific VLANs, for uplinks to other switches or the firewall.</p>
+<p><strong>Expected result:</strong> Network switches are configured with the correct VLANs. All end devices connected to access ports are logically isolated into their assigned VLANs. Trunk ports successfully carry tagged traffic between switches and to the firewall, enabling inter-VLAN routing.</p>
+
+<h2>Step 6: Implement Host-Based & Cloud Segmentation</h2>
+<p>Adding host-based firewalls (e.g., Windows Firewall, iptables on Linux) provides an additional layer of defense. For cloud resources, leverage Azure Network Security Groups (NSGs) to enforce granular security policies at the virtual network interface level. This layered approach ensures that even if an attacker bypasses network-level segmentation, they still face host-level controls.</p>
+<pre><code class='language-powershell'># --- Windows Host-Based Firewall Configuration (on a Server in the Server VLAN) ---
+# Deny all incoming traffic by default, then explicitly allow necessary services
+# Example: Allow RDP from Management VLAN, HTTP/S from User VLAN, DNS to Management DC
+
+# Set default inbound policy to block (highly recommended)
+Set-NetFirewallProfile -Name Domain,Private,Public -DefaultInboundAction Block
+
+# Allow RDP from Management Zone (10.10.10.0/24)
+New-NetFirewallRule -DisplayName "Allow RDP from Management" `
+    -Direction Inbound -Action Allow -Protocol TCP -LocalPort 3389 `
+    -RemoteAddress 10.10.10.0/24 -Profile Domain
+
+# Allow HTTP/S from User Zone (10.10.30.0/24)
+New-NetFirewallRule -DisplayName "Allow HTTP from Users" `
+    -Direction Inbound -Action Allow -Protocol TCP -LocalPort 80 `
+    -RemoteAddress 10.10.30.0/24 -Profile Domain
+New-NetFirewallRule -DisplayName "Allow HTTPS from Users" `
+    -Direction Inbound -Action Allow -Protocol TCP -LocalPort 443 `
+    -RemoteAddress 10.10.30.0/24 -Profile Domain
+
+# Allow Outbound DNS to Management DC (10.10.10.10, assuming a DC IP)
+New-NetFirewallRule -DisplayName "Allow Outbound DNS to Management DC" `
+    -Direction Outbound -Action Allow -Protocol UDP -LocalPort Any -RemotePort 53 `
+    -RemoteAddress 10.10.10.10 -Profile Domain
+
+
+# --- Azure Network Security Group (NSG) Configuration (example) ---
+# Assumes you have an Azure VNet, Subnet, and VM (or other resource) with a NIC.
+
+# Set your Azure Subscription context
+# az account set --subscription 'Your Subscription Name or ID'
+
+# Define variables
+$resourceGroupName = 'SkyCore-Prod-RG'
+$vnetName = 'SkyCore-Prod-VNet'
+$subnetName = 'Servers-Subnet' # Corresponds to your Server Zone
+$nsgName = 'SkyCore-Servers-NSG'
+$nicName = 'WebAppVM-NIC' # Example NIC for a VM in Server Subnet
+
+# Create NSG if it doesn't exist
+az network nsg create --resource-group $resourceGroupName --name $nsgName
+
+# Add NSG rules (mirroring your policies)
+# Priority is important: lower number = higher precedence
+# Allow RDP from Management Zone (example on-prem or management VNet IP)
+az network nsg rule create --resource-group $resourceGroupName --nsg-name $nsgName --name 'Allow-RDP-from-Management' `
+    --priority 100 --direction Inbound --access Allow --protocol Tcp --destination-port-ranges 3389 `
+    --source-address-prefixes '10.10.10.0/24' --destination-address-prefixes '*'
+
+# Allow HTTP/S from User Zone (example on-prem or user VNet IP)
+az network nsg rule create --resource-group $resourceGroupName --nsg-name $nsgName --name 'Allow-HTTP-from-Users' `
+    --priority 110 --direction Inbound --access Allow --protocol Tcp --destination-port-ranges 80 `
+    --source-address-prefixes '10.10.30.0/24' --destination-address-prefixes '*'
+az network nsg rule create --resource-group $resourceGroupName --nsg-name $nsgName --name 'Allow-HTTPS-from-Users' `
+    --priority 120 --direction Inbound --access Allow --protocol Tcp --destination-port-ranges 443 `
+    --source-address-prefixes '10.10.30.0/24' --destination-address-prefixes '*'
+
+# Allow outbound DNS to specific DNS server (e.g., on-prem DC or Azure DNS)
+az network nsg rule create --resource-group $resourceGroupName --nsg-name $nsgName --name 'Allow-Outbound-DNS' `
+    --priority 200 --direction Outbound --access Allow --protocol Udp --source-port-ranges '*' --destination-port-ranges 53 `
+    --destination-address-prefixes '10.10.10.10' # Example: IP of your DNS server
+
+# Associate NSG to a Subnet (recommended for broad application)
+az network vnet subnet update --resource-group $resourceGroupName --vnet-name $vnetName --name $subnetName --network-security-group $nsgName
+
+# OR Associate NSG to a Network Interface (NIC) for specific VMs
+# az network nic update --resource-group $resourceGroupName --name $nicName --network-security-group $nsgName
+</code></pre>
+<p><code>Set-NetFirewallProfile -DefaultInboundAction Block</code>: Configures the Windows Firewall to block all inbound connections by default, enforcing a 'deny by default' policy.</p>
+<p><code>New-NetFirewallRule</code>: Creates a new Windows Firewall rule, specifying direction (inbound/outbound), action (allow/block), protocol, ports, and source/destination addresses.</p>
+<p><code>az network nsg create</code>: Creates a new Azure Network Security Group.</p>
+<p><code>az network nsg rule create</code>: Adds a new security rule to an existing NSG, defining traffic flow, priority, protocol, ports, and IP ranges.</p>
+<p><code>az network vnet subnet update --network-security-group</code>: Associates an NSG with an entire subnet in Azure, applying its rules to all resources within that subnet.</p>
+<p><code>az network nic update --network-security-group</code>: Associates an NSG with a specific network interface card (NIC) of a VM, applying rules only to that VM.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> For Windows Firewall, open 'Windows Defender Firewall with Advanced Security' via Server Manager or administrative tools. Configure 'Inbound Rules' and 'Outbound Rules' to match your policies. For Azure, navigate to 'Network Security Groups' in the Azure Portal, create new NSGs, and add 'Inbound security rules' and 'Outbound security rules' with specified priorities, sources, destinations, services, and actions. Then, associate the NSG with your relevant subnets or individual VM NICs.</p>
+<p><strong>Expected result:</strong> Critical servers and cloud resources have host-based firewalls or NSGs configured, enforcing granular access control at the endpoint level. This provides defense-in-depth, complementing your network-level segmentation.</p>
+
+<h2>Step 7: Test, Validate, and Document Segmentation</h2>
+<p>After configuration, rigorous testing is paramount. Verify that only permitted traffic flows between zones and, crucially, that all unauthorized access attempts are blocked. Use tools like `ping`, `tracert`, and port scanners from various zones. Document your entire new network configuration, including VLAN IDs, IP assignments, firewall rules, and switch port assignments. This documentation is vital for troubleshooting, auditing, and future modifications.</p>
+<pre><code class='language-powershell'># --- Testing from a host in one VLAN (e.g., User VLAN 10.10.30.x) to another (e.g., Server VLAN 10.10.20.x) ---
+
+# Test connectivity to a known server's IP in Server VLAN (should work for allowed services)
+Test-NetConnection -ComputerName 10.10.20.10 -Port 443 # Test HTTPS access
+Test-NetConnection -ComputerName 10.10.20.10 -Port 80  # Test HTTP access
+Test-NetConnection -ComputerName 10.10.20.10 -Port 3389 # Test RDP (should fail from User VLAN, succeed from Management VLAN)
+
+# Test general ping connectivity (may be blocked by firewall if not explicitly allowed)
+ping 10.10.20.10
+
+# Trace route to ensure traffic is going through the firewall
+tracert 10.10.20.10
+
+# Test blocked ports (should fail)
+Test-NetConnection -ComputerName 10.10.20.10 -Port 22 # Test SSH (assuming not allowed)
+Test-NetConnection -ComputerName 10.10.20.10 -Port 135 # Test RPC (assuming not allowed)
+
+# From a host in the Guest VLAN (10.10.40.x), ensure no internal access
+ping 10.10.20.10 # Should fail
+Test-NetConnection -ComputerName 10.10.20.10 -Port 443 # Should fail
+ping google.com # Should succeed
+tracert google.com # Should succeed
+
+# --- Documenting Configuration (example snippets) ---
+# Backup Firewall config (vendor specific)
+# For Cisco-like: copy running-config tftp://<tftp-server-ip>/firewall_config_20260910.txt
+# For pfSense: System -> Backup/Restore -> Download configuration
+
+# Backup Switch config (vendor specific)
+# For Cisco-like: copy running-config tftp://<tftp-server-ip>/switch1_config_20260910.txt
+
+# Export Windows Firewall rules (for documentation)
+Get-NetFirewallRule | Export-Csv -Path "C:\WindowsFirewallRules_20260910.csv" -NoTypeInformation
+
+# Get Azure NSG rules (for documentation)
+az network nsg rule list --resource-group $resourceGroupName --nsg-name $nsgName --output table > Azure_NSG_Rules_20260910.txt
+</code></pre>
+<p><code>Test-NetConnection -ComputerName -Port</code>: A powerful PowerShell cmdlet to test TCP port connectivity to a remote host, indicating success or failure. Useful for validating firewall rules.</p>
+<p><code>ping</code>: Standard command-line utility to test basic network connectivity (ICMP) and measure latency.</p>
+<p><code>tracert</code>: Traces the path that packets take to a network destination, showing each hop (router/gateway) along the way. Useful to confirm traffic is flowing through the firewall.</p>
+<p><code>Get-NetFirewallRule | Export-Csv</code>: Exports all active Windows Firewall rules to a CSV file for documentation and auditing.</p>
+<p><code>az network nsg rule list --output table</code>: Lists all rules within a specific Azure NSG in a tabular format, which can be redirected to a text file for documentation.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> For testing, use network diagnostics tools, web browsers, and application clients from various segmented machines to confirm expected access. For documentation, manually capture screenshots of firewall rules, switch VLAN configurations, and IP assignments. Consolidate all information into a central document (e.g., SharePoint, Confluence, or a secured file server).</p>
+<p><strong>Expected result:</strong> Confirmed functional segmentation where desired traffic flows are uninterrupted, and unauthorized access is blocked. A comprehensive, up-to-date documentation set of your entire segmented network configuration.</p>
+
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Incomplete testing can leave critical security gaps or introduce hidden operational issues that only appear under specific loads or scenarios. Always test from *all* relevant segments to *all* target segments for *all* required protocols/ports. Pay close attention to logs for dropped packets, which can indicate policy issues.</div>
+
+<h2>Step 8: Monitor and Periodically Review Segmentation Policies</h2>
+<p>Network segmentation is not a one-time project; it's an ongoing process. Establish continuous monitoring of network traffic for anomalies, attempted breaches, and policy violations. Regularly review your segmentation policies to adapt to business changes, new applications, and evolving threat landscapes. An outdated policy can quickly become a security vulnerability.</p>
+<pre><code class='language-powershell'># --- Basic Logging and Monitoring (Windows Event Logs) ---
+# Review firewall logs for denied traffic, indicating potential issues or attacks.
+# Example: Filter Windows Firewall log for dropped packets.
+
+# Enable logging for Windows Defender Firewall (if not already enabled)
+Set-NetFirewallProfile -Name Domain,Private,Public -LogFileName "%SystemRoot%\system32\LogFiles\Firewall\pfirewall.log" `
+    -LogBlocked True -LogSuccessful True
+
+# View the last 50 entries of the Windows Firewall log (replace path if customized)
+Get-Content -Path C:\Windows\System32\LogFiles\Firewall\pfirewall.log -Tail 50 | Select-String "DROP"
+
+# Search event logs for specific firewall activity
+Get-WinEvent -FilterHashtable @{LogName='Security';ID=5157;StartTime=(Get-Date).AddDays(-1)} | Format-List TimeCreated, Message # ID 5157 is for packet drop
+
+# --- Basic Azure Monitoring Setup (Conceptual) ---
+# Ensure Azure Monitor is configured to collect NSG flow logs and diagnostic logs.
+# This requires a storage account or Log Analytics Workspace.
+
+# Enable NSG flow logs to capture IP traffic information (requires a storage account)
+# You need to create a storage account first if you don't have one
+# az storage account create --name 'yourflowlogsa' --resource-group $resourceGroupName --location 'eastus' --sku Standard_LRS
+
+# Then enable flow logs for your NSG
+# az network watcher flow-log create --resource-group $resourceGroupName --nsg $nsgName --storage-account 'yourflowlogsa' --enabled true --traffic-analytics false
+
+# View activity logs for NSG rule changes (last 7 days)
+az monitor activity-log list --resource-group $resourceGroupName --query "[?contains(operationName, 'securityGroups')]" --output table --start-time $(Get-Date).AddDays(-7).ToString('yyyy-MM-ddTHH:mm:ssZ')
+
+# --- Schedule a review reminder ---
+# This is a conceptual command to add a recurring task to your calendar or task list.
+# Register-ScheduledTask -TaskName "Review Network Segmentation Policies" `
+#   -Trigger (New-ScheduledTaskTrigger -Weekly -At "9am" -DaysOfWeek Friday) `
+#   -Action (New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-Command "Write-Host \"Time to review network segmentation policies!\""')
+</code></pre>
+<p><code>Set-NetFirewallProfile -LogBlocked True</code>: Configures the Windows Firewall to log all blocked inbound and outbound connections, providing an audit trail of denied traffic.</p>
+<p><code>Get-Content -Tail 50 | Select-String "DROP"</code>: Reads the last 50 lines of the Windows Firewall log file and filters for entries containing "DROP", indicating blocked connections.</p>
+<p><code>Get-WinEvent -FilterHashtable @{LogName='Security';ID=5157}</code>: Queries the Windows Event Log for specific event ID 5157, which signifies that a packet was dropped by the Windows Filtering Platform.</p>
+<p><code>az network watcher flow-log create</code>: Command to create and enable NSG flow logs in Azure, which record 5-tuple flow information (source/destination IP, port, protocol) for all traffic through the NSG.</p>
+<p><code>az monitor activity-log list</code>: Retrieves Azure activity logs, useful for tracking configuration changes to NSGs or other resources.</p>
+<p><code>Register-ScheduledTask</code>: PowerShell cmdlet to create a scheduled task on a Windows machine, used here conceptually to remind for policy reviews.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Integrate firewall logs with a Security Information and Event Management (SIEM) system for centralized monitoring and alerting. Utilize Azure Monitor, Log Analytics Workspaces, and Network Watcher flow logs to visualize and analyze traffic patterns and security events within your cloud network. Schedule calendar reminders or recurring tasks for quarterly or semi-annual policy reviews with relevant stakeholders.</p>
+<p><strong>Expected result:</strong> A robust system for ongoing network monitoring, enabling early detection of anomalies or policy violations. A defined schedule and process for regularly reviewing and updating segmentation policies, ensuring your security posture remains strong and relevant.</p>
+
+<div class='howto-consultant-cta'><h3>When to bring in a consultant</h3><p>While this guide provides a comprehensive framework, implementing network segmentation, especially in complex environments or during critical business operations, can be challenging. DIY approaches can introduce significant downtime, security vulnerabilities if misconfigured, or simply overwhelm internal IT staff lacking specialized expertise. If your network is large, involves multiple locations, includes legacy systems, or if you have strict compliance requirements (e.g., HIPAA, PCI DSS), bringing in experienced consultants like SkyCore Solutions can ensure a smooth, secure, and compliant implementation, minimizing risks and maximizing the benefits of segmentation from day one.</p><a href='../contact.html' class='btn btn-primary'>Book a free consultation</a></div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

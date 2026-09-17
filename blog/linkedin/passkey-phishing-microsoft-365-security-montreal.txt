@@ -1,0 +1,18 @@
+**Your Microsoft 365 account isn't just at risk – it's actively being targeted.**
+
+Sophisticated passkey-themed phishing campaigns are now hijacking cloud accounts.
+Cybercriminals aim to steal critical data directly from your Microsoft environment.
+Basic defenses are no longer enough to protect your business.
+
+Here's what every Montreal SMB needs to know:
+
+🔴 **New Attack Vector:** Cybercriminals are using passkey-themed phishing to bypass traditional MFA.
+🟠 **Critical Data Theft:** These campaigns aim directly at your Microsoft Cloud accounts and sensitive data.
+⚠️ **Inadequate Defenses:** Basic security measures are often insufficient against this sophisticated threat.
+🔐 **Essential Hardening:** Your business needs advanced security configurations and user training to survive.
+
+Ignoring these evolving threats leaves your business exposed to significant financial and reputational damage. Proactive security isn't just compliance; it's fundamental to your operational integrity and continued success.
+
+Read the full article for a deeper dive into protecting your Microsoft 365, or connect with us to discuss your security posture: https://skycoresolutions.com/blog/passkey-phishing-microsoft-365-security-montreal.html
+
+#Microsoft365 #Cybersecurity #Phishing #Passkeys #CloudSecurity #SecurityHardening #DataProtection #ITSecurity #MontrealIT #SMBsecurity #CloudMigration #SecurityAwareness #CyberThreats #MFA #SkyCoreSolutions #ITConsulting #BusinessSecurity

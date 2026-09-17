@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elevate SMB Efficiency: An Azure Logic Apps Workflow Automation Guide — SkyCore Solutions</title>
+  <meta name="description" content="Discover how Azure Logic Apps streamline business processes for SMBs. This comprehensive guide provides step-by-step instructions to implement powerful workflow automation, boosting productivity and reducing manual effort for your business." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Elevate SMB Efficiency: An Azure Logic Apps Workflow Automation Guide — SkyCore Solutions" />
+  <meta property="og:description" content="Discover how Azure Logic Apps streamline business processes for SMBs. This comprehensive guide provides step-by-step instructions to implement powerful workflow automation, boosting productivity and reducing manual effort for your business." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-logic-apps-workflow-automation-guide-smb.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/7947841/pexels-photo-7947841.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Elevate SMB Efficiency: An Azure Logic Apps Workflow Automation Guide — SkyCore Solutions" />
+  <meta name="twitter:description" content="Discover how Azure Logic Apps streamline business processes for SMBs. This comprehensive guide provides step-by-step instructions to implement powerful workflow automation, boosting productivity and reducing manual effort for your business." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/7947841/pexels-photo-7947841.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-logic-apps-workflow-automation-guide-smb.html" />
+  <meta property="article:published_time" content="2026-09-01" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Elevate SMB Efficiency: An Azure Logic Apps Workflow Automation Guide",
+  "description": "Discover how Azure Logic Apps streamline business processes for SMBs. This comprehensive guide provides step-by-step instructions to implement powerful workflow automation, boosting productivity and reducing manual effort for your business.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Azure subscription (Pay-As-You-Go recommended for SMBs)., Azure CLI installed and configured (version 2.50.0 or later)., PowerShell with the Az module installed and configured (optional, CLI-first approach used)., An Azure account with 'Contributor' or 'Logic App Contributor' role., A work/school email account (e.g., Office 365 Outlook) for the example workflow., Basic understanding of cloud concepts and Azure resources."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Understand Azure Logic Apps Deployment Models for SMBs",
+        "text": "Choose the most suitable Logic Apps deployment model to balance functionality and cost efficiency for your small to medium-sized business."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Prepare Your Azure Environment with Azure CLI",
+        "text": "Set up a dedicated resource group to logically organize and manage all related Azure Logic Apps resources."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create a Consumption Logic App Resource for Workflow Automation",
+        "text": "Provision the core Azure Logic App resource that will host your automated workflows using the Azure CLI."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Design Your First Workflow: RSS Feed to Email Notification",
+        "text": "Utilize the visual designer in the Azure portal to craft a practical automation workflow that demonstrates key Logic Apps capabilities."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Trigger and Actions in the Logic Apps Designer",
+        "text": "Define the starting event (trigger) and subsequent operations (actions) that comprise your automated business process."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Monitor and Manage Your Azure Logic Apps Workflows",
+        "text": "Learn how to track the execution, status, and performance of your deployed Logic Apps workflows to ensure continuous operation."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-09-01 · 18 min read · Infrastructure Revamp</div>
+<h1>Elevate SMB Efficiency: An Azure Logic Apps Workflow Automation Guide</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/7947841/pexels-photo-7947841.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="An intricate digital representation of an Azure Logic Apps workflow diagram, showing interconnected services and data flows in a cloud environment, symbolizing automated business processes for enhanced efficiency." loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In today's fast-paced business environment, Small and Medium-sized Businesses (SMBs) often grapple with manual, repetitive tasks, data silos, and slow response times. These inefficiencies can hinder growth, increase operational costs, and divert valuable human resources from strategic initiatives. SkyCore Solutions understands these challenges, and we're here to present a powerful solution: <strong>Azure Logic Apps workflow automation guide</strong>. This comprehensive guide will walk you through leveraging Azure Logic Apps, a robust cloud platform that enables you to design, build, and deploy automated workflows without writing extensive code. By the end of this guide, you'll have a fully functional, automated workflow connecting an RSS feed to email notifications, laying the foundation for countless other automation possibilities within your organization.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4>
+<ul>
+<li>An active Azure subscription. For SMBs, a <a href="https://azure.microsoft.com/en-us/pricing/free-account/">Pay-As-You-Go</a> subscription is typically the most flexible and cost-effective starting point.</li>
+<li>Azure CLI installed and configured. Ensure you have the latest version (2.50.0 or later) for full functionality.</li>
+<li>PowerShell with the Az module installed and configured. While this guide primarily focuses on Azure CLI, PowerShell is a powerful alternative for Azure management.</li>
+<li>An Azure account with sufficient permissions, specifically the 'Contributor' or 'Logic App Contributor' role, within the target subscription.</li>
+<li>An active work or school email account (e.g., Office 365 Outlook, Outlook.com) to complete our example workflow.</li>
+<li>A basic understanding of cloud computing concepts and Azure resource organization.</li>
+</ul>
+<p><strong>Estimated Cost:</strong> For the example workflow presented, running on the Consumption plan, the cost will be minimal, likely only a few cents per month or even less, depending on execution frequency. Azure Logic Apps on the Consumption plan uses a pay-per-execution model, making it highly cost-efficient for SMBs.</p></div>
+
+<h2>Step 1: Understand Azure Logic Apps Deployment Models for SMBs</h2>
+<p>Before diving into creation, it's crucial for SMBs to understand the two primary deployment models for Azure Logic Apps: <strong>Consumption</strong> and <strong>Standard</strong>. Choosing the right model impacts your costs, scalability, and management complexity.</p>
+<p><strong>Consumption (Multi-tenant Azure Logic Apps):</strong></p>
+<ul>
+<li><strong>Description:</strong> This is the classic, serverless model, running in a global, multi-tenant Azure environment. You pay only for the actions and triggers that execute.</li>
+<li><strong>Benefits for SMBs:</strong> Extremely cost-effective for individual, event-driven workflows. It's fully managed by Microsoft, requiring minimal operational overhead. Ideal for automating specific tasks like sending notifications, processing incoming data, or simple integrations. Includes over 1,400 prebuilt connectors.</li>
+<li><strong>Recommendation:</strong> For most SMBs, the Consumption plan is the ideal starting point. Its pay-per-execution model makes it incredibly cost-effective for automating specific, event-driven tasks without a significant baseline commitment. It's perfect for quickly standing up solutions without managing underlying infrastructure.</li>
+</ul>
+<p><strong>Standard (Single-tenant Azure Logic Apps):</strong></p>
+<ul>
+<li><strong>Description:</strong> This model runs in a single-tenant Azure environment, providing dedicated compute resources. It supports multiple workflows within a single logic app resource and offers more advanced networking capabilities and deployment options (e.g., App Service Environment v3, hybrid deployments).</li>
+<li><strong>Benefits for SMBs (later stage):</strong> Offers greater control, consistent performance, and the ability to bundle multiple related workflows. Useful if your SMB grows to require complex, high-throughput integrations, VNet integration, or hybrid connectivity with on-premises systems at scale.</li>
+<li><strong>Recommendation:</strong> While powerful, the Standard plan has a higher baseline cost due to dedicated resources. SMBs should only consider this when their automation needs mature to require dedicated capacity, advanced networking, or the need to deploy many related workflows together. Start with Consumption and evaluate Standard as your needs evolve.</li>
+</ul>
+
+<h2>Step 2: Prepare Your Azure Environment with Azure CLI</h2>
+<p>To ensure proper organization and management of your Azure resources, we'll start by creating a dedicated resource group. This group will logically contain all components related to your Azure Logic Apps, simplifying administration and cost tracking.</p>
+
+<pre><code class="language-azurecli">az group create --name Consumption-RG --location "West US"</code></pre>
+<ul>
+<li><code>--name Consumption-RG</code>: Specifies the name of your resource group. We recommend a descriptive name like 'Consumption-RG' (for Consumption Resource Group) to reflect its purpose.</li>
+<li><code>--location "West US"</code>: Defines the Azure region where your resource group will reside. For SMBs, choosing a region geographically closest to your primary operations will generally reduce latency and might have cost implications depending on data transfer egress.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Sign in to the Azure portal, search for "Resource groups", click "+ Create", and provide the resource group name and region. Click "Review + create", then "Create".</p>
+
+<h4>Run this to verify:</h4>
+<p>Confirm the successful creation of your resource group using the following Azure CLI command:</p>
+<pre><code class="language-azurecli">az group show --name Consumption-RG --output table</code></pre>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Regularly review your Azure resource groups. Grouping related resources simplifies access control (Role-Based Access Control - RBAC), cost analysis, and lifecycle management (e.g., deleting all related resources when a project ends).</div>
+
+<h2>Step 3: Create a Consumption Logic App Resource for Workflow Automation</h2>
+<p>With your resource group in place, the next step is to provision the Azure Logic App resource itself. This resource will serve as the container for your automated workflows. We'll specify the 'WorkflowApp' kind to ensure it's a Consumption-based logic app, aligning with our SMB-focused recommendation for cost efficiency.</p>
+
+<pre><code class="language-azurecli">az logicapp create --resource-group Consumption-RG --name My-Consumption-Logic-App --location "West US" --kind WorkflowApp</code></pre>
+<ul>
+<li><code>--resource-group Consumption-RG</code>: The name of the resource group you created in the previous step.</li>
+<li><code>--name My-Consumption-Logic-App</code>: A unique name for your Logic App resource. This name must be globally unique across Azure, so choose something descriptive yet distinct.</li>
+<li><code>--location "West US"</code>: The Azure region for your Logic App, matching your resource group location.</li>
+<li><code>--kind WorkflowApp</code>: This crucial parameter designates the Logic App as a Consumption-based workflow. For SMBs, this ensures you benefit from the pay-per-execution model, making it highly economical for specific automation tasks.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Sign in to the Azure portal, search for "Logic apps", click "+ Add". On the "Create Logic App" page, under "Plan", select "Consumption (Multi-tenant)" and then "Select". Fill in your subscription, resource group ('Consumption-RG'), logic app name ('My-Consumption-Logic-App'), and region ('West US'). Ensure 'Workflow type' is 'Stateful' (which is default for Consumption). Click "Review + create", then "Create".</p>
+
+<h4>Run this to verify:</h4>
+<p>Check the details of your newly created Logic App resource:</p>
+<pre><code class="language-azurecli">az logicapp show --resource-group Consumption-RG --name My-Consumption-Logic-App --output table</code></pre>
+
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> If your organization operates behind a corporate firewall, ensure that the necessary <a href="https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-limits-and-config#ip-configuration-firewall" target="_blank">Azure Logic Apps outbound IP addresses</a> are whitelisted. Failure to do so can prevent your workflows from connecting to external services like Office 365 or custom APIs.</div>
+
+<h2>Step 4: Design Your First Workflow: RSS Feed to Email Notification</h2>
+<p>Now that your Logic App resource is provisioned, we can begin designing our first workflow. For SMBs, the visual designer in the Azure portal is an incredibly powerful low-code/no-code tool, making workflow creation intuitive and accessible. Our example will demonstrate a common automation scenario: monitoring an RSS feed for new items and sending an email notification.</p>
+
+<p>While the visual designer is often preferred for initial creation, understanding the underlying <a href="https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-workflow-definition-language" target="_blank">Workflow Definition Language (WDL)</a>, based on JSON, is beneficial for advanced scenarios, version control, or programmatic deployment.</p>
+
+<p class="gui-note"><strong>Portal steps:</strong></p>
+<ol>
+<li>In the Azure portal, navigate to your newly created Logic App resource: <code>My-Consumption-Logic-App</code>.</li>
+<li>On the Logic App's overview page, under the "Workflows" section, select "Workflows" from the left navigation menu.</li>
+<li>Click "+ Add" to create a new workflow. Give it a name, e.g., <code>RSS-To-Email-Workflow</code>, and ensure the type is "Stateful" (default for Consumption). Click "Create".</li>
+<li>Once created, click on your workflow (<code>RSS-To-Email-Workflow</code>) to open its designer.</li>
+<li>The designer will open with a gallery of common triggers. In the search box, type "RSS".</li>
+<li>Select the "RSS" connector and then choose the "When a feed item is published" trigger.</li>
+<li>Configure the RSS trigger:</li>
+    <ul>
+    <li><strong>RSS feed URL:</strong> Enter a valid RSS feed URL, e.g., <code>https://azurecomcdn.azureedge.net/en-us/updates/feed/</code> (for Azure updates).</li>
+    <li><strong>How often do you want to check for items?:</strong> Set this to <code>1</code> and choose <code>Hour</code> for testing purposes. For production, adjust based on how frequently you need updates.</li>
+    </ul>
+<li>Click "+ New step" below the RSS trigger.</li>
+<li>In the search box, type "Office 365 Outlook".</li>
+<li>Select the "Office 365 Outlook" connector and choose the "Send an email (V2)" action.</li>
+<li>If prompted, sign in to your Office 365 account to authorize the connection.</li>
+<li>Configure the "Send an email (V2)" action:</li>
+    <ul>
+    <li><strong>To:</strong> Enter your email address (or the recipient's email).</li>
+    <li><strong>Subject:</strong> Type <code>New RSS Item:</code> and then from the dynamic content list that appears, select "Feed title".</li>
+    <li><strong>Body:</strong> Type <code>A new item has been published:</code> and then from the dynamic content list, select "Primary link". You can also add "Published On" for more context.</li>
+    </ul>
+<li>Click "Save" at the top of the designer.</li>
+</ol>
+
+<h2>Step 5: Configure Trigger and Actions in the Logic Apps Designer</h2>
+<p>In the previous step, we walked through the portal for setting up the RSS trigger and the Office 365 Outlook action. These components are the core building blocks of your automated workflow. Azure Logic Apps provides an expansive ecosystem of over 1,400 prebuilt connectors, allowing you to integrate with virtually any service, system, or application your SMB uses. This includes Azure services (Blob Storage, Service Bus), Microsoft services (SharePoint, Excel), databases (SQL, Oracle), enterprise systems (SAP), and file shares (FTP, SFTP).</p>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> Explore the rich dynamic content available after each trigger and action. This content, which represents outputs from previous steps, allows you to create highly personalized and context-aware workflows. For example, you could use a condition to only send emails for RSS items containing specific keywords.</div>
+
+<h4>Understanding the Workflow Definition Language (WDL)</h4>
+<p>While we used the visual designer, every Logic Apps workflow has an underlying JSON definition. This definition describes the workflow's logic, including triggers, actions, conditions, and loops. You can view this definition directly in the Azure portal or programmatically. This is particularly useful for version control with tools like Git, or for deploying workflows across multiple environments.</p>
+
+<p class="gui-note"><strong>Portal insight:</strong> To view the WDL for your newly created workflow, click on "Code view" in the Logic App Designer. You'll see the JSON structure that defines your trigger, actions, and their connections.</p>
+<p>A typical WDL structure includes:</p>
+<pre><code class="language-json">{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Send_an_email_(V2)": {
+                "inputs": {
+                    "body": "A new item has been published: @{triggerOutputs()?['body/primaryLink']}",
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['office365']['connectionId']"
+                        }
+                    },
+                    "parameters": {
+                        "IsHtml": true,
+                        "Subject": "New RSS Item: @{triggerOutputs()?['body/feedTitle']}",
+                        "To": "your-email@example.com"
+                    }
+                },
+                "runAfter": {},
+                "type": "ApiConnection"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            }
+        },
+        "triggers": {
+            "When_a_feed_item_is_published": {
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['rss']['connectionId']"
+                        }
+                    },
+                    "parameters": {
+                        "feedUrl": "https://azurecomcdn.azureedge.net/en-us/updates/feed/",
+                        "interval": 1,
+                        "unit": "Hour"
+                    }
+                },
+                "recurrence": {
+                    "interval": 1,
+                    "unit": "Hour"
+                },
+                "splitOn": "@triggerOutputs()?['body']",
+                "type": "ApiConnection"
+            }
+        }
+    }
+}</code></pre>
+
+<h2>Step 6: Monitor and Manage Your Azure Logic Apps Workflows</h2>
+<p>Once your Azure Logic Apps workflow automation is deployed, monitoring its health and performance is crucial. Azure provides robust tools within the portal to track execution history, diagnose issues, and ensure your automated processes are running smoothly.</p>
+
+<p class="gui-note"><strong>Portal steps:</strong></p>
+<ol>
+<li>Navigate back to your <code>My-Consumption-Logic-App</code> resource in the Azure portal.</li>
+<li>Select the <code>RSS-To-Email-Workflow</code> you created.</li>
+<li>On the workflow's overview page, you'll see a section for "Run history". This table displays all past executions of your workflow, including their status (Succeeded, Failed, Running, Canceled) and start/end times.</li>
+<li>Click on any individual run to view its details. Here, you can see a visual representation of each step's execution, including inputs, outputs, and any errors encountered. This is invaluable for debugging.</li>
+<li>For more advanced monitoring and alerting, consider enabling Log Analytics for your Logic App. This integrates with Azure Monitor to provide centralized logging, querying, and custom alert capabilities. (Note: Enabling Log Analytics may incur additional costs.)</li>
+</ol>
+
+<h4>Run this to verify (Check workflow definition via CLI):</h4>
+<p>While monitoring is primarily portal-based, you can retrieve the current workflow definition via CLI. Note that the Azure CLI is more geared towards resource management rather than intricate workflow-level operations for Consumption Logic Apps, which are best managed in the portal.</p>
+<pre><code class="language-azurecli">az logicapp workflow show --resource-group Consumption-RG --name My-Consumption-Logic-App --workflow-name RSS-To-Email-Workflow --output json</code></pre>
+<ul>
+<li><code>--workflow-name RSS-To-Email-Workflow</code>: Specifies the name of the workflow within your Logic App resource.</li>
+</ul>
+
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> If a workflow fails, examine the inputs and outputs of each step in the run history. This often quickly reveals where data might be malformed, an API call failed, or a condition wasn't met as expected. Use the "Resubmit" option for failed runs after making corrections.</div>
+
+<h3>When to bring in a consultant</h3>
+<p>While this guide empowers SMBs to begin their Azure Logic Apps workflow automation journey, certain scenarios benefit greatly from expert intervention. SkyCore Solutions specializes in maximizing cloud potential for businesses like yours.</p>
+<p>Consider engaging a consultant if you face:</p>
+<ul>
+<li><strong>Complex Hybrid Integrations:</strong> Connecting Azure Logic Apps with niche on-premises systems, legacy applications, or intricate network configurations often requires specialized knowledge of secure gateways, virtual networks, and custom connectors.</li>
+<li><strong>Advanced Security & Compliance:</strong> Implementing enterprise-grade security hardening, ensuring compliance with industry regulations (e.g., GDPR, HIPAA), or setting up sophisticated access control for your Logic Apps.</li>
+<li><strong>Performance Optimization & Cost Management:</strong> For high-volume workflows, optimizing performance, designing resilient solutions, and ensuring cost-effectiveness requires deep architectural expertise.</li>
+<li><strong>Custom Development & API Integration:</strong> When prebuilt connectors aren't sufficient, creating custom connectors, leveraging Azure Functions for custom code execution, or integrating with proprietary APIs can be complex.</li>
+<li><strong>Large-scale Production Deployments:</strong> Planning and executing migrations of critical business processes to Logic Apps, including testing, deployment pipelines, and operational readiness.</li>
+</ul>
+<p>SkyCore Solutions can help you design, implement, and optimize robust Azure Logic Apps solutions tailored to your unique business needs, ensuring a smooth and secure transition to automated workflows.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview" target="_blank" rel="noopener noreferrer">learn.microsoft.com — logic apps overview</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/logic-apps/quickstart-create-example-consumption-workflow" target="_blank" rel="noopener noreferrer">learn.microsoft.com — quickstart create example consumption workflow</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-workflow-definition-language" target="_blank" rel="noopener noreferrer">learn.microsoft.com — logic apps workflow definition language</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-pricing" target="_blank" rel="noopener noreferrer">learn.microsoft.com — logic apps pricing</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li><a href="tel:+15145009562">(514) 500-9562</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>
