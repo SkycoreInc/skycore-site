@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ai-powered-breaches-openai-lessons",
+    title: "AI-Powered Breaches: If OpenAI Can Fall, So Can Your Montreal Business",
+    date: "2026-09-19",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Three researchers, using Anthropic's Claude Opus 5, chained flaws to seize control of OpenAI staff accounts. This isn't just a hypothetical scenario; it directly impacts your business.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "cybersecurity-gap-montreal-smb-protection",
     title: "The Glaring Gap: Why Your Montreal SMB is an Easy Target",
     date: "2026-09-17",
