@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "it-security-myths-montreal-smb",
+    title: "Your IT Security Myths Are Getting Montreal Businesses Hacked",
+    date: "2026-09-21",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Stop believing outdated security myths. From browser hijacks to PowerShell backdoors, the threats are real and growing. Learn what your Montreal business needs to do now.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380651/pexels-photo-5380651.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ai-powered-breaches-openai-lessons",
     title: "AI-Powered Breaches: If OpenAI Can Fall, So Can Your Montreal Business",
     date: "2026-09-19",
