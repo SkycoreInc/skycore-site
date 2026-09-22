@@ -2,12 +2,9 @@
 SkyCore Solutions — Microsoft How-To Generator (Generator 2)
 Generates one deep, SEO-optimized Microsoft product guide per run.
 
-Covers all major Azure / Microsoft 365 surface areas in rotation,
-alternating between Cloud Migration and Infrastructure Revamp categories
-so no two consecutive guides cover the same pillar.
-
-Reads keyword volumes from scripts/ms_keyword_queue.json if available
-(refreshed monthly by keyword-refresh.yml). Falls back to hardcoded list.
+Runs on the 28th of every month. Fetches recent Microsoft headlines from
+official RSS feeds, asks Gemini to pick the hottest actionable topic for
+SMBs, then generates a full implementation guide for that topic.
 
 Requires env vars:
   GEMINI_API_KEY
@@ -23,8 +20,9 @@ import json
 import time
 import textwrap
 import requests
+import feedparser
 from google import genai
-from datetime import date
+from datetime import date, timedelta
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
@@ -32,128 +30,101 @@ CLIENT         = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 GEMINI_MODEL   = "gemini-2.5-flash"
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
 
-# ── MS topic queue ────────────────────────────────────────────────────────────
-# Ordered: Cloud Migration and Infrastructure Revamp alternate naturally
-# when the alternating-category logic is applied.
-# Each covers a distinct Azure/MS365 product — no overlap with Generator 1.
+# ── Microsoft news RSS feeds ──────────────────────────────────────────────────
 
-MS_TOPIC_QUEUE = [
-    # Hottest current Microsoft topics — one published per month
-    {"keyword": "Microsoft 365 Copilot setup guide SMB",              "category": "Cloud Migration",      "volume": 9900},
-    {"keyword": "Microsoft Defender XDR setup guide SMB",             "category": "Security Hardening",   "volume": 6600},
-    {"keyword": "Azure OpenAI Service setup guide SMB",               "category": "Infrastructure Revamp","volume": 5400},
-    {"keyword": "Microsoft Entra External ID setup guide",            "category": "Security Hardening",   "volume": 4800},
-    {"keyword": "Microsoft Security Copilot setup guide",             "category": "Security Hardening",   "volume": 4400},
-    {"keyword": "Microsoft Copilot Studio setup guide SMB",           "category": "Infrastructure Revamp","volume": 3900},
-    {"keyword": "Azure AI Foundry setup guide small business",        "category": "Infrastructure Revamp","volume": 3500},
-    {"keyword": "Microsoft Fabric analytics setup SMB",               "category": "Cloud Migration",      "volume": 3200},
-    {"keyword": "Windows 11 24H2 migration guide SMB",                "category": "Infrastructure Revamp","volume": 2900},
-    {"keyword": "GitHub Copilot Business setup guide",                "category": "Infrastructure Revamp","volume": 2600},
-    {"keyword": "Microsoft Intune Suite setup guide SMB",             "category": "Security Hardening",   "volume": 2300},
-    {"keyword": "Azure AI Document Intelligence setup guide",         "category": "Cloud Migration",      "volume": 2000},
+MS_NEWS_FEEDS = [
+    "https://azure.microsoft.com/en-us/blog/feed/",
+    "https://blogs.microsoft.com/feed/",
+    "https://techcommunity.microsoft.com/plugins/custom/microsoft/o365/rss-board-message?board.id=MicrosoftSecurityandCompliance",
+    "https://www.theverge.com/microsoft/rss/index.xml",
+    "https://feeds.feedburner.com/TheHackersNews",
 ]
 
-# ── Authoritative doc sources per keyword ────────────────────────────────────
+# ── Headline fetcher ──────────────────────────────────────────────────────────
 
-DOC_SOURCES = {
-    "Microsoft 365 Copilot setup guide SMB": [
-        "https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-overview",
-        "https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-setup",
-        "https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-requirements",
-        "https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy",
-    ],
-    "Microsoft Defender XDR setup guide SMB": [
-        "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender",
-        "https://learn.microsoft.com/en-us/defender-xdr/get-started",
-        "https://learn.microsoft.com/en-us/defender-xdr/pilot-deploy-overview",
-        "https://learn.microsoft.com/en-us/defender-xdr/investigate-incidents",
-    ],
-    "Azure OpenAI Service setup guide SMB": [
-        "https://learn.microsoft.com/en-us/azure/ai-services/openai/overview",
-        "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource",
-        "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models",
-        "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter",
-        "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deploy-models",
-    ],
-    "Microsoft Entra External ID setup guide": [
-        "https://learn.microsoft.com/en-us/entra/external-id/customers/overview-customers-ciam",
-        "https://learn.microsoft.com/en-us/entra/external-id/customers/quickstart-trial-setup",
-        "https://learn.microsoft.com/en-us/entra/external-id/customers/how-to-user-flow-sign-up-sign-in-customers",
-        "https://learn.microsoft.com/en-us/entra/external-id/customers/concept-security-customers",
-    ],
-    "Microsoft Security Copilot setup guide": [
-        "https://learn.microsoft.com/en-us/copilot/security/microsoft-security-copilot",
-        "https://learn.microsoft.com/en-us/copilot/security/get-started-security-copilot",
-        "https://learn.microsoft.com/en-us/copilot/security/authentication",
-        "https://learn.microsoft.com/en-us/copilot/security/plugin-overview",
-    ],
-    "Microsoft Copilot Studio setup guide SMB": [
-        "https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio",
-        "https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-get-started",
-        "https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-first-bot",
-        "https://learn.microsoft.com/en-us/microsoft-copilot-studio/publication-fundamentals-publish-channels",
-    ],
-    "Azure AI Foundry setup guide small business": [
-        "https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry",
-        "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-projects",
-        "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/deployments-overview",
-        "https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-use-of-ai-overview",
-    ],
-    "Microsoft Fabric analytics setup SMB": [
-        "https://learn.microsoft.com/en-us/fabric/get-started/microsoft-fabric-overview",
-        "https://learn.microsoft.com/en-us/fabric/get-started/fabric-trial",
-        "https://learn.microsoft.com/en-us/fabric/get-started/create-workspaces",
-        "https://learn.microsoft.com/en-us/fabric/security/security-overview",
-        "https://learn.microsoft.com/en-us/fabric/get-started/licenses",
-    ],
-    "Windows 11 24H2 migration guide SMB": [
-        "https://learn.microsoft.com/en-us/windows/whats-new/windows-11-version-24h2",
-        "https://learn.microsoft.com/en-us/windows/deployment/update/waas-quick-start",
-        "https://learn.microsoft.com/en-us/mem/intune/fundamentals/windows-upgrade",
-        "https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/overview/windows-autopatch-overview",
-    ],
-    "GitHub Copilot Business setup guide": [
-        "https://docs.github.com/en/copilot/about-github-copilot/what-is-github-copilot",
-        "https://docs.github.com/en/copilot/managing-copilot/managing-github-copilot-in-your-organization/setting-up-github-copilot-for-your-organization",
-        "https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line",
-        "https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features/responsible-use-of-github-copilot-in-your-organization",
-    ],
-    "Microsoft Intune Suite setup guide SMB": [
-        "https://learn.microsoft.com/en-us/mem/intune/fundamentals/what-is-intune",
-        "https://learn.microsoft.com/en-us/mem/intune/fundamentals/intune-add-ons",
-        "https://learn.microsoft.com/en-us/mem/intune/protect/advanced-threat-protection",
-        "https://learn.microsoft.com/en-us/mem/intune/protect/endpoint-security",
-        "https://learn.microsoft.com/en-us/mem/intune/fundamentals/remote-help",
-    ],
-    "Azure AI Document Intelligence setup guide": [
-        "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/overview",
-        "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/how-to-guides/create-document-intelligence-resource",
-        "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-model-overview",
-        "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/how-to-guides/build-a-custom-classifier",
-    ],
-}
+def fetch_ms_headlines(max_per_feed: int = 15) -> str:
+    """Pull recent Microsoft headlines from RSS feeds (last 45 days)."""
+    cutoff = date.today() - timedelta(days=45)
+    lines = []
+    for url in MS_NEWS_FEEDS:
+        try:
+            feed = feedparser.parse(url)
+            count = 0
+            for entry in feed.entries:
+                if count >= max_per_feed:
+                    break
+                title   = entry.get("title", "").strip()
+                summary = re.sub(r"<[^>]+>", " ", entry.get("summary", "")).strip()
+                summary = re.sub(r"\s+", " ", summary)[:200]
+                pub     = entry.get("published", "")
+                lines.append(f"- {title}. {summary}")
+                count += 1
+            print(f"   {url.split('/')[2]}: {count} headlines")
+        except Exception as e:
+            print(f"   Feed failed ({url.split('/')[2]}): {e}")
+    return "\n".join(lines)
+
+
+# ── Dynamic topic picker ──────────────────────────────────────────────────────
+
+def pick_trending_topic(headlines: str) -> dict:
+    """Ask Gemini to pick the hottest actionable MS topic from current headlines."""
+    written = get_written_keywords()
+    written_list = "\n".join(f"  - {kw}" for kw in sorted(written)) if written else "  (none yet)"
+
+    prompt = textwrap.dedent(f"""
+        You are a senior Microsoft IT consultant helping a Montreal IT firm (SkyCore Solutions)
+        decide which Microsoft topic to write a practical how-to guide about this month.
+
+        Here are recent Microsoft headlines and news summaries from the past 45 days:
+        {headlines}
+
+        ALREADY WRITTEN (do NOT pick these):
+        {written_list}
+
+        TASK: Pick the single best topic for a hands-on SMB IT implementation guide.
+        Choose based on:
+        1. What is generating the most buzz or is newly released by Microsoft this month
+        2. What SMBs (10-200 employees) would actually need help deploying or setting up
+        3. Preference for Azure, Microsoft 365, or security-related topics
+        4. Avoid topics already written (see list above)
+
+        Return ONLY valid JSON (no markdown fences):
+        {{
+          "keyword": "how-to search keyword, 5-9 words, e.g. 'Microsoft Copilot Pages setup guide SMB'",
+          "category": "Cloud Migration|Security Hardening|Infrastructure Revamp",
+          "rationale": "One sentence: why this topic is hot right now",
+          "doc_urls": [
+            "https://learn.microsoft.com/...",
+            "https://learn.microsoft.com/...",
+            "https://learn.microsoft.com/...",
+            "https://learn.microsoft.com/..."
+          ]
+        }}
+
+        doc_urls must be real, specific learn.microsoft.com (or docs.github.com) pages
+        for the chosen topic — not the homepage.
+    """).strip()
+
+    raw = CLIENT.models.generate_content(model=GEMINI_MODEL, contents=prompt).text.strip()
+    raw = re.sub(r"^```[a-z]*\n?", "", raw)
+    raw = re.sub(r"\n?```$", "", raw)
+    match = re.search(r"\{[\s\S]*\}", raw)
+    if match:
+        raw = match.group(0)
+    topic = json.loads(raw)
+    print(f"   Trending topic: \"{topic['keyword']}\"")
+    print(f"   Category: {topic['category']}")
+    print(f"   Rationale: {topic.get('rationale', '')}")
+    return topic
 
 # ── Fallback Unsplash photos by category ──────────────────────────────────────
 
 FALLBACK_PHOTOS = {
     "Cloud Migration":       "1451187580459-43490279c0fa",
     "Infrastructure Revamp": "1461749280684-dccba630e2f6",
+    "Security Hardening":    "1550751827-4bd374e15aa1",
 }
-
-# ── Queue loader ──────────────────────────────────────────────────────────────
-
-def load_ms_queue() -> list:
-    """Load from DataForSEO-refreshed JSON if available, else use hardcoded fallback."""
-    json_path = os.path.join(os.path.dirname(__file__), "ms_keyword_queue.json")
-    if os.path.exists(json_path):
-        try:
-            with open(json_path, "r", encoding="utf-8") as f:
-                queue = json.load(f)
-            print(f"   Loaded {len(queue)} MS topics from ms_keyword_queue.json (refreshed {queue[0].get('refreshed','?')})")
-            return queue
-        except Exception as e:
-            print(f"   ms_keyword_queue.json load failed ({e}), using hardcoded fallback")
-    return MS_TOPIC_QUEUE
 
 # ── Keyword/image helpers ─────────────────────────────────────────────────────
 
@@ -166,17 +137,6 @@ def get_written_keywords() -> set:
         return set()
 
 
-def get_last_category() -> str | None:
-    """Return the category of the most recently published how-to article."""
-    try:
-        with open("how-to/posts.js", "r", encoding="utf-8") as f:
-            content = f.read()
-        match = re.search(r'category:\s*"([^"]+)"', content)
-        return match.group(1) if match else None
-    except Exception:
-        return None
-
-
 def get_used_image_urls() -> set:
     try:
         with open("how-to/posts.js", "r", encoding="utf-8") as f:
@@ -184,25 +144,6 @@ def get_used_image_urls() -> set:
         return set(re.findall(r'image:\s*"([^"]+)"', content))
     except Exception:
         return set()
-
-
-def pick_next_topic(queue: list) -> dict | None:
-    """Pick next unwritten topic, avoiding the same category as the last article."""
-    written  = get_written_keywords()
-    last_cat = get_last_category()
-    available = [item for item in queue if item["keyword"] not in written]
-
-    if not available:
-        return None
-
-    if last_cat:
-        different = [item for item in available if item["category"] != last_cat]
-        if different:
-            print(f"   Last category was '{last_cat}' — alternating to a different category")
-            return different[0]
-        print(f"   All remaining topics are '{last_cat}' — using next highest-volume anyway")
-
-    return available[0]
 
 # ── Doc fetching ──────────────────────────────────────────────────────────────
 
@@ -238,8 +179,7 @@ def fetch_doc(url: str, max_chars: int = 6000) -> str:
         return ""
 
 
-def gather_reference_docs(keyword: str) -> tuple[str, list[str]]:
-    urls = DOC_SOURCES.get(keyword, [])
+def gather_reference_docs(urls: list[str]) -> tuple[str, list[str]]:
     if not urls:
         print("   No doc sources for this topic — using Gemini training only")
         return "", []
@@ -594,17 +534,16 @@ def prepend_to_posts_js(article: dict, thumb_url: str):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    queue = load_ms_queue()
-    topic = pick_next_topic(queue)
-    if not topic:
-        print("All MS topics written. Keyword queue will refresh next month via keyword-refresh.yml.")
-        return
+    print("-- Fetching Microsoft news headlines --")
+    headlines = fetch_ms_headlines()
+    if not headlines:
+        print("   WARNING: No headlines fetched — Gemini will use training knowledge only")
 
-    print(f"-- Next MS topic: \"{topic['keyword']}\" ({topic.get('volume', 0):,}/mo) --")
-    print(f"   Category: {topic['category']}")
+    print("-- Picking trending topic via Gemini --")
+    topic = pick_trending_topic(headlines)
 
     print("-- Fetching reference documentation --")
-    ref_docs, source_urls = gather_reference_docs(topic["keyword"])
+    ref_docs, source_urls = gather_reference_docs(topic.get("doc_urls", []))
 
     print("-- Generating article via Gemini 2.5 Flash --")
     article = generate_article(topic, ref_docs, source_urls)

@@ -2,7 +2,7 @@ name: Auto MS How-To Generator
 
 on:
   schedule:
-    - cron: '0 12 1 * *'   # 1st of every month at 12 PM UTC
+    - cron: '0 10 28 * *'  # 28th of every month at 10 AM UTC (picks this month's hot topic)
   workflow_dispatch:          # Manual trigger: Actions tab → Run workflow
 
 permissions:
@@ -28,7 +28,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install --upgrade google-genai requests
+        run: pip install --upgrade google-genai requests feedparser
 
       - name: Check API keys
         run: |
