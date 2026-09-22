@@ -79,6 +79,20 @@
     </div>
   </section>
 
+  <!-- Archive -->
+  <section class="section" id="archive-section" style="padding-top:0;display:none;">
+    <div class="container">
+      <div class="archive-toggle-row">
+        <button id="archive-toggle" aria-expanded="false">
+          <span>Archive</span>
+          <span class="archive-count-badge" id="archive-count-badge"></span>
+          <span class="archive-chevron">▾</span>
+        </button>
+      </div>
+      <div id="archive-list"></div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -96,36 +110,75 @@
   <script src="./posts.js"></script>
   <script>
     const DIFFICULTY_COLOR = { Beginner: '#00c853', Intermediate: '#ff9800', Advanced: '#e53935' };
+    const CATEGORY_DOT = { 'Cloud Migration': '#00e5ff', 'Security Hardening': '#ff4081', 'Infrastructure Revamp': '#7c4dff', 'IT Strategy': '#ff9800' };
+    const FEATURED = 5;
+
+    function sortedFiltered(filter) {
+      const all = [...window.SKYCORE_HOWTO].sort((a, b) => new Date(b.date) - new Date(a.date));
+      return filter === 'all' ? all : all.filter(p => p.category === filter);
+    }
 
     function renderGrid(filter) {
-      const posts = [...window.SKYCORE_HOWTO].sort((a, b) => new Date(b.date) - new Date(a.date));
-      const filtered = filter === 'all' ? posts : posts.filter(p => p.category === filter);
+      const all = sortedFiltered(filter);
+      const featured = all.slice(0, FEATURED);
       const grid = document.getElementById('howto-grid');
       const empty = document.getElementById('howto-empty');
-      if (!filtered.length) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
-      empty.style.display = 'none';
-      grid.innerHTML = filtered.map(p => `
-        <article class="post-card">
-          <a href="./${p.slug}.html" class="post-thumb" aria-label="${p.title}">
-            ${p.image ? `<img src="${p.image}" alt="${p.title}" loading="lazy">` : ''}
-            <div class="howto-thumb-badges">
-              <span class="howto-difficulty-badge" style="background:${DIFFICULTY_COLOR[p.difficulty] || '#888'}">${p.difficulty || 'Intermediate'}</span>
-              <span class="howto-time-badge">⏱ ${p.timeEstimate || '30 min'}</span>
+      if (!featured.length) { grid.innerHTML = ''; empty.style.display = 'block'; }
+      else {
+        empty.style.display = 'none';
+        grid.innerHTML = featured.map(p => `
+          <article class="post-card">
+            <a href="./${p.slug}.html" class="post-thumb" aria-label="${p.title}">
+              ${p.image ? `<img src="${p.image}" alt="${p.title}" loading="lazy">` : ''}
+              <div class="howto-thumb-badges">
+                <span class="howto-difficulty-badge" style="background:${DIFFICULTY_COLOR[p.difficulty] || '#888'}">${p.difficulty || 'Intermediate'}</span>
+                <span class="howto-time-badge">⏱ ${p.timeEstimate || '30 min'}</span>
+              </div>
+            </a>
+            <div class="post-body">
+              <div class="post-meta">${new Date(p.date).toLocaleDateString("en-US",{year:"numeric",month:"short",day:"numeric"})} &middot; ${p.readTime} &middot; ${p.category}</div>
+              <h3><a href="./${p.slug}.html">${p.title}</a></h3>
+              <p>${p.excerpt}</p>
+              <a href="./${p.slug}.html" class="post-tag">Read guide &rarr;</a>
             </div>
-          </a>
-          <div class="post-body">
-            <div class="post-meta">${new Date(p.date).toLocaleDateString("en-US",{year:"numeric",month:"short",day:"numeric"})} &middot; ${p.readTime} &middot; ${p.category}</div>
-            <h3><a href="./${p.slug}.html">${p.title}</a></h3>
-            <p>${p.excerpt}</p>
-            <a href="./${p.slug}.html" class="post-tag">Read guide &rarr;</a>
-          </div>
-        </article>`).join('');
+          </article>`).join('');
+      }
+      renderArchive(all.slice(FEATURED));
     }
+
+    function renderArchive(archived) {
+      const section = document.getElementById('archive-section');
+      const toggle  = document.getElementById('archive-toggle');
+      const badge   = document.getElementById('archive-count-badge');
+      const list    = document.getElementById('archive-list');
+      if (!archived.length) { section.style.display = 'none'; return; }
+      section.style.display = '';
+      badge.textContent = archived.length + ' older guide' + (archived.length !== 1 ? 's' : '');
+      list.innerHTML = archived.map(p => {
+        const dot  = CATEGORY_DOT[p.category] || '#555';
+        const mon  = new Date(p.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+        return `<a href="./${p.slug}.html" class="archive-item">
+          <span class="archive-dot" style="background:${dot}"></span>
+          <span class="archive-title">${p.title}</span>
+          <span class="archive-meta">${mon}&nbsp;·&nbsp;${p.category}</span>
+        </a>`;
+      }).join('');
+      // keep collapsed state when re-rendering after filter change
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      list.style.display = open ? 'grid' : 'none';
+    }
+
+    document.getElementById('archive-toggle').addEventListener('click', function () {
+      const open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!open));
+      document.getElementById('archive-list').style.display = open ? 'none' : 'grid';
+    });
 
     document.querySelectorAll('.howto-filter').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.howto-filter').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        document.getElementById('archive-toggle').setAttribute('aria-expanded', 'false');
         renderGrid(btn.dataset.filter);
       });
     });
