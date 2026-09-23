@@ -611,14 +611,16 @@ p  { color: var(--text-2); }
   padding: 40px 0 0;
   border-top: 1px solid var(--border);
 }
-#archive-toggle {
+#archive-toggle,
+#blog-archive-toggle {
   display: inline-flex; align-items: center; gap: 12px;
   background: none; border: none; cursor: pointer;
   padding: 10px 0; font-family: var(--font-head);
   font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
   transition: filter .2s;
 }
-#archive-toggle:hover { filter: brightness(1.2); }
+#archive-toggle:hover,
+#blog-archive-toggle:hover { filter: brightness(1.2); }
 .archive-label {
   color: var(--cyan);
   text-shadow: 0 0 12px var(--cyan), 0 0 28px rgba(0,229,255,0.4);
@@ -636,7 +638,8 @@ p  { color: var(--text-2); }
   font-size: 0.8rem; transition: transform .25s; line-height: 1;
   color: var(--cyan); text-shadow: 0 0 8px var(--cyan);
 }
-#archive-toggle[aria-expanded="true"] .archive-chevron { transform: rotate(180deg); }
+#archive-toggle[aria-expanded="true"] .archive-chevron,
+#blog-archive-toggle[aria-expanded="true"] .archive-chevron { transform: rotate(180deg); }
 #archive-list {
   display: none;
   grid-template-columns: 1fr 1fr;
