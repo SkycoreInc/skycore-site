@@ -15,18 +15,6 @@ window.SKYCORE_HOWTO = [
     image: "https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
-    slug: "azure-devtest-labs-setup-guide-smb",
-    title: "Mastering Azure DevTest Labs: An Essential Setup Guide for SMBs",
-    date: "2026-09-09",
-    readTime: "15 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "1.5 hours",
-    keyword: "Azure DevTest Labs setup guide",
-    excerpt: "Streamline your development and testing with this comprehensive Azure DevTest Labs setup guide. Learn how to quickly provision VMs, implement crucial cost controls, and ensure consistent environments for your SMB.",
-    image: "https://images.pexels.com/photos/32778341/pexels-photo-32778341.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
     slug: "vmware-to-hyperv-migration-guide",
     title: "Definitive VMware to Hyper-V Migration Guide: CLI-First Enterprise Strategy",
     date: "2026-09-07",
@@ -61,30 +49,6 @@ window.SKYCORE_HOWTO = [
     keyword: "Kubernetes setup guide small business",
     excerpt: "Small businesses can leverage Kubernetes for efficient application deployment. This guide provides a practical, opinionated walkthrough for setting up Azure Kubernetes Service (AKS).",
     image: "https://images.pexels.com/photos/2097627/pexels-photo-2097627.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "azure-logic-apps-workflow-automation-guide-smb",
-    title: "Elevate SMB Efficiency: An Azure Logic Apps Workflow Automation Guide",
-    date: "2026-09-01",
-    readTime: "18 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "2-3 hours",
-    keyword: "Azure Logic Apps workflow automation guide",
-    excerpt: "Unlock powerful workflow automation for your SMB with this comprehensive Azure Logic Apps guide. Learn to build, deploy, and manage automated processes, from data integration to notification systems, to boost efficiency.",
-    image: "https://images.pexels.com/photos/7947841/pexels-photo-7947841.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "it-infrastructure-modernization-guide",
-    title: "Accelerating IT Infrastructure Modernization: A SkyCore Solutions Guide",
-    date: "2026-09-01",
-    readTime: "15 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "2-3 hours",
-    keyword: "IT infrastructure modernization guide",
-    excerpt: "SkyCore Solutions presents a comprehensive guide to modernizing your IT infrastructure, integrating best practices from Azure and Google Cloud. This guide covers strategic planning, secure cloud adoption, and continuous operational excellence across hybrid and multi-cloud environments.",
-    image: "https://images.pexels.com/photos/13539298/pexels-photo-13539298.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
     slug: "devops-implementation-small-business",
@@ -123,30 +87,6 @@ window.SKYCORE_HOWTO = [
     image: "https://images.pexels.com/photos/4440200/pexels-photo-4440200.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
-    slug: "azure-virtual-network-setup-guide-smb-secure",
-    title: "SkyCore Solutions: The Ultimate Azure Virtual Network Setup Guide for SMBs",
-    date: "2026-08-25",
-    readTime: "18 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "2-3 hours",
-    keyword: "Azure Virtual Network setup guide SMB",
-    excerpt: "This comprehensive Azure Virtual Network setup guide for SMBs walks you through establishing a secure, scalable, and efficient network in the cloud. Future-proof your business operations.",
-    image: "https://images.pexels.com/photos/18332045/pexels-photo-18332045.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "github-actions-ci-cd-pipeline-setup",
-    title: "Mastering GitHub Actions: A Comprehensive CI/CD Pipeline Setup Guide",
-    date: "2026-08-25",
-    readTime: "20 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "2-3 hours",
-    keyword: "GitHub Actions CI CD pipeline setup",
-    excerpt: "Learn to implement powerful CI/CD pipelines using GitHub Actions for automated, secure, and efficient software delivery. This guide covers everything from workflow basics to advanced deployment strategies.",
-    image: "https://images.pexels.com/photos/357440/pexels-photo-357440.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
     slug: "azure-hybrid-cloud-small-business",
     title: "Streamline Operations: Your Hybrid Cloud Setup for Small Business with Azure",
     date: "2026-08-22",
@@ -157,18 +97,6 @@ window.SKYCORE_HOWTO = [
     keyword: "hybrid cloud setup small business",
     excerpt: "Unlock the power of hybrid cloud for your small business by seamlessly integrating on-premises resources with Azure. Enhance flexibility, security, and disaster recovery capabilities with a step-by-step guide.",
     image: "https://images.pexels.com/photos/37288655/pexels-photo-37288655.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "azure-api-management-setup-guide-smb-skycore",
-    title: "Comprehensive Azure API Management Setup Guide for SMBs by SkyCore Solutions",
-    date: "2026-08-21",
-    readTime: "12 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "1.5-2 hours",
-    keyword: "Azure API Management setup guide",
-    excerpt: "SkyCore Solutions presents a comprehensive Azure API Management setup guide specifically for SMBs. Master API deployment, security, and developer engagement to modernize your digital infrastructure.",
-    image: "https://images.pexels.com/photos/5583957/pexels-photo-5583957.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
     slug: "physical-server-azure-migration",
@@ -187,7 +115,7 @@ window.SKYCORE_HOWTO = [
     title: "Microsoft Defender for Business Setup Guide: Fortifying SMB Endpoints",
     date: "2026-08-17",
     readTime: "20 min read",
-    category: "Infrastructure Revamp",
+    category: "Security Hardening",
     difficulty: "Intermediate",
     timeEstimate: "2-3 hours",
     keyword: "Microsoft Defender for Business setup guide",
@@ -205,18 +133,6 @@ window.SKYCORE_HOWTO = [
     keyword: "Azure backup setup guide",
     excerpt: "This comprehensive guide from SkyCore Solutions details setting up Azure Backup for your virtual machines. Protect your critical data with robust policies, immutable vaults, and strategic recovery planning.",
     image: "https://images.pexels.com/photos/6429140/pexels-photo-6429140.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "azure-container-apps-deployment-guide-smb",
-    title: "Streamlining Operations with Azure Container Apps: An SMB Deployment Guide by SkyCore Solutions",
-    date: "2026-08-13",
-    readTime: "15 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "1-2 hours",
-    keyword: "Azure Container Apps deployment guide",
-    excerpt: "Deploying Azure Container Apps offers SMBs a powerful serverless platform to run containerized applications without complex infrastructure management. This guide walks you through setting up and deploying your first container app.",
-    image: "https://images.pexels.com/photos/29690177/pexels-photo-29690177.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
     slug: "sql-server-azure-migration-guide",
@@ -241,18 +157,6 @@ window.SKYCORE_HOWTO = [
     keyword: "phishing simulation setup guide",
     excerpt: "Deploy effective phishing simulations using Microsoft 365 Defender and Azure AD. This guide covers setup, whitelisting, and reporting for enhanced security awareness.",
     image: "https://images.pexels.com/photos/38486957/pexels-photo-38486957.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "azure-arc-hybrid-cloud-management-smb",
-    title: "Your Essential Azure Arc Hybrid Cloud Management Guide for SMBs",
-    date: "2026-08-09",
-    readTime: "18 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "2-3 hours",
-    keyword: "Azure Arc hybrid cloud management guide",
-    excerpt: "This Azure Arc hybrid cloud management guide helps SMBs seamlessly integrate on-premises infrastructure with Azure, bringing unified governance and operational consistency. Enhance your IT efficiency and security today.",
-    image: "https://images.pexels.com/photos/6134011/pexels-photo-6134011.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
     slug: "smb-cybersecurity-audit-checklist",
@@ -291,30 +195,6 @@ window.SKYCORE_HOWTO = [
     image: "https://images.pexels.com/photos/4597280/pexels-photo-4597280.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
-    slug: "microsoft-sentinel-siem-setup-smb-guide",
-    title: "Mastering Microsoft Sentinel SIEM Setup for SMBs: An Implementation Guide by SkyCore Solutions",
-    date: "2026-08-01",
-    readTime: "9 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "2 hours",
-    keyword: "Microsoft Sentinel SIEM setup SMB",
-    excerpt: "Boost your SMB's security posture with Microsoft Sentinel. This guide covers the essential steps for Microsoft Sentinel SIEM setup, from deployment to threat detection.",
-    image: "https://images.pexels.com/photos/5380618/pexels-photo-5380618.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "azure-migrate-on-premise-cloud-guide",
-    title: "On-Premise to Azure Migration Guide: SkyCore's Recommended Path",
-    date: "2026-08-01",
-    readTime: "15 min read",
-    category: "Cloud Migration",
-    difficulty: "Intermediate",
-    timeEstimate: "Weeks to Months (for full migration project)",
-    keyword: "on premise to Azure migration guide",
-    excerpt: "This guide provides SkyCore Solutions' recommended, CLI-first approach for migrating on-premise workloads to Azure, leveraging the Azure Migrate service. We cover everything from initial discovery and assessment to replication and final cutover.",
-    image: "https://images.pexels.com/photos/17489153/pexels-photo-17489153.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
     slug: "azure-conditional-access-setup-guide",
     title: "Mastering Azure Conditional Access: A SkyCore Setup Guide for Enhanced Security",
     date: "2026-07-31",
@@ -339,23 +219,11 @@ window.SKYCORE_HOWTO = [
     image: "https://images.pexels.com/photos/1181207/pexels-photo-1181207.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
-    slug: "azure-monitor-log-analytics-setup-guide-smb",
-    title: "Your Essential Azure Monitor Log Analytics Setup Guide for SMBs",
-    date: "2026-07-25",
-    readTime: "18 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "1-2 hours",
-    keyword: "Azure Monitor Log Analytics setup guide",
-    excerpt: "This Azure Monitor Log Analytics setup guide empowers SMBs to centralize logs, enhance security, and streamline troubleshooting across their Azure environment. Follow our authoritative steps.",
-    image: "https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
     slug: "azure-mfa-configuration-guide",
     title: "Authoritative Azure MFA Configuration Guide: Fortify Your Cloud Security with Conditional Access",
     date: "2026-07-25",
     readTime: "15 min read",
-    category: "Cloud Migration",
+    category: "Security Hardening",
     difficulty: "Intermediate",
     timeEstimate: "2-3 hours",
     keyword: "Azure MFA configuration guide",
@@ -373,18 +241,6 @@ window.SKYCORE_HOWTO = [
     keyword: "how to configure DMARC DKIM SPF",
     excerpt: "Email authentication is critical to defending against spoofing and phishing. This guide provides a detailed, CLI-first approach to configure DMARC, DKIM, and SPF for your domains.",
     image: "https://images.pexels.com/photos/4489171/pexels-photo-4489171.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "azure-sql-managed-instance-migration-guide-skycore",
-    title: "Seamless Azure SQL Managed Instance Migration Guide for SMBs: A SkyCore Solutions Blueprint",
-    date: "2026-07-21",
-    readTime: "12 min read",
-    category: "Cloud Migration",
-    difficulty: "Intermediate",
-    timeEstimate: "4-8 hours (including planning and deployment)",
-    keyword: "Azure SQL Managed Instance migration guide",
-    excerpt: "This Azure SQL Managed Instance migration guide from SkyCore Solutions provides SMBs with a clear, step-by-step blueprint to move their SQL Server databases to the cloud, ensuring operational continuity and enhanced security.",
-    image: "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
     slug: "active-directory-tiering-best-practices-skycore",
@@ -409,18 +265,6 @@ window.SKYCORE_HOWTO = [
     keyword: "Microsoft Teams Phone setup small business",
     excerpt: "Upgrade your small business communication with a comprehensive Microsoft Teams Phone setup. This guide provides step-by-step instructions for implementing external calling, voicemail, and other essential PBX features.",
     image: "https://images.pexels.com/photos/7964566/pexels-photo-7964566.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "dmarc-configuration-step-by-step",
-    title: "Mastering DMARC Configuration Step-by-Step for Advanced Email Security",
-    date: "2026-07-16",
-    readTime: "18 min read",
-    category: "Security Hardening",
-    difficulty: "Intermediate",
-    timeEstimate: "2-4 hours (initial setup), ongoing monitoring",
-    keyword: "DMARC configuration step by step",
-    excerpt: "This comprehensive guide walks you through DMARC configuration step-by-step, unifying SPF and DKIM to prevent email spoofing and enhance sender reputation. Protect your domains effectively.",
-    image: "https://images.pexels.com/photos/30885916/pexels-photo-30885916.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
     slug: "hyper-v-migration-azure-guide-smbs",
@@ -519,18 +363,6 @@ window.SKYCORE_HOWTO = [
     image: "https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
-    slug: "azure-devops-ci-cd-pipeline-setup-guide",
-    title: "Mastering Your Workflow: The Azure DevOps CI CD Pipeline Setup Guide for SMBs",
-    date: "2026-06-29",
-    readTime: "15 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "1.5 - 2 hours",
-    keyword: "Azure DevOps CI CD pipeline setup guide",
-    excerpt: "Streamline your software development life cycle. This Azure DevOps CI CD pipeline setup guide empowers SMBs to automate code delivery, ensuring faster, more reliable releases.",
-    image: "https://images.pexels.com/photos/18784617/pexels-photo-18784617.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
     slug: "exchange-office365-migration-guide",
     title: "Comprehensive Exchange to Office 365 Migration Guide for IT Professionals",
     date: "2026-06-28",
@@ -541,18 +373,6 @@ window.SKYCORE_HOWTO = [
     keyword: "Exchange to Office 365 migration guide",
     excerpt: "This comprehensive Exchange to Office 365 migration guide covers the critical steps and best practices for moving your on-premises mailboxes to the cloud.",
     image: "https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "azure-kubernetes-service-setup-guide-smb",
-    title: "Comprehensive Azure Kubernetes Service Setup Guide for SMBs",
-    date: "2026-06-25",
-    readTime: "15 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "1-2 hours",
-    keyword: "Azure Kubernetes Service setup guide",
-    excerpt: "This comprehensive Azure Kubernetes Service setup guide equips SMBs with the knowledge to deploy and manage containerized applications efficiently, minimizing operational overhead. Learn to harness AKS Automatic for a production-ready cluster.",
-    image: "https://images.pexels.com/photos/20758374/pexels-photo-20758374.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
     slug: "azure-cost-management-optimization-smb",
@@ -579,42 +399,6 @@ window.SKYCORE_HOWTO = [
     image: "https://images.pexels.com/photos/6310044/pexels-photo-6310044.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
-    slug: "vmware-migration-azure-guide-smbs",
-    title: "Your Comprehensive VMware Migration to Azure Guide: A SkyCore Solutions Blueprint for SMBs",
-    date: "2026-06-21",
-    readTime: "25 min read",
-    category: "Cloud Migration",
-    difficulty: "Intermediate",
-    timeEstimate: "3-5 hours (excluding data transfer time)",
-    keyword: "VMware migration to Azure guide",
-    excerpt: "Migrating your on-premises VMware virtual machines to Azure can unlock significant cost savings and agility for your SMB. This VMware migration to Azure guide provides a step-by-step blueprint for a successful agentless transition.",
-    image: "https://images.pexels.com/photos/6536941/pexels-photo-6536941.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "office-365-mfa-setup-guide",
-    title: "Comprehensive Office 365 MFA Setup Guide for Enhanced Security",
-    date: "2026-06-19",
-    readTime: "15 min read",
-    category: "Security Hardening",
-    difficulty: "Intermediate",
-    timeEstimate: "1-2 hours",
-    keyword: "Office 365 MFA setup guide",
-    excerpt: "Secure your Microsoft 365 accounts with this comprehensive Office 365 MFA setup guide. Implement robust multi-factor authentication to protect against unauthorized access.",
-    image: "https://images.pexels.com/photos/39584/censorship-limitations-freedom-of-expression-restricted-39584.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "azure-functions-serverless-deployment-guide-smb",
-    title: "Azure Functions Serverless Deployment Guide for SMBs | SkyCore Solutions",
-    date: "2026-06-17",
-    readTime: "15 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "2-3 hours",
-    keyword: "Azure Functions serverless deployment guide",
-    excerpt: "SkyCore Solutions presents a comprehensive Azure Functions serverless deployment guide tailored for small and medium businesses. Learn to deploy cost-effective, event-driven applications on Azure.",
-    image: "https://images.pexels.com/photos/16764815/pexels-photo-16764815.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
     slug: "migrate-file-server-azure-files-smb-guide",
     title: "SkyCore Solutions Guide: How to Migrate Your File Server to Azure Files with Azure File Sync",
     date: "2026-06-13",
@@ -625,42 +409,6 @@ window.SKYCORE_HOWTO = [
     keyword: "migrate file server to Azure Files guide",
     excerpt: "This authoritative guide helps SMBs migrate file server to Azure Files, leveraging Azure File Sync for a hybrid approach that enhances security and performance while maintaining local access.",
     image: "https://images.pexels.com/photos/19825057/pexels-photo-19825057.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "windows-server-hardening-checklist",
-    title: "The Definitive Windows Server Hardening Checklist for 2026",
-    date: "2026-06-13",
-    readTime: "18 min read",
-    category: "Security Hardening",
-    difficulty: "Advanced",
-    timeEstimate: "3-5 hours (initial implementation)",
-    keyword: "Windows Server hardening checklist",
-    excerpt: "This guide provides a comprehensive Windows Server hardening checklist, offering actionable, CLI-first steps to secure your critical infrastructure against evolving threats. Master foundational security, privileged access, and advanced threat protection.",
-    image: "https://images.pexels.com/photos/37730211/pexels-photo-37730211.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "office-365-migration-step-by-step",
-    title: "Office 365 Migration Step by Step: A Comprehensive Guide for IT Professionals",
-    date: "2026-06-10",
-    readTime: "25 min read",
-    category: "Cloud Migration",
-    difficulty: "Intermediate",
-    timeEstimate: "4-6 hours",
-    keyword: "Office 365 migration step by step",
-    excerpt: "Ready for an Office 365 migration step by step? This guide ensures a smooth transition for your organization's email and collaboration services.",
-    image: "https://images.pexels.com/photos/28751189/pexels-photo-28751189.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "server-hardening-checklist-azure-windows",
-    title: "The Definitive Server Hardening Checklist for Azure and Windows Environments",
-    date: "2026-06-07",
-    readTime: "12 min read",
-    category: "Security Hardening",
-    difficulty: "Advanced",
-    timeEstimate: "3-5 hours",
-    keyword: "server hardening checklist",
-    excerpt: "Implement SkyCore's expert server hardening checklist to fortify your Windows Server and Azure virtual machines against modern threats. This guide provides actionable, CLI-first steps for enhanced security.",
-    image: "https://images.pexels.com/photos/17323801/pexels-photo-17323801.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
     slug: "azure-virtual-desktop-setup-guide-smb",
@@ -697,18 +445,6 @@ window.SKYCORE_HOWTO = [
     keyword: "migrate SharePoint to SharePoint Online",
     excerpt: "Unlock modern collaboration by migrating your on-premises SharePoint to SharePoint Online. This guide details using the SharePoint Migration Tool (SPMT) for SMBs.",
     image: "https://images.pexels.com/photos/6481663/pexels-photo-6481663.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "docker-containerization-essential-guide",
-    title: "Mastering Docker Containerization: A SkyCore Solutions How-To Guide",
-    date: "2026-06-01",
-    readTime: "18 min read",
-    category: "Infrastructure Revamp",
-    difficulty: "Intermediate",
-    timeEstimate: "2-3 hours",
-    keyword: "Docker containerization tutorial",
-    excerpt: "This guide provides a comprehensive Docker containerization tutorial, demonstrating how to build, run, and orchestrate applications using Docker and Docker Compose. Leverage containerization for streamlined development and deployment workflows.",
-    image: "https://images.pexels.com/photos/37730212/pexels-photo-37730212.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
   {
     slug: "secure-small-business-endpoint-protection",
@@ -769,29 +505,5 @@ window.SKYCORE_HOWTO = [
     keyword: "IT disaster recovery guide",
     excerpt: "Disruptions are inevitable. This guide provides a strategic IT disaster recovery framework, leveraging Azure's robust BCDR services and industry best practices to safeguard your operations.",
     image: "https://images.pexels.com/photos/17489163/pexels-photo-17489163.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "zero-trust-network-access-implementation-guide",
-    title: "Mastering Zero Trust Network Access Implementation: A SkyCore Solutions Guide",
-    date: "2026-05-22",
-    readTime: "12 min read",
-    category: "Security Hardening",
-    difficulty: "Advanced",
-    timeEstimate: "4-8 hours (initial setup), ongoing",
-    keyword: "zero trust network access implementation",
-    excerpt: "This comprehensive guide from SkyCore Solutions details the steps for implementing Zero Trust Network Access, focusing on identity, device, and application security. Elevate your organization's security posture by adopting a 'never trust, always verify' approach.",
-    image: "https://images.pexels.com/photos/39624/padlock-lock-chain-key-39624.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
-  },
-  {
-    slug: "disaster-recovery-plan-small-business-azure",
-    title: "Building a Robust Disaster Recovery Plan for Small Business with Azure",
-    date: "2026-05-20",
-    readTime: "18 min read",
-    category: "IT Strategy",
-    difficulty: "Intermediate",
-    timeEstimate: "2-3 hours (initial setup) + ongoing",
-    keyword: "disaster recovery plan for small business",
-    excerpt: "A well-crafted disaster recovery plan is crucial for small businesses to withstand outages. This guide provides actionable steps to leverage Azure for resilience.",
-    image: "https://images.pexels.com/photos/2827756/pexels-photo-2827756.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
   },
 ];

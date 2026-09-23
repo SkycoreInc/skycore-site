@@ -55,6 +55,20 @@
     </div>
   </section>
 
+  <!-- Blog Archive -->
+  <section class="section" id="blog-archive-section" style="padding-top:0;padding-bottom:0;display:none;">
+    <div class="container">
+      <div class="archive-toggle-row">
+        <button id="blog-archive-toggle" aria-expanded="false">
+          <span class="archive-label">Archive</span>
+          <span class="archive-count-badge" id="blog-archive-count-badge"></span>
+          <span class="archive-chevron">▾</span>
+        </button>
+      </div>
+      <div id="blog-archive-list"></div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <div class="cta-band">
@@ -81,8 +95,19 @@
   <script src="../assets/js/main.js"></script>
   <script src="./posts.js"></script>
   <script>
-    const posts = [...window.SKYCORE_POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
-    document.getElementById("blog-grid").innerHTML = posts.map(p => `
+    const BLOG_CATEGORY_DOT = {
+      'Security Hardening': '#ff4081',
+      'Cloud & Infrastructure': '#00e5ff',
+      'IT Strategy': '#ff9800',
+      'Cloud Migration': '#00e5ff'
+    };
+    const BLOG_FEATURED = 10;
+
+    const sorted = [...window.SKYCORE_POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
+    const featured = sorted.slice(0, BLOG_FEATURED);
+    const archived = sorted.slice(BLOG_FEATURED);
+
+    document.getElementById("blog-grid").innerHTML = featured.map(p => `
       <article class="post-card">
         <a href="./${p.slug}.html" class="post-thumb" aria-label="${p.title}">${p.image ? `<img src="${p.image}" alt="${p.title}" loading="lazy">` : ''}</a>
         <div class="post-body">
@@ -92,8 +117,31 @@
           <a href="./${p.slug}.html" class="post-tag">Read article &rarr;</a>
         </div>
       </article>`).join("");
+
+    if (archived.length) {
+      const section = document.getElementById('blog-archive-section');
+      const toggle  = document.getElementById('blog-archive-toggle');
+      const badge   = document.getElementById('blog-archive-count-badge');
+      const list    = document.getElementById('blog-archive-list');
+      section.style.display = '';
+      badge.textContent = archived.length + ' older article' + (archived.length !== 1 ? 's' : '');
+      list.innerHTML = archived.map(p => {
+        const dot = BLOG_CATEGORY_DOT[p.category] || '#555';
+        const mon = new Date(p.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+        return `<a href="./${p.slug}.html" class="archive-item">
+          <span class="archive-dot" style="background:${dot}"></span>
+          <span class="archive-title">${p.title}</span>
+          <span class="archive-meta">${mon}&nbsp;·&nbsp;${p.category}</span>
+        </a>`;
+      }).join('');
+      list.style.display = 'none';
+      toggle.addEventListener('click', function () {
+        const open = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!open));
+        list.style.display = open ? 'none' : 'grid';
+      });
+    }
   </script>
   <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
 </body>
 </html>
-
