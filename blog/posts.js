@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cpanel-flaw-root-access-smb-security-montreal",
+    title: "Root Access Via cPanel? Your Business Is Exposed.",
+    date: "2026-09-23",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "A single cPanel vulnerability could grant attackers root access, completely compromising your business. This isn't just a hypothetical; it's a stark reality for many SMBs.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/37564547/pexels-photo-37564547.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "it-security-myths-montreal-smb",
     title: "Your IT Security Myths Are Getting Montreal Businesses Hacked",
     date: "2026-09-21",
