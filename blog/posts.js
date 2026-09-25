@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ai-makes-failed-attacks-easier-to-retry",
+    title: "AI: The Hacker's Second Chance – Why Your SMB Can't Afford Complacency",
+    date: "2026-09-25",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Failed cyberattacks are now cheaper and easier to retry thanks to AI. Is your Montreal SMB prepared for this escalating threat?",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/14066351/pexels-photo-14066351.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "cpanel-flaw-root-access-smb-security-montreal",
     title: "Root Access Via cPanel? Your Business Is Exposed.",
     date: "2026-09-23",
