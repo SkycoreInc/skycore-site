@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-dr-plan-small-business",
+    title: "Crafting a Robust Azure Disaster Recovery Plan for Small Businesses",
+    date: "2026-09-25",
+    readTime: "10-12 min read",
+    category: "IT Strategy",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours for initial planning and setup",
+    keyword: "disaster recovery plan for small business",
+    excerpt: "A robust disaster recovery plan is non-negotiable for small businesses. This guide from SkyCore Solutions details how to leverage Azure Backup and Site Recovery for comprehensive data protection and business continuity.",
+    image: "https://images.pexels.com/photos/4170441/pexels-photo-4170441.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "smb-network-segmentation-strategy-guide",
     title: "Essential SMB Network Segmentation Guide: Enhance Security & Performance",
     date: "2026-09-10",
