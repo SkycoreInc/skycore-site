@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "citrix-zerodays-montreal-cybersecurity",
+    title: "Citrix Zero-Days: Is Your Montreal Business a Sitting Duck?",
+    date: "2026-09-27",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Critical unpatched zero-day vulnerabilities in Citrix NetScaler appliances are being actively exploited right now. Waiting for a fix is a gamble your Montreal business can't afford.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5934213/pexels-photo-5934213.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ai-makes-failed-attacks-easier-to-retry",
     title: "AI: The Hacker's Second Chance – Why Your SMB Can't Afford Complacency",
     date: "2026-09-25",
