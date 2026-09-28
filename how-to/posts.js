@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "govern-ai-agents-microsoft365-azure",
+    title: "A Senior Azure Architect's Guide: How to Govern AI Agents in Microsoft 365 Azure Securely for SMBs",
+    date: "2026-09-28",
+    readTime: "20 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "how to govern AI agents in Microsoft 365 Azure",
+    excerpt: "This guide provides an authoritative roadmap on how to govern AI agents in Microsoft 365 Azure, focusing on security hardening for small to medium-sized businesses. Protect your sensitive data and maintain compliance with clear, actionable steps.",
+    image: "https://images.pexels.com/photos/31233586/pexels-photo-31233586.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-dr-plan-small-business",
     title: "Crafting a Robust Azure Disaster Recovery Plan for Small Businesses",
     date: "2026-09-25",
