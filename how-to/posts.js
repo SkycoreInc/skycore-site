@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "docker-containerization-mastery-tutorial",
+    title: "Mastering Docker Containerization: A Comprehensive Tutorial for Infrastructure Revamp",
+    date: "2026-09-28",
+    readTime: "12 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "Docker containerization tutorial",
+    excerpt: "This Docker containerization tutorial guides you through transforming applications into scalable, portable containers. Master Dockerfile creation, image management, and multi-service orchestration with Docker Compose.",
+    image: "https://images.pexels.com/photos/30517083/pexels-photo-30517083.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "govern-ai-agents-microsoft365-azure",
     title: "A Senior Azure Architect's Guide: How to Govern AI Agents in Microsoft 365 Azure Securely for SMBs",
     date: "2026-09-28",
