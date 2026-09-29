@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "kiteworks-flaw-patch-management-montreal",
+    title: "Your Cybersecurity Blind Spots: The Kiteworks Flaw Exposes a Universal Truth",
+    date: "2026-09-29",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A recent critical flaw found during a planned shutdown at Kiteworks serves as a stark warning to all businesses. Is your Montreal SMB truly secure from hidden vulnerabilities?",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5829726/pexels-photo-5829726.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "citrix-zerodays-montreal-cybersecurity",
     title: "Citrix Zero-Days: Is Your Montreal Business a Sitting Duck?",
     date: "2026-09-27",
