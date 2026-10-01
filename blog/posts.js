@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "wordpress-backdoor-smb-security",
+    title: "Beyond the Backdoor: Why Your Montreal SMB Needs More Than Just a Cleanup",
+    date: "2026-10-01",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A recent WordPress backdoor rebuilt itself even after cleanup, highlighting the sophistication of modern threats. Discover why your Montreal SMB needs more than basic security to truly protect against persistent attacks.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/6266446/pexels-photo-6266446.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "kiteworks-flaw-patch-management-montreal",
     title: "Your Cybersecurity Blind Spots: The Kiteworks Flaw Exposes a Universal Truth",
     date: "2026-09-29",
