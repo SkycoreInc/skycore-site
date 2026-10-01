@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "server-hardening-checklist-windows-azure",
+    title: "Comprehensive Server Hardening Checklist for Windows and Azure Environments",
+    date: "2026-10-01",
+    readTime: "12 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "6-8 hours",
+    keyword: "server hardening checklist",
+    excerpt: "Proactively fortify your servers against evolving threats with SkyCore Solutions' expert guidance. This checklist integrates Microsoft's best practices with industry-standard recommendations for unparalleled security.",
+    image: "https://images.pexels.com/photos/6466141/pexels-photo-6466141.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "docker-containerization-mastery-tutorial",
     title: "Mastering Docker Containerization: A Comprehensive Tutorial for Infrastructure Revamp",
     date: "2026-09-28",
