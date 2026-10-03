@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "gitlab-rce-warning-montreal-cybersecurity",
+    title: "GitLab RCE Warning: Why Your Montreal Business Can't Afford Complacency",
+    date: "2026-10-03",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A critical vulnerability allowing remote code execution in GitLab's AI Gateway shook the tech world. This isn't just a headline; it's a stark warning for every Montreal SMB running critical IT infrastructure.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/6266311/pexels-photo-6266311.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "wordpress-backdoor-smb-security",
     title: "Beyond the Backdoor: Why Your Montreal SMB Needs More Than Just a Cleanup",
     date: "2026-10-01",
