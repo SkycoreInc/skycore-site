@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Streamlined Office 365 Cutover Migration: A Step-by-Step Guide for Small Businesses — SkyCore Solutions</title>
+  <meta name="description" content="Migrate your on-premises Exchange to Office 365 with this step-by-step cutover migration guide. Ideal for organizations under 150 mailboxes. Learn preparation, execution, and post-migration tasks." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="Streamlined Office 365 Cutover Migration: A Step-by-Step Guide for Small Businesses — SkyCore Solutions" />
+  <meta property="og:description" content="Migrate your on-premises Exchange to Office 365 with this step-by-step cutover migration guide. Ideal for organizations under 150 mailboxes. Learn preparation, execution, and post-migration tasks." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/office-365-cutover-migration-guide.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/36532938/pexels-photo-36532938.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Streamlined Office 365 Cutover Migration: A Step-by-Step Guide for Small Businesses — SkyCore Solutions" />
+  <meta name="twitter:description" content="Migrate your on-premises Exchange to Office 365 with this step-by-step cutover migration guide. Ideal for organizations under 150 mailboxes. Learn preparation, execution, and post-migration tasks." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/36532938/pexels-photo-36532938.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/office-365-cutover-migration-guide.html" />
+  <meta property="article:published_time" content="2026-10-04" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Streamlined Office 365 Cutover Migration: A Step-by-Step Guide for Small Businesses",
+  "description": "Migrate your on-premises Exchange to Office 365 with this step-by-step cutover migration guide. Ideal for organizations under 150 mailboxes. Learn preparation, execution, and post-migration tasks.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "Active Microsoft 365 tenant with a custom domain added., On-premises Exchange Server 2003, 2007, 2010, or 2013., Fewer than 2,000 mailboxes (recommended: 150 or fewer) for a cutover migration., Valid SSL certificate from a trusted CA for Outlook Anywhere., Administrator access to on-premises Exchange and Microsoft 365 tenant., DNS hosting provider credentials., Network connectivity allowing Outlook Anywhere from the internet to your Exchange server., Directory Synchronization must be disabled if currently enabled."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "1. Initial Assessment and Planning",
+        "text": "Evaluate your existing on-premises Exchange environment to determine the most suitable migration strategy, typically a cutover migration for organizations with less than 150 mailboxes."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "2. DNS Domain Verification",
+        "text": "Add your custom domain to your Microsoft 365 tenant and verify ownership by adding specific DNS records, which may be automated if your registrar supports Domain Connect."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "3. Prepare On-Premises Exchange",
+        "text": "Configure Outlook Anywhere on your Exchange Server and ensure a valid, trusted SSL certificate is applied, as this is essential for Microsoft 365 to connect to your on-premises environment."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "4. Disable Directory Synchronization (If Applicable)",
+        "text": "If Azure AD Connect (DirSync) is active, temporarily disable it using PowerShell to prevent conflicts during the cutover migration and avoid duplicate user accounts."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "5. Create Mail-Enabled Security Groups (Optional)",
+        "text": "Manually recreate any necessary mail-enabled security groups in Microsoft 365, as these are not automatically migrated during a cutover migration."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "6. Create Migration Endpoint",
+        "text": "Establish a secure connection between your on-premises Exchange environment and Microsoft 365 by defining a migration endpoint, specifying the RPC proxy server and administrator credentials."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "7. Create and Start Migration Batch",
+        "text": "Initiate the mailbox migration by creating a new migration batch in Exchange Online, which will automatically begin synchronizing all on-premises mailboxes to Microsoft 365."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "8. Verify Mailbox Migration",
+        "text": "Monitor the migration batch status and confirm that all mailboxes have been successfully synchronized to Microsoft 365, ensuring data integrity before proceeding."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "9. Assign Microsoft 365 Licenses",
+        "text": "Grant appropriate Microsoft 365 licenses to the newly created user accounts in Exchange Online, enabling their cloud mailboxes for full functionality."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "10. Update DNS MX Record",
+        "text": "Change your domain's Mail Exchanger (MX) record at your DNS hosting provider to point to Exchange Online, redirecting all incoming email traffic to your Microsoft 365 tenant."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "11. Verify Mail Flow and Autodiscover",
+        "text": "After DNS propagation, confirm that new emails are delivered to Microsoft 365 mailboxes and that Outlook clients automatically connect to the new cloud mailboxes."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "12. Delete Migration Batch",
+        "text": "Remove the migration batch configuration from Exchange Online once you have confirmed all mailboxes are operational in Microsoft 365 and mail flow is stable."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "13. Post-Migration Tasks and Decommissioning",
+        "text": "Complete any remaining post-migration tasks, such as assigning additional permissions or configuring security settings, and plan for the eventual decommissioning of your on-premises Exchange servers."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "14. User Communication and Client Configuration",
+        "text": "Send welcome communications to users, provide instructions for updating their Outlook profiles or configuring other devices, and offer support for a smooth transition to the new environment."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class='post-meta'>2026-10-04 · 18 min read · Cloud Migration</div>
+<h1>Streamlined Office 365 Cutover Migration: A Step-by-Step Guide for Small Businesses</h1>
+<div class='article-hero'><img src='https://skycoresolutions.com/images/cutover-migration-hero.webp' alt='Cloud migration with arrow pointing from on-premises servers to Microsoft 365 services' loading='eager' fetchpriority='high'></div>
+<div class='howto-intro'><p>For small to medium-sized businesses with a straightforward on-premises Exchange environment, a <a href='https://learn.microsoft.com/en-us/exchange/mailbox-migration/cutover-migration-to-office-365' target='_blank'>cutover migration to Office 365</a> offers the most direct path to the cloud. This method moves all your mailboxes to Exchange Online in a single batch, making it ideal for organizations with fewer than 150 mailboxes running Exchange Server 2003 or later. As your trusted senior IT consultants at SkyCore Solutions, we've distilled the authoritative Microsoft documentation into a clear, command-line-first guide to ensure a seamless transition.</p></div>
+<div class='howto-prereqs'>
+    <h4>Prerequisites</h4>
+    <ul>
+        <li>An existing on-premises Exchange Server environment (Exchange 2003, 2007, 2010, or 2013).</li>
+        <li>Fewer than 2,000 mailboxes for cutover, though Microsoft and SkyCore Solutions strongly recommend a maximum of 150 mailboxes for a manageable process.</li>
+        <li>A valid Microsoft 365 or Office 365 tenant with appropriate licenses for each user.</li>
+        <li>Administrator access to both your on-premises Exchange environment and your Microsoft 365 tenant.</li>
+        <li>A public-facing endpoint for Outlook Anywhere (RPC over HTTP) on your on-premises Exchange Server.</li>
+        <li>A valid, trusted SSL certificate configured for Outlook Anywhere and Autodiscover services on your Exchange Server.</li>
+        <li>Access to your domain registrar's DNS management portal.</li>
+        <li>Local administrator credentials on your on-premises Exchange Server.</li>
+    </ul>
+</div>
+
+<h2>Step 1: Conduct Initial Assessment and Planning</h2>
+<p>Before initiating any technical steps, a thorough assessment of your existing Exchange environment is paramount. This phase determines the suitability of a cutover migration and helps anticipate potential challenges. While cutover migrations support up to 2,000 mailboxes, Microsoft explicitly recommends keeping this number to 150 or fewer due to the time required for creation and migration. SkyCore Solutions echoes this recommendation; larger environments often benefit from a <a href='https://learn.microsoft.com/en-us/exchange/mailbox-migration/mailbox-migration#migrate-mailboxes-in-batches-staged-migration' target='_blank'>staged migration</a> or a <a href='https://learn.microsoft.com/en-us/exchange/mailbox-migration/mailbox-migration#migrate-using-an-integrated-exchange-server-and-microsoft-365-or-office-365-environment-hybrid' target='_blank'>hybrid deployment</a>.</p>
+<pre><code class='language-powershell'># No direct command for this planning step.
+# Focus on documentation review and inventory.
+# For example, to get mailbox count on-premises (Exchange Management Shell):
+Get-Mailbox -ResultSize Unlimited | Measure-Object | Select-Object Count
+</code></pre>
+<p><code>Get-Mailbox -ResultSize Unlimited</code>: Retrieves all user mailboxes without size limits.</p>
+<p><code>Measure-Object | Select-Object Count</code>: Counts the number of objects returned by the previous cmdlet.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Manually reviewing user lists and environment configuration is a primary component of this stage. There's no direct GUI for "planning."</p>
+<p><strong>Expected result:</strong> A confirmed decision that a cutover migration is the appropriate strategy for your organization, typically for environments with 150 or fewer mailboxes, and a clear understanding of the existing mailbox count.</p>
+
+<div class='howto-callout howto-callout--warning'>
+    <strong>Common pitfall:</strong> Underestimating the user count for a cutover migration. Migrating more than 150 mailboxes via cutover can lead to extended downtime, complex troubleshooting, and user frustration. Always prioritize staged or hybrid approaches for larger organizations.
+</div>
+
+<h2>Step 2: Add and Verify DNS Domain Ownership</h2>
+<p>Before any mailboxes can be migrated, your custom domain (e.g., <code>yourcompany.com</code>) must be added to your Microsoft 365 tenant and ownership verified. This crucial step ensures that Microsoft 365 can host services for your domain. Verification typically involves adding a specific TXT or MX record to your public DNS, which Microsoft then checks. If your domain registrar supports <a href='https://learn.microsoft.com/en-us/microsoft-365/admin/misc/set-up-dns-records-vsb#registrars-and-domain-connect' target='_blank'>Domain Connect</a>, this process can be largely automated.</p>
+<pre><code class='language-powershell'># No direct PowerShell command from the provided documentation for adding the *initial* domain
+# or adding the specific TXT/MX record for domain verification at your *public DNS registrar*.
+# This is typically performed via the Microsoft 365 admin center or your DNS registrar's portal.
+
+# However, you would use PowerShell to connect to your M365 tenant:
+Connect-MsolService
+
+# To list your current domains after verification:
+Get-MsolDomain
+</code></pre>
+<p><code>Connect-MsolService</code>: Establishes a connection to the Microsoft Online Services administrative portal, allowing you to manage tenant-level configurations.</p>
+<p><code>Get-MsolDomain</code>: Retrieves information about domains associated with your Microsoft 365 tenant, including their verification status.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://admin.microsoft.com/' target='_blank'>Microsoft 365 admin center</a> &gt; <strong>Settings</strong> &gt; <strong>Domains</strong> &gt; <strong>Add domain</strong>. Follow the wizard, which will provide the specific TXT or MX record values to add at your domain registrar for verification.</p>
+<p><strong>Expected result:</strong> Your custom domain is listed in the Microsoft 365 admin center with a status of "Healthy" or "Verified," indicating successful ownership verification.</p>
+
+<h2>Step 3: Prepare On-Premises Exchange for Migration</h2>
+<p>The email migration service relies on Outlook Anywhere (also known as RPC over HTTP) to connect to your on-premises Exchange Server. This service must be correctly configured and accessible externally. Additionally, a valid SSL certificate from a trusted Certificate Authority (CA) must be bound to Outlook Anywhere and include both the Outlook Anywhere hostname and the Autodiscover service hostname. For Exchange 2003, specific TCP ports (6001, 6002, and 6004) must be open.</p>
+<pre><code class='language-powershell'># For Exchange 2010 (similar for 2007, 2013 is typically already configured):
+Enable-OutlookAnywhere -Server <ExchangeServerName> -ExternalHostName 'mail.yourcompany.com' -SSLOffloading $false
+
+# To verify Outlook Anywhere configuration:
+Get-OutlookAnywhere -Server <ExchangeServerName> | Format-List Server, ExternalHostName, SSLOffloading, ClientAuthenticationMethod
+
+# To verify SSL certificate for services (e.g., IIS for Outlook Anywhere):
+Get-ExchangeCertificate | Where-Object {$_.Services -like '*IIS*'} | Format-List Services, CertificateDomains, Issuer, Thumbprint, IsSelfSigned
+</code></pre>
+<p><code>Enable-OutlookAnywhere -Server <ExchangeServerName> -ExternalHostName 'mail.yourcompany.com' -SSLOffloading $false</code>: Configures Outlook Anywhere on the specified Exchange server, setting its external hostname and disabling SSL offloading (as SSL will be handled by the server itself).</p>
+<p><code>Get-OutlookAnywhere -Server <ExchangeServerName></code>: Retrieves the Outlook Anywhere configuration for a given server.</p>
+<p><code>Get-ExchangeCertificate</code>: Lists all installed Exchange certificates, useful for verifying their services and domain names.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> For Exchange Server 2010/2007, within the Exchange Management Console, navigate to <strong>Server Configuration</strong> &gt; <strong>Client Access</strong>, then right-click your server and select <strong>Enable Outlook Anywhere</strong> or manage properties. For certificate management, use the <strong>Server Configuration</strong> &gt; <strong>Exchange Certificates</strong> section.</p>
+<p><strong>Expected result:</strong> Outlook Anywhere is configured and accessible from outside your network, and a valid, trusted SSL certificate is correctly applied to the service, covering all necessary hostnames (e.g., mail.yourcompany.com, autodiscover.yourcompany.com).</p>
+
+<h2>Step 4: Disable Directory Synchronization (If Applicable)</h2>
+<p>If your organization uses Azure AD Connect (formerly DirSync or AADC) for directory synchronization between your on-premises Active Directory and Microsoft 365, you must temporarily disable it before performing a cutover migration. This prevents potential conflicts and the creation of duplicate cloud objects or sync errors during the mailbox migration process, as the cutover creates new user objects in Microsoft 365 directly from the mailboxes.</p>
+<pre><code class='language-powershell'># Connect to Azure AD PowerShell (MSOnline module)
+Connect-MsolService
+
+# Disable directory synchronization
+Set-MsolDirSyncEnabled -EnableDirSync $false
+</code></pre>
+<p><code>Connect-MsolService</code>: Establishes a connection to the Microsoft Online Services administrative portal.</p>
+<p><code>Set-MsolDirSyncEnabled -EnableDirSync $false</code>: Disables directory synchronization for your Microsoft 365 tenant. The parameter <code>-EnableDirSync</code> with <code>$false</code> explicitly turns off synchronization.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> There is no direct GUI option in the Microsoft 365 admin center to disable directory synchronization. This operation primarily relies on PowerShell to ensure precise control and to prevent accidental changes.</p>
+<p><strong>Expected result:</strong> Directory synchronization is successfully disabled for your Microsoft 365 tenant. You can verify this by running <code>Get-MsolDirSyncFeatures</code> and checking the <code>DirectorySynchronizationEnabled</code> status, or by observing that new changes from on-premises AD are no longer reflected in Azure AD.</p>
+
+<h2>Step 5: Create Mail-Enabled Security Groups (Optional)</h2>
+<p>Cutover migrations do not automatically migrate mail-enabled security groups from your on-premises Exchange environment to Microsoft 365. If your organization relies on these groups for permissions or distribution lists, you must manually recreate them in your Microsoft 365 tenant before the migration completes. This ensures that permissions and distribution functionalities are preserved.</p>
+<pre><code class='language-powershell'># Connect to Exchange Online PowerShell
+Connect-ExchangeOnline -UserPrincipalName admin@yourtenant.onmicrosoft.com
+
+# Example: Create a new mail-enabled security group
+New-DistributionGroup -Name 'IT Department Access' -Alias 'itaccess' -Type Security -ManagedBy 'admin@yourtenant.onmicrosoft.com'
+
+# To add members (e.g., after user mailboxes are migrated and licensed):
+Add-DistributionGroupMember -Identity 'IT Department Access' -Member 'user1@yourcompany.com'
+Add-DistributionGroupMember -Identity 'IT Department Access' -Member 'user2@yourcompany.com'
+</code></pre>
+<p><code>Connect-ExchangeOnline</code>: Establishes a connection to Exchange Online PowerShell using modern authentication.</p>
+<p><code>New-DistributionGroup -Name 'IT Department Access' -Alias 'itaccess' -Type Security -ManagedBy 'admin@yourtenant.onmicrosoft.com'</code>: Creates a new mail-enabled security group. <code>-Name</code> specifies the display name, <code>-Alias</code> specifies the email alias, <code>-Type Security</code> defines it as a security group, and <code>-ManagedBy</code> assigns a manager.</p>
+<p><code>Add-DistributionGroupMember -Identity 'IT Department Access' -Member 'user1@yourcompany.com'</code>: Adds a user to the specified distribution group. This should be done after user mailboxes are in M365.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://admin.microsoft.com/' target='_blank'>Microsoft 365 admin center</a> &gt; <strong>Teams &amp; groups</strong> &gt; <strong>Active teams &amp; groups</strong> &gt; <strong>Add a group</strong>. Choose 'Mail-enabled security' as the group type and fill in the required details.</p>
+<p><strong>Expected result:</strong> All necessary mail-enabled security groups are recreated in Microsoft 365, ready to have members assigned once mailboxes are migrated.</p>
+
+<h2>Step 6: Create Migration Endpoint</h2>
+<p>A migration endpoint defines the connection settings and credentials that Microsoft 365 will use to communicate with your on-premises Exchange Server via Outlook Anywhere. This endpoint is crucial for the migration service to pull mailbox data. It specifies the RPC proxy server (your external Outlook Anywhere URL) and the credentials of an administrative account with necessary permissions on the source Exchange server.</p>
+<pre><code class='language-powershell'># Connect to Exchange Online PowerShell
+Connect-ExchangeOnline -UserPrincipalName admin@yourtenant.onmicrosoft.com
+
+# Create a new credential object for your on-premises Exchange administrator
+$OnPremCreds = Get-Credential
+
+# Create the migration endpoint
+New-MigrationEndpoint -Name 'CutoverEndpoint' -ExchangeRemote -RemoteServer 'mail.yourcompany.com' -RpcProxyServer 'mail.yourcompany.com' -Credentials $OnPremCreds -Authentication Basic
+</code></pre>
+<p><code>$OnPremCreds = Get-Credential</code>: Prompts for the username and password of an on-premises administrator account with permissions to read mailboxes.</p>
+<p><code>New-MigrationEndpoint -Name 'CutoverEndpoint' -ExchangeRemote -RemoteServer 'mail.yourcompany.com' -RpcProxyServer 'mail.yourcompany.com' -Credentials $OnPremCreds -Authentication Basic</code>: Creates a new migration endpoint named 'CutoverEndpoint' for remote Exchange migrations.
+    <ul>
+        <li><code>-ExchangeRemote</code>: Specifies that the source is a remote Exchange server.</li>
+        <li><code>-RemoteServer 'mail.yourcompany.com'</code>: The FQDN of your on-premises Exchange RPC proxy server.</li>
+        <li><code>-RpcProxyServer 'mail.yourcompany.com'</code>: The FQDN of your on-premises Exchange RPC proxy server (often the same as <code>-RemoteServer</code>).</li>
+        <li><code>-Credentials $OnPremCreds</code>: Specifies the credential object obtained earlier.</li>
+        <li><code>-Authentication Basic</code>: Specifies Basic authentication, commonly used for Outlook Anywhere.</li>
+    </ul>
+</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://admin.microsoft.com/Adminportal/Home?source=applauncher#/exchange' target='_blank'>Exchange admin center (EAC)</a> in Microsoft 365 &gt; <strong>Recipients</strong> &gt; <strong>Migration</strong> &gt; <strong>More (...)</strong> &gt; <strong>Migration endpoints</strong> &gt; <strong>New</strong>. Select 'Outlook Anywhere' and follow the wizard to input server details and credentials.</p>
+<p><strong>Expected result:</strong> A new migration endpoint named 'CutoverEndpoint' (or your chosen name) is created and shows a status of "Active" or "Verified" in Exchange Online PowerShell or EAC, confirming a successful connection to your on-premises Exchange environment.</p>
+
+<div class='howto-callout howto-callout--warning'>
+    <strong>Common pitfall:</strong> Incorrect Outlook Anywhere configuration or an invalid SSL certificate. If the migration endpoint fails to verify, double-check your Exchange Server's Outlook Anywhere settings, the external URL, and ensure the SSL certificate is valid, trusted, and covers all required hostnames. Connectivity issues can often be debugged using the Microsoft Remote Connectivity Analyzer.
+</div>
+
+<h2>Step 7: Create and Start Migration Batch</h2>
+<p>With the migration endpoint established, you can now create and initiate the cutover migration batch. This step tells Exchange Online which mailboxes to migrate from your on-premises server to Microsoft 365. For a cutover, the process typically includes all mailboxes, and with the <code>-AutoComplete</code> parameter, the batch will automatically finalize after initial synchronization, ready for you to update DNS records.</p>
+<pre><code class='language-powershell'># Connect to Exchange Online PowerShell (if not already connected)
+Connect-ExchangeOnline -UserPrincipalName admin@yourtenant.onmicrosoft.com
+
+# Create and start the cutover migration batch
+New-MigrationBatch -Name 'CutoverMigrationBatch1' -SourceEndpoint 'CutoverEndpoint' -TargetDeliveryDomain 'yourcompany.onmicrosoft.com' -AutoComplete
+</code></pre>
+<p><code>New-MigrationBatch -Name 'CutoverMigrationBatch1' -SourceEndpoint 'CutoverEndpoint' -TargetDeliveryDomain 'yourcompany.onmicrosoft.com' -AutoComplete</code>: Creates a new migration batch and automatically starts it.
+    <ul>
+        <li><code>-Name 'CutoverMigrationBatch1'</code>: Assigns a name to the migration batch for identification.</li>
+        <li><code>-SourceEndpoint 'CutoverEndpoint'</code>: Specifies the migration endpoint created in the previous step.</li>
+        <li><code>-TargetDeliveryDomain 'yourcompany.onmicrosoft.com'</code>: The initial target domain for mailboxes in Microsoft 365 (e.g., your default tenant domain).</li>
+        <li><code>-AutoComplete</code>: Instructs the migration service to automatically finalize the batch after the initial synchronization is complete, making the migrated mailboxes active.</li>
+    </ul>
+</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://admin.microsoft.com/Adminportal/Home?source=applauncher#/exchange' target='_blank'>Exchange admin center (EAC)</a> in Microsoft 365 &gt; <strong>Recipients</strong> &gt; <strong>Migration</strong> &gt; <strong>New (+)</strong> &gt; <strong>Migrate to Exchange Online</strong>. Select 'Cutover migration' and follow the wizard, choosing the migration endpoint you created previously.</p>
+<p><strong>Expected result:</strong> The migration batch starts, and mailboxes begin to synchronize from your on-premises Exchange to Microsoft 365. The batch status in PowerShell or EAC will transition from "Creating" to "Starting" to "Syncing," eventually reaching "Synced" or "Completing" if <code>-AutoComplete</code> was used.</p>
+
+<h2>Step 8: Verify Mailbox Migration</h2>
+<p>After the migration batch has been running for some time, it's essential to monitor its progress and verify that mailboxes are successfully migrating and synchronizing. This involves checking the status of the batch and individual users within it, ensuring no errors are preventing data transfer or user provisioning.</p>
+<pre><code class='language-powershell'># Connect to Exchange Online PowerShell (if not already connected)
+Connect-ExchangeOnline -UserPrincipalName admin@yourtenant.onmicrosoft.com
+
+# Get the status of the migration batch
+Get-MigrationBatch -Identity 'CutoverMigrationBatch1' | Format-List Status, BatchFlags, StartTime, EndTime, ItemsMigrated, ItemsSkipped, Errors
+
+# Get status for individual migration users within the batch
+Get-MigrationUser -BatchId 'CutoverMigrationBatch1' | Format-List Identity, Status, Error, TotalMailboxSize, TotalArchiveSize, ValidationMessage
+
+# To get detailed statistics for a specific user:
+Get-MigrationUserStatistics -Identity 'user@yourcompany.com' -IncludeSkippedItems -IncludeReport
+</code></pre>
+<p><code>Get-MigrationBatch -Identity 'CutoverMigrationBatch1'</code>: Retrieves the status and details of the specified migration batch.</p>
+<p><code>Get-MigrationUser -BatchId 'CutoverMigrationBatch1'</code>: Provides status information for each individual mailbox included in the migration batch.</p>
+<p><code>Get-MigrationUserStatistics -Identity 'user@yourcompany.com' -IncludeSkippedItems -IncludeReport</code>: Offers a highly detailed report for a specific user's migration, including any skipped items and a full log.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://admin.microsoft.com/Adminportal/Home?source=applauncher#/exchange' target='_blank'>Exchange admin center (EAC)</a> in Microsoft 365 &gt; <strong>Recipients</strong> &gt; <strong>Migration</strong>. Select your migration batch to view its summary and click 'View Details' for individual user statuses.</p>
+<p><strong>Expected result:</strong> The migration batch shows a "Synced" or "Completed" status, and individual mailboxes within the batch are also "Synced" or "Completed" with minimal to no errors. You should see user accounts created in Microsoft 365 with associated mailboxes.</p>
+
+<h2>Step 9: Assign Microsoft 365 Licenses</h2>
+<p>Even after mailboxes are migrated and users are created in Microsoft 365, they will not be fully functional until a valid Microsoft 365 license (which includes an Exchange Online plan) is assigned to each user. This step activates their cloud mailboxes and enables access to other Microsoft 365 services as per the license. This must be done *after* the user objects are created by the migration batch.</p>
+<pre><code class='language-powershell'># Connect to Azure AD PowerShell (MSOnline module)
+Connect-MsolService
+
+# Get available licenses (SKUs) in your tenant
+Get-MsolAccountSku
+
+# To assign a license to a specific user (replace UPN and LicenseSKU)
+Set-MsolUserLicense -UserPrincipalName 'user@yourcompany.com' -AddLicenses 'yourtenant:ENTERPRISEPACK'
+
+# To assign licenses to multiple users (e.g., all users who just migrated)
+# First, identify users, then loop through them.
+# This example assigns to users who currently have no licenses and are in the 'Synced' state in the migration batch.
+$MigratedUsers = Get-MigrationUser -BatchId 'CutoverMigrationBatch1' | Where-Object {$_.Status -eq 'Synced'}
+foreach ($user in $MigratedUsers) {
+    Set-MsolUserLicense -UserPrincipalName $user.Identity -AddLicenses 'yourtenant:ENTERPRISEPACK'
+    Write-Host "Assigned license to $($user.Identity)"
+}
+</code></pre>
+<p><code>Get-MsolAccountSku</code>: Lists all available license SKUs in your Microsoft 365 tenant, essential for identifying the correct license string (e.g., 'yourtenant:ENTERPRISEPACK').</p>
+<p><code>Set-MsolUserLicense -UserPrincipalName 'user@yourcompany.com' -AddLicenses 'yourtenant:ENTERPRISEPACK'</code>: Assigns the specified license (e.g., 'Microsoft 365 Business Standard' or 'E3') to the user with the given User Principal Name (UPN).</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://admin.microsoft.com/' target='_blank'>Microsoft 365 admin center</a> &gt; <strong>Users</strong> &gt; <strong>Active users</strong>. Select one or more users, then click <strong>Manage product licenses</strong> and assign the appropriate license. For bulk assignment, you can select multiple users.</p>
+<p><strong>Expected result:</strong> All migrated users have a valid Microsoft 365 license assigned, enabling their Exchange Online mailboxes and other associated services. Users can now access their mailboxes in the cloud.</p>
+
+<h2>Step 10: Update DNS MX Record</h2>
+<p>The Mail Exchanger (MX) record in your public DNS settings dictates where internet email for your domain should be delivered. To fully cut over to Microsoft 365, you must update this record to point to Exchange Online. This change redirects all future incoming email to your new cloud mailboxes. This is arguably the most critical step for mail flow redirection.</p>
+<pre><code class='language-powershell'># No direct PowerShell command to update external public DNS MX records.
+# This action is performed at your domain registrar or DNS hosting provider.
+
+# However, you can use PowerShell to find the correct MX record value for your tenant:
+Connect-MsolService
+Get-MsolDomainFederationSettings -DomainName 'yourcompany.com' | Select-Object -ExpandProperty ActiveFederationServiceUri
+# The correct MX record value will typically be in the format:
+# <MX token>.mail.protection.outlook.com
+# For example: yourcompany-com.mail.protection.outlook.com
+# The priority should be set to a lower number (e.g., 0 or 10) than any other MX records.
+</code></pre>
+<p><code>Connect-MsolService</code>: Establishes a connection to the Microsoft Online Services administrative portal.</p>
+<p><code>Get-MsolDomainFederationSettings -DomainName 'yourcompany.com'</code>: Retrieves federation settings for your domain, which often includes the necessary information to construct the MX record, though the explicit MX record value is typically provided in the Microsoft 365 admin center's domain setup instructions.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://admin.microsoft.com/' target='_blank'>Microsoft 365 admin center</a> &gt; <strong>Settings</strong> &gt; <strong>Domains</strong>. Select your domain, then click <strong>DNS records</strong>. Microsoft 365 will provide the exact MX record value, priority, and TTL (Time To Live) that you need to enter at your domain registrar. You must remove any old MX records pointing to your on-premises Exchange.</p>
+<p><strong>Expected result:</strong> Your domain's MX record is updated at your public DNS provider, pointing all incoming email to Exchange Online. DNS propagation can take 24-72 hours, but often resolves quicker.</p>
+
+<div class='howto-callout howto-callout--warning'>
+    <strong>Common pitfall:</strong> Forgetting to change the MX record, or pointing it to the wrong address. This will result in new emails continuing to flow to your old on-premises server, missing the new cloud mailboxes. Verify the MX record change thoroughly and allow for DNS propagation time.
+</div>
+
+<h2>Step 11: Verify Mail Flow and Autodiscover</h2>
+<p>After updating your MX record, it's crucial to verify that new emails are indeed routing correctly to your Microsoft 365 mailboxes. Additionally, ensure that the Autodiscover DNS record is configured to point to Exchange Online. Autodiscover allows Outlook clients and other email applications to automatically configure themselves with the correct server settings for Microsoft 365, ensuring a smooth user experience.</p>
+<pre><code class='language-powershell'># No direct CLI command from the provided documentation to update external Autodiscover CNAME.
+# This is done at your public DNS registrar.
+
+# To check current MX record via public DNS tools (e.g., nslookup or Resolve-DnsName in PowerShell):
+Resolve-DnsName -Name yourcompany.com -Type MX
+
+# To check current Autodiscover CNAME record:
+Resolve-DnsName -Name autodiscover.yourcompany.com -Type CNAME
+
+# The Autodiscover CNAME should point to: autodiscover.outlook.com
+</code></pre>
+<p><code>Resolve-DnsName -Name yourcompany.com -Type MX</code>: Queries DNS for the MX records associated with your domain, allowing you to confirm the public facing record update.</p>
+<p><code>Resolve-DnsName -Name autodiscover.yourcompany.com -Type CNAME</code>: Queries DNS for the CNAME record for Autodiscover, which should point to <code>autodiscover.outlook.com</code> for Exchange Online.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Use the <a href='https://testconnectivity.microsoft.com/' target='_blank'>Microsoft Remote Connectivity Analyzer</a> (Outlook Connectivity test) to verify both mail flow and Autodiscover functionality for a test user. In the <a href='https://admin.microsoft.com/' target='_blank'>Microsoft 365 admin center</a> &gt; <strong>Settings</strong> &gt; <strong>Domains</strong>, you can also see the status of your DNS records.</p>
+<p><strong>Expected result:</strong> Emails sent to your domain are delivered to Microsoft 365 mailboxes. Outlook clients successfully connect and configure automatically using Autodiscover, pointing to <code>outlook.office365.com</code> or similar endpoints.</p>
+
+<h2>Step 12: Delete Migration Batch</h2>
+<p>Once you have confirmed that all mailboxes are operational in Microsoft 365, mail flow is stable, and users are successfully accessing their new cloud mailboxes, you can safely remove the migration batch. Deleting the batch cleans up the migration infrastructure and configuration in Exchange Online, signifying the completion of the cutover process.</p>
+<pre><code class='language-powershell'># Connect to Exchange Online PowerShell (if not already connected)
+Connect-ExchangeOnline -UserPrincipalName admin@yourtenant.onmicrosoft.com
+
+# Remove the migration batch
+Remove-MigrationBatch -Identity 'CutoverMigrationBatch1'
+</code></pre>
+<p><code>Remove-MigrationBatch -Identity 'CutoverMigrationBatch1'</code>: Deletes the specified migration batch and associated migration jobs from Exchange Online. This is a cleanup step and does not affect the migrated mailboxes.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://admin.microsoft.com/Adminportal/Home?source=applauncher#/exchange' target='_blank'>Exchange admin center (EAC)</a> in Microsoft 365 &gt; <strong>Recipients</strong> &gt; <strong>Migration</strong>. Select your completed migration batch and click the <strong>Delete</strong> (trash can) icon.</p>
+<p><strong>Expected result:</strong> The migration batch named 'CutoverMigrationBatch1' (or your chosen name) is no longer listed in Exchange Online PowerShell or EAC, confirming its successful removal.</p>
+
+<h2>Step 13: Complete Post-Migration Tasks and Decommission On-Premises Servers</h2>
+<p>The technical migration is largely complete, but several crucial post-migration tasks remain. These include assigning any additional permissions that were not automatically migrated (e.g., Send As, Full Access permissions on shared mailboxes), configuring advanced security settings in Microsoft 365, and planning the eventual <a href='https://learn.microsoft.com/en-us/exchange/mailbox-migration/cutover-migration-to-office-365#complete-post-migration-tasks' target='_blank'>decommissioning of your on-premises Exchange servers</a>. Decommissioning should be carefully planned to avoid service disruption and ensure compliance, only after verifying all dependencies are removed.</p>
+<pre><code class='language-powershell'># Example: Assign Send-As permission in Exchange Online
+Add-RecipientPermission -Identity 'SharedMailbox@yourcompany.com' -AccessRights SendAs -Trustee 'User@yourcompany.com'
+
+# Example: Assign Full Access permission
+Add-MailboxPermission -Identity 'SharedMailbox@yourcompany.com' -User 'User@yourcompany.com' -AccessRights FullAccess -InheritanceType All
+
+# No direct commands for "decommissioning" from the provided docs,
+# as this involves a detailed process beyond this migration scope.
+# It typically involves:
+# 1. Removing Public Folders if still present.
+# 2. Removing Arbitration Mailboxes.
+# 3. Uninstalling Exchange Server role(s).
+# 4. Removing old DNS records that pointed to on-premises.
+</code></pre>
+<p><code>Add-RecipientPermission</code>: Grants 'Send As' permissions on a recipient (e.g., shared mailbox).</p>
+<p><code>Add-MailboxPermission</code>: Grants 'Full Access' permissions to a mailbox.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> For permissions, navigate to the <a href='https://admin.microsoft.com/Adminportal/Home?source=applauncher#/exchange' target='_blank'>Exchange admin center (EAC)</a> &gt; <strong>Recipients</strong> &gt; <strong>Mailboxes</strong>, select the mailbox, click <strong>Mailbox delegation</strong>, and add permissions. Decommissioning Exchange servers involves server-level actions.</p>
+<p><strong>Expected result:</strong> All required permissions are set in Exchange Online. A plan is in place for the secure and phased decommissioning of your on-premises Exchange infrastructure, ensuring no lingering dependencies or security vulnerabilities.</p>
+
+<h2>Step 14: User Communication and Client Configuration</h2>
+<p>The final step, and one often overlooked, is clear communication with your users and assistance with their client configurations. Users will need to update their Outlook profiles or create new ones to connect to their Microsoft 365 mailboxes. Provide a welcome letter or guide with instructions for logging in, setting up Outlook, and configuring mobile devices. Offer dedicated support during this transition period to minimize disruption and enhance user adoption.</p>
+<pre><code class='language-powershell'># No direct PowerShell commands for user communication or client configuration.
+# This involves administrative communication and user support.
+
+# For example, to generate a list of UPNs for welcome emails:
+Get-MsolUser -All | Select-Object UserPrincipalName, DisplayName | Export-Csv -Path 'C:\Temp\MigratedUsers.csv' -NoTypeInformation
+</code></pre>
+<p><code>Get-MsolUser -All</code>: Retrieves all user accounts in your Microsoft 365 tenant, useful for preparing user-specific communication.</p>
+<p><code>Export-Csv</code>: Exports the selected user properties to a CSV file.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Utilize the communication channels within your organization (e.g., internal email, intranet) to send out migration announcements, instructions, and FAQs. The <a href='https://learn.microsoft.com/en-us/microsoft-365/admin/misc/set-up-dns-records-vsb#impact-to-users' target='_blank'>Microsoft 365 admin center</a> does not directly provide user communication tools for this, but tools like SharePoint or Teams can be leveraged.</p>
+<p><strong>Expected result:</strong> Users are informed, have clear instructions, and are successfully connecting to their new Microsoft 365 mailboxes from their various devices, leading to high user adoption and minimal post-migration support requests.</p>
+
+<div class='howto-consultant-cta'>
+    <h3>When to bring in a consultant</h3>
+    <p>While a cutover migration can be a direct path to the cloud for smaller organizations, the process involves intricate steps that require deep technical understanding of both on-premises Exchange and Microsoft 365. DIY approaches, especially without prior experience, carry significant risks of data loss, extended downtime, and critical mail flow interruptions. If your organization has more than 150 mailboxes, complex permissions, public folders, or a stringent uptime requirement, attempting a cutover migration without expert guidance can be detrimental. SkyCore Solutions specializes in Cloud Migration (Azure) and Security Hardening, offering tailored strategies to ensure a secure, efficient, and disruption-free transition to Office 365. We handle the complexities, allowing your team to focus on business continuity.</p>
+    <a href='../contact.html' class='btn btn-primary'>Book a free consultation</a>
+</div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/exchange/mailbox-migration/mailbox-migration" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/exchange/mailbox-migration</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/exchange/mailbox-migration/cutover-migration-to-office-365" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/exchange/mailbox-migration</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/microsoft-365/admin/misc/set-up-dns-records-vsb" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/microsoft-365/admin</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/microsoft-365/enterprise/migrate-data-to-office-365" target="_blank" rel="noopener noreferrer">learn.microsoft.com — en-us/microsoft-365/enterprise</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

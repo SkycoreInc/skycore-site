@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "office-365-cutover-migration-guide",
+    title: "Streamlined Office 365 Cutover Migration: A Step-by-Step Guide for Small Businesses",
+    date: "2026-10-04",
+    readTime: "18 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 days",
+    keyword: "Office 365 migration step by step",
+    excerpt: "Embark on a seamless Office 365 migration journey for your small to medium-sized business. This comprehensive guide outlines the cutover migration process from planning to post-migration tasks.",
+    image: "https://images.pexels.com/photos/36532938/pexels-photo-36532938.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "server-hardening-checklist-windows-azure",
     title: "Comprehensive Server Hardening Checklist for Windows and Azure Environments",
     date: "2026-10-01",
