@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "exchange-flaw-montreal-smb-security",
+    title: "That Microsoft Exchange Flaw? It's Your Problem Too, Montreal",
+    date: "2026-10-05",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A high-severity flaw in Microsoft Exchange allows attackers to read private mailboxes. This isn't just a distant headline; it's a wake-up call for every Montreal business still running on vulnerable infrastructure.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380655/pexels-photo-5380655.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "gitlab-rce-warning-montreal-cybersecurity",
     title: "GitLab RCE Warning: Why Your Montreal Business Can't Afford Complacency",
     date: "2026-10-03",
