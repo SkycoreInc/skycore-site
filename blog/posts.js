@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "atlassian-exploit-workflow-security-montreal-smb",
+    title: "Your Workflow Is Under Attack: What the Atlassian Exploit Means for Montreal SMBs",
+    date: "2026-10-07",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "A critical Atlassian vulnerability is being exploited, allowing unauthenticated attackers to run code. This isn't just about your perimeter; it's about your core workflow.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/8720589/pexels-photo-8720589.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "exchange-flaw-montreal-smb-security",
     title: "That Microsoft Exchange Flaw? It's Your Problem Too, Montreal",
     date: "2026-10-05",
