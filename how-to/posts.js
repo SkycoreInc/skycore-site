@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "windows-server-hardening-checklist",
+    title: "Ultimate Windows Server Hardening Checklist for 2026: SkyCore's Expert Guide",
+    date: "2026-10-07",
+    readTime: "10-12 min read",
+    category: "Security Hardening",
+    difficulty: "Advanced",
+    timeEstimate: "1-2 business days",
+    keyword: "Windows Server hardening checklist",
+    excerpt: "Enhance your Windows Server security posture with SkyCore's expert hardening checklist. Implement robust controls to safeguard against threats and ensure compliance.",
+    image: "https://images.pexels.com/photos/37730212/pexels-photo-37730212.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "office-365-cutover-migration-guide",
     title: "Streamlined Office 365 Cutover Migration: A Step-by-Step Guide for Small Businesses",
     date: "2026-10-04",
