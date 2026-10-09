@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "sonicwall-exploit-cybersecurity-montreal-smb",
+    title: "Your Unpatched Router is a Ransomware Welcome Mat: The SonicWall Exploit Hits Home",
+    date: "2026-10-09",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are exploiting a critical SonicWall vulnerability, turning unpatched devices into gateways for disaster. Learn what this means for your Montreal SMB and how to secure your business against active threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380603/pexels-photo-5380603.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "atlassian-exploit-workflow-security-montreal-smb",
     title: "Your Workflow Is Under Attack: What the Atlassian Exploit Means for Montreal SMBs",
     date: "2026-10-07",
