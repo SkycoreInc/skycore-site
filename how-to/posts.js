@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "on-premise-azure-migration-guide",
+    title: "Definitive On-Premise to Azure Migration Guide by SkyCore Solutions",
+    date: "2026-10-10",
+    readTime: "11 min read",
+    category: "Cloud Migration",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "on premise to Azure migration guide",
+    excerpt: "Embark on a seamless cloud transition with SkyCore Solutions' expert on-premise to Azure migration guide. Leverage Azure Migrate for streamlined discovery, assessment, and execution.",
+    image: "https://images.pexels.com/photos/3792582/pexels-photo-3792582.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "windows-server-hardening-checklist",
     title: "Ultimate Windows Server Hardening Checklist for 2026: SkyCore's Expert Guide",
     date: "2026-10-07",
