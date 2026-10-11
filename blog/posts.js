@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "github-actions-security-devops-montreal",
+    title: "The GitHub Pipeline Bomb: Is Your DevOps a Backdoor for Cybercriminals?",
+    date: "2026-10-11",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Recent news reveals a widespread credential-stealing campaign impacting GitHub Actions. This isn't just a concern for tech giants — it's a direct threat to your business. We break down the risk and how to protect your DevOps.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/28910500/pexels-photo-28910500.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "sonicwall-exploit-cybersecurity-montreal-smb",
     title: "Your Unpatched Router is a Ransomware Welcome Mat: The SonicWall Exploit Hits Home",
     date: "2026-10-09",
