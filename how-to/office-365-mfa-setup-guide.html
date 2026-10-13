@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Comprehensive Office 365 MFA Setup Guide for Enhanced Security — SkyCore Solutions</title>
-  <meta name="description" content="Your definitive Office 365 MFA setup guide. Secure your Microsoft 365 environment with expert steps for Security Defaults and Conditional Access." />
+  <title>SkyCore's Essential Office 365 MFA Setup Guide for Robust Security Hardening — SkyCore Solutions</title>
+  <meta name="description" content="Elevate your Office 365 security with SkyCore's detailed MFA setup guide. Learn to implement Security Defaults or advanced Conditional Access policies for Microsoft Entra ID, ensuring strong multi-factor authentication across your organization." />
   <meta name="theme-color" content="#000000" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,54 +13,64 @@
   <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="SkyCore Solutions" />
-  <meta property="og:title" content="Comprehensive Office 365 MFA Setup Guide for Enhanced Security — SkyCore Solutions" />
-  <meta property="og:description" content="Your definitive Office 365 MFA setup guide. Secure your Microsoft 365 environment with expert steps for Security Defaults and Conditional Access." />
+  <meta property="og:title" content="SkyCore's Essential Office 365 MFA Setup Guide for Robust Security Hardening — SkyCore Solutions" />
+  <meta property="og:description" content="Elevate your Office 365 security with SkyCore's detailed MFA setup guide. Learn to implement Security Defaults or advanced Conditional Access policies for Microsoft Entra ID, ensuring strong multi-factor authentication across your organization." />
   <meta property="og:url" content="https://skycoresolutions.com/how-to/office-365-mfa-setup-guide.html" />
-  <meta property="og:image" content="https://images.pexels.com/photos/39584/censorship-limitations-freedom-of-expression-restricted-39584.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta property="og:image" content="https://images.pexels.com/photos/27742642/pexels-photo-27742642.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Comprehensive Office 365 MFA Setup Guide for Enhanced Security — SkyCore Solutions" />
-  <meta name="twitter:description" content="Your definitive Office 365 MFA setup guide. Secure your Microsoft 365 environment with expert steps for Security Defaults and Conditional Access." />
-  <meta name="twitter:image" content="https://images.pexels.com/photos/39584/censorship-limitations-freedom-of-expression-restricted-39584.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:title" content="SkyCore's Essential Office 365 MFA Setup Guide for Robust Security Hardening — SkyCore Solutions" />
+  <meta name="twitter:description" content="Elevate your Office 365 security with SkyCore's detailed MFA setup guide. Learn to implement Security Defaults or advanced Conditional Access policies for Microsoft Entra ID, ensuring strong multi-factor authentication across your organization." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/27742642/pexels-photo-27742642.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
   <link rel="canonical" href="https://skycoresolutions.com/how-to/office-365-mfa-setup-guide.html" />
-  <meta property="article:published_time" content="2026-06-19" />
+  <meta property="article:published_time" content="2026-10-13" />
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": "Comprehensive Office 365 MFA Setup Guide for Enhanced Security",
-  "description": "Your definitive Office 365 MFA setup guide. Secure your Microsoft 365 environment with expert steps for Security Defaults and Conditional Access.",
+  "name": "SkyCore's Essential Office 365 MFA Setup Guide for Robust Security Hardening",
+  "description": "Elevate your Office 365 security with SkyCore's detailed MFA setup guide. Learn to implement Security Defaults or advanced Conditional Access policies for Microsoft Entra ID, ensuring strong multi-factor authentication across your organization.",
   "totalTime": "PT1H",
-  "supply": [{"@type": "HowToSupply", "name": "Global Administrator or Security Administrator role for Security Defaults., Global Administrator or Conditional Access Administrator role for Conditional Access policies., Microsoft Entra ID P1 or P2 license for Conditional Access policies., Ensure legacy per-user MFA is disabled if migrating to Security Defaults or Conditional Access., Review available authentication methods (e.g., Microsoft Authenticator app, FIDO2 keys, SMS, voice calls)."}],
+  "supply": [{"@type": "HowToSupply", "name": "Membership in Global Administrator or Security Administrator roles for managing security defaults., Membership in Global Administrator or Conditional Access Administrator roles for managing Conditional Access policies., Microsoft Entra ID P1 or P2 license for Conditional Access policies (e.g., Microsoft 365 Business Premium, E3, E5)., Understanding of user identity environment (cloud-only, hybrid with Entra Connect, or legacy apps with Application Proxy)."}],
   "step": [
     {
         "@type": "HowToStep",
-        "name": "Review MFA Deployment Considerations",
-        "text": "Understand the planning and prerequisites for a successful Microsoft Entra multifactor authentication deployment."
+        "name": "Step 1: Verify Administrative Permissions",
+        "text": "Confirm you hold the necessary administrative roles to configure Multi-Factor Authentication within your Microsoft 365 tenant."
     },
     {
         "@type": "HowToStep",
-        "name": "Choose Your MFA Implementation Strategy",
-        "text": "Decide between Security Defaults (simpler, all-or-nothing) or Conditional Access (granular control, requires Entra ID P1/P2)."
+        "name": "Step 2: Understand Microsoft Entra MFA Strategies",
+        "text": "Familiarize yourself with the three primary methods for implementing MFA in Microsoft 365: Security Defaults, Conditional Access, and the legacy per-user MFA."
     },
     {
         "@type": "HowToStep",
-        "name": "Configure Security Defaults (if applicable)",
-        "text": "Enable the baseline security settings for MFA across your organization."
+        "name": "Step 3: Disable Legacy Per-User MFA (If Active)",
+        "text": "Ensure that the outdated per-user MFA is disabled across your organization to prevent conflicts with modern security defaults or Conditional Access policies."
     },
     {
         "@type": "HowToStep",
-        "name": "Configure Conditional Access Policies (recommended)",
-        "text": "Implement granular control over MFA requirements based on user, location, application, and risk."
+        "name": "Step 4: Implement or Review Security Defaults",
+        "text": "Configure or verify the status of Security Defaults to enable foundational MFA protection for all users and administrative roles."
     },
     {
         "@type": "HowToStep",
-        "name": "Select and Manage Authentication Methods",
-        "text": "Define the acceptable second-factor authentication methods for your users."
+        "name": "Step 5: Configure Conditional Access Policy for All Users (Recommended for P1/P2 Licenses)",
+        "text": "For organizations with Microsoft Entra ID P1 or P2, create a granular Conditional Access policy to enforce MFA for all users, applications, or specific scenarios."
     },
     {
         "@type": "HowToStep",
-        "name": "Test MFA Implementation",
-        "text": "Verify that MFA is functioning as expected for various user scenarios and access attempts."
+        "name": "Step 6: Define and Manage Allowed Authentication Methods",
+        "text": "Select and configure the specific authentication methods users can leverage for MFA, prioritizing stronger, more secure options."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 7: Exclude Emergency Access ('Break-Glass') Accounts",
+        "text": "Establish and exclude dedicated emergency access accounts from Conditional Access policies to prevent lockout during critical incidents."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Step 8: Plan User Communication and Rollout Strategy",
+        "text": "Develop a comprehensive communication and phased rollout plan to ensure a smooth transition and user adoption of MFA."
     }
 ]
 }
@@ -84,245 +94,309 @@
   </header>
 
   <article class="article howto-article">
-    
-<div class="post-meta">2026-06-19 · 15 min read · Security Hardening</div>
+    <div class='post-meta'>2026-10-13 · 12 min read · Security Hardening</div>
+<h1>SkyCore's Essential Office 365 MFA Setup Guide for Robust Security Hardening</h1>
+<div class='article-hero'><img src='https://skycoresolutions.com/images/blog/mfa-setup-hero.webp' alt='Abstract image showing layers of digital security protecting a user login, symbolizing multi-factor authentication' loading='eager' fetchpriority='high'></div>
+<div class='howto-intro'><p>In an era where password-only authentication is a critical vulnerability, implementing Multi-Factor Authentication (MFA) is the single most impactful step you can take to bolster your organization's digital defenses. CISA explicitly recommends MFA, stating that it can prevent 99.9% of automated attacks. This guide provides SkyCore's best practices for deploying robust Office 365 MFA using Microsoft Entra ID (formerly Azure Active Directory), focusing on a CLI-first approach to ensure precise and repeatable configurations for comprehensive security hardening.</p></div>
+<div class='howto-prereqs'><h4>Prerequisites</h4><ul><li>A Microsoft 365 tenant with appropriate licensing (Microsoft Entra ID Free for Security Defaults; Microsoft Entra ID P1 or P2 for Conditional Access policies).</li><li>Membership in a Global Administrator, Security Administrator, or Conditional Access Administrator role.</li><li>Microsoft Entra Connect deployed and synchronized for hybrid environments.</li><li>Familiarity with PowerShell and the Microsoft Graph PowerShell SDK.</li><li>A designated emergency access ('break-glass') account.</li></ul></div>
 
-<h1>Comprehensive Office 365 MFA Setup Guide for Enhanced Security</h1>
+<h2>Step 1: Verify Administrative Permissions</h2>
+<p>Before initiating any changes to your authentication infrastructure, it's paramount to confirm that you possess the necessary administrative permissions. Configuring MFA requires specific roles to ensure you have the authority to modify tenant-wide security policies and user authentication settings.</p>
+<pre><code class='language-powershell'># Install the Microsoft Graph PowerShell SDK if not already installed
+Install-Module -Name Microsoft.Graph -Scope CurrentUser
 
-<div class="article-hero"><img src="https://images.pexels.com/photos/17127970/pexels-photo-17127970/free-photo-of-lock-on-a-keyboard.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Lock icon symbolizing Office 365 MFA setup guide and enhanced security" loading="eager" fetchpriority="high"></div>
+# Connect to Microsoft Graph with required scopes
+Connect-MgGraph -Scopes "Directory.Read.All", "Policy.Read.All", "Policy.ReadWrite.ConditionalAccess", "Policy.ReadWrite.AuthenticationMethods"
 
-<div class="howto-intro"><p>In today's evolving threat landscape, securing user identities is paramount. A compromised account can lead to devastating data breaches and operational disruption. Implementing Multi-Factor Authentication (MFA) is a critical defense mechanism. This comprehensive Office 365 MFA setup guide will walk you through the essential steps to enhance your organization's security posture by enabling robust MFA for all your Microsoft 365 users.</p></div>
-
-<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>Global Administrator or Security Administrator role for Security Defaults.</li><li>Global Administrator or Conditional Access Administrator role for Conditional Access policies.</li><li>Microsoft Entra ID P1 or P2 license for Conditional Access policies.</li><li>Ensure legacy per-user MFA is disabled if migrating to Security Defaults or Conditional Access.</li><li>Review available authentication methods (e.g., Microsoft Authenticator app, FIDO2 keys, SMS, voice calls).</li></ul></div>
-
-<h2>Step 1: Review MFA Deployment Considerations</h2>
-<p>Before diving into the technical setup, it's crucial to understand the strategic options and prerequisites for deploying Microsoft Entra multifactor authentication. Microsoft recommends planning your deployment carefully to ensure it aligns with your organization's security needs and user experience goals.</p>
-
-<p>For cloud-only identity environments with modern authentication, no specific pre-configuration tasks are typically required beyond administrative access. However, for hybrid identity scenarios, ensure Microsoft Entra Connect is deployed and synchronizing user identities between your on-premises Active Directory Domain Services (AD DS) and Microsoft Entra ID. If you are publishing on-premises legacy applications for cloud access, deploy Microsoft Entra application proxy.</p>
-
-<p>Microsoft Entra ID offers several authentication methods that can be used for the second factor. It's imperative to enable more than one MFA method to provide users with fallback options should their primary method become unavailable. Available methods include:</p>
-<ul>
-    <li>Windows Hello for Business</li>
-    <li>Microsoft Authenticator app (recommended for best flexibility and usability, supporting passwordless, push notifications, and OATH codes)</li>
-    <li>FIDO2 security key</li>
-    <li>Microsoft Authenticator passkey</li>
-    <li>Synced passkey (preview)</li>
-    <li>Hardware OATH tokens (preview)</li>
-    <li>Software OATH tokens</li>
-    <li>SMS verification</li>
-    <li>Voice call verification</li>
-</ul>
-
-<p>Microsoft recommends the Microsoft Authenticator app as it provides the best user experience and meets NIST Authenticator Assurance Level 2 requirements. You can control which authentication methods are available within your tenant. For instance, blocking less secure methods like SMS verification is a common practice for enhanced security.</p>
-
-<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Failing to enable multiple MFA methods. If a user loses their only registered phone or hardware token, they can become locked out of their account, causing significant disruption. Always ensure users have at least two viable options.</div>
-
-<h2>Step 2: Choose Your MFA Implementation Strategy</h2>
-<p>Microsoft Entra ID offers two primary approaches to implementing MFA: Security Defaults and Conditional Access policies. Your choice depends on your Microsoft Entra ID licensing and desired level of control.</p>
-
-<p><strong>Security Defaults</strong> are a set of baseline security policies provided by Microsoft Entra ID Free. They are designed to be a simple, all-or-nothing approach, enforcing MFA for all users and administrators. Organizations using Microsoft 365 Business Premium (which includes Microsoft Entra ID P1) or higher, or those with a Microsoft Entra ID P1/P2 add-on, can leverage the more granular control offered by Conditional Access policies.</p>
-
-<p><strong>Conditional Access policies</strong> provide a highly flexible and powerful way to enforce MFA. You can define specific conditions under which MFA is required, such as for access to sensitive applications, from untrusted locations, or based on user risk signals. This approach allows for a more tailored security posture and a better user experience by only prompting for MFA when necessary.</p>
-
-<p>Microsoft recommends using Conditional Access policies over Security Defaults when possible, as they offer greater flexibility and control. However, Security Defaults are a good starting point for organizations that want a quick and effective way to enable MFA across the board without complex configuration.</p>
-
-<h2>Step 3: Configure Security Defaults (if applicable)</h2>
-<p>If your organization does not have Microsoft Entra ID P1 or P2 licenses or you prefer a simpler, organization-wide MFA enforcement, Security Defaults are the recommended path. Microsoft 365 tenants created after October 2019 typically have Security Defaults enabled by default.</p>
-
-<p>To check the current status of Security Defaults and enable them if they are off:</p>
-
-<pre><code class="language-powershell"># Connect to Microsoft Graph PowerShell SDK
-Connect-MgGraph -Scopes "Directory.Read.All"
-
-# Get Security Defaults configuration
-Get-MgSecurityDefaultSecurityPolicy
+# Get your current user's assigned roles
+Get-MgUserMemberOf -UserId (Get-MgContext).UserId | Select-Object DisplayName, Id, Description
 </code></pre>
+<p><code>Install-Module -Name Microsoft.Graph -Scope CurrentUser</code>: Installs the Microsoft Graph PowerShell SDK module for the current user.</p>
+<p><code>Connect-MgGraph -Scopes "..."</code>: Authenticates your PowerShell session with Microsoft Graph, requesting specific permissions (scopes) needed to read directory information and manage authentication policies.</p>
+<p><code>Get-MgUserMemberOf -UserId (Get-MgContext).UserId</code>: Retrieves all directory roles and groups that the currently authenticated user is a member of.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://entra.microsoft.com/#home'>Microsoft Entra admin center</a> &gt; <strong>Identity</strong> &gt; <strong>Users</strong> &gt; <strong>All users</strong>. Select your user account, then click <strong>Assigned roles</strong> to view your current role assignments. Ensure you have Global Administrator, Security Administrator, or Conditional Access Administrator for the respective tasks.</p>
+<p><strong>Expected result:</strong> A list of roles your account is assigned to, confirming that you hold at least one of the following: Global Administrator, Security Administrator, or Conditional Access Administrator.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Attempting to configure MFA without sufficient permissions will result in access denied errors, wasting time and potentially creating frustration. Always verify your role assignments first. Microsoft recommends using roles with the fewest permissions required, limiting Global Administrator use to emergency scenarios.</div>
 
-<p><strong>Explanation:</strong></p>
+<h2>Step 2: Understand Microsoft Entra MFA Strategies</h2>
+<p>Microsoft Entra ID offers three primary strategies for implementing MFA. Understanding these is critical to choosing the right approach for your organization based on licensing, desired granularity, and security posture. SkyCore strongly recommends either Security Defaults or Conditional Access policies.</p>
 <ul>
-    <li><code>Connect-MgGraph -Scopes "Directory.Read.All"</code>: Establishes a connection to the Microsoft Graph API with read permissions for directory information.</li>
-    <li><code>Get-MgSecurityDefaultSecurityPolicy</code>: Retrieves the current configuration status of Security Defaults.</li>
+    <li><strong>Security Defaults:</strong> Available in all Microsoft 365 organizations via Microsoft Entra ID Free. These provide a baseline level of security, automatically enforcing MFA for administrators, blocking legacy authentication protocols, and requiring all users to register for MFA within 14 days. Tenants created after October 2019 generally have Security Defaults enabled by default.</li>
+    <li><strong>Conditional Access Policies:</strong> Available with Microsoft Entra ID P1 or P2 licenses (e.g., Microsoft 365 Business Premium, E3, E5). This offers granular control, allowing you to define specific conditions under which MFA is required (e.g., accessing sensitive applications, signing in from untrusted locations, or based on sign-in risk). Conditional Access policies are the recommended approach for most organizations due to their flexibility and enhanced security capabilities.</li>
+    <li><strong>Legacy Per-User MFA:</strong> Available in all Microsoft 365 organizations via Microsoft Entra ID Free. This is an older, less flexible method where MFA is enabled or enforced on a per-user basis. It is generally not recommended as it lacks the centralized control and advanced features of Security Defaults or Conditional Access.</li>
 </ul>
+<p>While there's no direct CLI command to "understand" these strategies, you manage them via PowerShell in later steps. CISA and NIST SP 800-63B consistently advocate for robust MFA across all user accounts, with a preference for phishing-resistant authenticators. Conditional Access policies align best with this recommendation by allowing fine-grained control over authentication methods and conditions.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Review the settings in the <a href='https://entra.microsoft.com/#home'>Microsoft Entra admin center</a> &gt; <strong>Identity</strong> &gt; <strong>Overview</strong> &gt; <strong>Properties</strong> &gt; <strong>Security defaults</strong> section. If Conditional Access policies are already in use, Security defaults will be disabled.</p>
+<p><strong>Expected result:</strong> A clear understanding of which MFA strategy is currently active in your tenant and which strategy you intend to implement (preferably Conditional Access for P1/P2 tenants).</p>
 
-<p>The output will indicate if Security Defaults are on or off. If they are off and you wish to enable them:</p>
+<h2>Step 3: Disable Legacy Per-User MFA (If Active)</h2>
+<p>If your organization previously enabled MFA using the legacy per-user setting, it's crucial to disable it before implementing Security Defaults or Conditional Access. Having both active can lead to unexpected behavior and administrative overhead. This step ensures a clean transition to a modern MFA strategy.</p>
+<pre><code class='language-powershell'># Connect using the MSOnline module if not already connected (needed for legacy MFA management)
+# Install-Module -Name MSOnline -Force -AllowClobber
+Connect-MsolService
 
-<pre><code class="language-powershell">
-# Example: Enable Security Defaults
-# Ensure you have Global Administrator or Security Administrator role
+# Get all users with legacy per-user MFA enabled
+$UsersWithMfa = Get-MsolUser -All | Where-Object {$_.StrongAuthenticationRequirements -ne $null -and $_.StrongAuthenticationRequirements.Count -gt 0}
 
-# First, confirm you are not using Conditional Access policies that conflict
-# (If Conditional Access policies are in use, you cannot enable Security Defaults)
+# Iterate through users and disable legacy per-user MFA
+foreach ($User in $UsersWithMfa) {
+    Write-Host "Disabling legacy per-user MFA for $($User.UserPrincipalName)..."
+    Set-MsolUser -UserPrincipalName $User.UserPrincipalName -StrongAuthenticationRequirements @()
+}
 
-# Update Security Defaults to Enabled
-Update-MgSecurityDefaultSecurityPolicy -Enabled $true
+# Verify that no users have legacy per-user MFA enabled
+Get-MsolUser -All | Where-Object {$_.StrongAuthenticationRequirements -ne $null -and $_.StrongAuthenticationRequirements.Count -gt 0} | Select-Object UserPrincipalName, StrongAuthenticationRequirements
 </code></pre>
+<p><code>Connect-MsolService</code>: Establishes a connection to the Microsoft Online Services (MSOL) for managing legacy Entra ID aspects.</p>
+<p><code>Get-MsolUser -All | Where-Object {$_.StrongAuthenticationRequirements -ne $null -and $_.StrongAuthenticationRequirements.Count -gt 0}</code>: Retrieves all users and filters for those with `StrongAuthenticationRequirements` set, indicating legacy per-user MFA.</p>
+<p><code>Set-MsolUser -UserPrincipalName $User.UserPrincipalName -StrongAuthenticationRequirements @()</code>: Sets the `StrongAuthenticationRequirements` for a user to an empty array, effectively disabling legacy per-user MFA for that user.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://entra.microsoft.com/#home'>Microsoft Entra admin center</a> &gt; <strong>Identity</strong> &gt; <strong>Users</strong> &gt; <strong>All users</strong> &gt; <strong>Per-user MFA</strong>. In the new tab that opens, select all users who have MFA enabled via this legacy portal, then click <strong>Disable</strong> in the quick steps on the right.</p>
+<p><strong>Expected result:</strong> The `Get-MsolUser` verification command returns no users, indicating that legacy per-user MFA is now disabled for all users. This prepares your tenant for a modern MFA approach.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Disabling legacy per-user MFA without immediately implementing Security Defaults or Conditional Access will leave your users unprotected. This step should be followed immediately by Step 4 or Step 5 to maintain a secure posture.</div>
 
-<p><strong>Explanation:</strong></p>
-<ul>
-    <li><code>Update-MgSecurityDefaultSecurityPolicy -Enabled $true</code>: Sets the Security Defaults to enabled.</li>
-</ul>
+<h2>Step 4: Implement or Review Security Defaults</h2>
+<p>For organizations without Microsoft Entra ID P1 or P2 licenses, Security Defaults offer a straightforward way to enforce foundational MFA protection. If your tenant was created after October 2019, Security Defaults are likely already enabled. This step guides you through reviewing and, if necessary, enabling them.</p>
+<pre><code class='language-powershell'># Security Defaults are primarily managed via the Microsoft Entra admin center GUI.
+# There is no direct, simple PowerShell cmdlet to toggle Security Defaults as of the reference documentation.
+# The following commands help identify if Conditional Access is preventing Security Defaults, which is common.
 
-<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the Microsoft Entra admin center, then go to <strong>Identity</strong> > <strong>Overview</strong>. On the <strong>Properties</strong> tab, scroll down to the <strong>Security defaults</strong> section. If available, select <strong>Manage security defaults</strong>, choose <strong>Enabled</strong>, and click <strong>Save</strong>.</p>
-
-<p>If Security Defaults are already on, you will see a message indicating that your organization is protected by security defaults, and the option to manage them will be available. If you see a message stating that Conditional Access policies exist, you must disable them before enabling Security Defaults.</p>
-
-<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> If your tenant was created before October 2019 and you are enabling Security Defaults, ensure legacy per-user MFA is turned off. You can check this by navigating to the Microsoft 365 admin center, then <strong>Users</strong> > <strong>Active users</strong>, selecting a user, and clicking <strong>Manage multi-factor authentication</strong>. If MFA is enforced per user, disable it before proceeding with Security Defaults.</div>
-
-<h2>Step 4: Configure Conditional Access Policies (Recommended)</h2>
-<p>For organizations requiring granular control over MFA enforcement, Conditional Access policies are the superior solution. This approach allows you to tailor MFA prompts based on various factors, improving both security and user experience. This requires Microsoft Entra ID P1 or P2 licenses.</p>
-
-<p><strong>Key benefits of Conditional Access:</strong></p>
-<ul>
-    <li><strong>Targeted Enforcement:</strong> Require MFA only for specific applications, user groups, or from untrusted network locations.</li>
-    <li><strong>Risk-Based Policies:</strong> Integrate with Microsoft Entra ID Protection to require MFA when a sign-in is deemed risky (e.g., leaked credentials, sign-ins from anonymous IP addresses).</li>
-    <li><strong>Administrator Protection:</strong> Ensure administrators always use MFA, even when accessing sensitive resources.</li>
-    <li><strong>Device Compliance:</strong> Enforce MFA for access from non-compliant or managed devices.</li>
-</ul>
-
-<p>Microsoft recommends creating a baseline policy that requires MFA for all users. This provides a robust security foundation.</p>
-
-<p><strong>Create a policy to require MFA for all users:</strong></p>
-
-<pre><code class="language-azurecli">
-# This example outlines the steps conceptually, as Conditional Access policies are primarily managed via the Microsoft Entra portal.
-# For programmatic management, consider using Microsoft Graph API or Azure CLI extensions if available for policy creation.
-
-# Example command concept for enabling MFA for all users (actual implementation via portal)
-# az entra conditional-access policy create --name "Require MFA for All Users" --state "enabled" --grant-controls "mfa" --assignment "users" --assignment "applications" --assignment "locations"
-
-# The following are steps within the Microsoft Entra portal:
-# 1. Navigate to Microsoft Entra ID > Identity > Protection > Conditional Access.
-# 2. Select "Policies" and click "+ New policy".
-# 3. Name your policy: "Require MFA for All Users".
-# 4. Under "Assignments", configure:
-#    - Users: Include "All users". Consider excluding emergency access/break-glass accounts (see callout).
-#    - Cloud apps or actions: Include "All cloud apps".
-# 5. Under "Access controls", configure:
-#    - Grant: Select "Grant access", then "Require multi-factor authentication".
-# 6. Ensure the policy "Enable policy" is set to "On".
-# 7. Click "Create".
+# List all Conditional Access policies (if any exist)
+Get-MgConditionalAccessPolicy | Select-Object DisplayName, State
 </code></pre>
+<p><code>Get-MgConditionalAccessPolicy</code>: Retrieves existing Conditional Access policies in your tenant. If any policies are enabled or in report-only mode, Security Defaults cannot be enabled.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://entra.microsoft.com/#home'>Microsoft Entra admin center</a> &gt; <strong>Identity</strong> &gt; <strong>Overview</strong> &gt; <strong>Properties</strong>. Scroll down to the <strong>Security defaults</strong> section. If Security Defaults are off, you'll see a 'Manage security defaults' option. Select it, choose <strong>Enabled</strong> from the dropdown, and click <strong>Save</strong>. If Conditional Access policies are preventing activation, you will need to disable or delete them first, or ideally, move to Conditional Access entirely if you have the licensing.</p>
+<p><strong>Expected result:</strong> Security Defaults are reported as 'Enabled' in the Microsoft Entra admin center properties. If Conditional Access policies exist, you'll see them listed, indicating you should proceed with Conditional Access instead of Security Defaults.</p>
 
-<p><strong>Explanation:</strong></p>
-<ul>
-    <li><strong>Users:</strong> Including "All users" ensures the policy applies broadly. Crucially, exclude emergency access or break-glass accounts to prevent lockout in unforeseen circumstances.</li>
-    <li><strong>Cloud apps or actions:</strong> Applying to "All cloud apps" provides comprehensive coverage for all Microsoft 365 services and integrated applications.</li>
-    <li><strong>Grant:</strong> The core of the policy, this setting enforces the requirement for multifactor authentication.</li>
-</ul>
+<h2>Step 5: Configure Conditional Access Policy for All Users (Recommended for P1/P2 Licenses)</h2>
+<p>For organizations with Microsoft Entra ID P1 or P2, Conditional Access policies provide the most robust and flexible approach to MFA. This step outlines creating a policy to enforce MFA for all users accessing all cloud applications, excluding your emergency access accounts. We'll initially create it in 'Report-only' mode for testing.</p>
+<pre><code class='language-powershell'># Define the User Principal Names (UPNs) for your emergency access accounts to be excluded
+$EmergencyAccessUserUPNs = @("breakglassadmin@yourdomain.com", "secondaryemergency@yourdomain.com")
 
-<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the Microsoft Entra admin center, then <strong>Identity</strong> > <strong>Protection</strong> > <strong>Conditional Access</strong>. Click <strong>+ New policy</strong>. Name the policy (e.g., "Require MFA for All Users"). Under <strong>Assignments</strong>, select <strong>Users</strong> and include "All users" (but exclude break-glass accounts). Under <strong>Cloud apps or actions</strong>, select "All cloud apps". Under <strong>Access controls</strong>, choose <strong>Grant</strong>, then select "Require multi-factor authentication". Ensure the policy is enabled and click <strong>Create</strong>.</p>
+# Get the Object IDs of the emergency access users
+$ExcludedUserObjectIds = @()
+foreach ($upn in $EmergencyAccessUserUPNs) {
+    try {
+        $User = Get-MgUser -UserId $upn
+        $ExcludedUserObjectIds += $User.Id
+    } catch {
+        Write-Warning "User $upn not found. Please verify the UPN."
+    }
+}
 
-<p>After creating this baseline policy, you can then create more specific policies. For example, you might want to block sign-ins from untrusted locations for all users, while still requiring MFA for access to sensitive applications from anywhere.</p>
+# Ensure at least one exclusion is defined to prevent lockout during testing.
+# If no emergency users are found, this policy should NOT be deployed in Enabled state.
+if ($ExcludedUserObjectIds.Count -eq 0) {
+    Write-Warning "No valid emergency access accounts found or specified. It is critical to exclude at least one account to prevent tenant lockout. Exiting policy creation."
+    return
+}
 
-<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Forgetting to exclude emergency access or break-glass accounts. These accounts are vital for regaining access if a policy is misconfigured or causes unintended lockouts. Ensure these accounts are well-protected and documented. NIST SP 800-63B also emphasizes the importance of having recovery mechanisms.</div>
+# Create a Conditional Access policy to require MFA for all users, excluding emergency access accounts
+$PolicyName = "SkyCore - Require MFA for All Users"
+$Conditions = @{
+    users = @{
+        includeUsers = @("All")
+        excludeUsers = $ExcludedUserObjectIds # Exclude your emergency access accounts
+    }
+    applications = @{
+        includeApplications = @("All")
+    }
+    clientAppTypes = @(
+        "browser",
+        "mobileAppsAndDesktopClients",
+        "exchangeActiveSync"
+    )
+}
 
-<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Not understanding authentication strengths. Microsoft Entra ID offers different levels of authentication strength (e.g., MFA strength, passwordless MFA strength, phishing-resistant MFA strength). Selecting the appropriate strength based on your security requirements is crucial. For maximum security, consider phishing-resistant methods like FIDO2 security keys.</div>
+$GrantControls = @{
+    operator = "OR"
+    builtInControls = @(
+        "mfa" # Require Multi-Factor Authentication
+    )
+}
 
-<p><strong>Switching from Security Defaults to Conditional Access:</strong></p>
-<p>If you are currently using Security Defaults and wish to transition to Conditional Access:</p>
-<ol>
-    <li>Turn off Security Defaults.</li>
-    <li>Create your Conditional Access policies to replicate the security provided by Security Defaults.</li>
-    <li>Adjust MFA exclusions as needed.</li>
-    <li>Create new Conditional Access policies for more granular control.</li>
-</ol>
+# Create the policy in 'Report-only' mode for initial testing
+New-MgConditionalAccessPolicy -DisplayName $PolicyName -State "EnabledForReportingButNotEnforced" `
+    -Conditions $Conditions -GrantControls $GrantControls
 
-<p>To turn off Security Defaults:</p>
-
-<pre><code class="language-powershell">
-# Ensure you have Global Administrator or Security Administrator role
-# Update Security Defaults to Disabled
-Update-MgSecurityDefaultSecurityPolicy -Enabled $false
+Write-Host "Conditional Access policy '$PolicyName' created in Report-only mode. Review its impact before enabling."
 </code></pre>
-
-<p><strong>Explanation:</strong></p>
+<p><code>$EmergencyAccessUserUPNs</code>: Defines an array of User Principal Names for accounts that should be excluded from the policy. These are your 'break-glass' accounts.</p>
+<p><code>Get-MgUser -UserId $upn</code>: Retrieves the Microsoft Entra user object by UPN to get its Object ID.</p>
+<p><code>New-MgConditionalAccessPolicy -DisplayName "..." -State "EnabledForReportingButNotEnforced"</code>: Creates a new Conditional Access policy with a specified display name and initially sets its state to 'Report-only'.</p>
+<p><code>-Conditions $Conditions</code>: Specifies the conditions for the policy to apply, including 'All' users (with exclusions), 'All' cloud apps, and various client application types.</p>
+<p><code>-GrantControls $GrantControls</code>: Defines the access controls to enforce, in this case, requiring Multi-Factor Authentication (`mfa`).</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://entra.microsoft.com/#home'>Microsoft Entra admin center</a> &gt; <strong>Identity</strong> &gt; <strong>Conditional Access</strong> &gt; <strong>Policies</strong> &gt; <strong>New policy</strong>. Configure the policy as follows:
 <ul>
-    <li><code>Update-MgSecurityDefaultSecurityPolicy -Enabled $false</code>: Sets the Security Defaults to disabled.</li>
-</ul>
+    <li><strong>Name:</strong> SkyCore - Require MFA for All Users</li>
+    <li><strong>Users:</strong> Select <strong>All users</strong> under 'Include' and then select your emergency access accounts under 'Exclude'.</li>
+    <li><strong>Target resources:</strong> Select <strong>Cloud apps</strong> &gt; <strong>All cloud apps</strong>.</li>
+    <li><strong>Conditions:</strong> <strong>Client apps</strong> &gt; <strong>Yes</strong> &gt; select all client app types.</li>
+    <li><strong>Grant:</strong> Select <strong>Require multifactor authentication</strong> and ensure <strong>Require one of the selected controls</strong> is chosen.</li>
+    <li><strong>Enable policy:</strong> Set to <strong>Report-only</strong> initially, then <strong>On</strong> after thorough testing.</li>
+</ul></p>
+<p><strong>Expected result:</strong> A new Conditional Access policy is created in 'Report-only' mode. You should then review the sign-in logs in the Microsoft Entra admin center to understand the policy's impact before switching it to 'Enabled'. Microsoft Entra ID provides built-in authentication strengths for Conditional Access policies, including 'Multifactor authentication strength' (less restrictive, used here), 'Passwordless MFA strength', and 'Phishing-resistant MFA strength' (most restrictive), allowing you to further refine required methods.</p>
+<div class='howto-callout howto-callout--warning'><strong>Production risk:</strong> Deploying a "Require MFA for All Users" policy directly to 'Enabled' without exclusions or prior 'Report-only' testing can lead to immediate tenant lockout if misconfigured or if administrators lose access to their primary MFA method. Always use exclusions for emergency accounts and test rigorously in 'Report-only' mode.</div>
 
-<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the Microsoft Entra admin center, then <strong>Identity</strong> > <strong>Overview</strong> > <strong>Properties</strong>. Select <strong>Manage security defaults</strong>, choose <strong>Disabled</strong>, provide a reason (e.g., "My organization is planning to use Conditional Access"), and click <strong>Save</strong>.</p>
+<h2>Step 6: Define and Manage Allowed Authentication Methods</h2>
+<p>Not all MFA methods offer the same level of security. NIST SP 800-63B categorizes authenticators by Assurance Levels. SkyCore strongly recommends prioritizing stronger, phishing-resistant methods like FIDO2 security keys or passwordless Microsoft Authenticator, while restricting weaker options like SMS or voice calls where feasible. Microsoft Authenticator push notifications offer a good balance of security (NIST AAL2) and usability.</p>
+<pre><code class='language-powershell'># Get the current authentication methods policy
+$AuthenticationMethodsPolicy = Get-MgPolicyAuthenticationMethodPolicy
 
-<p>Once Security Defaults are off, you can enable your Conditional Access policies.</p>
+# Disable less secure methods like SMS and Voice calls
+# Note: FIDO2 and Microsoft Authenticator are typically enabled by default or managed via their specific policies.
+# You might need to retrieve specific AuthenticationMethod IDs if they are not already listed.
 
-<h2>Step 5: Select and Manage Authentication Methods</h2>
-<p>The effectiveness of your MFA implementation hinges on the authentication methods users can and will use. As mentioned in Step 1, Microsoft Authenticator app is highly recommended, offering both push notifications and passwordless sign-in capabilities. It aligns with NIST guidelines for authenticator assurance levels.</p>
+# Example: Disabling SMS (assuming 'Sms' is a recognized ID, typically 'sms')
+try {
+    $smsPolicy = $AuthenticationMethodsPolicy.Sms
+    if ($smsPolicy) {
+        $smsPolicy.State = 'Disabled'
+        Update-MgPolicyAuthenticationMethodPolicy -Sms $smsPolicy
+        Write-Host "SMS authentication method disabled."
+    } else {
+        Write-Warning "SMS authentication method policy not found to disable."
+    }
+} catch {
+    Write-Warning "Failed to update SMS authentication policy: $($_.Exception.Message)"
+}
 
-<p>You can manage which authentication methods are available to users in your tenant:</p>
+# Example: Disabling Voice Calls (assuming 'VoiceDialup' is a recognized ID, typically 'voice')
+try {
+    $voicePolicy = $AuthenticationMethodsPolicy.VoiceDialup
+    if ($voicePolicy) {
+        $voicePolicy.State = 'Disabled'
+        Update-MgPolicyAuthenticationMethodPolicy -VoiceDialup $voicePolicy
+        Write-Host "Voice call authentication method disabled."
+    } else {
+        Write-Warning "Voice call authentication method policy not found to disable."
+    }
+} catch {
+    Write-Warning "Failed to update Voice Dial-up authentication policy: $($_.Exception.Message)"
+}
 
-<pre><code class="language-powershell">
-# Connect to Microsoft Graph PowerShell SDK if not already connected
-# Connect-MgGraph -Scopes "Policy.ReadWrite.ConditionalAccess"
+# Enable and configure Microsoft Authenticator (if not already optimized)
+# Note: The Microsoft Authenticator policy is typically managed via its own cmdlet or specific properties.
+# This example shows how to ensure it's enabled and set for all users (or targeted groups).
+# The method for targeting specific features like passwordless is more granular.
+try {
+    # This example ensures the Microsoft Authenticator registration is enabled for all users.
+    # More advanced settings (e.g., passwordless mode) are configured within the Authenticator policy itself.
+    # Get-MgPolicyAuthenticationMethodPolicy can be used to see current settings.
+    # To enable/include all users for the Microsoft Authenticator, you would modify its scope.
+    # This might require updating the 'AuthenticatorSmsSettings', 'MicrosoftAuthenticator' properties within
+    # the overarching AuthenticationMethodsPolicy object or a specific policy endpoint.
 
-# Retrieve authentication methods policy
-$authMethodsPolicy = Get-MgPolicyAuthenticationMethod
+    # A more common approach is to set states within the Authenticator method policy:
+    # Get current Authenticator policy
+    $authMethodPolicy = Get-MgPolicyAuthenticationMethodPolicy
+    $microsoftAuthenticator = $authMethodPolicy.MicrosoftAuthenticator
 
-# View current methods (example: to see if SMS is enabled)
-$authMethodsPolicy.AuthenticationMethodsPolicy.IncludeTarget
+    if ($microsoftAuthenticator) {
+        # Ensure it's enabled for desired groups or all users
+        if ($microsoftAuthenticator.State -ne 'Enabled') {
+            $microsoftAuthenticator.State = 'Enabled'
+            Update-MgPolicyAuthenticationMethodPolicy -MicrosoftAuthenticator $microsoftAuthenticator
+            Write-Host "Microsoft Authenticator enabled."
+        }
+        # Further configuration for passwordless or push notifications is done within the Graph API for the specific method configuration.
+        # Example: To target passwordless phone sign-in to all users
+        # This requires more complex Graph API calls than simple cmdlet property updates directly on the policy.
+        # A full Graph API call might look like:
+        # $params = @{
+        #     authenticationMethodModes = @(
+        #         @{
+        #             authenticationMethod = "MicrosoftAuthenticator"
+        #             state = "Enabled"
+        #             featureSettings = @{
+        #                 # Example of targeting specific features within Authenticator, like passwordless
+        #                 microsoftAuthenticatorPasswordlessSettings = @{
+        #                     state = "Enabled"
+        #                     is};
+        #                 }
+        #             }
+        #         }
+        #     )
+        # }
+        # Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/v1.0/policies/authenticationMethodsPolicy" -Body ($params | ConvertTo-Json)
+        # Due to complexity and direct cmdlet limitations for granular settings, GUI is often used for these deep configurations.
+        Write-Host "For granular control over Microsoft Authenticator features (e.g., passwordless), refer to the portal or advanced Graph API usage."
+    } else {
+        Write-Warning "Microsoft Authenticator policy not found."
+    }
+} catch {
+    Write-Warning "Failed to update Microsoft Authenticator policy: $($_.Exception.Message)"
+}
 
-# To disable SMS verification (requires careful consideration and user communication)
-# Note: Modifying the policy requires specific JSON structure and careful testing.
-# This is a simplified conceptual example.
-# You would typically construct a JSON payload to update specific methods.
-# For example, to exclude SMS for all users:
-# $payload = @{
-#   '@odata.type' = '#microsoft.graph.authenticationMethodsPolicy'
-#   'authenticationMethodsPolicy' = @{
-#     'includeTarget' = @(
-#       @{ '@odata.type' = '#microsoft.graph.microsoftAuthenticatorAllowedState'; authenticationMethod = 'microsoftAuthenticator'; state = 'enabled' },
-#       @{ '@odata.type' = '#microsoft.graph.iosSmsmfaAllowedState'; authenticationMethod = 'smsSms'; state = 'disabled' } # Example: disabling SMS
-#       # ... other methods ...
-#     )
-#   }
-# }
-# Update-MgPolicyAuthenticationMethod -BodyParameter $payload
+
+# Verify the current state of authentication methods
+Get-MgPolicyAuthenticationMethodPolicy | Select-Object -ExpandProperty *
 </code></pre>
+<p><code>Get-MgPolicyAuthenticationMethodPolicy</code>: Retrieves the tenant-wide authentication methods policy object.</p>
+<p><code>$AuthenticationMethodsPolicy.Sms.State = 'Disabled'</code>: Sets the state of the SMS authentication method within the policy to disabled.</p>
+<p><code>Update-MgPolicyAuthenticationMethodPolicy -Sms $smsPolicy</code>: Updates the authentication methods policy to apply the changes to the SMS method.</p>
+<p><code>$AuthenticationMethodsPolicy.MicrosoftAuthenticator.State = 'Enabled'</code>: Sets the state of the Microsoft Authenticator method to enabled.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://entra.microsoft.com/#home'>Microsoft Entra admin center</a> &gt; <strong>Identity</strong> &gt; <strong>Protection</strong> &gt; <strong>Authentication methods</strong>. Here you can configure the policy for each method (e.g., Microsoft Authenticator, FIDO2 Security Key, SMS, Voice call). For each method, you can set its <strong>State</strong> to 'Enabled' or 'Disabled' and target it to 'All users' or 'Select users and groups'. For Microsoft Authenticator, you can also configure 'Authentication mode' (Any, Passwordless, or Push Notification).</p>
+<p><strong>Expected result:</strong> Less secure methods (like SMS and Voice calls) are disabled, and more secure methods (like Microsoft Authenticator) are enabled and configured according to your security posture. Users will be guided to register preferred methods during their next sign-in if they haven't already.</p>
 
-<p><strong>Explanation:</strong></p>
-<ul>
-    <li><code>Get-MgPolicyAuthenticationMethod</code>: Retrieves the current configuration of available authentication methods.</li>
-    <li>The subsequent commands demonstrate the conceptual approach to modifying this policy. Direct modification of authentication methods via PowerShell often involves constructing JSON payloads for specific updates.</li>
-</ul>
+<h2>Step 7: Exclude Emergency Access ('Break-Glass') Accounts</h2>
+<p>Emergency access accounts are highly privileged, non-personal accounts designed to be used only in extreme circumstances, such as when your normal administrative accounts are locked out or compromised. It is critical to exclude these accounts from MFA policies to prevent a complete tenant lockout. These accounts must be secured with extreme vigilance.</p>
+<pre><code class='language-powershell'># Ensure you have the Object IDs for your emergency access accounts from Step 5.
+# If you don't, retrieve them again:
+$EmergencyAccessUserUPNs = @("breakglassadmin@yourdomain.com", "secondaryemergency@yourdomain.com")
+$ExcludedUserObjectIds = @()
+foreach ($upn in $EmergencyAccessUserUPNs) {
+    try {
+        $User = Get-MgUser -UserId $upn
+        $ExcludedUserObjectIds += $User.Id
+    } catch {
+        Write-Warning "User $upn not found. Skipping exclusion for this UPN."
+    }
+}
 
-<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the Microsoft Entra admin center, then <strong>Identity</strong> > <strong>Protection</strong> > <strong>Authentication methods</strong>. Here you can enable, disable, and configure settings for various methods like Microsoft Authenticator, SMS, voice calls, and FIDO2 security keys. You can also use Authentication Methods Policies for more granular control, including scoping specific methods to users or groups.</p>
+# Get the Conditional Access policy created in Step 5
+$Policy = Get-MgConditionalAccessPolicy | Where-Object {$_.DisplayName -eq "SkyCore - Require MFA for All Users"}
 
-<p>CISA, the US Cybersecurity and Infrastructure Security Agency, strongly advocates for MFA as a foundational security control. They recommend prioritizing phishing-resistant methods where feasible.</p>
+if ($Policy) {
+    # Update the policy's conditions to explicitly exclude these users
+    $Policy.Conditions.Users.ExcludeUsers = $ExcludedUserObjectIds
 
-<h2>Step 6: Test MFA Implementation</h2>
-<p>Thorough testing is essential to ensure your MFA setup functions as intended and doesn't inadvertently lock users out. Test the policies with different user accounts, including administrators and standard users, and from various network locations (internal and external).</p>
+    # Update the policy in Microsoft Entra ID
+    Update-MgConditionalAccessPolicy -ConditionalAccessPolicyId $Policy.Id -Conditions $Policy.Conditions
+    Write-Host "Conditional Access policy updated to exclude emergency access accounts."
+} else {
+    Write-Warning "Conditional Access policy 'SkyCore - Require MFA for All Users' not found. Ensure it was created in Step 5."
+}
 
-<p><strong>Testing Scenarios:</strong></p>
-<ul>
-    <li><strong>User Sign-in:</strong> Attempt to sign in to a Microsoft 365 service (e.g., Outlook Web App, SharePoint Online) as a user who has registered MFA methods. Verify the MFA prompt appears and can be successfully completed using the configured methods.</li>
-    <li><strong>New User Registration:</strong> For new users, confirm that they are prompted to register their MFA methods during their first sign-in after the policy is enforced.</li>
-    <li><strong>Administrator Access:</strong> Test sign-in for administrator accounts to ensure they are prompted for MFA, especially when accessing administrative portals like the Microsoft Entra admin center.</li>
-    <li><strong>Conditional Access Scenarios:</strong> If you have defined specific conditions (e.g., access from untrusted networks, access to sensitive applications), test these scenarios to confirm MFA is required or granted as per policy.</li>
-    <li><strong>Authentication Method Failover:</strong> If a user has multiple MFA methods configured, test the ability to use a secondary method if the primary one is unavailable.</li>
-</ul>
-
-<p>Monitor sign-in logs in Microsoft Entra ID for any signs of failed MFA attempts or policy violations.</p>
-
-<pre><code class="language-powershell">
-# Connect to Microsoft Graph PowerShell SDK
-# Connect-MgGraph -Scopes "AuditLog.Read.All"
-
-# Get recent sign-in logs
-# This command retrieves the last 100 sign-in events. Adjust the -Top parameter as needed.
-Get-MgAuditLogSignIn -Top 100 | Format-Table UserDisplayName, Status, @{N='MFA Result'; E={$_.AuthenticationRequirements}},
-    @{N='IP Address'; E={$_.IPAddress.IPAddress}},
-    @{N='App'; E={$_.AppDisplayName}},
-    CreatedDateTime
+# Verify exclusions (optional, review policy details)
+Get-MgConditionalAccessPolicy -ConditionalAccessPolicyId $Policy.Id | Select-Object -ExpandProperty Conditions
 </code></pre>
+<p><code>$EmergencyAccessUserUPNs</code>: Array of UPNs for your designated emergency access accounts.</p>
+<p><code>Get-MgConditionalAccessPolicy | Where-Object {$_.DisplayName -eq "..."}</code>: Retrieves the specific Conditional Access policy by its display name.</p>
+<p><code>$Policy.Conditions.Users.ExcludeUsers = $ExcludedUserObjectIds</code>: Modifies the policy object to include the Object IDs of the emergency access accounts in its exclusion list.</p>
+<p><code>Update-MgConditionalAccessPolicy -ConditionalAccessPolicyId $Policy.Id -Conditions $Policy.Conditions</code>: Submits the updated policy object to Microsoft Entra ID.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://entra.microsoft.com/#home'>Microsoft Entra admin center</a> &gt; <strong>Identity</strong> &gt; <strong>Conditional Access</strong> &gt; <strong>Policies</strong>. Select your policy (e.g., "SkyCore - Require MFA for All Users"). Under <strong>Users</strong>, ensure that your emergency access accounts are listed in the 'Exclude' tab.</p>
+<p><strong>Expected result:</strong> The Conditional Access policy is successfully updated, explicitly excluding your designated emergency access accounts from the MFA requirement. Regularly audit these accounts for any unauthorized activity.</p>
+<div class='howto-callout howto-callout--warning'><strong>Common pitfall:</strong> Forgetting to exclude emergency access accounts is a critical security oversight that can lead to complete tenant lockout. These accounts must have robust, non-MFA dependent security measures in place, such as extremely long, complex passwords stored securely, and their usage strictly audited.</div>
 
-<p><strong>Explanation:</strong></p>
-<ul>
-    <li><code>Get-MgAuditLogSignIn -Top 100</code>: Retrieves the 100 most recent sign-in events from the Microsoft Entra audit logs.</li>
-    <li>The calculated properties (`@{N=...; E=...}`) format the output to show relevant details like user display name, status, MFA requirements, IP address, application, and timestamp.</li>
-</ul>
+<h2>Step 8: Plan User Communication and Rollout Strategy</h2>
+<p>Technical implementation is only half the battle; successful MFA adoption hinges on effective user communication and a well-structured rollout plan. A phased approach minimizes disruption and allows for addressing issues before they impact the entire organization. NIST emphasizes the importance of user training and awareness as a component of effective identity management.</p>
+<pre><code class='language-powershell'># This step is purely procedural and does not involve direct CLI commands.
+# However, you might use PowerShell for reporting on user MFA registration status.
 
-<p class="gui-note"><strong>Portal alternative:</strong> Navigate to the Microsoft Entra admin center, then <strong>Monitoring &amp; health</strong> > <strong>Sign-in logs</strong>. You can filter these logs by user, application, date, and authentication requirements to review MFA status and troubleshoot issues.</p>
+# Get all users and their MFA registration status
+# Note: This attribute might not always be perfectly up-to-date or comprehensive for all methods.
+Get-MsolUser -All | Select-Object UserPrincipalName, @{Name="MfaStatus"; Expression={if($_.StrongAuthenticationRequirements.Count -gt 0){"Enabled (Legacy)"} elseif ($_.StrongAuthenticationMethods.Count -gt 0){"Registered (Modern)"} else {"Not Registered"}}}
 
-<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3><p>While this guide provides a comprehensive overview of setting up Office 365 MFA, complex environments or specific security requirements may necessitate expert assistance. If your organization has a hybrid identity setup with intricate AD FS configurations, uses third-party identity providers, or requires advanced Conditional Access policies tailored to unique risk profiles, engaging an IT consultant can prevent costly misconfigurations and ensure optimal security. For organizations prioritizing phishing-resistant MFA or needing guidance on NIST compliance, SkyCore Solutions can provide expert consultation.</p><a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+# For more detailed modern MFA registration status, consider Graph API queries to '/users/{id}/authentication/methods'
+# Example (conceptual):
+# Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/users/<user-id>/authentication/methods"
+</code></pre>
+<p><code>Get-MsolUser -All | Select-Object UserPrincipalName, @{Name="MfaStatus"; Expression={...}}</code>: Retrieves all users and attempts to infer their MFA registration status based on legacy or modern method counts. This gives a high-level overview for planning.</p>
+<p class='gui-note'><strong>Portal alternative:</strong> Navigate to the <a href='https://entra.microsoft.com/#home'>Microsoft Entra admin center</a> &gt; <strong>Identity</strong> &gt; <strong>Users</strong> &gt; <strong>All users</strong> &gt; <strong>Per-user MFA</strong>. Although used for legacy management, it still provides a quick view of who has MFA "Enabled" (legacy) or "Enforced" (legacy). For modern registration, use <strong>Identity</strong> &gt; <strong>Monitoring &amp; health</strong> &gt; <strong>Workbooks</strong> &gt; <strong>Authentication methods activity</strong> to view comprehensive MFA registration and usage.</p>
+<p><strong>Expected result:</strong> A clear, phased rollout plan outlining communication, training materials, support channels, and target groups for MFA enforcement. Users should be well-informed and supported through the transition.</p>
 
+<h3>When to bring in a consultant</h3>
+<p>While this guide provides a detailed, CLI-first approach to Office 365 MFA setup, the real-world complexities of cloud migration, existing security policies, and diverse user environments can be daunting. If your organization has complex Conditional Access requirements, a hybrid identity infrastructure with AD FS, specific compliance needs (e.g., NIST 800-171, HIPAA), or simply lacks the in-house expertise or time to execute this flawlessly, DIY can introduce significant risks. Misconfigured MFA policies can lead to tenant lockout, reduced productivity, or even security gaps. SkyCore Solutions specializes in nuanced Azure Cloud Migration, Security Hardening, and Infrastructure Revamp. We can help you design, implement, and validate an MFA strategy that aligns perfectly with your business needs and regulatory requirements, ensuring robust security without compromising usability.</p><a href='../contact.html' class='btn btn-primary'>Book a free consultation</a>
 <div class="howto-sources">
   <h4>References</h4>
   <ul>

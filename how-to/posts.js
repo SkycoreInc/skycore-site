@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "office-365-mfa-setup-guide",
+    title: "SkyCore's Essential Office 365 MFA Setup Guide for Robust Security Hardening",
+    date: "2026-10-13",
+    readTime: "12 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 hours (initial setup), 2-4 weeks (full user rollout)",
+    keyword: "Office 365 MFA setup guide",
+    excerpt: "This guide details setting up Multi-Factor Authentication (MFA) in Office 365 using Microsoft Entra ID. We cover Security Defaults and Conditional Access to secure user sign-ins effectively.",
+    image: "https://images.pexels.com/photos/27742642/pexels-photo-27742642.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "on-premise-azure-migration-guide",
     title: "Definitive On-Premise to Azure Migration Guide by SkyCore Solutions",
     date: "2026-10-10",
