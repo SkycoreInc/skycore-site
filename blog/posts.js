@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ivanti-zero-day-cybersecurity-montreal-smb",
+    title: "The Ivanti Zero-Day: A Harsh Lesson for Montreal's SMBs",
+    date: "2026-10-13",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "The recent Ivanti Connect Secure zero-day sent shockwaves through the tech world. It's a stark reminder that proactive, comprehensive cybersecurity for SMBs isn't optional, it's essential for survival.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5475763/pexels-photo-5475763.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "github-actions-security-devops-montreal",
     title: "The GitHub Pipeline Bomb: Is Your DevOps a Backdoor for Cybercriminals?",
     date: "2026-10-11",
