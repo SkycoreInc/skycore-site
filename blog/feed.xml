@@ -13,6 +13,35 @@
     </image>
 
     <item>
+      <title>The 19-Year-Old Bug Threatening Your Business: Patching Isn't Your Only Play</title>
+      <link>https://skycoresolutions.com/blog/nginx-vulnerability-patch-security-montreal.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/nginx-vulnerability-patch-security-montreal.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <description>**Your business could have been compromised for 19 years without you knowing.**
+
+A critical NGINX vulnerability, active for nearly two decades, just received a patch.
+But for Montreal SMBs, a simple patch won't secure your digital future.
+The real threat goes much deeper than one software update.
+
+Here's what this means for your Montreal business:
+
+🔴 **19-Year Threat:** This bug proves legacy vulnerabilities can lurk unnoticed for ages, putting your entire infrastructure at risk.
+⚠️ **Beyond the Patch:** Simply updating fixes one issue, but it doesn't build a resilient defense against the next, inevitable exploit.
+🔐 **Proactive Hardening:** True security involves continuous assessment, infrastructure hardening, and strategic security architecture, not just reactive fixes.
+☁️ **Cloud Implications:** Migrating to the cloud without proper security hardening can amplify risks if foundational infrastructure vulnerabilities aren't addressed.
+
+Relying solely on patches leaves your business exposed to unseen threats and future attacks. It's time to shift from reactive fixes to a comprehensive, proactive security posture that truly protects your assets.
+
+Read the full article to understand the deeper implications and what steps you can take today.
+
+#Cybersecurity #ITSecurity #MontrealSMB #NGINX #Vulnerability #SecurityHardening #CloudMigration #InfrastructureRevamp #ITConsulting #DataSecurity #PatchManagement #RiskManagement #ProactiveSecurity #ITStrategy #NetworkSecurity #BusinessContinuity #SkyCoreSolutions #TechNews
+
+🔗 Read the full article: https://skycoresolutions.com/blog/nginx-vulnerability-patch-security-montreal.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/5380675/pexels-photo-5380675.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>The Ivanti Zero-Day: A Harsh Lesson for Montreal's SMBs</title>
       <link>https://skycoresolutions.com/blog/ivanti-zero-day-cybersecurity-montreal-smb.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/ivanti-zero-day-cybersecurity-montreal-smb.html</guid>

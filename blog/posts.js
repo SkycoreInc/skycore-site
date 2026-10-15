@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "nginx-vulnerability-patch-security-montreal",
+    title: "The 19-Year-Old Bug Threatening Your Business: Patching Isn't Your Only Play",
+    date: "2026-10-15",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "A critical NGINX vulnerability, lurking for nearly two decades, just got patched. But for Montreal SMBs, patching alone won't secure your digital future.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380675/pexels-photo-5380675.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ivanti-zero-day-cybersecurity-montreal-smb",
     title: "The Ivanti Zero-Day: A Harsh Lesson for Montreal's SMBs",
     date: "2026-10-13",
