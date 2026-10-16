@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "github-actions-ci-cd-pipeline-setup",
+    title: "Mastering GitHub Actions: A Comprehensive CI/CD Pipeline Setup Guide",
+    date: "2026-10-16",
+    readTime: "10 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours",
+    keyword: "GitHub Actions CI CD pipeline setup",
+    excerpt: "Automate your development lifecycle with GitHub Actions. Learn to configure powerful CI/CD pipelines for seamless integration and deployment.",
+    image: "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "office-365-mfa-setup-guide",
     title: "SkyCore's Essential Office 365 MFA Setup Guide for Robust Security Hardening",
     date: "2026-10-13",
