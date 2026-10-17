@@ -13,6 +13,33 @@
     </image>
 
     <item>
+      <title>Your M365 Isn't Safe: What the ConnectWise Breach Means for Montreal SMBs</title>
+      <link>https://skycoresolutions.com/blog/m365-breach-lessons-montreal-smb.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/m365-breach-lessons-montreal-smb.html</guid>
+      <pubDate>Sat, 17 Oct 2026 00:00:00 GMT</pubDate>
+      <description>**Your Microsoft 365 environment is likely more vulnerable than you think.**
+A recent ConnectWise credential compromise exposed 173 Microsoft 365 tenants to attackers. This isn't just a global incident; it carries direct implications for Montreal SMBs. Even if you don't use ConnectWise directly, the ripple effect on supply chains is real.
+
+Here's what every Montreal SMB needs to understand now:
+
+🔴 **The Threat:** 173 M365 tenants were compromised, demonstrating how a single point of failure can cascade into widespread risk.
+⚠️ **Your Exposure:** This breach highlights critical weaknesses in identity and access management that directly impact your cloud security posture.
+🔐 **Immediate Steps:** Implement robust MFA, enforce least privilege, and regularly audit your M365 security configurations.
+🛡️ **Proactive Defense:** Don't wait for a breach; prioritize security hardening and establish a clear incident response plan for your business.
+☁️ **Expert Insight:** Understanding the tactics used by attackers is crucial to protecting your vital business data in the cloud.
+
+Cyberattacks are evolving rapidly, and proactive security is no longer optional. Protecting your M365 environment isn't just about data; it's about business continuity and trust. Don't leave your organization exposed.
+
+Read our latest article to unpack the breach details and learn how to secure your M365 environment effectively.
+
+#Cybersecurity #M365Security #ConnectWiseBreach #SMBsecurity #MontrealIT #ITConsulting #CloudSecurity #Microsoft365 #SecurityHardening #DataProtection #ITAdvisory #CyberThreats #CloudMigration #InfrastructureRevamp #ManagedSecurity #BusinessContinuity #MontrealBusiness #SkyCoreSolutions #ITSecurityTips #ProactiveSecurity
+
+🔗 Read the full article: https://skycoresolutions.com/blog/m365-breach-lessons-montreal-smb.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/8231340/pexels-photo-8231340.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>The 19-Year-Old Bug Threatening Your Business: Patching Isn't Your Only Play</title>
       <link>https://skycoresolutions.com/blog/nginx-vulnerability-patch-security-montreal.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/nginx-vulnerability-patch-security-montreal.html</guid>

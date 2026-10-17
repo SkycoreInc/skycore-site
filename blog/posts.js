@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "m365-breach-lessons-montreal-smb",
+    title: "Your M365 Isn't Safe: What the ConnectWise Breach Means for Montreal SMBs",
+    date: "2026-10-17",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "A recent ConnectWise credential compromise exposed 173 Microsoft 365 tenants to attackers. This 'war story' unpacks the breach and outlines critical security steps for Montreal SMBs.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/8231340/pexels-photo-8231340.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "nginx-vulnerability-patch-security-montreal",
     title: "The 19-Year-Old Bug Threatening Your Business: Patching Isn't Your Only Play",
     date: "2026-10-15",
