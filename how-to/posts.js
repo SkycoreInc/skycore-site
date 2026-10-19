@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "zero-trust-network-access-implementation",
+    title: "Implementing Zero Trust Network Access: A SkyCore Guide for 2026",
+    date: "2026-10-19",
+    readTime: "12 min read",
+    category: "Security Hardening",
+    difficulty: "Advanced",
+    timeEstimate: "4-6 hours",
+    keyword: "zero trust network access implementation",
+    excerpt: "Implementing Zero Trust Network Access (ZTNA) is paramount for modern security. SkyCore Solutions guides you through leveraging Azure's robust capabilities to secure your digital estate.",
+    image: "https://images.pexels.com/photos/38482451/pexels-photo-38482451.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "github-actions-ci-cd-pipeline-setup",
     title: "Mastering GitHub Actions: A Comprehensive CI/CD Pipeline Setup Guide",
     date: "2026-10-16",
