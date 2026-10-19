@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "supply-chain-attack-smb-montreal",
+    title: "The Font File That Stole Your Business: Why Montreal SMBs Can't Afford Complacency",
+    date: "2026-10-19",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "A simple font file could be the Trojan horse that steals your company's credentials. This week's GhostAction attack is a stark reminder: you're not safe just because you haven't been targeted yet.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "m365-breach-lessons-montreal-smb",
     title: "Your M365 Isn't Safe: What the ConnectWise Breach Means for Montreal SMBs",
     date: "2026-10-17",
