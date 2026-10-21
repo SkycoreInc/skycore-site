@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ai-threats-cybersecurity-smb-montreal",
+    title: "AI-Powered Phishing: Why Your Business Needs a New Cybersecurity Playbook",
+    date: "2026-10-21",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Generative AI is crafting malicious emails so flawlessly, they're slipping past traditional filters. Your business isn't safe relying on outdated cybersecurity myths.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38701977/pexels-photo-38701977.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "supply-chain-attack-smb-montreal",
     title: "The Font File That Stole Your Business: Why Montreal SMBs Can't Afford Complacency",
     date: "2026-10-19",
