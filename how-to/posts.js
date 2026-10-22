@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "cloud-infrastructure-modernization-guide",
+    title: "Cloud-First IT Infrastructure Modernization Guide for 2026",
+    date: "2026-10-22",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Advanced",
+    timeEstimate: "3-4 hours",
+    keyword: "IT infrastructure modernization guide",
+    excerpt: "A strategic IT infrastructure modernization guide for leveraging cloud platforms like Azure and GCP to drive efficiency, security, and innovation. Optimize your operations.",
+    image: "https://images.pexels.com/photos/1181335/pexels-photo-1181335.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "zero-trust-network-access-implementation",
     title: "Implementing Zero Trust Network Access: A SkyCore Guide for 2026",
     date: "2026-10-19",
