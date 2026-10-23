@@ -13,6 +13,34 @@
     </image>
 
     <item>
+      <title>Hackers Breached 70,000 Credentials: Your Firewall Isn't Enough</title>
+      <link>https://skycoresolutions.com/blog/firewall-breach-montreal-smb-security.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/firewall-breach-montreal-smb-security.html</guid>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <description>**70,000 enterprise credentials compromised. Your firewall *alone* won't save you.**
+
+A recent global campaign specifically targeted enterprise firewalls and VPNs. This isn't just a big tech issue. It's a critical wake-up call for every Montreal SMB.
+
+Here's what every Montreal SMB needs to know about this evolving threat:
+
+🔴 **The New Battlefield:** Firewalls and VPNs, once your primary perimeter defense, are now prime targets for sophisticated breaches.
+⚠️ **Beyond the Edge:** Relying solely on a firewall overlooks critical internal vulnerabilities and advanced attack vectors hackers exploit.
+🔐 **Credential Value:** Stolen credentials are gold for cybercriminals, enabling deep network access and devastating data exfiltration.
+🛡️ **Holistic Defense:** True security hardening demands multi-factor authentication, regular patching, robust incident response, and proactive threat hunting.
+☁️ **Cloud Vulnerabilities:** Your cloud infrastructure requires the same—if not more—rigorous attention and hardening than your on-premise systems.
+
+This isn't a hypothetical risk; it's actively unfolding. Ignoring these shifts in cyberattack strategies puts your business, your sensitive data, and your reputation at severe risk. Proactive security isn't just an option; it's an immediate necessity.
+
+Don't wait for a breach. Read our latest article to understand the immediate steps you can take to protect your business.
+
+#Cybersecurity #SMBsecurity #MontrealIT #SecurityHardening #CloudSecurity #ITconsulting #DataProtection #Firewall #VPNsecurity #CredentialTheft #ITsecurity #DigitalTransformation #RiskManagement #SkyCoreSolutions #MontrealBusiness #CyberAttack #EndpointSecurity #ManagedSecurity
+
+🔗 Read the full article: https://skycoresolutions.com/blog/firewall-breach-montreal-smb-security.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/39584/censorship-limitations-freedom-of-expression-restricted-39584.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>AI-Powered Phishing: Why Your Business Needs a New Cybersecurity Playbook</title>
       <link>https://skycoresolutions.com/blog/ai-threats-cybersecurity-smb-montreal.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/ai-threats-cybersecurity-smb-montreal.html</guid>

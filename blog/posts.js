@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "firewall-breach-montreal-smb-security",
+    title: "Hackers Breached 70,000 Credentials: Your Firewall Isn't Enough",
+    date: "2026-10-23",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A recent large-scale campaign targeted enterprise firewalls and VPNs, exposing over 70,000 credentials. This isn't just big tech's problem—it's a critical wake-up call for every Montreal SMB regarding their cybersecurity posture.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/39584/censorship-limitations-freedom-of-expression-restricted-39584.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ai-threats-cybersecurity-smb-montreal",
     title: "AI-Powered Phishing: Why Your Business Needs a New Cybersecurity Playbook",
     date: "2026-10-21",
