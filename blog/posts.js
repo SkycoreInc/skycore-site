@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "php-flaw-website-outages-cybersecurity-montreal",
+    title: "Your Website Just Died: The Widespread PHP Flaw & Why Your Infrastructure Needs an Overhaul",
+    date: "2026-10-25",
+    readTime: "5 min read",
+    category: "Security Hardening",
+    excerpt: "Brian Krebs just broke the news: a widespread PHP vulnerability means many websites could be serving 404s today. Is your IT infrastructure Montreal ready?",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/374563/pexels-photo-374563.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "firewall-breach-montreal-smb-security",
     title: "Hackers Breached 70,000 Credentials: Your Firewall Isn't Enough",
     date: "2026-10-23",
