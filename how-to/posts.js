@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "dmarc-configuration-step-by-step-azure",
+    title: "Mastering DMARC: A Step-by-Step Configuration Guide for Azure Environments",
+    date: "2026-10-25",
+    readTime: "12 min read",
+    category: "Security Hardening",
+    difficulty: "Intermediate",
+    timeEstimate: "2-3 hours for initial setup and DNS propagation, with ongoing monitoring.",
+    keyword: "DMARC configuration step by step",
+    excerpt: "Implement DMARC configuration step by step to protect your domain from email spoofing, phishing, and Business Email Compromise (BEC) attacks. This guide covers SPF, DKIM, and DMARC setup for robust email authentication.",
+    image: "https://images.pexels.com/photos/38253536/pexels-photo-38253536.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "cloud-infrastructure-modernization-guide",
     title: "Cloud-First IT Infrastructure Modernization Guide for 2026",
     date: "2026-10-22",
