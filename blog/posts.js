@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ai-phishing-m365-abuse-security",
+    title: "AI-Powered Phishing & M365 Abuse: The New Attack Front. Fix It Now.",
+    date: "2026-10-27",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "AI is fueling hyper-realistic phishing and attackers are abusing legitimate M365 tools. Discover the immediate steps your business must take to defend against these sophisticated new cyber threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38701976/pexels-photo-38701976.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "php-flaw-website-outages-cybersecurity-montreal",
     title: "Your Website Just Died: The Widespread PHP Flaw & Why Your Infrastructure Needs an Overhaul",
     date: "2026-10-25",
