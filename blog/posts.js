@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "browser-security-nightmare-chrome-extensions",
+    title: "Your Browser is a Trap: 13.4 Million Reasons Your Business Needs a Security Overhaul",
+    date: "2026-10-29",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "A recent campaign saw 13.4 million Chrome extension installs hijack searches. This isn't just an annoyance; it's a critical threat to your business data and operations.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/2882554/pexels-photo-2882554.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ai-phishing-m365-abuse-security",
     title: "AI-Powered Phishing & M365 Abuse: The New Attack Front. Fix It Now.",
     date: "2026-10-27",
