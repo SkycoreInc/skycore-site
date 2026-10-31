@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "chainalysis-breach-montreal-smb-security",
+    title: "Chainalysis Breach: What 'Offensive Agentic Techniques' Mean for Your Montreal Business",
+    date: "2026-10-31",
+    readTime: "4 min read",
+    category: "Security Hardening",
+    excerpt: "A blockchain security firm fell victim to sophisticated 'offensive agentic techniques,' exposing customer data. If they can be breached, your Montreal SMB needs to re-evaluate its defenses immediately.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/17489160/pexels-photo-17489160.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "browser-security-nightmare-chrome-extensions",
     title: "Your Browser is a Trap: 13.4 Million Reasons Your Business Needs a Security Overhaul",
     date: "2026-10-29",
