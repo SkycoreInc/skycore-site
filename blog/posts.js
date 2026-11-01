@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "northflank-breach-security-hardening-montreal",
+    title: "Northflank Breach: Your Cloud Provider's Nightmare Is Your Own",
+    date: "2026-11-01",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A recent breach at cloud hosting platform Northflank compromised customer AI API keys. This incident is a brutal reminder of critical third-party risks for your business.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38482448/pexels-photo-38482448.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "chainalysis-breach-montreal-smb-security",
     title: "Chainalysis Breach: What 'Offensive Agentic Techniques' Mean for Your Montreal Business",
     date: "2026-10-31",

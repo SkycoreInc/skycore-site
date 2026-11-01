@@ -13,6 +13,37 @@
     </image>
 
     <item>
+      <title>Northflank Breach: Your Cloud Provider's Nightmare Is Your Own</title>
+      <link>https://skycoresolutions.com/blog/northflank-breach-security-hardening-montreal.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/northflank-breach-security-hardening-montreal.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 GMT</pubDate>
+      <description>**Your cloud provider's breach is YOUR business's emergency.**
+
+A recent breach at cloud hosting platform Northflank exposed customer AI API keys.
+This incident is a stark reminder of the immense third-party risks lurking in your supply chain.
+It proves that trusting your data to others means taking on their vulnerabilities.
+
+Here's what every Montreal business needs to know to protect itself:
+
+*   **🔴 Third-Party Risk is Real:** Your reliance on external cloud services directly translates into shared security liabilities.
+*   **⚠️ API Key Exposure:** Compromised API keys can grant attackers deep access to your critical systems and sensitive data.
+*   **🛡️ Proactive Security:** Don't wait for a breach; implement robust security hardening and continuous monitoring now.
+*   **☁️ Cloud Migration Strategy:** Ensure your cloud infrastructure is designed with security and resilience at its core, not as an afterthought.
+*   **🔐 Infrastructure Hardening:** Regularly audit and fortify your entire digital infrastructure, from cloud to on-premise.
+
+The Northflank incident isn't just news; it's a wake-up call. Your business's security posture is only as strong as your weakest link, and often that link is outside your direct control. Take proactive steps to mitigate these external risks now.
+
+Want to truly secure your cloud environment? Read the full article here:
+https://skycoresolutions.com/blog/northflank-breach-security-hardening-montreal.html
+
+#CyberSecurity #CloudSecurity #DataBreach #Northflank #APISecurity #ThirdPartyRisk #VendorRisk #SecurityHardening #CloudMigration #ITConsulting #MontrealIT #SMBsecurity #BusinessContinuity #ITSecurity #CyberThreats #RiskManagement #DigitalTransformation #CloudComputing #Montreal
+
+🔗 Read the full article: https://skycoresolutions.com/blog/northflank-breach-security-hardening-montreal.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/38482448/pexels-photo-38482448.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>Chainalysis Breach: What 'Offensive Agentic Techniques' Mean for Your Montreal Business</title>
       <link>https://skycoresolutions.com/blog/chainalysis-breach-montreal-smb-security.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/chainalysis-breach-montreal-smb-security.html</guid>
