@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "llmjacking-ransomware-montreal-smb-security",
+    title: "LLMjacking, Ransomware, & Billions Lost: Why Montreal SMBs Can't Afford Complacency",
+    date: "2026-11-03",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A recent $6.43 billion theft and Google's LLMjacking warnings reveal a new era of cyber threats. Discover how proactive cybersecurity and cloud migration Azure can safeguard your Montreal business.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/37074257/pexels-photo-37074257.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "northflank-breach-security-hardening-montreal",
     title: "Northflank Breach: Your Cloud Provider's Nightmare Is Your Own",
     date: "2026-11-01",
