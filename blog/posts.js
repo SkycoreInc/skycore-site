@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "digicert-breach-montreal-smb-security",
+    title: "DigiCert's Migration Misstep: A Wake-Up Call for Montreal SMB Security",
+    date: "2026-11-05",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "DigiCert's data breach wasn't from a zero-day but a migration blunder, leaving systems exposed. This serves as a critical warning for Montreal businesses to re-evaluate their IT security.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/17489151/pexels-photo-17489151.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "llmjacking-ransomware-montreal-smb-security",
     title: "LLMjacking, Ransomware, & Billions Lost: Why Montreal SMBs Can't Afford Complacency",
     date: "2026-11-03",
