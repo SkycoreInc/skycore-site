@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "french-bank-heist-smb-security",
+    title: "French Bank Heist: Why Your Montreal SMB Is Next (If You Don't Act)",
+    date: "2026-11-07",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A major French bank just lost $133 million to hackers, not through a direct attack, but via a compromised service provider. This isn't just a big bank problem; it's a stark warning for every Montreal SMB relying on external vendors.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380607/pexels-photo-5380607.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "digicert-breach-montreal-smb-security",
     title: "DigiCert's Migration Misstep: A Wake-Up Call for Montreal SMB Security",
     date: "2026-11-05",
