@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cloud-breach-qubole-aws-zero-trust-smb",
+    title: "Your Trusted Cloud Access Just Got Hacked: The Qubole AWS Breach Exposes Critical Weaknesses",
+    date: "2026-11-09",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers exploited Qubole's trusted AWS access to steal customer data, revealing a stark reality for cloud security. Discover how your Montreal business can avoid similar devastating breaches.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38482458/pexels-photo-38482458.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "french-bank-heist-smb-security",
     title: "French Bank Heist: Why Your Montreal SMB Is Next (If You Don't Act)",
     date: "2026-11-07",

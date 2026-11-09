@@ -13,6 +13,36 @@
     </image>
 
     <item>
+      <title>Your Trusted Cloud Access Just Got Hacked: The Qubole AWS Breach Exposes Critical Weaknesses</title>
+      <link>https://skycoresolutions.com/blog/cloud-breach-qubole-aws-zero-trust-smb.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/cloud-breach-qubole-aws-zero-trust-smb.html</guid>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <description>**Even trusted AWS access isn't breach-proof. Qubole just proved it.**
+
+Qubole, a major cloud data platform, just got breached.
+Attackers exploited their 'trusted' AWS access, stealing sensitive customer data.
+This isn't an isolated incident; it's a critical warning for every business relying on cloud security.
+
+Here's what every Montreal SMB needs to know:
+
+🔴 **The Myth of Trust:** Your cloud provider's robust security doesn't automatically protect your data if your own access controls are weak.
+⚠️ **Credential Compromise:** Attackers target trusted credentials as the easiest path to your most valuable assets, even in AWS.
+🔐 **Zero Trust is Non-Negotiable:** Assume no user or system is trustworthy by default, and verify every access attempt regardless of origin.
+🛡️ **Proactive Hardening:** Implementing strong security hardening measures is your best defense against sophisticated breaches like Qubole's.
+☁️ **Local Impact:** Protect your Montreal business from becoming the next headline; outdated security practices are a liability.
+
+The Qubole breach underscores a harsh truth: relying solely on cloud provider security is not enough. Your business needs an active, comprehensive strategy to secure its cloud environment, protecting client data and maintaining operational integrity.
+
+Learn how to protect your Montreal business from similar breaches. Read the full article now, and tell us: what's your biggest cloud security concern?
+
+#CloudSecurity #AWSBreach #Qubole #DataBreach #CyberSecurity #SecurityHardening #ZeroTrust #CloudMigration #ITConsulting #MontrealTech #SMBsecurity #DigitalSecurity #InfrastructureRevamp #CloudComputing #ProtectYourData #SkyCoreSolutions #ITSecurity #RiskManagement #CloudProtection #BusinessContinuity
+
+🔗 Read the full article: https://skycoresolutions.com/blog/cloud-breach-qubole-aws-zero-trust-smb.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/38482458/pexels-photo-38482458.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>French Bank Heist: Why Your Montreal SMB Is Next (If You Don't Act)</title>
       <link>https://skycoresolutions.com/blog/french-bank-heist-smb-security.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/french-bank-heist-smb-security.html</guid>
