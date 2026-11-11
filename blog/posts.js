@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "maersk-ransomware-montreal-smb-defense",
+    title: "Maersk's $5 Million Ransomware Demand: A Brutal Wake-Up Call for Montreal SMBs",
+    date: "2026-11-11",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "A major corporation like Maersk just paid a $5 million ransom after a data breach. If it can happen to them, your Montreal business isn't safe.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5380665/pexels-photo-5380665.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "cloud-breach-qubole-aws-zero-trust-smb",
     title: "Your Trusted Cloud Access Just Got Hacked: The Qubole AWS Breach Exposes Critical Weaknesses",
     date: "2026-11-09",
