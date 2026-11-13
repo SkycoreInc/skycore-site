@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "cybersecurity-smb-esxi-wiper-attack",
+    title: "Wake Up, Montreal: VMware ESXi Wipers Aren't Just for Nation-States Anymore",
+    date: "2026-11-13",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A data-wiping malware targeting VMware ESXi hosts is a stark reminder that advanced threats are now squarely aimed at businesses like yours. It's time to act.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "maersk-ransomware-montreal-smb-defense",
     title: "Maersk's $5 Million Ransomware Demand: A Brutal Wake-Up Call for Montreal SMBs",
     date: "2026-11-11",

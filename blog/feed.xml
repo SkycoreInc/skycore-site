@@ -13,6 +13,35 @@
     </image>
 
     <item>
+      <title>Wake Up, Montreal: VMware ESXi Wipers Aren't Just for Nation-States Anymore</title>
+      <link>https://skycoresolutions.com/blog/cybersecurity-smb-esxi-wiper-attack.html</link>
+      <guid isPermaLink="true">https://skycoresolutions.com/blog/cybersecurity-smb-esxi-wiper-attack.html</guid>
+      <pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate>
+      <description>**VMware ESXi wipers aren't just for nation-states anymore. They're coming for *your* business.**
+
+A new breed of data-wiping malware is actively targeting VMware ESXi hosts.
+This isn't a theoretical threat; it's already impacting businesses globally.
+It's a stark reminder that advanced threats are now squarely aimed at companies like yours.
+
+For Montreal businesses running VMware ESXi, here's what you need to understand:
+
+🔴 **The Reality:** Data-wiping attacks can instantly erase critical data, leading to catastrophic downtime and financial loss.
+⚠️ **Your Vulnerability:** If you run VMware ESXi, you're a prime target, regardless of your company size.
+🛡️ **Proactive Defense:** Implementing robust security hardening and continuous monitoring is no longer optional; it's essential.
+🔐 **Expert Guidance:** Learn how to assess your current defenses and implement immediate protective measures.
+
+Ignoring this threat isn't an option. Proactive security hardening for your virtual infrastructure is critical to protecting your operations and ensuring business continuity against these evolving dangers.
+
+Read our latest article to understand the full scope of this threat and what steps you can take today: https://skycoresolutions.com/blog/cybersecurity-smb-esxi-wiper-attack.html
+
+#VMware #ESXi #Cybersecurity #SecurityHardening #DataWiper #SMB #Montreal #ITSecurity #CloudSecurity #Infrastructure #CyberThreats #DigitalSecurity #BusinessContinuity #IncidentResponse #SkyCoreSolutions #ITConsulting #ZeroTrust #Vulnerability #Ransomware
+
+🔗 Read the full article: https://skycoresolutions.com/blog/cybersecurity-smb-esxi-wiper-attack.html</description>
+      <category>Security Hardening</category>
+      <media:content url="https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800&amp;fit=crop&amp;h=450" medium="image"/>
+    </item>
+
+    <item>
       <title>Maersk's $5 Million Ransomware Demand: A Brutal Wake-Up Call for Montreal SMBs</title>
       <link>https://skycoresolutions.com/blog/maersk-ransomware-montreal-smb-defense.html</link>
       <guid isPermaLink="true">https://skycoresolutions.com/blog/maersk-ransomware-montreal-smb-defense.html</guid>
