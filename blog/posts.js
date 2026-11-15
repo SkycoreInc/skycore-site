@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "supply-chain-security-montreal-smb-protection",
+    title: "Your Cloud Provider Just Got Hacked: What Now?",
+    date: "2026-11-15",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A high-profile AI firm's key was stolen, leading to a compromised extension. This isn't just big tech's problem; your business is next.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/30547567/pexels-photo-30547567.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "cybersecurity-smb-esxi-wiper-attack",
     title: "Wake Up, Montreal: VMware ESXi Wipers Aren't Just for Nation-States Anymore",
     date: "2026-11-13",
