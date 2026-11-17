@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "github-m365-backdoor-ransomware-defense",
+    title: "They're Weaponizing Your Trust: GitHub, M365, and the Covert Backdoor Threat",
+    date: "2026-11-17",
+    readTime: "8 min read",
+    category: "Security Hardening",
+    excerpt: "Attackers are turning trusted platforms like GitHub and Microsoft 365 against you, using them for covert operations and ransomware deployment. Learn how to defend your Montreal business against these sophisticated threats.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/2882630/pexels-photo-2882630.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "supply-chain-security-montreal-smb-protection",
     title: "Your Cloud Provider Just Got Hacked: What Now?",
     date: "2026-11-15",
