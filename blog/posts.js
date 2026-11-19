@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "vmware-php-nginx-rce-patching-montreal",
+    title: "Your Servers are on Fire, Montreal: Why Patching Isn't a Suggestion, It's Survival",
+    date: "2026-11-19",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "A critical CVSS 9.8 flaw in VMware vCenter, alongside RCE bugs in PHP and NGINX, are stark warnings. Your IT infrastructure in Montreal is at risk.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/6466141/pexels-photo-6466141.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "github-m365-backdoor-ransomware-defense",
     title: "They're Weaponizing Your Trust: GitHub, M365, and the Covert Backdoor Threat",
     date: "2026-11-17",
