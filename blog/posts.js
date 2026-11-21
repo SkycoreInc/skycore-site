@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "ai-agents-zero-day-cybersecurity-montreal",
+    title: "AI Agents Are Finding Zero-Days: Your Montreal Business Isn't Safe With Old Defenses",
+    date: "2026-11-21",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "AI agents are no longer science fiction – they're finding zero-day vulnerabilities and breaching systems. Traditional defenses won't cut it for Montreal businesses. It's time to adapt.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/5866051/pexels-photo-5866051.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "vmware-php-nginx-rce-patching-montreal",
     title: "Your Servers are on Fire, Montreal: Why Patching Isn't a Suggestion, It's Survival",
     date: "2026-11-19",
