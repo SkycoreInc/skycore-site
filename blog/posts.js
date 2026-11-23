@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "azure-flaw-cybersecurity-myths-montreal",
+    title: "The Azure Flaw Proves It: Your Business Isn't Safe. Bust These Myths Now.",
+    date: "2026-11-23",
+    readTime: "5 min read",
+    category: "Security Hardening",
+    excerpt: "A recent Microsoft Azure flaw exposed customer API credentials, proving no business is too small or too secure to be targeted. It's time Montreal SMBs confront dangerous cybersecurity myths head-on.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/38482456/pexels-photo-38482456.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "ai-agents-zero-day-cybersecurity-montreal",
     title: "AI Agents Are Finding Zero-Days: Your Montreal Business Isn't Safe With Old Defenses",
     date: "2026-11-21",
