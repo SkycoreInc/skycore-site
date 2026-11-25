@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "patch-now-or-pay-later",
+    title: "Patch Now or Pay Later: GeoServer RCE & Why Your Montreal SMB is Next",
+    date: "2026-11-25",
+    readTime: "7 min read",
+    category: "Security Hardening",
+    excerpt: "Active exploitation of GeoServer RCE and Drupal flaws proves vigilance isn't optional. Your Montreal business needs more than just basic cybersecurity.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/14844017/pexels-photo-14844017.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "azure-flaw-cybersecurity-myths-montreal",
     title: "The Azure Flaw Proves It: Your Business Isn't Safe. Bust These Myths Now.",
     date: "2026-11-23",
