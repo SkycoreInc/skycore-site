@@ -3,6 +3,16 @@
 // The scheduled generator appends here every 2 days — see GENERATOR_PROMPT.md.
 window.SKYCORE_POSTS = [
   {
+    slug: "firewall-isnt-enough-montreal-smb-security-myths",
+    title: "Your Firewall Isn't Enough: Three Dangerous Security Myths Threatening Montreal SMBs",
+    date: "2026-11-27",
+    readTime: "6 min read",
+    category: "Security Hardening",
+    excerpt: "Think your IT security is impenetrable? Recent attacks show even trusted sources like the Microsoft Store can deliver malware. We're busting three dangerous cybersecurity myths that leave Montreal SMBs exposed.",
+    tint: "from-sky to-cyan",
+    image: "https://images.pexels.com/photos/225769/pexels-photo-225769.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "patch-now-or-pay-later",
     title: "Patch Now or Pay Later: GeoServer RCE & Why Your Montreal SMB is Next",
     date: "2026-11-25",
