@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkyCore Guide: Set Up Azure Cobalt 200 VMs for AI Workloads in SMBs — SkyCore Solutions</title>
+  <meta name="description" content="Step-by-step implementation guide by SkyCore Solutions on setting up Azure Cobalt 200 VMs for AI workloads, optimizing performance and cost for SMBs. Leverage ARM-based compute for efficient AI." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://asset-tidycal.b-cdn.net/css/embed.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SkyCore Solutions" />
+  <meta property="og:title" content="SkyCore Guide: Set Up Azure Cobalt 200 VMs for AI Workloads in SMBs — SkyCore Solutions" />
+  <meta property="og:description" content="Step-by-step implementation guide by SkyCore Solutions on setting up Azure Cobalt 200 VMs for AI workloads, optimizing performance and cost for SMBs. Leverage ARM-based compute for efficient AI." />
+  <meta property="og:url" content="https://skycoresolutions.com/how-to/azure-cobalt-200-vms-ai-smb-setup.html" />
+  <meta property="og:image" content="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SkyCore Guide: Set Up Azure Cobalt 200 VMs for AI Workloads in SMBs — SkyCore Solutions" />
+  <meta name="twitter:description" content="Step-by-step implementation guide by SkyCore Solutions on setting up Azure Cobalt 200 VMs for AI workloads, optimizing performance and cost for SMBs. Leverage ARM-based compute for efficient AI." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop&h=630" />
+  <link rel="canonical" href="https://skycoresolutions.com/how-to/azure-cobalt-200-vms-ai-smb-setup.html" />
+  <meta property="article:published_time" content="2026-11-28" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "SkyCore Guide: Set Up Azure Cobalt 200 VMs for AI Workloads in SMBs",
+  "description": "Step-by-step implementation guide by SkyCore Solutions on setting up Azure Cobalt 200 VMs for AI workloads, optimizing performance and cost for SMBs. Leverage ARM-based compute for efficient AI.",
+  "totalTime": "PT1H",
+  "supply": [{"@type": "HowToSupply", "name": "An active Azure subscription (free trial or paid), Contributor role or higher in the Azure subscription, Azure CLI installed (version 2.50.0 or higher) and authenticated, A local SSH client (e.g., OpenSSH on Windows/Linux/macOS), Basic understanding of virtual machines and networking concepts, Estimated Cost: ~$150-300 USD/month for a `Standard_D8ps_v5` VM running 8 hours a day (costs vary significantly by region, actual usage, and whether Spot instances are used)."}],
+  "step": [
+    {
+        "@type": "HowToStep",
+        "name": "Authenticate with Azure CLI",
+        "text": "Before provisioning any resources, you must authenticate your local Azure CLI session with your Azure subscription."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Create a Resource Group",
+        "text": "A resource group is a logical container for your Azure resources, simplifying management, monitoring, and cleanup of your Azure Cobalt 200 VM and related components."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Provision an Azure Cobalt 200 VM for AI Workloads",
+        "text": "This crucial step involves deploying an ARM-based Azure Cobalt 200 VM, selecting an appropriate size and configuration optimized for your SMB's AI workloads."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Configure Network Security Group (NSG) for AI Access",
+        "text": "Establish secure network access to your Azure Cobalt 200 VM by configuring the Network Security Group (NSG) to allow necessary inbound connections for your AI applications."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Connect to Your Cobalt VM and Install AI Dependencies",
+        "text": "Access your newly created Azure Cobalt 200 VM via SSH to install essential AI development tools and frameworks, preparing it for your specific AI workloads."
+    },
+    {
+        "@type": "HowToStep",
+        "name": "Implement Cost Management with Auto-shutdown",
+        "text": "Optimize your Azure spending by configuring an automatic shutdown schedule for your Azure Cobalt 200 VM, ensuring you only pay for resources when actively in use."
+    }
+]
+}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a>
+      <nav class="nav-links">
+        <a href="../">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../blog/">Blog</a>
+        <a href="./">Resources</a>
+        <a href="../contact.html">Contact</a>
+        <a href="#" class="btn btn-primary" style="padding:10px 18px;" data-tidycal-popup="mnkpzxm/30-minute-meeting">Free Consultation</a>
+      </nav>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <article class="article howto-article">
+    <div class="post-meta">2026-11-28 · 18 min read · Infrastructure Revamp</div>
+<h1>SkyCore Guide: Set Up Azure Cobalt 200 VMs for AI Workloads in SMBs</h1>
+<div class="article-hero"><img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop&h=600" alt="Azure Cobalt 200 virtual machine setup for AI workloads" loading="eager" fetchpriority="high"></div>
+<div class="howto-intro"><p>In today's competitive landscape, even small to medium-sized businesses (SMBs) are recognizing the transformative potential of Artificial Intelligence (AI). From enhanced customer service chatbots to predictive analytics and intelligent automation, AI can unlock significant operational efficiencies and new revenue streams. However, deploying AI workloads often demands robust, cost-effective compute infrastructure. This is where Azure Cobalt 200 VMs emerge as a game-changer for SMBs. These ARM-based virtual machines, powered by Microsoft's custom-designed Cobalt 200 processors, offer a compelling balance of performance, efficiency, and cost, particularly for CPU-bound AI inference, data preprocessing, and model development. By the end of this comprehensive SkyCore Solutions guide, you will have successfully provisioned and configured an Azure Cobalt 200 VM, ready to host your initial AI workloads in a secure and cost-efficient manner.</p></div>
+<div class="howto-prereqs"><h4>Prerequisites</h4><ul><li>An active Azure subscription (free trial or paid)</li><li>Contributor role or higher in the Azure subscription</li><li>Azure CLI installed (version 2.50.0 or higher) and authenticated</li><li>A local SSH client (e.g., OpenSSH on Windows/Linux/macOS)</li><li>Basic understanding of virtual machines and networking concepts</li><li>Estimated Cost: ~$150-300 USD/month for a <code>Standard_D8ps_v5</code> VM running 8 hours a day (costs vary significantly by region, actual usage, and whether Spot instances are used).</li></ul></div>
+
+<h2>Step 1: Authenticate with Azure CLI</h2>
+<p>Before provisioning any resources, you must authenticate your local Azure CLI session with your Azure subscription. This establishes a secure connection and grants the CLI the necessary permissions to manage your Azure resources.</p>
+<pre><code class="language-azurecli">az login</code></pre>
+<ul>
+<li><code>az login</code>: Initiates the authentication process. It will typically open a web browser for you to sign in with your Azure credentials.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> Sign in directly to the <a href="https://portal.azure.com" target="_blank">Azure portal</a>.</p>
+<p><strong>Run this to verify:</strong> After successful authentication, your default subscription details will be displayed. You can also list your subscriptions to confirm:</p>
+<pre><code class="language-azurecli">az account list --output table</code></pre>
+
+<h2>Step 2: Create a Resource Group</h2>
+<p>A resource group is a logical container for your Azure resources. Grouping related resources like your VM, network, and storage accounts simplifies management, monitoring, and cleanup of your Azure Cobalt 200 VM and related components. This approach is highly recommended for SMBs to maintain order and cost control.</p>
+<pre><code class="language-azurecli">az group create \
+    --name "SkyCoreAIGroup" \
+    --location "eastus"</code></pre>
+<ul>
+<li><code>--name "SkyCoreAIGroup"</code>: Specifies the name for your new resource group. Choose a descriptive name, perhaps reflecting your company or project.</li>
+<li><code>--location "eastus"</code>: Defines the Azure region where the resource group metadata will be stored. It's best practice to select a region geographically close to your users or other Azure services you plan to connect, to minimize latency. For AI workloads, consider regions with good network connectivity and potentially lower compute costs.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong>
+<ol>
+<li>Sign in to the <a href="https://portal.azure.com" target="_blank">Azure portal</a>.</li>
+<li>In the search bar, type "Resource groups" and select it.</li>
+<li>Click <strong>+ Create</strong>.</li>
+<li>Enter <code>SkyCoreAIGroup</code> for the Resource group name.</li>
+<li>Select <code>East US</code> for the Region.</li>
+<li>Click <strong>Review + create</strong>, then <strong>Create</strong>.</li>
+</ol></p>
+<p><strong>Run this to verify:</strong> Confirm the resource group has been created:</p>
+<pre><code class="language-azurecli">az group show --name "SkyCoreAIGroup" --output table</code></pre>
+
+<h2>Step 3: Provision an Azure Cobalt 200 VM for AI Workloads</h2>
+<p>This is the core step where we deploy our ARM-based Azure Cobalt 200 VM. Azure Cobalt 200 VMs, indicated by the 'p' suffix in their size name (e.g., Dps_v5), are Microsoft's custom ARM processors designed for excellent performance per watt. For SMBs, these VMs are ideal for CPU-intensive AI inference, data processing, backend services for AI applications, and even light to medium model training where dedicated GPUs are not yet justified. We will select an Ubuntu Server 22.04 LTS Gen2 image, which is well-suited for AI development environments due to its widespread support and ecosystem.</p>
+<pre><code class="language-azurecli">az vm create \
+    --resource-group "SkyCoreAIGroup" \
+    --name "SkyCoreAICobaltVM" \
+    --image "Ubuntu2204Gen2" \
+    --size "Standard_D8ps_v5" \
+    --admin-username "azureuser" \
+    --generate-ssh-keys \
+    --public-ip-address-sku "Standard" \
+    --zone 1 \
+    --priority "Spot" \
+    --eviction-policy "Deallocate" \
+    --tags Environment=AI-Dev Project=SkyCoreSMB</code></pre>
+<ul>
+<li><code>--resource-group "SkyCoreAIGroup"</code>: Specifies the resource group created in the previous step.</li>
+<li><code>--name "SkyCoreAICobaltVM"</code>: Assigns a name to your new virtual machine.</li>
+<li><code>--image "Ubuntu2204Gen2"</code>: Selects the operating system image. Ubuntu Server 22.04 LTS (Gen2) is recommended for its stability and broad support for AI development tools.</li>
+<li><code>--size "Standard_D8ps_v5"</code>: This is where we select the Azure Cobalt 200 VM. The 'p' indicates an ARM-based processor. <code>Standard_D8ps_v5</code> offers 8 vCPUs and 32 GiB of memory, providing a solid foundation for many SMB AI workloads without over-provisioning. Other Cobalt options like <code>Standard_D16ps_v5</code> or <code>Standard_E8ps_v5</code> (memory-optimized) are also available depending on your specific needs.</li>
+<li><code>--admin-username "azureuser"</code>: Sets the username for the administrator account on the VM.</li>
+<li><code>--generate-ssh-keys</code>: Automatically generates a new SSH public/private key pair. The private key will be saved locally in <code>~/.ssh/</code>. This is the recommended secure authentication method.</li>
+<li><code>--public-ip-address-sku "Standard"</code>: Uses a Standard SKU public IP address, which offers enhanced security features like DDoS protection and better availability compared to Basic.</li>
+<li><code>--zone 1</code>: Deploys the VM into an Availability Zone. For SMBs, deploying into a single zone is often sufficient for development or non-critical workloads, offering resilience against datacenter-level failures within that zone. For higher availability, consider multiple zones or an availability set.</li>
+<li><code>--priority "Spot"</code>: Designates this VM as a Spot instance. Spot VMs leverage unused Azure capacity and can result in significant cost savings (up to 90% off pay-as-you-go prices) for fault-tolerant AI development or test workloads.</li>
+<li><code>--eviction-policy "Deallocate"</code>: If the Spot VM is evicted due to capacity demands, this policy deallocates it instead of deleting it, allowing you to restart it later.</li>
+<li><code>--tags Environment=AI-Dev Project=SkyCoreSMB</code>: Applies custom tags for better resource organization and cost analysis, crucial for SMBs tracking project spending.</li>
+</ul>
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For production AI inference services that require guaranteed uptime, avoid <code>--priority "Spot"</code> and deploy a regular pay-as-you-go VM. Spot VMs are excellent for development, testing, and batch processing where interruptions are acceptable.</div>
+<p class="gui-note"><strong>Portal alternative:</strong>
+<ol>
+<li>Sign in to the <a href="https://portal.azure.com" target="_blank">Azure portal</a>.</li>
+<li>Search for "Virtual machines" and select it. Click <strong>+ Create</strong>, then <strong>Azure virtual machine</strong>.</li>
+<li>On the Basics tab:
+<ul>
+<li><strong>Subscription:</strong> Select your Azure subscription.</li>
+<li><strong>Resource group:</strong> Choose <code>SkyCoreAIGroup</code>.</li>
+<li><strong>Virtual machine name:</strong> Enter <code>SkyCoreAICobaltVM</code>.</li>
+<li><strong>Region:</strong> Select <code>East US</code>.</li>
+<li><strong>Availability options:</strong> Select <code>Availability zone</code> and choose <code>1</code>.</li>
+<li><strong>Security type:</strong> Standard.</li>
+<li><strong>Image:</strong> Select <code>Ubuntu Server 22.04 LTS Gen2</code>.</li>
+<li><strong>Azure Spot instance:</strong> Select <code>Yes</code>, then <code>Deallocate</code> for Eviction type.</li>
+<li><strong>Size:</strong> Click <strong>See all sizes</strong>, then filter or search for <code>D8ps_v5</code> and select <code>Standard_D8ps_v5</code>.</li>
+<li><strong>Authentication type:</strong> <code>SSH public key</code>.</li>
+<li><strong>Username:</strong> <code>azureuser</code>.</li>
+<li><strong>SSH public key source:</strong> <code>Generate new key pair</code>, enter <code>myCobaltKey</code> for Key pair name.</li>
+<li><strong>Public inbound ports:</strong> Select <code>Allow selected ports</code>, then choose <code>SSH (22)</code>.</li>
+</ul>
+</li>
+<li>Go to the <strong>Tags</strong> tab, add <code>Environment</code> with value <code>AI-Dev</code> and <code>Project</code> with value <code>SkyCoreSMB</code>.</li>
+<li>Click <strong>Review + create</strong>. Review the details, then click <strong>Create</strong>. Download your private key when prompted.</li>
+</ol></p>
+<p><strong>Run this to verify:</strong> Get the public IP address of your new VM:</p>
+<pre><code class="language-azurecli">az vm show \
+    --resource-group "SkyCoreAIGroup" \
+    --name "SkyCoreAICobaltVM" \
+    --query "publicIps" \
+    --output tsv</code></pre>
+
+<h2>Step 4: Configure Network Security Group (NSG) for AI Access</h2>
+<p>While SSH (port 22) is open by default for management, your AI workloads might require additional ports. For example, if you're running a Jupyter Notebook server (often port 8888), a custom REST API (e.g., port 5000), or a web application for showcasing AI results (e.g., port 80 or 443), you'll need to open these ports in the Network Security Group (NSG) associated with your VM. We will demonstrate opening port 8888 for a common AI tool like Jupyter.</p>
+<pre><code class="language-azurecli">az vm open-port \
+    --resource-group "SkyCoreAIGroup" \
+    --name "SkyCoreAICobaltVM" \
+    --port 8888 \
+    --priority 1001 \
+    --description "Allow Jupyter Notebook access"</code></pre>
+<ul>
+<li><code>--resource-group "SkyCoreAIGroup"</code>: The resource group containing your VM.</li>
+<li><code>--name "SkyCoreAICobaltVM"</code>: The name of your Azure Cobalt 200 VM.</li>
+<li><code>--port 8888</code>: The inbound port to open. Adjust this to match the port required by your specific AI application.</li>
+<li><code>--priority 1001</code>: Sets the priority for the NSG rule. Lower numbers have higher priority. We pick a value greater than the default SSH rule (priority 1000) to ensure both rules are active.</li>
+<li><code>--description "Allow Jupyter Notebook access"</code>: A descriptive note for the rule, aiding in future management.</li>
+</ul>
+<div class="howto-callout howto-callout--warning"><strong>Common pitfall:</strong> Overly permissive NSG rules can expose your VM to security risks. Only open ports that are strictly necessary and consider restricting source IP addresses (<code>--source-address-prefixes</code> parameter) to your office IP range for enhanced security. Never expose sensitive administrative ports directly to the internet without proper protections.</div>
+<p class="gui-note"><strong>Portal alternative:</strong>
+<ol>
+<li>In the <a href="https://portal.azure.com" target="_blank">Azure portal</a>, navigate to your <code>SkyCoreAICobaltVM</code>.</li>
+<li>In the left menu, under <strong>Networking</strong>, select <strong>Networking</strong>.</li>
+<li>Click <strong>Add inbound port rule</strong>.</li>
+<li>For <strong>Destination port ranges</strong>, enter <code>8888</code>.</li>
+<li>Set <strong>Priority</strong> to <code>1001</code>.</li>
+<li>For <strong>Name</strong>, enter <code>AllowJupyter</code>.</li>
+<li>Click <strong>Add</strong>.</li>
+</ol></p>
+<p><strong>Run this to verify:</strong> List the inbound security rules for your VM's network interface:</p>
+<pre><code class="language-azurecli">az network nsg rule list \
+    --resource-group "SkyCoreAIGroup" \
+    --nsg-name "SkyCoreAICobaltVM-nsg" \
+    --query "[?access=='Allow']" \
+    --output table</code></pre>
+
+<h2>Step 5: Connect to Your Cobalt VM and Install AI Dependencies</h2>
+<p>With your Azure Cobalt 200 VM provisioned and network access configured, it's time to connect via SSH and set up your AI development environment. This typically involves updating packages, installing Python, pip, and then the necessary AI frameworks. Keep in mind that for ARM-based systems, you'll need ARM-compatible versions of libraries, which are often available for popular frameworks.</p>
+<p>First, retrieve your VM's public IP address (if you haven't already):</p>
+<pre><code class="language-azurecli">VM_IP=$(az vm show -d --resource-group "SkyCoreAIGroup" --name "SkyCoreAICobaltVM" --query "publicIps" -o tsv)</code></pre>
+<p>Now, connect to your VM:</p>
+<pre><code class="language-azurecli">ssh -i ~/.ssh/myCobaltKey_rsa azureuser@$VM_IP</code></pre>
+<ul>
+<li><code>-i ~/.ssh/myCobaltKey_rsa</code>: Specifies the path to your private SSH key. Adjust <code>myCobaltKey_rsa</code> if you chose a different name during VM creation.</li>
+<li><code>azureuser@$VM_IP</code>: Uses the admin username and the public IP address of your VM to establish the SSH connection.</li>
+</ul>
+<p>Once connected, proceed with installing common AI dependencies. For ARM-based VMs, ensure you're installing packages compatible with the `aarch64` architecture. Many Python packages automatically detect the architecture and install the correct wheel.</p>
+<pre><code class="language-azurecli">sudo apt update && sudo apt upgrade -y
+sudo apt install -y python3-pip python3-venv
+python3 -m venv ai_env
+source ai_env/bin/activate
+pip install --upgrade pip
+pip install numpy pandas scikit-learn jupyterlab tensorflow-cpu  # tensorflow-cpu is often ARM-optimized
+# For PyTorch, check official docs for ARM/aarch64 specific installation commands
+# Example: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+</code></pre>
+<ul>
+<li><code>sudo apt update && sudo apt upgrade -y</code>: Updates your VM's package lists and upgrades installed packages to their latest versions.</li>
+<li><code>sudo apt install -y python3-pip python3-venv</code>: Installs Python's package installer (pip) and tools for creating isolated Python environments (venv), which is a best practice for AI projects.</li>
+<li><code>python3 -m venv ai_env</code>: Creates a new virtual environment named `ai_env`.</li>
+<li><code>source ai_env/bin/activate</code>: Activates the virtual environment.</li>
+<li><code>pip install --upgrade pip</code>: Ensures your pip version is up-to-date.</li>
+<li><code>pip install numpy pandas scikit-learn jupyterlab tensorflow-cpu</code>: Installs fundamental AI/data science libraries. Note <code>tensorflow-cpu</code> for CPU-only inference. For PyTorch, verify their official website for ARM-specific installation instructions as it can vary.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong> There is no direct portal equivalent for installing software inside the VM. You must connect via SSH as described above.</p>
+<p><strong>Run this to verify:</strong> After installation, check the versions of your installed tools:</p>
+<pre><code class="language-azurecli">(ai_env) python3 -c "import tensorflow as tf; print(tf.__version__)"
+(ai_env) jupyter lab --version
+</code></pre>
+<div class="howto-callout howto-callout--tip"><strong>Pro tip:</strong> For advanced MLOps or continuous integration/deployment (CI/CD) pipelines, consider using Azure DevOps or GitHub Actions to automate the setup and deployment of your AI environments and models on these Cobalt VMs.</div>
+
+<h2>Step 6: Implement Cost Management with Auto-shutdown</h2>
+<p>For SMBs, managing cloud costs is paramount. Azure's Auto-shutdown feature for VMs is a simple yet effective way to prevent unnecessary charges by automatically stopping your Azure Cobalt 200 VM during off-hours, ensuring you're only billed for compute when it's actively in use. This is particularly valuable for development or staging AI environments.</p>
+<pre><code class="language-azurecli">az vm auto-shutdown \
+    --resource-group "SkyCoreAIGroup" \
+    --name "SkyCoreAICobaltVM" \
+    --time "2000" \
+    --webhook "" \
+    --email "" \
+    --enabled true</code></pre>
+<ul>
+<li><code>--resource-group "SkyCoreAIGroup"</code>: The resource group containing your VM.</li>
+<li><code>--name "SkyCoreAICobaltVM"</code>: The name of your Azure Cobalt 200 VM.</li>
+<li><code>--time "2000"</code>: Sets the daily shutdown time in UTC (24-hour format). Here, <code>2000</code> means 8:00 PM UTC. Adjust this to your local timezone equivalent for when the VM should shut down.</li>
+<li><code>--webhook ""</code>: (Optional) A webhook URL to notify external systems before shutdown.</li>
+<li><code>--email ""</code>: (Optional) An email address to send a notification before shutdown.</li>
+<li><code>--enabled true</code>: Activates the auto-shutdown feature.</li>
+</ul>
+<p class="gui-note"><strong>Portal alternative:</strong>
+<ol>
+<li>In the <a href="https://portal.azure.com" target="_blank">Azure portal</a>, navigate to your <code>SkyCoreAICobaltVM</code>.</li>
+<li>In the left menu, under <strong>Operations</strong>, select <strong>Auto-shutdown</strong>.</li>
+<li>Set <strong>Enable</strong> to <code>On</code>.</li>
+<li>Adjust the <strong>Scheduled shutdown</strong> time (remember this is UTC).</li>
+<li>Optionally, configure email notifications or a webhook.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol></p>
+<p><strong>Run this to verify:</strong> Check the auto-shutdown configuration for your VM:</p>
+<pre><code class="language-azurecli">az vm auto-shutdown show \
+    --resource-group "SkyCoreAIGroup" \
+    --name "SkyCoreAICobaltVM" \
+    --output table</code></pre>
+
+<h2>Conclusion: Optimizing Your SMB's AI Future with Azure Cobalt 200</h2>
+<p>By following this SkyCore Solutions implementation guide, you have successfully deployed and configured an Azure Cobalt 200 VM, laying a robust and cost-efficient foundation for your SMB's AI initiatives. Azure Cobalt 200 VMs, with their ARM-based architecture, offer a compelling platform for various AI workloads, especially where CPU efficiency and predictable performance are key. Whether you're experimenting with AI model inference, performing data preprocessing, or developing custom AI applications, these VMs provide the necessary compute power. Remember that continuous monitoring of costs, regular security reviews, and strategic scaling are crucial as your AI endeavors mature. As your AI needs evolve, Azure offers a vast ecosystem, including GPU-accelerated VMs for more demanding training workloads, Azure Machine Learning services, and a plethora of data solutions, all of which can integrate seamlessly with your Cobalt-powered infrastructure.</p>
+
+<div class="howto-consultant-cta"><h3>When to bring in a consultant</h3>
+<p>While this guide provides a solid foundation for setting up Azure Cobalt 200 VMs for AI workloads, integrating AI into your core business operations can introduce complexities that extend beyond initial VM provisioning. If your SMB faces challenges with data governance, securing sensitive AI models, integrating AI with existing legacy systems, optimizing large-scale AI pipelines, or navigating advanced compliance requirements (e.g., GDPR, HIPAA for AI-driven insights), professional guidance is invaluable. SkyCore Solutions specializes in architecting secure, scalable, and compliant cloud environments for SMBs, ensuring your AI initiatives deliver maximum business value without compromising security or cost-efficiency.</p>
+<a href="../contact.html" class="btn btn-primary">Book a free consultation</a></div>
+<div class="howto-sources">
+  <h4>References</h4>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal" target="_blank" rel="noopener noreferrer">learn.microsoft.com — quick create portal</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-compute" target="_blank" rel="noopener noreferrer">learn.microsoft.com — sizes compute</a></li>
+  </ul>
+</div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="../" class="logo"><img class="logo-svg" src="../assets/images/logo.png" alt="SkyCore logo" /><span><span class="sky">SKY</span><span class="core">CORE</span> <span class="inc">SOLUTIONS</span></span></a><p style="margin-top:14px;max-width:320px;">Transforming IT infrastructure with innovation and expertise.</p><p style="margin-top:8px;color:var(--text-3);font-size:0.9rem;">Montreal, Quebec, Canada</p></div>
+        <div><h4>Services</h4><ul><li><a href="../services.html#cloud">Cloud Migration</a></li><li><a href="../services.html#security">Security Hardening</a></li><li><a href="../services.html#infra">Infrastructure Revamp</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="../blog/">Blog</a></li><li><a href="./">How-To Guides</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:info@skycoresolutions.com">info@skycoresolutions.com</a></li><li style="color:var(--text-3);font-size:0.9rem;">Mon-Fri: 9AM-6PM EST</li><li style="color:var(--text-3);font-size:0.9rem;">24/7 Emergency Support</li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="year">2026</span> SkyCore Solutions Inc. All rights reserved.</span><span>SkyCore Solutions Inc. is a registered trademark.</span></div>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+</body>
+</html>

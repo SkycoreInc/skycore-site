@@ -3,6 +3,18 @@
 // The scheduled generator appends here — see scripts/generate_howto.py
 window.SKYCORE_HOWTO = [
   {
+    slug: "azure-cobalt-200-vms-ai-smb-setup",
+    title: "SkyCore Guide: Set Up Azure Cobalt 200 VMs for AI Workloads in SMBs",
+    date: "2026-11-28",
+    readTime: "18 min read",
+    category: "Infrastructure Revamp",
+    difficulty: "Intermediate",
+    timeEstimate: "1-2 hours",
+    keyword: "Set up Azure Cobalt 200 VMs for AI workloads SMB",
+    excerpt: "Unlock the power of ARM-based computing with Azure Cobalt 200 VMs for your SMB's AI initiatives. This SkyCore Solutions guide walks you through the setup for optimal AI workloads, ensuring efficiency and cost-effectiveness.",
+    image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800&fit=crop&h=450"
+  },
+  {
     slug: "dmarc-configuration-step-by-step-azure",
     title: "Mastering DMARC: A Step-by-Step Configuration Guide for Azure Environments",
     date: "2026-10-25",
